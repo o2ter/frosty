@@ -33,7 +33,7 @@ export const HTMLElementTagNameMap = {
   "a": {
     type: HTMLAnchorElement,
     props: {
-      attributionSrc: PropType.string,
+      src: PropType.string,
     },
   },
   "abbr": {
