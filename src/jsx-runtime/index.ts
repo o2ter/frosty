@@ -1,11 +1,8 @@
-
-export type Element = string | number | null | undefined;
-export type ElementType = string | (() => Element);
+import { _IntrinsicElements } from './../types/index';
+import { Element, ElementType } from "~/types";
 
 export declare namespace JSX {
-  interface IntrinsicElements {
-    [elemName: string]: { bar?: boolean };
-  }
+  type IntrinsicElements = _IntrinsicElements;
 }
 
 export function jsx(
