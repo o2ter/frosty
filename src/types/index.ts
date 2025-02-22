@@ -33,15 +33,24 @@ import {
 
 export type PropsWithChildren<
   P extends {} = {},
-  C extends unknown = ElementNode
+  C extends unknown = Node
 > = P & {
   children?: C;
 };
 
+type Node =
+  | ElementNode
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | Iterable<Node>;
+
 export type ComponentType<
   P extends {} = {},
-  Node extends ElementNode = ElementNode
-> = (props: P) => Node;
+  N extends Node = Node
+> = (props: P) => N;
 
 export type ElementType = string | ComponentType;
 
