@@ -23,11 +23,11 @@
 //  THE SOFTWARE.
 //
 
-import { _Element, Fragment } from '../internals';
+import { _Element } from '../internals';
 import { _IntrinsicAttributes, _IntrinsicElements, _ElementType } from './../types';
 
 export { Fragment } from '../internals';
-export { ComponentType } from './../types';
+export { ComponentType, PropsWithChildren } from './../types';
 
 export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;
@@ -38,7 +38,6 @@ export declare namespace JSX {
 
 export const JSX = {
   Element: _Element,
-  Fragment,
 };
 
 export function jsx<
