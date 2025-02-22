@@ -30,6 +30,7 @@ import {
   MathMLElementTagNameMap,
   SVGElementTagNameMap,
 } from '../internals/web';
+import { PropType } from '~/internals/web/attrs';
 
 export type PropsWithChildren<
   P extends {} = {},
@@ -54,18 +55,22 @@ export type ComponentType<
 
 export type ElementType = string | ComponentType;
 
+type PropsFromPropTypesMap<M extends {}> = {
+  [x in keyof M]?: M[x] extends PropType<infer T> ? T : never;
+};
+
 type HTMLElementProps = {
-  [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<{}>;
+  [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof HTMLElementTagNameMap[x]>>;
 } & {
-  [x in keyof typeof HTMLElementDeprecatedTagNameMap]: PropsWithChildren<{}>;
+  [x in keyof typeof HTMLElementDeprecatedTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof HTMLElementDeprecatedTagNameMap[x]>>;
 };
 
 type SVGElementProps = {
-  [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{}>;
+  [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof SVGElementTagNameMap[x]>>;
 };
 
 type MathMLElementProps = {
-  [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{}>;
+  [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof MathMLElementTagNameMap[x]>>;
 };
 
 export type _IntrinsicElements = HTMLElementProps & SVGElementProps & MathMLElementProps & {
