@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from '../internals';
+import { _Element } from '../internals';
 import {
   HTMLElementDeprecatedTagNameMap,
   HTMLElementTagNameMap,
@@ -34,26 +34,26 @@ import { PropType } from '../internals/web/propType';
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},
-  C extends unknown = ElementNode
+  C extends unknown = _ElementNode
 > = P & {
   children?: C;
 };
 
-export type ElementNode =
-  | ComponentNode
+export type _ElementNode =
+  | _Element
   | string
   | number
   | boolean
   | null
   | undefined
-  | Iterable<ElementNode>;
+  | Iterable<_ElementNode>;
 
 export type ComponentType<
   P extends Record<string, unknown> = {},
-  N extends ElementNode = ElementNode
+  N extends _ElementNode = _ElementNode
 > = (props: P) => N;
 
-export type ElementType = string | ComponentType;
+export type _ElementType = string | ComponentType;
 
 export type Ref<T> = (ref: T) => void;
 
