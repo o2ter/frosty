@@ -22,3 +22,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 //
+
+import _ from 'lodash';
+
+export class PropType {
+
+  _type: string[];
+
+  constructor(type: string | string[]) {
+    this._type = _.castArray(type);
+  }
+
+  static string = new PropType('string');
+  static number = new PropType('number');
+}
