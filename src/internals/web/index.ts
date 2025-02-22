@@ -25,6 +25,10 @@
 
 import { PropType } from './propType';
 
+/**
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
+ */
+
 export const HTMLElementTagNameMap = {
   "a": {
     attributionSrc: PropType.string,
