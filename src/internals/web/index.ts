@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { PropType } from './attrs';
+import { PropType } from './propType';
 
 export const HTMLElementTagNameMap = {
   "a": {

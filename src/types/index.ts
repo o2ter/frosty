@@ -30,7 +30,7 @@ import {
   MathMLElementTagNameMap,
   SVGElementTagNameMap,
 } from '../internals/web';
-import { PropType } from '~/internals/web/attrs';
+import { PropType } from '~/internals/web/propType';
 
 export type PropsWithChildren<
   P extends {} = {},
