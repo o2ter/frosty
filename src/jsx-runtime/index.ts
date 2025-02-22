@@ -23,10 +23,10 @@
 //  THE SOFTWARE.
 //
 
-import { ElementNode } from '../internals';
+import { ComponentNode } from '../internals';
 import { _IntrinsicElements, ElementType } from './../types';
 
-export { ElementNode, Fragment } from '../internals';
+export { ComponentNode as ElementNode, Fragment } from '../internals';
 export { ComponentType, ElementType } from './../types';
 
 export declare namespace JSX {
@@ -38,6 +38,6 @@ export function jsx<
   T extends ElementType = any
 >(
   type: T, props: P, key?: string
-): ElementNode<P, T> {
-  return new ElementNode(type, props, key);
+): ComponentNode<P, T> {
+  return new ComponentNode(type, props, key);
 }

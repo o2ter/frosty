@@ -25,7 +25,7 @@
 
 import { ComponentType, ElementType } from '../types';
 
-export class ElementNode<P extends {} = any, T extends ElementType = any> {
+export class ComponentNode<P extends {} = any, T extends ElementType = any> {
 
   _type: T;
   _props: P;
