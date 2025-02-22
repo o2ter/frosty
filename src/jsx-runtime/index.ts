@@ -24,17 +24,20 @@
 //
 
 import { ComponentNode } from '../internals';
-import { _IntrinsicElements, ElementType } from './../types';
+import { _IntrinsicAttributes, _IntrinsicElements, ElementNode, ElementType } from './../types';
 
-export { ComponentNode as ElementNode, Fragment } from '../internals';
+export { ComponentNode, Fragment } from '../internals';
 export { ComponentType, ElementType } from './../types';
 
 export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;
+  type IntrinsicAttributes = _IntrinsicAttributes;
+  type Element = ElementNode;
+  type ElementChildrenAttribute = { children: {}; };
 }
 
 export function jsx<
-  P extends {} = any,
+  P extends Record<string, unknown> = any,
   T extends ElementType = any
 >(
   type: T, props: P, key?: string

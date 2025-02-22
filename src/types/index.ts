@@ -33,13 +33,13 @@ import {
 import { PropType } from '../internals/web/propType';
 
 export type PropsWithChildren<
-  P extends {} = {},
+  P extends Record<string, unknown> = {},
   C extends unknown = ElementNode
 > = P & {
   children?: C;
 };
 
-type ElementNode =
+export type ElementNode =
   | ComponentNode
   | string
   | number
@@ -49,30 +49,35 @@ type ElementNode =
   | Iterable<ElementNode>;
 
 export type ComponentType<
-  P extends {} = {},
+  P extends Record<string, unknown> = {},
   N extends ElementNode = ElementNode
 > = (props: P) => N;
 
 export type ElementType = string | ComponentType;
 
-type PropsFromPropTypesMap<M extends {}> = {
-  [x in keyof M]?: M[x] extends PropType<infer T> ? T : never;
+export type Ref<T> = (ref: T) => void;
+
+export type _IntrinsicAttributes<T = any> = {
+  key?: string | number;
+  ref?: Ref<T>;
+}
+
+type PropsFromPropTypesMap<M extends Record<string, unknown>> = {
+  [p in keyof M]?: M[p] extends PropType<infer T> ? T : never;
 };
 
-type HTMLElementProps = {
-  [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof HTMLElementTagNameMap[x]>>;
-} & {
-  [x in keyof typeof HTMLElementDeprecatedTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof HTMLElementDeprecatedTagNameMap[x]>>;
-};
+type ElementPropsMap<
+  M extends Record<string, {
+    type: any;
+    props: Record<string, PropType<unknown>>,
+  }>
+> = {
+    [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>
+    & PropsWithChildren<PropsFromPropTypesMap<M[x]['props']>>;
+  };
 
-type SVGElementProps = {
-  [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof SVGElementTagNameMap[x]>>;
-};
-
-type MathMLElementProps = {
-  [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<PropsFromPropTypesMap<typeof MathMLElementTagNameMap[x]>>;
-};
-
-export type _IntrinsicElements = HTMLElementProps & SVGElementProps & MathMLElementProps & {
-  [x: string]: any;
-};
+export type _IntrinsicElements = ElementPropsMap<typeof HTMLElementTagNameMap>
+  & ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
+  & ElementPropsMap<typeof SVGElementTagNameMap>
+  & ElementPropsMap<typeof MathMLElementTagNameMap>
+  & { [x: string]: any; };
