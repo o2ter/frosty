@@ -33,6 +33,7 @@ export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;
   type IntrinsicAttributes = _IntrinsicAttributes;
   type ElementType = _ElementType;
+  type Element = _Element;
   type ElementChildrenAttribute = { children: {}; };
 };
 
