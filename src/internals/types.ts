@@ -23,4 +23,33 @@
 //  THE SOFTWARE.
 //
 
-export * from './types';
+import { ComponentType, ElementType } from '../types';
+
+export class ElementNode<P extends {} = any, T extends ElementType = any> {
+
+  _type: T;
+  _props: P;
+  _key?: string;
+
+  constructor(type: T, props: P, key?: string) {
+    this._type = type;
+    this._props = props;
+    this._key = key;
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  get props() {
+    return this._props;
+  }
+
+  get key() {
+    return this._key;
+  }
+}
+
+export const Fragment: ComponentType = () => {
+  throw Error('Fragment component should not be called directly.');
+}

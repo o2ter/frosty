@@ -26,7 +26,7 @@
 import { ElementNode } from '../internals';
 import { _IntrinsicElements, ElementType } from './../types';
 
-export { ElementNode } from '../internals';
+export { ElementNode, Fragment } from '../internals';
 export { ComponentType, ElementType } from './../types';
 
 export declare namespace JSX {
