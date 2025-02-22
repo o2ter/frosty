@@ -34,6 +34,7 @@ export {
   ComponentType,
   PropsWithChildren,
   _ElementType as ElementType,
+  _ElementNode as ElementNode,
 } from './../types';
 
 export declare namespace JSX {
