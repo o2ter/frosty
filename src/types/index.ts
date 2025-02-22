@@ -35,7 +35,7 @@ export type PropsWithChildren<
   P extends {} = {},
   C extends unknown = ElementNode
 > = P & {
-  children: C;
+  children?: C;
 };
 
 export type ComponentType<
