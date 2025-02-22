@@ -24,18 +24,30 @@
 //
 
 import { ElementNode } from '../internals';
+import {
+  HTMLElementDeprecatedTagNameMap,
+  HTMLElementTagNameMap,
+  MathMLElementTagNameMap,
+  SVGElementTagNameMap,
+} from './elements';
 
 export type ComponentType = () => ElementNode<any, any>;
 export type ElementType = string | ComponentType;
 
 type HTMLElementProps = {
-  span: {};
-}
+  [x in keyof typeof HTMLElementTagNameMap]: {};
+} & {
+  [x in keyof typeof HTMLElementDeprecatedTagNameMap]: {};
+};
 
 type SVGElementProps = {
-  svg: {};
-}
+  [x in keyof typeof SVGElementTagNameMap]: {};
+};
 
-export type _IntrinsicElements = HTMLElementProps & SVGElementProps & {
+type MathMLElementProps = {
+  [x in keyof typeof MathMLElementTagNameMap]: {};
+};
+
+export type _IntrinsicElements = HTMLElementProps & SVGElementProps & MathMLElementProps & {
   [x: string]: any;
 };
