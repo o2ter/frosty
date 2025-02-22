@@ -24,7 +24,7 @@
 //
 
 import { expect, test } from '@jest/globals';
-import { _Element, ComponentType } from '~/jsx-runtime';
+import { JSX, ComponentType } from '~/jsx-runtime';
 
 const TestComponent: ComponentType = () => {
   return <></>;
@@ -34,7 +34,7 @@ test('test create html element', async () => {
 
   const element = <span />;
 
-  expect(element).toBeInstanceOf(_Element);
+  expect(element).toBeInstanceOf(JSX.Element);
   expect(element.type).toBe('span');
 });
 
@@ -42,7 +42,7 @@ test('test create component element', async () => {
 
   const element = <TestComponent />;
 
-  expect(element).toBeInstanceOf(_Element);
+  expect(element).toBeInstanceOf(JSX.Element);
   expect(element.type).toBe(TestComponent);
 
 });
