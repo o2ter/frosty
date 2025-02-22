@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 
-export class PropType {
+export class PropType<T> {
 
   _type: string[];
 
@@ -33,6 +33,6 @@ export class PropType {
     this._type = _.castArray(type);
   }
 
-  static string = new PropType('string');
-  static number = new PropType('number');
+  static string = new PropType<string>('string');
+  static number = new PropType<number>('number');
 }
