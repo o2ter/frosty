@@ -1,5 +1,5 @@
 //
-//  main.test.ts
+//  component.test.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,15 +23,23 @@
 //  THE SOFTWARE.
 //
 
+import { expect, test } from '@jest/globals';
+
 const TestComponent = () => {
   return 0;
 }
 
-const checkType = () => {
+test('test create html element', async () => {
 
-  return <span></span>
-}
+  const element = <span />;
 
-const checkType2 = () => {
-  return <TestComponent></TestComponent>
-}
+  expect(element.type).toBe('span');
+});
+
+test('test create component element', async () => {
+
+  const element = <TestComponent />;
+
+  expect(element.type).toBe(TestComponent);
+
+});
