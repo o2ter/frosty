@@ -26,8 +26,15 @@
 import { _Element } from '../internals';
 import { _IntrinsicAttributes, _IntrinsicElements, _ElementType } from './../types';
 
-export { Fragment } from '../internals';
-export { ComponentType, PropsWithChildren } from './../types';
+export {
+  Fragment,
+  _Element as Element,
+} from '../internals';
+export {
+  ComponentType,
+  PropsWithChildren,
+  _ElementType as ElementType,
+} from './../types';
 
 export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;
