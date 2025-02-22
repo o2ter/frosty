@@ -31,7 +31,18 @@ import {
   SVGElementTagNameMap,
 } from './elements';
 
-export type ComponentType = () => ElementNode<any, any>;
+export type PropsWithChildren<
+  P extends {} = {},
+  C extends unknown = ElementNode
+> = P & {
+  children: C;
+};
+
+export type ComponentType<
+  P extends {} = {},
+  Node extends ElementNode = ElementNode
+> = (props: P) => Node;
+
 export type ElementType = string | ComponentType;
 
 type HTMLElementProps = {
