@@ -1,2 +1,2 @@
 
-export * from './runtime';
+export * from './jsx-runtime';

@@ -10,13 +10,18 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "./snow",
+    "jsxImportSource": "~",
     "declaration": false,
     "outDir": "dist",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
-    "stripInternal": true
+    "stripInternal": true,
+    "paths": {
+      "~/*": [
+        "./src/*"
+      ]
+    }
   },
   "exclude": [
     "**/dist/*",

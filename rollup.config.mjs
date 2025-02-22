@@ -8,7 +8,7 @@ import dts from 'rollup-plugin-dts';
 const rollupConfig = {
   input: {
     index: 'src/index',
-    'jsx-runtime': 'src/runtime',
+    'jsx-runtime': 'src/jsx-runtime',
   },
   external: [
     /node_modules/
