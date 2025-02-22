@@ -23,12 +23,12 @@
 //  THE SOFTWARE.
 //
 
-import { _Element } from '../internals';
+import { ComponentNode } from '../internals';
 import { _IntrinsicAttributes, _IntrinsicElements, _ElementType } from './../types';
 
 export {
   Fragment,
-  _Element as Element,
+  ComponentNode,
 } from '../internals';
 export {
   ComponentType,
@@ -41,12 +41,12 @@ export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;
   type IntrinsicAttributes = _IntrinsicAttributes;
   type ElementType = _ElementType;
-  type Element = _Element;
+  type Element = ComponentNode;
   type ElementChildrenAttribute = { children: {}; };
 };
 
 export const JSX = {
-  Element: _Element,
+  Element: ComponentNode,
 };
 
 export function jsx<
@@ -54,6 +54,6 @@ export function jsx<
   T extends _ElementType = any
 >(
   type: T, props: P, key?: string
-): _Element<P, T> {
-  return new _Element(type, props, key);
+): ComponentNode<P, T> {
+  return new ComponentNode(type, props, key);
 }

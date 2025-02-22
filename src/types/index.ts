@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { _Element } from '../internals';
+import { ComponentNode } from '../internals';
 import {
   HTMLElementDeprecatedTagNameMap,
   HTMLElementTagNameMap,
@@ -40,7 +40,7 @@ export type PropsWithChildren<
 };
 
 export type _ElementNode =
-  | _Element
+  | ComponentNode
   | string
   | number
   | boolean

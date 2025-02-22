@@ -25,7 +25,7 @@
 
 import { ComponentType, _ElementType } from '../types';
 
-export class _Element<P extends Record<string, unknown> = any, T extends _ElementType = any> {
+export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType = any> {
 
   _type: T;
   _props: P;
