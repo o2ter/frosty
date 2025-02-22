@@ -24,9 +24,10 @@
 //
 
 import { expect, test } from '@jest/globals';
+import { ComponentType } from '~/jsx-runtime';
 
-const TestComponent = () => {
-  return 0;
+const TestComponent: ComponentType = () => {
+  return <></>;
 }
 
 test('test create html element', async () => {
