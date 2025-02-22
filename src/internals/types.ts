@@ -23,9 +23,9 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, _ElementType } from '../types';
+import { ComponentType, ElementType } from '../types';
 
-export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType = any> {
+export class ComponentNode<P extends Record<string, unknown> = any, T extends ElementType = any> {
 
   _type: T;
   _props: P;

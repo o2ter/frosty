@@ -34,26 +34,26 @@ import { PropType } from '../internals/web/propType';
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},
-  C extends unknown = _ElementNode
+  C extends unknown = ElementNode
 > = P & {
   children?: C;
 };
 
-export type _ElementNode =
+export type ElementNode =
   | ComponentNode
   | string
   | number
   | boolean
   | null
   | undefined
-  | Iterable<_ElementNode>;
+  | Iterable<ElementNode>;
 
 export type ComponentType<
   P extends Record<string, unknown> = {},
-  N extends _ElementNode = _ElementNode
+  N extends ElementNode = ElementNode
 > = (props: P) => N;
 
-export type _ElementType = string | ComponentType;
+export type ElementType = string | ComponentType;
 
 export type Ref<T> = (ref: T) => void;
 

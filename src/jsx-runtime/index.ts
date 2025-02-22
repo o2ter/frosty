@@ -24,7 +24,7 @@
 //
 
 import { ComponentNode } from '../internals';
-import { _IntrinsicAttributes, _IntrinsicElements, _ElementType } from './../types';
+import { _IntrinsicAttributes, _IntrinsicElements, ElementType as _ElementType } from './../types';
 
 export {
   Fragment,
@@ -33,8 +33,8 @@ export {
 export {
   ComponentType,
   PropsWithChildren,
-  _ElementType as ElementType,
-  _ElementNode as ElementNode,
+  ElementType,
+  ElementNode,
 } from './../types';
 
 export declare namespace JSX {
