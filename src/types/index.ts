@@ -55,17 +55,17 @@ export type ComponentType<
 export type ElementType = string | ComponentType;
 
 type HTMLElementProps = {
-  [x in keyof typeof HTMLElementTagNameMap]: {};
+  [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<{}>;
 } & {
-  [x in keyof typeof HTMLElementDeprecatedTagNameMap]: {};
+  [x in keyof typeof HTMLElementDeprecatedTagNameMap]: PropsWithChildren<{}>;
 };
 
 type SVGElementProps = {
-  [x in keyof typeof SVGElementTagNameMap]: {};
+  [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{}>;
 };
 
 type MathMLElementProps = {
-  [x in keyof typeof MathMLElementTagNameMap]: {};
+  [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{}>;
 };
 
 export type _IntrinsicElements = HTMLElementProps & SVGElementProps & MathMLElementProps & {
