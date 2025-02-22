@@ -29,7 +29,7 @@ import {
   HTMLElementTagNameMap,
   MathMLElementTagNameMap,
   SVGElementTagNameMap,
-} from './web';
+} from '../web';
 
 export type PropsWithChildren<
   P extends {} = {},
