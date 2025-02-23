@@ -23,10 +23,13 @@
 //  THE SOFTWARE.
 //
 
+export let _current_subscriber: (() => void) | undefined;
+
 export const Store = <T>(x: T) => {
   const subscribers: (() => void)[] = [];
   let store = x;
   const read = () => {
+    if (_current_subscriber) subscribers.push(_current_subscriber);
     return store;
   }
   const write = (value: T) => {
