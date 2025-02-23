@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from './internals';
+import { ComponentNode } from './internals/types/components';
 import { _IntrinsicAttributes, _IntrinsicElements, ElementType as _ElementType } from './internals/types';
 
 export declare namespace JSX {

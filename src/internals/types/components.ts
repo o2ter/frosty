@@ -27,10 +27,16 @@ import { ComponentType, ElementType } from '.';
 
 export class ComponentNode<P extends Record<string, unknown> = any, T extends ElementType = any> {
 
-  _type: T;
-  _props: P;
-  _key?: string;
+  /** @internal */
+  private _type: T;
 
+  /** @internal */
+  private _props: P;
+
+  /** @internal */
+  private _key?: string;
+
+  /** @internal */
   constructor(type: T, props: P, key?: string) {
     this._type = type;
     this._props = props;
