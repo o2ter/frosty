@@ -34,8 +34,8 @@ export declare namespace JSX {
   type ElementChildrenAttribute = { children: {}; };
 };
 
-export const JSX = {
+export const JSX = Object.freeze({
   Element: ComponentNode,
-};
+});
 
 export * from './internals/runtime';
