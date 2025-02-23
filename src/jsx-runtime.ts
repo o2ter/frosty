@@ -24,12 +24,12 @@
 //
 
 import { ComponentNode } from './internals/types/components';
-import { _IntrinsicAttributes, _IntrinsicElements, ElementType as _ElementType } from './internals/types';
+import * as Internals from './internals/types';
 
 export declare namespace JSX {
-  type IntrinsicElements = _IntrinsicElements;
-  type IntrinsicAttributes = _IntrinsicAttributes;
-  type ElementType = _ElementType;
+  type IntrinsicElements = Internals.IntrinsicElements;
+  type IntrinsicAttributes = Internals.IntrinsicAttributes;
+  type ElementType = Internals.ElementType;
   type Element = ComponentNode;
   type ElementChildrenAttribute = { children: {}; };
 };
