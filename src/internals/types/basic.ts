@@ -63,7 +63,7 @@ export type _IntrinsicAttributes<T = any> = {
 type ElementPropsMap<
   M extends Record<string, {
     type: any;
-    props: Record<string, PropValue<unknown>>,
+    props: Record<string, PropValue<any, any>>,
   }>
 > = {
     [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>
