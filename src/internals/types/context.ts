@@ -25,11 +25,6 @@
 
 import { ComponentType } from './basic';
 
-export const createContext = () => {
-
-  const Context: ComponentType = () => {
-    throw Error('Context component should not be called directly.');
-  }
-
-  return Context;
+export const createContext = (): ComponentType => () => {
+  throw Error('Context component should not be called directly.');
 }
