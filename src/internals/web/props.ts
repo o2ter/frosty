@@ -44,6 +44,14 @@ export class PropValue<T, U = T> {
     this._encode = options.encode;
   }
 
+  varify(x: any) {
+    return this._varify?.(x);
+  }
+
+  encode(x: T) {
+    return this._encode?.(x);
+  }
+
   /**
    * HTML attribute values
    */
