@@ -45,11 +45,11 @@ export class PropValue<T, U = T> {
   }
 
   varify(x: any) {
-    return this._varify?.(x);
+    return this._varify ? this._varify(x) : true;
   }
 
   encode(x: T) {
-    return this._encode?.(x);
+    return this._encode ? this._encode(x) : x;
   }
 
   /**
