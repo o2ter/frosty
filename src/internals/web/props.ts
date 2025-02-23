@@ -31,31 +31,40 @@ export type PropMap<M extends Record<string, any>> = {
   [x in keyof M]?: M[x] extends PropValue<infer T, any> ? T : M[x];
 };
 
-export class PropValue<T, U> {
+export class PropValue<T, U = T> {
 
-  _varify: (x: any) => x is T;
-  _encode: (x: T) => U;
+  _varify?: (x: any) => x is T;
+  _encode?: (x: T) => U;
 
-  constructor(
-    varify: (x: any) => x is T,
-    encode: (x: T) => U,
-  ) {
-    this._varify = varify;
-    this._encode = encode;
+  constructor(options: {
+    varify?: (x: any) => x is T,
+    encode?: (x: T) => U,
+  }) {
+    this._varify = options.varify;
+    this._encode = options.encode;
   }
 
   /**
    * HTML attribute values
    */
 
-  static string = new PropValue(_.isString, x => x);
-  static number = new PropValue(_.isNumber, x => x);
-  // static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>();
-  // static className = new PropValue<ClassNames>();
+  static string = new PropValue({
+    varify: _.isString,
+    encode: x => x,
+  });
+  static number = new PropValue({
+    varify: _.isNumber,
+    encode: x => x,
+  });
+  static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
+  static className = new PropValue<ClassNames>({});
 
   /**
    * CSS values
    */
 
-  static color = new PropValue(_.isString, x => x);
+  static color = new PropValue({
+    varify: _.isString,
+    encode: x => x,
+  });
 }
