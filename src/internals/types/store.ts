@@ -25,6 +25,7 @@
 
 export const Store = <T>(x: T) => {
   let _value = x;
+  const _subscribers = [];
   const read = () => {
     return _value;
   }
