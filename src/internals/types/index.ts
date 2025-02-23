@@ -53,11 +53,11 @@ export type ComponentType<
   N extends ElementNode = ElementNode
 > = (props: P) => N;
 
-export type ElementType = string | ComponentType;
+export type _ElementType = string | ComponentType;
 
 export type Ref<T> = (ref: T) => void;
 
-export type IntrinsicAttributes<T = any> = {
+export type _IntrinsicAttributes<T = any> = {
   key?: string | number;
   ref?: Ref<T>;
 }
@@ -72,11 +72,11 @@ type ElementPropsMap<
     props: Record<string, PropType<unknown>>,
   }>
 > = {
-    [x in keyof M]: IntrinsicAttributes<InstanceType<M[x]['type']>>
+    [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>
     & PropsWithChildren<PropsFromPropTypesMap<M[x]['props']>>;
   };
 
-export type IntrinsicElements = ElementPropsMap<typeof HTMLElementTagNameMap>
+export type _IntrinsicElements = ElementPropsMap<typeof HTMLElementTagNameMap>
   & ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
   & ElementPropsMap<typeof SVGElementTagNameMap>
   & ElementPropsMap<typeof MathMLElementTagNameMap>

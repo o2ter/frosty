@@ -24,7 +24,7 @@
 //
 
 import { ComponentNode } from './types/components';
-import { ElementType } from './types';
+import { _ElementType } from './types';
 
 export {
   Fragment,
@@ -34,13 +34,13 @@ export {
 export {
   ComponentType,
   PropsWithChildren,
-  ElementType,
+  _ElementType as ElementType,
   ElementNode,
 } from './types';
 
 export function jsx<
   P extends Record<string, unknown> = any,
-  T extends ElementType = any
+  T extends _ElementType = any
 >(
   type: T, props: P, key?: string
 ): ComponentNode<P, T> {

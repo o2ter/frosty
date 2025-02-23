@@ -23,9 +23,9 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, ElementType } from '.';
+import { ComponentType, _ElementType } from '.';
 
-export class ComponentNode<P extends Record<string, unknown> = any, T extends ElementType = any> {
+export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType = any> {
 
   /** @internal */
   private _type: T;
