@@ -54,11 +54,18 @@ export type ComponentType<
 
 export type _ElementType = string | ComponentType;
 
+type RefObject<T> = {
+  /**
+   * The current value of the ref.
+   */
+  current: T | null;
+}
+
 export type Ref<T> = (ref: T) => void;
 
 export type _IntrinsicAttributes<T = any> = {
   key?: string | number;
-  ref?: Ref<T>;
+  ref?: Ref<T> | RefObject<T> | null;
 }
 
 type ElementPropsMap<
