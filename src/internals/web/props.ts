@@ -28,29 +28,34 @@ import { ClassNames, StyleProp } from '../styles/types';
 import { CSSProperties } from './css';
 
 export type PropMap<M extends Record<string, any>> = {
-  [x in keyof M]?: M[x] extends PropValue<infer T> ? T : M[x];
+  [x in keyof M]?: M[x] extends PropValue<infer T, any> ? T : M[x];
 };
 
-export class PropValue<T> {
+export class PropValue<T, U> {
 
-  _type: string[];
+  _varify: (x: any) => x is T;
+  _encode: (x: T) => U;
 
-  constructor(type: string | string[]) {
-    this._type = _.castArray(type);
+  constructor(
+    varify: (x: any) => x is T,
+    encode: (x: T) => U,
+  ) {
+    this._varify = varify;
+    this._encode = encode;
   }
 
   /**
    * HTML attribute values
    */
 
-  static string = new PropValue<string>('string');
-  static number = new PropValue<number>('number');
-  static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>('style');
-  static className = new PropValue<ClassNames>('className');
+  static string = new PropValue(_.isString, x => x);
+  static number = new PropValue(_.isNumber, x => x);
+  // static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>();
+  // static className = new PropValue<ClassNames>();
 
   /**
    * CSS values
    */
 
-  static color = new PropValue<string>('color');
+  static color = new PropValue(_.isString, x => x);
 }
