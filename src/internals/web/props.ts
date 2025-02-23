@@ -49,7 +49,7 @@ export class PropValue<T, U = T> {
   }
 
   encode(x: T) {
-    return this._encode ? this._encode(x) : x;
+    return this._encode?.(x);
   }
 
   /**
