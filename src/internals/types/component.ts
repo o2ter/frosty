@@ -37,7 +37,7 @@ export class ComponentNode<P extends Record<string, unknown> = any, T extends _E
   private _key?: string;
 
   /** @internal */
-  constructor(type: T, props: P, key?: string) {
+  private constructor(type: T, props: P, key?: string) {
     this._type = type;
     this._props = props;
     this._key = key;
