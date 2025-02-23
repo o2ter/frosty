@@ -60,12 +60,12 @@ export type RefObject<T> = {
    */
   current: T;
 }
-
-export type Ref<T> = (ref: T) => void;
+export type RefCallback<T> = (ref: T) => void;
+export type Ref<T> = RefCallback<T> | RefObject<T> | null;
 
 export type _IntrinsicAttributes<T = any> = {
   key?: string | number;
-  ref?: Ref<T> | RefObject<T> | null;
+  ref?: Ref<T>;
 }
 
 type ElementPropsMap<
