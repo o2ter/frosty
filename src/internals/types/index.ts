@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from '..';
+import { ComponentNode } from './components';
 import {
   HTMLElementDeprecatedTagNameMap,
   HTMLElementTagNameMap,
