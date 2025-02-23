@@ -27,6 +27,7 @@ import { ComponentNode } from './types/component';
 import { _ElementType } from './types';
 
 export { ComponentNode } from './types/component';
+export { createContext } from './types/context';
 export { Fragment } from './types/fragment';
 
 export {
