@@ -33,28 +33,46 @@ export type PropMap<M extends Record<string, any>> = {
 
 export class PropValue<T, U = T> {
 
-  private _varify?: (x: any) => x is T;
+  _varify?: (x: any) => x is T;
+  _encode?: (x: T) => U;
 
-  constructor(varify?: (x: any) => x is T) {
-    this._varify = varify;
+  constructor(options: {
+    varify?: (x: any) => x is T,
+    encode?: (x: T) => U,
+  }) {
+    this._varify = options.varify;
+    this._encode = options.encode;
   }
 
   varify(x: any) {
     return this._varify ? this._varify(x) : true;
   }
 
+  encode(x: T) {
+    return this._encode ? this._encode(x) : x;
+  }
+
   /**
    * HTML attribute values
    */
 
-  static string = new PropValue(_.isString);
-  static number = new PropValue(_.isNumber);
-  static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>();
-  static className = new PropValue<ClassNames>();
+  static string = new PropValue({
+    varify: _.isString,
+    encode: x => x,
+  });
+  static number = new PropValue({
+    varify: _.isNumber,
+    encode: x => x,
+  });
+  static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
+  static className = new PropValue<ClassNames>({});
 
   /**
    * CSS values
    */
 
-  static color = new PropValue(_.isString);
+  static color = new PropValue({
+    varify: _.isString,
+    encode: x => x,
+  });
 }
