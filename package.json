@@ -16,6 +16,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@o2ter/utils-js": "^0.0.18",
     "lodash": ">=4.17.21"
   },
   "devDependencies": {

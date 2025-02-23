@@ -29,6 +29,7 @@ import { HTMLElementDeprecatedTagNameMap } from "../web/html";
 import { HTMLElementTagNameMap } from '../web/html';
 import { PropMap, PropValue } from '../web/props';
 import { ComponentNode } from './component';
+import { MergeObject } from "@o2ter/utils-js";
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},
@@ -70,8 +71,9 @@ type ElementPropsMap<
     & PropsWithChildren<PropMap<M[x]['props']>>;
   };
 
-export type _IntrinsicElements = ElementPropsMap<typeof HTMLElementTagNameMap>
-  & ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
-  & ElementPropsMap<typeof SVGElementTagNameMap>
-  & ElementPropsMap<typeof MathMLElementTagNameMap>
-  & { [x: string]: any; };
+export type _IntrinsicElements = MergeObject<
+  ElementPropsMap<typeof HTMLElementTagNameMap>
+  | ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
+  | ElementPropsMap<typeof SVGElementTagNameMap>
+  | ElementPropsMap<typeof MathMLElementTagNameMap>
+> & { [x: string]: any; };
