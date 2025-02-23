@@ -24,7 +24,7 @@
 //
 
 import { expect, test } from '@jest/globals';
-import { ComponentType, ComponentNode } from '~/jsx-runtime';
+import { ComponentType, ComponentNode } from '~/index';
 
 const TestComponent: ComponentType = () => {
   return <></>;

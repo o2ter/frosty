@@ -23,33 +23,19 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, ElementType } from '../types';
+import { ComponentNode } from './internals';
+import { _IntrinsicAttributes, _IntrinsicElements, ElementType as _ElementType } from './internals/types';
 
-export class ComponentNode<P extends Record<string, unknown> = any, T extends ElementType = any> {
+export declare namespace JSX {
+  type IntrinsicElements = _IntrinsicElements;
+  type IntrinsicAttributes = _IntrinsicAttributes;
+  type ElementType = _ElementType;
+  type Element = ComponentNode;
+  type ElementChildrenAttribute = { children: {}; };
+};
 
-  _type: T;
-  _props: P;
-  _key?: string;
+export const JSX = {
+  Element: ComponentNode,
+};
 
-  constructor(type: T, props: P, key?: string) {
-    this._type = type;
-    this._props = props;
-    this._key = key;
-  }
-
-  get type() {
-    return this._type;
-  }
-
-  get props() {
-    return this._props;
-  }
-
-  get key() {
-    return this._key;
-  }
-}
-
-export const Fragment: ComponentType = () => {
-  throw Error('Fragment component should not be called directly.');
-}
+export * from './internals/runtime';

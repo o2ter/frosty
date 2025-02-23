@@ -23,4 +23,4 @@
 //  THE SOFTWARE.
 //
 
-export * from './types';
+export * from './types/components';

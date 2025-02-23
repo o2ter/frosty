@@ -23,14 +23,14 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from '../internals';
+import { ComponentNode } from '..';
 import {
   HTMLElementDeprecatedTagNameMap,
   HTMLElementTagNameMap,
   MathMLElementTagNameMap,
   SVGElementTagNameMap,
-} from '../internals/web';
-import { PropType } from '../internals/web/propType';
+} from '../web';
+import { PropType } from '../web/propType';
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},

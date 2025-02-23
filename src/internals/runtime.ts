@@ -23,31 +23,20 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from '../internals';
-import { _IntrinsicAttributes, _IntrinsicElements, ElementType as _ElementType } from './../types';
+import { ComponentNode } from './types/components';
+import { ElementType as _ElementType } from './types';
 
 export {
   Fragment,
   ComponentNode,
-} from '../internals';
+} from './types/components';
+
 export {
   ComponentType,
   PropsWithChildren,
   ElementType,
   ElementNode,
-} from './../types';
-
-export declare namespace JSX {
-  type IntrinsicElements = _IntrinsicElements;
-  type IntrinsicAttributes = _IntrinsicAttributes;
-  type ElementType = _ElementType;
-  type Element = ComponentNode;
-  type ElementChildrenAttribute = { children: {}; };
-};
-
-export const JSX = {
-  Element: ComponentNode,
-};
+} from './types';
 
 export function jsx<
   P extends Record<string, unknown> = any,
