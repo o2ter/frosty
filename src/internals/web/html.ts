@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { PropType } from './props';
+import { _ValueType } from './props';
 
 /**
  * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
@@ -33,7 +33,7 @@ export const HTMLElementTagNameMap = {
   "a": {
     type: HTMLAnchorElement,
     props: {
-      href: PropType.string,
+      href: _ValueType.string,
     },
   },
   "abbr": {

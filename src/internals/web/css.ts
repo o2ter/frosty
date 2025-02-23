@@ -24,18 +24,8 @@
 //
 
 import _ from 'lodash';
-
-export class CSSValue<T> {
-
-  _type: string[];
-
-  constructor(type: string | string[]) {
-    this._type = _.castArray(type);
-  }
-
-  static color = new CSSValue<string>('color');
-}
+import { _ValueType } from './props';
 
 export const CSSProperties = {
-  color: CSSValue.color,
+  color: _ValueType.color,
 } as const;
