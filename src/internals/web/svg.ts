@@ -25,6 +25,10 @@
 
 import { PropValue } from './props';
 
+/**
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute
+ */
+
 export const SVGElementTagNameMap = {
   "a": {
     type: SVGAElement,

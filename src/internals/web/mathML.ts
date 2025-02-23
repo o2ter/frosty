@@ -25,6 +25,10 @@
 
 import { PropValue } from './props';
 
+/**
+ * Reference: https://developer.mozilla.org/en-US/docs/Web/MathML/Attribute
+ */
+
 export const MathMLElementTagNameMap = {
   "annotation": {
     type: MathMLElement,
