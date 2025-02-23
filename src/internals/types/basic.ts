@@ -58,7 +58,7 @@ export type RefObject<T> = {
   /**
    * The current value of the ref.
    */
-  current: T | null;
+  current: T;
 }
 
 export type Ref<T> = (ref: T) => void;
