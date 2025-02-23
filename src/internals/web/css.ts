@@ -23,6 +23,19 @@
 //  THE SOFTWARE.
 //
 
-export type CSSProperties = {
+import _ from 'lodash';
 
-};
+export class CSSValue<T> {
+
+  _type: string[];
+
+  constructor(type: string | string[]) {
+    this._type = _.castArray(type);
+  }
+
+  static color = new CSSValue<string>('color');
+}
+
+export const CSSProperties = {
+  color: CSSValue.color,
+} as const;
