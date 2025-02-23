@@ -23,13 +23,11 @@
 //  THE SOFTWARE.
 //
 
-import {
-  HTMLElementDeprecatedTagNameMap,
-  HTMLElementTagNameMap,
-  MathMLElementTagNameMap,
-  SVGElementTagNameMap,
-} from '../web';
-import { PropType } from '../web/propType';
+import { MathMLElementTagNameMap } from "../web/mathML";
+import { SVGElementTagNameMap } from "../web/svg";
+import { HTMLElementDeprecatedTagNameMap } from "../web/html";
+import { HTMLElementTagNameMap } from '../web/html';
+import { PropType } from '../web/props';
 import { ComponentNode } from './component';
 
 export type PropsWithChildren<
