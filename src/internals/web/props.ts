@@ -27,6 +27,10 @@ import _ from 'lodash';
 import { ClassNames, StyleProp } from '../styles/types';
 import { CSSProperties } from './css';
 
+export type PropMap<M extends Record<string, any>> = {
+  [x in keyof M]?: M[x] extends PropValue<infer T> ? T : M[x];
+};
+
 export class PropValue<T> {
 
   _type: string[];
@@ -41,9 +45,7 @@ export class PropValue<T> {
 
   static string = new PropValue<string>('string');
   static number = new PropValue<number>('number');
-  static style = new PropValue<StyleProp<{
-    [x in keyof typeof CSSProperties]?: typeof CSSProperties[x] extends PropValue<infer T> ? T : never;
-  }>>('style');
+  static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>('style');
   static className = new PropValue<ClassNames>('className');
 
   /**
