@@ -54,7 +54,7 @@ export type ComponentType<
 
 export type _ElementType = string | ComponentType;
 
-type RefObject<T> = {
+export type RefObject<T> = {
   /**
    * The current value of the ref.
    */
