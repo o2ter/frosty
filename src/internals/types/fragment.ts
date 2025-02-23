@@ -23,38 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, _ElementType } from '.';
-
-export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType = any> {
-
-  /** @internal */
-  private _type: T;
-
-  /** @internal */
-  private _props: P;
-
-  /** @internal */
-  private _key?: string;
-
-  /** @internal */
-  constructor(type: T, props: P, key?: string) {
-    this._type = type;
-    this._props = props;
-    this._key = key;
-  }
-
-  get type() {
-    return this._type;
-  }
-
-  get props() {
-    return this._props;
-  }
-
-  get key() {
-    return this._key;
-  }
-}
+import { ComponentType } from './basic';
 
 export const Fragment: ComponentType = () => {
   throw Error('Fragment component should not be called directly.');

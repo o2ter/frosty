@@ -23,24 +23,35 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from './types/component';
-import { _ElementType } from './types';
+import { _ElementType } from './basic';
 
-export { ComponentNode } from './types/component';
-export { Fragment } from './types/fragment';
+export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType = any> {
 
-export {
-  ComponentType,
-  PropsWithChildren,
-  _ElementType as ElementType,
-  ElementNode,
-} from './types';
+  /** @internal */
+  private _type: T;
 
-export function jsx<
-  P extends Record<string, unknown> = any,
-  T extends _ElementType = any
->(
-  type: T, props: P, key?: string
-): ComponentNode<P, T> {
-  return new ComponentNode(type, props, key);
+  /** @internal */
+  private _props: P;
+
+  /** @internal */
+  private _key?: string;
+
+  /** @internal */
+  constructor(type: T, props: P, key?: string) {
+    this._type = type;
+    this._props = props;
+    this._key = key;
+  }
+
+  get type() {
+    return this._type;
+  }
+
+  get props() {
+    return this._props;
+  }
+
+  get key() {
+    return this._key;
+  }
 }
