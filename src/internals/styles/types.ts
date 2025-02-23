@@ -1,5 +1,5 @@
 //
-//  propType.ts
+//  types.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,19 +24,9 @@
 //
 
 import _ from 'lodash';
-import { ClassNames, StyleProp } from '../styles/types';
-import { CSSProperties } from './css';
 
-export class PropType<T> {
+type Many<T> = T | _.RecursiveArray<T>;
 
-  _type: string[];
+export type ClassNames = Many<string | _.Falsey>;
 
-  constructor(type: string | string[]) {
-    this._type = _.castArray(type);
-  }
-
-  static string = new PropType<string>('string');
-  static number = new PropType<number>('number');
-  static style = new PropType<StyleProp<CSSProperties>>('style');
-  static className = new PropType<ClassNames>('className');
-}
+export type StyleProp<T> = Many<T | _.Falsey>;
