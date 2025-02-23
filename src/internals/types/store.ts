@@ -24,13 +24,14 @@
 //
 
 export const Store = <T>(x: T) => {
-  let _value = x;
-  const _subscribers = [];
+  const subscribers: (() => void)[] = [];
+  let store = x;
   const read = () => {
-    return _value;
+    return store;
   }
   const write = (value: T) => {
-    _value = value;
+    store = value;
+    for (const subscriber of subscribers) subscriber();
   }
   return [read, write] as const;
 }
