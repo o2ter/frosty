@@ -27,7 +27,7 @@ import { MathMLElementTagNameMap } from "../web/mathML";
 import { SVGElementTagNameMap } from "../web/svg";
 import { HTMLElementDeprecatedTagNameMap } from "../web/html";
 import { HTMLElementTagNameMap } from '../web/html';
-import { _ValueType } from '../web/props';
+import { PropValue } from '../web/props';
 import { ComponentNode } from './component';
 
 export type PropsWithChildren<
@@ -61,13 +61,13 @@ export type _IntrinsicAttributes<T = any> = {
 }
 
 type PropsFromPropTypesMap<M extends Record<string, unknown>> = {
-  [p in keyof M]?: M[p] extends _ValueType<infer T> ? T : never;
+  [p in keyof M]?: M[p] extends PropValue<infer T> ? T : never;
 };
 
 type ElementPropsMap<
   M extends Record<string, {
     type: any;
-    props: Record<string, _ValueType<unknown>>,
+    props: Record<string, PropValue<unknown>>,
   }>
 > = {
     [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>

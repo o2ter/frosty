@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { ClassNames, StyleProp } from '../styles/types';
 import { CSSProperties } from './css';
 
-export class _ValueType<T> {
+export class PropValue<T> {
 
   _type: string[];
 
@@ -39,16 +39,16 @@ export class _ValueType<T> {
    * HTML attribute values
    */
 
-  static string = new _ValueType<string>('string');
-  static number = new _ValueType<number>('number');
-  static style = new _ValueType<StyleProp<{
-    [x in keyof typeof CSSProperties]?: typeof CSSProperties[x] extends _ValueType<infer T> ? T : never;
+  static string = new PropValue<string>('string');
+  static number = new PropValue<number>('number');
+  static style = new PropValue<StyleProp<{
+    [x in keyof typeof CSSProperties]?: typeof CSSProperties[x] extends PropValue<infer T> ? T : never;
   }>>('style');
-  static className = new _ValueType<ClassNames>('className');
+  static className = new PropValue<ClassNames>('className');
 
   /**
    * CSS values
    */
 
-  static color = new _ValueType<string>('color');
+  static color = new PropValue<string>('color');
 }

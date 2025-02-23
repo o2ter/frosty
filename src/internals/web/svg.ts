@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { _ValueType } from './props';
+import { PropValue } from './props';
 
 export const SVGElementTagNameMap = {
   "a": {

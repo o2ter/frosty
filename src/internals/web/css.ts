@@ -24,8 +24,8 @@
 //
 
 import _ from 'lodash';
-import { _ValueType } from './props';
+import { PropValue } from './props';
 
 export const CSSProperties = {
-  color: _ValueType.color,
+  color: PropValue.color,
 } as const;
