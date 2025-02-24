@@ -24,10 +24,12 @@
 //
 
 import _ from 'lodash';
+import { createContext } from '../common/types/context';
 
 export let CURRENT_RENDER_CONTEXT: {
   subscriber: () => void;
   dispose: (() => void)[];
+  context: WeakMap<ReturnType<typeof createContext>, any>;
 } | undefined;
 
 export const _effect = (
