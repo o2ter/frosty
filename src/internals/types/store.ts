@@ -38,8 +38,8 @@ export const Store = <T>(x: T) => {
     store = value;
     for (const subscriber of subscribers) subscriber();
   }
-  return _.assign([read, write] as const, {
+  return Object.freeze(_.assign([read, write] as const, {
     value: read,
     setValue: write,
-  });
+  }));
 }
