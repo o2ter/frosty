@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 
-let _runtime_context: {
+let CURRENT_RENDER_CONTEXT: {
   subscriber: () => void;
   dispose: (() => void)[];
 } | undefined;
@@ -33,8 +33,8 @@ let _runtime_context: {
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
-  if (!_runtime_context) throw Error('Hook must be used within a render function.');
-  _runtime_context.dispose.push(callback(_runtime_context.subscriber));
+  if (!CURRENT_RENDER_CONTEXT) throw Error('Hook must be used within a render function.');
+  CURRENT_RENDER_CONTEXT.dispose.push(callback(CURRENT_RENDER_CONTEXT.subscriber));
 };
 
 export const _useEffect = (
