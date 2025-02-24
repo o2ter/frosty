@@ -1,5 +1,5 @@
 //
-//  syncExternalStore.ts
+//  index.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,39 +24,33 @@
 //
 
 import _ from 'lodash';
-import { Awaitable } from '@o2ter/utils-js';
+import { _effect } from '../types/effect';
 
-let _active_subscriber: (() => void) | undefined;
-
-export const _effect = (
-  callback: (onStoreChange: () => void) => () => void,
-) => {
-
-  
-}
-
-const _useEffect = (
-  effect: () => () => void,
-  deps?: any[],
-) => {
-
-};
-
-export const useEffect = (
-  effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,
-  deps?: any[],
-) => _useEffect(() => {
-  const abort = new AbortController();
-  const destructor = effect(abort.signal);
-  return () => {
-    abort.abort();
-    (async () => {
-      try {
-        const _destructor = await destructor;
-        if (_.isFunction(_destructor)) _destructor();
-      } catch (e) {
-        console.error(e);
-      }
-    })();
+export const Signal = <T>(initialValue: T) => {
+  const listeners = new Set<(oldVal: T, newVal: T) => void>();
+  let current = initialValue;
+  const read = <S>(
+    selector: (state: T) => S = v => v as any,
+    equal: (value: S, other: S) => boolean = _.isEqual
+  ) => {
+    _effect((onStoreChange) => subscribe((oldVal, newVal) => {
+      if (equal(selector(oldVal), selector(newVal))) onStoreChange();
+    }));
+    return selector(current);
   };
-}, deps);
+  const write = (value: T) => {
+    const oldVal = current;
+    current = _.isFunction(value) ? value(current) : value;
+    listeners.forEach(listener => void listener(oldVal, current));
+  };
+  const subscribe = (callback: (oldVal: T, newVal: T) => void) => {
+    listeners.add(callback);
+    return () => void listeners.delete(callback);
+  };
+  return Object.freeze(_.assign([read, write] as const, {
+    value: () => read(x => x, (old, curr) => old === curr),
+    setValue: write,
+    select: read,
+    subscribe,
+  }));
+}

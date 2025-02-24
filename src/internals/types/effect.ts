@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  effect.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,33 +24,10 @@
 //
 
 import _ from 'lodash';
-import { useSyncExternalStore } from './hooks/syncExternalStore';
 
-export const Signal = <T>(initialValue: T) => {
-  const listeners = new Set<(oldVal: T, newVal: T) => void>();
-  let current = initialValue;
-  const read = <S>(
-    selector: (state: T) => S = v => v as any,
-    equal: (value: S, other: S) => boolean = _.isEqual
-  ) => useSyncExternalStore(
-    (onStoreChange) => subscribe((oldVal, newVal) => {
-      if (equal(selector(oldVal), selector(newVal))) onStoreChange();
-    }),
-    () => selector(current)
-  );
-  const write = (value: T) => {
-    const oldVal = current;
-    current = _.isFunction(value) ? value(current) : value;
-    listeners.forEach(listener => void listener(oldVal, current));
-  };
-  const subscribe = (callback: (oldVal: T, newVal: T) => void) => {
-    listeners.add(callback);
-    return () => void listeners.delete(callback);
-  };
-  return Object.freeze(_.assign([read, write] as const, {
-    value: () => read(x => x, (old, curr) => old === curr),
-    setValue: write,
-    select: read,
-    subscribe,
-  }));
-}
+let _active_subscriber: (() => void) | undefined;
+
+export const _effect = (
+  callback: (onStoreChange: () => void) => () => void
+) => {
+};

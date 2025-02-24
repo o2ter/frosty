@@ -1,5 +1,5 @@
 //
-//  syncExternalStore.ts
+//  effect.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,13 +24,30 @@
 //
 
 import _ from 'lodash';
-import { _effect } from './effect';
+import { Awaitable } from '@o2ter/utils-js';
+import { _effect } from '../types/effect';
 
-export const useSyncExternalStore = <Snapshot>(
-  subscribe: (onStoreChange: () => void) => () => void,
-  getSnapshot: () => Snapshot,
-): Snapshot => {
-  let store = getSnapshot();
-  _effect(subscribe);
-  return store;
-}
+const _useEffect = (
+  effect: () => () => void,
+  deps?: any[]
+) => {
+};
+
+export const useEffect = (
+  effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,
+  deps?: any[],
+) => _useEffect(() => {
+  const abort = new AbortController();
+  const destructor = effect(abort.signal);
+  return () => {
+    abort.abort();
+    (async () => {
+      try {
+        const _destructor = await destructor;
+        if (_.isFunction(_destructor)) _destructor();
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  };
+}, deps);
