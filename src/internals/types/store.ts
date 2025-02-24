@@ -23,6 +23,8 @@
 //  THE SOFTWARE.
 //
 
+import _ from "lodash";
+
 export let _active_subscriber: (() => void) | undefined;
 
 export const Store = <T>(x: T) => {
@@ -36,5 +38,8 @@ export const Store = <T>(x: T) => {
     store = value;
     for (const subscriber of subscribers) subscriber();
   }
-  return [read, write] as const;
+  return _.assign([read, write] as const, {
+    value: read,
+    setValue: write,
+  });
 }
