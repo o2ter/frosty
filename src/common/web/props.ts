@@ -64,6 +64,10 @@ export class PropValue<T, U = T> {
     varify: _.isNumber,
     encode: x => x,
   });
+  static boolean = new PropValue({
+    varify: _.isBoolean,
+    encode: x => x,
+  });
   static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
   static className = new PropValue<ClassNames>({});
 
