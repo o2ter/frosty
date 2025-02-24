@@ -35,7 +35,7 @@ export const _effect = (
   
 }
 
-export const _useEffect = (
+const _useEffect = (
   effect: () => () => void,
   deps?: any[],
 ) => {
