@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import { _effect } from '../../internals/effect';
+import { currentRenderContext } from '~/internals/variables';
 
 export const Signal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
@@ -33,11 +34,9 @@ export const Signal = <T>(initialValue: T) => {
     selector: (state: T) => S = v => v as any,
     equal: (value: S, other: S) => boolean = _.isEqual
   ) => {
-    try {
-      _effect((onStoreChange) => subscribe((oldVal, newVal) => {
-        if (equal(selector(oldVal), selector(newVal))) onStoreChange();
-      }));
-    } catch (e) { }
+    if (currentRenderContext) _effect((onStoreChange) => subscribe((oldVal, newVal) => {
+      if (equal(selector(oldVal), selector(newVal))) onStoreChange();
+    }));
     return selector(current);
   };
   const write = (value: T) => {
