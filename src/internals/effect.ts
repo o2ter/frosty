@@ -25,11 +25,16 @@
 
 import _ from 'lodash';
 
-let _active_subscriber: (() => void) | undefined;
+let _runtime_context: {
+  subscriber: () => void;
+  dispose: (() => void)[];
+} | undefined;
 
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
+  if (!_runtime_context) throw Error('');
+  _runtime_context.dispose.push(callback(_runtime_context.subscriber));
 };
 
 export const _useEffect = (
