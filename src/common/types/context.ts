@@ -24,7 +24,7 @@
 //
 
 import { ComponentType, ElementNode } from './basic';
-import { contextDefaultValue } from '~/internals/variables';
+import { contextDefaultValue } from '../../internals/variables';
 
 export const createContext = <Value>(defaultValue: Value): ComponentType<{
   value: Value;
