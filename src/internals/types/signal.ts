@@ -27,7 +27,7 @@ import _ from "lodash";
 
 export let _active_subscriber: (() => void) | undefined;
 
-export const Store = <T>(x: T) => {
+export const Signal = <T>(x: T) => {
   const subscribers: (() => void)[] = [];
   let store = x;
   const read = () => {
