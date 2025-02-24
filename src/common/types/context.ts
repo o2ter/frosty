@@ -25,6 +25,8 @@
 
 import { ComponentType } from './basic';
 
-export const createContext = (): ComponentType => () => {
+export const createContext = <Value>(): ComponentType<{
+  value: Value;
+}> => () => {
   throw Error('Context component should not be called directly.');
 }
