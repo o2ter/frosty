@@ -1,5 +1,5 @@
 //
-//  context.ts
+//  index.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,12 +23,12 @@
 //  THE SOFTWARE.
 //
 
-import { Context } from '../common/types/context';
+import { currentRenderContext } from '~/internals/variables';
+import { Context } from '../types/context';
 
-export let currentRenderContext: {
-  subscriber: () => void;
-  dispose: (() => void)[];
-  context: WeakMap<Context<any>, any>;
-} | undefined;
-
-export const contextDefaultValue = new WeakMap<Context<any>, any>();
+export const use = (x: Context<any>) => {
+  if (!currentRenderContext) throw Error('Hook must be used within a render function.');
+  const { context } = currentRenderContext;
+  if (context.has(x)) return context.get(x);
+  throw Error(`Invalid type of ${x}`);
+}
