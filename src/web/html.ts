@@ -107,7 +107,7 @@ const globalAttrs = {
   // Standard HTML Attributes
   accessKey: PropValue.string,
   autoFocus: PropValue.boolean,
-  className: PropValue.string,
+  className: PropValue.className,
   contentEditable: PropValue.oneOf([true, false, 'inherit', 'plaintext-only'] as const),
   contextMenu: PropValue.string,
   dir: PropValue.string,
