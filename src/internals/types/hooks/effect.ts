@@ -35,11 +35,24 @@ export const _effect = (
   
 }
 
-type Destructor = () => Awaitable<void>;
-
-export const useEffect = (
-  effect: (abortSignal: AbortSignal) => Awaitable<void | Destructor>,
+export const _useEffect = (
+  effect: () => () => void,
   deps?: any[],
 ) => {
 
-}
+};
+
+export const useEffect = (
+  effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,
+  deps?: any[],
+) => _useEffect(() => {
+  const abort = new AbortController();
+  const destructor = effect(abort.signal);
+  return () => {
+    abort.abort();
+    (async () => {
+      const _destructor = await destructor;
+      if (_.isFunction(_destructor)) _destructor();
+    })();
+  };
+}, deps);
