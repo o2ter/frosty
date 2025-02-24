@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { createContext } from '../common/types/context';
 
-export let CURRENT_RENDER_CONTEXT: {
+export let currentRenderContext: {
   subscriber: () => void;
   dispose: (() => void)[];
   context: WeakMap<ReturnType<typeof createContext>, any>;
@@ -35,8 +35,8 @@ export let CURRENT_RENDER_CONTEXT: {
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
-  if (!CURRENT_RENDER_CONTEXT) throw Error('Hook must be used within a render function.');
-  const { subscriber, dispose } = CURRENT_RENDER_CONTEXT;
+  if (!currentRenderContext) throw Error('Hook must be used within a render function.');
+  const { subscriber, dispose } = currentRenderContext;
   dispose.push(callback(subscriber));
 };
 
