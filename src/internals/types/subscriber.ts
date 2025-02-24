@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  subscriber.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,22 +24,7 @@
 //
 
 import _ from "lodash";
-import { currentSubscriber } from "./subscriber";
 
-export const Signal = <T>(x: T) => {
-  const subscribers: (() => void)[] = [];
-  let store = x;
-  const read = () => {
-    const subscriber = currentSubscriber();
-    if (subscriber) subscribers.push(subscriber);
-    return store;
-  }
-  const write = (value: T) => {
-    store = value;
-    for (const subscriber of subscribers) subscriber();
-  }
-  return Object.freeze(_.assign([read, write] as const, {
-    value: read,
-    setValue: write,
-  }));
-}
+let _active_subscriber: (() => void) | undefined;
+
+export const currentSubscriber = () => _active_subscriber;
