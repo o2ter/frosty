@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import _ from "lodash";
-import { useSyncExternalStore } from "./hooks/syncExternalStore";
+import _ from 'lodash';
+import { useSyncExternalStore } from './hooks/syncExternalStore';
 
 export const Signal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();

@@ -23,13 +23,13 @@
 //  THE SOFTWARE.
 //
 
-import { MathMLElementTagNameMap } from "../web/mathML";
-import { SVGElementTagNameMap } from "../web/svg";
-import { HTMLElementDeprecatedTagNameMap } from "../web/html";
+import { MathMLElementTagNameMap } from '../web/mathML';
+import { SVGElementTagNameMap } from '../web/svg';
+import { HTMLElementDeprecatedTagNameMap } from '../web/html';
 import { HTMLElementTagNameMap } from '../web/html';
 import { PropMap, PropValue } from '../web/props';
 import { ComponentNode } from './component';
-import { MergeObject } from "@o2ter/utils-js";
+import { MergeObject } from '@o2ter/utils-js';
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},

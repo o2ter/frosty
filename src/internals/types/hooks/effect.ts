@@ -1,5 +1,5 @@
 //
-//  subscriber.ts
+//  syncExternalStore.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,8 +23,23 @@
 //  THE SOFTWARE.
 //
 
-import _ from "lodash";
+import _ from 'lodash';
+import { Awaitable } from '@o2ter/utils-js';
 
 let _active_subscriber: (() => void) | undefined;
 
-export const currentSubscriber = () => _active_subscriber;
+export const _effect = (
+  callback: (onStoreChange: () => void) => () => void,
+) => {
+
+  
+}
+
+type Destructor = () => Awaitable<void>;
+
+export const useEffect = (
+  effect: (abortSignal: AbortSignal) => Awaitable<void | Destructor>,
+  deps?: any[],
+) => {
+
+}

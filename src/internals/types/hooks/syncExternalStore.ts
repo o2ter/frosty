@@ -23,13 +23,14 @@
 //  THE SOFTWARE.
 //
 
-import _ from "lodash";
+import _ from 'lodash';
+import { _effect } from './effect';
 
-export const useSyncExternalStore = <T>(
+export const useSyncExternalStore = <Snapshot>(
   subscribe: (onStoreChange: () => void) => () => void,
-  getSnapshot: () => T,
-): T => {
+  getSnapshot: () => Snapshot,
+): Snapshot => {
   let store = getSnapshot();
-
+  _effect(subscribe);
   return store;
 }
