@@ -34,7 +34,8 @@ export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
   if (!CURRENT_RENDER_CONTEXT) throw Error('Hook must be used within a render function.');
-  CURRENT_RENDER_CONTEXT.dispose.push(callback(CURRENT_RENDER_CONTEXT.subscriber));
+  const { subscriber, dispose } = CURRENT_RENDER_CONTEXT;
+  dispose.push(callback(subscriber));
 };
 
 export const _useEffect = (
