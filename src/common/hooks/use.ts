@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { currentRenderContext } from '~/internals/variables';
+import { currentRenderContext } from '../../internals/variables';
 import { Context } from '../types/context';
 
 export const use = (x: Context<any>) => {

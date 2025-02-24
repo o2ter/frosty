@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { _effect } from '../../internals/effect';
-import { currentRenderContext } from '~/internals/variables';
+import { currentRenderContext } from '../../internals/variables';
 
 export const Signal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
