@@ -24,8 +24,7 @@
 //
 
 import { ComponentType, ElementNode } from './basic';
-
-export const contextDefaultValue = new WeakMap<ReturnType<typeof createContext>, any>();
+import { contextDefaultValue } from '~/internals/variables';
 
 export const createContext = <Value>(defaultValue: Value): ComponentType<{
   value: Value;

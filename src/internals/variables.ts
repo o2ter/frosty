@@ -1,5 +1,5 @@
 //
-//  effect.ts
+//  context.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,19 +23,12 @@
 //  THE SOFTWARE.
 //
 
-import _ from 'lodash';
-import { currentRenderContext } from './variables';
+import { createContext } from '../common/types/context';
 
-export const _effect = (
-  callback: (onStoreChange: () => void) => () => void
-) => {
-  if (!currentRenderContext) throw Error('Hook must be used within a render function.');
-  const { subscriber, dispose } = currentRenderContext;
-  dispose.push(callback(subscriber));
-};
+export let currentRenderContext: {
+  subscriber: () => void;
+  dispose: (() => void)[];
+  context: WeakMap<ReturnType<typeof createContext>, any>;
+} | undefined;
 
-export const _useEffect = (
-  effect: () => () => void,
-  deps?: any[]
-) => {
-};
+export const contextDefaultValue = new WeakMap<ReturnType<typeof createContext>, any>();
