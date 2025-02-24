@@ -71,6 +71,15 @@ export class PropValue<T, U = T> {
   static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
   static className = new PropValue<ClassNames>({});
 
+  static oneOf<T>(values: T[]) {
+    return new PropValue({
+      varify: (x): x is T => _.includes(values, x),
+      encode: x => x,
+    });
+  }
+
+  static any = new PropValue<any>({});
+
   /**
    * CSS values
    */

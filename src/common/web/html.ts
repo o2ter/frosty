@@ -23,581 +23,1005 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { PropValue } from './props';
 
 /**
  * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
  */
 
+// All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
+type AriaRole =
+  | "alert"
+  | "alertdialog"
+  | "application"
+  | "article"
+  | "banner"
+  | "button"
+  | "cell"
+  | "checkbox"
+  | "columnheader"
+  | "combobox"
+  | "complementary"
+  | "contentinfo"
+  | "definition"
+  | "dialog"
+  | "directory"
+  | "document"
+  | "feed"
+  | "figure"
+  | "form"
+  | "grid"
+  | "gridcell"
+  | "group"
+  | "heading"
+  | "img"
+  | "link"
+  | "list"
+  | "listbox"
+  | "listitem"
+  | "log"
+  | "main"
+  | "marquee"
+  | "math"
+  | "menu"
+  | "menubar"
+  | "menuitem"
+  | "menuitemcheckbox"
+  | "menuitemradio"
+  | "navigation"
+  | "none"
+  | "note"
+  | "option"
+  | "presentation"
+  | "progressbar"
+  | "radio"
+  | "radiogroup"
+  | "region"
+  | "row"
+  | "rowgroup"
+  | "rowheader"
+  | "scrollbar"
+  | "search"
+  | "searchbox"
+  | "separator"
+  | "slider"
+  | "spinbutton"
+  | "status"
+  | "switch"
+  | "tab"
+  | "table"
+  | "tablist"
+  | "tabpanel"
+  | "term"
+  | "textbox"
+  | "timer"
+  | "toolbar"
+  | "tooltip"
+  | "tree"
+  | "treegrid"
+  | "treeitem"
+  | (string & {});
+
+const globalAttrs = {
+  // Standard HTML Attributes
+  accessKey: PropValue.string,
+  autoFocus: PropValue.boolean,
+  className: PropValue.string,
+  contentEditable: PropValue.oneOf([true, false, 'inherit', 'plaintext-only'] as const),
+  contextMenu: PropValue.string,
+  dir: PropValue.string,
+  draggable: PropValue.boolean,
+  hidden: PropValue.boolean,
+  id: PropValue.string,
+  lang: PropValue.string,
+  nonce: PropValue.string,
+  slot: PropValue.string,
+  spellCheck: PropValue.boolean,
+  style: PropValue.style,
+  tabIndex: PropValue.number,
+  title: PropValue.string,
+  translate: PropValue.oneOf(['yes', 'no'] as const),
+
+  // Unknown
+  radioGroup: PropValue.string, // <command>, <menuitem>
+
+  // WAI-ARIA
+  role: new PropValue<AriaRole>({
+    varify: _.isString,
+    encode: x => x,
+  }),
+
+  // RDFa Attributes
+  about: PropValue.string,
+  content: PropValue.string,
+  datatype: PropValue.string,
+  inlist: PropValue.any,
+  prefix: PropValue.string,
+  property: PropValue.string,
+  rel: PropValue.string,
+  resource: PropValue.string,
+  rev: PropValue.string,
+  typeof: PropValue.string,
+  vocab: PropValue.string,
+
+  // Non-standard Attributes
+  autoCapitalize: PropValue.string,
+  autoCorrect: PropValue.string,
+  autoSave: PropValue.string,
+  color: PropValue.string,
+  itemProp: PropValue.string,
+  itemScope: PropValue.boolean,
+  itemType: PropValue.string,
+  itemID: PropValue.string,
+  itemRef: PropValue.string,
+  results: PropValue.number,
+  security: PropValue.string,
+  unselectable: PropValue.oneOf(['on', 'off'] as const),
+
+  // Living Standard
+  /**
+   * Hints at the type of data that might be entered by the user while editing the element or its contents
+   * @see {@link https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute}
+   */
+  inputMode: PropValue.oneOf(['none', 'text', 'tel', 'url', 'email', 'numeric', 'decimal', 'search'] as const),
+  /**
+   * Specify that a standard HTML element should behave like a defined custom built-in element
+   * @see {@link https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is}
+   */
+  is: PropValue.string,
+};
+
 export const HTMLElementTagNameMap = {
   "a": {
     type: HTMLAnchorElement,
     props: {
+      ...globalAttrs,
       href: PropValue.string,
     },
   },
   "abbr": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "address": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "area": {
     type: HTMLAreaElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "article": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "aside": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "audio": {
     type: HTMLAudioElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "b": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "base": {
     type: HTMLBaseElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "bdi": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "bdo": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "blockquote": {
     type: HTMLQuoteElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "body": {
     type: HTMLBodyElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "br": {
     type: HTMLBRElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "button": {
     type: HTMLButtonElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "canvas": {
     type: HTMLCanvasElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "caption": {
     type: HTMLTableCaptionElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "cite": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "code": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "col": {
     type: HTMLTableColElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "colgroup": {
     type: HTMLTableColElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "data": {
     type: HTMLDataElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "datalist": {
     type: HTMLDataListElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "dd": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "del": {
     type: HTMLModElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "details": {
     type: HTMLDetailsElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "dfn": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "dialog": {
     type: HTMLDialogElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "div": {
     type: HTMLDivElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "dl": {
     type: HTMLDListElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "dt": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "em": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "embed": {
     type: HTMLEmbedElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "fieldset": {
     type: HTMLFieldSetElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "figcaption": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "figure": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "footer": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "form": {
     type: HTMLFormElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "h1": {
     type: HTMLHeadingElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "h2": {
     type: HTMLHeadingElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "h3": {
     type: HTMLHeadingElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "h4": {
     type: HTMLHeadingElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "h5": {
     type: HTMLHeadingElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "h6": {
     type: HTMLHeadingElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "head": {
     type: HTMLHeadElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "header": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "hgroup": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "hr": {
     type: HTMLHRElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "html": {
     type: HTMLHtmlElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "i": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "iframe": {
     type: HTMLIFrameElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "img": {
     type: HTMLImageElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "input": {
     type: HTMLInputElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "ins": {
     type: HTMLModElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "kbd": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "label": {
     type: HTMLLabelElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "legend": {
     type: HTMLLegendElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "li": {
     type: HTMLLIElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "link": {
     type: HTMLLinkElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "main": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "map": {
     type: HTMLMapElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "mark": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "menu": {
     type: HTMLMenuElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "meta": {
     type: HTMLMetaElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "meter": {
     type: HTMLMeterElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "nav": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "noscript": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "object": {
     type: HTMLObjectElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "ol": {
     type: HTMLOListElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "optgroup": {
     type: HTMLOptGroupElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "option": {
     type: HTMLOptionElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "output": {
     type: HTMLOutputElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "p": {
     type: HTMLParagraphElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "picture": {
     type: HTMLPictureElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "pre": {
     type: HTMLPreElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "progress": {
     type: HTMLProgressElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "q": {
     type: HTMLQuoteElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "rp": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "rt": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "ruby": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "s": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "samp": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "script": {
     type: HTMLScriptElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "search": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "section": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "select": {
     type: HTMLSelectElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "slot": {
     type: HTMLSlotElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "small": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "source": {
     type: HTMLSourceElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "span": {
     type: HTMLSpanElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "strong": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "style": {
     type: HTMLStyleElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "sub": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "summary": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "sup": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "table": {
     type: HTMLTableElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "tbody": {
     type: HTMLTableSectionElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "td": {
     type: HTMLTableCellElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "template": {
     type: HTMLTemplateElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "textarea": {
     type: HTMLTextAreaElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "tfoot": {
     type: HTMLTableSectionElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "th": {
     type: HTMLTableCellElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "thead": {
     type: HTMLTableSectionElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "time": {
     type: HTMLTimeElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "title": {
     type: HTMLTitleElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "tr": {
     type: HTMLTableRowElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "track": {
     type: HTMLTrackElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "u": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "ul": {
     type: HTMLUListElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "var": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "video": {
     type: HTMLVideoElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "wbr": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
 } as const;
 
 export const HTMLElementDeprecatedTagNameMap = {
   "acronym": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "applet": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "basefont": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "bgsound": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "big": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "blink": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "center": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "dir": {
     type: HTMLDirectoryElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "font": {
     type: HTMLFontElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "frame": {
     type: HTMLFrameElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "frameset": {
     type: HTMLFrameSetElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "isindex": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "keygen": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "listing": {
     type: HTMLPreElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "marquee": {
     type: HTMLMarqueeElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "menuitem": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "multicol": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "nextid": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "nobr": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "noembed": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "noframes": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "param": {
     type: HTMLParamElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "plaintext": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "rb": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "rtc": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "spacer": {
     type: HTMLUnknownElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "strike": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "tt": {
     type: HTMLElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
   "xmp": {
     type: HTMLPreElement,
-    props: {},
+    props: {
+      ...globalAttrs,
+    },
   },
 } as const;
 
