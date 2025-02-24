@@ -33,9 +33,11 @@ export const Signal = <T>(initialValue: T) => {
     selector: (state: T) => S = v => v as any,
     equal: (value: S, other: S) => boolean = _.isEqual
   ) => {
-    _effect((onStoreChange) => subscribe((oldVal, newVal) => {
-      if (equal(selector(oldVal), selector(newVal))) onStoreChange();
-    }));
+    try {
+      _effect((onStoreChange) => subscribe((oldVal, newVal) => {
+        if (equal(selector(oldVal), selector(newVal))) onStoreChange();
+      }));
+    } catch (e) { }
     return selector(current);
   };
   const write = (value: T) => {
