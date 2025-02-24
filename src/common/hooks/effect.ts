@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
-import { _effect } from '../types/effect';
+import { _effect } from '../../internals/effect';
 
 const _useEffect = (
   effect: () => () => void,

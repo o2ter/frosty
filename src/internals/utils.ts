@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { Ref } from './types';
+import { Ref } from '../common/types';
 
 export const mergeRefs = <T>(...refs: Ref<T>[]) => (x: T) => {
   for (const ref of refs) {

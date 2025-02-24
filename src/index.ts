@@ -23,6 +23,6 @@
 //  THE SOFTWARE.
 //
 
-export * from './internals/runtime';
-export { Signal } from './internals/hooks/signal';
-export { useEffect } from './internals/hooks/effect';
+export * from './common/runtime';
+export { Signal } from './common/hooks/signal';
+export { useEffect } from './common/hooks/effect';

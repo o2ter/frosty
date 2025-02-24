@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _effect } from '../types/effect';
+import { _effect } from '../../internals/effect';
 
 export const Signal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();

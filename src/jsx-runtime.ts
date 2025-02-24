@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from './internals/types/component';
-import { _IntrinsicElements, _IntrinsicAttributes, _ElementType } from './internals/types';
+import { ComponentNode } from './common/types/component';
+import { _IntrinsicElements, _IntrinsicAttributes, _ElementType } from './common/types';
 
 export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;
@@ -38,4 +38,4 @@ export const JSX = Object.freeze({
   Element: ComponentNode,
 });
 
-export * from './internals/runtime';
+export * from './common/runtime';
