@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { ClassNames, StyleProp } from '../styles/types';
+import { ClassNames, StyleProp } from '../common/styles/types';
 import { CSSProperties } from './css';
 
 export type PropMap<M extends Record<string, any>> = {
