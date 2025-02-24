@@ -31,3 +31,9 @@ export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
 };
+
+export const _useEffect = (
+  effect: () => () => void,
+  deps?: any[]
+) => {
+};

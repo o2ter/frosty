@@ -25,13 +25,7 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
-import { _effect } from '../../internals/effect';
-
-const _useEffect = (
-  effect: () => () => void,
-  deps?: any[]
-) => {
-};
+import { _useEffect } from '../../internals/effect';
 
 export const useEffect = (
   effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,
