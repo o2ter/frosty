@@ -23,10 +23,11 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType } from './basic';
+import { ComponentType, ElementNode } from './basic';
 
-export const createContext = <Value>(): ComponentType<{
+export const createContext = <Value>(defaultValue: Value): ComponentType<{
   value: Value;
+  children?: ElementNode | ((value: Value) => ElementNode);
 }> => () => {
   throw Error('Context component should not be called directly.');
-}
+};
