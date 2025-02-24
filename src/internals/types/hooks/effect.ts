@@ -51,8 +51,12 @@ export const useEffect = (
   return () => {
     abort.abort();
     (async () => {
-      const _destructor = await destructor;
-      if (_.isFunction(_destructor)) _destructor();
+      try {
+        const _destructor = await destructor;
+        if (_.isFunction(_destructor)) _destructor();
+      } catch (e) {
+        console.error(e);
+      }
     })();
   };
 }, deps);
