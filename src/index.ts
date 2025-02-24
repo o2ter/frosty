@@ -24,3 +24,5 @@
 //
 
 export * from './internals/runtime';
+export { Signal } from './internals/types/signal';
+export { useEffect } from './internals/types/hooks/effect';
