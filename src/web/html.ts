@@ -170,6 +170,8 @@ const globalAttrs = {
    * @see {@link https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is}
    */
   is: PropValue.string,
+
+  innerHTML: PropValue.string,
 };
 
 export const HTMLElementTagNameMap = {
