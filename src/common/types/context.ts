@@ -25,9 +25,15 @@
 
 import { ComponentType, ElementNode } from './basic';
 
+export const contextDefaultValue = new WeakMap<ReturnType<typeof createContext>, any>();
+
 export const createContext = <Value>(defaultValue: Value): ComponentType<{
   value: Value;
   children?: ElementNode | ((value: Value) => ElementNode);
-}> => () => {
-  throw Error('Context component should not be called directly.');
-};
+}> => {
+  const context = () => {
+    throw Error('Context component should not be called directly.');
+  };
+  contextDefaultValue.set(context, defaultValue);
+  return context;
+}
