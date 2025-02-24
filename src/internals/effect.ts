@@ -33,7 +33,7 @@ let _runtime_context: {
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
-  if (!_runtime_context) throw Error('');
+  if (!_runtime_context) throw Error('Hook cannot be used outside the render function.');
   _runtime_context.dispose.push(callback(_runtime_context.subscriber));
 };
 
