@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 
-let CURRENT_RENDER_CONTEXT: {
+export let CURRENT_RENDER_CONTEXT: {
   subscriber: () => void;
   dispose: (() => void)[];
 } | undefined;
