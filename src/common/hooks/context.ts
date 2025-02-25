@@ -26,11 +26,9 @@
 import { _registry, currentRenderContext } from '../../internals/variables';
 import { Context } from '../types/context';
 
-export const use = (x: Context<any>) => {
+export const useContext = (x: Context<any>) => {
   if (!currentRenderContext) throw Error('Hook must be used within a render function.');
+  if (_registry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
   const { context } = currentRenderContext;
-  switch (_registry.get(x)) {
-    case 'CONTEXT': return context.get(x);
-    default: throw Error(`Invalid type of ${x}`);
-  }
+  return context.get(x);
 }
