@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { _effect } from '../../internals/effect';
-import { currentRenderContext } from '../../internals/variables';
+import { currentRenderContext, _registry } from '../../internals/variables';
 
 export const createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
@@ -48,10 +48,12 @@ export const createSignal = <T>(initialValue: T) => {
     listeners.add(callback);
     return () => void listeners.delete(callback);
   };
-  return Object.freeze(_.assign([read, write] as const, {
+  const signal = Object.freeze(_.assign([read, write] as const, {
     value: () => read(x => x, (old, curr) => old === curr),
     setValue: write,
     select: read,
     subscribe,
   }));
+  _registry.set(signal, 'SIGNAL');
+  return signal;
 }

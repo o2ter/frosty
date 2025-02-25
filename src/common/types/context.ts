@@ -24,7 +24,7 @@
 //
 
 import { ComponentType, ElementNode } from './basic';
-import { contextDefaultValue } from '../../internals/variables';
+import { contextDefaultValue, _registry } from '../../internals/variables';
 
 export type Context<Value> = ReturnType<typeof createContext<Value>>;
 
@@ -36,5 +36,6 @@ export const createContext = <Value>(defaultValue: Value): ComponentType<{
     throw Error('Context component should not be called directly.');
   };
   contextDefaultValue.set(context, defaultValue);
+  _registry.set(context, 'CONTEXT');
   return context;
 }

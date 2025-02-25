@@ -32,3 +32,5 @@ export let currentRenderContext: {
 } | undefined;
 
 export const contextDefaultValue = new WeakMap<Context<any>, any>();
+
+export const _registry = new WeakMap<any, string>();

@@ -23,12 +23,14 @@
 //  THE SOFTWARE.
 //
 
-import { currentRenderContext } from '../../internals/variables';
+import { _registry, currentRenderContext } from '../../internals/variables';
 import { Context } from '../types/context';
 
 export const use = (x: Context<any>) => {
   if (!currentRenderContext) throw Error('Hook must be used within a render function.');
   const { context } = currentRenderContext;
-  if (context.has(x)) return context.get(x);
-  throw Error(`Invalid type of ${x}`);
+  switch (_registry.get(x)) {
+    case 'CONTEXT': return context.get(x);
+    default: throw Error(`Invalid type of ${x}`);
+  }
 }
