@@ -27,5 +27,5 @@ import _ from 'lodash';
 import { PropValue } from './props';
 
 export const CSSProperties = {
-  color: PropValue.color,
+  color: PropValue.color(),
 } as const;

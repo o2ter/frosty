@@ -105,58 +105,55 @@ type AriaRole =
 
 const globalAttrs = {
   // Standard HTML Attributes
-  accessKey: PropValue.string,
-  autoFocus: PropValue.boolean,
-  className: PropValue.className,
+  accessKey: PropValue.string(),
+  autoFocus: PropValue.boolean(),
+  className: PropValue.className(),
   contentEditable: PropValue.oneOf([true, false, 'inherit', 'plaintext-only'] as const),
-  contextMenu: PropValue.string,
-  dir: PropValue.string,
-  draggable: PropValue.boolean,
-  hidden: PropValue.boolean,
-  id: PropValue.string,
-  lang: PropValue.string,
-  nonce: PropValue.string,
-  slot: PropValue.string,
-  spellCheck: PropValue.boolean,
-  style: PropValue.style,
-  tabIndex: PropValue.number,
-  title: PropValue.string,
+  contextMenu: PropValue.string(),
+  dir: PropValue.string(),
+  draggable: PropValue.boolean(),
+  hidden: PropValue.boolean(),
+  id: PropValue.string(),
+  lang: PropValue.string(),
+  nonce: PropValue.string(),
+  slot: PropValue.string(),
+  spellCheck: PropValue.boolean(),
+  style: PropValue.style(),
+  tabIndex: PropValue.number(),
+  title: PropValue.string(),
   translate: PropValue.oneOf(['yes', 'no'] as const),
 
   // Unknown
-  radioGroup: PropValue.string, // <command>, <menuitem>
+  radioGroup: PropValue.string(), // <command>, <menuitem>
 
   // WAI-ARIA
-  role: new PropValue<AriaRole>({
-    varify: _.isString,
-    encode: x => x,
-  }),
+  role: PropValue.string<AriaRole>(),
 
   // RDFa Attributes
-  about: PropValue.string,
-  content: PropValue.string,
-  datatype: PropValue.string,
-  inlist: PropValue.any,
-  prefix: PropValue.string,
-  property: PropValue.string,
-  rel: PropValue.string,
-  resource: PropValue.string,
-  rev: PropValue.string,
-  typeof: PropValue.string,
-  vocab: PropValue.string,
+  about: PropValue.string(),
+  content: PropValue.string(),
+  datatype: PropValue.string(),
+  inlist: PropValue.any(),
+  prefix: PropValue.string(),
+  property: PropValue.string(),
+  rel: PropValue.string(),
+  resource: PropValue.string(),
+  rev: PropValue.string(),
+  typeof: PropValue.string(),
+  vocab: PropValue.string(),
 
   // Non-standard Attributes
-  autoCapitalize: PropValue.string,
-  autoCorrect: PropValue.string,
-  autoSave: PropValue.string,
-  color: PropValue.string,
-  itemProp: PropValue.string,
-  itemScope: PropValue.boolean,
-  itemType: PropValue.string,
-  itemID: PropValue.string,
-  itemRef: PropValue.string,
-  results: PropValue.number,
-  security: PropValue.string,
+  autoCapitalize: PropValue.string(),
+  autoCorrect: PropValue.string(),
+  autoSave: PropValue.string(),
+  color: PropValue.string(),
+  itemProp: PropValue.string(),
+  itemScope: PropValue.boolean(),
+  itemType: PropValue.string(),
+  itemID: PropValue.string(),
+  itemRef: PropValue.string(),
+  results: PropValue.number(),
+  security: PropValue.string(),
   unselectable: PropValue.oneOf(['on', 'off'] as const),
 
   // Living Standard
@@ -169,9 +166,9 @@ const globalAttrs = {
    * Specify that a standard HTML element should behave like a defined custom built-in element
    * @see {@link https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is}
    */
-  is: PropValue.string,
+  is: PropValue.string(),
 
-  innerHTML: PropValue.string,
+  innerHTML: PropValue.string(),
 };
 
 export const HTMLElementTagNameMap = {
@@ -179,7 +176,7 @@ export const HTMLElementTagNameMap = {
     type: HTMLAnchorElement,
     props: {
       ...globalAttrs,
-      href: PropValue.string,
+      href: PropValue.string(),
     },
   },
   "abbr": {

@@ -56,35 +56,33 @@ export class PropValue<T, U = T> {
    * HTML attribute values
    */
 
-  static string = new PropValue({
-    varify: _.isString,
+  static string = <T extends string>() => new PropValue<T>({
+    varify: (x): x is T => _.isString(x),
     encode: x => x,
   });
-  static number = new PropValue({
-    varify: _.isNumber,
+  static number = <T extends string>() => new PropValue<T>({
+    varify: (x): x is T => _.isNumber(x),
     encode: x => x,
   });
-  static boolean = new PropValue({
-    varify: _.isBoolean,
+  static boolean = <T extends string>() => new PropValue<T>({
+    varify: (x): x is T => _.isBoolean(x),
     encode: x => x,
   });
-  static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
-  static className = new PropValue<ClassName>({});
+  static style = () => new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
+  static className = () => new PropValue<ClassName>({});
 
-  static oneOf<T>(values: T[]) {
-    return new PropValue({
-      varify: (x): x is T => _.includes(values, x),
-      encode: x => x,
-    });
-  }
+  static oneOf = <T>(values: T[]) => new PropValue({
+    varify: (x): x is T => _.includes(values, x),
+    encode: x => x,
+  });
 
-  static any = new PropValue<any>({});
+  static any = () => new PropValue<any>({});
 
   /**
    * CSS values
    */
 
-  static color = new PropValue({
+  static color = () => new PropValue({
     varify: _.isString,
     encode: x => x,
   });
