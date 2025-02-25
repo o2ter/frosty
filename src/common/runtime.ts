@@ -33,6 +33,7 @@ export { Fragment } from './types/fragment';
 export {
   ComponentType,
   ComponentProps,
+  ComponentPropsWithoutRef,
   PropsWithChildren,
   _ElementType as ElementType,
   ElementNode,

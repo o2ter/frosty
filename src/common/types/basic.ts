@@ -50,9 +50,12 @@ export type ElementNode =
 export type ComponentType<
   P extends Record<string, unknown> = {},
   N extends ElementNode = ElementNode
-> = (props: P) => N;
+  > = (props: P) => N;
 
-export type ComponentProps<T extends ComponentType<any, any>> = T extends ComponentType<infer P, any> ? P : never;
+type PropsWithoutRef<P> = P extends any ? ('ref' extends keyof P ? Omit<P, 'ref'> : P) : P;
+
+export type ComponentProps<T> = T extends ComponentType<infer P, any> ? P : never;
+export type ComponentPropsWithoutRef<T> = PropsWithoutRef<ComponentProps<T>>;
 
 export type _ElementType = string | ComponentType;
 
