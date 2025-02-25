@@ -171,8 +171,6 @@ const globalAttrs = {
    */
   is: PropValue.string,
 
-  data: PropValue.any,
-
   innerHTML: PropValue.string,
 };
 
