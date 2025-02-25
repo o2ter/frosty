@@ -24,6 +24,6 @@
 //
 
 export * from './common/runtime';
-export { Signal } from './common/hooks/signal';
+export { createSignal } from './common/hooks/signal';
 export { useEffect } from './common/hooks/effect';
 export { use } from './common/hooks/use';
