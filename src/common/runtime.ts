@@ -24,20 +24,7 @@
 //
 
 import { ComponentNode } from './types/component';
-import { _ElementType } from './types';
-
-export { ComponentNode } from './types/component';
-export { Context, ContextType, createContext } from './types/context';
-export { Fragment } from './types/fragment';
-
-export {
-  ComponentType,
-  ComponentProps,
-  ComponentPropsWithoutRef,
-  PropsWithChildren,
-  _ElementType as ElementType,
-  ElementNode,
-} from './types';
+import { _ElementType } from './types/jsx';
 
 export function jsx<
   P extends Record<string, unknown> = any,

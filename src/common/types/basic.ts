@@ -23,13 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { MathMLElementTagNameMap } from '../../web/mathML';
-import { SVGElementTagNameMap } from '../../web/svg';
-import { HTMLElementDeprecatedTagNameMap } from '../../web/html';
-import { HTMLElementTagNameMap } from '../../web/html';
-import { PropMap, PropValue } from '../../web/props';
 import { ComponentNode } from './component';
-import { MergeObject } from '@o2ter/utils-js';
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},
@@ -57,8 +51,6 @@ type PropsWithoutRef<P> = P extends any ? ('ref' extends keyof P ? Omit<P, 'ref'
 export type ComponentProps<T> = T extends ComponentType<infer P, any> ? P : never;
 export type ComponentPropsWithoutRef<T> = PropsWithoutRef<ComponentProps<T>>;
 
-export type _ElementType = string | ComponentType;
-
 export type RefObject<T> = {
   /**
    * The current value of the ref.
@@ -67,25 +59,3 @@ export type RefObject<T> = {
 }
 export type RefCallback<T> = (ref: T) => void;
 export type Ref<T> = RefCallback<T> | RefObject<T> | null;
-
-export type _IntrinsicAttributes<T = any> = {
-  key?: string | number;
-  ref?: Ref<T>;
-}
-
-type ElementPropsMap<
-  M extends Record<string, {
-    type: any;
-    props: Record<string, PropValue<any, any>>,
-  }>
-> = {
-    [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>
-    & PropsWithChildren<PropMap<M[x]['props']>>;
-  };
-
-export type _IntrinsicElements = MergeObject<
-  ElementPropsMap<typeof HTMLElementTagNameMap>
-  | ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
-  | ElementPropsMap<typeof SVGElementTagNameMap>
-  | ElementPropsMap<typeof MathMLElementTagNameMap>
-> & { [x: string]: any; };

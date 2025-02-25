@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { _ElementType } from './basic';
+import { _ElementType } from './jsx';
 
 export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType = any> {
 

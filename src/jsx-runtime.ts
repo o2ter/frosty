@@ -24,7 +24,9 @@
 //
 
 import { ComponentNode } from './common/types/component';
-import { _IntrinsicElements, _IntrinsicAttributes, _ElementType } from './common/types';
+import { _ElementType, _IntrinsicAttributes, _IntrinsicElements } from './common/types/jsx';
+
+export { Fragment } from './common/types/fragment';
 
 export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;

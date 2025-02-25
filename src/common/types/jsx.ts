@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  basic.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,4 +23,34 @@
 //  THE SOFTWARE.
 //
 
-export * from './basic';
+import { MathMLElementTagNameMap } from '../../web/mathML';
+import { SVGElementTagNameMap } from '../../web/svg';
+import { HTMLElementDeprecatedTagNameMap } from '../../web/html';
+import { HTMLElementTagNameMap } from '../../web/html';
+import { PropMap, PropValue } from '../../web/props';
+import { MergeObject } from '@o2ter/utils-js';
+import { ComponentType, PropsWithChildren, Ref } from './basic';
+
+export type _ElementType = string | ComponentType;
+
+export type _IntrinsicAttributes<T = any> = {
+  key?: string | number;
+  ref?: Ref<T>;
+}
+
+type ElementPropsMap<
+  M extends Record<string, {
+    type: any;
+    props: Record<string, PropValue<any, any>>,
+  }>
+> = {
+    [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>
+    & PropsWithChildren<PropMap<M[x]['props']>>;
+  };
+
+export type _IntrinsicElements = MergeObject<
+  ElementPropsMap<typeof HTMLElementTagNameMap>
+  | ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
+  | ElementPropsMap<typeof SVGElementTagNameMap>
+  | ElementPropsMap<typeof MathMLElementTagNameMap>
+> & { [x: string]: any; };
