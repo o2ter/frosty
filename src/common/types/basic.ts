@@ -52,6 +52,8 @@ export type ComponentType<
   N extends ElementNode = ElementNode
 > = (props: P) => N;
 
+export type ComponentProps<T extends ComponentType<any, any>> = T extends ComponentType<infer P, any> ? P : never;
+
 export type _ElementType = string | ComponentType;
 
 export type RefObject<T> = {

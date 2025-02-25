@@ -27,11 +27,12 @@ import { ComponentNode } from './types/component';
 import { _ElementType } from './types';
 
 export { ComponentNode } from './types/component';
-export { createContext } from './types/context';
+export { Context, ContextType, createContext } from './types/context';
 export { Fragment } from './types/fragment';
 
 export {
   ComponentType,
+  ComponentProps,
   PropsWithChildren,
   _ElementType as ElementType,
   ElementNode,

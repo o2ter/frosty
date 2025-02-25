@@ -23,10 +23,11 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, ElementNode } from './basic';
+import { ComponentProps, ComponentType, ElementNode } from './basic';
 import { contextDefaultValue, _registry } from '../../internals/variables';
 
 export type Context<Value> = ReturnType<typeof createContext<Value>>;
+export type ContextType<C extends Context<any>> = ComponentProps<C>['value'];
 
 export const createContext = <Value>(defaultValue: Value): ComponentType<{
   value: Value;
