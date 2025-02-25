@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { ClassNames, StyleProp } from '../common/styles/types';
+import { ClassName, StyleProp } from '../common/styles/types';
 import { CSSProperties } from './css';
 
 export type PropMap<M extends Record<string, any>> = {
@@ -69,7 +69,7 @@ export class PropValue<T, U = T> {
     encode: x => x,
   });
   static style = new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
-  static className = new PropValue<ClassNames>({});
+  static className = new PropValue<ClassName>({});
 
   static oneOf<T>(values: T[]) {
     return new PropValue({

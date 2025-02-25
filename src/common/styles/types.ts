@@ -27,6 +27,6 @@ import _ from 'lodash';
 
 type Many<T> = T | _.RecursiveArray<T>;
 
-export type ClassNames = Many<string | _.Falsey>;
+export type ClassName = Many<string | _.Falsey>;
 
 export type StyleProp<T> = Many<T | _.Falsey>;
