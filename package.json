@@ -1,5 +1,5 @@
 {
-  "name": "@o2ter/snow",
+  "name": "snow",
   "version": "1.0.0",
   "main": "dist/index",
   "module": "dist/index",
