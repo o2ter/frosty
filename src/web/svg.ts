@@ -32,7 +32,6 @@ import { PropValue } from './props';
 
 const svgAttrs = {
   // Attributes which also defined in HTMLAttributes
-  // See comment in SVGDOMPropertyConfig.js
   className: PropValue.className(),
   color: PropValue.string(),
   height: PropValue.stringOrNumber(),
