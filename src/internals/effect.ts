@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { currentRenderContext } from './variables';
+import { currentRenderContext } from '../reconciler/variables';
 
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void

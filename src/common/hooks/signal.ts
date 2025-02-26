@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { _effect } from '../../internals/effect';
-import { currentRenderContext, _registry } from '../../internals/variables';
+import { currentRenderContext, _registry } from '../../reconciler/variables';
 
 export const createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();

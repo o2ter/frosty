@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { _registry, currentRenderContext } from '../../internals/variables';
+import { _registry, currentRenderContext } from '../../reconciler/variables';
 import { Context } from '../types/context';
 
 export const useContext = (x: Context<any>) => {
