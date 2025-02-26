@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { _effect } from '../../internals/effect';
 import { reconciler } from '../../reconciler';
+import { SetStateAction } from '../types/basic';
 
 export const createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
@@ -40,7 +41,7 @@ export const createSignal = <T>(initialValue: T) => {
     return selector(current);
   };
   const value = () => read(x => x, (old, curr) => old === curr);
-  const write = (value: T) => {
+  const write = (value: SetStateAction<T>) => {
     const oldVal = current;
     current = _.isFunction(value) ? value(current) : value;
     listeners.forEach(listener => void listener(oldVal, current));

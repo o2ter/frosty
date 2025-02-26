@@ -25,6 +25,8 @@
 
 import { ComponentNode } from './component';
 
+export type SetStateAction<S> = S | ((prevState: S) => S);
+
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},
   C extends unknown = ElementNode
