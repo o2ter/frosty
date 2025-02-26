@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
-import { _useEffect } from '../../internals/effect';
+import { _useEffect } from '../../reconciler';
 
 export const useEffect = (
   effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,

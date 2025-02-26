@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _effect } from '../../internals/effect';
+import { _effect } from '../../reconciler';
 import { reconciler } from '../../reconciler';
 import { SetStateAction } from '../types/basic';
 
