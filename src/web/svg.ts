@@ -30,327 +30,538 @@ import { PropValue } from './props';
  * Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute
  */
 
-const globalAttrs = {
-  // Standard SVG Attributes
+const svgAttrs = {
+  // Attributes which also defined in HTMLAttributes
+  // See comment in SVGDOMPropertyConfig.js
   className: PropValue.className(),
+  color: PropValue.string(),
+  height: PropValue.stringOrNumber(),
   id: PropValue.string(),
+  lang: PropValue.string(),
+  max: PropValue.stringOrNumber(),
+  media: PropValue.string(),
+  method: PropValue.string(),
+  min: PropValue.stringOrNumber(),
+  name: PropValue.string(),
   style: PropValue.style(),
+  target: PropValue.string(),
+  type: PropValue.string(),
+  width: PropValue.stringOrNumber(),
+
+  // Other HTML properties supported by SVG elements in browsers
+  role: PropValue.ariaRole(),
+  tabIndex: PropValue.number(),
+  crossOrigin: PropValue.crossOrigin();
+
+  // SVG Specific attributes
+  accentHeight: PropValue.stringOrNumber(),
+  accumulate: PropValue.oneOf(['none', 'sum'] as const),
+  additive: PropValue.oneOf(['replace', 'sum'] as const),
+  alignmentBaseline: PropValue.string<
+    | 'auto'
+    | 'baseline'
+    | 'before-edge'
+    | 'text-before-edge'
+    | 'middle'
+    | 'central'
+    | 'after-edge'
+    | 'text-after-edge'
+    | 'ideographic'
+    | 'alphabetic'
+    | 'hanging'
+    | 'mathematical'
+    | 'inherit'>(),
+  allowReorder: PropValue.oneOf(['yes', 'no'] as const),
+  alphabetic: PropValue.stringOrNumber(),
+  amplitude: PropValue.stringOrNumber(),
+  arabicForm: PropValue.oneOf(['initial', 'medial', 'terminal', 'isolated'] as const),
+  ascent: PropValue.stringOrNumber(),
+  attributeName: PropValue.string(),
+  attributeType: PropValue.string(),
+  autoReverse: PropValue.boolean(),
+  azimuth: PropValue.stringOrNumber(),
+  baseFrequency: PropValue.stringOrNumber(),
+  baselineShift: PropValue.stringOrNumber(),
+  baseProfile: PropValue.stringOrNumber(),
+  bbox: PropValue.stringOrNumber(),
+  begin: PropValue.stringOrNumber(),
+  bias: PropValue.stringOrNumber(),
+  by: PropValue.stringOrNumber(),
+  calcMode: PropValue.stringOrNumber(),
+  capHeight: PropValue.stringOrNumber(),
+  clip: PropValue.stringOrNumber(),
+  clipPath: PropValue.string(),
+  clipPathUnits: PropValue.stringOrNumber(),
+  clipRule: PropValue.stringOrNumber(),
+  colorInterpolation: PropValue.stringOrNumber(),
+  colorInterpolationFilters: PropValue.oneOf(['auto', 'sRGB', 'linearRGB', 'inherit'] as const),
+  colorProfile: PropValue.stringOrNumber(),
+  colorRendering: PropValue.stringOrNumber(),
+  contentScriptType: PropValue.stringOrNumber(),
+  contentStyleType: PropValue.stringOrNumber(),
+  cursor: PropValue.stringOrNumber(),
+  cx: PropValue.stringOrNumber(),
+  cy: PropValue.stringOrNumber(),
+  d: PropValue.string(),
+  decelerate: PropValue.stringOrNumber(),
+  descent: PropValue.stringOrNumber(),
+  diffuseConstant: PropValue.stringOrNumber(),
+  direction: PropValue.stringOrNumber(),
+  display: PropValue.stringOrNumber(),
+  divisor: PropValue.stringOrNumber(),
+  dominantBaseline: PropValue.stringOrNumber(),
+  dur: PropValue.stringOrNumber(),
+  dx: PropValue.stringOrNumber(),
+  dy: PropValue.stringOrNumber(),
+  edgeMode: PropValue.stringOrNumber(),
+  elevation: PropValue.stringOrNumber(),
+  enableBackground: PropValue.stringOrNumber(),
+  end: PropValue.stringOrNumber(),
+  exponent: PropValue.stringOrNumber(),
+  externalResourcesRequired: PropValue.boolean(),
+  fill: PropValue.string(),
+  fillOpacity: PropValue.stringOrNumber(),
+  fillRule: PropValue.oneOf(['nonzero', 'evenodd', 'inherit'] as const),
+  filter: PropValue.string(),
+  filterRes: PropValue.stringOrNumber(),
+  filterUnits: PropValue.stringOrNumber(),
+  floodColor: PropValue.stringOrNumber(),
+  floodOpacity: PropValue.stringOrNumber(),
+  focusable: PropValue.oneOf([true, false, 'auto'] as const),
+  fontFamily: PropValue.string(),
+  fontSize: PropValue.stringOrNumber(),
+  fontSizeAdjust: PropValue.stringOrNumber(),
+  fontStretch: PropValue.stringOrNumber(),
+  fontStyle: PropValue.stringOrNumber(),
+  fontVariant: PropValue.stringOrNumber(),
+  fontWeight: PropValue.stringOrNumber(),
+  format: PropValue.stringOrNumber(),
+  fr: PropValue.stringOrNumber(),
+  from: PropValue.stringOrNumber(),
+  fx: PropValue.stringOrNumber(),
+  fy: PropValue.stringOrNumber(),
+  g1: PropValue.stringOrNumber(),
+  g2: PropValue.stringOrNumber(),
+  glyphName: PropValue.stringOrNumber(),
+  glyphOrientationHorizontal: PropValue.stringOrNumber(),
+  glyphOrientationVertical: PropValue.stringOrNumber(),
+  glyphRef: PropValue.stringOrNumber(),
+  gradientTransform: PropValue.string(),
+  gradientUnits: PropValue.string(),
+  hanging: PropValue.stringOrNumber(),
+  horizAdvX: PropValue.stringOrNumber(),
+  horizOriginX: PropValue.stringOrNumber(),
+  href: PropValue.string(),
+  ideographic: PropValue.stringOrNumber(),
+  imageRendering: PropValue.stringOrNumber(),
+  in2: PropValue.stringOrNumber(),
+  in: PropValue.string(),
+  intercept: PropValue.stringOrNumber(),
+  k1: PropValue.stringOrNumber(),
+  k2: PropValue.stringOrNumber(),
+  k3: PropValue.stringOrNumber(),
+  k4: PropValue.stringOrNumber(),
+  k: PropValue.stringOrNumber(),
+  kernelMatrix: PropValue.stringOrNumber(),
+  kernelUnitLength: PropValue.stringOrNumber(),
+  kerning: PropValue.stringOrNumber(),
+  keyPoints: PropValue.stringOrNumber(),
+  keySplines: PropValue.stringOrNumber(),
+  keyTimes: PropValue.stringOrNumber(),
+  lengthAdjust: PropValue.stringOrNumber(),
+  letterSpacing: PropValue.stringOrNumber(),
+  lightingColor: PropValue.stringOrNumber(),
+  limitingConeAngle: PropValue.stringOrNumber(),
+  local: PropValue.stringOrNumber(),
+  markerEnd: PropValue.string(),
+  markerHeight: PropValue.stringOrNumber(),
+  markerMid: PropValue.string(),
+  markerStart: PropValue.string(),
+  markerUnits: PropValue.stringOrNumber(),
+  markerWidth: PropValue.stringOrNumber(),
+  mask: PropValue.string(),
+  maskContentUnits: PropValue.stringOrNumber(),
+  maskUnits: PropValue.stringOrNumber(),
+  mathematical: PropValue.stringOrNumber(),
+  mode: PropValue.stringOrNumber(),
+  numOctaves: PropValue.stringOrNumber(),
+  offset: PropValue.stringOrNumber(),
+  opacity: PropValue.stringOrNumber(),
+  operator: PropValue.stringOrNumber(),
+  order: PropValue.stringOrNumber(),
+  orient: PropValue.stringOrNumber(),
+  orientation: PropValue.stringOrNumber(),
+  origin: PropValue.stringOrNumber(),
+  overflow: PropValue.stringOrNumber(),
+  overlinePosition: PropValue.stringOrNumber(),
+  overlineThickness: PropValue.stringOrNumber(),
+  paintOrder: PropValue.stringOrNumber(),
+  panose1: PropValue.stringOrNumber(),
+  path: PropValue.string(),
+  pathLength: PropValue.stringOrNumber(),
+  patternContentUnits: PropValue.string(),
+  patternTransform: PropValue.stringOrNumber(),
+  patternUnits: PropValue.string(),
+  pointerEvents: PropValue.stringOrNumber(),
+  points: PropValue.string(),
+  pointsAtX: PropValue.stringOrNumber(),
+  pointsAtY: PropValue.stringOrNumber(),
+  pointsAtZ: PropValue.stringOrNumber(),
+  preserveAlpha: PropValue.boolean(),
+  preserveAspectRatio: PropValue.string(),
+  primitiveUnits: PropValue.stringOrNumber(),
+  r: PropValue.stringOrNumber(),
+  radius: PropValue.stringOrNumber(),
+  refX: PropValue.stringOrNumber(),
+  refY: PropValue.stringOrNumber(),
+  renderingIntent: PropValue.stringOrNumber(),
+  repeatCount: PropValue.stringOrNumber(),
+  repeatDur: PropValue.stringOrNumber(),
+  requiredExtensions: PropValue.stringOrNumber(),
+  requiredFeatures: PropValue.stringOrNumber(),
+  restart: PropValue.stringOrNumber(),
+  result: PropValue.string(),
+  rotate: PropValue.stringOrNumber(),
+  rx: PropValue.stringOrNumber(),
+  ry: PropValue.stringOrNumber(),
+  scale: PropValue.stringOrNumber(),
+  seed: PropValue.stringOrNumber(),
+  shapeRendering: PropValue.stringOrNumber(),
+  slope: PropValue.stringOrNumber(),
+  spacing: PropValue.stringOrNumber(),
+  specularConstant: PropValue.stringOrNumber(),
+  specularExponent: PropValue.stringOrNumber(),
+  speed: PropValue.stringOrNumber(),
+  spreadMethod: PropValue.string(),
+  startOffset: PropValue.stringOrNumber(),
+  stdDeviation: PropValue.stringOrNumber(),
+  stemh: PropValue.stringOrNumber(),
+  stemv: PropValue.stringOrNumber(),
+  stitchTiles: PropValue.stringOrNumber(),
+  stopColor: PropValue.string(),
+  stopOpacity: PropValue.stringOrNumber(),
+  strikethroughPosition: PropValue.stringOrNumber(),
+  strikethroughThickness: PropValue.stringOrNumber(),
+  string: PropValue.stringOrNumber(),
+  stroke: PropValue.string(),
+  strokeDasharray: PropValue.stringOrNumber(),
+  strokeDashoffset: PropValue.stringOrNumber(),
+  strokeLinecap: PropValue.oneOf(['butt', 'round', 'square', 'inherit'] as const),
+  strokeLinejoin: PropValue.oneOf(['miter', 'round', 'bevel', 'inherit'] as const),
+  strokeMiterlimit: PropValue.stringOrNumber(),
+  strokeOpacity: PropValue.stringOrNumber(),
+  strokeWidth: PropValue.stringOrNumber(),
+  surfaceScale: PropValue.stringOrNumber(),
+  systemLanguage: PropValue.stringOrNumber(),
+  tableValues: PropValue.stringOrNumber(),
+  targetX: PropValue.stringOrNumber(),
+  targetY: PropValue.stringOrNumber(),
+  textAnchor: PropValue.string(),
+  textDecoration: PropValue.stringOrNumber(),
+  textLength: PropValue.stringOrNumber(),
+  textRendering: PropValue.stringOrNumber(),
+  to: PropValue.stringOrNumber(),
+  transform: PropValue.string(),
+  u1: PropValue.stringOrNumber(),
+  u2: PropValue.stringOrNumber(),
+  underlinePosition: PropValue.stringOrNumber(),
+  underlineThickness: PropValue.stringOrNumber(),
+  unicode: PropValue.stringOrNumber(),
+  unicodeBidi: PropValue.stringOrNumber(),
+  unicodeRange: PropValue.stringOrNumber(),
+  unitsPerEm: PropValue.stringOrNumber(),
+  vAlphabetic: PropValue.stringOrNumber(),
+  values: PropValue.string(),
+  vectorEffect: PropValue.stringOrNumber(),
+  version: PropValue.string(),
+  vertAdvY: PropValue.stringOrNumber(),
+  vertOriginX: PropValue.stringOrNumber(),
+  vertOriginY: PropValue.stringOrNumber(),
+  vHanging: PropValue.stringOrNumber(),
+  vIdeographic: PropValue.stringOrNumber(),
+  viewBox: PropValue.string(),
+  viewTarget: PropValue.stringOrNumber(),
+  visibility: PropValue.stringOrNumber(),
+  vMathematical: PropValue.stringOrNumber(),
+  widths: PropValue.stringOrNumber(),
+  wordSpacing: PropValue.stringOrNumber(),
+  writingMode: PropValue.stringOrNumber(),
+  x1: PropValue.stringOrNumber(),
+  x2: PropValue.stringOrNumber(),
+  x: PropValue.stringOrNumber(),
+  xChannelSelector: PropValue.string(),
+  xHeight: PropValue.stringOrNumber(),
+  xlinkActuate: PropValue.string(),
+  xlinkArcrole: PropValue.string(),
+  xlinkHref: PropValue.string(),
+  xlinkRole: PropValue.string(),
+  xlinkShow: PropValue.string(),
+  xlinkTitle: PropValue.string(),
+  xlinkType: PropValue.string(),
+  xmlBase: PropValue.string(),
+  xmlLang: PropValue.string(),
+  xmlns: PropValue.string(),
+  xmlnsXlink: PropValue.string(),
+  xmlSpace: PropValue.string(),
+  y1: PropValue.stringOrNumber(),
+  y2: PropValue.stringOrNumber(),
+  y: PropValue.stringOrNumber(),
+  yChannelSelector: PropValue.string(),
+  z: PropValue.stringOrNumber(),
+  zoomAndPan: PropValue.string(),
 };
 
 export const SVGElementTagNameMap = {
   "a": {
     type: SVGAElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "animate": {
     type: SVGAnimateElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "animateMotion": {
     type: SVGAnimateMotionElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "animateTransform": {
     type: SVGAnimateTransformElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "circle": {
     type: SVGCircleElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "clipPath": {
     type: SVGClipPathElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "defs": {
     type: SVGDefsElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "desc": {
     type: SVGDescElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "ellipse": {
     type: SVGEllipseElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feBlend": {
     type: SVGFEBlendElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feColorMatrix": {
     type: SVGFEColorMatrixElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feComponentTransfer": {
     type: SVGFEComponentTransferElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feComposite": {
     type: SVGFECompositeElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feConvolveMatrix": {
     type: SVGFEConvolveMatrixElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feDiffuseLighting": {
     type: SVGFEDiffuseLightingElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feDisplacementMap": {
     type: SVGFEDisplacementMapElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feDistantLight": {
     type: SVGFEDistantLightElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feDropShadow": {
     type: SVGFEDropShadowElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feFlood": {
     type: SVGFEFloodElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feFuncA": {
     type: SVGFEFuncAElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feFuncB": {
     type: SVGFEFuncBElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feFuncG": {
     type: SVGFEFuncGElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feFuncR": {
     type: SVGFEFuncRElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feGaussianBlur": {
     type: SVGFEGaussianBlurElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feImage": {
     type: SVGFEImageElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feMerge": {
     type: SVGFEMergeElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feMergeNode": {
     type: SVGFEMergeNodeElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feMorphology": {
     type: SVGFEMorphologyElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feOffset": {
     type: SVGFEOffsetElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "fePointLight": {
     type: SVGFEPointLightElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feSpecularLighting": {
     type: SVGFESpecularLightingElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feSpotLight": {
     type: SVGFESpotLightElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feTile": {
     type: SVGFETileElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "feTurbulence": {
     type: SVGFETurbulenceElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "filter": {
     type: SVGFilterElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "foreignObject": {
     type: SVGForeignObjectElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "g": {
     type: SVGGElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "image": {
     type: SVGImageElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "line": {
     type: SVGLineElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "linearGradient": {
     type: SVGLinearGradientElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "marker": {
     type: SVGMarkerElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "mask": {
     type: SVGMaskElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "metadata": {
     type: SVGMetadataElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "mpath": {
     type: SVGMPathElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "path": {
     type: SVGPathElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "pattern": {
     type: SVGPatternElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "polygon": {
     type: SVGPolygonElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "polyline": {
     type: SVGPolylineElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "radialGradient": {
     type: SVGRadialGradientElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "rect": {
     type: SVGRectElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "script": {
     type: SVGScriptElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "set": {
     type: SVGSetElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "stop": {
     type: SVGStopElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "style": {
     type: SVGStyleElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "svg": {
     type: SVGSVGElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "switch": {
     type: SVGSwitchElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "symbol": {
     type: SVGSymbolElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "text": {
     type: SVGTextElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "textPath": {
     type: SVGTextPathElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "title": {
     type: SVGTitleElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "tspan": {
     type: SVGTSpanElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "use": {
     type: SVGUseElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
   "view": {
     type: SVGViewElement,
-    props: _.assign({}, globalAttrs, {
-    }),
+    props: svgAttrs,
   },
 } as const;

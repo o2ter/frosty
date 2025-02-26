@@ -30,79 +30,6 @@ import { PropValue } from './props';
  * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
  */
 
-// All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
-type AriaRole =
-  | "alert"
-  | "alertdialog"
-  | "application"
-  | "article"
-  | "banner"
-  | "button"
-  | "cell"
-  | "checkbox"
-  | "columnheader"
-  | "combobox"
-  | "complementary"
-  | "contentinfo"
-  | "definition"
-  | "dialog"
-  | "directory"
-  | "document"
-  | "feed"
-  | "figure"
-  | "form"
-  | "grid"
-  | "gridcell"
-  | "group"
-  | "heading"
-  | "img"
-  | "link"
-  | "list"
-  | "listbox"
-  | "listitem"
-  | "log"
-  | "main"
-  | "marquee"
-  | "math"
-  | "menu"
-  | "menubar"
-  | "menuitem"
-  | "menuitemcheckbox"
-  | "menuitemradio"
-  | "navigation"
-  | "none"
-  | "note"
-  | "option"
-  | "presentation"
-  | "progressbar"
-  | "radio"
-  | "radiogroup"
-  | "region"
-  | "row"
-  | "rowgroup"
-  | "rowheader"
-  | "scrollbar"
-  | "search"
-  | "searchbox"
-  | "separator"
-  | "slider"
-  | "spinbutton"
-  | "status"
-  | "switch"
-  | "tab"
-  | "table"
-  | "tablist"
-  | "tabpanel"
-  | "term"
-  | "textbox"
-  | "timer"
-  | "toolbar"
-  | "tooltip"
-  | "tree"
-  | "treegrid"
-  | "treeitem"
-  | (string & {});
-
 const globalAttrs = {
   // Standard HTML Attributes
   accessKey: PropValue.string(),
@@ -127,7 +54,7 @@ const globalAttrs = {
   radioGroup: PropValue.string(), // <command>, <menuitem>
 
   // WAI-ARIA
-  role: PropValue.string<AriaRole>(),
+  role: PropValue.ariaRole(),
 
   // RDFa Attributes
   about: PropValue.string(),
@@ -180,7 +107,12 @@ export const HTMLElementTagNameMap = {
       hrefLang: PropValue.string(),
       media: PropValue.string(),
       ping: PropValue.string(),
-      target: PropValue.string<'_self' | '_blank' | '_parent' | '_top' | (string & {})>(),
+      target: PropValue.string<
+        | '_self'
+        | '_blank'
+        | '_parent'
+        | '_top'
+        | (string & {})>(),
       type: PropValue.string(),
       referrerPolicy: PropValue.oneOf(['', 'no-referrer', 'no-referrer-when-downgrade', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'] as const),
     }),

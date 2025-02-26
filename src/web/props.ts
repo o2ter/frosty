@@ -27,6 +27,79 @@ import _ from 'lodash';
 import { ClassName, StyleProp } from '../common/styles/types';
 import { CSSProperties } from './css';
 
+// All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
+type AriaRole =
+  | "alert"
+  | "alertdialog"
+  | "application"
+  | "article"
+  | "banner"
+  | "button"
+  | "cell"
+  | "checkbox"
+  | "columnheader"
+  | "combobox"
+  | "complementary"
+  | "contentinfo"
+  | "definition"
+  | "dialog"
+  | "directory"
+  | "document"
+  | "feed"
+  | "figure"
+  | "form"
+  | "grid"
+  | "gridcell"
+  | "group"
+  | "heading"
+  | "img"
+  | "link"
+  | "list"
+  | "listbox"
+  | "listitem"
+  | "log"
+  | "main"
+  | "marquee"
+  | "math"
+  | "menu"
+  | "menubar"
+  | "menuitem"
+  | "menuitemcheckbox"
+  | "menuitemradio"
+  | "navigation"
+  | "none"
+  | "note"
+  | "option"
+  | "presentation"
+  | "progressbar"
+  | "radio"
+  | "radiogroup"
+  | "region"
+  | "row"
+  | "rowgroup"
+  | "rowheader"
+  | "scrollbar"
+  | "search"
+  | "searchbox"
+  | "separator"
+  | "slider"
+  | "spinbutton"
+  | "status"
+  | "switch"
+  | "tab"
+  | "table"
+  | "tablist"
+  | "tabpanel"
+  | "term"
+  | "textbox"
+  | "timer"
+  | "toolbar"
+  | "tooltip"
+  | "tree"
+  | "treegrid"
+  | "treeitem"
+  | (string & {});
+
 export type PropMap<M extends Record<string, any>> = {
   [x in keyof M]?: M[x] extends PropValue<infer T, any> ? T : M[x];
 };
@@ -64,6 +137,10 @@ export class PropValue<T, U = T> {
     varify: (x): x is T => _.isNumber(x),
     encode: x => x,
   });
+  static stringOrNumber = <T extends string | string>() => new PropValue<T>({
+    varify: (x): x is T => _.isString(x) || _.isNumber(x),
+    encode: x => x,
+  });
   static boolean = <T extends string>() => new PropValue<T>({
     varify: (x): x is T => _.isBoolean(x),
     encode: x => x,
@@ -75,6 +152,9 @@ export class PropValue<T, U = T> {
     varify: (x): x is T => _.includes(values, x),
     encode: x => x,
   });
+
+  static crossOrigin = () => this.string<'' | 'anonymous' | 'use-credentials'>();
+  static ariaRole = () => this.string<AriaRole>()
 
   static any = () => new PropValue<any>({});
 
