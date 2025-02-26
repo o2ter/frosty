@@ -35,7 +35,7 @@ export const createSignal = <T>(initialValue: T) => {
     selector: (state: T) => S = v => v as any,
     equal: (value: S, other: S) => boolean = _.isEqual
   ) => {
-    if (reconciler.currentContext) _effect((onStoreChange) => subscribe((oldVal, newVal) => {
+    _effect((onStoreChange) => subscribe((oldVal, newVal) => {
       if (equal(selector(oldVal), selector(newVal))) onStoreChange();
     }));
     return selector(current);

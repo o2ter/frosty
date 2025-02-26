@@ -60,7 +60,7 @@ export const reconciler = new class {
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
-  if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
+  if (!reconciler.currentContext) return;
   const { subscriber, dispose } = reconciler.currentContext;
   dispose.push(callback(subscriber));
 };
