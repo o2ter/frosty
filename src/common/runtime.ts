@@ -23,12 +23,21 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from './types/component';
+import { ComponentNode, NativeElementType } from './types/component';
 import { _ElementType } from './types/jsx';
 
 export function jsx<
   P extends Record<string, unknown> = any,
   T extends _ElementType = any
+>(
+  type: T, props: P, key?: string
+): ComponentNode<P, T> {
+  return new ComponentNode(type, props, key);
+}
+
+export function jsxNative<
+  P extends Record<string, unknown> = any,
+  T extends NativeElementType = any
 >(
   type: T, props: P, key?: string
 ): ComponentNode<P, T> {
