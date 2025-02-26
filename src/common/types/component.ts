@@ -56,4 +56,8 @@ export class ComponentNode<P extends Record<string, unknown> = any, T extends _E
   get key() {
     return this._key;
   }
+
+  get isNative() {
+    return this._type instanceof NativeElementType;
+  }
 }
