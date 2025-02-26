@@ -23,30 +23,6 @@
 //  THE SOFTWARE.
 //
 
-import { Context } from '../common/types/context';
+export type Renderer = {
 
-class Reconciler {
-
-  private _contextDefaultValue = new WeakMap<Context<any>, any>();
-  private _typeRegistry = new WeakMap<any, string>();
-
-  private _currentRenderContext: {
-    subscriber: () => void;
-    dispose: (() => void)[];
-    context: WeakMap<Context<any>, any>;
-  } | undefined;
-
-  get contextDefaultValue() {
-    return this._contextDefaultValue;
-  }
-
-  get typeRegistry() {
-    return this._typeRegistry;
-  }
-
-  get currentRenderContext() {
-    return this._currentRenderContext;
-  }
 }
-
-export const reconciler = new Reconciler();
