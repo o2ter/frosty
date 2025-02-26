@@ -25,7 +25,7 @@
 
 import { _ElementType } from './jsx';
 
-export class NativeElementType {}
+export abstract class NativeElementType {}
 
 export class ComponentNode<P extends Record<string, unknown> = any, T extends _ElementType | NativeElementType = any> {
 
