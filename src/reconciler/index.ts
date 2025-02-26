@@ -25,37 +25,43 @@
 
 import { Context } from '../common/types/context';
 
-class Reconciler {
+class ReconcilerContext {
 
-  private _contextDefaultValue = new WeakMap<Context<any>, any>();
-  private _typeRegistry = new WeakMap<any, string>();
+  dispose: (() => void)[] = [];
+  context = new WeakMap<Context<any>, any>();
 
-  private _currentRenderContext: {
-    subscriber: () => void;
-    dispose: (() => void)[];
-    context: WeakMap<Context<any>, any>;
-  } | undefined;
+  get subscriber() {
+    return () => {
 
-  get contextDefaultValue() {
-    return this._contextDefaultValue;
+    };
   }
+}
+
+export const reconciler = new class {
+
+  private _typeRegistry = new WeakMap<any, string>();
+  private _contextDefaultValue = new WeakMap<Context<any>, any>();
+
+  private _currentContext: ReconcilerContext | undefined;
 
   get typeRegistry() {
     return this._typeRegistry;
   }
 
-  get currentRenderContext() {
-    return this._currentRenderContext;
+  get contextDefaultValue() {
+    return this._contextDefaultValue;
   }
-}
 
-export const reconciler = new Reconciler();
+  get currentContext() {
+    return this._currentContext;
+  }
+};
 
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
-  if (!reconciler.currentRenderContext) throw Error('Hook must be used within a render function.');
-  const { subscriber, dispose } = reconciler.currentRenderContext;
+  if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
+  const { subscriber, dispose } = reconciler.currentContext;
   dispose.push(callback(subscriber));
 };
 
