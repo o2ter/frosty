@@ -24,7 +24,7 @@
 //
 
 import { ComponentProps, ComponentType, ElementNode } from './basic';
-import { contextDefaultValue, _registry } from '../../reconciler/variables';
+import { reconciler } from '../../reconciler';
 
 export type Context<Value> = ReturnType<typeof createContext<Value>>;
 export type ContextType<C extends Context<any>> = ComponentProps<C>['value'];
@@ -36,7 +36,7 @@ export const createContext = <Value>(defaultValue: Value): ComponentType<{
   const context = () => {
     throw Error('Context component should not be called directly.');
   };
-  contextDefaultValue.set(context, defaultValue);
-  _registry.set(context, 'CONTEXT');
+  reconciler.contextDefaultValue.set(context, defaultValue);
+  reconciler.typeRegistry.set(context, 'CONTEXT');
   return context;
 }

@@ -23,12 +23,12 @@
 //  THE SOFTWARE.
 //
 
-import { _registry, currentRenderContext } from '../../reconciler/variables';
 import { Context } from '../types/context';
+import { reconciler } from '../../reconciler';
 
 export const useContext = (x: Context<any>) => {
-  if (!currentRenderContext) throw Error('Hook must be used within a render function.');
-  if (_registry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
-  const { context } = currentRenderContext;
+  if (!reconciler.currentRenderContext) throw Error('Hook must be used within a render function.');
+  if (reconciler.typeRegistry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
+  const { context } = reconciler.currentRenderContext;
   return context.get(x);
 }

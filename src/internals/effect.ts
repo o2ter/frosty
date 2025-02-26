@@ -24,13 +24,13 @@
 //
 
 import _ from 'lodash';
-import { currentRenderContext } from '../reconciler/variables';
+import { reconciler } from '../reconciler';
 
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
 ) => {
-  if (!currentRenderContext) throw Error('Hook must be used within a render function.');
-  const { subscriber, dispose } = currentRenderContext;
+  if (!reconciler.currentRenderContext) throw Error('Hook must be used within a render function.');
+  const { subscriber, dispose } = reconciler.currentRenderContext;
   dispose.push(callback(subscriber));
 };
 
