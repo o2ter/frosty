@@ -50,7 +50,7 @@ const svgAttrs = {
   // Other HTML properties supported by SVG elements in browsers
   role: PropValue.ariaRole(),
   tabIndex: PropValue.number(),
-  crossOrigin: PropValue.crossOrigin();
+  crossOrigin: PropValue.crossOrigin(),
 
   // SVG Specific attributes
   accentHeight: PropValue.stringOrNumber(),
