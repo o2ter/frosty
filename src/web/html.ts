@@ -175,7 +175,14 @@ export const HTMLElementTagNameMap = {
   "a": {
     type: HTMLAnchorElement,
     props: _.assign({}, globalAttrs, {
+      download: PropValue.any(),
       href: PropValue.string(),
+      hrefLang: PropValue.string(),
+      media: PropValue.string(),
+      ping: PropValue.string(),
+      target: PropValue.string<'_self' | '_blank' | '_parent' | '_top' | (string & {})>(),
+      type: PropValue.string(),
+      referrerPolicy: PropValue.oneOf(['', 'no-referrer', 'no-referrer-when-downgrade', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'] as const),
     }),
   },
   "abbr": {
