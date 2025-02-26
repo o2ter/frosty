@@ -39,6 +39,7 @@ export const createSignal = <T>(initialValue: T) => {
     }));
     return selector(current);
   };
+  const value = () => read(x => x, (old, curr) => old === curr);
   const write = (value: T) => {
     const oldVal = current;
     current = _.isFunction(value) ? value(current) : value;
@@ -48,8 +49,8 @@ export const createSignal = <T>(initialValue: T) => {
     listeners.add(callback);
     return () => void listeners.delete(callback);
   };
-  const signal = Object.freeze(_.assign([read, write] as const, {
-    value: () => read(x => x, (old, curr) => old === curr),
+  const signal = Object.freeze(_.assign([value, write] as const, {
+    value,
     setValue: write,
     select: read,
     subscribe,
