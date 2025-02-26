@@ -36,12 +36,17 @@ class ReconcilerContext {
     this.subscriber = subscriber;
   }
 }
-class Reconciler {
 
-  private _registry = new WeakMap<any, string>();
-  private _contextDefaultValue = new WeakMap<Context<any>, any>();
+export const reconciler = new class {
 
-  private _currentContext: ReconcilerContext | undefined;
+  /** @internal */
+  _registry = new WeakMap<any, string>();
+
+  /** @internal */
+  _contextDefaultValue = new WeakMap<Context<any>, any>();
+
+  /** @internal */
+  _currentContext: ReconcilerContext | undefined;
 
   get registry() {
     return this._registry;
@@ -54,9 +59,7 @@ class Reconciler {
   get currentContext() {
     return this._currentContext;
   }
-}
-
-export const reconciler = new Reconciler;
+};
 
 export const _effect = (
   callback: (onStoreChange: () => void) => () => void
