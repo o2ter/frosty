@@ -39,13 +39,13 @@ class ReconcilerContext {
 
 export const reconciler = new class {
 
-  private _typeRegistry = new WeakMap<any, string>();
+  private _registry = new WeakMap<any, string>();
   private _contextDefaultValue = new WeakMap<Context<any>, any>();
 
   private _currentContext: ReconcilerContext | undefined;
 
-  get typeRegistry() {
-    return this._typeRegistry;
+  get registry() {
+    return this._registry;
   }
 
   get contextDefaultValue() {

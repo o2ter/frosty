@@ -56,6 +56,6 @@ export const createSignal = <T>(initialValue: T) => {
     select: read,
     subscribe,
   }));
-  reconciler.typeRegistry.set(signal, 'SIGNAL');
+  reconciler.registry.set(signal, 'SIGNAL');
   return signal;
 }

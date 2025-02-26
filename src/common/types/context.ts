@@ -37,6 +37,6 @@ export const createContext = <Value>(defaultValue: Value): ComponentType<{
     throw Error('Context component should not be called directly.');
   };
   reconciler.contextDefaultValue.set(context, defaultValue);
-  reconciler.typeRegistry.set(context, 'CONTEXT');
+  reconciler.registry.set(context, 'CONTEXT');
   return context;
 }
