@@ -25,7 +25,7 @@
 
 import { ComponentNode } from './component';
 
-export type SetStateAction<S> = S | ((prevState: S) => S);
+export type SetStateAction<S, P = S> = S | ((prevState: P) => S);
 
 export type PropsWithChildren<
   P extends Record<string, unknown> = {},
