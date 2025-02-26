@@ -23,131 +23,167 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { PropValue } from './props';
 
 /**
  * Reference: https://developer.mozilla.org/en-US/docs/Web/MathML/Attribute
  */
 
+const globalAttrs = {
+  // Standard SVG Attributes
+  id: PropValue.string(),
+};
+
 export const MathMLElementTagNameMap = {
   "annotation": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "annotation-xml": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "maction": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "math": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "merror": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mfrac": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mi": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mmultiscripts": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mn": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mo": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mover": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mpadded": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mphantom": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mprescripts": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mroot": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mrow": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "ms": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mspace": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "msqrt": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mstyle": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "msub": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "msubsup": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "msup": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mtable": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mtd": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mtext": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mtr": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "munder": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "munderover": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "semantics": {
     type: MathMLElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
 } as const;

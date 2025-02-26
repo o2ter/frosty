@@ -174,853 +174,712 @@ const globalAttrs = {
 export const HTMLElementTagNameMap = {
   "a": {
     type: HTMLAnchorElement,
-    props: {
-      ...globalAttrs,
+    props: _.assign({}, globalAttrs, {
       href: PropValue.string(),
-    },
+    }),
   },
   "abbr": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "address": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "area": {
     type: HTMLAreaElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "article": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "aside": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "audio": {
     type: HTMLAudioElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "b": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "base": {
     type: HTMLBaseElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "bdi": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "bdo": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "blockquote": {
     type: HTMLQuoteElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "body": {
     type: HTMLBodyElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "br": {
     type: HTMLBRElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "button": {
     type: HTMLButtonElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "canvas": {
     type: HTMLCanvasElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "caption": {
     type: HTMLTableCaptionElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "cite": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "code": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "col": {
     type: HTMLTableColElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "colgroup": {
     type: HTMLTableColElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "data": {
     type: HTMLDataElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "datalist": {
     type: HTMLDataListElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "dd": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "del": {
     type: HTMLModElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "details": {
     type: HTMLDetailsElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "dfn": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "dialog": {
     type: HTMLDialogElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "div": {
     type: HTMLDivElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "dl": {
     type: HTMLDListElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "dt": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "em": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "embed": {
     type: HTMLEmbedElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "fieldset": {
     type: HTMLFieldSetElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "figcaption": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "figure": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "footer": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "form": {
     type: HTMLFormElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "h1": {
     type: HTMLHeadingElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "h2": {
     type: HTMLHeadingElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "h3": {
     type: HTMLHeadingElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "h4": {
     type: HTMLHeadingElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "h5": {
     type: HTMLHeadingElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "h6": {
     type: HTMLHeadingElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "head": {
     type: HTMLHeadElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "header": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "hgroup": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "hr": {
     type: HTMLHRElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "html": {
     type: HTMLHtmlElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "i": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "iframe": {
     type: HTMLIFrameElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "img": {
     type: HTMLImageElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "input": {
     type: HTMLInputElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "ins": {
     type: HTMLModElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "kbd": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "label": {
     type: HTMLLabelElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "legend": {
     type: HTMLLegendElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "li": {
     type: HTMLLIElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "link": {
     type: HTMLLinkElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "main": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "map": {
     type: HTMLMapElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mark": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "menu": {
     type: HTMLMenuElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "meta": {
     type: HTMLMetaElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "meter": {
     type: HTMLMeterElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "nav": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "noscript": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "object": {
     type: HTMLObjectElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "ol": {
     type: HTMLOListElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "optgroup": {
     type: HTMLOptGroupElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "option": {
     type: HTMLOptionElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "output": {
     type: HTMLOutputElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "p": {
     type: HTMLParagraphElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "picture": {
     type: HTMLPictureElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "pre": {
     type: HTMLPreElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "progress": {
     type: HTMLProgressElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "q": {
     type: HTMLQuoteElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "rp": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "rt": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "ruby": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "s": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "samp": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "script": {
     type: HTMLScriptElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "search": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "section": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "select": {
     type: HTMLSelectElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "slot": {
     type: HTMLSlotElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "small": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "source": {
     type: HTMLSourceElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "span": {
     type: HTMLSpanElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "strong": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "style": {
     type: HTMLStyleElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "sub": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "summary": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "sup": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "table": {
     type: HTMLTableElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "tbody": {
     type: HTMLTableSectionElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "td": {
     type: HTMLTableCellElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "template": {
     type: HTMLTemplateElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "textarea": {
     type: HTMLTextAreaElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "tfoot": {
     type: HTMLTableSectionElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "th": {
     type: HTMLTableCellElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "thead": {
     type: HTMLTableSectionElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "time": {
     type: HTMLTimeElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "title": {
     type: HTMLTitleElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "tr": {
     type: HTMLTableRowElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "track": {
     type: HTMLTrackElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "u": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "ul": {
     type: HTMLUListElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "var": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "video": {
     type: HTMLVideoElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "wbr": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
 } as const;
 
 export const HTMLElementDeprecatedTagNameMap = {
   "acronym": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "applet": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "basefont": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "bgsound": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "big": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "blink": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "center": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "dir": {
     type: HTMLDirectoryElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "font": {
     type: HTMLFontElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "frame": {
     type: HTMLFrameElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "frameset": {
     type: HTMLFrameSetElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "isindex": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "keygen": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "listing": {
     type: HTMLPreElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "marquee": {
     type: HTMLMarqueeElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "menuitem": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "multicol": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "nextid": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "nobr": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "noembed": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "noframes": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "param": {
     type: HTMLParamElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "plaintext": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "rb": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "rtc": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "spacer": {
     type: HTMLUnknownElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "strike": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "tt": {
     type: HTMLElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "xmp": {
     type: HTMLPreElement,
-    props: {
-      ...globalAttrs,
-    },
+    props: _.assign({}, globalAttrs, {
+    }),
   },
 } as const;
 

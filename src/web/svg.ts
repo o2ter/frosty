@@ -23,263 +23,334 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { PropValue } from './props';
 
 /**
  * Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute
  */
 
+const globalAttrs = {
+  // Standard SVG Attributes
+  className: PropValue.className(),
+  id: PropValue.string(),
+  style: PropValue.style(),
+};
+
 export const SVGElementTagNameMap = {
   "a": {
     type: SVGAElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "animate": {
     type: SVGAnimateElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "animateMotion": {
     type: SVGAnimateMotionElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "animateTransform": {
     type: SVGAnimateTransformElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "circle": {
     type: SVGCircleElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "clipPath": {
     type: SVGClipPathElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "defs": {
     type: SVGDefsElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "desc": {
     type: SVGDescElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "ellipse": {
     type: SVGEllipseElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feBlend": {
     type: SVGFEBlendElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feColorMatrix": {
     type: SVGFEColorMatrixElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feComponentTransfer": {
     type: SVGFEComponentTransferElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feComposite": {
     type: SVGFECompositeElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feConvolveMatrix": {
     type: SVGFEConvolveMatrixElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feDiffuseLighting": {
     type: SVGFEDiffuseLightingElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feDisplacementMap": {
     type: SVGFEDisplacementMapElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feDistantLight": {
     type: SVGFEDistantLightElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feDropShadow": {
     type: SVGFEDropShadowElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feFlood": {
     type: SVGFEFloodElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feFuncA": {
     type: SVGFEFuncAElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feFuncB": {
     type: SVGFEFuncBElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feFuncG": {
     type: SVGFEFuncGElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feFuncR": {
     type: SVGFEFuncRElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feGaussianBlur": {
     type: SVGFEGaussianBlurElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feImage": {
     type: SVGFEImageElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feMerge": {
     type: SVGFEMergeElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feMergeNode": {
     type: SVGFEMergeNodeElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feMorphology": {
     type: SVGFEMorphologyElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feOffset": {
     type: SVGFEOffsetElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "fePointLight": {
     type: SVGFEPointLightElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feSpecularLighting": {
     type: SVGFESpecularLightingElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feSpotLight": {
     type: SVGFESpotLightElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feTile": {
     type: SVGFETileElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "feTurbulence": {
     type: SVGFETurbulenceElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "filter": {
     type: SVGFilterElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "foreignObject": {
     type: SVGForeignObjectElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "g": {
     type: SVGGElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "image": {
     type: SVGImageElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "line": {
     type: SVGLineElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "linearGradient": {
     type: SVGLinearGradientElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "marker": {
     type: SVGMarkerElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mask": {
     type: SVGMaskElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "metadata": {
     type: SVGMetadataElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "mpath": {
     type: SVGMPathElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "path": {
     type: SVGPathElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "pattern": {
     type: SVGPatternElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "polygon": {
     type: SVGPolygonElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "polyline": {
     type: SVGPolylineElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "radialGradient": {
     type: SVGRadialGradientElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "rect": {
     type: SVGRectElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "script": {
     type: SVGScriptElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "set": {
     type: SVGSetElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "stop": {
     type: SVGStopElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "style": {
     type: SVGStyleElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "svg": {
     type: SVGSVGElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "switch": {
     type: SVGSwitchElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "symbol": {
     type: SVGSymbolElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "text": {
     type: SVGTextElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "textPath": {
     type: SVGTextPathElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "title": {
     type: SVGTitleElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "tspan": {
     type: SVGTSpanElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "use": {
     type: SVGUseElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
   "view": {
     type: SVGViewElement,
-    props: {},
+    props: _.assign({}, globalAttrs, {
+    }),
   },
 } as const;
