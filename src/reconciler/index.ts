@@ -24,6 +24,7 @@
 //
 
 import { Context } from '../common/types/context';
+import { _NodeElementType, ComponentNode } from '~/common/types/component';
 
 class ReconcilerContext {
 
@@ -34,6 +35,15 @@ class ReconcilerContext {
 
   constructor(subscriber: () => void) {
     this.subscriber = subscriber;
+  }
+}
+
+export class VNode<P extends Record<string, unknown>, T extends _NodeElementType> {
+
+  _component: ComponentNode<P, T>;
+
+  constructor(component: ComponentNode<P, T>) {
+    this._component = component;
   }
 }
 
