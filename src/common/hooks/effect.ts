@@ -29,7 +29,7 @@ import { _useEffect } from '../../reconciler';
 
 export const useEffect = (
   effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,
-  deps?: any[],
+  deps?: any,
 ) => _useEffect(() => {
   const abort = new AbortController();
   const destructor = effect(abort.signal);

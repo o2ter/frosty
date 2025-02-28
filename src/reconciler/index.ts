@@ -71,7 +71,7 @@ export const _effect = (
 
 export const _useEffect = (
   effect: () => () => void,
-  deps?: any[]
+  deps?: any
 ) => {
   if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
 };
