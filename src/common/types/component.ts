@@ -29,7 +29,7 @@ export abstract class NativeElementType { }
 
 export type _NodeElementType = _ElementType | NativeElementType;
 
-export class ComponentNode<P extends Record<string, unknown> = any, T extends _NodeElementType = any> {
+export class ComponentNode<P extends Record<string, unknown> = Record<string, any>, T extends _NodeElementType = _NodeElementType> {
 
   /** @internal */
   private _type: T;

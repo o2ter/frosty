@@ -38,11 +38,11 @@ class ReconcilerContext {
   }
 }
 
-export class VNode<P extends Record<string, unknown>, T extends _NodeElementType> {
+export class VNode {
 
-  _component: ComponentNode<P, T>;
+  _component: ComponentNode;
 
-  constructor(component: ComponentNode<P, T>) {
+  constructor(component: ComponentNode) {
     this._component = component;
   }
 }
