@@ -26,20 +26,14 @@
 import { ComponentNode, NativeElementType } from './types/component';
 import { _ElementType } from './types/jsx';
 
-export function jsx<
-  P extends Record<string, unknown> = Record<string, any>,
-  T extends _ElementType = _ElementType
->(
-  type: T, props: P, key?: string
-): ComponentNode<P, T> {
+export function jsx<P extends Record<string, unknown>>(
+  type: _ElementType, props: P, key?: string
+): ComponentNode<P> {
   return new ComponentNode(type, props, key);
 }
 
-export function jsxNative<
-  P extends Record<string, unknown> = Record<string, any>,
-  T extends NativeElementType = NativeElementType
->(
-  type: T, props: P, key?: string
-): ComponentNode<P, T> {
+export function jsxNative<P extends Record<string, unknown>>(
+  type: NativeElementType, props: P, key?: string
+): ComponentNode<P> {
   return new ComponentNode(type, props, key);
 }

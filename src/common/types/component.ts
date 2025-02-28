@@ -27,12 +27,10 @@ import { _ElementType } from './jsx';
 
 export abstract class NativeElementType { }
 
-export type _NodeElementType = _ElementType | NativeElementType;
-
-export class ComponentNode<P extends Record<string, unknown> = Record<string, any>, T extends _NodeElementType = _NodeElementType> {
+export class ComponentNode<P extends Record<string, unknown> = Record<string, any>> {
 
   /** @internal */
-  private _type: T;
+  private _type: _ElementType | NativeElementType;
 
   /** @internal */
   private _props: P;
@@ -41,7 +39,7 @@ export class ComponentNode<P extends Record<string, unknown> = Record<string, an
   private _key?: string;
 
   /** @internal */
-  constructor(type: T, props: P, key?: string) {
+  constructor(type: _ElementType | NativeElementType, props: P, key?: string) {
     this._type = type;
     this._props = props;
     this._key = key;

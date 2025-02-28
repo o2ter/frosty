@@ -24,7 +24,7 @@
 //
 
 import { Context } from '../common/types/context';
-import { _NodeElementType, ComponentNode } from '~/common/types/component';
+import { ComponentNode } from '~/common/types/component';
 
 class ReconcilerContext {
 
