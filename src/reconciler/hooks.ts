@@ -52,7 +52,11 @@ export const _useMemo = <T>(
   if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
   const { oldState, newState } = reconciler.currentContext;
   if (oldState && (newState.length >= oldState.length || oldState[newState.length][0] !== hook)) {
-    console.warn(`Hook "${hook}" is called conditionally. Hooks must be called in the exact same order in every component render. Did you accidentally call a hook after an early return?`);
+    console.warn([
+      `Hook "${hook}" is called conditionally.`,
+      'Hooks must be called in the exact same order in every component render.',
+      'Did you accidentally call a hook after an early return?'
+    ].join(' '));
   }
   if (oldState && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
     newState.push(oldState[newState.length]);
