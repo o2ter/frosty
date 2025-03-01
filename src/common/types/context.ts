@@ -24,11 +24,11 @@
 //
 
 import _ from 'lodash';
-import { ComponentProps, ComponentType, ElementNode } from './basic';
+import { ComponentType, ElementNode } from './basic';
 import { reconciler } from '../../reconciler/reconciler';
 
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
-export type ContextType<C extends Context<any>> = ComponentProps<C>['value'];
+export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
 
 const _createContext = <Value>(defaultValue: Value) => {
   const context: ComponentType<{
