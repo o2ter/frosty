@@ -35,8 +35,6 @@ const _createContext = <Value>(defaultValue: Value) => {
     value: Value;
     children?: ElementNode | ((value: Value) => ElementNode);
   }> = ({ value, children }) => {
-    const state = reconciler.currentHookState;
-    if (!state) throw Error('Context component should not be called directly.');
     return _.isFunction(children) ? children(value) : children;
   };
   reconciler.contextDefaultValue.set(context, defaultValue);
