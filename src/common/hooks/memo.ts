@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  memo.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,31 +23,14 @@
 //  THE SOFTWARE.
 //
 
-import { reconciler } from "./reconciler";
+import _ from 'lodash';
+import { _useMemo } from '../../reconciler/hooks';
 
-export const _effect = (
-  callback: (onStateChange: () => void) => () => void
-) => {
-  if (!reconciler.currentContext) return;
-  const { onStateChange, dispose } = reconciler.currentContext;
-  dispose.push(callback(onStateChange));
-};
-
-export const _useEffect = (
-  hook: string,
-  effect: () => () => void,
-  deps?: any
-) => {
-  if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
-};
-
-export const _useMemo = <T>(
-  hook: string,
+export const useMemo = <T>(
   factory: () => T,
-  deps?: any
-) => {
-  if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
-  const result = factory();
+  deps?: any,
+) => _useMemo('useMemo', factory, deps);
 
-  return result;
-};
+export const useRef = <T>(
+  initialValue: T
+) => _useMemo('useRef', () => ({ current: initialValue }), []);
