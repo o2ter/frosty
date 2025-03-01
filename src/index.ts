@@ -29,7 +29,7 @@ export { createSignal } from './common/types/signal';
 export { useEffect } from './common/hooks/effect';
 export { useContext } from './common/hooks/context';
 export { useMemo } from './common/hooks/memo';
-export { useRef, useImperativeHandle } from './common/hooks/ref';
+export { useRef, useRefHandle } from './common/hooks/ref';
 export { useCallback } from './common/hooks/callback';
 export { useState } from './common/hooks/state';
 export { ComponentNode } from './common/types/component';

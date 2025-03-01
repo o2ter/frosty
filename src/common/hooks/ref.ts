@@ -34,11 +34,11 @@ export function useRef(initialValue?: any) {
   return _useMemo('useRef', () => ({ current: initialValue }), []);
 }
 
-export const useImperativeHandle = <T, R extends T>(
+export const useRefHandle = <T, R extends T>(
   ref: Ref<T> | undefined,
   init: () => R,
   deps?: any
-) => _useEffect('useImperativeHandle', () => {
+) => _useEffect('useRefHandle', () => {
   try {
     if (ref) {
       const _ref = init();
