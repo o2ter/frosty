@@ -29,13 +29,13 @@ import { reconciler } from "./reconciler";
 export const _effect = (
   callback: (onStateChange: () => void) => () => void
 ) => {
-  if (!reconciler.currentContext) return;
-  const { onStateChange, dispose } = reconciler.currentContext;
+  if (!reconciler.currentHookState) return;
+  const { onStateChange, dispose } = reconciler.currentHookState;
   dispose.push(callback(onStateChange));
 };
 
-const fetchContext = (hook: string) => {
-  const context = reconciler.currentContext;
+const _useHookState = (hook: string) => {
+  const context = reconciler.currentHookState;
   if (!context) throw Error(`${hook} must be used within a render function.`);
   const { oldState, newState } = context;
   if (oldState && (newState.length >= oldState.length || oldState[newState.length][0] !== hook)) {
@@ -53,7 +53,7 @@ export const _useEffect = (
   effect: () => () => void,
   deps?: any
 ) => {
-  const { oldState, newState } = fetchContext(hook);
+  const { oldState, newState } = _useHookState(hook);
 
 };
 
@@ -62,7 +62,7 @@ export const _useMemo = <T>(
   factory: () => T,
   deps?: any
 ) => {
-  const { oldState, newState } = fetchContext(hook);
+  const { oldState, newState } = _useHookState(hook);
   if (oldState && newState.length < oldState.length && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
     newState.push(oldState[newState.length]);
     return oldState[newState.length][2];

@@ -27,7 +27,7 @@ import { Context } from '../common/types/context';
 import { ComponentNode } from '../common/types/component';
 import _ from 'lodash';
 
-class ReconcilerContext {
+class HookState {
 
   context = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
@@ -66,7 +66,7 @@ export const reconciler = new class {
   _contextDefaultValue = new WeakMap<Context<any>, any>();
 
   /** @internal */
-  _currentContext: ReconcilerContext | undefined;
+  _currentHookState: HookState | undefined;
 
   get registry() {
     return this._registry;
@@ -76,7 +76,7 @@ export const reconciler = new class {
     return this._contextDefaultValue;
   }
 
-  get currentContext() {
-    return this._currentContext;
+  get currentHookState() {
+    return this._currentHookState;
   }
 };
