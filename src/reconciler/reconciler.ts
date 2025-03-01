@@ -31,7 +31,7 @@ type State = {
   hook: string;
   deps: any;
   data?: any;
-  mount?: () => void;
+  mount?: () => () => void;
   unmount?: () => void;
 };
 
