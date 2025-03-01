@@ -33,7 +33,7 @@ export { useRef, useRefHandle } from './common/hooks/ref';
 export { useCallback } from './common/hooks/callback';
 export { useState } from './common/hooks/state';
 export { ComponentNode } from './common/types/component';
-export { Signal, createSignal } from './common/types/signal';
+export { Signal, SignalType, createSignal } from './common/types/signal';
 export { Context, ContextType, createContext } from './common/types/context';
 export { Fragment } from './common/types/fragment';
 export { _ElementType as ElementType } from './common/types/jsx';
