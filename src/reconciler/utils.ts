@@ -23,63 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import { Context } from '../common/types/context';
-import { ComponentNode } from '../common/types/component';
-import _ from 'lodash';
+import _ from "lodash";
 
-class HookState {
+let counter = 0;
 
-  context = new WeakMap<Context<any>, any>();
-  onStateChange: () => void;
-
-  oldState?: [string, any, any][];
-  newState: [string, any, any][] = [];
-
-  dispose: (() => void)[] = [];
-  listens = new WeakSet<Context<any>>();
-
-  onMount: Record<string, () => () => void> = {};
-  onUnmount: string[] = [];
-
-  constructor(onStateChange: () => void) {
-    this.onStateChange = onStateChange;
-  }
-}
-
-class VNode {
-
-  _component: ComponentNode;
-
-  _parent?: VNode;
-  _children: VNode[] = [];
-
-  _state: [string, any, any][] = [];
-
-  constructor(component: ComponentNode) {
-    this._component = component;
-  }
-}
-
-export const reconciler = new class {
-
-  /** @internal */
-  _registry = new WeakMap<any, string>();
-
-  /** @internal */
-  _contextDefaultValue = new WeakMap<Context<any>, any>();
-
-  /** @internal */
-  _currentHookState: HookState | undefined;
-
-  get registry() {
-    return this._registry;
-  }
-
-  get contextDefaultValue() {
-    return this._contextDefaultValue;
-  }
-
-  get currentHookState() {
-    return this._currentHookState;
-  }
-};
+export const uniqueId = (prefix: string) => `${prefix}${++counter}`;

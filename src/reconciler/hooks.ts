@@ -25,6 +25,7 @@
 
 import _ from "lodash";
 import { reconciler } from "./reconciler";
+import { uniqueId } from "./utils";
 
 const _useHookState = (hook: string) => {
   const context = reconciler.currentHookState;
@@ -45,13 +46,18 @@ export const _useEffect = (
   effect: () => () => void,
   deps?: any
 ) => {
-  const { oldState, newState } = _useHookState(hook);
+  const { oldState, newState, onMount, onUnmount } = _useHookState(hook);
   if (
     oldState &&
     newState.length < oldState.length &&
-    oldState[newState.length][0] === hook &&
-    _.isEqual(oldState[newState.length][1], deps)
-  ) { return; }
+    oldState[newState.length][0] === hook
+  ) {
+    if (_.isEqual(oldState[newState.length][1], deps)) return;
+    onUnmount.push(oldState[newState.length][2]);
+  }
+  const id = uniqueId('_useEffect');
+  onMount[id] = effect;
+  newState.push([hook, deps, id]);
 };
 
 export const _useMemo = <T>(
