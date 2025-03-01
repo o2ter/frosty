@@ -24,8 +24,8 @@
 //
 
 import _ from 'lodash';
-import { _effect } from '../../reconciler';
-import { reconciler } from '../../reconciler';
+import { _effect } from '../../reconciler/hooks';
+import { reconciler } from '../../reconciler/reconciler';
 import { SetStateAction } from '../types/basic';
 
 export const createSignal = <T>(initialValue: T) => {

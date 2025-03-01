@@ -23,12 +23,13 @@
 //  THE SOFTWARE.
 //
 
-import { Context } from '../types/context';
-import { reconciler } from '../../reconciler/reconciler';
+import { ComponentNode } from '~/common/types/component';
 
-export const useContext = (x: Context<any>) => {
-  if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
-  if (reconciler.registry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
-  const { context } = reconciler.currentContext;
-  return context.get(x);
+export class VNode {
+
+  _component: ComponentNode;
+
+  constructor(component: ComponentNode) {
+    this._component = component;
+  }
 }

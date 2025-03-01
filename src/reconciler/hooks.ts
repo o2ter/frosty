@@ -23,12 +23,19 @@
 //  THE SOFTWARE.
 //
 
-import { Context } from '../types/context';
-import { reconciler } from '../../reconciler/reconciler';
+import { reconciler } from "./reconciler";
 
-export const useContext = (x: Context<any>) => {
+export const _effect = (
+  callback: (onStoreChange: () => void) => () => void
+) => {
+  if (!reconciler.currentContext) return;
+  const { subscriber, dispose } = reconciler.currentContext;
+  dispose.push(callback(subscriber));
+};
+
+export const _useEffect = (
+  effect: () => () => void,
+  deps?: any
+) => {
   if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
-  if (reconciler.registry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
-  const { context } = reconciler.currentContext;
-  return context.get(x);
-}
+};

@@ -24,7 +24,7 @@
 //
 
 import { ComponentProps, ComponentType, ElementNode } from './basic';
-import { reconciler } from '../../reconciler';
+import { reconciler } from '../../reconciler/reconciler';
 
 export type Context<Value> = ReturnType<typeof createContext<Value>>;
 export type ContextType<C extends Context<any>> = ComponentProps<C>['value'];
