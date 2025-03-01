@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
-import { SetStateAction } from '../types/basic';
+import { RefObject, SetStateAction } from '../types/basic';
 
 export const useMemo = <T>(
   factory: () => T,
@@ -34,7 +34,7 @@ export const useMemo = <T>(
 
 export const useRef = <T>(
   initialValue: T
-) => _useMemo('useRef', () => ({ current: initialValue }), []);
+): RefObject<T> => _useMemo('useRef', () => ({ current: initialValue }), []);
 
 export const useCallback = <T extends (...args: any) => any>(
   callback: T
