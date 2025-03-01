@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { reconciler } from '../../reconciler/reconciler';
 import { Signal } from '../types/signal';
 
-export const useSignal = <T, R = unknown>(
+export const useSignal = <T, R = T>(
   signal: Signal<T>,
   selector: (state: T) => R = v => v as any
 ) => {
