@@ -31,7 +31,7 @@ export function useRef<T>(initialValue: T): RefObject<T>;
 export function useRef<T = undefined>(): RefObject<T | undefined>;
 
 export function useRef(initialValue?: any) {
-  return _useMemo('useRef', () => ({ current: initialValue }), []);
+  return _useMemo('useRef', () => ({ current: initialValue }));
 }
 
 export const useRefHandle = <T, R extends T>(

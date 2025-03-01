@@ -40,6 +40,6 @@ export function useState<T>(initialState?: any) {
       },
     };
     return state;
-  }, []);
+  });
   return [value, setValue] as const;
 }

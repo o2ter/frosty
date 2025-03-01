@@ -27,15 +27,17 @@ import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
 
 export const useCallback = <T extends (...args: any) => any>(
-  callback: T
+  callback: T,
+  deps?: any
 ) => {
+  if (!_.isUndefined(deps)) return _useMemo('useCallback', callback, deps);
   const store = _useMemo('useCallback', () => {
     const store = {
       current: callback,
       stable: (...args: Parameters<T>): ReturnType<T> => store.current(...args),
     };
     return store;
-  }, []);
+  });
   store.current = callback;
   return store.stable as T;
 }
