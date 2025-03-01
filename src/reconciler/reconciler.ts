@@ -38,7 +38,7 @@ type _State = {
 
 class HookState {
 
-  context = new WeakMap<Context<any>, any>();
+  contextValue = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
 
   oldState?: _State[];
