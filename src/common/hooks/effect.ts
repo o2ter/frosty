@@ -32,16 +32,21 @@ export const useEffect = (
   deps?: any,
 ) => _useEffect(() => {
   const abort = new AbortController();
-  const destructor = effect(abort.signal);
-  return () => {
-    abort.abort();
-    (async () => {
-      try {
-        const _destructor = await destructor;
-        if (_.isFunction(_destructor)) _destructor();
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  };
+  try {
+    const destructor = effect(abort.signal);
+    return () => {
+      abort.abort();
+      (async () => {
+        try {
+          const _destructor = await destructor;
+          if (_.isFunction(_destructor)) _destructor();
+        } catch (e) {
+          console.error(e);
+        }
+      })();
+    };
+  } catch (e) {
+    console.error(e);
+    return () => abort.abort();
+  }
 }, deps);
