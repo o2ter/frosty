@@ -42,8 +42,8 @@ const _createContext = <Value>(defaultValue: Value) => {
   return context;
 }
 
-export function createContext<Value>(defaultValue: Value): ReturnType<typeof _createContext<Value>>;
-export function createContext<Value = undefined>(): ReturnType<typeof _createContext<Value | undefined>>;
+export function createContext<Value>(defaultValue: Value): Context<Value>;
+export function createContext<Value = undefined>(): Context<Value | undefined>;
 
 export function createContext(defaultValue?: any) {
   return _createContext(defaultValue);

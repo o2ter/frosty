@@ -51,8 +51,8 @@ const _createSignal = <T>(initialValue: T) => {
   return signal;
 }
 
-export function createSignal<Value>(initialValue: Value): ReturnType<typeof _createSignal<Value>>;
-export function createSignal<Value = undefined>(): ReturnType<typeof _createSignal<Value | undefined>>;
+export function createSignal<Value>(initialValue: Value): Signal<Value>;
+export function createSignal<Value = undefined>(): Signal<Value | undefined>;
 
 export function createSignal(initialValue?: any) {
   return _createSignal(initialValue);
