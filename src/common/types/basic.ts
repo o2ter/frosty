@@ -24,6 +24,7 @@
 //
 
 import { ComponentNode } from './component';
+import { _IntrinsicElements } from './jsx';
 
 export type SetStateAction<S, P = S> = S | ((prevState: P) => S);
 
@@ -50,7 +51,9 @@ export type ComponentType<
 
 type PropsWithoutRef<P> = P extends any ? ('ref' extends keyof P ? Omit<P, 'ref'> : P) : P;
 
-export type ComponentProps<T> = T extends ComponentType<infer P, any> ? P : never;
+type _ComponentProps<T> = T extends ComponentType<infer P, any> ? P : never;
+
+export type ComponentProps<T> = T extends string ? _IntrinsicElements[T] : _ComponentProps<T>;
 export type ComponentPropsWithoutRef<T> = PropsWithoutRef<ComponentProps<T>>;
 
 export type RefObject<T> = {
