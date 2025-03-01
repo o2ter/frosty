@@ -29,9 +29,9 @@ import _ from 'lodash';
 
 class ReconcilerContext {
 
-  dispose: (() => void)[] = [];
   context = new WeakMap<Context<any>, any>();
-
+  
+  dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
   onStateChange: () => void;
 
