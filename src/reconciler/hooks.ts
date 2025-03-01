@@ -49,7 +49,10 @@ export const _useEffect = (
   if (
     oldState?.[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
-  ) { return; }
+  ) {
+    newState.push(oldState[newState.length]);
+    return;
+  }
   newState.push({ hook, deps, mount: effect });
 };
 
