@@ -32,7 +32,7 @@ export const useSignal = <T, R = unknown>(
   selector: (state: T) => R = v => v as any,
   equal: (value: R, other: R) => boolean = _.isEqual
 ) => {
-  if (reconciler.registry.get(signal) !== 'CONTEXT') throw Error(`Invalid type of ${signal}`);
+  if (reconciler.registry.get(signal) !== 'SIGNAL') throw Error(`Invalid type of ${signal}`);
   const state = reconciler.currentHookState;
   if (!state) throw Error('useContext must be used within a render function.');
   const { onStateChange, dispose } = state;
