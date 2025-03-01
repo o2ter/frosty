@@ -32,6 +32,9 @@ class ReconcilerContext {
   context = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
 
+  oldState?: [string, any, any][];
+  newState: [string, any, any][] = [];
+
   dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
 
@@ -46,6 +49,8 @@ class VNode {
 
   _parent?: VNode;
   _children: VNode[] = [];
+
+  _state: [string, any, any][] = [];
 
   constructor(component: ComponentNode) {
     this._component = component;

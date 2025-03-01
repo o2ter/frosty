@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import _ from "lodash";
 import { reconciler } from "./reconciler";
 
 export const _effect = (
@@ -39,6 +40,8 @@ export const _useEffect = (
   deps?: any
 ) => {
   if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
+  const { oldState, newState } = reconciler.currentContext;
+
 };
 
 export const _useMemo = <T>(
@@ -47,7 +50,15 @@ export const _useMemo = <T>(
   deps?: any
 ) => {
   if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
+  const { oldState, newState } = reconciler.currentContext;
+  if (oldState && (newState.length >= oldState.length || oldState[newState.length][0] !== hook)) {
+    console.warn('');
+  }
+  if (oldState && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
+    newState.push(oldState[newState.length]);
+    return oldState[newState.length][2];
+  }
   const result = factory();
-
+  newState.push([hook, deps, result]);
   return result;
 };
