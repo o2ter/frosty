@@ -60,7 +60,7 @@ export const _useMemo = <T>(
   hook: string,
   factory: () => T,
   deps?: any
-) => {
+): T => {
   const { oldState, newState } = _useHookState(hook);
   if (
     oldState?.[newState.length]?.hook === hook &&
