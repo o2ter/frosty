@@ -55,7 +55,7 @@ export type RefAttribute<T> = {
   ref?: Ref<T>;
 };
 
-type _ComponentProps<T> = T extends ComponentType<infer P, any> ? P : never;
+type _ComponentProps<T> = T extends any ? T extends ComponentType<infer P, any> ? P : never : T;
 
 export type ComponentProps<T> = T extends string ? _IntrinsicElements[T] : _ComponentProps<T>;
 export type ComponentPropsWithoutRef<T> = PropsWithoutRef<ComponentProps<T>>;
