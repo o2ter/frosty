@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { ComponentProps, ComponentType, ElementNode } from './basic';
 import { reconciler } from '../../reconciler/reconciler';
 
@@ -33,8 +34,10 @@ const _createContext = <Value>(defaultValue: Value) => {
   const context: ComponentType<{
     value: Value;
     children?: ElementNode | ((value: Value) => ElementNode);
-  }> = () => {
-    throw Error('Context component should not be called directly.');
+  }> = ({ value, children }) => {
+    const state = reconciler.currentHookState;
+    if (!state) throw Error('Context component should not be called directly.');
+    return _.isFunction(children) ? children(value) : children;
   };
   reconciler.contextDefaultValue.set(context, defaultValue);
   reconciler.registry.set(context, 'CONTEXT');
