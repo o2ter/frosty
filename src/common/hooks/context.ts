@@ -26,7 +26,7 @@
 import { Context } from '../types/context';
 import { reconciler } from '../../reconciler/reconciler';
 
-export const useContext = <T>(x: Context<T>): T => {
+export const useContext = <Value>(x: Context<Value>): Value => {
   if (reconciler.registry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
   const state = reconciler.currentHookState;
   if (!state) throw Error('useContext must be used within a render function.');
