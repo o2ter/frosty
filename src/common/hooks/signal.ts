@@ -29,15 +29,14 @@ import { Signal } from '../types/signal';
 
 export const useSignal = <T, R = unknown>(
   signal: Signal<T>,
-  selector: (state: T) => R = v => v as any,
-  equal: (value: R, other: R) => boolean = _.isEqual
+  selector: (state: T) => R = v => v as any
 ) => {
   if (reconciler.registry.get(signal) !== 'SIGNAL') throw Error(`Invalid type of ${signal}`);
   const state = reconciler.currentHookState;
   if (!state) throw Error('useContext must be used within a render function.');
   const { onStateChange, dispose } = state;
   dispose.push(signal.subscribe((oldVal, newVal) => {
-    if (equal(selector(oldVal), selector(newVal))) onStateChange();
+    if (_.isEqual(selector(oldVal), selector(newVal))) onStateChange();
   }));
   return [signal.value, signal.setValue] as const;
 }
