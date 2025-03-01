@@ -31,7 +31,7 @@ class ReconcilerContext {
 
   context = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
-  
+
   dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
 
