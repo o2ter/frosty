@@ -25,7 +25,6 @@
 
 import _ from "lodash";
 import { reconciler } from "./reconciler";
-import { uniqueId } from "./utils";
 
 const _useHookState = (hook: string) => {
   const context = reconciler.currentHookState;
