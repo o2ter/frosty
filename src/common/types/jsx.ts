@@ -29,13 +29,12 @@ import { HTMLElementDeprecatedTagNameMap } from '../../web/html';
 import { HTMLElementTagNameMap } from '../../web/html';
 import { PropMap, PropValue } from '../../web/props';
 import { MergeObject } from '@o2ter/utils-js';
-import { ComponentType, PropsWithChildren, Ref } from './basic';
+import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
 
 export type _ElementType = string | ComponentType;
 
-export type _IntrinsicAttributes<T = any> = {
+export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
-  ref?: Ref<T>;
 }
 
 type ElementPropsMap<
