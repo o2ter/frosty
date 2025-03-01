@@ -29,7 +29,7 @@ import { _ElementType } from './types/jsx';
 export function jsx(
   type: _ElementType,
   props: Record<string, any>,
-  key?: string
+  key?: string | number
 ): ComponentNode {
   return new ComponentNode(type, props, key);
 }
@@ -37,7 +37,7 @@ export function jsx(
 export function jsxNative(
   type: NativeElementType,
   props: Record<string, any>,
-  key?: string
+  key?: string | number
 ): ComponentNode {
   return new ComponentNode(type, props, key);
 }

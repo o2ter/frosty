@@ -36,13 +36,13 @@ export class ComponentNode {
   private _props: Record<string, any>;
 
   /** @internal */
-  private _key?: string;
+  private _key?: string | number;
 
   /** @internal */
   constructor(
     type: _ElementType | NativeElementType,
     props: Record<string, any>,
-    key?: string
+    key?: string | number
   ) {
     this._type = type;
     this._props = props;
