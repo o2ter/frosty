@@ -33,7 +33,7 @@ export const useSignal = <T, R = T>(
 ) => {
   if (reconciler.registry.get(signal) !== 'SIGNAL') throw Error(`Invalid type of ${signal}`);
   const state = reconciler.currentHookState;
-  if (!state) throw Error('useContext must be used within a render function.');
+  if (!state) throw Error('useSignal must be used within a render function.');
   const { onStateChange, dispose } = state;
   dispose.push(signal.subscribe((oldVal, newVal) => {
     if (_.isEqual(selector(oldVal), selector(newVal))) onStateChange();
