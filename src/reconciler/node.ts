@@ -29,6 +29,9 @@ export class VNode {
 
   _component: ComponentNode;
 
+  _parent?: VNode;
+  _children: VNode[] = [];
+
   constructor(component: ComponentNode) {
     this._component = component;
   }
