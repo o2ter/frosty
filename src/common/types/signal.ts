@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { reconciler } from '../../reconciler/reconciler';
-import { SetStateAction } from '../types/basic';
+import { SetStateAction } from './basic';
 
 const _effect = (
   callback: (onStateChange: () => void) => () => void

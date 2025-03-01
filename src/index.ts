@@ -25,7 +25,7 @@
 
 export * from './common/runtime';
 export * from './common/types/basic';
-export { createSignal } from './common/hooks/signal';
+export { createSignal } from './common/types/signal';
 export { useEffect } from './common/hooks/effect';
 export { useContext } from './common/hooks/context';
 export { useMemo } from './common/hooks/memo';
