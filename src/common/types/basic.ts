@@ -68,3 +68,5 @@ export type RefObject<T> = {
 }
 export type RefCallback<T> = (ref: T) => void;
 export type Ref<T> = RefCallback<T> | RefObject<T> | null;
+
+export type ComponentRef<T> = ComponentProps<T> extends RefAttribute<infer R> ? R : never;
