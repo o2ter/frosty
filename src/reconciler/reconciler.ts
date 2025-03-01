@@ -38,14 +38,14 @@ type State = {
 
 class HookState {
 
-  context = new WeakMap<Context<any>, any>();
+  context = new Map<Context<any>, any>();
   onStateChange: () => void;
 
   oldState?: State[];
   newState: State[] = [];
 
   dispose: (() => void)[] = [];
-  listens = new WeakSet<Context<any>>();
+  listens = new Set<Context<any>>();
 
   constructor(onStateChange: () => void) {
     this.onStateChange = onStateChange;
