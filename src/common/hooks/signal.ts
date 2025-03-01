@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  signal.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,18 +23,21 @@
 //  THE SOFTWARE.
 //
 
-export * from './common/runtime';
-export * from './common/types/basic';
-export { useSignal } from './common/hooks/signal';
-export { useEffect } from './common/hooks/effect';
-export { useContext } from './common/hooks/context';
-export { useMemo } from './common/hooks/memo';
-export { useRef, useRefHandle } from './common/hooks/ref';
-export { useCallback } from './common/hooks/callback';
-export { useState } from './common/hooks/state';
-export { ComponentNode } from './common/types/component';
-export { Signal, createSignal } from './common/types/signal';
-export { Context, ContextType, createContext } from './common/types/context';
-export { Fragment } from './common/types/fragment';
-export { _ElementType as ElementType } from './common/types/jsx';
-export { mergeRefs } from './internals/utils';
+import _ from 'lodash';
+import { reconciler } from '../../reconciler/reconciler';
+import { Signal } from '../types/signal';
+
+export const useSignal = <T, R = unknown>(
+  signal: Signal<T>,
+  selector: (state: T) => R = v => v as any,
+  equal: (value: R, other: R) => boolean = _.isEqual
+) => {
+  if (reconciler.registry.get(signal) !== 'CONTEXT') throw Error(`Invalid type of ${signal}`);
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useContext must be used within a render function.');
+  const { onStateChange, dispose } = state;
+  dispose.push(signal.subscribe((oldVal, newVal) => {
+    if (equal(selector(oldVal), selector(newVal))) onStateChange();
+  }));
+  return [signal.value, signal.setValue] as const;
+}
