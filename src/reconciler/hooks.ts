@@ -49,7 +49,7 @@ export const _useEffect = (
   const { oldState, newState } = _useHookState(hook);
   if (
     oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps, deps)
+    _.isEqual(oldState[newState.length].deps ?? null, deps)
   ) {
     newState.push({
       ...oldState[newState.length],
@@ -74,7 +74,7 @@ export const _useMemo = <T>(
   const { oldState, newState, onStateChange } = _useHookState(hook);
   if (
     oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps, deps)
+    _.isEqual(oldState[newState.length].deps ?? null, deps)
   ) {
     newState.push({
       ...oldState[newState.length],
