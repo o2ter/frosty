@@ -32,9 +32,12 @@ export const useMemo = <T>(
   deps?: any,
 ) => _useMemo('useMemo', factory, deps);
 
-export const useRef = <T>(
-  initialValue: T
-): RefObject<T> => _useMemo('useRef', () => ({ current: initialValue }), []);
+export function useRef<T>(initialValue?: T): RefObject<T | undefined>;
+export function useRef<T>(initialValue: T): RefObject<T>;
+
+export function useRef(initialValue: any) {
+  return _useMemo('useRef', () => ({ current: initialValue }), []);
+}
 
 export const useCallback = <T extends (...args: any) => any>(
   callback: T
@@ -50,9 +53,10 @@ export const useCallback = <T extends (...args: any) => any>(
   return store.stable as T;
 }
 
-export const useState = <T>(
-  initialState: T | (() => T)
-) => {
+export function useState<T>(initialState?: T): T | undefined;
+export function useState<T>(initialState: T | (() => T)): T;
+
+export function useState<T>(initialState: any) {
   const { value, setValue } = _useMemo('useState', (onStateChange) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
