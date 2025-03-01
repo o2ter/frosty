@@ -28,6 +28,7 @@ import { ComponentNode } from '../common/types/component';
 import _ from 'lodash';
 
 type State = {
+  id: string;
   hook: string;
   deps: any;
   data?: any;
