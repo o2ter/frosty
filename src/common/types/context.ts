@@ -29,11 +29,11 @@ import { reconciler } from '../../reconciler/reconciler';
 export type Context<Value> = ReturnType<typeof createContext<Value>>;
 export type ContextType<C extends Context<any>> = ComponentProps<C>['value'];
 
-const _createContext = <Value>(defaultValue: Value): ComponentType<{
-  value: Value;
-  children?: ElementNode | ((value: Value) => ElementNode);
-}> => {
-  const context = () => {
+const _createContext = <Value>(defaultValue: Value) => {
+  const context: ComponentType<{
+    value: Value;
+    children?: ElementNode | ((value: Value) => ElementNode);
+  }> = () => {
     throw Error('Context component should not be called directly.');
   };
   reconciler.contextDefaultValue.set(context, defaultValue);
