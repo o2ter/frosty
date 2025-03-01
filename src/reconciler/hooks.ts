@@ -46,7 +46,12 @@ export const _useEffect = (
   deps?: any
 ) => {
   const { oldState, newState } = _useHookState(hook);
-
+  if (
+    oldState &&
+    newState.length < oldState.length &&
+    oldState[newState.length][0] === hook &&
+    _.isEqual(oldState[newState.length][1], deps)
+  ) { return; }
 };
 
 export const _useMemo = <T>(
@@ -55,7 +60,12 @@ export const _useMemo = <T>(
   deps?: any
 ) => {
   const { oldState, newState } = _useHookState(hook);
-  if (oldState && newState.length < oldState.length && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
+  if (
+    oldState &&
+    newState.length < oldState.length &&
+    oldState[newState.length][0] === hook &&
+    _.isEqual(oldState[newState.length][1], deps)
+  ) {
     newState.push(oldState[newState.length]);
     return oldState[newState.length][2];
   }
