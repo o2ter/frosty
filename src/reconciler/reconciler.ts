@@ -79,6 +79,6 @@ export const reconciler = new class {
       const _a = _.isFunction(a);
       const _b = _.isFunction(b);
       return _a || _b ? _a && _b : undefined
-    })
+    });
   }
 };
