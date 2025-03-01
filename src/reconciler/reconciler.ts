@@ -74,7 +74,7 @@ export const reconciler = new class {
     return this._currentContext;
   }
 
-  static equal(a: any, b: any) {
+  equal(a: any, b: any) {
     return _.isEqualWith(a, b, (a, b) => {
       const _a = _.isFunction(a);
       const _b = _.isFunction(b);
