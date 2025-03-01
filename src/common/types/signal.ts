@@ -27,27 +27,11 @@ import _ from 'lodash';
 import { reconciler } from '../../reconciler/reconciler';
 import { SetStateAction } from './basic';
 
-const _effect = (
-  callback: (onStateChange: () => void) => () => void
-) => {
-  if (!reconciler.currentHookState) return;
-  const { onStateChange, dispose } = reconciler.currentHookState;
-  dispose.push(callback(onStateChange));
-};
+export type Signal<Value> = ReturnType<typeof _createSignal<Value>>;
 
 const _createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
   let current = initialValue;
-  const read = <S>(
-    selector: (state: T) => S = v => v as any,
-    equal: (value: S, other: S) => boolean = _.isEqual
-  ) => {
-    _effect((onStateChange) => subscribe((oldVal, newVal) => {
-      if (equal(selector(oldVal), selector(newVal))) onStateChange();
-    }));
-    return selector(current);
-  };
-  const value = () => read(x => x, (old, curr) => old === curr);
   const write = (value: SetStateAction<T>) => {
     const oldVal = current;
     current = _.isFunction(value) ? value(current) : value;
@@ -57,14 +41,28 @@ const _createSignal = <T>(initialValue: T) => {
     listeners.add(callback);
     return () => void listeners.delete(callback);
   };
-  const signal = Object.freeze(_.assign([value, write] as const, {
-    get value() { return value(); },
-    setValue: write,
-    select: read,
-    subscribe,
-  }));
+  const signal = {
+    get value() { return current; },
+    get setValue() { return write; },
+    get subscribe() { return subscribe; },
+  };
   reconciler.registry.set(signal, 'SIGNAL');
   return signal;
+}
+
+export const useSignal = <T, R = unknown>(
+  signal: Signal<T>,
+  selector: (state: T) => R = v => v as any,
+  equal: (value: R, other: R) => boolean = _.isEqual
+) => {
+  if (reconciler.registry.get(signal) !== 'CONTEXT') throw Error(`Invalid type of ${signal}`);
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useContext must be used within a render function.');
+  const { onStateChange, dispose } = state;
+  dispose.push(signal.subscribe((oldVal, newVal) => {
+    if (equal(selector(oldVal), selector(newVal))) onStateChange();
+  }));
+  return [signal.value, signal.setValue] as const;
 }
 
 export function createSignal<Value>(initialValue: Value): ReturnType<typeof _createSignal<Value>>;
