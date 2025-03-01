@@ -26,14 +26,6 @@
 import _ from "lodash";
 import { reconciler } from "./reconciler";
 
-export const _effect = (
-  callback: (onStateChange: () => void) => () => void
-) => {
-  if (!reconciler.currentHookState) return;
-  const { onStateChange, dispose } = reconciler.currentHookState;
-  dispose.push(callback(onStateChange));
-};
-
 const _useHookState = (hook: string) => {
   const context = reconciler.currentHookState;
   if (!context) throw Error(`${hook} must be used within a render function.`);

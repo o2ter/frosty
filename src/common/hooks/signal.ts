@@ -24,9 +24,16 @@
 //
 
 import _ from 'lodash';
-import { _effect } from '../../reconciler/hooks';
 import { reconciler } from '../../reconciler/reconciler';
 import { SetStateAction } from '../types/basic';
+
+const _effect = (
+  callback: (onStateChange: () => void) => () => void
+) => {
+  if (!reconciler.currentHookState) return;
+  const { onStateChange, dispose } = reconciler.currentHookState;
+  dispose.push(callback(onStateChange));
+};
 
 export const createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
