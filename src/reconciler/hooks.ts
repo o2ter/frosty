@@ -49,18 +49,19 @@ export const _useEffect = (
   const { oldState, newState } = _useHookState(hook);
   if (
     oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps ?? null, deps)
+    _.isEqual(oldState[newState.length].deps, deps)
   ) {
     newState.push({
       ...oldState[newState.length],
-      deps,
+      deps: deps ?? null,
     });
     return;
   }
   newState.push({
     id: uniqueId('state'),
+    deps: deps ?? null,
     mount: effect,
-    hook, deps
+    hook,
   });
 };
 
@@ -74,18 +75,20 @@ export const _useMemo = <T>(
   const { oldState, newState, onStateChange } = _useHookState(hook);
   if (
     oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps ?? null, deps)
+    _.isEqual(oldState[newState.length].deps, deps)
   ) {
     newState.push({
       ...oldState[newState.length],
-      deps,
+      deps: deps ?? null,
     });
     return oldState[newState.length].data;
   }
   const data = factory(onStateChange);
   newState.push({
     id: uniqueId('state'),
-    hook, deps, data
+    deps: deps ?? null,
+    hook,
+    data
   });
   return data;
 };
