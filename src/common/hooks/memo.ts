@@ -32,7 +32,7 @@ export const useMemo = <T>(
   deps?: any,
 ) => _useMemo('useMemo', factory, deps);
 
-export function useRef<T>(initialValue?: T): RefObject<T | undefined>;
+export function useRef<T = undefined>(initialValue?: T): RefObject<T | undefined>;
 export function useRef<T>(initialValue: T): RefObject<T>;
 
 export function useRef(initialValue: any) {
@@ -53,7 +53,7 @@ export const useCallback = <T extends (...args: any) => any>(
   return store.stable as T;
 }
 
-export function useState<T>(initialState?: T): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
+export function useState<T = undefined>(initialState?: T): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
 export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStateAction<T>) => void];
 
 export function useState<T>(initialState: any) {
