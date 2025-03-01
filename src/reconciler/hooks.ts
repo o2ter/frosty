@@ -34,8 +34,9 @@ export const _effect = (
 };
 
 export const _useEffect = (
+  hook: string,
   effect: () => () => void,
   deps?: any
 ) => {
-  if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
+  if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
 };
