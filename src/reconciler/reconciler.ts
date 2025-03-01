@@ -27,19 +27,26 @@ import { Context } from '../common/types/context';
 import { ComponentNode } from '../common/types/component';
 import _ from 'lodash';
 
+type State = {
+  hook: string;
+  deps: any;
+  data?: any;
+  mount?: () => void;
+  unmount?: () => void;
+};
+
 class HookState {
 
   context = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
 
-  oldState?: [string, any, any][];
-  newState: [string, any, any][] = [];
+  oldState?: State[];
+  newState: State[] = [];
 
   dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
 
-  onMount: Record<string, () => () => void> = {};
-  onUnmount: string[] = [];
+  onUnmount: (() => void)[] = [];
 
   constructor(onStateChange: () => void) {
     this.onStateChange = onStateChange;
@@ -53,7 +60,7 @@ class VNode {
   _parent?: VNode;
   _children: VNode[] = [];
 
-  _state: [string, any, any][] = [];
+  _state: State[] = [];
 
   constructor(component: ComponentNode) {
     this._component = component;

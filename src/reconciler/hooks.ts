@@ -31,7 +31,7 @@ const _useHookState = (hook: string) => {
   const context = reconciler.currentHookState;
   if (!context) throw Error(`${hook} must be used within a render function.`);
   const { oldState, newState } = context;
-  if (oldState && (newState.length >= oldState.length || oldState[newState.length][0] !== hook)) {
+  if (oldState && oldState[newState.length]?.hook !== hook) {
     console.warn([
       `Hook "${hook}" is called conditionally.`,
       'Hooks must be called in the exact same order in every component render.',
@@ -46,18 +46,15 @@ export const _useEffect = (
   effect: () => () => void,
   deps?: any
 ) => {
-  const { oldState, newState, onMount, onUnmount } = _useHookState(hook);
+  const { oldState, newState, onUnmount } = _useHookState(hook);
   if (
     oldState &&
-    newState.length < oldState.length &&
-    oldState[newState.length][0] === hook
-  ) {
-    if (_.isEqual(oldState[newState.length][1], deps)) return;
-    onUnmount.push(oldState[newState.length][2]);
-  }
-  const id = uniqueId('_useEffect');
-  onMount[id] = effect;
-  newState.push([hook, deps, id]);
+    oldState[newState.length]?.hook === hook &&
+    _.isEqual(oldState[newState.length].deps, deps)
+  ) { return; }
+  const { unmount } = oldState?.[newState.length] ?? {};
+  if (unmount) onUnmount.push(unmount);
+  newState.push({ hook, deps, mount: effect });
 };
 
 export const _useMemo = <T>(
@@ -65,17 +62,18 @@ export const _useMemo = <T>(
   factory: () => T,
   deps?: any
 ) => {
-  const { oldState, newState } = _useHookState(hook);
+  const { oldState, newState, onUnmount } = _useHookState(hook);
   if (
     oldState &&
-    newState.length < oldState.length &&
-    oldState[newState.length][0] === hook &&
-    _.isEqual(oldState[newState.length][1], deps)
+    oldState[newState.length]?.hook === hook &&
+    _.isEqual(oldState[newState.length].deps, deps)
   ) {
     newState.push(oldState[newState.length]);
-    return oldState[newState.length][2];
+    return oldState[newState.length].data;
   }
-  const result = factory();
-  newState.push([hook, deps, result]);
-  return result;
+  const { unmount } = oldState?.[newState.length] ?? {};
+  if (unmount) onUnmount.push(unmount);
+  const data = factory();
+  newState.push({ hook, deps, data });
+  return data;
 };
