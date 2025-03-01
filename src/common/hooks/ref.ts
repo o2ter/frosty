@@ -24,8 +24,8 @@
 //
 
 import _ from 'lodash';
-import { _useMemo } from '../../reconciler/hooks';
-import { RefObject } from '../types/basic';
+import { _useEffect, _useMemo } from '../../reconciler/hooks';
+import { Ref, RefObject } from '../types/basic';
 
 export function useRef<T>(initialValue: T): RefObject<T>;
 export function useRef<T = undefined>(): RefObject<T | undefined>;
@@ -33,3 +33,21 @@ export function useRef<T = undefined>(): RefObject<T | undefined>;
 export function useRef(initialValue?: any) {
   return _useMemo('useRef', () => ({ current: initialValue }), []);
 }
+
+export const useImperativeHandle = <T, R extends T>(
+  ref: Ref<T> | undefined,
+  init: () => R,
+  deps?: any
+) => _useEffect('useImperativeHandle', () => {
+  try {
+    if (ref) {
+      const _ref = init();
+      if (typeof ref === 'function') ref(_ref);
+      else if (typeof ref === 'object') ref.current = _ref;
+    }
+    return () => void 0;
+  } catch (e) {
+    console.error(e);
+    return () => void 0;
+  }
+}, deps);
