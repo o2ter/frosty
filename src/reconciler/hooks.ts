@@ -47,8 +47,7 @@ export const _useEffect = (
 ) => {
   const { oldState, newState } = _useHookState(hook);
   if (
-    oldState &&
-    oldState[newState.length]?.hook === hook &&
+    oldState?.[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
   ) { return; }
   newState.push({ hook, deps, mount: effect });
@@ -61,8 +60,7 @@ export const _useMemo = <T>(
 ) => {
   const { oldState, newState } = _useHookState(hook);
   if (
-    oldState &&
-    oldState[newState.length]?.hook === hook &&
+    oldState?.[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
   ) {
     newState.push(oldState[newState.length]);
