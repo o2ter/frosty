@@ -34,13 +34,26 @@ export const _effect = (
   dispose.push(callback(onStateChange));
 };
 
+const fetchContext = (hook: string) => {
+  const context = reconciler.currentContext;
+  if (!context) throw Error(`${hook} must be used within a render function.`);
+  const { oldState, newState } = context;
+  if (oldState && (newState.length >= oldState.length || oldState[newState.length][0] !== hook)) {
+    console.warn([
+      `Hook "${hook}" is called conditionally.`,
+      'Hooks must be called in the exact same order in every component render.',
+      'Did you accidentally call a hook after an early return?'
+    ].join(' '));
+  }
+  return context;
+};
+
 export const _useEffect = (
   hook: string,
   effect: () => () => void,
   deps?: any
 ) => {
-  if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
-  const { oldState, newState } = reconciler.currentContext;
+  const { oldState, newState } = fetchContext(hook);
 
 };
 
@@ -49,15 +62,7 @@ export const _useMemo = <T>(
   factory: () => T,
   deps?: any
 ) => {
-  if (!reconciler.currentContext) throw Error(`${hook} must be used within a render function.`);
-  const { oldState, newState } = reconciler.currentContext;
-  if (oldState && (newState.length >= oldState.length || oldState[newState.length][0] !== hook)) {
-    console.warn([
-      `Hook "${hook}" is called conditionally.`,
-      'Hooks must be called in the exact same order in every component render.',
-      'Did you accidentally call a hook after an early return?'
-    ].join(' '));
-  }
+  const { oldState, newState } = fetchContext(hook);
   if (oldState && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
     newState.push(oldState[newState.length]);
     return oldState[newState.length][2];
