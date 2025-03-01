@@ -28,9 +28,9 @@ import { reconciler } from "./reconciler";
 import { uniqueId } from "./utils";
 
 const _useHookState = (hook: string) => {
-  const context = reconciler.currentHookState;
-  if (!context) throw Error(`${hook} must be used within a render function.`);
-  const { oldState, newState } = context;
+  const state = reconciler.currentHookState;
+  if (!state) throw Error(`${hook} must be used within a render function.`);
+  const { oldState, newState } = state;
   if (oldState && oldState[newState.length]?.hook !== hook) {
     console.warn([
       `Hook "${hook}" is called conditionally.`,
@@ -38,7 +38,7 @@ const _useHookState = (hook: string) => {
       'Did you accidentally call a hook after an early return?'
     ].join(' '));
   }
-  return context;
+  return state;
 };
 
 export const _useEffect = (
