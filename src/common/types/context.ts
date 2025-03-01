@@ -29,7 +29,7 @@ import { reconciler } from '../../reconciler/reconciler';
 export type Context<Value> = ReturnType<typeof createContext<Value>>;
 export type ContextType<C extends Context<any>> = ComponentProps<C>['value'];
 
-export const createContext = <Value>(defaultValue: Value): ComponentType<{
+const _createContext = <Value>(defaultValue: Value): ComponentType<{
   value: Value;
   children?: ElementNode | ((value: Value) => ElementNode);
 }> => {
@@ -39,4 +39,11 @@ export const createContext = <Value>(defaultValue: Value): ComponentType<{
   reconciler.contextDefaultValue.set(context, defaultValue);
   reconciler.registry.set(context, 'CONTEXT');
   return context;
+}
+
+export function createContext<Value = undefined>(defaultValue?: Value): ReturnType<typeof _createContext<Value | undefined>>;
+export function createContext<Value>(defaultValue: Value): ReturnType<typeof _createContext<Value>>;
+
+export function createContext(defaultValue: any) {
+  return _createContext(defaultValue);
 }

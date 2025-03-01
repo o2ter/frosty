@@ -35,7 +35,7 @@ const _effect = (
   dispose.push(callback(onStateChange));
 };
 
-export const createSignal = <T>(initialValue: T) => {
+const _createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
   let current = initialValue;
   const read = <S>(
@@ -65,4 +65,11 @@ export const createSignal = <T>(initialValue: T) => {
   }));
   reconciler.registry.set(signal, 'SIGNAL');
   return signal;
+}
+
+export function createSignal<Value = undefined>(initialValue?: Value): ReturnType<typeof _createSignal<Value | undefined>>;
+export function createSignal<Value>(initialValue: Value): ReturnType<typeof _createSignal<Value>>;
+
+export function createSignal(initialValue: any) {
+  return _createSignal(initialValue);
 }
