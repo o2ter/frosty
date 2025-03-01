@@ -24,6 +24,7 @@
 //
 
 import { Context } from '../common/types/context';
+import { ComponentNode } from '../common/types/component';
 
 class ReconcilerContext {
 
@@ -34,6 +35,18 @@ class ReconcilerContext {
 
   constructor(subscriber: () => void) {
     this.subscriber = subscriber;
+  }
+}
+
+class VNode {
+
+  _component: ComponentNode;
+
+  _parent?: VNode;
+  _children: VNode[] = [];
+
+  constructor(component: ComponentNode) {
+    this._component = component;
   }
 }
 
