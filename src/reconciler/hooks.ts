@@ -26,11 +26,11 @@
 import { reconciler } from "./reconciler";
 
 export const _effect = (
-  callback: (onStoreChange: () => void) => () => void
+  callback: (onStateChange: () => void) => () => void
 ) => {
   if (!reconciler.currentContext) return;
-  const { subscriber, dispose } = reconciler.currentContext;
-  dispose.push(callback(subscriber));
+  const { onStateChange, dispose } = reconciler.currentContext;
+  dispose.push(callback(onStateChange));
 };
 
 export const _useEffect = (
