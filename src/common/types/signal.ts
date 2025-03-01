@@ -28,7 +28,7 @@ import { reconciler } from '../../reconciler/reconciler';
 import { SetStateAction } from './basic';
 
 export type Signal<Value> = ReturnType<typeof _createSignal<Value>>;
-export type SignalType<C extends Signal<any>> = C extends Signal<infer T> ? T : never;
+export type SignalType<S extends Signal<any>> = S extends Signal<infer T> ? T : never;
 
 const _createSignal = <T>(initialValue: T) => {
   const listeners = new Set<(oldVal: T, newVal: T) => void>();
