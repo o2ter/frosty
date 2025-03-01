@@ -46,8 +46,6 @@ class HookState {
   dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
 
-  onUnmount: (() => void)[] = [];
-
   constructor(onStateChange: () => void) {
     this.onStateChange = onStateChange;
   }

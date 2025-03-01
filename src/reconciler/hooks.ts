@@ -51,8 +51,6 @@ export const _useEffect = (
     oldState[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
   ) { return; }
-  const { unmount } = oldState?.[newState.length] ?? {};
-  if (unmount) onUnmount.push(unmount);
   newState.push({ hook, deps, mount: effect });
 };
 
@@ -70,8 +68,6 @@ export const _useMemo = <T>(
     newState.push(oldState[newState.length]);
     return oldState[newState.length].data;
   }
-  const { unmount } = oldState?.[newState.length] ?? {};
-  if (unmount) onUnmount.push(unmount);
   const data = factory();
   newState.push({ hook, deps, data });
   return data;
