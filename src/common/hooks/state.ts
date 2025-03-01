@@ -25,8 +25,21 @@
 
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
+import { SetStateAction } from '../types/basic';
 
-export const useMemo = <T>(
-  factory: () => T,
-  deps?: any,
-) => _useMemo('useMemo', factory, deps);
+export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStateAction<T>) => void];
+export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
+
+export function useState<T>(initialState?: any) {
+  const { value, setValue } = _useMemo('useState', (onStateChange) => {
+    const state = {
+      value: _.isFunction(initialState) ? initialState() : initialState,
+      setValue: (dispatch: SetStateAction<T>) => {
+        state.value = _.isFunction(dispatch) ? dispatch(state.value) : dispatch;
+        onStateChange();
+      },
+    };
+    return state;
+  }, []);
+  return [value, setValue] as const;
+}

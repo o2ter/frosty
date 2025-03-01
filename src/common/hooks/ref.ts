@@ -25,8 +25,11 @@
 
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
+import { RefObject } from '../types/basic';
 
-export const useMemo = <T>(
-  factory: () => T,
-  deps?: any,
-) => _useMemo('useMemo', factory, deps);
+export function useRef<T>(initialValue: T): RefObject<T>;
+export function useRef<T = undefined>(): RefObject<T | undefined>;
+
+export function useRef(initialValue?: any) {
+  return _useMemo('useRef', () => ({ current: initialValue }), []);
+}
