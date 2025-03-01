@@ -53,11 +53,12 @@ export const useCallback = <T extends (...args: any) => any>(
 export const useState = <T>(
   initialState: T | (() => T)
 ) => {
-  const { value, setValue } = _useMemo('useCallback', () => {
+  const { value, setValue } = _useMemo('useState', (onStateChange) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       setValue: (dispatch: SetStateAction<T>) => {
         state.value = _.isFunction(dispatch) ? dispatch(state.value) : dispatch;
+        onStateChange();
       },
     };
     return state;

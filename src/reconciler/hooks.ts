@@ -66,10 +66,12 @@ export const _useEffect = (
 
 export const _useMemo = <T>(
   hook: string,
-  factory: () => T,
+  factory: (
+    onStateChange: () => void
+  ) => T,
   deps?: any
 ): T => {
-  const { oldState, newState } = _useHookState(hook);
+  const { oldState, newState, onStateChange } = _useHookState(hook);
   if (
     oldState?.[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
@@ -80,7 +82,7 @@ export const _useMemo = <T>(
     });
     return oldState[newState.length].data;
   }
-  const data = factory();
+  const data = factory(onStateChange);
   newState.push({
     id: uniqueId('state'),
     hook, deps, data
