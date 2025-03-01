@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from '~/common/types/component';
+import { ComponentNode } from '../common/types/component';
 
 export class VNode {
 
