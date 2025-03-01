@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType } from './basic';
+import { ComponentType, PropsWithChildren } from './basic';
 
-export const Fragment: ComponentType = () => {
-  throw Error('Fragment component should not be called directly.');
+export const Fragment: ComponentType<PropsWithChildren<{}>> = ({ children }) => {
+  return children;
 }
