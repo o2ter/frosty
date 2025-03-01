@@ -58,7 +58,7 @@ const _createSignal = <T>(initialValue: T) => {
     return () => void listeners.delete(callback);
   };
   const signal = Object.freeze(_.assign([value, write] as const, {
-    value,
+    get value() { return value(); },
     setValue: write,
     select: read,
     subscribe,
