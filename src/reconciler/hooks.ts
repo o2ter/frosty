@@ -45,7 +45,7 @@ export const _useEffect = (
   effect: () => () => void,
   deps?: any
 ) => {
-  const { oldState, newState, onUnmount } = _useHookState(hook);
+  const { oldState, newState } = _useHookState(hook);
   if (
     oldState &&
     oldState[newState.length]?.hook === hook &&
@@ -59,7 +59,7 @@ export const _useMemo = <T>(
   factory: () => T,
   deps?: any
 ) => {
-  const { oldState, newState, onUnmount } = _useHookState(hook);
+  const { oldState, newState } = _useHookState(hook);
   if (
     oldState &&
     oldState[newState.length]?.hook === hook &&
