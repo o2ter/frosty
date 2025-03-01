@@ -34,3 +34,17 @@ export const useMemo = <T>(
 export const useRef = <T>(
   initialValue: T
 ) => _useMemo('useRef', () => ({ current: initialValue }), []);
+
+export const useCallback = <T extends Function>(
+  callback: T
+) => {
+  const store = _useMemo('useCallback', () => {
+    const store = {
+      current: callback,
+      stable: (...args: any) => store.current(...args),
+    };
+    return store;
+  }, []);
+  store.current = callback;
+  return store.stable as unknown as T;
+}
