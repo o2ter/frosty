@@ -25,6 +25,7 @@
 
 import { Context } from '../common/types/context';
 import { ComponentNode } from '../common/types/component';
+import _ from 'lodash';
 
 class ReconcilerContext {
 
@@ -71,5 +72,13 @@ export const reconciler = new class {
 
   get currentContext() {
     return this._currentContext;
+  }
+
+  static equal(a: any, b: any) {
+    return _.isEqualWith(a, b, (a, b) => {
+      const _a = _.isFunction(a);
+      const _b = _.isFunction(b);
+      return _a || _b ? _a && _b : undefined
+    })
   }
 };
