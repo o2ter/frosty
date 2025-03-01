@@ -29,6 +29,7 @@ import { reconciler } from '../../reconciler/reconciler';
 export const useContext = (x: Context<any>) => {
   if (!reconciler.currentContext) throw Error('Hook must be used within a render function.');
   if (reconciler.registry.get(x) !== 'CONTEXT') throw Error(`Invalid type of ${x}`);
-  const { context } = reconciler.currentContext;
+  const { context, listens } = reconciler.currentContext;
+  listens.add(x);
   return context.get(x);
 }
