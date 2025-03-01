@@ -63,7 +63,7 @@ export const _useMemo = <T>(
   deps?: any
 ) => {
   const { oldState, newState } = fetchContext(hook);
-  if (oldState && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
+  if (oldState && newState.length < oldState.length && oldState[newState.length][0] === hook && _.isEqual(oldState[newState.length][1], deps)) {
     newState.push(oldState[newState.length]);
     return oldState[newState.length][2];
   }
