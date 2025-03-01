@@ -53,8 +53,8 @@ export const useCallback = <T extends (...args: any) => any>(
   return store.stable as T;
 }
 
-export function useState<T>(initialState?: T): T | undefined;
-export function useState<T>(initialState: T | (() => T)): T;
+export function useState<T>(initialState?: T): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
+export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStateAction<T>) => void];
 
 export function useState<T>(initialState: any) {
   const { value, setValue } = _useMemo('useState', (onStateChange) => {
