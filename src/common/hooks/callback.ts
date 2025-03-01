@@ -37,7 +37,7 @@ export const useCallback = <T extends (...args: any) => any>(
       stable: (...args: Parameters<T>): ReturnType<T> => store.current(...args),
     };
     return store;
-  });
+  }, null);
   store.current = callback;
   return store.stable as T;
 }
