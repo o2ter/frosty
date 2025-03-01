@@ -36,3 +36,4 @@ export { ComponentNode } from './common/types/component';
 export { Context, ContextType, createContext } from './common/types/context';
 export { Fragment } from './common/types/fragment';
 export { _ElementType as ElementType } from './common/types/jsx';
+export { mergeRefs } from './internals/utils';
