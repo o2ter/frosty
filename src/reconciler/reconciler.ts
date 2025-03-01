@@ -30,10 +30,10 @@ import _ from 'lodash';
 class ReconcilerContext {
 
   context = new WeakMap<Context<any>, any>();
+  onStateChange: () => void;
   
   dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
-  onStateChange: () => void;
 
   constructor(onStateChange: () => void) {
     this.onStateChange = onStateChange;
