@@ -49,8 +49,6 @@ export type ComponentType<
   N extends ElementNode = ElementNode
   > = (props: P) => N;
 
-type PropsWithoutRef<P> = P extends any ? ('ref' extends keyof P ? Omit<P, 'ref'> : P) : P;
-
 export type RefAttribute<T> = {
   ref?: Ref<T>;
 };
@@ -58,7 +56,7 @@ export type RefAttribute<T> = {
 type _ComponentProps<T> = T extends any ? T extends ComponentType<infer P, any> ? P : never : T;
 
 export type ComponentProps<T> = T extends string ? _IntrinsicElements[T] : _ComponentProps<T>;
-export type ComponentPropsWithoutRef<T> = PropsWithoutRef<ComponentProps<T>>;
+export type ComponentPropsWithoutRef<T> = Omit<ComponentProps<T>, 'ref'>;
 
 export type RefObject<T> = {
   /**
