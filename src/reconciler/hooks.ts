@@ -87,21 +87,3 @@ export const _useMemo = <T>(
   });
   return data;
 };
-
-export const _useState = <T>(
-  hook: string,
-  initialState: () => T,
-  deps?: any
-) => {
-  const { oldState, newState } = _useHookState(hook);
-  if (
-    oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps, deps)
-  ) {
-    newState.push({
-      ...oldState[newState.length],
-      deps,
-    });
-    
-  }
-}
