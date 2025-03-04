@@ -60,6 +60,7 @@ class VNode {
   _children: (VNode | string)[] = [];
 
   _state: _State[] = [];
+  _dirty = true;
 
   constructor(component: ComponentNode) {
     this._component = component;
