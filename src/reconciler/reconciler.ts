@@ -57,7 +57,7 @@ class VNode {
   _component: ComponentNode;
 
   _parent?: VNode;
-  _children: VNode[] = [];
+  _children: (VNode | string)[] = [];
 
   _state: _State[] = [];
 
