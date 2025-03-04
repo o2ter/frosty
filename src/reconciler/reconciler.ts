@@ -47,8 +47,12 @@ class HookState {
   dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
 
-  constructor(onStateChange: () => void) {
-    this.onStateChange = onStateChange;
+  constructor(options: {
+    onStateChange: () => void;
+    state?: _State[];
+  }) {
+    this.onStateChange = options.onStateChange;
+    this.oldState = options.state;
   }
 }
 
@@ -62,8 +66,32 @@ class VNode {
   _state?: _State[];
   _dirty = true;
 
+  _dispose: (() => void)[] = [];
+  _listens = new WeakSet<Context<any>>();
+
   constructor(component: ComponentNode) {
     this._component = component;
+  }
+
+  updateIfNeed() {
+    if (!this._dirty) return;
+
+    const { type, props } = this._component;
+
+    if (_.isFunction(type)) {
+
+      const { rendered, state } = reconciler.withHookState({
+        onStateChange: () => { this._dirty = true; },
+        state: this._state,
+      }, (state) => ({ rendered: type(props), state }));
+
+      this._state = state.newState;
+      this._dispose = state.dispose;
+      this._listens = state.listens;
+
+    } else {
+
+    }
   }
 }
 
@@ -88,5 +116,18 @@ export const reconciler = new class {
 
   get currentHookState() {
     return this._currentHookState;
+  }
+
+  withHookState<R = void>(
+    options: ConstructorParameters<typeof HookState>[0],
+    callback: (state: HookState) => R,
+  ) {
+    try {
+      const state = new HookState(options);
+      reconciler._currentHookState = state;
+      return callback(state);
+    } finally {
+      reconciler._currentHookState = undefined;
+    }
   }
 };
