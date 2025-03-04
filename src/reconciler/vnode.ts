@@ -46,6 +46,22 @@ export class VNode {
     throw Error(`${child} are not valid as a child.`);
   }
 
+  get component() {
+    return this._component;
+  }
+
+  get parent() {
+    return this._parent;
+  }
+
+  get children() {
+    return this._children;
+  }
+
+  get dirty() {
+    return this._dirty;
+  }
+
   updateIfNeed() {
     if (!this._dirty) return;
     try {
