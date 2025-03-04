@@ -59,7 +59,7 @@ class VNode {
   _parent?: VNode;
   _children: (VNode | string)[] = [];
 
-  _state: _State[] = [];
+  _state?: _State[];
   _dirty = true;
 
   constructor(component: ComponentNode) {
