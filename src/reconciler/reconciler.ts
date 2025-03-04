@@ -71,23 +71,32 @@ class VNode {
     this._component = component;
   }
 
+  static _resolve_children(child: any): (VNode | string)[] {
+    if (_.isBoolean(child) || _.isNil(child)) return [];
+    if (_.isString(child)) return [child];
+    if (_.isNumber(child)) return [`${child}`];
+    if (_.isArrayLikeObject(child)) return _.flatMap(child, x => this._resolve_children(x));
+    if (child instanceof ComponentNode) return [new VNode(child)];
+    throw Error(`${child} are not valid as a child.`);
+  }
+
   updateIfNeed() {
     if (!this._dirty) return;
-
-    const { type, props } = this._component;
-
-    if (_.isFunction(type)) {
-
-      const { rendered, state } = reconciler.withHookState({
-        onStateChange: () => { this._dirty = true; },
-        state: this._state,
-      }, (state) => ({ rendered: type(props), state }));
-
-      this._state = state.newState;
-      this._listens = state.listens;
-
-    } else {
-
+    try {
+      const { type, props } = this._component;
+      if (_.isFunction(type)) {
+        const { rendered, state } = reconciler.withHookState({
+          onStateChange: () => { this._dirty = true; },
+          state: this._state,
+        }, (state) => ({ rendered: type(props), state }));
+        this._state = state.newState;
+        this._listens = state.listens;
+        this._children = VNode._resolve_children(rendered);
+      } else {
+        this._children = VNode._resolve_children(props.children);
+      }
+    } finally {
+      this._dirty = false;
     }
   }
 }
