@@ -24,7 +24,7 @@
 //
 
 import _ from "lodash";
-import { reconciler } from "./reconciler";
+import { HookState, reconciler } from "./reconciler";
 import { uniqueId } from "./utils";
 
 const _useHookState = (hook: string) => {
@@ -43,10 +43,11 @@ const _useHookState = (hook: string) => {
 
 export const _useEffect = (
   hook: string,
-  effect: () => () => void,
+  effect: (state: HookState) => () => void,
   deps?: any
 ) => {
-  const { oldState, newState } = _useHookState(hook);
+  const state = _useHookState(hook);
+  const { oldState, newState } = state;
   if (
     oldState?.[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
@@ -60,19 +61,18 @@ export const _useEffect = (
   newState.push({
     id: uniqueId('state'),
     deps: deps ?? null,
-    mount: effect,
+    mount: () => effect(state),
     hook,
   });
 };
 
 export const _useMemo = <T>(
   hook: string,
-  factory: (
-    onStateChange: () => void
-  ) => T,
+  factory: (state: HookState) => T,
   deps?: any
 ): T => {
-  const { oldState, newState, onStateChange } = _useHookState(hook);
+  const state = _useHookState(hook);
+  const { oldState, newState } = state;
   if (
     oldState?.[newState.length]?.hook === hook &&
     _.isEqual(oldState[newState.length].deps, deps)
@@ -83,7 +83,7 @@ export const _useMemo = <T>(
     });
     return oldState[newState.length].data;
   }
-  const data = factory(onStateChange);
+  const data = factory(state);
   newState.push({
     id: uniqueId('state'),
     deps: deps ?? null,

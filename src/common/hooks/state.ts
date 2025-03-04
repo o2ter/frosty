@@ -31,7 +31,7 @@ export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStat
 export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
 
 export function useState<T>(initialState?: any) {
-  const { value, setValue } = _useMemo('useState', (onStateChange) => {
+  const { value, setValue } = _useMemo('useState', ({ onStateChange }) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       setValue: (dispatch: SetStateAction<T>) => {

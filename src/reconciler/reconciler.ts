@@ -36,7 +36,7 @@ type _State = {
   unmount?: () => void;
 };
 
-class HookState {
+export class HookState {
 
   contextValue = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
