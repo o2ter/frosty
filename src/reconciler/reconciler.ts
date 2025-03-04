@@ -55,7 +55,7 @@ class HookState {
   }
 }
 
-class VNode {
+export class VNode {
 
   _component: ComponentNode;
 
