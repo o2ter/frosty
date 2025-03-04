@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { PropValue } from './props';
-import { StyleProp } from '~/common/styles/types';
+import { StyleProp } from '../common/styles/types';
 import { SVGProperties } from './css';
 
 /**

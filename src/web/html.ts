@@ -25,8 +25,7 @@
 
 import _ from 'lodash';
 import { PropValue } from './props';
-import { StyleProp } from '~/common/styles/types';
-import * as CSS from 'csstype';
+import { StyleProp } from '../common/styles/types';
 import { CSSProperties } from './css';
 
 /**
