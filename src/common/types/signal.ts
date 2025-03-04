@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../../reconciler/reconciler';
+import { reconciler } from '../../reconciler/state';
 import { SetStateAction } from './basic';
 
 export type Signal<Value> = ReturnType<typeof _createSignal<Value>>;

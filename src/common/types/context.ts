@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ComponentType, ElementNode } from './basic';
-import { reconciler } from '../../reconciler/reconciler';
+import { reconciler } from '../../reconciler/state';
 
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
 export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;

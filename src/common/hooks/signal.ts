@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../../reconciler/reconciler';
+import { reconciler } from '../../reconciler/state';
 import { Signal } from '../types/signal';
 import { _useEffect } from '../../reconciler/hooks';
 

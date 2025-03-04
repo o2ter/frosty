@@ -24,7 +24,7 @@
 //
 
 import { Context } from '../types/context';
-import { reconciler } from '../../reconciler/reconciler';
+import { reconciler } from '../../reconciler/state';
 
 export const useContext = <T, R = T>(
   context: Context<T>,
