@@ -44,7 +44,6 @@ class HookState {
   oldState?: _State[];
   newState: _State[] = [];
 
-  dispose: (() => void)[] = [];
   listens = new WeakSet<Context<any>>();
 
   constructor(options: {
@@ -66,7 +65,6 @@ class VNode {
   _state?: _State[];
   _dirty = true;
 
-  _dispose: (() => void)[] = [];
   _listens = new WeakSet<Context<any>>();
 
   constructor(component: ComponentNode) {
@@ -86,7 +84,6 @@ class VNode {
       }, (state) => ({ rendered: type(props), state }));
 
       this._state = state.newState;
-      this._dispose = state.dispose;
       this._listens = state.listens;
 
     } else {
