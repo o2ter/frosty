@@ -14,20 +14,29 @@ export type VNodeState = {
 
 export class VNode {
 
+  /** @internal */
   _component: ComponentNode;
 
+  /** @internal */
   _parent?: VNode;
+
+  /** @internal */
   _children: (VNode | string)[] = [];
 
+  /** @internal */
   _state?: VNodeState[];
+
+  /** @internal */
   _dirty = true;
 
+  /** @internal */
   _listens = new WeakSet<Context<any>>();
 
   constructor(component: ComponentNode) {
     this._component = component;
   }
 
+  /** @internal */
   static _resolve_children(child: any): (VNode | string)[] {
     if (_.isBoolean(child) || _.isNil(child)) return [];
     if (_.isString(child)) return [child];
