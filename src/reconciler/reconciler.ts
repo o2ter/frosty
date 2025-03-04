@@ -95,6 +95,9 @@ class VNode {
       } else {
         this._children = VNode._resolve_children(props.children);
       }
+      for (const item of this._children) {
+        if (item instanceof VNode) item._parent = this;
+      }
     } finally {
       this._dirty = false;
     }
