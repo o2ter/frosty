@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { reconciler } from '../../reconciler/reconciler';
 import { Signal } from '../types/signal';
+import { _useEffect } from '../../reconciler/hooks';
 
 export const useSignal = <T, R = T>(
   signal: Signal<T>,
@@ -34,9 +35,9 @@ export const useSignal = <T, R = T>(
   if (reconciler.registry.get(signal) !== 'SIGNAL') throw Error(`Invalid type of ${signal}`);
   const state = reconciler.currentHookState;
   if (!state) throw Error('useSignal must be used within a render function.');
-  const { onStateChange, dispose } = state;
-  dispose.push(signal.subscribe((oldVal, newVal) => {
+  const { onStateChange } = state;
+  _useEffect('useSignal', () => signal.subscribe((oldVal, newVal) => {
     if (_.isEqual(selector(oldVal), selector(newVal))) onStateChange();
-  }));
+  }), null);
   return selector(signal.value);
 }
