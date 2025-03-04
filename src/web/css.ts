@@ -24,8 +24,12 @@
 //
 
 import _ from 'lodash';
-import { PropValue } from './props';
+import * as CSS from 'csstype';
 
-export const CSSProperties = {
-  color: PropValue.color(),
-} as const;
+export { AtRule, Pseudos } from 'csstype';
+
+export interface CSSProperties extends CSS.StandardProperties<string | number> {
+}
+
+export interface SVGProperties extends CSS.SvgProperties<string | number> {
+}

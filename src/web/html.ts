@@ -25,6 +25,9 @@
 
 import _ from 'lodash';
 import { PropValue } from './props';
+import { StyleProp } from '~/common/styles/types';
+import * as CSS from 'csstype';
+import { CSSProperties } from './css';
 
 /**
  * Reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
@@ -45,7 +48,7 @@ const globalAttrs = {
   nonce: PropValue.string(),
   slot: PropValue.string(),
   spellCheck: PropValue.boolean(),
-  style: PropValue.style(),
+  style: new PropValue<StyleProp<CSSProperties>>({}),
   tabIndex: PropValue.number(),
   title: PropValue.string(),
   translate: PropValue.oneOf(['yes', 'no'] as const),

@@ -145,7 +145,6 @@ export class PropValue<T, U = T> {
     varify: (x): x is T => _.isBoolean(x),
     encode: x => x,
   });
-  static style = () => new PropValue<StyleProp<PropMap<typeof CSSProperties>>>({});
   static className = () => new PropValue<ClassName>({});
 
   static oneOf = <T>(values: T[]) => new PropValue({
@@ -157,13 +156,4 @@ export class PropValue<T, U = T> {
   static ariaRole = () => this.string<AriaRole>()
 
   static any = () => new PropValue<any>({});
-
-  /**
-   * CSS values
-   */
-
-  static color = () => new PropValue({
-    varify: _.isString,
-    encode: x => x,
-  });
 }

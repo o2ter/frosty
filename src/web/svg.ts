@@ -25,6 +25,8 @@
 
 import _ from 'lodash';
 import { PropValue } from './props';
+import { StyleProp } from '~/common/styles/types';
+import { SVGProperties } from './css';
 
 /**
  * Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute
@@ -42,7 +44,7 @@ const svgAttrs = {
   method: PropValue.string(),
   min: PropValue.stringOrNumber(),
   name: PropValue.string(),
-  style: PropValue.style(),
+  style: new PropValue<StyleProp<SVGProperties>>({}),
   target: PropValue.string(),
   type: PropValue.string(),
   width: PropValue.stringOrNumber(),
