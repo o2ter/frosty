@@ -24,7 +24,7 @@
 //
 
 import _ from "lodash";
-import { HookState, reconciler } from "./reconciler";
+import { reconciler } from "./reconciler";
 import { uniqueId } from "./utils";
 
 const _useHookState = (hook: string) => {
@@ -43,7 +43,7 @@ const _useHookState = (hook: string) => {
 
 export const _useEffect = (
   hook: string,
-  effect: (state: HookState) => () => void,
+  effect: (state: ReturnType<typeof _useHookState>) => () => void,
   deps?: any
 ) => {
   const state = _useHookState(hook);
@@ -68,7 +68,7 @@ export const _useEffect = (
 
 export const _useMemo = <T>(
   hook: string,
-  factory: (state: HookState) => T,
+  factory: (state: ReturnType<typeof _useHookState>) => T,
   deps?: any
 ): T => {
   const state = _useHookState(hook);
