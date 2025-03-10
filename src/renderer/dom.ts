@@ -33,7 +33,7 @@ export class DOMRenderer {
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
-        state.excute();
+        const nodes = state.excute();
       },
       unmount: () => {
         for (const item of root.children) item.remove();
