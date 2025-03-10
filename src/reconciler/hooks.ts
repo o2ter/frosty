@@ -25,7 +25,6 @@
 
 import _ from "lodash";
 import { reconciler } from "./state";
-import { uniqueId } from "./utils";
 
 const _useHookState = (hook: string) => {
   const state = reconciler.currentHookState;
@@ -59,7 +58,6 @@ export const _useEffect = (
     return;
   }
   newState.push({
-    id: uniqueId('state'),
     deps: deps ?? null,
     mount: () => effect(state),
     hook,
@@ -85,7 +83,6 @@ export const _useMemo = <T>(
   }
   const data = factory(state);
   newState.push({
-    id: uniqueId('state'),
     deps: deps ?? null,
     hook,
     data

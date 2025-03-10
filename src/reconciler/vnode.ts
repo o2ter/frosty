@@ -5,7 +5,6 @@ import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 
 export type VNodeState = {
-  id: string;
   hook: string;
   deps: any;
   data?: any;
