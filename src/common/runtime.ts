@@ -34,6 +34,8 @@ export function jsx(
   return new ComponentNode(type, props, key);
 }
 
+export const jsxs = jsx;
+
 export function jsxNative(
   type: NativeElementType,
   props: Record<string, any>,

@@ -50,8 +50,8 @@ test('test create component element', async () => {
 
 test('test', async () => {
 
-  const element = <div><span /></div>;
+  const element = <div><span>test</span><span>test</span></div>;
 
-  console.log(reconciler.buildVNodes(element))
+  console.log(reconciler.buildVNodes(element).excute())
 
 });
