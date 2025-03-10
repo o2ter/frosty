@@ -31,7 +31,7 @@ export class DOMRenderer {
 
   createRoot(root: HTMLElement) {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
-    let currentNodes: VNode[];
+    let currentNodes: VNode[] | undefined;
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
