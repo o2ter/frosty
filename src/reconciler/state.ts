@@ -90,6 +90,7 @@ export const reconciler = new class {
       for (const item of nodes) {
         item.updateIfNeed();
       }
+      return nodes;
     };
     return { node, excute };
   }
