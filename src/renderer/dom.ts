@@ -23,6 +23,22 @@
 //  THE SOFTWARE.
 //
 
+import { ComponentNode } from '../common/types/component';
+import { reconciler } from '../reconciler/state';
+
 export class DOMRenderer {
-  
+
+  createRoot(root: HTMLElement) {
+    let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
+    return {
+      mount: (component: ComponentNode) => {
+        state = reconciler.buildVNodes(component);
+        state.excute();
+      },
+      unmount: () => {
+        for (const item of root.children) item.remove();
+        state = undefined;
+      },
+    };
+  }
 }
