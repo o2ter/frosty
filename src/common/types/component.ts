@@ -64,4 +64,8 @@ export class ComponentNode {
   get isNative() {
     return this._type instanceof NativeElementType;
   }
+
+  _equal(other: ComponentNode) {
+    return this.type === other.type && this.key === other.key;
+  }
 }

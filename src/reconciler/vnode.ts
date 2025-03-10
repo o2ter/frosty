@@ -89,7 +89,7 @@ export class VNode {
       const diff = myersSync(this._children, children, {
         compare: (lhs, rhs) => {
           if (_.isString(lhs) && _.isString(rhs)) return lhs === rhs;
-          if (lhs instanceof VNode && rhs instanceof VNode) return lhs.component.type === rhs.component.type && lhs.component.key === rhs.component.key;
+          if (lhs instanceof VNode && rhs instanceof VNode) return lhs.component._equal(rhs.component);
           return false;
         },
       });
