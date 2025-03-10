@@ -29,7 +29,7 @@ import { reconciler } from '../reconciler/state';
 
 export class DOMRenderer {
 
-  createRoot(root: HTMLElement) {
+  createRoot(root: Element) {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
     let currentNodes = new Map<VNode, Element>;
     return {
