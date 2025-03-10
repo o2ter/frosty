@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import { VNode } from '../reconciler/vnode';
 import { ComponentNode } from '../common/types/component';
 import { reconciler } from '../reconciler/state';
 
@@ -30,6 +31,7 @@ export class DOMRenderer {
 
   createRoot(root: HTMLElement) {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
+    let currentNodes: VNode[];
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
