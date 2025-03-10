@@ -23,8 +23,10 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
+import { ComponentNode } from '../common/types/component';
 import { Context } from '../common/types/context';
-import { VNodeState } from './vnode';
+import { VNode, VNodeState } from './vnode';
 
 class HookState {
 
@@ -79,5 +81,20 @@ export const reconciler = new class {
     } finally {
       reconciler._currentHookState = undefined;
     }
+  }
+
+  buildVNodes(component: ComponentNode) {
+    const node = new VNode(component);
+    const excute = () => {
+      node.updateIfNeed();
+      const items = _.filter(node.children, x => x instanceof VNode);
+      while (true) {
+        const item = items.shift();
+        if (!item) break;
+        item.updateIfNeed();
+        items.push(..._.filter(item.children, x => x instanceof VNode));
+      }
+    };
+    return { node, excute };
   }
 };
