@@ -62,6 +62,10 @@ export class VNode {
     return this._dirty;
   }
 
+  setDirty() {
+    this._dirty = true;
+  }
+
   destory() {
     for (const state of this._state ?? []) {
       state.unmount?.();
@@ -76,7 +80,7 @@ export class VNode {
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         const { rendered, state } = reconciler.withHookState({
-          onStateChange: () => { this._dirty = true; },
+          onStateChange: () => { this.setDirty(); },
           state: this._state,
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.newState;
