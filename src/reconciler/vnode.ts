@@ -62,6 +62,13 @@ export class VNode {
     return this._dirty;
   }
 
+  mount() {
+    for (const state of this._state ?? []) {
+      state.unmount = state.mount?.();
+      state.mount = undefined;
+    }
+  }
+
   setDirty() {
     this._dirty = true;
   }
