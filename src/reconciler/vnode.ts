@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { ComponentNode } from '~/common/types/component';
 import { Context } from '~/common/types/context';
 import { reconciler } from './state';
+import { myersSync } from 'myers.js';
 
 export type VNodeState = {
   id: string;
@@ -62,10 +63,18 @@ export class VNode {
     return this._dirty;
   }
 
+  destory() {
+    for (const state of this._state ?? []) {
+      state.unmount?.();
+      state.unmount = undefined;
+    }
+  }
+
   updateIfNeed() {
     if (!this._dirty) return;
     try {
       const { type, props } = this._component;
+      let children: (VNode | string)[];
       if (_.isFunction(type)) {
         const { rendered, state } = reconciler.withHookState({
           onStateChange: () => { this._dirty = true; },
@@ -73,9 +82,23 @@ export class VNode {
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.newState;
         this._listens = state.listens;
-        this._children = VNode._resolve_children(rendered);
+        children = VNode._resolve_children(rendered);
       } else {
-        this._children = VNode._resolve_children(props.children);
+        children = VNode._resolve_children(props.children);
+      }
+      const diff = myersSync(this._children, children, {
+        compare: (lhs, rhs) => {
+          if (_.isString(lhs) && _.isString(rhs)) return lhs === rhs;
+          if (lhs instanceof VNode && rhs instanceof VNode) return lhs.component.type === rhs.component.type && lhs.component.key === rhs.component.key;
+          return false;
+        },
+      });
+      this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
+      for (const { remove = [] } of diff) {
+        for (const item of remove) {
+          if (_.isString(item)) continue;
+          item.destory();
+        }
       }
       for (const item of this._children) {
         if (item instanceof VNode) item._parent = this;
