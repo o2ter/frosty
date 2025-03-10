@@ -86,13 +86,9 @@ export const reconciler = new class {
   buildVNodes(component: ComponentNode) {
     const node = new VNode(component);
     const excute = () => {
-      node.updateIfNeed();
-      const items = _.filter(node.children, x => x instanceof VNode);
-      while (true) {
-        const item = items.shift();
-        if (!item) break;
+      const items = _.flatMapDeep([node], x => _.filter(x.children, x => x instanceof VNode))
+      for (const item of items) {
         item.updateIfNeed();
-        items.push(..._.filter(item.children, x => x instanceof VNode));
       }
     };
     return { node, excute };
