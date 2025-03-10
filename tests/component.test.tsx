@@ -25,7 +25,6 @@
 
 import { expect, test } from '@jest/globals';
 import { ComponentType, ComponentNode } from '~/index';
-import { reconciler } from '~/reconciler/state';
 
 const TestComponent: ComponentType = () => {
   return <></>;
@@ -45,13 +44,5 @@ test('test create component element', async () => {
 
   expect(element).toBeInstanceOf(ComponentNode);
   expect(element.type).toBe(TestComponent);
-
-});
-
-test('test', async () => {
-
-  const element = <div><span>test</span><span>test</span></div>;
-
-  console.log(reconciler.buildVNodes(element).excute())
 
 });
