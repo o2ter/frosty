@@ -62,22 +62,8 @@ export class VNode {
     return this._dirty;
   }
 
-  mount() {
-    for (const state of this._state ?? []) {
-      state.unmount = state.mount?.();
-      state.mount = undefined;
-    }
-  }
-
   setDirty() {
     this._dirty = true;
-  }
-
-  destory() {
-    for (const state of this._state ?? []) {
-      state.unmount?.();
-      state.unmount = undefined;
-    }
   }
 
   updateIfNeed() {
@@ -104,12 +90,6 @@ export class VNode {
         },
       });
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
-      for (const { remove = [] } of diff) {
-        for (const item of remove) {
-          if (_.isString(item)) continue;
-          item.destory();
-        }
-      }
       for (const item of this._children) {
         if (item instanceof VNode) item._parent = this;
       }

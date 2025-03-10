@@ -57,7 +57,6 @@ export const _useEffect = (
     });
     return;
   }
-  oldState?.[newState.length]?.unmount?.();
   newState.push({
     deps: deps ?? null,
     mount: () => effect(state),
