@@ -33,8 +33,8 @@ class HookState {
   contextValue = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
 
-  oldState?: VNodeState[];
-  newState: VNodeState[] = [];
+  prevState?: VNodeState[];
+  state: VNodeState[] = [];
 
   listens = new WeakSet<Context<any>>();
 
@@ -43,7 +43,7 @@ class HookState {
     state?: VNodeState[];
   }) {
     this.onStateChange = options.onStateChange;
-    this.oldState = options.state;
+    this.prevState = options.state;
   }
 }
 

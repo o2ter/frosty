@@ -76,7 +76,7 @@ export class VNode {
           onStateChange: () => { this.setDirty(); },
           state: this._state,
         }, (state) => ({ rendered: type(props), state }));
-        this._state = state.newState;
+        this._state = state.state;
         this._listens = state.listens;
         children = VNode._resolve_children(rendered);
       } else {

@@ -29,8 +29,8 @@ import { reconciler } from "./state";
 const _useHookState = (hook: string) => {
   const state = reconciler.currentHookState;
   if (!state) throw Error(`${hook} must be used within a render function.`);
-  const { oldState, newState } = state;
-  if (oldState && oldState[newState.length]?.hook !== hook) {
+  const { prevState, state: newState } = state;
+  if (prevState && prevState[newState.length]?.hook !== hook) {
     console.warn([
       `Hook "${hook}" is called conditionally.`,
       'Hooks must be called in the exact same order in every component render.',
@@ -46,13 +46,13 @@ export const _useEffect = (
   deps?: any
 ) => {
   const state = _useHookState(hook);
-  const { oldState, newState } = state;
+  const { prevState, state: newState } = state;
   if (
-    oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps, deps)
+    prevState?.[newState.length]?.hook === hook &&
+    _.isEqual(prevState[newState.length].deps, deps)
   ) {
     newState.push({
-      ...oldState[newState.length],
+      ...prevState[newState.length],
       deps: deps ?? null,
     });
     return;
@@ -70,16 +70,16 @@ export const _useMemo = <T>(
   deps?: any
 ): T => {
   const state = _useHookState(hook);
-  const { oldState, newState } = state;
+  const { prevState, state: newState } = state;
   if (
-    oldState?.[newState.length]?.hook === hook &&
-    _.isEqual(oldState[newState.length].deps, deps)
+    prevState?.[newState.length]?.hook === hook &&
+    _.isEqual(prevState[newState.length].deps, deps)
   ) {
     newState.push({
-      ...oldState[newState.length],
+      ...prevState[newState.length],
       deps: deps ?? null,
     });
-    return oldState[newState.length].data;
+    return prevState[newState.length].data;
   }
   const data = factory(state);
   newState.push({
