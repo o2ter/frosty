@@ -27,6 +27,9 @@ export class VNode {
   _dirty = true;
 
   /** @internal */
+  _counter = 0;
+
+  /** @internal */
   _listens = new WeakSet<Context<any>>();
 
   constructor(component: ComponentNode) {
@@ -57,6 +60,7 @@ export class VNode {
 
   setDirty() {
     this._dirty = true;
+    this._counter += 1;
   }
 
   updateIfNeed() {
