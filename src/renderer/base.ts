@@ -55,7 +55,7 @@ export abstract class _Renderer<T extends _Element<T>> {
           if (elem) {
             this._updateElement(node, elem);
             updated.set(node, elem);
-          } else if (_.isString(node.component.type)) {
+          } else if (!_.isFunction(node.component.type)) {
             updated.set(node, this._createElement(node));
           }
         }
