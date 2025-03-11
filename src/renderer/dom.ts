@@ -29,6 +29,14 @@ import { reconciler } from '../reconciler/state';
 
 export class DOMRenderer {
 
+  _createElement(node: VNode) {
+    
+  }
+
+  _updateElement(node: VNode, element: Element) {
+
+  }
+
   createRoot(root: Element) {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
     let currentNodes = new Map<VNode, Element>();

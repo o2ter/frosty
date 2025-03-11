@@ -18,9 +18,6 @@ export class VNode {
   _component: ComponentNode;
 
   /** @internal */
-  _parent?: VNode;
-
-  /** @internal */
   _children: (VNode | string)[] = [];
 
   /** @internal */
@@ -48,10 +45,6 @@ export class VNode {
 
   get component() {
     return this._component;
-  }
-
-  get parent() {
-    return this._parent;
   }
 
   get children() {
@@ -90,9 +83,6 @@ export class VNode {
         },
       });
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
-      for (const item of this._children) {
-        if (item instanceof VNode) item._parent = this;
-      }
     } finally {
       this._dirty = false;
     }
