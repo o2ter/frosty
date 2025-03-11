@@ -31,20 +31,22 @@ import { EventEmitter } from './events';
 
 class HookState {
 
-  contextValue = new WeakMap<Context<any>, any>();
   onStateChange: () => void;
 
+  contextValue: WeakMap<Context<any>, any>;
   prevState?: VNodeState[];
   state: VNodeState[] = [];
 
   listens = new WeakSet<Context<any>>();
 
   constructor(options: {
-    onStateChange: () => void;
     state?: VNodeState[];
+    contextValue?: WeakMap<Context<any>, any>;
+    onStateChange: () => void;
   }) {
-    this.onStateChange = options.onStateChange;
     this.prevState = options.state;
+    this.contextValue = options.contextValue ?? new WeakMap<Context<any>, any>();
+    this.onStateChange = options.onStateChange;
   }
 }
 
