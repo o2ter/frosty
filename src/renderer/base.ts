@@ -68,6 +68,8 @@ export abstract class _Renderer<T extends _Element<T>> {
       unmount: () => {
         for (const item of root.children) item.remove();
         state = undefined;
+        elements.clear();
+        mountState.clear();
       },
     };
   }
