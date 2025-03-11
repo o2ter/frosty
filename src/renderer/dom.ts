@@ -59,6 +59,7 @@ export class DOMRenderer {
             updated.set(node, this._createElement(node));
           }
         }
+        elements = updated;
       },
       unmount: () => {
         for (const item of root.children) item.remove();
