@@ -42,10 +42,12 @@ export abstract class _Renderer<T extends _Element<T>> {
   abstract _createElement(node: VNode): T
   abstract _updateElement(node: VNode, element: T): void
 
-  createRoot(root: T) {
-    let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
+  private _createRoot(root: T, component: ComponentNode) {
+
+    const state = reconciler.buildVNodes(component);
     let elements = new Map<VNode, T>();
     let mountState = new Map<VNode, { hook: string; deps: any; unmount?: () => void; }[]>();
+
     const update = (state: ReturnType<typeof reconciler.buildVNodes>) => {
       const updated = new Map<VNode, T>();
       for (const node of state.excute()) {
@@ -60,16 +62,27 @@ export abstract class _Renderer<T extends _Element<T>> {
       }
       elements = updated;
     };
+
+    const listener = state.event.register('onchange', () => { update(state); });
+    update(state);
+
+    return {
+      destory: () => {
+        listener.remove();
+      },
+    };
+  }
+
+  createRoot(root: T) {
+    let state: ReturnType<typeof this._createRoot> | undefined;
     return {
       mount: (component: ComponentNode) => {
-        state = reconciler.buildVNodes(component);
-        update(state);
+        state = this._createRoot(root, component);
       },
       unmount: () => {
         for (const item of root.children) item.remove();
+        state?.destory();
         state = undefined;
-        elements.clear();
-        mountState.clear();
       },
     };
   }

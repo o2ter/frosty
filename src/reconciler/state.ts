@@ -27,6 +27,7 @@ import _ from 'lodash';
 import { ComponentNode } from '../common/types/component';
 import { Context } from '../common/types/context';
 import { VNode, VNodeState } from './vnode';
+import { EventEmitter } from './events';
 
 class HookState {
 
@@ -84,7 +85,8 @@ export const reconciler = new class {
   }
 
   buildVNodes(component: ComponentNode) {
-    const node = new VNode(component);
+    const event = new EventEmitter();
+    const node = new VNode(component, event);
     const excute = function* () {
       node.updateIfNeed();
       yield node;
@@ -97,6 +99,6 @@ export const reconciler = new class {
         items.push(..._.filter(item.children, x => x instanceof VNode));
       }
     };
-    return { node, excute };
+    return { node, event, excute };
   }
 };

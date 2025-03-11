@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import _ from "lodash";
-import { reconciler } from "./state";
+import _ from 'lodash';
+import { reconciler } from './state';
 
 const _useHookState = (hook: string) => {
   const state = reconciler.currentHookState;

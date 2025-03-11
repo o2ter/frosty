@@ -3,6 +3,7 @@ import { ComponentNode } from '~/common/types/component';
 import { Context } from '~/common/types/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
+import { EventEmitter } from './events';
 
 export type VNodeState = {
   hook: string;
@@ -15,6 +16,9 @@ export class VNode {
 
   /** @internal */
   _component: ComponentNode;
+
+  /** @internal */
+  _event: EventEmitter;
 
   /** @internal */
   _children: (VNode | string)[] = [];
@@ -31,17 +35,18 @@ export class VNode {
   /** @internal */
   _listens = new WeakSet<Context<any>>();
 
-  constructor(component: ComponentNode) {
+  constructor(component: ComponentNode, event: EventEmitter) {
     this._component = component;
+    this._event = event;
   }
 
   /** @internal */
-  static _resolve_children(child: any): (VNode | string)[] {
+  _resolve_children(child: any): (VNode | string)[] {
     if (_.isBoolean(child) || _.isNil(child)) return [];
     if (_.isString(child)) return [child];
     if (_.isNumber(child)) return [`${child}`];
     if (_.isArrayLikeObject(child)) return _.flatMap(child, x => this._resolve_children(x));
-    if (child instanceof ComponentNode) return [new VNode(child)];
+    if (child instanceof ComponentNode) return [new VNode(child, this._event)];
     throw Error(`${child} are not valid as a child.`);
   }
 
@@ -60,6 +65,7 @@ export class VNode {
   setDirty() {
     this._dirty = true;
     this._counter += 1;
+    this._event.emit('onchange');
   }
 
   updateIfNeed() {
@@ -74,9 +80,9 @@ export class VNode {
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.state;
         this._listens = state.listens;
-        children = VNode._resolve_children(rendered);
+        children = this._resolve_children(rendered);
       } else {
-        children = VNode._resolve_children(props.children);
+        children = this._resolve_children(props.children);
       }
       const diff = myersSync(this._children, children, {
         compare: (lhs, rhs) => {
