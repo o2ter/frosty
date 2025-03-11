@@ -45,7 +45,7 @@ export abstract class _Renderer<T extends _Element<T>> {
   createRoot(root: T) {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
     let elements = new Map<VNode, T>();
-    let mountState = new Map<VNode, { deps: any; unmount?: () => void; }[]>();
+    let mountState = new Map<VNode, { deps: any; hook: string; unmount?: () => void; }[]>();
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
