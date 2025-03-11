@@ -9,7 +9,6 @@ export type VNodeState = {
   deps: any;
   data?: any;
   mount?: () => () => void;
-  unmount?: () => void;
 };
 
 export class VNode {
