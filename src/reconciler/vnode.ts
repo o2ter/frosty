@@ -71,7 +71,7 @@ export class VNode {
   updateIfNeed(options: {
     contextValue: Map<Context<any>, any>;
   }) {
-    if (!this._dirty) return;
+    if (_.every([...this._listens], ([k, v]) => _.isEqual(options.contextValue.get(k), v)) && !this._dirty) return;
     try {
       const { type, props } = this._component;
       let children: (VNode | string)[];
