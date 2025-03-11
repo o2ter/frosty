@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { ComponentNode } from '../common/types/component';
 import { reconciler } from '../reconciler/state';
@@ -30,7 +31,11 @@ import { reconciler } from '../reconciler/state';
 export class DOMRenderer {
 
   _createElement(node: VNode) {
-    
+    const { type } = node.component;
+    if (!_.isString(type)) throw Error('Invalid type');
+    const elem = document.createElement(type);
+
+    return elem;
   }
 
   _updateElement(node: VNode, element: Element) {
@@ -39,11 +44,21 @@ export class DOMRenderer {
 
   createRoot(root: Element) {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
-    let currentNodes = new Map<VNode, Element>();
+    let elements = new Map<VNode, Element>();
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
         const nodes = state.excute();
+        const updated = new Map<VNode, Element>();
+        for (const node of nodes) {
+          const elem = elements.get(node);
+          if (elem) {
+            this._updateElement(node, elem);
+            updated.set(node, elem);
+          } else if (_.isString(node.component.type)) {
+            updated.set(node, this._createElement(node));
+          }
+        }
       },
       unmount: () => {
         for (const item of root.children) item.remove();
