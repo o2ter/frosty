@@ -52,13 +52,14 @@ export abstract class _Renderer<T extends _Element<T>> {
         const nodes = state.excute();
         const updated = new Map<VNode, T>();
         for (const node of nodes) {
-          const elem = elements.get(node);
+          if (_.isFunction(node.component.type)) continue;
+          let elem = elements.get(node);
           if (elem) {
             this._updateElement(node, elem);
-            updated.set(node, elem);
-          } else if (!_.isFunction(node.component.type)) {
-            updated.set(node, this._createElement(node));
+          } else {
+            elem = this._createElement(node);
           }
+          updated.set(node, elem);
         }
         elements = updated;
       },
