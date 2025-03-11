@@ -1,5 +1,5 @@
 //
-//  dom.ts
+//  base.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -25,19 +25,46 @@
 
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
-import { _Renderer } from './base';
+import { ComponentNode } from '../common/types/component';
+import { reconciler } from '../reconciler/state';
 
-export class DOMRenderer extends _Renderer<Element> {
+interface _Element<C extends _Element<C>> {
 
-  _createElement(node: VNode) {
-    const { type } = node.component;
-    if (!_.isString(type)) throw Error('Invalid type');
-    const elem = document.createElement(type);
+  children: Iterable<C>;
 
-    return elem;
-  }
+  appendChild<T extends C>(node: T): T;
 
-  _updateElement(node: VNode, element: Element) {
+  remove(): void;
+}
 
+export abstract class _Renderer<T extends _Element<T>> {
+
+  abstract _createElement(node: VNode): T
+  abstract _updateElement(node: VNode, element: T): void
+
+  createRoot(root: T) {
+    let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
+    let elements = new Map<VNode, T>();
+    return {
+      mount: (component: ComponentNode) => {
+        state = reconciler.buildVNodes(component);
+        const nodes = state.excute();
+        const updated = new Map<VNode, T>();
+        for (const node of nodes) {
+          const elem = elements.get(node);
+          if (elem) {
+            this._updateElement(node, elem);
+            updated.set(node, elem);
+          } else if (_.isString(node.component.type)) {
+            updated.set(node, this._createElement(node));
+          }
+        }
+        elements = updated;
+      },
+      unmount: () => {
+        for (const item of root.children) item.remove();
+        state = undefined;
+      },
+    };
   }
 }
