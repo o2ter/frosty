@@ -131,6 +131,7 @@ export class VNode {
           return false;
         },
       });
+      // TODO: update props
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
     } finally {
       this._dirty = false;
