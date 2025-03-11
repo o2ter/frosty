@@ -100,8 +100,8 @@ export const reconciler = new class {
         node.updateIfNeed({ contextValue });
 
         const _contextValue = new Map(contextValue);
-        if (_.isFunction(node.component.type) && reconciler.registry.get(node.component.type) === 'CONTEXT') {
-          _contextValue.set(node.component.type, node.component.props.value);
+        if (_.isFunction(node.type) && reconciler.registry.get(node.type) === 'CONTEXT') {
+          _contextValue.set(node.type, node.props.value);
         }
 
         items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({
