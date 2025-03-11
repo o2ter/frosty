@@ -90,12 +90,13 @@ export const reconciler = new class {
     const event = new EventEmitter();
     const node = new VNode(component, event);
     const excute = function* () {
-      const items = [node];
+      const items = [{ node, contextValue: reconciler.contextDefaultValue }];
       let item;
       while (item = items.shift()) {
-        yield item;
-        item.updateIfNeed();
-        items.push(..._.filter(item.children, x => x instanceof VNode));
+        const { node, contextValue } = item;
+        yield node;
+        node.updateIfNeed({ contextValue });
+        items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({ node: x, contextValue })));
       }
     };
     return { node, event, excute };

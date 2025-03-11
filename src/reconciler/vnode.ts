@@ -68,15 +68,18 @@ export class VNode {
     this._event.emit('onchange');
   }
 
-  updateIfNeed() {
+  updateIfNeed(options: {
+    contextValue: WeakMap<Context<any>, any>;
+  }) {
     if (!this._dirty) return;
     try {
       const { type, props } = this._component;
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         const { rendered, state } = reconciler.withHookState({
-          onStateChange: () => { this.setDirty(); },
           state: this._state,
+          contextValue: options.contextValue,
+          onStateChange: () => { this.setDirty(); },
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.state;
         this._listens = state.listens;
