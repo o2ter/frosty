@@ -101,11 +101,14 @@ export class VNode {
     this._event.emit('onchange');
   }
 
+  _check_context(values: Map<Context<any>, any>) {
+    return this._listens.entries().every(([k, v]) => _.isEqual(values.get(k), v));
+  }
+
   updateIfNeed(options: {
     contextValue: Map<Context<any>, any>;
   }) {
-    const checkContext = this._listens.entries().every(([k, v]) => _.isEqual(options.contextValue.get(k), v));
-    if (!this._dirty && checkContext) return;
+    if (!this._dirty && this._check_context(options.contextValue)) return;
     try {
       const { type, props } = this._component;
       let children: (VNode | string)[];
