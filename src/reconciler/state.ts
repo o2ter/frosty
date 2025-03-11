@@ -89,9 +89,8 @@ export const reconciler = new class {
     const node = new VNode(component, event);
     const excute = function* () {
       const items = [node];
-      while (true) {
-        const item = items.shift();
-        if (!item) return;
+      let item;
+      while (item = items.shift()) {
         yield item;
         item.updateIfNeed();
         items.push(..._.filter(item.children, x => x instanceof VNode));
