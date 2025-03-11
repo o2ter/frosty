@@ -33,7 +33,7 @@ export class VNode {
   _counter = 0;
 
   /** @internal */
-  _listens = new WeakSet<Context<any>>();
+  _listens = new Map<Context<any>, any>();
 
   constructor(component: ComponentNode, event: EventEmitter) {
     this._component = component;
@@ -82,7 +82,7 @@ export class VNode {
           onStateChange: () => { this.setDirty(); },
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.state;
-        this._listens = state.listens;
+        this._listens = new Map(_.filter([...options.contextValue], ([k]) => state.listens.has(k)));
         children = this._resolve_children(rendered);
       } else {
         children = this._resolve_children(props.children);
