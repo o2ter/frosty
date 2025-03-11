@@ -33,7 +33,7 @@ class HookState {
 
   onStateChange: () => void;
 
-  contextValue: WeakMap<Context<any>, any>;
+  contextValue: Map<Context<any>, any>;
   prevState?: VNodeState[];
   state: VNodeState[] = [];
 
@@ -41,11 +41,11 @@ class HookState {
 
   constructor(options: {
     state?: VNodeState[];
-    contextValue?: WeakMap<Context<any>, any>;
+    contextValue?: Map<Context<any>, any>;
     onStateChange: () => void;
   }) {
     this.prevState = options.state;
-    this.contextValue = options.contextValue ?? new WeakMap<Context<any>, any>();
+    this.contextValue = options.contextValue ?? new Map<Context<any>, any>();
     this.onStateChange = options.onStateChange;
   }
 }
@@ -56,7 +56,7 @@ export const reconciler = new class {
   _registry = new WeakMap<any, string>();
 
   /** @internal */
-  _contextDefaultValue = new WeakMap<Context<any>, any>();
+  _contextDefaultValue = new Map<Context<any>, any>();
 
   /** @internal */
   _currentHookState: HookState | undefined;
@@ -93,10 +93,21 @@ export const reconciler = new class {
       const items = [{ node, contextValue: reconciler.contextDefaultValue }];
       let item;
       while (item = items.shift()) {
+
         const { node, contextValue } = item;
         yield node;
+
         node.updateIfNeed({ contextValue });
-        items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({ node: x, contextValue })));
+
+        const _contextValue = new Map(contextValue);
+        if (_.isFunction(node.component.type) && reconciler.registry.get(node.component.type) === 'CONTEXT') {
+          _contextValue.set(node.component.type, node.component.props.value);
+        }
+
+        items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({
+          node: x,
+          contextValue: _contextValue,
+        })));
       }
     };
     return { node, event, excute };

@@ -69,7 +69,7 @@ export class VNode {
   }
 
   updateIfNeed(options: {
-    contextValue: WeakMap<Context<any>, any>;
+    contextValue: Map<Context<any>, any>;
   }) {
     if (!this._dirty) return;
     try {
