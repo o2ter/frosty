@@ -71,7 +71,7 @@ export class VNode {
   updateIfNeed(options: {
     contextValue: Map<Context<any>, any>;
   }) {
-    if (_.every([...this._listens], ([k, v]) => _.isEqual(options.contextValue.get(k), v)) && !this._dirty) return;
+    if (this._listens.entries().every(([k, v]) => _.isEqual(options.contextValue.get(k), v)) && !this._dirty) return;
     try {
       const { type, props } = this._component;
       let children: (VNode | string)[];
@@ -82,7 +82,7 @@ export class VNode {
           onStateChange: () => { this.setDirty(); },
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.state;
-        this._listens = new Map(_.filter([...options.contextValue], ([k]) => state.listens.has(k)));
+        this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));
         children = this._resolve_children(rendered);
       } else {
         children = this._resolve_children(props.children);
