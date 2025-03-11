@@ -46,21 +46,24 @@ export abstract class _Renderer<T extends _Element<T>> {
     let state: ReturnType<typeof reconciler.buildVNodes> | undefined;
     let elements = new Map<VNode, T>();
     let mountState = new Map<VNode, { hook: string; deps: any; unmount?: () => void; }[]>();
+    const update = (state: ReturnType<typeof reconciler.buildVNodes>) => {
+      const updated = new Map<VNode, T>();
+      for (const node of state.excute()) {
+        if (_.isFunction(node.component.type)) continue;
+        let elem = elements.get(node);
+        if (elem) {
+          this._updateElement(node, elem);
+        } else {
+          elem = this._createElement(node);
+        }
+        updated.set(node, elem);
+      }
+      elements = updated;
+    };
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
-        const updated = new Map<VNode, T>();
-        for (const node of state.excute()) {
-          if (_.isFunction(node.component.type)) continue;
-          let elem = elements.get(node);
-          if (elem) {
-            this._updateElement(node, elem);
-          } else {
-            elem = this._createElement(node);
-          }
-          updated.set(node, elem);
-        }
-        elements = updated;
+        update(state);
       },
       unmount: () => {
         for (const item of root.children) item.remove();
