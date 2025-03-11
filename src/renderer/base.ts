@@ -49,9 +49,8 @@ export abstract class _Renderer<T extends _Element<T>> {
     return {
       mount: (component: ComponentNode) => {
         state = reconciler.buildVNodes(component);
-        const nodes = state.excute();
         const updated = new Map<VNode, T>();
-        for (const node of nodes) {
+        for (const node of state.excute()) {
           if (_.isFunction(node.component.type)) continue;
           let elem = elements.get(node);
           if (elem) {
