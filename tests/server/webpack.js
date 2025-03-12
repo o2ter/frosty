@@ -53,7 +53,7 @@ module.exports = (env, argv) => {
       entry: {
         main_bundle: [
           'core-js/stable',
-          path.resolve(__dirname, './main/index.ts'),
+          path.resolve(__dirname, './main/index.tsx'),
         ],
       },
       output: {
