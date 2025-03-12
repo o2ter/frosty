@@ -131,8 +131,12 @@ export class VNode {
           return false;
         },
       });
-      // TODO: update props
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
+      for (const [i, item] of this._children.entries()) {
+        if (item instanceof VNode && children[i] instanceof VNode) {
+          item._component = children[i]._component;
+        }
+      }
     } finally {
       this._dirty = false;
     }
