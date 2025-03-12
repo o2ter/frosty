@@ -22,12 +22,24 @@ module.exports = (env, argv) => {
             ],
             targets: server ? { node: 'current' } : 'defaults',
           }],
+          [
+            "@babel/preset-react",
+            {
+              throwIfNamespace: false,
+              runtime: 'automatic',
+              importSource: 'frosty',
+            }
+          ],
           '@babel/preset-typescript',
         ]
       },
     },
     resolve: {
       fullySpecified: false,
+      alias: {
+        '~': path.resolve(__dirname, '../../src'),
+        'frosty': path.resolve(__dirname, '../../src'),
+      },
     },
   });
 
