@@ -9,6 +9,7 @@ const rollupConfig = {
   input: {
     index: 'src/index',
     'jsx-runtime': 'src/jsx-runtime',
+    dom: 'src/renderer/dom',
   },
   external: [
     /node_modules/
@@ -23,7 +24,10 @@ const resolvePlugin = resolve({
 });
 
 const rollupPlugins = [
-  typescript({ declaration: false }),
+  typescript({
+    declaration: false,
+    exclude: ['tests/**/*'],
+   }),
   babel({
     babelrc: false,
     exclude: 'node_modules/**',

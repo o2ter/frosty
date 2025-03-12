@@ -24,8 +24,8 @@
 //
 
 import _ from 'lodash';
-import { ComponentNode } from '~/common/types/component';
-import { Context } from '~/common/types/context';
+import { ComponentNode } from '../common/types/component';
+import { Context } from '../common/types/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';

@@ -38,4 +38,3 @@ export { Context, ContextType, createContext } from './common/types/context';
 export { Fragment } from './common/types/fragment';
 export { _ElementType as ElementType } from './common/types/jsx';
 export { mergeRefs } from './common/utils';
-export { DOMRenderer } from './renderer/dom';
