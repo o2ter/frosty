@@ -27,8 +27,9 @@ import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
 
-export class DOMRenderer extends _Renderer<Element> {
+class _DOMRenderer extends _Renderer<Element> {
 
+  /** @internal */
   _createElement(node: VNode) {
     const { type } = node.component;
     if (!_.isString(type)) throw Error('Invalid type');
@@ -37,7 +38,10 @@ export class DOMRenderer extends _Renderer<Element> {
     return elem;
   }
 
+  /** @internal */
   _updateElement(node: VNode, element: Element) {
 
   }
 }
+
+export const DOMRenderer = new _DOMRenderer;

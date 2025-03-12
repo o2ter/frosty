@@ -40,8 +40,11 @@ interface _Element<C extends _Element<C>> {
 
 export abstract class _Renderer<T extends _Element<T>> {
 
-  abstract _createElement(node: VNode): T
-  abstract _updateElement(node: VNode, element: T): void
+  /** @internal */
+  abstract _createElement(node: VNode): T;
+
+  /** @internal */
+  abstract _updateElement(node: VNode, element: T): void;
 
   private _createRoot(root: T, component: ComponentNode) {
 
