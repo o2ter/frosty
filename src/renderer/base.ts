@@ -28,6 +28,7 @@ import { VNode } from '../reconciler/vnode';
 import { ComponentNode } from '../common/types/component';
 import { reconciler } from '../reconciler/state';
 import nextick from 'nextick';
+import { mergeRefs } from '~/common/utils';
 
 interface _Element<C extends _Element<C>> {
 
@@ -53,6 +54,15 @@ export abstract class _Renderer<T extends _Element<T>> {
     let elements = new Map<VNode, T>();
     let mountState = new Map<VNode, { hook: string; deps: any; unmount?: () => void; }[]>();
 
+    const mount = (node: VNode, parent: T) => {
+      const element = elements.get(node);
+      if (element) {
+        mergeRefs(node.props.ref)(element);
+      } else {
+
+      }
+    };
+
     const update = () => {
       const updated = new Map<VNode, T>();
       for (const node of state.excute()) {
@@ -66,6 +76,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         updated.set(node, elem);
       }
       elements = updated;
+      mount(state.node, root);
     };
 
     let update_count = 0;
