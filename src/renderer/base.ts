@@ -34,6 +34,8 @@ interface _Element<C extends _Element<C>> {
 
   children: Iterable<C>;
 
+  parentElement: C | null;
+
   appendChild<T extends C>(node: T): T;
 
   remove(): void;
@@ -56,7 +58,12 @@ export abstract class _Renderer<T extends _Element<T>> {
 
     const mount = (node: VNode, parent: T) => {
       const element = elements.get(node);
-      if (element) mergeRefs(node.props.ref)(element);
+      if (element) {
+        mergeRefs(node.props.ref)(element);
+      }
+      if (element && element.parentElement !== parent) {
+        parent.appendChild(element);
+      }
     };
 
     const update = () => {
