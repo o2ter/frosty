@@ -56,14 +56,17 @@ export abstract class _Renderer<T extends _Element<T>> {
     let elements = new Map<VNode, T>();
     let mountState = new Map<VNode, { hook: string; deps: any; unmount?: () => void; }[]>();
 
+    const children = (node: VNode): (string | T)[] => {
+      return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
+    };
+
     const mount = (node: VNode, parent: T) => {
       const element = elements.get(node);
-      if (element) {
-        mergeRefs(node.props.ref)(element);
+      if (element) mergeRefs(node.props.ref)(element);
+      for (const item of node.children) {
+        if (item instanceof VNode) mount(item, element ?? parent);
       }
-      if (element && element.parentElement !== parent) {
-        parent.appendChild(element);
-      }
+      const _children = children(node);
     };
 
     const update = () => {
