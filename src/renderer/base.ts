@@ -45,10 +45,11 @@ export abstract class _Renderer<T extends _Element<T>> {
   private _createRoot(root: T, component: ComponentNode) {
 
     const state = reconciler.buildVNodes(component);
+
     let elements = new Map<VNode, T>();
     let mountState = new Map<VNode, { hook: string; deps: any; unmount?: () => void; }[]>();
 
-    const update = (state: ReturnType<typeof reconciler.buildVNodes>) => {
+    const update = () => {
       const updated = new Map<VNode, T>();
       for (const node of state.excute()) {
         if (_.isFunction(node.type)) continue;
@@ -63,8 +64,19 @@ export abstract class _Renderer<T extends _Element<T>> {
       elements = updated;
     };
 
-    const listener = state.event.register('onchange', () => { update(state); });
-    update(state);
+    let update_count = 0;
+    let render_count = 0;
+
+    const listener = state.event.register('onchange', () => {
+      const needToUpdate = update_count === render_count;
+      update_count += 1;
+      if (!needToUpdate) return;
+      requestAnimationFrame(() => {
+        render_count = update_count;
+        update();
+      });
+    });
+    update();
 
     return {
       destory: () => {
