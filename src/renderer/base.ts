@@ -56,11 +56,7 @@ export abstract class _Renderer<T extends _Element<T>> {
 
     const mount = (node: VNode, parent: T) => {
       const element = elements.get(node);
-      if (element) {
-        mergeRefs(node.props.ref)(element);
-      } else {
-
-      }
+      if (element) mergeRefs(node.props.ref)(element);
     };
 
     const update = () => {
