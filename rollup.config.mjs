@@ -27,7 +27,7 @@ const rollupPlugins = [
   typescript({
     declaration: false,
     exclude: ['tests/**/*'],
-   }),
+  }),
   babel({
     babelrc: false,
     exclude: 'node_modules/**',
