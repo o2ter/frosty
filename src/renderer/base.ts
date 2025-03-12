@@ -68,9 +68,8 @@ export abstract class _Renderer<T extends _Element<T>> {
     let render_count = 0;
 
     const listener = state.event.register('onchange', () => {
-      const needToUpdate = update_count === render_count;
       update_count += 1;
-      if (!needToUpdate) return;
+      if (update_count !== render_count + 1) return;
       requestAnimationFrame(() => {
         render_count = update_count;
         update();
