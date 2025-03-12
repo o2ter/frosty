@@ -25,7 +25,6 @@ module.exports = (env, argv) => {
           [
             "@babel/preset-react",
             {
-              throwIfNamespace: false,
               runtime: 'automatic',
               importSource: 'frosty',
             }
