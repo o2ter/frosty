@@ -27,6 +27,7 @@ import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { ComponentNode } from '../common/types/component';
 import { reconciler } from '../reconciler/state';
+import nextick from 'nextick';
 
 interface _Element<C extends _Element<C>> {
 
@@ -69,7 +70,7 @@ export abstract class _Renderer<T extends _Element<T>> {
 
     const listener = state.event.register('onchange', () => {
       if (render_count !== update_count++) return;
-      requestAnimationFrame(() => {
+      nextick(() => {
         render_count = update_count;
         update();
       });
