@@ -27,9 +27,35 @@ import _ from 'lodash';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
 
-const app = new Server;
+const app = new Server({
+  http: 'v1',
+  express: {
+    cors: {
+      credentials: true,
+      origin: true,
+    },
+    rateLimit: {
+      windowMs: 1000,
+      limit: 1000,
+    },
+  },
+});
 
 app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
+
+app.express().get('*', (req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.send(`
+    <html>
+      <head>
+        <script src="/main_bundle.js" defer></script>
+      </head>
+      <body>
+        <div id="root" />
+      </body>
+    </html>
+  `);
+});
 
 const PORT = !_.isEmpty(process.env.PORT) ? parseInt(process.env.PORT!) : 8080;
 
