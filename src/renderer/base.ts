@@ -107,10 +107,9 @@ export abstract class _Renderer<T extends _Element<T>> {
       }
       elements = updated;
       for (const [node, state] of mountState) {
-        if (!updated.has(node)) {
-          for (const { unmount } of state) unmount?.();
-          mountState.delete(node);
-        }
+        if (updated.has(node)) continue;
+        for (const { unmount } of state) unmount?.();
+        mountState.delete(node);
       }
       mount(runtime.node, root);
     };
