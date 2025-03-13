@@ -51,7 +51,7 @@ export abstract class _Renderer<T extends _Element<T>> {
 
   private _createRoot(root: T, component: ComponentNode) {
 
-    const state = reconciler.buildVNodes(component);
+    const runtime = reconciler.buildVNodes(component);
 
     type _State = {
       hook: string;
@@ -81,7 +81,7 @@ export abstract class _Renderer<T extends _Element<T>> {
     };
 
     const update = () => {
-      for (const node of state.excute()) {
+      for (const node of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
         let elem = elements.get(node);
         if (elem) {
@@ -91,13 +91,13 @@ export abstract class _Renderer<T extends _Element<T>> {
         }
         elements.set(node, elem);
       }
-      mount(state.node, root);
+      mount(runtime.node, root);
     };
 
     let update_count = 0;
     let render_count = 0;
 
-    const listener = state.event.register('onchange', () => {
+    const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
       nextick(() => {
         render_count = update_count;
