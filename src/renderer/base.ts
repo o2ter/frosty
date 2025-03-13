@@ -60,7 +60,7 @@ export abstract class _Renderer<T extends _Element<T>> {
     };
 
     let elements = new Map<VNode, T>();
-    let mountState = new Map<VNode, _State[]>();
+    const mountState = new Map<VNode, _State[]>();
 
     const children = (node: VNode): (string | T)[] => {
       return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
