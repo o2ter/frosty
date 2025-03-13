@@ -47,12 +47,13 @@ export const _useEffect = (
 ) => {
   const state = _useHookState(hook);
   const { prevState, state: newState } = state;
+  const idx = newState.length;
   if (
-    prevState?.[newState.length]?.hook === hook &&
-    _.isEqual(prevState[newState.length].deps, deps)
+    prevState?.[idx]?.hook === hook &&
+    _.isEqual(prevState[idx].deps, deps)
   ) {
     newState.push({
-      ...prevState[newState.length],
+      ...prevState[idx],
       deps: deps ?? null,
     });
     return;
@@ -71,15 +72,16 @@ export const _useMemo = <T>(
 ): T => {
   const state = _useHookState(hook);
   const { prevState, state: newState } = state;
+  const idx = newState.length;
   if (
-    prevState?.[newState.length]?.hook === hook &&
-    _.isEqual(prevState[newState.length].deps, deps)
+    prevState?.[idx]?.hook === hook &&
+    _.isEqual(prevState[idx].deps, deps)
   ) {
     newState.push({
-      ...prevState[newState.length],
+      ...prevState[idx],
       deps: deps ?? null,
     });
-    return prevState[newState.length].data;
+    return prevState[idx].data;
   }
   const data = factory(state);
   newState.push({
