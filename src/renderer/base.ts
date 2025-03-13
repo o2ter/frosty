@@ -72,11 +72,21 @@ export abstract class _Renderer<T extends _Element<T>> {
       for (const item of node.children) {
         if (item instanceof VNode) mount(item, element ?? parent);
       }
-      const _state: _State[] = [];
+      const state: _State[] = [];
       const prevState = mountState.get(node) ?? [];
-      for (const i of _.range(Math.max(prevState.length, node.state.length))) {
-
+      const curState = node.state;
+      for (const i of _.range(Math.max(prevState.length, curState.length))) {
+        const unmount = prevState[i]?.unmount;
+        if (unmount &&
+          (!_.isEqual(prevState[i].hook, curState[i]?.hook) || !_.isEqual(prevState[i].deps, curState[i]?.deps))
+        ) unmount();
+        state.push({
+          hook: curState[i].hook,
+          deps: curState[i].deps,
+          unmount: curState[i].mount?.(),
+        });
       }
+      mountState.set(node, state);
       const _children = children(node);
     };
 
