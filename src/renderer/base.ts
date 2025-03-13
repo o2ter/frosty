@@ -36,7 +36,7 @@ interface _Element<C extends _Element<C>> {
 
   parentElement: C | null;
 
-  appendChild<T extends C>(node: T): T;
+  replaceChildren(...nodes: (C | string)[]): void;
 
   remove(): void;
 }
@@ -90,7 +90,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         });
       }
       mountState.set(node, state);
-      const _children = children(node);
+      if (element) element.replaceChildren(...children(node));
     };
 
     const update = () => {
