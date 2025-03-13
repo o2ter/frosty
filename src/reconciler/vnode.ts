@@ -124,7 +124,7 @@ export class VNode {
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
         if (!(children[i] instanceof VNode)) continue;
-        if (!_.isEqual(item.component.props, children[i].component.props)) item.setDirty();
+        if (!_.isEqual(item.component.props, children[i].component.props)) item._dirty = true;
         item._component = children[i]._component;
       }
     } finally {
