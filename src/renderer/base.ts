@@ -54,12 +54,15 @@ export abstract class _Renderer<T extends _Element<T>> {
     const runtime = reconciler.buildVNodes(component);
 
     type _State = {
-      hook: string;
-      deps: any;
-      unmount?: () => void;
+      element?: T;
+      state: {
+        hook: string;
+        deps: any;
+        unmount?: () => void;
+      }[];
     };
 
-    let mountState = new Map<VNode, { element?: T; state: _State[]; }>();
+    let mountState = new Map<VNode, _State>();
 
     const children = (node: VNode): (string | T)[] => {
       return _.flatMap(node.children, x => _.isString(x) ? x : mountState.get(x)?.element ?? children(x));
@@ -68,14 +71,14 @@ export abstract class _Renderer<T extends _Element<T>> {
     const mount = (
       node: VNode,
       parent: T,
-      nextState = new Map<VNode, { element?: T; state: _State[]; }>(),
+      nextState = new Map<VNode, _State>(),
     ) => {
       const element = mountState.get(node)?.element;
       if (element) mergeRefs(node.props.ref)(element);
       for (const item of node.children) {
         if (item instanceof VNode) mount(item, element ?? parent, nextState);
       }
-      const state: _State[] = [];
+      const state: _State['state'] = [];
       const prevState = mountState.get(node)?.state ?? [];
       const curState = node.state;
       for (const i of _.range(Math.max(prevState.length, curState.length))) {
