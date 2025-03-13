@@ -116,10 +116,12 @@ export abstract class _Renderer<T extends _Element<T>> {
 
     let update_count = 0;
     let render_count = 0;
+    let destroyed = false;
 
     const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
       nextick(() => {
+        if (destroyed) return;
         render_count = update_count;
         update();
       });
@@ -127,7 +129,8 @@ export abstract class _Renderer<T extends _Element<T>> {
     update();
 
     return {
-      destory: () => {
+      destroy: () => {
+        destroyed = true;
         listener.remove();
         for (const state of mountState.values()) {
           for (const { unmount } of state) unmount?.();
@@ -144,7 +147,7 @@ export abstract class _Renderer<T extends _Element<T>> {
       },
       unmount: () => {
         for (const item of root.children) item.remove();
-        state?.destory();
+        state?.destroy();
         state = undefined;
       },
     };
