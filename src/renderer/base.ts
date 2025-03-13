@@ -106,6 +106,12 @@ export abstract class _Renderer<T extends _Element<T>> {
         updated.set(node, elem);
       }
       elements = updated;
+      for (const [node, state] of mountState) {
+        if (!updated.has(node)) {
+          for (const { unmount } of state) unmount?.();
+          mountState.delete(node);
+        }
+      }
       mount(runtime.node, root);
     };
 
@@ -124,6 +130,9 @@ export abstract class _Renderer<T extends _Element<T>> {
     return {
       destory: () => {
         listener.remove();
+        for (const state of mountState.values()) {
+          for (const { unmount } of state) unmount?.();
+        }
       },
     };
   }
