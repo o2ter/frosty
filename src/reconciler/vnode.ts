@@ -39,26 +39,13 @@ export type VNodeState = {
 
 export class VNode {
 
-  /** @internal */
-  _component: ComponentNode;
-
-  /** @internal */
-  _event: EventEmitter;
-
-  /** @internal */
-  _children: (VNode | string)[] = [];
-
-  /** @internal */
-  _state?: VNodeState[];
-
-  /** @internal */
-  _dirty = true;
-
-  /** @internal */
-  _counter = 0;
-
-  /** @internal */
-  _listens = new Map<Context<any>, any>();
+  private _component: ComponentNode;
+  private _event: EventEmitter;
+  private _children: (VNode | string)[] = [];
+  private _state?: VNodeState[];
+  private _dirty = true;
+  private _counter = 0;
+  private _listens = new Map<Context<any>, any>();
 
   constructor(component: ComponentNode, event: EventEmitter) {
     this._component = component;
@@ -89,6 +76,10 @@ export class VNode {
 
   get key() {
     return this._component.key;
+  }
+
+  get state() {
+    return this._state ?? [];
   }
 
   get children() {

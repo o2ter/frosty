@@ -53,8 +53,14 @@ export abstract class _Renderer<T extends _Element<T>> {
 
     const state = reconciler.buildVNodes(component);
 
-    let elements = new Map<VNode, T>();
-    let mountState = new Map<VNode, { hook: string; deps: any; unmount?: () => void; }[]>();
+    type _State = {
+      hook: string;
+      deps: any;
+      unmount?: () => void;
+    };
+
+    const elements = new Map<VNode, T>();
+    const mountState = new Map<VNode, _State[]>();
 
     const children = (node: VNode): (string | T)[] => {
       return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
@@ -66,11 +72,15 @@ export abstract class _Renderer<T extends _Element<T>> {
       for (const item of node.children) {
         if (item instanceof VNode) mount(item, element ?? parent);
       }
+      const _state: _State[] = [];
+      const prevState = mountState.get(node) ?? [];
+      for (const i of _.range(Math.max(prevState.length, node.state.length))) {
+
+      }
       const _children = children(node);
     };
 
     const update = () => {
-      const updated = new Map<VNode, T>();
       for (const node of state.excute()) {
         if (_.isFunction(node.type)) continue;
         let elem = elements.get(node);
@@ -79,9 +89,8 @@ export abstract class _Renderer<T extends _Element<T>> {
         } else {
           elem = this._createElement(node);
         }
-        updated.set(node, elem);
+        elements.set(node, elem);
       }
-      elements = updated;
       mount(state.node, root);
     };
 
