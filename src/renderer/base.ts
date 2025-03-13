@@ -126,10 +126,10 @@ export abstract class _Renderer<T extends _Element<T>> {
 
     return {
       destory: () => {
+        listener.remove();
         for (const { state } of mountState.values()) {
           for (const { unmount } of state) if (unmount) unmount();
         }
-        listener.remove();
       },
     };
   }
