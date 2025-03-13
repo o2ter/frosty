@@ -59,25 +59,24 @@ export abstract class _Renderer<T extends _Element<T>> {
       unmount?: () => void;
     };
 
-    let elements = new Map<VNode, T>();
-    let mountState = new Map<VNode, _State[]>();
+    let mountState = new Map<VNode, { element?: T; state: _State[]; }>();
 
     const children = (node: VNode): (string | T)[] => {
-      return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
+      return _.flatMap(node.children, x => _.isString(x) ? x : mountState.get(x)?.element ?? children(x));
     };
 
     const mount = (
       node: VNode,
       parent: T,
-      newMountState = new Map<VNode, _State[]>(),
+      newMountState = new Map<VNode, { element?: T; state: _State[]; }>(),
     ) => {
-      const element = elements.get(node);
+      const element = mountState.get(node)?.element;
       if (element) mergeRefs(node.props.ref)(element);
       for (const item of node.children) {
         if (item instanceof VNode) mount(item, element ?? parent, newMountState);
       }
       const state: _State[] = [];
-      const prevState = mountState.get(node) ?? [];
+      const prevState = mountState.get(node)?.state ?? [];
       const curState = node.state;
       for (const i of _.range(Math.max(prevState.length, curState.length))) {
         const unmount = prevState[i]?.unmount;
@@ -90,7 +89,7 @@ export abstract class _Renderer<T extends _Element<T>> {
           unmount: curState[i].mount?.(),
         });
       }
-      newMountState.set(node, state);
+      newMountState.set(node, { element, state });
       const _children = children(node);
       return newMountState;
     };
@@ -99,7 +98,7 @@ export abstract class _Renderer<T extends _Element<T>> {
       const updated = new Map<VNode, T>();
       for (const node of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
-        let elem = elements.get(node);
+        let elem = mountState.get(node)?.element;
         if (elem) {
           this._updateElement(node, elem);
         } else {
@@ -107,7 +106,6 @@ export abstract class _Renderer<T extends _Element<T>> {
         }
         updated.set(node, elem);
       }
-      elements = updated;
       mountState = mount(runtime.node, root);
     };
 
