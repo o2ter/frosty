@@ -44,7 +44,6 @@ export class VNode {
   private _children: (VNode | string)[] = [];
   private _state?: VNodeState[];
   private _dirty = true;
-  private _counter = 0;
   private _listens = new Map<Context<any>, any>();
 
   constructor(component: ComponentNode, event: EventEmitter) {
@@ -88,7 +87,6 @@ export class VNode {
 
   setDirty() {
     this._dirty = true;
-    this._counter += 1;
     this._event.emit('onchange');
   }
 
