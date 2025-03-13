@@ -69,12 +69,11 @@ export abstract class _Renderer<T extends _Element<T>> {
     const mount = (
       node: VNode,
       parent: T,
-      newMountState = new Map<VNode, _State[]>()
     ) => {
       const element = elements.get(node);
       if (element) mergeRefs(node.props.ref)(element);
       for (const item of node.children) {
-        if (item instanceof VNode) mount(item, element ?? parent, newMountState);
+        if (item instanceof VNode) mount(item, element ?? parent);
       }
       const state: _State[] = [];
       const prevState = mountState.get(node) ?? [];
@@ -90,9 +89,8 @@ export abstract class _Renderer<T extends _Element<T>> {
           unmount: curState[i].mount?.(),
         });
       }
-      newMountState.set(node, state);
+      mountState.set(node, state);
       const _children = children(node);
-      return newMountState;
     };
 
     const update = () => {
@@ -108,7 +106,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         updated.set(node, elem);
       }
       elements = updated;
-      mountState = mount(runtime.node, root);
+      mount(runtime.node, root);
     };
 
     let update_count = 0;
