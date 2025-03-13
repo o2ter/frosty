@@ -59,18 +59,22 @@ export abstract class _Renderer<T extends _Element<T>> {
       unmount?: () => void;
     };
 
-    const elements = new Map<VNode, T>();
-    const mountState = new Map<VNode, _State[]>();
+    let elements = new Map<VNode, T>();
+    let mountState = new Map<VNode, _State[]>();
 
     const children = (node: VNode): (string | T)[] => {
       return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
     };
 
-    const mount = (node: VNode, parent: T) => {
+    const mount = (
+      node: VNode,
+      parent: T,
+      newMountState = new Map<VNode, _State[]>(),
+    ) => {
       const element = elements.get(node);
       if (element) mergeRefs(node.props.ref)(element);
       for (const item of node.children) {
-        if (item instanceof VNode) mount(item, element ?? parent);
+        if (item instanceof VNode) mount(item, element ?? parent, newMountState);
       }
       const state: _State[] = [];
       const prevState = mountState.get(node) ?? [];
@@ -86,11 +90,13 @@ export abstract class _Renderer<T extends _Element<T>> {
           unmount: curState[i].mount?.(),
         });
       }
-      mountState.set(node, state);
+      newMountState.set(node, state);
       const _children = children(node);
+      return newMountState;
     };
 
     const update = () => {
+      const updated = new Map<VNode, T>();
       for (const node of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
         let elem = elements.get(node);
@@ -99,9 +105,10 @@ export abstract class _Renderer<T extends _Element<T>> {
         } else {
           elem = this._createElement(node);
         }
-        elements.set(node, elem);
+        updated.set(node, elem);
       }
-      mount(runtime.node, root);
+      elements = updated;
+      mountState = mount(runtime.node, root);
     };
 
     let update_count = 0;
