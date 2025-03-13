@@ -89,13 +89,14 @@ export const reconciler = new class {
   buildVNodes(component: ComponentNode) {
     const event = new EventEmitter();
     const node = new VNode(component, event);
-    const excute = function* () {
+    const excute = () => {
       const items = [{ node, contextValue: reconciler.contextDefaultValue }];
+      const result = [];
       let item;
       while (item = items.shift()) {
 
         const { node, contextValue } = item;
-        yield node;
+        result.push(node);
 
         node.updateIfNeed({ contextValue });
 
@@ -109,6 +110,7 @@ export const reconciler = new class {
           contextValue: _contextValue,
         })));
       }
+      return result;
     };
     return { node, event, excute };
   }
