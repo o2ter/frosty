@@ -29,6 +29,7 @@ import { ComponentNode } from '../common/types/component';
 import { reconciler } from '../reconciler/state';
 import nextick from 'nextick';
 import { mergeRefs } from '~/common/utils';
+import { equalDeps } from '~/reconciler/utils';
 
 interface _Element<C extends _Element<C>> {
 
@@ -80,7 +81,7 @@ export abstract class _Renderer<T extends _Element<T>> {
       for (const i of _.range(Math.max(prevState.length, curState.length))) {
         const unmount = prevState[i]?.unmount;
         if (unmount &&
-          (!_.isEqual(prevState[i].hook, curState[i]?.hook) || !_.isEqual(prevState[i].deps, curState[i]?.deps))
+          (!_.isEqual(prevState[i].hook, curState[i]?.hook) || !equalDeps(prevState[i].deps, curState[i]?.deps))
         ) unmount();
         state.push({
           hook: curState[i].hook,

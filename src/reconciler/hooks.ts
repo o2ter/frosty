@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import { reconciler } from './state';
+import { equalDeps } from './utils';
 
 const _useHookState = (hook: string) => {
   const state = reconciler.currentHookState;
@@ -50,16 +51,16 @@ export const _useEffect = (
   const idx = newState.length;
   if (
     prevState?.[idx]?.hook === hook &&
-    _.isEqual(prevState[idx].deps, deps)
+    equalDeps(prevState[idx].deps, deps)
   ) {
     newState.push({
       ...prevState[idx],
-      deps: deps ?? null,
+      deps,
     });
     return;
   }
   newState.push({
-    deps: deps ?? null,
+    deps,
     mount: () => effect(state),
     hook,
   });
@@ -75,17 +76,17 @@ export const _useMemo = <T>(
   const idx = newState.length;
   if (
     prevState?.[idx]?.hook === hook &&
-    _.isEqual(prevState[idx].deps, deps)
+    equalDeps(prevState[idx].deps, deps)
   ) {
     newState.push({
       ...prevState[idx],
-      deps: deps ?? null,
+      deps,
     });
     return prevState[idx].data;
   }
   const data = factory(state);
   newState.push({
-    deps: deps ?? null,
+    deps,
     hook,
     data
   });
