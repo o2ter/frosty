@@ -26,7 +26,9 @@
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
-import { globalAttrs, globalEventHandlersEventMap } from '~/web/html';
+import { globalAttrs, globalEventHandlersEventMap, HTMLElementTagNameMap } from '~/web/html';
+import { SVGElementTagNameMap } from '~/web/svg';
+import { MathMLElementTagNameMap } from '~/web/mathML';
 
 class _DOMRenderer extends _Renderer<Element> {
 
@@ -45,13 +47,19 @@ class _DOMRenderer extends _Renderer<Element> {
         case 'innerHTML':
           break;
         default:
-          if (key in globalAttrs) {
+          if (key in globalEventHandlersEventMap) {
+
+            continue;
+          }
+          for (const map of [HTMLElementTagNameMap, SVGElementTagNameMap, MathMLElementTagNameMap]) {
+            if (!(type in HTMLElementTagNameMap)) continue;
+            const { props } = map[type as keyof typeof map];
+            if (!(key in props)) continue;
             const validator = globalAttrs[key as keyof typeof globalAttrs];
             if (validator.varify(value)) {
               (elem as any)[key] = validator.encode(value);
             }
-          } else if (key in globalEventHandlersEventMap) {
-
+            break;
           }
           break;
       }
