@@ -57,7 +57,7 @@ class _DOMRenderer extends _Renderer<Element> {
             if (!(key in props)) continue;
             const validator = globalAttrs[key as keyof typeof globalAttrs];
             if (validator.varify(value)) {
-              (elem as any)[key] = validator.encode(value);
+              elem.setAttribute(key, validator.encode(value));
             }
             break;
           }
