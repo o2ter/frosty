@@ -152,7 +152,10 @@ export class PropValue<T, U = T> {
     encode: x => x,
   });
 
-  static crossOrigin = () => this.string<'' | 'anonymous' | 'use-credentials'>();
+  static crossOrigin = () => this.string<
+    | ''
+    | 'anonymous'
+    | 'use-credentials'>();
   static ariaRole = () => this.string<AriaRole>()
 
   static any = () => new PropValue<any>({});
