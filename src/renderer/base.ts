@@ -38,8 +38,6 @@ interface _Element<C extends _Element<C>> {
   parentElement: C | null;
 
   replaceChildren(...nodes: (C | string)[]): void;
-
-  remove(): void;
 }
 
 export abstract class _Renderer<T extends _Element<T>> {
@@ -147,7 +145,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         state = this._createRoot(root, component);
       },
       unmount: () => {
-        for (const item of root.children) item.remove();
+        root.replaceChildren();
         state?.destroy();
         state = undefined;
       },
