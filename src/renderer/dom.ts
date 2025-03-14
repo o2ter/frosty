@@ -35,6 +35,8 @@ class _DOMRenderer extends _Renderer<Element> {
     if (!_.isString(type)) throw Error('Invalid type');
     const elem = document.createElement(type);
 
+    const { className, style, ...props } = node.props ?? {};
+
     return elem;
   }
 
