@@ -56,8 +56,9 @@ export class VNode {
     if (_.isBoolean(child) || _.isNil(child)) return [];
     if (_.isString(child)) return [child];
     if (_.isNumber(child)) return [`${child}`];
-    if (_.isArrayLikeObject(child)) return _.flatMap(child, x => this._resolve_children(x));
     if (child instanceof ComponentNode) return [new VNode(child, this._event)];
+    if (_.isArrayLikeObject(child)) return _.flatMap(child, x => this._resolve_children(x));
+    if (typeof child[Symbol.iterator] === 'function') return _.flatMap([...child], x => this._resolve_children(x));
     throw Error(`${child} are not valid as a child.`);
   }
 
