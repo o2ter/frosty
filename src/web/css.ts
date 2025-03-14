@@ -31,14 +31,23 @@ type AtRules =
   | '@media'
   | '@supports';
 
+type Combinator =
+  | '>'
+  | '||'
+  | ' '
+  | '+'
+  | '~';
+
 interface _CSSProperties extends CSS.StandardProperties<string | number> {
   [key: `--${string}`]: string | number;
 }
 
 export type CSSProperties = _CSSProperties & {
-  [at in AtRules]?: string;
+  [key in AtRules]?: string;
 } & {
-  [pseudos in CSS.Pseudos]?: _CSSProperties;
+  [key in `&${Combinator}${string}`]?: string;
+} & {
+  [key in CSS.Pseudos]?: _CSSProperties;
 };
 
 interface _SVGProperties extends CSS.SvgProperties<string | number> {
@@ -46,7 +55,9 @@ interface _SVGProperties extends CSS.SvgProperties<string | number> {
 }
 
 export type SVGProperties = _SVGProperties & {
-  [at in AtRules]?: string;
+  [key in AtRules]?: string;
 } & {
-  [pseudos in `${CSS.Pseudos}`]?: _SVGProperties;
+  [key in `&${Combinator}${string}`]?: string;
+} & {
+  [key in `${CSS.Pseudos}`]?: _SVGProperties;
 }
