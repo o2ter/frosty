@@ -104,7 +104,7 @@ export type PropMap<M extends Record<string, any>> = {
   [x in keyof M]?: M[x] extends PropValue<infer T, any> ? T : M[x];
 };
 
-export class PropValue<T = any, U = T> {
+export class PropValue<T, U = T> {
 
   _varify?: (x: any) => x is T;
   _encode?: (x: T) => U;
@@ -121,7 +121,7 @@ export class PropValue<T = any, U = T> {
     return this._varify ? this._varify(x) : true;
   }
 
-  encode(x: T) {
+  encode(x: any) {
     return this._encode?.(x);
   }
 
