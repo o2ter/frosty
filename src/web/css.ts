@@ -29,7 +29,11 @@ import * as CSS from 'csstype';
 export { AtRule, Pseudos } from 'csstype';
 
 export interface CSSProperties extends CSS.StandardProperties<string | number> {
+
+  [key: `--${string}`]: string | number;
 }
 
 export interface SVGProperties extends CSS.SvgProperties<string | number> {
+
+  [key: `--${string}`]: string | number;
 }
