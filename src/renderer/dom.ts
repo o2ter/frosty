@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
+import { globalAttrs, globalEventHandlersEventMap } from '~/web/html';
 
 class _DOMRenderer extends _Renderer<Element> {
 
@@ -35,7 +36,26 @@ class _DOMRenderer extends _Renderer<Element> {
     if (!_.isString(type)) throw Error('Invalid type');
     const elem = document.createElement(type);
 
-    const { className, style, innerHTML, ...props } = node.props ?? {};
+    for (const [key, value] of _.entries(node.props)) {
+      switch (key) {
+        case 'className':
+          break;
+        case 'style':
+          break;
+        case 'innerHTML':
+          break;
+        default:
+          if (key in globalAttrs) {
+            const validator = globalAttrs[key as keyof typeof globalAttrs];
+            if (validator.varify(value)) {
+              (elem as any)[key] = validator.encode(value);
+            }
+          } else if (key in globalEventHandlersEventMap) {
+
+          }
+          break;
+      }
+    }
 
     return elem;
   }

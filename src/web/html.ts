@@ -99,7 +99,7 @@ export const globalAttrs = {
 
   innerHTML: PropValue.string(),
 
-} as const;
+};
 
 type EventHandler<T extends Event> = (event: T) => any;
 
@@ -218,7 +218,7 @@ export const globalEventHandlersEventMap = {
   // Transition Events
   onTransitionEnd: PropValue.function<EventHandler<TransitionEvent>>(),
 
-} as const;
+};
 
 export const HTMLElementTagNameMap = {
   "a": {
