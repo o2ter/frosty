@@ -26,8 +26,6 @@
 import _ from 'lodash';
 import * as CSS from 'csstype';
 
-export { AtRule, Pseudos, AdvancedPseudos, SimplePseudos } from 'csstype';
-
 interface _CSSProperties extends CSS.StandardProperties<string | number> {
   [key: `--${string}`]: string | number;
 }
