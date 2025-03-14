@@ -27,6 +27,7 @@ import _ from 'lodash';
 import * as CSS from 'csstype';
 
 interface _CSSProperties extends CSS.StandardProperties<string | number> {
+  '@media'?: string;
   [key: `--${string}`]: string | number;
 }
 
@@ -35,6 +36,7 @@ export type CSSProperties = _CSSProperties & {
 };
 
 interface _SVGProperties extends CSS.SvgProperties<string | number> {
+  '@media'?: string;
   [key: `--${string}`]: string | number;
 }
 
