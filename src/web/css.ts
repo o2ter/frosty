@@ -26,14 +26,20 @@
 import _ from 'lodash';
 import * as CSS from 'csstype';
 
-export { AtRule, Pseudos } from 'csstype';
+export { AtRule, Pseudos, AdvancedPseudos, SimplePseudos } from 'csstype';
 
-export interface CSSProperties extends CSS.StandardProperties<string | number> {
-
+interface _CSSProperties extends CSS.StandardProperties<string | number> {
   [key: `--${string}`]: string | number;
 }
 
-export interface SVGProperties extends CSS.SvgProperties<string | number> {
+export type CSSProperties = _CSSProperties & {
+  [pseudos in `${CSS.Pseudos}`]?: _CSSProperties;
+};
 
+interface _SVGProperties extends CSS.SvgProperties<string | number> {
   [key: `--${string}`]: string | number;
+}
+
+export type SVGProperties = _SVGProperties & {
+  [pseudos in `${CSS.Pseudos}`]?: _SVGProperties;
 }
