@@ -145,6 +145,12 @@ export class PropValue<T, U = T> {
     varify: (x): x is T => _.isBoolean(x),
     encode: x => x,
   });
+
+  static function = <T extends Function = Function>() => new PropValue<T>({
+    varify: (x): x is T => _.isFunction(x),
+    encode: x => x,
+  });
+
   static className = () => new PropValue<ClassName>({});
 
   static oneOf = <T>(values: T[]) => new PropValue({
