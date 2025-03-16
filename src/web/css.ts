@@ -41,7 +41,7 @@ type Combinator =
 type PropsWithSelector<Props> = Props & {
   [key in `[${string}]`]?: PropsWithSelector<Props>;
 } & {
-  [key in AtRules]?: PropsWithSelector<Props>;
+  [key in `${AtRules} ${string}`]?: PropsWithSelector<Props>;
 } & {
   [key in `&${Combinator}${string}`]?: PropsWithSelector<Props>;
 } & {
