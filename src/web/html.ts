@@ -38,19 +38,18 @@ export const globalAttrs = {
   autoFocus: PropValue.boolean({ attr: 'autofocus' }),
   className: PropValue.className(),
   contentEditable: PropValue.oneOf([true, false, 'inherit', 'plaintext-only'] as const, { attr: 'contenteditable' }),
-  contextMenu: PropValue.string(),
-  dir: PropValue.string(),
-  draggable: PropValue.boolean(),
-  hidden: PropValue.boolean(),
-  id: PropValue.string(),
-  lang: PropValue.string(),
-  nonce: PropValue.string(),
-  slot: PropValue.string(),
-  spellCheck: PropValue.boolean(),
-  style: new PropValue<StyleProp<CSSProperties>>({}),
-  tabIndex: PropValue.number(),
-  title: PropValue.string(),
-  translate: PropValue.oneOf(['yes', 'no'] as const),
+  dir: PropValue.string({ attr: 'dir' }),
+  draggable: PropValue.boolean({ attr: 'draggable' }),
+  hidden: PropValue.boolean({ attr: 'hidden' }),
+  id: PropValue.string({ attr: 'id' }),
+  lang: PropValue.string({ attr: 'lang' }),
+  nonce: PropValue.string({ attr: 'nonce' }),
+  slot: PropValue.string({ attr: 'slot' }),
+  spellCheck: PropValue.boolean({ attr: 'spellcheck' }),
+  style: new PropValue<StyleProp<CSSProperties>>({ attr: 'style' }),
+  tabIndex: PropValue.number({ attr: 'tabindex' }),
+  title: PropValue.string({ attr: 'title' }),
+  translate: PropValue.oneOf(['yes', 'no'] as const, { attr: 'translate' }),
 
   // WAI-ARIA
   role: PropValue.ariaRole(),
@@ -221,19 +220,19 @@ export const HTMLElementTagNameMap = {
   "a": {
     type: HTMLAnchorElement,
     props: _.assign({}, globalAttrs, globalEventHandlersEventMap, {
-      download: PropValue.any(),
-      href: PropValue.string(),
-      hrefLang: PropValue.string(),
-      media: PropValue.string(),
-      ping: PropValue.string(),
+      download: PropValue.any({ attr: 'download' }),
+      href: PropValue.string({ attr: 'href' }),
+      hrefLang: PropValue.string({ attr: 'hreflang' }),
+      media: PropValue.string({ attr: 'media' }),
+      ping: PropValue.string({ attr: 'ping' }),
       target: PropValue.string<
         | '_self'
         | '_blank'
         | '_parent'
         | '_top'
-        | (string & {})>(),
-      type: PropValue.string(),
-      referrerPolicy: PropValue.oneOf(['', 'no-referrer', 'no-referrer-when-downgrade', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'] as const),
+        | (string & {})>({ attr: 'target' }),
+      type: PropValue.string({ attr: 'type' }),
+      referrerPolicy: PropValue.oneOf(['', 'no-referrer', 'no-referrer-when-downgrade', 'origin', 'origin-when-cross-origin', 'same-origin', 'strict-origin', 'strict-origin-when-cross-origin', 'unsafe-url'] as const, { attr: 'referrerpolicy' }),
     }),
   },
   "abbr": {

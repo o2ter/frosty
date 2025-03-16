@@ -51,7 +51,7 @@ const svgAttrs = {
 
   // Other HTML properties supported by SVG elements in browsers
   role: PropValue.ariaRole(),
-  tabIndex: PropValue.number(),
+  tabIndex: PropValue.number({ attr: 'tabindex' }),
   crossOrigin: PropValue.crossOrigin(),
 
   // SVG Specific attributes
