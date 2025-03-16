@@ -48,14 +48,10 @@ type PropsWithSelector<Props> = Props & {
   [key in CSS.Pseudos]?: PropsWithSelector<Props>;
 };
 
-interface _CSSProperties extends CSS.StandardProperties<string | number> {
+export type CSSProperties = PropsWithSelector<CSS.StandardProperties<string | number> & {
   [key: `--${string}`]: string | number;
-}
+} >;
 
-export type CSSProperties = PropsWithSelector<_CSSProperties>;
-
-interface _SVGProperties extends CSS.SvgProperties<string | number> {
+export type SVGProperties = PropsWithSelector<CSS.SvgProperties<string | number> & {
   [key: `--${string}`]: string | number;
-}
-
-export type SVGProperties = PropsWithSelector<_SVGProperties>;
+} >;
