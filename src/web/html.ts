@@ -56,17 +56,17 @@ export const globalAttrs = {
   role: PropValue.ariaRole(),
 
   // RDFa Attributes
-  about: PropValue.string(),
-  content: PropValue.string(),
-  datatype: PropValue.string(),
-  inlist: PropValue.any(),
-  prefix: PropValue.string(),
-  property: PropValue.string(),
-  rel: PropValue.string(),
-  resource: PropValue.string(),
-  rev: PropValue.string(),
-  typeof: PropValue.string(),
-  vocab: PropValue.string(),
+  about: PropValue.string({ attr: 'about' }),
+  content: PropValue.string({ attr: 'content' }),
+  datatype: PropValue.string({ attr: 'datatype' }),
+  inlist: PropValue.any({ attr: 'inlist' }),
+  prefix: PropValue.string({ attr: 'prefix' }),
+  property: PropValue.string({ attr: 'property' }),
+  rel: PropValue.string({ attr: 'rel' }),
+  resource: PropValue.string({ attr: 'resource' }),
+  rev: PropValue.string({ attr: 'rev' }),
+  typeof: PropValue.string({ attr: 'typeof' }),
+  vocab: PropValue.string({ attr: 'vocab' }),
 
   // Non-standard Attributes
   autoCapitalize: PropValue.string(),
