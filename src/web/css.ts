@@ -26,17 +26,9 @@
 import _ from 'lodash';
 import * as CSS from 'csstype';
 
-type AtRules =
-  | '@container'
-  | '@media'
-  | '@supports';
-
 type PropsWithSelector<Props> = Props & {
-  [key in `[${string}]`]?: PropsWithSelector<Props>;
-} & {
-  [key in `${AtRules} ${string}`]?: PropsWithSelector<Props>;
-} & {
-  [key in CSS.Pseudos]?: PropsWithSelector<Props>;
+  '@rule'?: string;
+  '@selector'?: string;
 };
 
 export type CSSProperties = PropsWithSelector<CSS.StandardProperties<string | number> & {
