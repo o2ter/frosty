@@ -171,11 +171,11 @@ export class PropValue<T, U = T> {
     encode: x => x,
   });
 
-  static crossOrigin = (opts: { attr: string }) => this.string<
+  static crossOrigin = () => this.string<
     | ''
     | 'anonymous'
-    | 'use-credentials'>(opts);
-  static ariaRole = (opts: { attr: string }) => this.string<AriaRole>(opts);
+    | 'use-credentials'>({ attr: 'crossorigin'});
+  static ariaRole = () => this.string<AriaRole>({ attr: 'role' });
 
   static any = (opts: { attr: string }) => new PropValue<any>({
     ...opts,
