@@ -26,15 +26,11 @@
 import _ from 'lodash';
 import * as CSS from 'csstype';
 
-type PropsWithSelector<Props> = Props & {
+type PropsWithExtends<Props> = Props & {
   '@rule'?: string;
   '@selector'?: string;
+  [key: `--${string}`]: string | number;
 };
 
-export type CSSProperties = PropsWithSelector<CSS.StandardProperties<string | number> & {
-  [key: `--${string}`]: string | number;
-} >;
-
-export type SVGProperties = PropsWithSelector<CSS.SvgProperties<string | number> & {
-  [key: `--${string}`]: string | number;
-} >;
+export type CSSProperties = PropsWithExtends<CSS.StandardProperties<string | number>>;
+export type SVGProperties = PropsWithExtends<CSS.SvgProperties<string | number>>;
