@@ -67,20 +67,6 @@ export const globalAttrs = {
   typeof: PropValue.string({ attr: 'typeof' }),
   vocab: PropValue.string({ attr: 'vocab' }),
 
-  // Non-standard Attributes
-  autoCapitalize: PropValue.string(),
-  autoCorrect: PropValue.string(),
-  autoSave: PropValue.string(),
-  color: PropValue.string(),
-  itemProp: PropValue.string(),
-  itemScope: PropValue.boolean(),
-  itemType: PropValue.string(),
-  itemID: PropValue.string(),
-  itemRef: PropValue.string(),
-  results: PropValue.number(),
-  security: PropValue.string(),
-  unselectable: PropValue.oneOf(['on', 'off'] as const),
-
   // Living Standard
   /**
    * Hints at the type of data that might be entered by the user while editing the element or its contents
