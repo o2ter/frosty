@@ -31,19 +31,10 @@ type AtRules =
   | '@media'
   | '@supports';
 
-type Combinator =
-  | '>'
-  | '||'
-  | ' '
-  | '+'
-  | '~';
-
 type PropsWithSelector<Props> = Props & {
   [key in `[${string}]`]?: PropsWithSelector<Props>;
 } & {
   [key in `${AtRules} ${string}`]?: PropsWithSelector<Props>;
-} & {
-  [key in `&${Combinator}${string}`]?: PropsWithSelector<Props>;
 } & {
   [key in CSS.Pseudos]?: PropsWithSelector<Props>;
 };
