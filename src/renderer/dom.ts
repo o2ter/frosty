@@ -29,6 +29,7 @@ import { _Renderer } from './base';
 import { globalAttrs, globalEventHandlersEventMap, HTMLElementTagNameMap } from '~/web/html';
 import { SVGElementTagNameMap } from '~/web/svg';
 import { MathMLElementTagNameMap } from '~/web/mathML';
+import { PropValue } from '~/web/props';
 
 class _DOMRenderer extends _Renderer<Element> {
 
@@ -53,15 +54,14 @@ class _DOMRenderer extends _Renderer<Element> {
           }
           for (const map of [HTMLElementTagNameMap, SVGElementTagNameMap, MathMLElementTagNameMap]) {
             if (!(type in HTMLElementTagNameMap)) continue;
-            const { props } = map[type as keyof typeof map];
-            if (!(key in props)) continue;
-            const validator = globalAttrs[key as keyof typeof globalAttrs];
-            if (validator.varify(value)) {
-              const encoded = validator.encode(value);
+            const { props } = map[type as keyof typeof map] as { props: Record<string, PropValue<any>>; };
+            const prop = props[key];
+            if (prop?.varify(value)) {
+              const encoded = prop.encode(value);
               if (encoded === true) {
-                elem.setAttribute(props.attr, '');
+                elem.setAttribute(prop.attr, '');
               } else if (_.isNumber(encoded) || _.isString(encoded)) {
-                elem.setAttribute(props.attr, `${encoded}`);
+                elem.setAttribute(prop.attr, `${encoded}`);
               }
             }
             break;

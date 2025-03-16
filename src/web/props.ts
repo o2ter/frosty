@@ -106,7 +106,7 @@ export type PropMap<M extends Record<string, any>> = {
 
 export class PropValue<T, U = T> {
 
-  private _attr?: string;
+  private _attr: string;
   private _varify?: (x: any) => x is T;
   private _encode?: (x: T) => U;
 
