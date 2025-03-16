@@ -71,7 +71,7 @@ export class VNode {
   }
 
   get props() {
-    return this._component.props;
+    return _.omit(this._component.props, 'children');
   }
 
   get key() {
