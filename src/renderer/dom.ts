@@ -32,7 +32,7 @@ class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _createElement(node: VNode) {
-    const { type } = node.component;
+    const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     const elem = document.createElement(type);
 

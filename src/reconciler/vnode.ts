@@ -62,10 +62,6 @@ export class VNode {
     throw Error(`${child} are not valid as a child.`);
   }
 
-  get component() {
-    return this._component;
-  }
-
   get type() {
     return this._component.type;
   }
@@ -117,7 +113,7 @@ export class VNode {
       const diff = myersSync(this._children, children, {
         compare: (lhs, rhs) => {
           if (_.isString(lhs) && _.isString(rhs)) return lhs === rhs;
-          if (lhs instanceof VNode && rhs instanceof VNode) return lhs.component._equal(rhs.component);
+          if (lhs instanceof VNode && rhs instanceof VNode) return lhs._component._equal(rhs._component);
           return false;
         },
       });
@@ -125,7 +121,7 @@ export class VNode {
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
         if (!(children[i] instanceof VNode)) continue;
-        if (!_.isEqual(item.component.props, children[i].component.props)) item._dirty = true;
+        if (!_.isEqual(item._component.props, children[i]._component.props)) item._dirty = true;
         item._component = children[i]._component;
       }
     } finally {
