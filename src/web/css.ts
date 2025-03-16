@@ -38,30 +38,24 @@ type Combinator =
   | '+'
   | '~';
 
+type PropsWithSelector<Props> = Props & {
+  [key in `[${string}]`]?: PropsWithSelector<Props>;
+} & {
+  [key in AtRules]?: PropsWithSelector<Props>;
+} & {
+  [key in `&${Combinator}${string}`]?: PropsWithSelector<Props>;
+} & {
+  [key in CSS.Pseudos]?: PropsWithSelector<Props>;
+};
+
 interface _CSSProperties extends CSS.StandardProperties<string | number> {
   [key: `--${string}`]: string | number;
 }
 
-export type CSSProperties = _CSSProperties & {
-  [key in `[${string}]`]?: CSSProperties;
-} & {
-  [key in AtRules]?: CSSProperties;
-} & {
-  [key in `&${Combinator}${string}`]?: CSSProperties;
-} & {
-  [key in CSS.Pseudos]?: CSSProperties;
-};
+export type CSSProperties = PropsWithSelector<_CSSProperties>;
 
 interface _SVGProperties extends CSS.SvgProperties<string | number> {
   [key: `--${string}`]: string | number;
 }
 
-export type SVGProperties = _SVGProperties & {
-  [key in `[${string}]`]?: SVGProperties;
-} & {
-  [key in AtRules]?: SVGProperties;
-} & {
-  [key in `&${Combinator}${string}`]?: SVGProperties;
-} & {
-  [key in `${CSS.Pseudos}`]?: SVGProperties;
-}
+export type SVGProperties = PropsWithSelector<_SVGProperties>;
