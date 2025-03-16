@@ -90,14 +90,14 @@ export const globalAttrs = {
    * Hints at the type of data that might be entered by the user while editing the element or its contents
    * @see {@link https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute}
    */
-  inputMode: PropValue.oneOf(['none', 'text', 'tel', 'url', 'email', 'numeric', 'decimal', 'search'] as const),
+  inputMode: PropValue.oneOf(['none', 'text', 'tel', 'url', 'email', 'numeric', 'decimal', 'search'] as const, { attr: 'inputmode' }),
   /**
    * Specify that a standard HTML element should behave like a defined custom built-in element
    * @see {@link https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is}
    */
-  is: PropValue.string(),
+  is: PropValue.string({ attr: 'is' }),
 
-  innerHTML: PropValue.string(),
+  innerHTML: PropValue.string({ attr: 'innerHTML' }),
 
 };
 
