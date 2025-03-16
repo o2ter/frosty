@@ -52,9 +52,6 @@ export const globalAttrs = {
   title: PropValue.string(),
   translate: PropValue.oneOf(['yes', 'no'] as const),
 
-  // Unknown
-  radioGroup: PropValue.string(), // <command>, <menuitem>
-
   // WAI-ARIA
   role: PropValue.ariaRole(),
 
