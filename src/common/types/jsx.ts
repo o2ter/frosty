@@ -27,9 +27,11 @@ import { MathMLElementTagNameMap } from '../../web/mathML';
 import { SVGElementTagNameMap } from '../../web/svg';
 import { HTMLElementDeprecatedTagNameMap } from '../../web/html';
 import { HTMLElementTagNameMap } from '../../web/html';
-import { PropMap, PropValue } from '../../web/props';
 import { MergeObject } from '@o2ter/utils-js';
 import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
+import { ClassName, StyleProp } from '../styles/types';
+import { CSSProperties, SVGProperties } from '../../web/css';
+import { globalEventHandlersEventMap } from '../../web/event';
 
 export type _ElementType = string | ComponentType;
 
@@ -37,19 +39,29 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 }
 
-type ElementPropsMap<
-  M extends Record<string, {
-    type: any;
-    props: Record<string, PropValue<any, any>>,
-  }>
-> = {
-    [x in keyof M]: _IntrinsicAttributes<InstanceType<M[x]['type']>>
-    & PropsWithChildren<PropMap<M[x]['props']>>;
-  };
-
 export type _IntrinsicElements = MergeObject<
-  ElementPropsMap<typeof HTMLElementTagNameMap>
-  | ElementPropsMap<typeof HTMLElementDeprecatedTagNameMap>
-  | ElementPropsMap<typeof SVGElementTagNameMap>
-  | ElementPropsMap<typeof MathMLElementTagNameMap>
+  | {
+    [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<{
+      className?: ClassName;
+      style?: StyleProp<CSSProperties>;
+      innerHTML?: string;
+    } & typeof globalEventHandlersEventMap>
+  }
+  | {
+    [x in keyof typeof HTMLElementDeprecatedTagNameMap]: PropsWithChildren<{
+      className?: ClassName;
+      style?: StyleProp<CSSProperties>;
+      innerHTML?: string;
+    } & typeof globalEventHandlersEventMap>
+  }
+  | {
+    [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{
+      className?: ClassName;
+      style?: StyleProp<SVGProperties>;
+    } & typeof globalEventHandlersEventMap>
+  }
+  | {
+    [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{
+    }>
+  }
 > & { [x: string]: any; };

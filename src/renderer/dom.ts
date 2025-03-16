@@ -26,10 +26,7 @@
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
-import { globalAttrs, globalEventHandlersEventMap, HTMLElementDeprecatedTagNameMap, HTMLElementTagNameMap } from '~/web/html';
-import { SVGElementTagNameMap } from '~/web/svg';
-import { MathMLElementTagNameMap } from '~/web/mathML';
-import { PropValue } from '~/web/props';
+import { globalEventHandlersEventMap } from '~/web/event';
 
 class _DOMRenderer extends _Renderer<Element> {
 
@@ -52,19 +49,10 @@ class _DOMRenderer extends _Renderer<Element> {
 
             continue;
           }
-          for (const map of [HTMLElementTagNameMap, HTMLElementDeprecatedTagNameMap, SVGElementTagNameMap, MathMLElementTagNameMap]) {
-            if (!(type in HTMLElementTagNameMap)) continue;
-            const { props } = map[type as keyof typeof map] as { props: Record<string, PropValue<any>>; };
-            const prop = props[key];
-            if (prop?.varify(value)) {
-              const encoded = prop.encode(value);
-              if (encoded === true) {
-                elem.setAttribute(prop.attr, '');
-              } else if (_.isNumber(encoded) || _.isString(encoded)) {
-                elem.setAttribute(prop.attr, `${encoded}`);
-              }
-            }
-            break;
+          if (value === true) {
+            elem.setAttribute(key, '');
+          } else if (_.isNumber(value) || _.isString(value)) {
+            elem.setAttribute(key, `${value}`);
           }
           break;
       }
