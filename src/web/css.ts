@@ -43,11 +43,11 @@ interface _CSSProperties extends CSS.StandardProperties<string | number> {
 }
 
 export type CSSProperties = _CSSProperties & {
-  [key in AtRules]?: string;
+  [key in AtRules]?: CSSProperties;
 } & {
-  [key in `&${Combinator}${string}`]?: string;
+  [key in `&${Combinator}${string}`]?: CSSProperties;
 } & {
-  [key in CSS.Pseudos]?: _CSSProperties;
+  [key in CSS.Pseudos]?: CSSProperties;
 };
 
 interface _SVGProperties extends CSS.SvgProperties<string | number> {
@@ -55,9 +55,9 @@ interface _SVGProperties extends CSS.SvgProperties<string | number> {
 }
 
 export type SVGProperties = _SVGProperties & {
-  [key in AtRules]?: string;
+  [key in AtRules]?: CSSProperties;
 } & {
-  [key in `&${Combinator}${string}`]?: string;
+  [key in `&${Combinator}${string}`]?: CSSProperties;
 } & {
-  [key in `${CSS.Pseudos}`]?: _SVGProperties;
+  [key in `${CSS.Pseudos}`]?: CSSProperties;
 }
