@@ -34,10 +34,10 @@ import { CSSProperties } from './css';
 
 export const globalAttrs = {
   // Standard HTML Attributes
-  accessKey: PropValue.string(),
-  autoFocus: PropValue.boolean(),
+  accessKey: PropValue.string({ attr: 'accesskey' }),
+  autoFocus: PropValue.boolean({ attr: 'autofocus' }),
   className: PropValue.className(),
-  contentEditable: PropValue.oneOf([true, false, 'inherit', 'plaintext-only'] as const),
+  contentEditable: PropValue.oneOf([true, false, 'inherit', 'plaintext-only'] as const, { attr: 'contenteditable' }),
   contextMenu: PropValue.string(),
   dir: PropValue.string(),
   draggable: PropValue.boolean(),

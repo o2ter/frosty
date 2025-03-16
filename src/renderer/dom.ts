@@ -59,9 +59,9 @@ class _DOMRenderer extends _Renderer<Element> {
             if (validator.varify(value)) {
               const encoded = validator.encode(value);
               if (encoded === true) {
-                elem.setAttribute(key, '');
+                elem.setAttribute(props.attr, '');
               } else if (_.isNumber(encoded) || _.isString(encoded)) {
-                elem.setAttribute(key, `${encoded}`);
+                elem.setAttribute(props.attr, `${encoded}`);
               }
             }
             break;

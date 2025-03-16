@@ -32,7 +32,7 @@ import { PropValue } from './props';
 
 const globalAttrs = {
   // Standard SVG Attributes
-  id: PropValue.string(),
+  id: PropValue.string({ attr: 'id' }),
 };
 
 export const MathMLElementTagNameMap = {

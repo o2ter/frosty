@@ -106,15 +106,22 @@ export type PropMap<M extends Record<string, any>> = {
 
 export class PropValue<T, U = T> {
 
-  _varify?: (x: any) => x is T;
-  _encode?: (x: T) => U;
+  private _attr?: string;
+  private _varify?: (x: any) => x is T;
+  private _encode?: (x: T) => U;
 
   constructor(options: {
+    attr: string,
     varify?: (x: any) => x is T,
     encode?: (x: T) => U,
   }) {
+    this._attr = this.attr;
     this._varify = options.varify;
     this._encode = options.encode;
+  }
+
+  get attr() {
+    return this._attr;
   }
 
   varify(x: any) {
@@ -122,47 +129,55 @@ export class PropValue<T, U = T> {
   }
 
   encode(x: any) {
-    return this._encode?.(x);
+    return this._encode ? this._encode(x) : x;
   }
 
   /**
    * HTML attribute values
    */
 
-  static string = <T extends string>() => new PropValue<T>({
+  static string = <T extends string>(opts: { attr: string }) => new PropValue<T>({
+    ...opts,
     varify: (x): x is T => _.isString(x),
     encode: x => x,
   });
-  static number = <T extends string>() => new PropValue<T>({
+  static number = <T extends string>(opts: { attr: string }) => new PropValue<T>({
+    ...opts,
     varify: (x): x is T => _.isNumber(x),
     encode: x => x,
   });
-  static stringOrNumber = <T extends string | string>() => new PropValue<T>({
+  static stringOrNumber = <T extends string | string>(opts: { attr: string }) => new PropValue<T>({
+    ...opts,
     varify: (x): x is T => _.isString(x) || _.isNumber(x),
     encode: x => x,
   });
-  static boolean = <T extends string>() => new PropValue<T>({
+  static boolean = <T extends string>(opts: { attr: string }) => new PropValue<T>({
+    ...opts,
     varify: (x): x is T => _.isBoolean(x),
     encode: x => x,
   });
 
-  static function = <T extends Function = Function>() => new PropValue<T>({
+  static function = <T extends Function = Function>(opts: { attr: string }) => new PropValue<T>({
+    ...opts,
     varify: (x): x is T => _.isFunction(x),
     encode: x => x,
   });
 
-  static className = () => new PropValue<ClassName>({});
+  static className = () => new PropValue<ClassName>({ attr: 'class' });
 
-  static oneOf = <T>(values: T[]) => new PropValue({
+  static oneOf = <T>(values: T[], opts: { attr: string }) => new PropValue({
+    ...opts,
     varify: (x): x is T => _.includes(values, x),
     encode: x => x,
   });
 
-  static crossOrigin = () => this.string<
+  static crossOrigin = (opts: { attr: string }) => this.string<
     | ''
     | 'anonymous'
-    | 'use-credentials'>();
-  static ariaRole = () => this.string<AriaRole>()
+    | 'use-credentials'>(opts);
+  static ariaRole = (opts: { attr: string }) => this.string<AriaRole>(opts);
 
-  static any = () => new PropValue<any>({});
+  static any = (opts: { attr: string }) => new PropValue<any>({
+    ...opts,
+  });
 }
