@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
-import { globalAttrs, globalEventHandlersEventMap, HTMLElementTagNameMap } from '~/web/html';
+import { globalAttrs, globalEventHandlersEventMap, HTMLElementDeprecatedTagNameMap, HTMLElementTagNameMap } from '~/web/html';
 import { SVGElementTagNameMap } from '~/web/svg';
 import { MathMLElementTagNameMap } from '~/web/mathML';
 import { PropValue } from '~/web/props';
@@ -52,7 +52,7 @@ class _DOMRenderer extends _Renderer<Element> {
 
             continue;
           }
-          for (const map of [HTMLElementTagNameMap, SVGElementTagNameMap, MathMLElementTagNameMap]) {
+          for (const map of [HTMLElementTagNameMap, HTMLElementDeprecatedTagNameMap, SVGElementTagNameMap, MathMLElementTagNameMap]) {
             if (!(type in HTMLElementTagNameMap)) continue;
             const { props } = map[type as keyof typeof map] as { props: Record<string, PropValue<any>>; };
             const prop = props[key];
