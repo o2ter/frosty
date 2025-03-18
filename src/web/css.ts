@@ -32,7 +32,7 @@ type AtRules =
   | '@supports';
 
 type PropsWithExtends<Props> = Props & {
-  [rule in `${AtRules} ${string}`]: PropsWithExtends<Props>;
+  [rule in `${AtRules} ${string}`]?: PropsWithExtends<Props>;
 } & {
   [selector: `$${string}`]: PropsWithExtends<Props>;
   [variable: `--${string}`]: string | 0;
