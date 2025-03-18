@@ -405,5 +405,4 @@ export type Styles = {
   writingDirection?: 'auto' | 'ltr' | 'rtl';
   MozOsxFontSmoothing?: string;
   WebkitFontSmoothing?: string;
-  textAlignVertical?: string;
 };
