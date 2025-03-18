@@ -45,20 +45,20 @@ export type _IntrinsicElements = MergeObject<
       className?: ClassName;
       style?: StyleProp<CSSProperties>;
       innerHTML?: string;
-    } & typeof globalEventHandlersEventMap>
+    } & Partial<typeof globalEventHandlersEventMap>>
   }
   | {
     [x in keyof typeof HTMLElementDeprecatedTagNameMap]: PropsWithChildren<{
       className?: ClassName;
       style?: StyleProp<CSSProperties>;
       innerHTML?: string;
-    } & typeof globalEventHandlersEventMap>
+    } & Partial<typeof globalEventHandlersEventMap>>
   }
   | {
     [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{
       className?: ClassName;
       style?: StyleProp<SVGProperties>;
-    } & typeof globalEventHandlersEventMap>
+    } & Partial<typeof globalEventHandlersEventMap>>
   }
   | {
     [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{
