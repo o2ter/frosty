@@ -27,8 +27,8 @@ import _ from 'lodash';
 import * as CSS from 'csstype';
 
 type PropsWithExtends<Props> = Props & {
-  '@rule'?: string;
-  '@selector'?: string;
+  [rule: `@${string}`]: PropsWithExtends<Props>;
+  [selector: `$${string}`]: PropsWithExtends<Props>;
   [key: `--${string}`]: string | number;
 };
 
