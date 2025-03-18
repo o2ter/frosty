@@ -29,7 +29,7 @@ import * as CSS from 'csstype';
 type PropsWithExtends<Props> = Props & {
   [rule: `@${string}`]: PropsWithExtends<Props>;
   [selector: `$${string}`]: PropsWithExtends<Props>;
-  [key: `--${string}`]: string | number;
+  [key: `--${string}`]: string | 0;
 };
 
 export type CSSProperties = PropsWithExtends<CSS.StandardProperties<string | number>>;
