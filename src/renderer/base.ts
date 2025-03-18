@@ -35,8 +35,6 @@ interface _Element<C extends _Element<C>> {
 
   children: Iterable<C>;
 
-  parentElement: C | null;
-
   replaceChildren(...nodes: (C | string)[]): void;
 }
 
