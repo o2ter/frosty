@@ -31,20 +31,16 @@ import nextick from 'nextick';
 import { mergeRefs } from '~/common/utils';
 import { equalDeps } from '~/reconciler/utils';
 
-interface _Element<C extends _Element<C>> {
-
-  children: Iterable<C>;
-
-  replaceChildren(...nodes: (C | string)[]): void;
-}
-
-export abstract class _Renderer<T extends _Element<T>> {
+export abstract class _Renderer<T> {
 
   /** @internal */
   abstract _createElement(node: VNode): T;
 
   /** @internal */
   abstract _updateElement(node: VNode, element: T): void;
+
+  /** @internal */
+  abstract _replaceChildren(element: T, children: (T | string)[]): void;
 
   private _createRoot(root: T, component: ComponentNode) {
 
@@ -86,7 +82,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         });
       }
       mountState.set(node, state);
-      if (element) element.replaceChildren(...children(node));
+      if (element) this._replaceChildren(element, children(node));
     };
 
     const update = () => {
@@ -108,7 +104,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         mountState.delete(node);
       }
       mount(runtime.node);
-      root.replaceChildren(...children(runtime.node));
+      this._replaceChildren(root, children(runtime.node));
     };
 
     let update_count = 0;
@@ -143,7 +139,7 @@ export abstract class _Renderer<T extends _Element<T>> {
         state = this._createRoot(root, component);
       },
       unmount: () => {
-        root.replaceChildren();
+        this._replaceChildren(root, []);
         state?.destroy();
         state = undefined;
       },

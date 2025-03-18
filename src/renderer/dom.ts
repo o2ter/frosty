@@ -27,6 +27,7 @@ import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
 import { globalEventHandlersEventMap } from '~/web/event';
+import { myersSync } from 'myers.js';
 
 class _DOMRenderer extends _Renderer<Element> {
 
@@ -64,6 +65,11 @@ class _DOMRenderer extends _Renderer<Element> {
   /** @internal */
   _updateElement(node: VNode, element: Element) {
 
+  }
+
+  /** @internal */
+  _replaceChildren(element: Element, children: (string | Element)[]): void {
+    element.replaceChildren(...children);
   }
 }
 
