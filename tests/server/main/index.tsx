@@ -12,6 +12,7 @@ const App = () => {
   return (
     <div>
       <span>counter: {counter}</span>
+      <input></input>
     </div>
   );
 };
