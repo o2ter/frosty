@@ -13,9 +13,9 @@ const App = () => {
   return (
     <div>
       <table>
-        {_.map(_.range(100), i =>
+        {_.map(_.range(2), i =>
           <tr>
-            {_.map(_.range(100), j => <td>{i * counter + j}</td>)}
+            {_.map(_.range(2), j => <td>{i * counter + j}</td>)}
           </tr>
         )}
       </table>
