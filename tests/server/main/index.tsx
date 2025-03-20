@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { useEffect, useState } from '~/index';
 import { DOMRenderer } from '~/renderer/dom';
 
@@ -11,8 +12,13 @@ const App = () => {
   }, []);
   return (
     <div>
-      <span>counter: {counter}</span>
-      <input></input>
+      <table>
+        {_.map(_.range(100), i =>
+          <tr>
+            {_.map(_.range(100), j => <th>{i * counter + j}</th>)}
+          </tr>
+        )}
+      </table>
     </div>
   );
 };
