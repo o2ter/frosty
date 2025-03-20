@@ -15,7 +15,7 @@ const App = () => {
       <table>
         {_.map(_.range(100), i =>
           <tr>
-            {_.map(_.range(100), j => <th>{i * counter + j}</th>)}
+            {_.map(_.range(100), j => <td>{i * counter + j}</td>)}
           </tr>
         )}
       </table>
