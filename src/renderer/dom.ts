@@ -69,7 +69,27 @@ class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _replaceChildren(element: Element, children: (string | Element)[]): void {
-    element.replaceChildren(...children);
+    const diff = myersSync(
+      _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
+      children,
+      { compare: (a, b) => a === b },
+    );
+    let i = 0;
+    for (const { remove, insert, equivalent } of diff) {
+      if (equivalent) {
+        i += equivalent.length;
+      } else if (remove) {
+        for (const child of remove) {
+          element.removeChild(element.childNodes[i]);
+        }
+      }
+      if (insert) {
+        for (const child of insert) {
+          const node = _.isString(child) ? document.createTextNode(child) : child;
+          element.insertBefore(node, element.childNodes[i++]);
+        }
+      }
+    }
   }
 }
 
