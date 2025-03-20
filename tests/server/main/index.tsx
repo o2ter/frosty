@@ -7,7 +7,7 @@ const root = document.getElementById('root');
 const App = () => {
   const [counter, setCounter] = useState(0);
   useEffect(() => {
-    const handle = setInterval(() => { setCounter(v => v + 1) }, 1000);
+    const handle = setInterval(() => { setCounter(v => v + 1) }, 1);
     return () => clearTimeout(handle);
   }, []);
   return (
