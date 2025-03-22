@@ -129,9 +129,8 @@ export abstract class _Renderer<T> {
       destroy: () => {
         destroyed = true;
         listener.remove();
-        for (const [node, state] of mountState) {
+        for (const state of mountState.values()) {
           for (const { unmount } of state) unmount?.();
-          mountState.delete(node);
         }
       },
     };
