@@ -38,7 +38,6 @@ const _createContext = <Value>(defaultValue: Value) => {
     return _.isFunction(children) ? children(value) : children;
   };
   reconciler.contextDefaultValue.set(context, defaultValue);
-  reconciler.registry.set(context, 'CONTEXT');
   return context;
 }
 

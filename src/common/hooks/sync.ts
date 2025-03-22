@@ -1,5 +1,5 @@
 //
-//  signal.ts
+//  sync.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,17 +24,12 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../../reconciler/state';
-import { Signal } from '../types/signal';
-import { _useEffect } from '../../reconciler/hooks';
+import { _useEffect } from '~/reconciler/hooks';
 
-export const useSignal = <T, R = T>(
-  signal: Signal<T>,
-  selector: (state: T) => R = v => v as any
-) => {
-  if (reconciler.registry.get(signal) !== 'SIGNAL') throw Error(`Invalid type of ${signal}`);
-  _useEffect('useSignal', ({ onStateChange }) => signal.subscribe((oldVal, newVal) => {
-    if (_.isEqual(selector(oldVal), selector(newVal))) onStateChange();
-  }), null);
-  return selector(signal.value);
-}
+export const useSyncExternalStore = <Snapshot>(
+  subscribe: (onStoreChange: () => void) => () => void,
+  getSnapshot: () => Snapshot,
+) => { 
+  _useEffect('useSyncExternalStore', ({ onStateChange }) => subscribe(onStateChange), null);
+  return getSnapshot();
+};

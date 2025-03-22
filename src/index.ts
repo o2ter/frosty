@@ -25,15 +25,14 @@
 
 export * from './common/runtime';
 export * from './common/types/basic';
-export { useSignal } from './common/hooks/signal';
 export { useEffect } from './common/hooks/effect';
 export { useContext } from './common/hooks/context';
 export { useMemo } from './common/hooks/memo';
 export { useRef, useRefHandle } from './common/hooks/ref';
 export { useCallback } from './common/hooks/callback';
 export { useState } from './common/hooks/state';
+export { useSyncExternalStore } from './common/hooks/sync';
 export { ComponentNode } from './common/types/component';
-export { Signal, SignalType, createSignal } from './common/types/signal';
 export { Context, ContextType, createContext } from './common/types/context';
 export { Fragment } from './common/types/fragment';
 export { _ElementType as ElementType } from './common/types/jsx';

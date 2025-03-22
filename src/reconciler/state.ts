@@ -61,10 +61,6 @@ export const reconciler = new class {
   /** @internal */
   _currentHookState: HookState | undefined;
 
-  get registry() {
-    return this._registry;
-  }
-
   get contextDefaultValue() {
     return this._contextDefaultValue;
   }
@@ -101,7 +97,7 @@ export const reconciler = new class {
         node.updateIfNeed({ contextValue });
 
         const _contextValue = new Map(contextValue);
-        if (_.isFunction(node.type) && reconciler.registry.get(node.type) === 'CONTEXT') {
+        if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
           _contextValue.set(node.type, node.props.value);
         }
 

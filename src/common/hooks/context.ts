@@ -30,7 +30,7 @@ export const useContext = <T, R = T>(
   context: Context<T>,
   selector: (state: T) => R = v => v as any
 ) => {
-  if (reconciler.registry.get(context) !== 'CONTEXT') throw Error(`Invalid type of ${context}`);
+  if (!reconciler.contextDefaultValue.has(context)) throw Error(`Invalid type of ${context}`);
   const state = reconciler.currentHookState;
   if (!state) throw Error('useContext must be used within a render function.');
   const { contextValue, listens } = state;
