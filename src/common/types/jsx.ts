@@ -34,26 +34,18 @@ export type _ElementType = string | ComponentType;
 
 export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
-}
+};
+
+type _ElementProps<ElementMap> = {
+  [x in keyof ElementMap]: PropsWithChildren<{
+    className?: ClassName;
+    style?: StyleProp<CSSProperties>;
+    innerHTML?: string;
+  } & RefAttribute<ElementMap[x]> & Partial<typeof globalEventHandlersEventMap>>
+};
 
 export type _IntrinsicElements = MergeObject<
-  | {
-    [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<{
-      className?: ClassName;
-      style?: StyleProp<CSSProperties>;
-      innerHTML?: string;
-    } & RefAttribute<typeof HTMLElementTagNameMap[x]> & Partial<typeof globalEventHandlersEventMap>>
-  }
-  | {
-    [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{
-      className?: ClassName;
-      style?: StyleProp<SVGProperties>;
-      innerHTML?: string;
-    } & RefAttribute<typeof SVGElementTagNameMap[x]> & Partial<typeof globalEventHandlersEventMap>>
-  }
-  | {
-    [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{
-      innerHTML?: string;
-    }> & RefAttribute<typeof MathMLElementTagNameMap[x]>
-  }
+  | _ElementProps<typeof HTMLElementTagNameMap>
+  | _ElementProps<typeof SVGElementTagNameMap>
+  | _ElementProps<typeof MathMLElementTagNameMap>
 > & { [x: string]: any; };
