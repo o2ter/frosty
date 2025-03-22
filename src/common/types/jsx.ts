@@ -42,17 +42,18 @@ export type _IntrinsicElements = MergeObject<
       className?: ClassName;
       style?: StyleProp<CSSProperties>;
       innerHTML?: string;
-    } & Partial<typeof globalEventHandlersEventMap>>
+    } & RefAttribute<typeof HTMLElementTagNameMap[x]> & Partial<typeof globalEventHandlersEventMap>>
   }
   | {
     [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{
       className?: ClassName;
       style?: StyleProp<SVGProperties>;
       innerHTML?: string;
-    } & Partial<typeof globalEventHandlersEventMap>>
+    } & RefAttribute<typeof SVGElementTagNameMap[x]> & Partial<typeof globalEventHandlersEventMap>>
   }
   | {
     [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{
-    }>
+      innerHTML?: string;
+    }> & RefAttribute<typeof MathMLElementTagNameMap[x]>
   }
 > & { [x: string]: any; };
