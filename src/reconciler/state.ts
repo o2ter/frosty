@@ -84,17 +84,17 @@ export const reconciler = new class {
 
   buildVNodes(component: ComponentNode) {
     const event = new EventEmitter();
-    const node = new VNode(component, event);
+    const root = new VNode(component, event);
     const excute = () => {
-      const items = [{ node, contextValue: reconciler.contextDefaultValue }];
-      const result = [];
+      const items = [{ node: root, contextValue: reconciler.contextDefaultValue }];
+      const nodes = [];
+      const updated = [];
       let item;
       while (item = items.shift()) {
 
         const { node, contextValue } = item;
-        result.push(node);
-
-        node.updateIfNeed({ contextValue });
+        nodes.push(node);
+        if (node.updateIfNeed({ contextValue })) updated.push(node);
 
         const _contextValue = new Map(contextValue);
         if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
@@ -106,8 +106,8 @@ export const reconciler = new class {
           contextValue: _contextValue,
         })));
       }
-      return result;
+      return { nodes, updated };
     };
-    return { node, event, excute };
+    return { node: root, event, excute };
   }
 };

@@ -94,7 +94,7 @@ export class VNode {
   updateIfNeed(options: {
     contextValue: Map<Context<any>, any>;
   }) {
-    if (!this._dirty && this._check_context(options.contextValue)) return;
+    if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
       const { type, props } = this._component;
       let children: (VNode | string)[];
@@ -127,5 +127,6 @@ export class VNode {
     } finally {
       this._dirty = false;
     }
+    return true;
   }
 }
