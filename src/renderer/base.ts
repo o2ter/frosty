@@ -100,6 +100,7 @@ export abstract class _Renderer<T> {
       }
       for (const node of nodes) {
         if (_.isFunction(node.type)) continue;
+        if (updated.has(node)) continue;
         updated.set(node, elements.get(node) ?? this._createElement(node));
       }
       elements = updated;
