@@ -86,26 +86,24 @@ export abstract class _Renderer<T> {
     };
 
     const update = () => {
-      const updated = new Map<VNode, T>();
-      const { nodes, updated: _updated } = runtime.excute();
-      for (const node of _updated) {
+      const map = new Map<VNode, T>();
+      for (const { node, updated } of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
-        let elem = elements.get(node);
-        if (elem) {
-          this._updateElement(node, elem);
+        if (updated) {
+          let elem = elements.get(node);
+          if (elem) {
+            this._updateElement(node, elem);
+          } else {
+            elem = this._createElement(node);
+          }
+          map.set(node, elem);
         } else {
-          elem = this._createElement(node);
+          map.set(node, elements.get(node) ?? this._createElement(node));
         }
-        updated.set(node, elem);
       }
-      for (const node of nodes) {
-        if (_.isFunction(node.type)) continue;
-        if (updated.has(node)) continue;
-        updated.set(node, elements.get(node) ?? this._createElement(node));
-      }
-      elements = updated;
+      elements = map;
       for (const [node, state] of mountState) {
-        if (updated.has(node)) continue;
+        if (map.has(node)) continue;
         for (const { unmount } of state) unmount?.();
         mountState.delete(node);
       }
