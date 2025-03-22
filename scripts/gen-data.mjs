@@ -1,5 +1,5 @@
 //
-//  basic.ts
+//  gen-data.mjs
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,36 +23,52 @@
 //  THE SOFTWARE.
 //
 
-import { MergeObject } from '@o2ter/utils-js';
-import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
-import { ClassName, StyleProp } from '../styles/types';
-import { CSSProperties, SVGProperties } from '../../web/css';
-import { globalEventHandlersEventMap } from '../../web/event';
-import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../../../generated/elements';
+import _ from 'lodash';
+import fs from 'fs/promises';
+import webref_elements from '@webref/elements';
 
-export type _ElementType = string | ComponentType;
+try {
+  await fs.rm('./generated', { recursive: true, force: true });
+} catch { }
 
-export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
-  key?: string | number;
-}
+try {
+  await fs.mkdir('./generated');
+} catch { }
 
-export type _IntrinsicElements = MergeObject<
-  | {
-    [x in keyof typeof HTMLElementTagNameMap]: PropsWithChildren<{
-      className?: ClassName;
-      style?: StyleProp<CSSProperties>;
-      innerHTML?: string;
-    } & Partial<typeof globalEventHandlersEventMap>>
-  }
-  | {
-    [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{
-      className?: ClassName;
-      style?: StyleProp<SVGProperties>;
-      innerHTML?: string;
-    } & Partial<typeof globalEventHandlersEventMap>>
-  }
-  | {
-    [x in keyof typeof MathMLElementTagNameMap]: PropsWithChildren<{
-    }>
-  }
-> & { [x: string]: any; };
+const elements = await (async () => {
+  const elements = await webref_elements.listAll();
+  const mapped = {
+    SVGElementTagNameMap: {
+      defaultInterface: 'SVGElement',
+      groups: ['SVG11'],
+    },
+    HTMLElementTagNameMap: {
+      defaultInterface: 'HTMLElement',
+      groups: ['html'],
+    },
+    MathMLElementTagNameMap: {
+      defaultInterface: 'MathMLElement',
+      groups: ['mathml-core'],
+    },
+  };
+  return _.mapValues(mapped, v => ({
+    ...v,
+    elements: _.pick(elements, v.groups),
+  }));
+})();
+
+await fs.writeFile('./generated/elements.ts', `${_.map(elements, (v, k) => `
+export const ${k} = {
+  ${_.map(_.values(v.elements), ({ spec, elements }) => `
+
+  /**
+   * ${spec.title}
+   * ${spec.url}
+   */
+
+  ${_.map(elements, ({ name, href, interface: _interface }) => `
+  /** ${href} */
+  '${name}': ${_interface ?? v.defaultInterface},`).join('\n')}
+  `).join('\n\n')}
+};
+`).join('\n')}`);

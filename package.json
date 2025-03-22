@@ -16,7 +16,8 @@
     "test": "jest",
     "watch:build": "./tests/server/bin/build.sh -w",
     "watch:start": "until [ -f ./tests/server/dist/server.js ]; do sleep 1; done && nodemon --watch ./tests/server/dist ./tests/server/dist/server.js",
-    "start": "rm -rf ./tests/server/dist/* && npm-run-all --parallel watch:*"
+    "start": "rm -rf ./tests/server/dist/* && npm-run-all --parallel watch:*",
+    "gen-data": "node ./scripts/gen-data.mjs"
   },
   "dependencies": {
     "@o2ter/utils-js": "^0.0.18",
@@ -40,6 +41,7 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/lodash": "^4.17.16",
     "@types/postcss-js": "^4.0.4",
+    "@webref/elements": "^2.4.0",
     "babel-jest": "^29.7.0",
     "babel-loader": "^10.0.0",
     "core-js": "^3.41.0",
