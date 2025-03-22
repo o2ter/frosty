@@ -58,6 +58,7 @@ export type _IntrinsicElements = MergeObject<
     [x in keyof typeof SVGElementTagNameMap]: PropsWithChildren<{
       className?: ClassName;
       style?: StyleProp<SVGProperties>;
+      innerHTML?: string;
     } & Partial<typeof globalEventHandlersEventMap>>
   }
   | {
