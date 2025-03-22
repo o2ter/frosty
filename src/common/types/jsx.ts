@@ -47,5 +47,5 @@ type _ElementProps<ElementMap, Style> = {
 export type _IntrinsicElements = MergeObject<
   | _ElementProps<typeof HTMLElementTagNameMap, CSSProperties>
   | _ElementProps<typeof SVGElementTagNameMap, SVGProperties>
-  | _ElementProps<typeof MathMLElementTagNameMap, SVGProperties>
+  | _ElementProps<typeof MathMLElementTagNameMap, CSSProperties>
 > & { [x: string]: any; };
