@@ -45,11 +45,7 @@ class _DOMRenderer extends _Renderer<Element> {
 
     for (const [key, value] of _.entries(node.props)) {
 
-      if (_.isFunction(value)) {
-
-        if (key in globalEventHandlersEventMap) {
-
-        }
+      if (key in globalEventHandlersEventMap) {
 
       } else {
 
