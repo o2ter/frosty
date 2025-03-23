@@ -36,15 +36,25 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
 
-type _PropsOfElement<ElementMap extends abstract new (...args: any) => any> = Partial<OmitType<{
-  [k in WritableKeys<InstanceType<ElementMap>>]: InstanceType<ElementMap>[k];
-}, Function | null | undefined>>;
+type _PropsOfElement<ElementMap extends abstract new (...args: any) => any> = Partial<
+  Omit<
+    OmitType<{
+      [k in WritableKeys<InstanceType<ElementMap>>]: InstanceType<ElementMap>[k];
+    }, Function | null | undefined>,
+    'className' | 'style'
+  >
+>;
 
 type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any) => any }, Style> = {
-  [x in keyof ElementMap]: PropsWithChildren<RefAttribute<ElementMap[x]> & {
-    className?: ClassName;
-    style?: StyleProp<Style>;
-  } & Omit<_PropsOfElement<ElementMap[x]>, 'className' | 'style'> & Partial<typeof globalEventHandlersEventMap>>
+  [x in keyof ElementMap]: PropsWithChildren<
+    RefAttribute<ElementMap[x]>
+    & {
+      className?: ClassName;
+      style?: StyleProp<Style>;
+    }
+    & _PropsOfElement<ElementMap[x]>
+    & Partial<typeof globalEventHandlersEventMap>
+  >
 };
 
 export type _IntrinsicElements = MergeObject<
