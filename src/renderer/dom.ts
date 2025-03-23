@@ -28,14 +28,28 @@ import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
 import { globalEventHandlersEventMap } from '~/web/event';
 import { myersSync } from 'myers.js';
+import { JSDOM } from 'jsdom';
+
+const _document = (() => {
+  if (typeof document !== 'undefined') return document;
+  const dom = new JSDOM();
+  return dom.window.document;
+})();
 
 class _DOMRenderer extends _Renderer<Element> {
+
+  doc: Document;
+
+  constructor(doc: Document) {
+    super();
+    this.doc = doc;
+  }
 
   /** @internal */
   _createElement(node: VNode) {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
-    const elem = document.createElement(type);
+    const elem = this.doc.createElement(type);
     this._updateElement(node, elem);
     return elem;
   }
@@ -90,7 +104,7 @@ class _DOMRenderer extends _Renderer<Element> {
       }
       if (insert) {
         for (const child of insert) {
-          const node = _.isString(child) ? document.createTextNode(child) : child;
+          const node = _.isString(child) ? this.doc.createTextNode(child) : child;
           element.insertBefore(node, element.childNodes[i++]);
         }
       }
@@ -98,4 +112,4 @@ class _DOMRenderer extends _Renderer<Element> {
   }
 }
 
-export const DOMRenderer = new _DOMRenderer;
+export const DOMRenderer = new _DOMRenderer(_document);
