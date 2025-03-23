@@ -36,24 +36,23 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
 
-type _PropsOfInstance<Instance> = Partial<
-  Omit<
-    PickType<{
-      [k in WritableKeys<Instance>]: Instance[k] | null;
-    }, boolean | number | string | null>,
-    'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
-  >
+type _PropsOfInstance<Instance> = Omit<
+  PickType<{
+    [k in WritableKeys<Instance>]: Instance[k];
+  }, boolean | number | string | null>,
+  'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
 >;
 
 type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any) => any }, Style> = {
   [x in keyof ElementMap]: PropsWithChildren<
-    RefAttribute<InstanceType<ElementMap[x]>>
-    & {
-      className?: ClassName;
-      style?: StyleProp<Style>;
-    }
-    & _PropsOfInstance<InstanceType<ElementMap[x]>>
-    & Partial<typeof globalEventHandlersEventMap>
+    Partial<
+      RefAttribute<InstanceType<ElementMap[x]>>
+      & {
+        className?: ClassName;
+        style?: StyleProp<Style>;
+      }
+      & _PropsOfInstance<InstanceType<ElementMap[x]>>
+      & typeof globalEventHandlersEventMap>
   >
 };
 
