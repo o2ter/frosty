@@ -114,7 +114,7 @@ export abstract class _Renderer<T> {
         mountState.delete(node);
       }
       mount(runtime.node);
-      if (root) this._replaceChildren(root, children(runtime.node));
+      if (root) this._replaceChildren(root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
     };
 
     let update_count = 0;
@@ -132,6 +132,10 @@ export abstract class _Renderer<T> {
     update();
 
     return {
+      get root() {
+        const elems = _.castArray(elements.get(runtime.node) ?? children(runtime.node));
+        return elems.length === 1 ? elems[0] : elems;
+      },
       destroy: () => {
         destroyed = true;
         listener.remove();
@@ -145,6 +149,9 @@ export abstract class _Renderer<T> {
   createRoot(root?: T) {
     let state: ReturnType<typeof this._createRoot> | undefined;
     return {
+      get root() {
+        return state?.root;
+      },
       mount: (
         component: ComponentNode,
         options?: {

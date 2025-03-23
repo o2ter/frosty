@@ -28,7 +28,7 @@ import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
 import { globalEventHandlersEventMap } from '~/web/event';
 import { myersSync } from 'myers.js';
-import { JSDOM } from 'jsdom';
+// import { JSDOM } from 'jsdom';
 import { ComponentNode } from '~/common/types/component';
 
 class _DOMRenderer extends _Renderer<Element> {
@@ -107,14 +107,10 @@ class _DOMRenderer extends _Renderer<Element> {
   }
 
   renderToString(component: ComponentNode) {
-    const dom = new JSDOM();
-    const renderer = new _DOMRenderer(dom.window.document);
-    renderer.createRoot().mount(component, { skipMount: true });
+    // const dom = new JSDOM();
+    // const renderer = new _DOMRenderer(dom.window.document);
+    // renderer.createRoot().mount(component, { skipMount: true });
   }
 }
 
-export const DOMRenderer = new _DOMRenderer((() => {
-  if (typeof document !== 'undefined') return document;
-  const dom = new JSDOM();
-  return dom.window.document;
-})());
+export const DOMRenderer = new _DOMRenderer(document);
