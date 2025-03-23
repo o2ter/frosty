@@ -28,8 +28,8 @@ import { VNode } from '../reconciler/vnode';
 import { ComponentNode } from '../common/types/component';
 import { reconciler } from '../reconciler/state';
 import nextick from 'nextick';
-import { mergeRefs } from '~/common/utils';
-import { equalDeps } from '~/reconciler/utils';
+import { mergeRefs } from '../common/utils';
+import { equalDeps } from '../reconciler/utils';
 
 export abstract class _Renderer<T> {
 

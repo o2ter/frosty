@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _useEffect } from '~/reconciler/hooks';
+import { _useEffect } from '../../reconciler/hooks';
 
 export const useSyncExternalStore = <Snapshot>(
   subscribe: (onStoreChange: () => void) => () => void,

@@ -26,10 +26,10 @@
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
-import { globalEventHandlersEventMap } from '~/web/event';
+import { globalEventHandlersEventMap } from '../web/event';
 import { myersSync } from 'myers.js';
 import { JSDOM } from 'jsdom';
-import { ComponentNode } from '~/common/types/component';
+import { ComponentNode } from '../common/types/component';
 
 class _DOMRenderer extends _Renderer<Element> {
 
