@@ -71,7 +71,7 @@ export class _DOMRenderer extends _Renderer<Element> {
           default:
             if (key in element) {
               (element as any)[key] = value;
-            } else if (value === false) {
+            } else if (value === false || _.isNil(value)) {
               element.removeAttribute(key);
             } else if (value === true) {
               element.setAttribute(key, '');
