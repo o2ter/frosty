@@ -46,6 +46,8 @@ try {
   await fs.mkdir('./generated');
 } catch { }
 
+const impls = _.pick(webref.idl, 'svg', 'html', 'mathml-core');
+
 const elements = _.mapValues({
   SVGElementTagNameMap: {
     defaultInterface: 'SVGElement',
