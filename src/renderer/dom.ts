@@ -29,6 +29,7 @@ import { _Renderer } from './base';
 import { globalEventHandlersEventMap } from '~/web/event';
 import { myersSync } from 'myers.js';
 import { JSDOM } from 'jsdom';
+import { ComponentNode } from '~/common/types/component';
 
 class _DOMRenderer extends _Renderer<Element> {
 
@@ -103,6 +104,12 @@ class _DOMRenderer extends _Renderer<Element> {
         }
       }
     }
+  }
+
+  renderToString(component: ComponentNode) {
+    const dom = new JSDOM();
+    const renderer = new _DOMRenderer(dom.window.document);
+    renderer.createRoot().mount(component, { skipMount: true });
   }
 }
 

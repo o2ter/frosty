@@ -43,7 +43,7 @@ export abstract class _Renderer<T> {
   abstract _replaceChildren(element: T, children: (T | string)[]): void;
 
   private _createRoot(
-    root: T,
+    root: T | null,
     component: ComponentNode,
     options?: {
       skipMount?: boolean;
@@ -114,7 +114,7 @@ export abstract class _Renderer<T> {
         mountState.delete(node);
       }
       mount(runtime.node);
-      this._replaceChildren(root, children(runtime.node));
+      if (root) this._replaceChildren(root, children(runtime.node));
     };
 
     let update_count = 0;
@@ -142,7 +142,7 @@ export abstract class _Renderer<T> {
     };
   }
 
-  createRoot(root: T) {
+  createRoot(root?: T) {
     let state: ReturnType<typeof this._createRoot> | undefined;
     return {
       mount: (
@@ -151,10 +151,10 @@ export abstract class _Renderer<T> {
           skipMount?: boolean;
         },
       ) => {
-        state = this._createRoot(root, component, options);
+        state = this._createRoot(root ?? null, component, options);
       },
       unmount: () => {
-        this._replaceChildren(root, []);
+        if (root) this._replaceChildren(root, []);
         state?.destroy();
         state = undefined;
       },
