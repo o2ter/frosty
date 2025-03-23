@@ -11,13 +11,14 @@
   "author": "Susan Cheng <susan.doggie@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "gen-data": "if [ -f ./scripts/gen-data.mjs ]; then node ./scripts/gen-data.mjs; fi",
+    "postinstall": "yarn gen-data",
     "clean": "rm -rf ./dist/*",
     "rollup": "yarn clean && rollup -c",
     "test": "jest",
     "watch:build": "./tests/server/bin/build.sh -w",
     "watch:start": "until [ -f ./tests/server/dist/server.js ]; do sleep 1; done && nodemon --watch ./tests/server/dist ./tests/server/dist/server.js",
-    "start": "rm -rf ./tests/server/dist/* && npm-run-all --parallel watch:*",
-    "gen-data": "node ./scripts/gen-data.mjs"
+    "start": "rm -rf ./tests/server/dist/* && npm-run-all --parallel watch:*"
   },
   "dependencies": {
     "@o2ter/utils-js": "^0.0.19",
