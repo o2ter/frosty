@@ -43,15 +43,19 @@ type _PropsOfInstance<Instance> = Omit<
   'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
 >;
 
-type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any) => any }, Style> = {
+type _ElementProps<ElementMap extends {
+  [x: string]: {
+    type: abstract new (...args: any) => any;
+  }
+}, Style> = {
   [x in keyof ElementMap]: PropsWithChildren<
     Partial<
-      RefAttribute<InstanceType<ElementMap[x]>>
+      RefAttribute<InstanceType<ElementMap[x]['type']>>
       & {
         className?: ClassName;
         style?: StyleProp<Style>;
       }
-      & _PropsOfInstance<InstanceType<ElementMap[x]>>
+      & _PropsOfInstance<InstanceType<ElementMap[x]['type']>>
       & typeof globalEventHandlersEventMap>
   >
 };

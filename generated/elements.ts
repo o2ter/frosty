@@ -9,190 +9,314 @@ export const SVGElementTagNameMap = {
 
   
   /** https://www.w3.org/TR/SVG11/struct.html#SVGElement */
-  'svg': SVGSVGElement,
+  'svg': {
+    type: SVGSVGElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#GElement */
-  'g': SVGGElement,
+  'g': {
+    type: SVGGElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#DefsElement */
-  'defs': SVGDefsElement,
+  'defs': {
+    type: SVGDefsElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#DescElement */
-  'desc': SVGDescElement,
+  'desc': {
+    type: SVGDescElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#TitleElement */
-  'title': SVGTitleElement,
+  'title': {
+    type: SVGTitleElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#SymbolElement */
-  'symbol': SVGSymbolElement,
+  'symbol': {
+    type: SVGSymbolElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#UseElement */
-  'use': SVGUseElement,
+  'use': {
+    type: SVGUseElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#ImageElement */
-  'image': SVGImageElement,
+  'image': {
+    type: SVGImageElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/struct.html#SwitchElement */
-  'switch': SVGSwitchElement,
+  'switch': {
+    type: SVGSwitchElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/styling.html#StyleElement */
-  'style': SVGStyleElement,
+  'style': {
+    type: SVGStyleElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/paths.html#PathElement */
-  'path': SVGPathElement,
+  'path': {
+    type: SVGPathElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/shapes.html#RectElement */
-  'rect': SVGRectElement,
+  'rect': {
+    type: SVGRectElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/shapes.html#CircleElement */
-  'circle': SVGCircleElement,
+  'circle': {
+    type: SVGCircleElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/shapes.html#EllipseElement */
-  'ellipse': SVGEllipseElement,
+  'ellipse': {
+    type: SVGEllipseElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/shapes.html#LineElement */
-  'line': SVGLineElement,
+  'line': {
+    type: SVGLineElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/shapes.html#PolylineElement */
-  'polyline': SVGPolylineElement,
+  'polyline': {
+    type: SVGPolylineElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/shapes.html#PolygonElement */
-  'polygon': SVGPolygonElement,
+  'polygon': {
+    type: SVGPolygonElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/text.html#TextElement */
-  'text': SVGTextElement,
+  'text': {
+    type: SVGTextElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/text.html#TSpanElement */
-  'tspan': SVGTSpanElement,
+  'tspan': {
+    type: SVGTSpanElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/text.html#TextPathElement */
-  'textPath': SVGTextPathElement,
+  'textPath': {
+    type: SVGTextPathElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/painting.html#MarkerElement */
-  'marker': SVGMarkerElement,
+  'marker': {
+    type: SVGMarkerElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/pservers.html#LinearGradients */
-  'linearGradient': SVGLinearGradientElement,
+  'linearGradient': {
+    type: SVGLinearGradientElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/pservers.html#RadialGradients */
-  'radialGradient': SVGRadialGradientElement,
+  'radialGradient': {
+    type: SVGRadialGradientElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/pservers.html#GradientStops */
-  'stop': SVGStopElement,
+  'stop': {
+    type: SVGStopElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/pservers.html#Patterns */
-  'pattern': SVGPatternElement,
+  'pattern': {
+    type: SVGPatternElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/masking.html#EstablishingANewClippingPath */
-  'clipPath': SVGClipPathElement,
+  'clipPath': {
+    type: SVGClipPathElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/masking.html#Masking */
-  'mask': SVGMaskElement,
+  'mask': {
+    type: SVGMaskElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#FilterElement */
-  'filter': SVGFilterElement,
+  'filter': {
+    type: SVGFilterElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feDistantLightElement */
-  'feDistantLight': SVGFEDistantLightElement,
+  'feDistantLight': {
+    type: SVGFEDistantLightElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#fePointLightElement */
-  'fePointLight': SVGFEPointLightElement,
+  'fePointLight': {
+    type: SVGFEPointLightElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feSpotLightElement */
-  'feSpotLight': SVGFESpotLightElement,
+  'feSpotLight': {
+    type: SVGFESpotLightElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feBlendElement */
-  'feBlend': SVGFEBlendElement,
+  'feBlend': {
+    type: SVGFEBlendElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feColorMatrixElement */
-  'feColorMatrix': SVGFEColorMatrixElement,
+  'feColorMatrix': {
+    type: SVGFEColorMatrixElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feComponentTransferElement */
-  'feComponentTransfer': SVGFEComponentTransferElement,
+  'feComponentTransfer': {
+    type: SVGFEComponentTransferElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feFuncRElement */
-  'feFuncR': SVGFEFuncRElement,
+  'feFuncR': {
+    type: SVGFEFuncRElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feFuncGElement */
-  'feFuncG': SVGFEFuncGElement,
+  'feFuncG': {
+    type: SVGFEFuncGElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feFuncBElement */
-  'feFuncB': SVGFEFuncBElement,
+  'feFuncB': {
+    type: SVGFEFuncBElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feFuncAElement */
-  'feFuncA': SVGFEFuncAElement,
+  'feFuncA': {
+    type: SVGFEFuncAElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feCompositeElement */
-  'feComposite': SVGFECompositeElement,
+  'feComposite': {
+    type: SVGFECompositeElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feConvolveMatrixElement */
-  'feConvolveMatrix': SVGFEConvolveMatrixElement,
+  'feConvolveMatrix': {
+    type: SVGFEConvolveMatrixElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feDiffuseLightingElement */
-  'feDiffuseLighting': SVGFEDiffuseLightingElement,
+  'feDiffuseLighting': {
+    type: SVGFEDiffuseLightingElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feDisplacementMapElement */
-  'feDisplacementMap': SVGFEDisplacementMapElement,
+  'feDisplacementMap': {
+    type: SVGFEDisplacementMapElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feFloodElement */
-  'feFlood': SVGFEFloodElement,
+  'feFlood': {
+    type: SVGFEFloodElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feGaussianBlurElement */
-  'feGaussianBlur': SVGFEGaussianBlurElement,
+  'feGaussianBlur': {
+    type: SVGFEGaussianBlurElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feImageElement */
-  'feImage': SVGFEImageElement,
+  'feImage': {
+    type: SVGFEImageElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feMergeElement */
-  'feMerge': SVGFEMergeElement,
+  'feMerge': {
+    type: SVGFEMergeElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feMergeNodeElement */
-  'feMergeNode': SVGFEMergeNodeElement,
+  'feMergeNode': {
+    type: SVGFEMergeNodeElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feMorphologyElement */
-  'feMorphology': SVGFEMorphologyElement,
+  'feMorphology': {
+    type: SVGFEMorphologyElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feOffsetElement */
-  'feOffset': SVGFEOffsetElement,
+  'feOffset': {
+    type: SVGFEOffsetElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feSpecularLightingElement */
-  'feSpecularLighting': SVGFESpecularLightingElement,
+  'feSpecularLighting': {
+    type: SVGFESpecularLightingElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feTileElement */
-  'feTile': SVGFETileElement,
+  'feTile': {
+    type: SVGFETileElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/filters.html#feTurbulenceElement */
-  'feTurbulence': SVGFETurbulenceElement,
+  'feTurbulence': {
+    type: SVGFETurbulenceElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/linking.html#AElement */
-  'a': SVGAElement,
+  'a': {
+    type: SVGAElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/linking.html#ViewElement */
-  'view': SVGViewElement,
+  'view': {
+    type: SVGViewElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/script.html#ScriptElement */
-  'script': SVGScriptElement,
+  'script': {
+    type: SVGScriptElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/animate.html#AnimateElement */
-  'animate': SVGAnimateElement,
+  'animate': {
+    type: SVGAnimateElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/animate.html#SetElement */
-  'set': SVGSetElement,
+  'set': {
+    type: SVGSetElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/animate.html#AnimateMotionElement */
-  'animateMotion': SVGAnimateMotionElement,
+  'animateMotion': {
+    type: SVGAnimateMotionElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/animate.html#MPathElement */
-  'mpath': SVGMPathElement,
+  'mpath': {
+    type: SVGMPathElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/animate.html#AnimateTransformElement */
-  'animateTransform': SVGAnimateTransformElement,
+  'animateTransform': {
+    type: SVGAnimateTransformElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/metadata.html#MetadataElement */
-  'metadata': SVGMetadataElement,
+  'metadata': {
+    type: SVGMetadataElement,
+  },
 
   /** https://www.w3.org/TR/SVG11/extend.html#ForeignObjectElement */
-  'foreignObject': SVGForeignObjectElement,
+  'foreignObject': {
+    type: SVGForeignObjectElement,
+  },
   
 };
 
@@ -207,427 +331,709 @@ export const HTMLElementTagNameMap = {
 
   
   /** https://html.spec.whatwg.org/multipage/semantics.html#the-html-element */
-  'html': HTMLHtmlElement,
+  'html': {
+    type: HTMLHtmlElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/semantics.html#the-head-element */
-  'head': HTMLHeadElement,
+  'head': {
+    type: HTMLHeadElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/semantics.html#the-title-element */
-  'title': HTMLTitleElement,
+  'title': {
+    type: HTMLTitleElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/semantics.html#the-base-element */
-  'base': HTMLBaseElement,
+  'base': {
+    type: HTMLBaseElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/semantics.html#the-link-element */
-  'link': HTMLLinkElement,
+  'link': {
+    type: HTMLLinkElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/semantics.html#meta */
-  'meta': HTMLMetaElement,
+  'meta': {
+    type: HTMLMetaElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/semantics.html#the-style-element */
-  'style': HTMLStyleElement,
+  'style': {
+    type: HTMLStyleElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-body-element */
-  'body': HTMLBodyElement,
+  'body': {
+    type: HTMLBodyElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-article-element */
-  'article': HTMLElement,
+  'article': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-section-element */
-  'section': HTMLElement,
+  'section': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-nav-element */
-  'nav': HTMLElement,
+  'nav': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-aside-element */
-  'aside': HTMLElement,
+  'aside': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-h1-element */
-  'h1': HTMLHeadingElement,
+  'h1': {
+    type: HTMLHeadingElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-h2-element */
-  'h2': HTMLHeadingElement,
+  'h2': {
+    type: HTMLHeadingElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-h3-element */
-  'h3': HTMLHeadingElement,
+  'h3': {
+    type: HTMLHeadingElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-h4-element */
-  'h4': HTMLHeadingElement,
+  'h4': {
+    type: HTMLHeadingElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-h5-element */
-  'h5': HTMLHeadingElement,
+  'h5': {
+    type: HTMLHeadingElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-h6-element */
-  'h6': HTMLHeadingElement,
+  'h6': {
+    type: HTMLHeadingElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-hgroup-element */
-  'hgroup': HTMLElement,
+  'hgroup': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-header-element */
-  'header': HTMLElement,
+  'header': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-footer-element */
-  'footer': HTMLElement,
+  'footer': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/sections.html#the-address-element */
-  'address': HTMLElement,
+  'address': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-p-element */
-  'p': HTMLParagraphElement,
+  'p': {
+    type: HTMLParagraphElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-hr-element */
-  'hr': HTMLHRElement,
+  'hr': {
+    type: HTMLHRElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-pre-element */
-  'pre': HTMLPreElement,
+  'pre': {
+    type: HTMLPreElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-blockquote-element */
-  'blockquote': HTMLQuoteElement,
+  'blockquote': {
+    type: HTMLQuoteElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-ol-element */
-  'ol': HTMLOListElement,
+  'ol': {
+    type: HTMLOListElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-ul-element */
-  'ul': HTMLUListElement,
+  'ul': {
+    type: HTMLUListElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#menus */
-  'menu': HTMLMenuElement,
+  'menu': {
+    type: HTMLMenuElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-li-element */
-  'li': HTMLLIElement,
+  'li': {
+    type: HTMLLIElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-dl-element */
-  'dl': HTMLDListElement,
+  'dl': {
+    type: HTMLDListElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-dt-element */
-  'dt': HTMLElement,
+  'dt': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-dd-element */
-  'dd': HTMLElement,
+  'dd': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-figure-element */
-  'figure': HTMLElement,
+  'figure': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-figcaption-element */
-  'figcaption': HTMLElement,
+  'figcaption': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-main-element */
-  'main': HTMLElement,
+  'main': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-search-element */
-  'search': HTMLElement,
+  'search': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/grouping-content.html#the-div-element */
-  'div': HTMLDivElement,
+  'div': {
+    type: HTMLDivElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element */
-  'a': HTMLAnchorElement,
+  'a': {
+    type: HTMLAnchorElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-em-element */
-  'em': HTMLElement,
+  'em': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-strong-element */
-  'strong': HTMLElement,
+  'strong': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-small-element */
-  'small': HTMLElement,
+  'small': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-s-element */
-  's': HTMLElement,
+  's': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-cite-element */
-  'cite': HTMLElement,
+  'cite': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-q-element */
-  'q': HTMLQuoteElement,
+  'q': {
+    type: HTMLQuoteElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-dfn-element */
-  'dfn': HTMLElement,
+  'dfn': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-abbr-element */
-  'abbr': HTMLElement,
+  'abbr': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-ruby-element */
-  'ruby': HTMLElement,
+  'ruby': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-rt-element */
-  'rt': HTMLElement,
+  'rt': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-rp-element */
-  'rp': HTMLElement,
+  'rp': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-data-element */
-  'data': HTMLDataElement,
+  'data': {
+    type: HTMLDataElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-time-element */
-  'time': HTMLTimeElement,
+  'time': {
+    type: HTMLTimeElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-code-element */
-  'code': HTMLElement,
+  'code': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-var-element */
-  'var': HTMLElement,
+  'var': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-samp-element */
-  'samp': HTMLElement,
+  'samp': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-kbd-element */
-  'kbd': HTMLElement,
+  'kbd': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sub-element */
-  'sub': HTMLElement,
+  'sub': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-sup-element */
-  'sup': HTMLElement,
+  'sup': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-i-element */
-  'i': HTMLElement,
+  'i': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-b-element */
-  'b': HTMLElement,
+  'b': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-u-element */
-  'u': HTMLElement,
+  'u': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-mark-element */
-  'mark': HTMLElement,
+  'mark': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-bdi-element */
-  'bdi': HTMLElement,
+  'bdi': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-bdo-element */
-  'bdo': HTMLElement,
+  'bdo': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-span-element */
-  'span': HTMLSpanElement,
+  'span': {
+    type: HTMLSpanElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-br-element */
-  'br': HTMLBRElement,
+  'br': {
+    type: HTMLBRElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-wbr-element */
-  'wbr': HTMLElement,
+  'wbr': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/edits.html#the-ins-element */
-  'ins': HTMLModElement,
+  'ins': {
+    type: HTMLModElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/edits.html#the-del-element */
-  'del': HTMLModElement,
+  'del': {
+    type: HTMLModElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/embedded-content.html#the-picture-element */
-  'picture': HTMLPictureElement,
+  'picture': {
+    type: HTMLPictureElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/embedded-content.html#the-source-element */
-  'source': HTMLSourceElement,
+  'source': {
+    type: HTMLSourceElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element */
-  'img': HTMLImageElement,
+  'img': {
+    type: HTMLImageElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element */
-  'iframe': HTMLIFrameElement,
+  'iframe': {
+    type: HTMLIFrameElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-embed-element */
-  'embed': HTMLEmbedElement,
+  'embed': {
+    type: HTMLEmbedElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-object-element */
-  'object': HTMLObjectElement,
+  'object': {
+    type: HTMLObjectElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/media.html#video */
-  'video': HTMLVideoElement,
+  'video': {
+    type: HTMLVideoElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/media.html#audio */
-  'audio': HTMLAudioElement,
+  'audio': {
+    type: HTMLAudioElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/media.html#the-track-element */
-  'track': HTMLTrackElement,
+  'track': {
+    type: HTMLTrackElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/image-maps.html#the-map-element */
-  'map': HTMLMapElement,
+  'map': {
+    type: HTMLMapElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/image-maps.html#the-area-element */
-  'area': HTMLAreaElement,
+  'area': {
+    type: HTMLAreaElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-table-element */
-  'table': HTMLTableElement,
+  'table': {
+    type: HTMLTableElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-caption-element */
-  'caption': HTMLTableCaptionElement,
+  'caption': {
+    type: HTMLTableCaptionElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-colgroup-element */
-  'colgroup': HTMLTableColElement,
+  'colgroup': {
+    type: HTMLTableColElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-col-element */
-  'col': HTMLTableColElement,
+  'col': {
+    type: HTMLTableColElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-tbody-element */
-  'tbody': HTMLTableSectionElement,
+  'tbody': {
+    type: HTMLTableSectionElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-thead-element */
-  'thead': HTMLTableSectionElement,
+  'thead': {
+    type: HTMLTableSectionElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-tfoot-element */
-  'tfoot': HTMLTableSectionElement,
+  'tfoot': {
+    type: HTMLTableSectionElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-tr-element */
-  'tr': HTMLTableRowElement,
+  'tr': {
+    type: HTMLTableRowElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-td-element */
-  'td': HTMLTableCellElement,
+  'td': {
+    type: HTMLTableCellElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/tables.html#the-th-element */
-  'th': HTMLTableCellElement,
+  'th': {
+    type: HTMLTableCellElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/forms.html#the-form-element */
-  'form': HTMLFormElement,
+  'form': {
+    type: HTMLFormElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/forms.html#the-label-element */
-  'label': HTMLLabelElement,
+  'label': {
+    type: HTMLLabelElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/input.html#the-input-element */
-  'input': HTMLInputElement,
+  'input': {
+    type: HTMLInputElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element */
-  'button': HTMLButtonElement,
+  'button': {
+    type: HTMLButtonElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-select-element */
-  'select': HTMLSelectElement,
+  'select': {
+    type: HTMLSelectElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-datalist-element */
-  'datalist': HTMLDataListElement,
+  'datalist': {
+    type: HTMLDataListElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-optgroup-element */
-  'optgroup': HTMLOptGroupElement,
+  'optgroup': {
+    type: HTMLOptGroupElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-option-element */
-  'option': HTMLOptionElement,
+  'option': {
+    type: HTMLOptionElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-textarea-element */
-  'textarea': HTMLTextAreaElement,
+  'textarea': {
+    type: HTMLTextAreaElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-output-element */
-  'output': HTMLOutputElement,
+  'output': {
+    type: HTMLOutputElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-progress-element */
-  'progress': HTMLProgressElement,
+  'progress': {
+    type: HTMLProgressElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-meter-element */
-  'meter': HTMLMeterElement,
+  'meter': {
+    type: HTMLMeterElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-fieldset-element */
-  'fieldset': HTMLFieldSetElement,
+  'fieldset': {
+    type: HTMLFieldSetElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/form-elements.html#the-legend-element */
-  'legend': HTMLLegendElement,
+  'legend': {
+    type: HTMLLegendElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/interactive-elements.html#the-details-element */
-  'details': HTMLDetailsElement,
+  'details': {
+    type: HTMLDetailsElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/interactive-elements.html#the-summary-element */
-  'summary': HTMLElement,
+  'summary': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element */
-  'dialog': HTMLDialogElement,
+  'dialog': {
+    type: HTMLDialogElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/scripting.html#script */
-  'script': HTMLScriptElement,
+  'script': {
+    type: HTMLScriptElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/scripting.html#the-noscript-element */
-  'noscript': HTMLElement,
+  'noscript': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/scripting.html#the-template-element */
-  'template': HTMLTemplateElement,
+  'template': {
+    type: HTMLTemplateElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/scripting.html#the-slot-element */
-  'slot': HTMLSlotElement,
+  'slot': {
+    type: HTMLSlotElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/canvas.html#canvas */
-  'canvas': HTMLCanvasElement,
+  'canvas': {
+    type: HTMLCanvasElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#applet */
-  'applet': HTMLUnknownElement,
+  'applet': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#acronym */
-  'acronym': HTMLElement,
+  'acronym': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#bgsound */
-  'bgsound': HTMLUnknownElement,
+  'bgsound': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#dir */
-  'dir': HTMLDirectoryElement,
+  'dir': {
+    type: HTMLDirectoryElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#frame */
-  'frame': HTMLFrameElement,
+  'frame': {
+    type: HTMLFrameElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#frameset */
-  'frameset': HTMLFrameSetElement,
+  'frameset': {
+    type: HTMLFrameSetElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#noframes */
-  'noframes': HTMLElement,
+  'noframes': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#isindex */
-  'isindex': HTMLUnknownElement,
+  'isindex': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#keygen */
-  'keygen': HTMLUnknownElement,
+  'keygen': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#listing */
-  'listing': HTMLPreElement,
+  'listing': {
+    type: HTMLPreElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#menuitem */
-  'menuitem': HTMLElement,
+  'menuitem': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#nextid */
-  'nextid': HTMLUnknownElement,
+  'nextid': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#noembed */
-  'noembed': HTMLElement,
+  'noembed': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#param */
-  'param': HTMLParamElement,
+  'param': {
+    type: HTMLParamElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#plaintext */
-  'plaintext': HTMLElement,
+  'plaintext': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#rb */
-  'rb': HTMLElement,
+  'rb': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#rtc */
-  'rtc': HTMLElement,
+  'rtc': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#strike */
-  'strike': HTMLElement,
+  'strike': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#xmp */
-  'xmp': HTMLPreElement,
+  'xmp': {
+    type: HTMLPreElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#basefont */
-  'basefont': HTMLElement,
+  'basefont': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#big */
-  'big': HTMLElement,
+  'big': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#blink */
-  'blink': HTMLUnknownElement,
+  'blink': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#center */
-  'center': HTMLElement,
+  'center': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#font */
-  'font': HTMLFontElement,
+  'font': {
+    type: HTMLFontElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#the-marquee-element */
-  'marquee': HTMLMarqueeElement,
+  'marquee': {
+    type: HTMLMarqueeElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#multicol */
-  'multicol': HTMLUnknownElement,
+  'multicol': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#nobr */
-  'nobr': HTMLElement,
+  'nobr': {
+    type: HTMLElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#spacer */
-  'spacer': HTMLUnknownElement,
+  'spacer': {
+    type: HTMLUnknownElement,
+  },
 
   /** https://html.spec.whatwg.org/multipage/obsolete.html#tt */
-  'tt': HTMLElement,
+  'tt': {
+    type: HTMLElement,
+  },
   
 };
 
@@ -642,93 +1048,153 @@ export const MathMLElementTagNameMap = {
 
   
   /** https://w3c.github.io/mathml-core/#dfn-math */
-  'math': MathMLElement,
+  'math': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mtext */
-  'mtext': MathMLElement,
+  'mtext': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mi */
-  'mi': MathMLElement,
+  'mi': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mn */
-  'mn': MathMLElement,
+  'mn': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mo */
-  'mo': MathMLElement,
+  'mo': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mspace */
-  'mspace': MathMLElement,
+  'mspace': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-ms */
-  'ms': MathMLElement,
+  'ms': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mrow */
-  'mrow': MathMLElement,
+  'mrow': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mfrac */
-  'mfrac': MathMLElement,
+  'mfrac': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-msqrt */
-  'msqrt': MathMLElement,
+  'msqrt': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mroot */
-  'mroot': MathMLElement,
+  'mroot': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mstyle */
-  'mstyle': MathMLElement,
+  'mstyle': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-merror */
-  'merror': MathMLElement,
+  'merror': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mpadded */
-  'mpadded': MathMLElement,
+  'mpadded': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mphantom */
-  'mphantom': MathMLElement,
+  'mphantom': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-msub */
-  'msub': MathMLElement,
+  'msub': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-msup */
-  'msup': MathMLElement,
+  'msup': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-msubsup */
-  'msubsup': MathMLElement,
+  'msubsup': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-munder */
-  'munder': MathMLElement,
+  'munder': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mover */
-  'mover': MathMLElement,
+  'mover': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-munderover */
-  'munderover': MathMLElement,
+  'munderover': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mmultiscripts */
-  'mmultiscripts': MathMLElement,
+  'mmultiscripts': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mprescripts */
-  'mprescripts': MathMLElement,
+  'mprescripts': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mtable */
-  'mtable': MathMLElement,
+  'mtable': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mtr */
-  'mtr': MathMLElement,
+  'mtr': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-mtd */
-  'mtd': MathMLElement,
+  'mtd': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-maction */
-  'maction': MathMLElement,
+  'maction': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-semantics */
-  'semantics': MathMLElement,
+  'semantics': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-annotation */
-  'annotation': MathMLElement,
+  'annotation': {
+    type: MathMLElement,
+  },
 
   /** https://w3c.github.io/mathml-core/#dfn-annotation-xml */
-  'annotation-xml': MathMLElement,
+  'annotation-xml': {
+    type: MathMLElement,
+  },
   
 };

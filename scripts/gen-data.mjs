@@ -68,7 +68,9 @@ export const ${k} = {
 
   ${_.map(elements, ({ name, href, interface: _interface }) => `
   /** ${href} */
-  '${name}': ${_interface ?? v.defaultInterface},`).join('\n')}
+  '${name}': {
+    type: ${_interface ?? v.defaultInterface},
+  },`).join('\n')}
   `).join('\n\n')}
 };
 `).join('\n')}`);
