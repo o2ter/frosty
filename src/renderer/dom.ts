@@ -30,12 +30,6 @@ import { globalEventHandlersEventMap } from '~/web/event';
 import { myersSync } from 'myers.js';
 import { JSDOM } from 'jsdom';
 
-const _document = (() => {
-  if (typeof document !== 'undefined') return document;
-  const dom = new JSDOM();
-  return dom.window.document;
-})();
-
 class _DOMRenderer extends _Renderer<Element> {
 
   doc: Document;
@@ -112,4 +106,8 @@ class _DOMRenderer extends _Renderer<Element> {
   }
 }
 
-export const DOMRenderer = new _DOMRenderer(_document);
+export const DOMRenderer = new _DOMRenderer((() => {
+  if (typeof document !== 'undefined') return document;
+  const dom = new JSDOM();
+  return dom.window.document;
+})());
