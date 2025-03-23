@@ -42,7 +42,13 @@ export abstract class _Renderer<T> {
   /** @internal */
   abstract _replaceChildren(element: T, children: (T | string)[]): void;
 
-  private _createRoot(root: T, component: ComponentNode) {
+  private _createRoot(
+    root: T,
+    component: ComponentNode,
+    options?: {
+      skipMount?: boolean;
+    },
+  ) {
 
     const runtime = reconciler.buildVNodes(component);
 
@@ -78,7 +84,7 @@ export abstract class _Renderer<T> {
         state.push({
           hook: curState[i].hook,
           deps: curState[i].deps,
-          unmount: curState[i].mount?.(),
+          unmount: options?.skipMount ? undefined : curState[i].mount?.(),
         });
       }
       mountState.set(node, state);
@@ -139,8 +145,13 @@ export abstract class _Renderer<T> {
   createRoot(root: T) {
     let state: ReturnType<typeof this._createRoot> | undefined;
     return {
-      mount: (component: ComponentNode) => {
-        state = this._createRoot(root, component);
+      mount: (
+        component: ComponentNode,
+        options?: {
+          skipMount?: boolean;
+        },
+      ) => {
+        state = this._createRoot(root, component, options);
       },
       unmount: () => {
         this._replaceChildren(root, []);
