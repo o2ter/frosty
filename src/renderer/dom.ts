@@ -29,7 +29,13 @@ import { _Renderer } from './base';
 import { globalEventHandlersEventMap } from '../web/event';
 import { myersSync } from 'myers.js';
 
-class _DOMRenderer extends _Renderer<Element> {
+export class DOMRenderer extends _Renderer<Element> {
+
+  private static _default = new DOMRenderer();
+
+  static createRoot(root: Element) {
+    return this._default.createRoot(root);
+  }
 
   private _doc?: Document;
 
@@ -108,5 +114,3 @@ class _DOMRenderer extends _Renderer<Element> {
     }
   }
 }
-
-export const DOMRenderer = new _DOMRenderer();
