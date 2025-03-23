@@ -44,7 +44,7 @@ type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any)
   [x in keyof ElementMap]: PropsWithChildren<RefAttribute<ElementMap[x]> & {
     className?: ClassName;
     style?: StyleProp<Style>;
-  } & _PropsOfElement<ElementMap[x]> & Partial<typeof globalEventHandlersEventMap>>
+  } & Omit<_PropsOfElement<ElementMap[x]>, 'className' | 'style'> & Partial<typeof globalEventHandlersEventMap>>
 };
 
 export type _IntrinsicElements = MergeObject<
