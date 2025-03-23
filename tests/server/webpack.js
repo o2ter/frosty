@@ -90,7 +90,7 @@ module.exports = (env, argv) => {
       entry: {
         server: [
           'core-js/stable',
-          path.resolve(__dirname, './index.ts'),
+          path.resolve(__dirname, './index.tsx'),
         ],
       },
       output: {

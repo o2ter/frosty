@@ -26,6 +26,8 @@
 import _ from 'lodash';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
+import { JSDOM } from 'jsdom';
+import { DOMRenderer } from '~/renderer/dom';
 
 const app = new Server({
   http: 'v1',
@@ -44,17 +46,22 @@ const app = new Server({
 app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
 
 app.express().get('*', (req, res) => {
-  res.setHeader('Content-Type', 'text/html');
-  res.send(`
+  const dom = new JSDOM();
+  const renderer = new DOMRenderer(dom.window.document);
+  const component = (
     <html>
       <head>
-        <script src="/main_bundle.js" defer></script>
+        <script src="/main_bundle.js" defer />
       </head>
       <body>
         <div id="root" />
       </body>
     </html>
-  `);
+  );
+  const root = renderer.createRoot();
+  root.mount(component, { skipMount: true });
+  res.setHeader('Content-Type', 'text/html');
+  res.send(_.first(_.castArray(root.root ?? []))?.outerHTML);
 });
 
 const PORT = !_.isEmpty(process.env.PORT) ? parseInt(process.env.PORT!) : 8080;
