@@ -93,8 +93,9 @@ export const reconciler = new class {
         const { node, contextValue } = item;
         yield { node, updated: node.updateIfNeed({ contextValue }) };
 
-        const _contextValue = new Map(contextValue);
+        let _contextValue = contextValue;
         if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
+          _contextValue = new Map(_contextValue);
           _contextValue.set(node.type, node.props.value);
         }
 
