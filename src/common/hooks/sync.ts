@@ -24,12 +24,35 @@
 //
 
 import _ from 'lodash';
+import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../../reconciler/hooks';
 
 export const useSyncExternalStore = <Snapshot>(
-  subscribe: (onStoreChange: () => void) => () => void,
+  subscribe: (
+    onStoreChange: () => void,
+    signal: AbortSignal,
+  ) => Awaitable<void | (() => Awaitable<void>)>,
   getSnapshot: () => Snapshot,
-) => { 
-  _useEffect('useSyncExternalStore', ({ onStateChange }) => subscribe(onStateChange), null);
+) => {
+  _useEffect('useSyncExternalStore', ({ onStateChange }) => {
+    const abort = new AbortController();
+    try {
+      const destructor = subscribe(onStateChange, abort.signal);
+      return () => {
+        abort.abort();
+        (async () => {
+          try {
+            const _destructor = await destructor;
+            if (_.isFunction(_destructor)) _destructor();
+          } catch (e) {
+            console.error(e);
+          }
+        })();
+      };
+    } catch (e) {
+      console.error(e);
+      return () => abort.abort();
+    }
+  }, null);
   return getSnapshot();
 };

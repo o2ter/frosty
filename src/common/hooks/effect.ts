@@ -28,7 +28,9 @@ import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../../reconciler/hooks';
 
 export const useEffect = (
-  effect: (abortSignal: AbortSignal) => Awaitable<void | (() => Awaitable<void>)>,
+  effect: (
+    signal: AbortSignal,
+  ) => Awaitable<void | (() => Awaitable<void>)>,
   deps?: any,
 ) => _useEffect('useEffect', () => {
   const abort = new AbortController();
