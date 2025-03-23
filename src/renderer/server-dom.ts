@@ -26,23 +26,11 @@
 import _ from 'lodash';
 import { JSDOM } from 'jsdom';
 import { DOMRenderer } from './dom';
-import { ComponentNode } from '../common/types/component';
 
 export class ServerDOMRenderer extends DOMRenderer {
 
   constructor() {
     const dom = new JSDOM();
     super(dom.window.document);
-  }
-
-  renderToString(component: ComponentNode) {
-    const root = this.createRoot();
-    try {
-      root.mount(component, { skipMount: true });
-      const str = _.map(_.castArray(root.root ?? []), x => x.outerHTML).join('');
-      return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
-    } finally {
-      root.unmount();
-    }
   }
 }

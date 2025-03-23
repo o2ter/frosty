@@ -26,8 +26,9 @@
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
 import { _Renderer } from './base';
-import { globalEventHandlersEventMap } from '../web/event';
 import { myersSync } from 'myers.js';
+import { globalEventHandlersEventMap } from '../web/event';
+import { ComponentNode } from '../common/types/component';
 
 export class DOMRenderer extends _Renderer<Element> {
 
@@ -111,6 +112,17 @@ export class DOMRenderer extends _Renderer<Element> {
           element.insertBefore(node, element.childNodes[i++]);
         }
       }
+    }
+  }
+
+  renderToString(component: ComponentNode) {
+    const root = this.createRoot();
+    try {
+      root.mount(component, { skipMount: true });
+      const str = _.map(_.castArray(root.root ?? []), x => x.outerHTML).join('');
+      return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
+    } finally {
+      root.unmount();
     }
   }
 }
