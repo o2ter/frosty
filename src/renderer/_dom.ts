@@ -70,7 +70,7 @@ export class _DOMRenderer extends _Renderer<Element> {
             break;
           default:
             if (key in element) {
-              (element as any)[key] = value;
+              (element as any)[key] = value ?? undefined;
             } else if (value === false || _.isNil(value)) {
               element.removeAttribute(key);
             } else if (value === true) {
