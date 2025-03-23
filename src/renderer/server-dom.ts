@@ -39,7 +39,8 @@ export class ServerDOMRenderer extends DOMRenderer {
     const root = this.createRoot();
     try {
       root.mount(component, { skipMount: true });
-      return _.first(_.castArray(root.root ?? []))?.outerHTML;
+      const str = _.map(_.castArray(root.root ?? []), x => x.outerHTML).join('');
+      return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
     } finally {
       root.unmount();
     }
