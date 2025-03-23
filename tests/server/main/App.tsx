@@ -15,6 +15,7 @@ export const App = () => {
         </tr>
         )}
       </table>
+      <div innerHTML={`<span>${counter}</span>`} />
     </div>
   );
 };
