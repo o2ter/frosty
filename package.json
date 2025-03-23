@@ -11,8 +11,7 @@
   "author": "Susan Cheng <susan.doggie@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "gen-data": "if [ -f ./scripts/gen-data.mjs ]; then node ./scripts/gen-data.mjs; fi",
-    "postinstall": "yarn gen-data",
+    "gen-data": "node ./scripts/gen-data.mjs",
     "clean": "rm -rf ./dist/*",
     "rollup": "yarn clean && rollup -c",
     "test": "jest",
