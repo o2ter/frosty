@@ -44,7 +44,6 @@ type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any)
   [x in keyof ElementMap]: PropsWithChildren<RefAttribute<ElementMap[x]> & {
     className?: ClassName;
     style?: StyleProp<Style>;
-    innerHTML?: string;
   } & _PropsOfElement<ElementMap[x]> & Partial<typeof globalEventHandlersEventMap>>
 };
 
