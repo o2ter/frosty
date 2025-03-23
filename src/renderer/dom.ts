@@ -44,24 +44,30 @@ class _DOMRenderer extends _Renderer<Element> {
   _updateElement(node: VNode, element: Element) {
 
     for (const [key, value] of _.entries(node.props)) {
-      switch (key) {
-        case 'className':
-          break;
-        case 'style':
-          break;
-        case 'innerHTML':
-          break;
-        default:
-          if (key in globalEventHandlersEventMap) {
 
-            continue;
-          }
-          if (value === true) {
-            element.setAttribute(key, '');
-          } else if (_.isNumber(value) || _.isString(value)) {
-            element.setAttribute(key, `${value}`);
-          }
-          break;
+      if (_.isFunction(value)) {
+
+        if (key in globalEventHandlersEventMap) {
+
+        }
+
+      } else {
+
+        switch (key) {
+          case 'className':
+            break;
+          case 'style':
+            break;
+          case 'innerHTML':
+            break;
+          default:
+            if (value === true) {
+              element.setAttribute(key, '');
+            } else if (_.isNumber(value) || _.isString(value)) {
+              element.setAttribute(key, `${value}`);
+            }
+            break;
+        }
       }
     }
   }
