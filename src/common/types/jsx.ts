@@ -40,8 +40,8 @@ type _PropsOfInstance<Instance> = Partial<
   Omit<
     PickType<{
       [k in WritableKeys<Instance>]: Instance[k];
-    }, boolean | number | string>,
-    'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML'
+    }, boolean | number | string | null>,
+    'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
   >
 >;
 
