@@ -1274,6 +1274,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@mdn/browser-compat-data@^5.7.5":
+  version "5.7.5"
+  resolved "https://registry.yarnpkg.com/@mdn/browser-compat-data/-/browser-compat-data-5.7.5.tgz#c4b97033fab5fed730d55c44fc0a6276ac6a9773"
+  integrity sha512-AD9mNP6Yv1IdFOnP22UnggZM1Cx6MWcTlatCLzv69ObHNJsyKHAACnjc7ldlF9sIBs76J3jGfto1TywCFRy5DA==
+
 "@o2ter/server-js@^0.0.20":
   version "0.0.20"
   resolved "https://registry.yarnpkg.com/@o2ter/server-js/-/server-js-0.0.20.tgz#462f1048b88cc92453d200d7f193224c85b2ffd9"
@@ -1886,10 +1891,25 @@
   resolved "https://registry.yarnpkg.com/@webpack-cli/serve/-/serve-3.0.1.tgz#bd8b1f824d57e30faa19eb78e4c0951056f72f00"
   integrity sha512-sbgw03xQaCLiT6gcY/6u3qBDn01CWw/nbaXl3gTdTFuJJ75Gffv3E3DBpgvY2fkkrdS1fpjaXNOmJlnbtKauKg==
 
+"@webref/css@^6.20.4":
+  version "6.20.4"
+  resolved "https://registry.yarnpkg.com/@webref/css/-/css-6.20.4.tgz#9a335b4b3019ae30bd94bd6b72f1a663bd900d11"
+  integrity sha512-3UNXzC7N5SYsjnKsQMmXqr+WOlllSobxrJAtkuiG35iFEuyZQ2k8bF1Ehe8UYFuYPicHXoUF+i0GilRyEaPwOA==
+
 "@webref/elements@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@webref/elements/-/elements-2.4.0.tgz#1b0cd74775f74a504995757d8223b73ddacd96aa"
   integrity sha512-KRD9xK9Wx6N1L0cVf1KiScmoyR5OCrM/tSCgJKFi5WdBZQ+aaIjqtkhU+STO2O9k2X1YiSRMC/+P4gNM1n4v9w==
+
+"@webref/events@^1.18.3":
+  version "1.18.3"
+  resolved "https://registry.yarnpkg.com/@webref/events/-/events-1.18.3.tgz#5963c944b3a3eb231d1915f938adb4599ee293eb"
+  integrity sha512-piywAqV2OfoQ6E/5v2F5lLIodpLIrOy10lqAGUfrKXPrwrW2L+OYr1UK6ATmmN0X5FYFN+Vw7/yv1AqgxU+3qA==
+
+"@webref/idl@^3.61.1":
+  version "3.61.1"
+  resolved "https://registry.yarnpkg.com/@webref/idl/-/idl-3.61.1.tgz#a917db6f47456deace73d8d97304793fe3a3db4b"
+  integrity sha512-tvC6xQOJJ6ePSxKIM7u9S9kz5CvlisdDiyfwg6A+ATtuzbSH3j/DxO8du/i4Zu18u1cmYvi/NFrg2A5E8jIDuA==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
@@ -5802,6 +5822,11 @@ webidl-conversions@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-7.0.0.tgz#256b4e1882be7debbf01d05f0aa2039778ea080a"
   integrity sha512-VwddBukDzu71offAQR975unBIGqfKZpM+8ZX6ySk8nYhVoo5CYaZyzt3YBvYtRtO+aoGlqxPg/B87NGVZ/fu6g==
+
+webidl2@^24.4.1:
+  version "24.4.1"
+  resolved "https://registry.yarnpkg.com/webidl2/-/webidl2-24.4.1.tgz#6c5d6ce24cf938e966673aca58704d979db4bc98"
+  integrity sha512-cPToqvZlxTAlaMucZyU28XtFLJz3XPdTdIWK/r3IaP1jfkjqne3OTniJS8DZqfzee1aBUQn80d6s2vYert50kg==
 
 webpack-cli@^6.0.1:
   version "6.0.1"

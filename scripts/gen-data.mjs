@@ -25,7 +25,18 @@
 
 import _ from 'lodash';
 import fs from 'fs/promises';
-import webref_elements from '@webref/elements';
+import _webref_css from '@webref/css';
+import _webref_idl from '@webref/idl';
+import _webref_events from '@webref/events';
+import _webref_elements from '@webref/elements';
+import bcd from '@mdn/browser-compat-data' with { type: 'json' };
+
+const webref = {
+  css: await _webref_css.listAll(),
+  idl: await _webref_idl.parseAll(),
+  events: await _webref_events.listAll(),
+  elements: await _webref_elements.listAll(),
+};
 
 try {
   await fs.rm('./generated', { recursive: true, force: true });
@@ -36,7 +47,6 @@ try {
 } catch { }
 
 const elements = await (async () => {
-  const elements = await webref_elements.listAll();
   const mapped = {
     SVGElementTagNameMap: {
       defaultInterface: 'SVGElement',
@@ -53,7 +63,7 @@ const elements = await (async () => {
   };
   return _.mapValues(mapped, v => ({
     ...v,
-    elements: _.pick(elements, v.groups),
+    elements: _.pick(webref.elements, v.groups),
   }));
 })();
 
