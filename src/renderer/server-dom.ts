@@ -1,5 +1,5 @@
 //
-//  index.js
+//  dom.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,43 +24,24 @@
 //
 
 import _ from 'lodash';
-import path from 'path';
-import { Server } from '@o2ter/server-js';
-import { App } from './main/App';
-import { ServerDOMRenderer } from '~/renderer/server-dom';
+import { JSDOM } from 'jsdom';
+import { DOMRenderer } from './dom';
+import { ComponentNode } from '../common/types/component';
 
-const app = new Server({
-  http: 'v1',
-  express: {
-    cors: {
-      credentials: true,
-      origin: true,
-    },
-    rateLimit: {
-      windowMs: 1000,
-      limit: 1000,
-    },
-  },
-});
+export class ServerDOMRenderer extends DOMRenderer {
 
-app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
+  constructor() {
+    const dom = new JSDOM();
+    super(dom.window.document);
+  }
 
-app.express().get('*', (req, res) => {
-  const renderer = new ServerDOMRenderer();
-  const component = (
-    <html>
-      <head>
-        <script src="/main_bundle.js" defer />
-      </head>
-      <body>
-        <div id="root"><App /></div>
-      </body>
-    </html>
-  );
-  res.setHeader('Content-Type', 'text/html');
-  res.send(renderer.renderToString(component));
-});
-
-const PORT = !_.isEmpty(process.env.PORT) ? parseInt(process.env.PORT!) : 8080;
-
-app.listen(PORT, () => console.info(`listening on port ${PORT}`));
+  renderToString(component: ComponentNode) {
+    const root = this.createRoot();
+    try {
+      root.mount(component, { skipMount: true });
+      return _.first(_.castArray(root.root ?? []))?.outerHTML;
+    } finally {
+      root.unmount();
+    }
+  }
+}
