@@ -32,10 +32,10 @@ import { ComponentNode } from '../common/types/component';
 
 export class DOMRenderer extends _Renderer<Element> {
 
-  private static _default = new DOMRenderer();
+  static default = new DOMRenderer();
 
-  static createRoot(root: Element) {
-    return this._default.createRoot(root);
+  static createRoot(root: Element): ReturnType<typeof DOMRenderer.default.createRoot> {
+    return this.default.createRoot(root);
   }
 
   private _doc?: Document;
