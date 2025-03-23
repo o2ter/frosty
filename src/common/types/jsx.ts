@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { MergeObject } from '@o2ter/utils-js';
+import { MergeObject, OmitType, WritableKeys } from '@o2ter/utils-js';
 import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
 import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../../web/css';
@@ -36,12 +36,16 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
 
-type _ElementProps<ElementMap, Style> = {
-  [x in keyof ElementMap]: PropsWithChildren<{
+type _PropsOfElement<ElementMap extends abstract new (...args: any) => any> = Partial<OmitType<{
+  [k in WritableKeys<InstanceType<ElementMap>>]: InstanceType<ElementMap>[k];
+}, Function | null | undefined>>;
+
+type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any) => any }, Style> = {
+  [x in keyof ElementMap]: PropsWithChildren<RefAttribute<ElementMap[x]> & {
     className?: ClassName;
     style?: StyleProp<Style>;
     innerHTML?: string;
-  } & RefAttribute<ElementMap[x]> & Partial<typeof globalEventHandlersEventMap>>
+  } & _PropsOfElement<ElementMap[x]> & Partial<typeof globalEventHandlersEventMap>>
 };
 
 export type _IntrinsicElements = MergeObject<
