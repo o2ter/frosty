@@ -46,26 +46,23 @@ try {
   await fs.mkdir('./generated');
 } catch { }
 
-const elements = await (async () => {
-  const mapped = {
-    SVGElementTagNameMap: {
-      defaultInterface: 'SVGElement',
-      groups: ['SVG11'],
-    },
-    HTMLElementTagNameMap: {
-      defaultInterface: 'HTMLElement',
-      groups: ['html'],
-    },
-    MathMLElementTagNameMap: {
-      defaultInterface: 'MathMLElement',
-      groups: ['mathml-core'],
-    },
-  };
-  return _.mapValues(mapped, v => ({
-    ...v,
-    elements: _.pick(webref.elements, v.groups),
-  }));
-})();
+const elements = _.mapValues({
+  SVGElementTagNameMap: {
+    defaultInterface: 'SVGElement',
+    groups: ['SVG11'],
+  },
+  HTMLElementTagNameMap: {
+    defaultInterface: 'HTMLElement',
+    groups: ['html'],
+  },
+  MathMLElementTagNameMap: {
+    defaultInterface: 'MathMLElement',
+    groups: ['mathml-core'],
+  },
+}, v => ({
+  ...v,
+  elements: _.pick(webref.elements, v.groups),
+}));
 
 await fs.writeFile('./generated/elements.ts', `${_.map(elements, (v, k) => `
 export const ${k} = {
