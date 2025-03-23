@@ -74,12 +74,14 @@ export class _DOMRenderer extends _Renderer<Element> {
           default:
             if (key in element) {
               (element as any)[key] = value ?? undefined;
-            } else if (value === false || _.isNil(value)) {
-              element.removeAttribute(key);
-            } else if (value === true) {
-              element.setAttribute(key, '');
-            } else if (_.isNumber(value) || _.isString(value)) {
-              element.setAttribute(key, `${value}`);
+            } else if (key.startsWith('data-')) {
+              if (value === false || _.isNil(value)) {
+                element.removeAttribute(key);
+              } else if (value === true) {
+                element.setAttribute(key, '');
+              } else if (_.isNumber(value) || _.isString(value)) {
+                element.setAttribute(key, `${value}`);
+              }
             }
             break;
         }
