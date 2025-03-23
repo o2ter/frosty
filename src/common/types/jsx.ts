@@ -39,7 +39,7 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
 type _PropsOfInstance<Instance> = Omit<
   PickType<{
     [k in WritableKeys<Instance>]: Instance[k];
-  }, boolean | number | string | null>,
+  }, boolean | number | string | null | undefined>,
   'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
 >;
 
