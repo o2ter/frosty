@@ -57,7 +57,9 @@ class _DOMRenderer extends _Renderer<Element> {
           case 'innerHTML':
             break;
           default:
-            if (value === false) {
+            if (key in element) {
+              (element as any)[key] = value;
+            } else if (value === false) {
               element.removeAttribute(key);
             } else if (value === true) {
               element.setAttribute(key, '');
