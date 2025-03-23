@@ -66,8 +66,6 @@ export class _DOMRenderer extends _Renderer<Element> {
             break;
           case 'style':
             break;
-          case 'innerHTML':
-            break;
           default:
             if (key in element) {
               (element as any)[key] = value ?? undefined;
