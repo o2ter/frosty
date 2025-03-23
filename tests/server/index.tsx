@@ -28,6 +28,7 @@ import path from 'path';
 import { Server } from '@o2ter/server-js';
 import { JSDOM } from 'jsdom';
 import { DOMRenderer } from '~/renderer/dom';
+import { App } from './main/App';
 
 const app = new Server({
   http: 'v1',
@@ -54,7 +55,7 @@ app.express().get('*', (req, res) => {
         <script src="/main_bundle.js" defer />
       </head>
       <body>
-        <div id="root" />
+        <div id="root"><App /></div>
       </body>
     </html>
   );
