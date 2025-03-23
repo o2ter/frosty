@@ -133,8 +133,10 @@ export abstract class _Renderer<T> {
 
     return {
       get root() {
+        if (root) return root;
         const elems = _.castArray(elements.get(runtime.node) ?? children(runtime.node));
-        return elems.length === 1 ? elems[0] : elems;
+        const nodes = _.filter(elems, x => !_.isString(x)) as T[];
+        return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
         destroyed = true;
