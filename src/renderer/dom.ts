@@ -36,6 +36,12 @@ class _DOMRenderer extends _Renderer<Element> {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     const elem = document.createElement(type);
+    this._updateElement(node, elem);
+    return elem;
+  }
+
+  /** @internal */
+  _updateElement(node: VNode, element: Element) {
 
     for (const [key, value] of _.entries(node.props)) {
       switch (key) {
@@ -51,20 +57,13 @@ class _DOMRenderer extends _Renderer<Element> {
             continue;
           }
           if (value === true) {
-            elem.setAttribute(key, '');
+            element.setAttribute(key, '');
           } else if (_.isNumber(value) || _.isString(value)) {
-            elem.setAttribute(key, `${value}`);
+            element.setAttribute(key, `${value}`);
           }
           break;
       }
     }
-
-    return elem;
-  }
-
-  /** @internal */
-  _updateElement(node: VNode, element: Element) {
-
   }
 
   /** @internal */
