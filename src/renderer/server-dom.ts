@@ -25,9 +25,9 @@
 
 import _ from 'lodash';
 import { JSDOM } from 'jsdom';
-import { DOMRenderer } from './dom';
+import { _DOMRenderer } from './_dom';
 
-export class ServerDOMRenderer extends DOMRenderer {
+export class ServerDOMRenderer extends _DOMRenderer {
 
   constructor() {
     const dom = new JSDOM();
