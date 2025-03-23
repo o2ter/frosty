@@ -97,9 +97,6 @@ class _DOMRenderer extends _Renderer<Element> {
       }
     }
   }
-
-  renderToString(component: ComponentNode) {
-  }
 }
 
 export const DOMRenderer = new _DOMRenderer();
