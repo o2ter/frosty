@@ -85,7 +85,8 @@ export class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _replaceChildren(element: Element, children: (string | Element)[]): void {
+  _replaceChildren(node: VNode, element: Element, children: (string | Element)[]): void {
+    if (!_.isEmpty(node.props['innerHTML'])) return;
     const diff = myersSync(
       _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
       children,

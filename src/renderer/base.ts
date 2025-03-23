@@ -40,7 +40,7 @@ export abstract class _Renderer<T> {
   abstract _updateElement(node: VNode, element: T): void;
 
   /** @internal */
-  abstract _replaceChildren(element: T, children: (T | string)[]): void;
+  abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
 
   private _createRoot(
     root: T | null,
@@ -88,7 +88,7 @@ export abstract class _Renderer<T> {
         });
       }
       mountState.set(node, state);
-      if (element) this._replaceChildren(element, children(node));
+      if (element) this._replaceChildren(node, element, children(node));
     };
 
     const update = () => {
@@ -114,7 +114,7 @@ export abstract class _Renderer<T> {
         mountState.delete(node);
       }
       mount(runtime.node);
-      if (root) this._replaceChildren(root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
+      if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
     };
 
     let update_count = 0;
@@ -139,6 +139,7 @@ export abstract class _Renderer<T> {
         return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
+        if (root) this._replaceChildren(runtime.node, root, []);
         destroyed = true;
         listener.remove();
         for (const state of mountState.values()) {
@@ -163,7 +164,6 @@ export abstract class _Renderer<T> {
         state = this._createRoot(root ?? null, component, options);
       },
       unmount: () => {
-        if (root) this._replaceChildren(root, []);
         state?.destroy();
         state = undefined;
       },
