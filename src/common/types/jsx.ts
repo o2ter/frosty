@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { MergeObject, OmitType, WritableKeys } from '@o2ter/utils-js';
+import { MergeObject, PickType, WritableKeys } from '@o2ter/utils-js';
 import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
 import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../../web/css';
@@ -36,23 +36,23 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
 
-type _PropsOfElement<ElementMap extends abstract new (...args: any) => any> = Partial<
+type _PropsOfInstance<Instance> = Partial<
   Omit<
-    OmitType<{
-      [k in WritableKeys<InstanceType<ElementMap>>]: InstanceType<ElementMap>[k];
-    }, Function | null | undefined>,
-    'className' | 'style'
+    PickType<{
+      [k in WritableKeys<Instance>]: Instance[k];
+    }, boolean | number | string>,
+    'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML'
   >
 >;
 
 type _ElementProps<ElementMap extends { [x: string]: abstract new (...args: any) => any }, Style> = {
   [x in keyof ElementMap]: PropsWithChildren<
-    RefAttribute<ElementMap[x]>
+    RefAttribute<InstanceType<ElementMap[x]>>
     & {
       className?: ClassName;
       style?: StyleProp<Style>;
     }
-    & _PropsOfElement<ElementMap[x]>
+    & _PropsOfInstance<InstanceType<ElementMap[x]>>
     & Partial<typeof globalEventHandlersEventMap>
   >
 };

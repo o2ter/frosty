@@ -20,7 +20,7 @@
     "gen-data": "node ./scripts/gen-data.mjs"
   },
   "dependencies": {
-    "@o2ter/utils-js": "^0.0.18",
+    "@o2ter/utils-js": "^0.0.19",
     "autoprefixer": "^10.4.21",
     "csstype": "^3.1.3",
     "lodash": ">=4.17.21",
