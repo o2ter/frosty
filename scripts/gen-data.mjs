@@ -128,10 +128,11 @@ const htmlProps = {
   ..._.fromPairs(_.map(htmlElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_html_attrs(_interface, name), x => [x.name, x]))])),
 };
 
-console.log(svgProps);
-console.log(htmlProps);
-
 await fs.writeFile('./generated/elements.ts', `
+
+export const svgProps = ${JSON.stringify(svgProps, null, 2)};
+
+export const htmlProps = ${JSON.stringify(htmlProps, null, 2)};
 
 export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ groups }, key) => `
   ${key}: {${_.map(groups, ({ spec, elements }, group) => `
@@ -148,8 +149,8 @@ export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ groups }, key) =>
   },`).join('\n')}
 };
 
-export const tags =  ${JSON.stringify(_.mapValues(
+export const tags = ${JSON.stringify(_.mapValues(
   ElementTagNameMap,
   v => _.uniq(_.flatMap(_.values(v.groups), ({ elements }) => _.map(elements, 'name')))
-))};
+), null, 2)};
 `);
