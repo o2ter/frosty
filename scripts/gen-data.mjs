@@ -97,7 +97,7 @@ const collect = (name) => {
   }
   interfaces[name] = {
     implements: record.implements,
-    members: _.groupBy(record.members, 'type'),
+    ..._.groupBy(record.members, 'type'),
   };
 };
 _.forEach(elements, x => collect(x));
