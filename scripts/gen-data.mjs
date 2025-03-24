@@ -78,10 +78,12 @@ const collect = (name) => {
   };
   for (const item of _interface) {
     if (item.inheritance) collect(item.inheritance);
+    record.implements.push(item.inheritance);
     record.members.push(...item.members);
   }
   for (const item of _mixin) {
     if (item.inheritance) collect(item.inheritance);
+    record.implements.push(item.inheritance);
     record.members.push(...item.members);
   }
   for (const item of impls.includes['']) {
