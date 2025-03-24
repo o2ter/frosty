@@ -95,7 +95,10 @@ const collect = (name) => {
     record.implements.push(item.includes);
     collect(item.includes);
   }
-  interfaces[name] = record;
+  interfaces[name] = {
+    implements: record.implements,
+    members: _.groupBy(record.members, 'type'),
+  };
 };
 _.forEach(elements, x => collect(x));
 
