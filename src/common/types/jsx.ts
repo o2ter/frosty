@@ -28,7 +28,12 @@ import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
 import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../../web/css';
 import { globalEventHandlersEventMap } from '../../web/event';
-import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../../../generated/elements';
+import { ElementTagNameMap } from '../../../generated/elements';
+
+type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
+type HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
+type SVGElementTagNameMap = _ElementTagNameMap<'svg'>;
+type MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
 
 export type _ElementType = string | ComponentType;
 

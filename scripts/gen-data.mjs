@@ -50,46 +50,43 @@ const impls = _.mapValues(_.groupBy(_.flatten(_.values(webref.idl)), 'type'), u 
 
 console.log(impls)
 
-const elements = _.mapValues({
-  SVGElementTagNameMap: {
+const ElementTagNameMap = _.mapValues({
+  svg: {
     defaultInterface: 'SVGElement',
     groups: ['SVG11'],
   },
-  HTMLElementTagNameMap: {
+  html: {
     defaultInterface: 'HTMLElement',
     groups: ['html'],
   },
-  MathMLElementTagNameMap: {
+  mathml: {
     defaultInterface: 'MathMLElement',
     groups: ['mathml-core'],
   },
 }, v => ({
   ...v,
-  elements: _.values(_.pick(webref.elements, v.groups)),
+  elements: _.pick(webref.elements, v.groups),
 }));
 
 await fs.writeFile('./generated/elements.ts', `
-${_.map(elements, (v, k) => `
-export type ${k} = {
-  ${_.map(v.elements, ({ spec, elements }) => `
 
-  /**
-   * ${spec.title}
-   * ${spec.url}
-   */
-
-  ${_.map(elements, ({ name, href, interface: _interface }) => `
-  /** ${href} */
-  '${name}': {
-    type: ${_interface ?? v.defaultInterface},
+export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ elements }, key) => `
+  ${key}: {${_.map(elements, ({ spec, elements }, group) => `
+    /**
+     * ${spec.title}
+     * ${spec.url}
+     */
+    '${group}': {${_.map(elements, ({ name, href, interface: _interface }) => `
+      /** ${href} */
+      '${name}': {
+        type: ${_interface ?? v.defaultInterface},
+      },`).join('\n')}
+    },`).join('\n')}
   },`).join('\n')}
-  `).join('\n\n')}
 };
-`).join('\n')}
 
-export const tags = {
-  svg: ${JSON.stringify(_.flatMap(elements.SVGElementTagNameMap.elements, ({ elements }) => _.map(elements, 'name')))},
-  html: ${JSON.stringify(_.flatMap(elements.HTMLElementTagNameMap.elements, ({ elements }) => _.map(elements, 'name')))},
-  mathml: ${JSON.stringify(_.flatMap(elements.MathMLElementTagNameMap.elements, ({ elements }) => _.map(elements, 'name')))},
-};
+export const tags =  ${JSON.stringify(_.mapValues(
+  ElementTagNameMap,
+  v => _.uniq(_.flatMap(_.values(v.elements), ({ elements }) => _.map(elements, 'name')))
+))};
 `);
