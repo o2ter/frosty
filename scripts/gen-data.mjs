@@ -70,20 +70,23 @@ const elements = _.uniq(_.flatMap(ElementTagNameMap, (v) => _.flatMap(v.groups, 
 const interfaces = {};
 const collect = (name) => {
   if (interfaces[name]) return;
+  const _interface = impls.interface[name] ?? [];
+  const _mixin = impls['interface mixin'][name] ?? [];
   const record = {
-    interface: impls.interface[name],
-    mixin: impls['interface mixin'][name],
-    includes: [],
+    implements: [],
+    members: [],
   };
-  for (const item of record.interface ?? []) {
+  for (const item of _interface) {
     if (item.inheritance) collect(item.inheritance);
+    record.members.push(...item.members);
   }
-  for (const item of record.mixin ?? []) {
+  for (const item of _mixin) {
     if (item.inheritance) collect(item.inheritance);
+    record.members.push(...item.members);
   }
   for (const item of impls.includes['']) {
     if (item.target !== name) continue;
-    record.includes.push(item.includes);
+    record.implements.push(item.includes);
     collect(item.includes);
   }
   interfaces[name] = record;
