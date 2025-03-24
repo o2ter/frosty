@@ -65,30 +65,41 @@ export abstract class _Renderer<T> {
       return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
     };
 
-    const mount = (
-      node: VNode,
-    ) => {
-      const element = elements.get(node);
-      if (element) mergeRefs(node.props.ref)(element);
-      for (const item of node.children) {
-        if (item instanceof VNode) mount(item);
+    const mount = () => {
+
+      const _mount = (
+        node: VNode,
+      ) => {
+        const element = elements.get(node);
+        if (element) mergeRefs(node.props.ref)(element);
+        for (const item of node.children) {
+          if (item instanceof VNode) _mount(item);
+        }
+        const state: _State[] = [];
+        const prevState = mountState.get(node) ?? [];
+        const curState = node.state;
+        for (const i of _.range(Math.max(prevState.length, curState.length))) {
+          const unmount = prevState[i]?.unmount;
+          if (unmount &&
+            (!_.isEqual(prevState[i].hook, curState[i]?.hook) || !equalDeps(prevState[i].deps, curState[i]?.deps))
+          ) unmount();
+          state.push({
+            hook: curState[i].hook,
+            deps: curState[i].deps,
+            unmount: options?.skipMount ? undefined : curState[i].mount?.(),
+          });
+        }
+        mountState.set(node, state);
+        if (element) this._replaceChildren(node, element, children(node));
+      };
+
+      for (const [node, state] of mountState) {
+        if (elements.has(node)) continue;
+        for (const { unmount } of state) unmount?.();
+        mountState.delete(node);
       }
-      const state: _State[] = [];
-      const prevState = mountState.get(node) ?? [];
-      const curState = node.state;
-      for (const i of _.range(Math.max(prevState.length, curState.length))) {
-        const unmount = prevState[i]?.unmount;
-        if (unmount &&
-          (!_.isEqual(prevState[i].hook, curState[i]?.hook) || !equalDeps(prevState[i].deps, curState[i]?.deps))
-        ) unmount();
-        state.push({
-          hook: curState[i].hook,
-          deps: curState[i].deps,
-          unmount: options?.skipMount ? undefined : curState[i].mount?.(),
-        });
-      }
-      mountState.set(node, state);
-      if (element) this._replaceChildren(node, element, children(node));
+      _mount(runtime.node);
+      if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
     };
 
     const update = () => {
@@ -108,13 +119,6 @@ export abstract class _Renderer<T> {
         }
       }
       elements = map;
-      for (const [node, state] of mountState) {
-        if (map.has(node)) continue;
-        for (const { unmount } of state) unmount?.();
-        mountState.delete(node);
-      }
-      mount(runtime.node);
-      if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
     };
 
     let update_count = 0;
@@ -127,9 +131,11 @@ export abstract class _Renderer<T> {
         if (destroyed) return;
         render_count = update_count;
         update();
+        mount();
       });
     });
     update();
+    mount();
 
     return {
       get root() {
