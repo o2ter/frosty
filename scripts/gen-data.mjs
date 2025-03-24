@@ -81,7 +81,7 @@ export type ${k} = {
   ${_.map(elements, ({ name, href, interface: _interface }) => `
   /** ${href} */
   '${name}': {
-    type: typeof ${_interface ?? v.defaultInterface},
+    type: ${_interface ?? v.defaultInterface},
   },`).join('\n')}
   `).join('\n\n')}
 };
