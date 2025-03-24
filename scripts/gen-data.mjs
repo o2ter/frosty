@@ -65,13 +65,13 @@ const ElementTagNameMap = _.mapValues({
   },
 }, v => ({
   ...v,
-  elements: _.pick(webref.elements, v.groups),
+  groups: _.pick(webref.elements, v.groups),
 }));
 
 await fs.writeFile('./generated/elements.ts', `
 
-export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ elements }, key) => `
-  ${key}: {${_.map(elements, ({ spec, elements }, group) => `
+export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ groups }, key) => `
+  ${key}: {${_.map(groups, ({ spec, elements }, group) => `
     /**
      * ${spec.title}
      * ${spec.url}
@@ -87,6 +87,6 @@ export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ elements }, key) 
 
 export const tags =  ${JSON.stringify(_.mapValues(
   ElementTagNameMap,
-  v => _.uniq(_.flatMap(_.values(v.elements), ({ elements }) => _.map(elements, 'name')))
+  v => _.uniq(_.flatMap(_.values(v.groups), ({ elements }) => _.map(elements, 'name')))
 ))};
 `);
