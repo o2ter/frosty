@@ -29,7 +29,8 @@ import _webref_css from '@webref/css';
 import _webref_idl from '@webref/idl';
 import _webref_events from '@webref/events';
 import _webref_elements from '@webref/elements';
-import bcd from '@mdn/browser-compat-data' with { type: 'json' };
+import { htmlElementAttributes } from 'html-element-attributes';
+import { svgElementAttributes } from 'svg-element-attributes';
 
 const webref = {
   css: await _webref_css.listAll(),
