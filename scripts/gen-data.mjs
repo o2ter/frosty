@@ -48,8 +48,6 @@ try {
 
 const impls = _.mapValues(_.groupBy(_.flatten(_.values(webref.idl)), 'type'), u => _.groupBy(u, x => x.name ?? ''));
 
-console.log(impls)
-
 const ElementTagNameMap = _.mapValues({
   svg: {
     defaultInterface: 'SVGElement',
@@ -67,6 +65,32 @@ const ElementTagNameMap = _.mapValues({
   ...v,
   groups: _.pick(webref.elements, v.groups),
 }));
+
+const elements = _.uniq(_.flatMap(ElementTagNameMap, (v) => _.flatMap(v.groups, g => _.map(g.elements, e => e.interface))));
+const interfaces = {};
+const collect = (name) => {
+  if (interfaces[name]) return;
+  const record = {
+    interface: impls.interface[name],
+    mixin: impls['interface mixin'][name],
+    includes: [],
+  };
+  for (const item of record.interface ?? []) {
+    if (item.inheritance) collect(item.inheritance);
+  }
+  for (const item of record.mixin ?? []) {
+    if (item.inheritance) collect(item.inheritance);
+  }
+  for (const item of impls.includes['']) {
+    if (item.target !== name) continue;
+    record.includes.push(item.includes);
+    collect(item.includes);
+  }
+  interfaces[name] = record;
+};
+_.forEach(elements, x => collect(x));
+
+await fs.writeFile('./generated/interfaces.json', JSON.stringify(interfaces, null, 2));
 
 await fs.writeFile('./generated/elements.ts', `
 
