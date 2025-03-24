@@ -113,15 +113,6 @@ const select_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
 }));
 
 const globalHtmlAttrs = _.fromPairs(_.map(select_attrs('HTMLElement', '*'), x => [x.name, x]));
-console.log(globalHtmlAttrs)
-
-const test = _.mapValues(interfaces, v => ({
-  implements: v.implements,
-  attribute: _.fromPairs(_.map(v.attribute, x => [x.name, _.isString(x.idlType.idlType) ? x.idlType.idlType : x.idlType])),
-}))
-
-await fs.writeFile('./generated/interfaces.json', JSON.stringify(interfaces, null, 2));
-await fs.writeFile('./generated/interfaces2.json', JSON.stringify(test, null, 2));
 
 await fs.writeFile('./generated/elements.ts', `
 
