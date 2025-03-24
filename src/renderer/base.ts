@@ -34,10 +34,10 @@ import { equalDeps } from '../reconciler/utils';
 export abstract class _Renderer<T> {
 
   /** @internal */
-  abstract _createElement(node: VNode): T;
+  abstract _createElement(node: VNode, parent?: VNode): T;
 
   /** @internal */
-  abstract _updateElement(node: VNode, element: T): void;
+  abstract _updateElement(node: VNode, element: T, parent?: VNode): void;
 
   /** @internal */
   abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
@@ -104,18 +104,18 @@ export abstract class _Renderer<T> {
 
     const update = () => {
       const map = new Map<VNode, T>();
-      for (const { node, updated } of runtime.excute()) {
+      for (const { node, parent, updated } of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
         if (updated) {
           let elem = elements.get(node);
           if (elem) {
-            this._updateElement(node, elem);
+            this._updateElement(node, elem, parent);
           } else {
-            elem = this._createElement(node);
+            elem = this._createElement(node, parent);
           }
           map.set(node, elem);
         } else {
-          map.set(node, elements.get(node) ?? this._createElement(node));
+          map.set(node, elements.get(node) ?? this._createElement(node, parent));
         }
       }
       elements = map;

@@ -44,7 +44,7 @@ export class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _createElement(node: VNode) {
+  _createElement(node: VNode, parent?: VNode) {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     const elem = this.doc.createElement(type);
@@ -53,7 +53,7 @@ export class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _updateElement(node: VNode, element: Element) {
+  _updateElement(node: VNode, element: Element, parent?: VNode) {
 
     for (const [key, value] of _.entries(node.props)) {
 
