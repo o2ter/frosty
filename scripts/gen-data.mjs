@@ -103,6 +103,18 @@ const collect = (name) => {
 };
 _.forEach(elements, x => collect(x));
 
+const resolve = (name) => [
+  ...interfaces[name].attribute,
+  ..._.flatMap(interfaces[name].implements, resolve),
+];
+const select_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
+  const attr = _.find(htmlElementAttributes[tag], a => _.camelCase(a).toLowerCase() === _.camelCase(x.name).toLowerCase());
+  return attr && { type: x, name: x.name, attr };
+}));
+
+const globalHtmlAttrs = _.fromPairs(_.map(select_attrs('HTMLElement', '*'), x => [x.name, x]));
+console.log(globalHtmlAttrs)
+
 const test = _.mapValues(interfaces, v => ({
   implements: v.implements,
   attribute: _.fromPairs(_.map(v.attribute, x => [x.name, _.isString(x.idlType.idlType) ? x.idlType.idlType : x.idlType])),
