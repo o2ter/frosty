@@ -64,35 +64,24 @@ export class _DOMRenderer extends _Renderer<Element> {
   /** @internal */
   _updateElement(node: VNode, element: Element, parent?: VNode) {
 
-    for (const [key, value] of _.entries(node.props)) {
+    const { className, style, innerHTML, ...props } = node.props ?? {};
 
+    if (!_.isEmpty(innerHTML)) {
+      element.innerHTML = innerHTML;
+    }
+
+    for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
 
-      } else {
-
-        switch (key) {
-          case 'className':
-            break;
-          case 'style':
-            break;
-          case 'innerHTML':
-            if (!_.isEmpty(value)) {
-              element.innerHTML = value;
-            }
-            break;
-          default:
-            if (key in element) {
-              (element as any)[key] = value ?? undefined;
-            } else if (key.startsWith('data-')) {
-              if (value === false || _.isNil(value)) {
-                element.removeAttribute(key);
-              } else if (value === true) {
-                element.setAttribute(key, '');
-              } else if (_.isNumber(value) || _.isString(value)) {
-                element.setAttribute(key, `${value}`);
-              }
-            }
-            break;
+      } else if (key in element) {
+        (element as any)[key] = value ?? undefined;
+      } else if (key.startsWith('data-')) {
+        if (value === false || _.isNil(value)) {
+          element.removeAttribute(key);
+        } else if (value === true) {
+          element.setAttribute(key, '');
+        } else if (_.isNumber(value) || _.isString(value)) {
+          element.setAttribute(key, `${value}`);
         }
       }
     }
