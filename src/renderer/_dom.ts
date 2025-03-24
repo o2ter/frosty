@@ -64,7 +64,7 @@ export class _DOMRenderer extends _Renderer<Element> {
   /** @internal */
   _updateElement(node: VNode, element: Element, parent?: VNode) {
 
-    const { className, style, innerHTML, ...props } = node.props ?? {};
+    const { className, style, innerHTML, ...props } = node.props;
 
     if (!_.isEmpty(innerHTML)) {
       element.innerHTML = innerHTML;
