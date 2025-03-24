@@ -86,12 +86,19 @@ export const reconciler = new class {
     const event = new EventEmitter();
     const root = new VNode(component, event);
     const excute = function* () {
-      const items = [{ node: root, contextValue: reconciler.contextDefaultValue }];
+      const items: {
+        node: VNode;
+        parent?: VNode;
+        contextValue: Map<Context<any>, any>;
+      }[] = [{
+        node: root,
+        contextValue: reconciler.contextDefaultValue,
+      }];
       let item;
       while (item = items.shift()) {
 
-        const { node, contextValue } = item;
-        yield { node, updated: node.updateIfNeed({ contextValue }) };
+        const { node, parent, contextValue } = item;
+        yield { node, parent, updated: node.updateIfNeed({ parent, contextValue }) };
 
         let _contextValue = contextValue;
         if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
@@ -101,6 +108,7 @@ export const reconciler = new class {
 
         items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({
           node: x,
+          parent: node,
           contextValue: _contextValue,
         })));
       }

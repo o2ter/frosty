@@ -92,6 +92,7 @@ export class VNode {
   }
 
   updateIfNeed(options: {
+    parent?: VNode;
     contextValue: Map<Context<any>, any>;
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
