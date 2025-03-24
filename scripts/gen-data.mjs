@@ -65,13 +65,13 @@ const elements = _.mapValues({
   },
 }, v => ({
   ...v,
-  elements: _.pick(webref.elements, v.groups),
+  elements: _.values(_.pick(webref.elements, v.groups)),
 }));
 
 await fs.writeFile('./generated/elements.ts', `
 ${_.map(elements, (v, k) => `
 export type ${k} = {
-  ${_.map(_.values(v.elements), ({ spec, elements }) => `
+  ${_.map(v.elements, ({ spec, elements }) => `
 
   /**
    * ${spec.title}
@@ -88,8 +88,8 @@ export type ${k} = {
 `).join('\n')}
 
 export const tags = {
-  svg: ${JSON.stringify(_.flatMap(_.values(elements.SVGElementTagNameMap.elements), ({ elements }) => _.map(elements, 'name')))},
-  html: ${JSON.stringify(_.flatMap(_.values(elements.HTMLElementTagNameMap.elements), ({ elements }) => _.map(elements, 'name')))},
-  mathml: ${JSON.stringify(_.flatMap(_.values(elements.MathMLElementTagNameMap.elements), ({ elements }) => _.map(elements, 'name')))},
+  svg: ${JSON.stringify(_.flatMap(elements.SVGElementTagNameMap.elements, ({ elements }) => _.map(elements, 'name')))},
+  html: ${JSON.stringify(_.flatMap(elements.HTMLElementTagNameMap.elements, ({ elements }) => _.map(elements, 'name')))},
+  mathml: ${JSON.stringify(_.flatMap(elements.MathMLElementTagNameMap.elements, ({ elements }) => _.map(elements, 'name')))},
 };
 `);
