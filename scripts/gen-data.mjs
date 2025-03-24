@@ -46,10 +46,7 @@ try {
   await fs.mkdir('./generated');
 } catch { }
 
-const impls = _.mapValues(
-  _.pick(webref.idl, 'svg', 'html', 'mathml-core'),
-  v => _.mapValues(_.groupBy(v, 'type'), u => _.groupBy(u, x => x.name ?? ''))
-);
+const impls = _.mapValues(_.groupBy(_.flatten(_.values(webref.idl)), 'type'), u => _.groupBy(u, x => x.name ?? ''));
 
 console.log(impls)
 
