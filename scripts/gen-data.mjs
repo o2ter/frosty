@@ -97,12 +97,18 @@ const collect = (name) => {
   }
   interfaces[name] = {
     implements: record.implements,
-    ..._.groupBy(record.members, 'type'),
+    attribute: _.filter(record.members, x => x.type === 'attribute' && x.special !== 'static'),
   };
 };
 _.forEach(elements, x => collect(x));
 
+const test = _.mapValues(interfaces, v => ({
+  implements: v.implements,
+  attribute: _.fromPairs(_.map(v.attribute, x => [x.name, _.isString(x.idlType.idlType) ? x.idlType.idlType : x.idlType])),
+}))
+
 await fs.writeFile('./generated/interfaces.json', JSON.stringify(interfaces, null, 2));
+await fs.writeFile('./generated/interfaces2.json', JSON.stringify(test, null, 2));
 
 await fs.writeFile('./generated/elements.ts', `
 
