@@ -29,13 +29,7 @@ import { _Renderer } from './base';
 import { myersSync } from 'myers.js';
 import { globalEventHandlersEventMap } from '../web/event';
 import { ComponentNode } from '../common/types/component';
-import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../../generated/elements';
-
-const _tags = {
-  svg: _.keys(SVGElementTagNameMap),
-  html: _.keys(HTMLElementTagNameMap),
-  mathml: _.keys(MathMLElementTagNameMap),
-};
+import { tags } from '../../generated/elements';
 
 export class _DOMRenderer extends _Renderer<Element> {
 
@@ -56,9 +50,9 @@ export class _DOMRenderer extends _Renderer<Element> {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     const _ns_list = _.compact([
-      _.includes(_tags.svg, type) && 'http://www.w3.org/2000/svg',
-      _.includes(_tags.html, type) && 'http://www.w3.org/1999/xhtml',
-      _.includes(_tags.mathml, type) && 'http://www.w3.org/1998/Math/MathML',
+      _.includes(tags.svg, type) && 'http://www.w3.org/2000/svg',
+      _.includes(tags.html, type) && 'http://www.w3.org/1999/xhtml',
+      _.includes(tags.mathml, type) && 'http://www.w3.org/1998/Math/MathML',
     ]);
     const ns = _ns_list.length > 1 ? parent && this._namespace_map.get(parent) : _.first(_ns_list);
     const elem = ns ? this.doc.createElementNS(ns, type) : this.doc.createElement(type);
