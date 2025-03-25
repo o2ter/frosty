@@ -30,16 +30,16 @@ import { SetStateAction } from '../types/basic';
 export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStateAction<T>) => void];
 export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
 
-export function useState<T>(initialState?: any) {
+export function useState(initialState?: any) {
   const { value, setValue } = _useMemo('useState', ({ onStateChange }) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
-      setValue: (dispatch: SetStateAction<T>) => {
+      setValue: (dispatch: SetStateAction<any>) => {
         state.value = _.isFunction(dispatch) ? dispatch(state.value) : dispatch;
         onStateChange();
       },
     };
     return state;
   }, null);
-  return [value, setValue] as const;
+  return [value, setValue];
 }

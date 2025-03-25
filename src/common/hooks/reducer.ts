@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  reducer.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,18 +23,40 @@
 //  THE SOFTWARE.
 //
 
-export * from './common/runtime';
-export * from './common/types/basic';
-export { useEffect } from './common/hooks/effect';
-export { useContext } from './common/hooks/context';
-export { useMemo } from './common/hooks/memo';
-export { useRef, useRefHandle } from './common/hooks/ref';
-export { useCallback } from './common/hooks/callback';
-export { useState } from './common/hooks/state';
-export { useReducer } from './common/hooks/reducer';
-export { useSyncExternalStore } from './common/hooks/sync';
-export { ComponentNode } from './common/types/component';
-export { Context, ContextType, createContext } from './common/types/context';
-export { Fragment } from './common/types/fragment';
-export { _ElementType as ElementType } from './common/types/jsx';
-export { mergeRefs } from './common/utils';
+import _ from 'lodash';
+import { _useMemo } from '../../reconciler/hooks';
+
+export function useReducer<T>(
+  reducer: (prevState: T) => T,
+  initialState: T | (() => T),
+): [T, (dispatch: () => void) => void];
+
+export function useReducer<T, A = any>(
+  reducer: (prevState: T, action: A) => T,
+  initialState: T | (() => T),
+): [T, (dispatch: (action: A) => void) => void];
+
+export function useReducer<T = undefined>(
+  reducer: (prevState: T | undefined) => T | undefined
+): [T | undefined, (dispatch: () => void) => void];
+
+export function useReducer<T = undefined, A = any>(
+  reducer: (prevState: T | undefined, action: A) => T | undefined
+): [T | undefined, (dispatch: (action: A) => void) => void];
+
+export function useReducer(
+  reducer: (prevState: any, action?: any) => any,
+  initialState?: any,
+) {
+  const { value, dispatch } = _useMemo('useReducer', ({ onStateChange }) => {
+    const state = {
+      value: _.isFunction(initialState) ? initialState() : initialState,
+      dispatch: (action?: any) => {
+        state.value = reducer(state.value, action);
+        onStateChange();
+      },
+    };
+    return state;
+  }, null);
+  return [value, dispatch];
+}
