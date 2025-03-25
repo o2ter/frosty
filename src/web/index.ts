@@ -25,3 +25,4 @@
 
 export * from './observer';
 export * from './storage';
+export * from './window';
