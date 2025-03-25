@@ -31,7 +31,7 @@ import { SetStateAction } from '../common/types/common';
 const _useStorage = (
   storage: () => Storage | undefined,
   key: string,
-  initialValue?: string
+  initialValue?: string | null
 ) => {
   const state = useSyncExternalStore((onStoreChange) => {
     const _storage = storage();
@@ -62,10 +62,10 @@ const _useStorage = (
 
 export const useLocalStorage = (
   key: string,
-  initialValue?: string
+  initialValue?: string | null
 ) => _useStorage(() => typeof window === 'undefined' ? undefined : window.localStorage, key, initialValue);
 
 export const useSessionStorage = (
   key: string,
-  initialValue?: string
+  initialValue?: string | null
 ) => _useStorage(() => typeof window === 'undefined' ? undefined : window.sessionStorage, key, initialValue);
