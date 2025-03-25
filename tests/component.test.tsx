@@ -24,10 +24,15 @@
 //
 
 import { expect, test } from '@jest/globals';
-import { ComponentType, ComponentNode } from '~/index';
+import { ComponentType, ComponentNode, ErrorBoundary } from '~/index';
+import { ServerDOMRenderer } from '~/renderer/server-dom';
 
 const TestComponent: ComponentType = () => {
   return <></>;
+}
+
+const TestErrorComponent: ComponentType = () => {
+  throw Error('error');
 }
 
 test('test create html element', async () => {
@@ -55,4 +60,21 @@ test('test create component element with key', async () => {
   expect(element.type).toBe(TestComponent);
   expect(element.key).toBe('test');
 
+});
+
+test('test create component element with error', async () => {
+
+  let error;
+
+  const element = (
+    <ErrorBoundary silent onError={(e) => { error = e; }}>
+      <TestErrorComponent />
+    </ErrorBoundary>
+  );
+
+  const renderer = new ServerDOMRenderer();
+  renderer.renderToString(element);
+
+  expect(error).toBeInstanceOf(Error);
+  
 });
