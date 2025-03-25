@@ -47,7 +47,7 @@ const _useStorage = (
       const _storage = storage();
       if (!_storage) return;
       const newValue = _.isFunction(v) ? v(state) : v;
-      if (newValue === undefined || newValue === null) {
+      if (_.isNil(newValue)) {
         _storage.removeItem(key);
       } else {
         _storage.setItem(key, newValue);
