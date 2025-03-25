@@ -31,12 +31,12 @@ export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStat
 export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
 
 export function useState(initialState?: any) {
-  const { value, setValue } = _useMemo('useState', ({ onStateChange }) => {
+  const { value, setValue } = _useMemo('useState', ({ node }) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       setValue: (dispatch: SetStateAction<any>) => {
         state.value = _.isFunction(dispatch) ? dispatch(state.value) : dispatch;
-        onStateChange();
+        node?.setDirty();
       },
     };
     return state;

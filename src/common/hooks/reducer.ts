@@ -48,12 +48,12 @@ export function useReducer(
   reducer: (prevState: any, action?: any) => any,
   initialState?: any,
 ) {
-  const { value, dispatch } = _useMemo('useReducer', ({ onStateChange }) => {
+  const { value, dispatch } = _useMemo('useReducer', ({ node }) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       dispatch: (action?: any) => {
         state.value = reducer(state.value, action);
-        onStateChange();
+        node?.setDirty();
       },
     };
     return state;

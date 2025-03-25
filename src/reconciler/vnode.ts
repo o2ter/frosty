@@ -101,9 +101,9 @@ export class VNode {
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         const { rendered, state } = reconciler.withHookState({
+          node: this,
           state: this._state,
           contextValue: options.contextValue,
-          onStateChange: () => { this.setDirty(); },
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.state;
         this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));

@@ -34,10 +34,10 @@ export const useSyncExternalStore = <Snapshot>(
   ) => Awaitable<void | (() => Awaitable<void>)>,
   getSnapshot: () => Snapshot,
 ) => {
-  _useEffect('useSyncExternalStore', ({ onStateChange }) => {
+  _useEffect('useSyncExternalStore', ({ node }) => {
     const abort = new AbortController();
     try {
-      const destructor = subscribe(onStateChange, abort.signal);
+      const destructor = subscribe(() => { node?.setDirty(); }, abort.signal);
       return () => {
         abort.abort();
         (async () => {
