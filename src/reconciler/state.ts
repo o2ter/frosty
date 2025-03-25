@@ -109,9 +109,10 @@ export const reconciler = new class {
           _contextValue.set(node.type, node.props.value);
         }
 
+        const _stack = [...stack, node];
         items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({
           node: x,
-          stack: [...stack, node],
+          stack: _stack,
           contextValue: _contextValue,
         })));
       }
