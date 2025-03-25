@@ -110,11 +110,15 @@ export const reconciler = new class {
         }
 
         const _stack = [...stack, node];
-        items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({
-          node: x,
-          stack: _stack,
-          contextValue: _contextValue,
-        })));
+        for (const item of node.children) {
+          if (item instanceof VNode) {
+            items.push({
+              node: item,
+              stack: _stack,
+              contextValue: _contextValue,
+            });
+          }
+        }
       }
     };
     return { node: root, event, excute };
