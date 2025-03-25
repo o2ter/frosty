@@ -9,7 +9,7 @@ const rollupConfig = {
   input: {
     index: 'src/index',
     'jsx-runtime': 'src/jsx-runtime',
-    web: 'src/web',
+    web: 'src/web/index',
     dom: 'src/renderer/dom',
     'server-dom': 'src/renderer/server-dom',
   },
