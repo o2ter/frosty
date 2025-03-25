@@ -24,3 +24,41 @@
 //
 
 import _ from 'lodash';
+import { useSyncExternalStore } from '../common/hooks/sync';
+import { useCallback } from '../common/hooks/callback';
+import { SetStateAction } from '../common/types/common';
+
+const _useStorage = (
+  storage: () => Storage | undefined,
+  key: string,
+  initialValue: string
+) => {
+  const state = useSyncExternalStore((onStoreChange) => {
+    window.addEventListener('storage', onStoreChange);
+    return () => window.removeEventListener('storage', onStoreChange);
+  }, () => storage()?.getItem(key));
+  const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
+    try {
+      const newValue = _.isFunction(v) ? v(state) : v;
+      if (newValue === undefined || newValue === null) {
+        storage()?.removeItem(key);
+      } else {
+        storage()?.setItem(key, newValue);
+      }
+      window.dispatchEvent(new StorageEvent('storage', { key, newValue }));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [key]);
+  return [state ?? initialValue, setState] as const;
+}
+
+export const useLocalStorage = (
+  key: string,
+  initialValue: string
+) => _useStorage(() => typeof window === 'undefined' ? undefined : window.localStorage, key, initialValue);
+
+export const useSessionStorage = (
+  key: string,
+  initialValue: string
+) => _useStorage(() => typeof window === 'undefined' ? undefined : window.sessionStorage, key, initialValue);
