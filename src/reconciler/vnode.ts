@@ -39,7 +39,9 @@ export type VNodeState = {
 
 export class VNode {
 
-  private _component: ComponentNode;
+  /** @internal */
+  _component: ComponentNode;
+
   private _event: EventEmitter;
   private _children: (VNode | string)[] = [];
   private _state?: VNodeState[];

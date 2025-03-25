@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  stack.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,19 +23,11 @@
 //  THE SOFTWARE.
 //
 
-export * from './common/runtime';
-export * from './common/types/basic';
-export { useEffect } from './common/hooks/effect';
-export { useContext } from './common/hooks/context';
-export { useMemo } from './common/hooks/memo';
-export { useRef, useRefHandle } from './common/hooks/ref';
-export { useCallback } from './common/hooks/callback';
-export { useState } from './common/hooks/state';
-export { useStack } from './common/hooks/stack';
-export { useReducer } from './common/hooks/reducer';
-export { useSyncExternalStore } from './common/hooks/sync';
-export { ComponentNode } from './common/types/component';
-export { Context, ContextType, createContext } from './common/types/context';
-export { Fragment } from './common/types/fragment';
-export { _ElementType as ElementType } from './common/types/jsx';
-export { mergeRefs } from './common/utils';
+import _ from 'lodash';
+import { reconciler } from '../../reconciler/state';
+
+export const useStack = () => {
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useStack must be used within a render function.');
+  return _.map(state.stack, x => x._component);
+}
