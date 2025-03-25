@@ -29,7 +29,7 @@ import { _useMemo } from '../../reconciler/hooks';
 export const useCallback = <T extends (...args: any) => any>(
   callback: T,
   deps?: any
-) => {
+): T => {
   if (!_.isUndefined(deps)) return _useMemo('useCallback', callback, deps);
   const store = _useMemo('useCallback', () => {
     const store = {
