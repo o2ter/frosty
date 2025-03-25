@@ -27,6 +27,7 @@ import { ComponentType, PropsWithChildren } from './basic';
 import { ComponentNode } from './component';
 
 export const ErrorBoundary: ComponentType<PropsWithChildren<{
+  silent?: boolean;
   onError?: (
     error: any,
     component: ComponentNode,

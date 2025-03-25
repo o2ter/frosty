@@ -130,15 +130,13 @@ export class VNode {
         item._component = children[i]._component;
       }
     } catch (error) {
-      console.error(error);
       this._children = [];
       (async () => {
         try {
           const boundary = _.findLast(options.stack, x => x.type === ErrorBoundary);
-          const handler = boundary?.props.onError;
-          if (_.isFunction(handler)) {
-            await handler(error, this._component, _.map(options.stack, x => x._component));
-          }
+          const { onError, silent } = boundary?.props ?? {};
+          if (!silent) console.error(error);
+          if (_.isFunction(onError)) await onError(error, this._component, _.map(options.stack, x => x._component));
         } catch (e) {
           console.error(e);
         }
