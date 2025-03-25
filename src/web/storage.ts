@@ -34,18 +34,25 @@ const _useStorage = (
   initialValue: string
 ) => {
   const state = useSyncExternalStore((onStoreChange) => {
-    window.addEventListener('storage', onStoreChange);
-    return () => window.removeEventListener('storage', onStoreChange);
+    const _storage = storage();
+    if (!_storage) return;
+    const callback = (ev: StorageEvent) => { 
+      if (!ev.storageArea || ev.storageArea === _storage) onStoreChange();
+    };
+    window.addEventListener('storage', callback);
+    return () => window.removeEventListener('storage', callback);
   }, () => storage()?.getItem(key));
   const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
     try {
+      const _storage = storage();
+      if (!_storage) return;
       const newValue = _.isFunction(v) ? v(state) : v;
       if (newValue === undefined || newValue === null) {
-        storage()?.removeItem(key);
+        _storage.removeItem(key);
       } else {
-        storage()?.setItem(key, newValue);
+        _storage.setItem(key, newValue);
       }
-      window.dispatchEvent(new StorageEvent('storage', { key, newValue }));
+      window.dispatchEvent(new StorageEvent('storage', { key, newValue, storageArea: _storage }));
     } catch (e) {
       console.error(e);
     }
