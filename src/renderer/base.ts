@@ -65,7 +65,7 @@ export abstract class _Renderer<T> {
       return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
     };
 
-    const mount = (elements: Map<VNode, T>) => {
+    const commit = (elements: Map<VNode, T>) => {
 
       const _mount = (
         node: VNode,
@@ -131,11 +131,11 @@ export abstract class _Renderer<T> {
         if (destroyed) return;
         render_count = update_count;
         update();
-        mount(elements);
+        commit(elements);
       });
     });
     update();
-    mount(elements);
+    commit(elements);
 
     return {
       get root() {
