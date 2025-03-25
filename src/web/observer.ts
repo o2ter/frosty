@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import { useEffect } from '../common/hooks/effect';
+import { useCallback } from '../common/hooks/callback';
 
 interface _Observer<T> {
   observe(target: Element, options?: T): void;
@@ -70,38 +71,50 @@ export const useResizeObserver = (
   target: Element | null | undefined,
   callback: (entry: ResizeObserverEntry) => void,
   options?: ResizeObserverOptions,
-) => useEffect(() => {
-  if (!observer || !target) return;
-  observer.resize.observe(target, callback, options);
-  return () => observer.resize.unobserve(target, callback);
-}, [target]);
+) => {
+  const _callback = useCallback(callback);
+  useEffect(() => {
+    if (!observer || !target) return;
+    observer.resize.observe(target, _callback, options);
+    return () => observer.resize.unobserve(target, _callback);
+  }, [target]);
+}
 
 export const useIntersectionObserver = (
   target: Element | null | undefined,
   callback: (entry: IntersectionObserverEntry) => void,
-) => useEffect(() => {
-  if (!observer || !target) return;
-  observer.intersection.observe(target, callback);
-  return () => observer.intersection.unobserve(target, callback);
-}, [target]);
+) => {
+  const _callback = useCallback(callback);
+  useEffect(() => {
+    if (!observer || !target) return;
+    observer.intersection.observe(target, _callback);
+    return () => observer.intersection.unobserve(target, _callback);
+  }, [target]);
+}
 
 export const useMutationObserver = (
   target: Node | null | undefined,
   callback: MutationCallback,
   options?: MutationObserverInit,
-) => useEffect(() => {
-  if (typeof window === 'undefined' || !target) return;
-  const observer = new MutationObserver(callback);
-  observer.observe(target, options);
-  return () => observer.disconnect();
-}, [target]);
+) => {
+  const _callback = useCallback(callback);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !target) return;
+    const observer = new MutationObserver(_callback);
+    observer.observe(target, options);
+    return () => observer.disconnect();
+  }, [target]);
+}
 
 export const usePerformanceObserver = (
   callback: PerformanceObserverCallback,
   options?: PerformanceObserverInit,
-) => useEffect(() => {
-  if (typeof window === 'undefined') return;
-  const observer = new PerformanceObserver(callback);
-  observer.observe(options);
-  return () => observer.disconnect();
-}, []);
+) => {
+  const _callback = useCallback(callback);
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const observer = new PerformanceObserver(_callback);
+    observer.observe(options);
+    return () => observer.disconnect();
+  }, []);
+}
