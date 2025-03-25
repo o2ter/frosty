@@ -45,7 +45,7 @@ export const useWindowScroll = () => {
   const state = useSyncExternalStore((onStoreChange) => {
     window.addEventListener('scroll', onStoreChange);
     return () => window.removeEventListener('scroll', onStoreChange);
-  }, () => typeof window === 'undefined' ? undefined : ({
+  }, () => typeof window === 'undefined' ? { x: 0, y: 0 } : ({
     x: window.scrollX,
     y: window.scrollY,
   }));
@@ -55,7 +55,7 @@ export const useWindowScroll = () => {
 export const useWindowSize = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);
   return () => window.removeEventListener('resize', onStoreChange);
-}, () => typeof window === 'undefined' ? undefined : ({
+}, () => typeof window === 'undefined' ? { width: 0, height: 0 } : ({
   width: window.innerWidth,
   height: window.innerHeight,
 }));
