@@ -1,3 +1,4 @@
+import { ErrorBoundary } from './../common/types/error';
 //
 //  vnode.ts
 //
@@ -128,9 +129,20 @@ export class VNode {
         if (!_.isEqual(item._component.props, children[i]._component.props)) item._dirty = true;
         item._component = children[i]._component;
       }
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error(error);
       this._children = [];
+      (async () => {
+        try {
+          const boundary = _.findLast(options.stack, x => x.type === ErrorBoundary);
+          const handler = boundary?.props.onError;
+          if (_.isFunction(handler)) {
+            await handler(error, this._component, _.map(options.stack, x => x._component));
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      })();
     } finally {
       this._dirty = false;
     }
