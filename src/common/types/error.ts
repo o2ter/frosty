@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, PropsWithChildren } from './basic';
+import { ComponentType, PropsWithChildren } from './common';
 import { ComponentNode } from './component';
 
 export const ErrorBoundary: ComponentType<PropsWithChildren<{

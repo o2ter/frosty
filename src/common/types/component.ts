@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { _ElementType } from './jsx';
+import { _ElementType } from './runtime';
 
 export abstract class NativeElementType { }
 

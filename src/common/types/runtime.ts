@@ -24,11 +24,12 @@
 //
 
 import { MergeObject, PickType, WritableKeys } from '@o2ter/utils-js';
-import { ComponentType, PropsWithChildren, RefAttribute } from './basic';
+import { ComponentType, ElementNode, PropsWithChildren, RefAttribute } from './common';
 import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../../web/css';
 import { globalEventHandlersEventMap } from '../../web/event';
 import { ElementTagNameMap } from '../../../generated/elements';
+import { ComponentNode, NativeElementType } from './component';
 
 type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
 type HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
@@ -65,4 +66,18 @@ export type _IntrinsicElements = MergeObject<
   | _ElementProps<HTMLElementTagNameMap, CSSProperties>
   | _ElementProps<SVGElementTagNameMap, SVGProperties>
   | _ElementProps<MathMLElementTagNameMap, CSSProperties>
-> & { [x: string]: any; };
+  > & { [x: string]: any; };
+
+export const _createElement = (
+  type: _ElementType | NativeElementType,
+  props: Record<string, any>
+) => {
+  const { key, ..._props } = props;
+  return new ComponentNode(type, _props, key);
+}
+
+export const createElement = (
+  type: _ElementType,
+  props?: Record<string, any> | null,
+  ...children: ElementNode[]
+) => _createElement(type, { ...props ?? {}, children });

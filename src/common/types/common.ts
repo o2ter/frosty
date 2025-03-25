@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  basic.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,23 +23,48 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode, NativeElementType } from './types/component';
-import { _ElementType } from './types/jsx';
+import { ComponentNode } from './component';
+import { _IntrinsicElements } from './runtime';
 
-export function jsx(
-  type: _ElementType,
-  props: Record<string, any>,
-  key?: string | number
-): ComponentNode {
-  return new ComponentNode(type, props, key);
+export type SetStateAction<S, P = S> = S | ((prevState: P) => S);
+
+export type PropsWithChildren<
+  P extends Record<string, unknown> = {},
+  C extends unknown = ElementNode
+> = P & {
+  children?: C;
+};
+
+export type ElementNode =
+  | ComponentNode
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | Iterable<ElementNode>;
+
+export type ComponentType<
+  P extends Record<string, unknown> = {},
+  N extends ElementNode = ElementNode
+  > = (props: P) => N;
+
+export type RefAttribute<T> = {
+  ref?: Ref<T>;
+};
+
+type _ComponentProps<T> = T extends ComponentType<infer P, any> ? P : never;
+
+export type ComponentProps<T> = T extends string ? _IntrinsicElements[T] : _ComponentProps<T>;
+export type ComponentPropsWithoutRef<T> = Omit<ComponentProps<T>, 'ref'>;
+
+export type RefObject<T> = {
+  /**
+   * The current value of the ref.
+   */
+  current: T;
 }
+export type RefCallback<T> = (ref: T) => void;
+export type Ref<T> = RefCallback<T> | RefObject<T> | null;
 
-export const jsxs = jsx;
-
-export function jsxNative(
-  type: NativeElementType,
-  props: Record<string, any>,
-  key?: string | number
-): ComponentNode {
-  return new ComponentNode(type, props, key);
-}
+export type ComponentRef<T> = ComponentProps<T> extends RefAttribute<infer R> ? R : never;

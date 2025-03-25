@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
-import { SetStateAction } from '../types/basic';
+import { SetStateAction } from '../types/common';
 
 export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStateAction<T>) => void];
 export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];

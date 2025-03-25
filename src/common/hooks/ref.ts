@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { _useEffect, _useMemo } from '../../reconciler/hooks';
-import { Ref, RefObject } from '../types/basic';
+import { Ref, RefObject } from '../types/common';
 
 export function useRef<T>(initialValue: T): RefObject<T>;
 export function useRef<T = undefined>(): RefObject<T | undefined>;

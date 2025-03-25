@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { ComponentType, ElementNode } from './basic';
+import { ComponentType, ElementNode } from './common';
 import { reconciler } from '../../reconciler/state';
 
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;

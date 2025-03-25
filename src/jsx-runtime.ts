@@ -23,8 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from './common/types/component';
-import { _ElementType, _IntrinsicAttributes, _IntrinsicElements } from './common/types/jsx';
+import { ComponentNode, NativeElementType } from './common/types/component';
+import { _createElement, _ElementType, _IntrinsicAttributes, _IntrinsicElements } from './common/types/runtime';
 
 export { Fragment } from './common/types/fragment';
 
@@ -40,4 +40,20 @@ export const JSX = Object.freeze({
   Element: ComponentNode,
 });
 
-export * from './common/runtime';
+export function jsx(
+  type: _ElementType,
+  props: Record<string, any>,
+  key?: string | number
+): ComponentNode {
+  return _createElement(type, { ...props, key });
+}
+
+export const jsxs = jsx;
+
+export function jsxNative(
+  type: NativeElementType,
+  props: Record<string, any>,
+  key?: string | number
+): ComponentNode {
+  return _createElement(type, { ...props, key });
+}

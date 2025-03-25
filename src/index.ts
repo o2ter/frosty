@@ -23,8 +23,7 @@
 //  THE SOFTWARE.
 //
 
-export * from './common/runtime';
-export * from './common/types/basic';
+export * from './common/types/common';
 export { useEffect } from './common/hooks/effect';
 export { useContext } from './common/hooks/context';
 export { useMemo } from './common/hooks/memo';
@@ -38,5 +37,5 @@ export { ComponentNode } from './common/types/component';
 export { Context, ContextType, createContext } from './common/types/context';
 export { ErrorBoundary } from './common/types/error';
 export { Fragment } from './common/types/fragment';
-export { _ElementType as ElementType } from './common/types/jsx';
+export { _ElementType as ElementType, createElement } from './common/types/runtime';
 export { mergeRefs } from './common/utils';
