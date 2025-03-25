@@ -104,18 +104,18 @@ export abstract class _Renderer<T> {
 
     const update = () => {
       const map = new Map<VNode, T>();
-      for (const { node, parent, updated } of runtime.excute()) {
+      for (const { node, stack, updated } of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
         if (updated) {
           let elem = elements.get(node);
           if (elem) {
-            this._updateElement(node, elem, parent);
+            this._updateElement(node, elem, _.last(stack));
           } else {
-            elem = this._createElement(node, parent);
+            elem = this._createElement(node, _.last(stack));
           }
           map.set(node, elem);
         } else {
-          map.set(node, elements.get(node) ?? this._createElement(node, parent));
+          map.set(node, elements.get(node) ?? this._createElement(node, _.last(stack)));
         }
       }
       elements = map;

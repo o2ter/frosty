@@ -34,16 +34,19 @@ class HookState {
   contextValue: Map<Context<any>, any>;
   prevState?: VNodeState[];
   state: VNodeState[] = [];
+  stack: VNode[] = [];
   node?: VNode;
-
+  
   listens = new WeakSet<Context<any>>();
 
   constructor(options: {
     node?: VNode;
+    stack: VNode[];
     state?: VNodeState[];
     contextValue?: Map<Context<any>, any>;
   }) {
     this.node = options.node;
+    this.stack = options.stack;
     this.prevState = options.state;
     this.contextValue = options.contextValue ?? new Map<Context<any>, any>();
   }
@@ -87,17 +90,18 @@ export const reconciler = new class {
     const excute = function* () {
       const items: {
         node: VNode;
-        parent?: VNode;
+        stack: VNode[];
         contextValue: Map<Context<any>, any>;
       }[] = [{
         node: root,
+        stack: [],
         contextValue: reconciler.contextDefaultValue,
       }];
       let item;
       while (item = items.shift()) {
 
-        const { node, parent, contextValue } = item;
-        yield { node, parent, updated: node.updateIfNeed({ parent, contextValue }) };
+        const { node, stack, contextValue } = item;
+        yield { node, stack, updated: node.updateIfNeed({ stack, contextValue }) };
 
         let _contextValue = contextValue;
         if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
@@ -107,7 +111,7 @@ export const reconciler = new class {
 
         items.push(..._.map(_.filter(node.children, x => x instanceof VNode), x => ({
           node: x,
-          parent: node,
+          stack: [...stack, node],
           contextValue: _contextValue,
         })));
       }

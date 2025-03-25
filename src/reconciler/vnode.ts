@@ -92,7 +92,7 @@ export class VNode {
   }
 
   updateIfNeed(options: {
-    parent?: VNode;
+    stack: VNode[];
     contextValue: Map<Context<any>, any>;
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
@@ -103,6 +103,7 @@ export class VNode {
         const { rendered, state } = reconciler.withHookState({
           node: this,
           state: this._state,
+          stack: options.stack,
           contextValue: options.contextValue,
         }, (state) => ({ rendered: type(props), state }));
         this._state = state.state;
