@@ -25,11 +25,9 @@
 
 import _ from 'lodash';
 import { useCallback } from '../common/hooks/callback';
-import { useState } from '../common/hooks/state';
-import { useEffect } from '../common/hooks/effect';
+import { useSyncExternalStore } from '../common/hooks/sync';
 
 export const useWindowScroll = () => {
-  const [state, setState] = useState<{ x: number; y: number; }>();
   const scrollTo = useCallback<{
     (options?: ScrollToOptions): void;
     (x: number, y: number): void;
@@ -44,35 +42,20 @@ export const useWindowScroll = () => {
       );
     }
   }, []);
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const handleScroll = () => {
-      setState({ x: window.scrollX, y: window.scrollY });
-    };
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-  return [state, scrollTo];
+  const state = useSyncExternalStore((onStoreChange) => {
+    window.addEventListener('scroll', onStoreChange);
+    return () => window.removeEventListener('scroll', onStoreChange);
+  }, () => typeof window === 'undefined' ? undefined : ({
+    x: window.scrollX,
+    y: window.scrollY,
+  }));
+  return [state, scrollTo] as const;
 }
 
-export const useWindowSize = () => {
-  const [size, setSize] = useState<{ width: number; height: number; }>();
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const handleResize = () => {
-      setSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-  return size;
-}
+export const useWindowSize = () => useSyncExternalStore((onStoreChange) => {
+  window.addEventListener('resize', onStoreChange);
+  return () => window.removeEventListener('resize', onStoreChange);
+}, () => typeof window === 'undefined' ? undefined : ({
+  width: window.innerWidth,
+  height: window.innerHeight,
+}));
