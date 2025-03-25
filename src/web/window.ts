@@ -29,7 +29,7 @@ import { useState } from '../common/hooks/state';
 import { useEffect } from '../common/hooks/effect';
 
 export const useWindowScroll = () => {
-  const [state, setState] = useState<{ x?: number; y?: number; }>({});
+  const [state, setState] = useState<{ x: number; y: number; }>();
   const scrollTo = useCallback<{
     (options?: ScrollToOptions): void;
     (x: number, y: number): void;
@@ -59,7 +59,7 @@ export const useWindowScroll = () => {
 }
 
 export const useWindowSize = () => {
-  const [size, setSize] = useState<{ width?: number; height?: number; }>({});
+  const [size, setSize] = useState<{ width: number; height: number; }>();
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const handleResize = () => {
