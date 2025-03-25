@@ -50,9 +50,9 @@ export const useWindowScroll = () => {
       setState({ x: window.scrollX, y: window.scrollY });
     };
     handleScroll();
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
   return [state, scrollTo];
@@ -69,9 +69,9 @@ export const useWindowSize = () => {
       });
     };
     handleResize();
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
   return size;
