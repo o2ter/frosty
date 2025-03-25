@@ -24,5 +24,84 @@
 //
 
 import _ from 'lodash';
+import { useEffect } from './common/hooks/effect';
 
+interface _Observer<T> {
+  observe(target: Element, options?: T): void;
+  unobserve(target: Element): void;
+}
 
+const createObserver = <E extends { target: Element; }, T>(
+  constructor: new (callback: (entries: E[]) => void) => _Observer<T>
+) => {
+  const listeners = new WeakMap<Element, ((entry: E) => void)[]>();
+  const observer = new constructor((entries) => {
+    for (const entry of entries) {
+      for (const listener of listeners.get(entry.target) ?? []) {
+        (async () => {
+          try {
+            await listener(entry);
+          } catch (e) {
+            console.error(e);
+          }
+        })();
+      }
+    }
+  });
+  return {
+    observe: (target: Element, callback: (entry: E) => void, options?: T) => {
+      observer.observe(target, options);
+      listeners.set(target, [...listeners.get(target) ?? [], callback]);
+    },
+    unobserve: (target: Element, callback: (entry: E) => void) => {
+      const list = _.filter(listeners.get(target), x => x !== callback);
+      listeners.set(target, list);
+      if (_.isEmpty(list)) observer.unobserve?.(target);
+    },
+  };
+};
+
+const observer = typeof window === 'undefined' ? undefined : {
+  resize: createObserver(ResizeObserver),
+  intersection: createObserver(IntersectionObserver),
+};
+
+export const useResizeObserver = (
+  target: Element | null | undefined,
+  callback: (entry: ResizeObserverEntry) => void,
+  options?: ResizeObserverOptions,
+) => useEffect(() => {
+  if (!observer || !target) return;
+  observer.resize.observe(target, callback, options);
+  return () => observer.resize.unobserve(target, callback);
+}, [target]);
+
+export const useIntersectionObserver = (
+  target: Element | null | undefined,
+  callback: (entry: IntersectionObserverEntry) => void,
+) => useEffect(() => {
+  if (!observer || !target) return;
+  observer.intersection.observe(target, callback);
+  return () => observer.intersection.unobserve(target, callback);
+}, [target]);
+
+export const useMutationObserver = (
+  target: Node | null | undefined,
+  callback: MutationCallback,
+  options?: MutationObserverInit,
+) => useEffect(() => {
+  if (typeof window === 'undefined' || !target) return;
+  const observer = new MutationObserver(callback);
+  observer.observe(target, options);
+  return () => observer.disconnect();
+}, [target]);
+
+export const usePerformanceObserver = (
+  callback: PerformanceObserverCallback,
+  options?: PerformanceObserverInit,
+) => useEffect(() => {
+  if (typeof window === 'undefined') return;
+  const observer = new PerformanceObserver(callback);
+  observer.observe(options);
+  return () => observer.disconnect();
+}, []);
