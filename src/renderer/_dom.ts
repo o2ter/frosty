@@ -46,7 +46,7 @@ export class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _createElement(node: VNode, parent?: VNode) {
+  _createElement(node: VNode, stack: VNode[]) {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     const _ns_list = _.compact([
@@ -54,15 +54,16 @@ export class _DOMRenderer extends _Renderer<Element> {
       _.includes(tags.html, type) && 'http://www.w3.org/1999/xhtml',
       _.includes(tags.mathml, type) && 'http://www.w3.org/1998/Math/MathML',
     ]);
+    const parent = _.last(stack);
     const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this._namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
     const elem = ns ? this.doc.createElementNS(ns, type) : this.doc.createElement(type);
     this._namespace_map.set(node, ns);
-    this._updateElement(node, elem);
+    this._updateElement(node, elem, stack);
     return elem;
   }
 
   /** @internal */
-  _updateElement(node: VNode, element: Element, parent?: VNode) {
+  _updateElement(node: VNode, element: Element, stack: VNode[]) {
 
     const { className, style, innerHTML, ...props } = node.props;
 
