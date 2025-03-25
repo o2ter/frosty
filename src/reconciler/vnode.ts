@@ -125,6 +125,9 @@ export class VNode {
         if (!_.isEqual(item._component.props, children[i]._component.props)) item._dirty = true;
         item._component = children[i]._component;
       }
+    } catch (e) {
+      console.error(e);
+      this._children = [];
     } finally {
       this._dirty = false;
     }
