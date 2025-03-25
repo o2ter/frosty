@@ -46,3 +46,13 @@ test('test create component element', async () => {
   expect(element.type).toBe(TestComponent);
 
 });
+
+test('test create component element with key', async () => {
+
+  const element = <TestComponent key='test' />;
+
+  expect(element).toBeInstanceOf(ComponentNode);
+  expect(element.type).toBe(TestComponent);
+  expect(element.key).toBe('test');
+
+});
