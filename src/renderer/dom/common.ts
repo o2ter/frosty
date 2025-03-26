@@ -29,7 +29,8 @@ import { _Renderer } from '../base';
 import { myersSync } from 'myers.js';
 import { globalEventHandlersEventMap } from '../../common/web/event';
 import { ComponentNode } from '../../common/types/component';
-import { tags } from '../../../generated/elements';
+import { svgProps, htmlProps, tags } from '../../../generated/elements';
+import { _propValue } from '~/common/web/props';
 
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
@@ -65,7 +66,11 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   /** @internal */
   _updateElement(node: VNode, element: Element, stack: VNode[]) {
 
-    const { className, style, innerHTML, ...props } = node.props;
+    const {
+      type,
+      props: { className, style, innerHTML, ...props }
+    } = node;
+    if (!_.isString(type)) throw Error('Invalid type');
 
     if (!_.isEmpty(innerHTML)) {
       element.innerHTML = innerHTML;
@@ -74,8 +79,6 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
 
-      } else if (key in element) {
-        (element as any)[key] = value ?? undefined;
       } else if (key.startsWith('data-')) {
         if (value === false || _.isNil(value)) {
           element.removeAttribute(key);
@@ -83,6 +86,20 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
           element.setAttribute(key, '');
         } else if (_.isNumber(value) || _.isString(value)) {
           element.setAttribute(key, `${value}`);
+        }
+      } else {
+        const value = (htmlProps as any)['*'][key]
+          ?? (htmlProps as any)[type]?.[key]
+          ?? (svgProps as any)['*'][key]
+          ?? (svgProps as any)[type]?.[key];
+        if (value && (_propValue as any)[value]) {
+          if (value === false || _.isNil(value)) {
+            element.removeAttribute(key);
+          } else if (value === true) {
+            element.setAttribute(key, '');
+          } else if (_.isNumber(value) || _.isString(value)) {
+            element.setAttribute(key, `${value}`);
+          }
         }
       }
     }
