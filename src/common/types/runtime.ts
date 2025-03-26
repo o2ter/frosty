@@ -44,6 +44,7 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
       & {
         className?: ClassName;
         style?: StyleProp<Style>;
+        innerHTML?: string;
       }
       & ElementMap[x]['props']
       & typeof globalEventHandlersEventMap>
