@@ -78,6 +78,6 @@ type MapPropValue<T> = T extends keyof typeof _propValue
 
 export type HTMLElementTagNameMap = {
   [x in keyof _HTMLElementTagNameMap]: {
-    [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
+    -readonly [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
   };
 };
