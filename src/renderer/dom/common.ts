@@ -88,17 +88,18 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
           element.setAttribute(key, `${value}`);
         }
       } else {
-        const value = (htmlProps as any)['*'][key]
+        const { type: _type, attr } = (htmlProps as any)['*'][key]
           ?? (htmlProps as any)[type]?.[key]
           ?? (svgProps as any)['*'][key]
-          ?? (svgProps as any)[type]?.[key];
-        if (value && (_propValue as any)[value]) {
+          ?? (svgProps as any)[type]?.[key]
+          ?? {};
+        if (_type && attr && (_propValue as any)[_type]) {
           if (value === false || _.isNil(value)) {
-            element.removeAttribute(key);
+            element.removeAttribute(attr);
           } else if (value === true) {
-            element.setAttribute(key, '');
+            element.setAttribute(attr, '');
           } else if (_.isNumber(value) || _.isString(value)) {
-            element.setAttribute(key, `${value}`);
+            element.setAttribute(attr, `${value}`);
           }
         }
       }
