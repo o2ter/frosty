@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import { svgProps, htmlProps, ElementTagNameMap } from '../../../generated/elements';
+import { OmitType } from '@o2ter/utils-js';
 
 type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
 type _HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
@@ -78,6 +79,22 @@ type MapPropValue<T> = T extends keyof typeof _propValue
 
 export type HTMLElementTagNameMap = {
   [x in keyof _HTMLElementTagNameMap]: {
-    -readonly [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
+    type: _HTMLElementTagNameMap[x]['type'];
+    props: OmitType<{
+      -readonly [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
+    } & {
+      -readonly [p in keyof typeof htmlProps[x]]: typeof htmlProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
+    }, never>;
+  };
+};
+
+export type SVGElementTagNameMap = {
+  [x in keyof _SVGElementTagNameMap]: {
+    type: _SVGElementTagNameMap[x]['type'];
+    props: OmitType<{
+      -readonly [p in keyof typeof svgProps['*']]: MapPropValue<typeof svgProps['*'][p]['type']>;
+    } & {
+      -readonly [p in keyof typeof svgProps[x]]: typeof svgProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
+    }, never>;
   };
 };
