@@ -139,9 +139,9 @@ const htmlProps = {
 
 await fs.writeFile('./generated/elements.ts', `
 
-export const svgProps = ${JSON.stringify(svgProps, null, 2)};
+export const svgProps = ${JSON.stringify(svgProps, null, 2)} as const;
 
-export const htmlProps = ${JSON.stringify(htmlProps, null, 2)};
+export const htmlProps = ${JSON.stringify(htmlProps, null, 2)} as const;
 
 export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ groups }, key) => `
   ${key}: {${_.map(groups, ({ spec, elements }, group) => `
@@ -161,5 +161,5 @@ export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ groups }, key) =>
 export const tags = ${JSON.stringify(_.mapValues(
   ElementTagNameMap,
   v => _.uniq(_.flatMap(_.values(v.groups), ({ elements }) => _.map(elements, 'name')))
-), null, 2)};
+), null, 2)} as const;
 `);

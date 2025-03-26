@@ -1913,7 +1913,7 @@ export const svgProps = {
       "attr": "systemLanguage"
     }
   }
-};
+} as const;
 
 export const htmlProps = {
   "*": {
@@ -4034,7 +4034,7 @@ export const htmlProps = {
   "nobr": {},
   "spacer": {},
   "tt": {}
-};
+} as const;
 
 export type ElementTagNameMap = {
   svg: {
@@ -5467,4 +5467,4 @@ export const tags = {
     "annotation",
     "annotation-xml"
   ]
-};
+} as const;
