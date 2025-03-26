@@ -36,7 +36,7 @@ type HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
 type SVGElementTagNameMap = _ElementTagNameMap<'svg'>;
 type MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
 
-export type _ElementType = string | ComponentType;
+export type _ElementType = string | ComponentType<any>;
 
 export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
