@@ -28,13 +28,8 @@ import { ComponentType, ElementNode, PropsWithChildren, RefAttribute } from './c
 import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../web/css';
 import { globalEventHandlersEventMap } from '../web/event';
-import { ElementTagNameMap } from '../../../generated/elements';
 import { ComponentNode, NativeElementType } from './component';
-
-type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
-type HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
-type SVGElementTagNameMap = _ElementTagNameMap<'svg'>;
-type MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
+import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../web/props';
 
 export type _ElementType = string | ComponentType<any>;
 
@@ -42,14 +37,7 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
 
-type _PropsOfInstance<Instance> = Omit<
-  PickType<{
-    [k in WritableKeys<Instance>]: Instance[k];
-  }, boolean | number | string | null | undefined>,
-  'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
->;
-
-type _ElementProps<ElementMap extends { [x: string]: { type: any; } }, Style> = {
+type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; } }, Style> = {
   [x in keyof ElementMap]: PropsWithChildren<
     Partial<
       RefAttribute<ElementMap[x]['type']>
@@ -57,7 +45,7 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; } }, Style> = 
         className?: ClassName;
         style?: StyleProp<Style>;
       }
-      & _PropsOfInstance<ElementMap[x]['type']>
+      & ElementMap[x]['props']
       & typeof globalEventHandlersEventMap>
   >
 };
