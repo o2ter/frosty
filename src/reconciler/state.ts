@@ -31,20 +31,24 @@ import { EventEmitter } from './events';
 
 class HookState {
 
+  server: boolean;
+
   contextValue: Map<Context<any>, any>;
   prevState?: VNodeState[];
   state: VNodeState[] = [];
   stack: VNode[] = [];
   node?: VNode;
-  
+
   listens = new WeakSet<Context<any>>();
 
   constructor(options: {
-    node?: VNode;
+    server: boolean;
+    node: VNode;
     stack: VNode[];
     state?: VNodeState[];
-    contextValue?: Map<Context<any>, any>;
+    contextValue: Map<Context<any>, any>;
   }) {
+    this.server = options.server;
     this.node = options.node;
     this.stack = options.stack;
     this.prevState = options.state;
@@ -84,7 +88,9 @@ export const reconciler = new class {
     }
   }
 
-  buildVNodes(component: ComponentNode) {
+  buildVNodes(component: ComponentNode, options: {
+    server: boolean;
+  }) {
     const event = new EventEmitter();
     const root = new VNode(component, event);
     const excute = function* () {
@@ -101,7 +107,15 @@ export const reconciler = new class {
       while (item = items.shift()) {
 
         const { node, stack, contextValue } = item;
-        yield { node, stack, updated: node.updateIfNeed({ stack, contextValue }) };
+        yield {
+          node,
+          stack,
+          updated: node.updateIfNeed({
+            server: options.server,
+            stack,
+            contextValue
+          }),
+        };
 
         let _contextValue = contextValue;
         if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {

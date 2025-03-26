@@ -31,7 +31,7 @@ import { globalEventHandlersEventMap } from '../_web/event';
 import { ComponentNode } from '../common/types/component';
 import { tags } from '../../generated/elements';
 
-export class _DOMRenderer extends _Renderer<Element> {
+export abstract class _DOMRenderer extends _Renderer<Element> {
 
   private _doc?: Document;
   private _namespace_map = new WeakMap<VNode, string | undefined>();

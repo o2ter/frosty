@@ -33,4 +33,8 @@ export class ServerDOMRenderer extends _DOMRenderer {
     const dom = new JSDOM();
     super(dom.window.document);
   }
+
+  get _server(): boolean {
+    return true;
+  }
 }

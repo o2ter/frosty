@@ -33,6 +33,7 @@ export const useSyncExternalStore = <Snapshot>(
     signal: AbortSignal,
   ) => Awaitable<void | (() => Awaitable<void>)>,
   getSnapshot: () => Snapshot,
+  getServerSnapshot?: () => Snapshot,
 ) => {
   _useEffect('useSyncExternalStore', ({ node }) => {
     const abort = new AbortController();

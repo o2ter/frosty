@@ -95,6 +95,7 @@ export class VNode {
   }
 
   updateIfNeed(options: {
+    server: boolean;
     stack: VNode[];
     contextValue: Map<Context<any>, any>;
   }) {
@@ -104,6 +105,7 @@ export class VNode {
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         const { rendered, state } = reconciler.withHookState({
+          server: options.server,
           node: this,
           state: this._state,
           stack: options.stack,

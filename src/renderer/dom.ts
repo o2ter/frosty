@@ -34,4 +34,8 @@ export class DOMRenderer extends _DOMRenderer {
   static createRoot(root: Element): ReturnType<typeof DOMRenderer.default.createRoot> {
     return this.default.createRoot(root);
   }
+
+  get _server(): boolean {
+    return false;
+  }
 }

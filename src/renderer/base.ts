@@ -42,6 +42,9 @@ export abstract class _Renderer<T> {
   /** @internal */
   abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
 
+  /** @internal */
+  abstract get _server(): boolean;
+
   private _createRoot(
     root: T | null,
     component: ComponentNode,
@@ -50,7 +53,7 @@ export abstract class _Renderer<T> {
     },
   ) {
 
-    const runtime = reconciler.buildVNodes(component);
+    const runtime = reconciler.buildVNodes(component, { server: this._server });
 
     type _State = {
       hook: string;
