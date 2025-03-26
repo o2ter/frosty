@@ -38,6 +38,12 @@ export type VNodeState = {
   mount?: () => () => void;
 };
 
+export type _ContextState = {
+  value: any;
+  state: number;
+  node: VNode;
+};
+
 export class VNode {
 
   /** @internal */
@@ -47,7 +53,11 @@ export class VNode {
   private _children: (VNode | string)[] = [];
   private _state?: VNodeState[];
   private _dirty = true;
-  private _listens = new Map<Context<any>, any>();
+  private _listens = new Map<Context<any>, Omit<_ContextState, 'value'>>();
+
+  /** @internal */
+  _content_state = 0;
+  private _content_value?: any;
 
   constructor(component: ComponentNode, event: EventEmitter) {
     this._component = component;
@@ -90,30 +100,40 @@ export class VNode {
     this._event.emit('onchange');
   }
 
-  _check_context(values: Map<Context<any>, any>) {
-    return this._listens.entries().every(([k, v]) => _.isEqual(values.get(k), v));
+  _check_context(values: Map<Context<any>, _ContextState>) {
+    return this._listens.entries().every(([k, v]) => {
+      const { state, node } = values.get(k) ?? {};
+      return state === v.state && node === v.node;
+    });
   }
 
   updateIfNeed(options: {
     server: boolean;
     stack: VNode[];
-    contextValue: Map<Context<any>, any>;
+    contextValue: Map<Context<any>, _ContextState>;
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
       const { type, props } = this._component;
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
-        const { rendered, state } = reconciler.withHookState({
-          server: options.server,
-          node: this,
-          state: this._state,
-          stack: options.stack,
-          contextValue: options.contextValue,
-        }, (state) => ({ rendered: type(props), state }));
-        this._state = state.state;
-        this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));
-        children = this._resolve_children(rendered);
+        if (_.isFunction(type) && reconciler.contextDefaultValue.has(type)) {
+          const { value } = props;
+          if (!_.isEqual(this._content_value, value)) this._content_state += 1;
+          this._content_value = value;
+          children = this._resolve_children(type(props));
+        } else {
+          const { rendered, state } = reconciler.withHookState({
+            server: options.server,
+            node: this,
+            state: this._state,
+            stack: options.stack,
+            contextValue: options.contextValue,
+          }, (state) => ({ rendered: type(props), state }));
+          this._state = state.state;
+          this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));
+          children = this._resolve_children(rendered);
+        }
       } else {
         children = this._resolve_children(props.children);
       }

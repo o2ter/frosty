@@ -35,5 +35,5 @@ export const useContext = <T, R = T>(
   if (!state) throw Error('useContext must be used within a render function.');
   const { contextValue, listens } = state;
   listens.add(context);
-  return selector(contextValue.get(context));
+  return selector(contextValue.get(context)?.value);
 }

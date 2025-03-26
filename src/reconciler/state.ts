@@ -26,14 +26,14 @@
 import _ from 'lodash';
 import { ComponentNode } from '../common/types/component';
 import { Context } from '../common/types/context';
-import { VNode, VNodeState } from './vnode';
+import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
 
 class HookState {
 
   server: boolean;
 
-  contextValue: Map<Context<any>, any>;
+  contextValue: Map<Context<any>, _ContextState>;
   prevState?: VNodeState[];
   state: VNodeState[] = [];
   stack: VNode[] = [];
@@ -46,13 +46,13 @@ class HookState {
     node: VNode;
     stack: VNode[];
     state?: VNodeState[];
-    contextValue: Map<Context<any>, any>;
+    contextValue: Map<Context<any>, _ContextState>;
   }) {
     this.server = options.server;
     this.node = options.node;
     this.stack = options.stack;
     this.prevState = options.state;
-    this.contextValue = options.contextValue ?? new Map<Context<any>, any>();
+    this.contextValue = options.contextValue ?? new Map();
   }
 }
 
@@ -97,12 +97,12 @@ export const reconciler = new class {
       const items: {
         node: VNode;
         stack: VNode[];
-        contextValue: Map<Context<any>, any>;
+        contextValue: Map<Context<any>, _ContextState>;
       }[] = [{
         node: root,
         stack: [],
-        contextValue: reconciler.contextDefaultValue,
-      }];
+        contextValue: new Map(reconciler.contextDefaultValue.entries().map(([k, v]) => [k, { value: v, state: 0, node: root }])),
+        }]; 
       let item;
       while (item = items.shift()) {
 
@@ -120,7 +120,11 @@ export const reconciler = new class {
         let _contextValue = contextValue;
         if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
           _contextValue = new Map(_contextValue);
-          _contextValue.set(node.type, node.props.value);
+          _contextValue.set(node.type, {
+            value: node.props.value,
+            state: node._content_state,
+            node: node,
+          });
         }
 
         const _stack = [...stack, node];
