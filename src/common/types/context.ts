@@ -30,7 +30,7 @@ import { reconciler } from '../../reconciler/state';
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
 export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
 
-const _createContext = <Value>(defaultValue: Value) => {
+const _createContext = <Value extends unknown>(defaultValue: Value) => {
   const context: ComponentType<{
     value: Value;
     children?: ElementNode | ((value: Value) => ElementNode);

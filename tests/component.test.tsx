@@ -24,7 +24,7 @@
 //
 
 import { expect, test } from '@jest/globals';
-import { ComponentType, ComponentNode, ErrorBoundary } from '~/index';
+import { ComponentType, ComponentNode, ErrorBoundary, createContext } from '~/index';
 import { ServerDOMRenderer } from '~/renderer/server-dom';
 
 const TestComponent: ComponentType = () => {
@@ -34,6 +34,8 @@ const TestComponent: ComponentType = () => {
 const TestErrorComponent: ComponentType = () => {
   throw Error('error');
 }
+
+const TestContext = createContext(0);
 
 test('test create html element', async () => {
 
@@ -77,4 +79,14 @@ test('test create component element with error', async () => {
 
   expect(error).toBeInstanceOf(Error);
   
+});
+
+test('test context', async () => {
+
+  const element = <div>
+    <TestContext value={1}>
+      <span></span>
+    </TestContext>
+  </div>;
+
 });
