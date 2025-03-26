@@ -103,17 +103,23 @@ const collect = (name) => {
 };
 _.forEach(elements, x => collect(x));
 
+const decodeAttrType = (x) => {
+  if (x.type !== 'attribute') return;
+  if (_.isString(x.idlType.idlType)) return x.idlType.idlType;
+  return x;
+};
+
 const resolve = (name) => [
   ...interfaces[name].attribute,
   ..._.flatMap(interfaces[name].implements, resolve),
 ];
 const select_svg_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
   const attr = _.find(svgElementAttributes[tag], a => _.camelCase(a).toLowerCase() === _.camelCase(x.name).toLowerCase());
-  return attr && { type: x, name: x.name, attr };
+  return attr && { type: decodeAttrType(x), name: x.name, attr };
 }));
 const select_html_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
   const attr = _.find(htmlElementAttributes[tag], a => _.camelCase(a).toLowerCase() === _.camelCase(x.name).toLowerCase());
-  return attr && { type: x, name: x.name, attr };
+  return attr && { type: decodeAttrType(x), name: x.name, attr };
 }));
 
 const svgElements = _.flatMap(ElementTagNameMap.svg.groups, g => g.elements);

@@ -3,485 +3,98 @@
 export const svgProps = {
   "*": {
     "id": {
-      "type": {
-        "type": "attribute",
-        "name": "id",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "id",
       "attr": "id"
     },
     "tabIndex": {
-      "type": {
-        "type": "attribute",
-        "name": "tabIndex",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "tabIndex",
       "attr": "tabindex"
     },
     "style": {
-      "type": {
-        "type": "attribute",
-        "name": "style",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "CSSStyleDeclaration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "cssText"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "CSSStyleDeclaration",
       "name": "style",
       "attr": "style"
     }
   },
   "svg": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "viewBox": {
-      "type": {
-        "type": "attribute",
-        "name": "viewBox",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedRect"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedRect",
       "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "g": {
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "defs": {
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
@@ -490,6219 +103,1452 @@ export const svgProps = {
   "title": {},
   "symbol": {
     "viewBox": {
-      "type": {
-        "type": "attribute",
-        "name": "viewBox",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedRect"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedRect",
       "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "use": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "image": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "switch": {
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "style": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "media": {
-      "type": {
-        "type": "attribute",
-        "name": "media",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "media",
       "attr": "media"
     },
     "title": {
-      "type": {
-        "type": "attribute",
-        "name": "title",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "title",
       "attr": "title"
     }
   },
   "path": {
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "rect": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "rx": {
-      "type": {
-        "type": "attribute",
-        "name": "rx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "rx",
       "attr": "rx"
     },
     "ry": {
-      "type": {
-        "type": "attribute",
-        "name": "ry",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "ry",
       "attr": "ry"
     },
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "circle": {
     "cx": {
-      "type": {
-        "type": "attribute",
-        "name": "cx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "cx",
       "attr": "cx"
     },
     "cy": {
-      "type": {
-        "type": "attribute",
-        "name": "cy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "cy",
       "attr": "cy"
     },
     "r": {
-      "type": {
-        "type": "attribute",
-        "name": "r",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "r",
       "attr": "r"
     },
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "ellipse": {
     "cx": {
-      "type": {
-        "type": "attribute",
-        "name": "cx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "cx",
       "attr": "cx"
     },
     "cy": {
-      "type": {
-        "type": "attribute",
-        "name": "cy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "cy",
       "attr": "cy"
     },
     "rx": {
-      "type": {
-        "type": "attribute",
-        "name": "rx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "rx",
       "attr": "rx"
     },
     "ry": {
-      "type": {
-        "type": "attribute",
-        "name": "ry",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "ry",
       "attr": "ry"
     },
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "line": {
     "x1": {
-      "type": {
-        "type": "attribute",
-        "name": "x1",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x1",
       "attr": "x1"
     },
     "y1": {
-      "type": {
-        "type": "attribute",
-        "name": "y1",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y1",
       "attr": "y1"
     },
     "x2": {
-      "type": {
-        "type": "attribute",
-        "name": "x2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x2",
       "attr": "x2"
     },
     "y2": {
-      "type": {
-        "type": "attribute",
-        "name": "y2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y2",
       "attr": "y2"
     },
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "polyline": {
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "points": {
-      "type": {
-        "type": "attribute",
-        "name": "points",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGPointList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGPointList",
       "name": "points",
       "attr": "points"
     }
   },
   "polygon": {
     "pathLength": {
-      "type": {
-        "type": "attribute",
-        "name": "pathLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "points": {
-      "type": {
-        "type": "attribute",
-        "name": "points",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGPointList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGPointList",
       "name": "points",
       "attr": "points"
     }
   },
   "text": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "y",
       "attr": "y"
     },
     "dx": {
-      "type": {
-        "type": "attribute",
-        "name": "dx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "dx",
       "attr": "dx"
     },
     "dy": {
-      "type": {
-        "type": "attribute",
-        "name": "dy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "dy",
       "attr": "dy"
     },
     "rotate": {
-      "type": {
-        "type": "attribute",
-        "name": "rotate",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "rotate",
       "attr": "rotate"
     },
     "textLength": {
-      "type": {
-        "type": "attribute",
-        "name": "textLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "textLength",
       "attr": "textLength"
     },
     "lengthAdjust": {
-      "type": {
-        "type": "attribute",
-        "name": "lengthAdjust",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "lengthAdjust",
       "attr": "lengthAdjust"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "tspan": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "y",
       "attr": "y"
     },
     "dx": {
-      "type": {
-        "type": "attribute",
-        "name": "dx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "dx",
       "attr": "dx"
     },
     "dy": {
-      "type": {
-        "type": "attribute",
-        "name": "dy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLengthList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLengthList",
       "name": "dy",
       "attr": "dy"
     },
     "rotate": {
-      "type": {
-        "type": "attribute",
-        "name": "rotate",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "rotate",
       "attr": "rotate"
     },
     "textLength": {
-      "type": {
-        "type": "attribute",
-        "name": "textLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "textLength",
       "attr": "textLength"
     },
     "lengthAdjust": {
-      "type": {
-        "type": "attribute",
-        "name": "lengthAdjust",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "lengthAdjust",
       "attr": "lengthAdjust"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "textPath": {
     "startOffset": {
-      "type": {
-        "type": "attribute",
-        "name": "startOffset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "startOffset",
       "attr": "startOffset"
     },
     "method": {
-      "type": {
-        "type": "attribute",
-        "name": "method",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "method",
       "attr": "method"
     },
     "spacing": {
-      "type": {
-        "type": "attribute",
-        "name": "spacing",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "spacing",
       "attr": "spacing"
     },
     "textLength": {
-      "type": {
-        "type": "attribute",
-        "name": "textLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "textLength",
       "attr": "textLength"
     },
     "lengthAdjust": {
-      "type": {
-        "type": "attribute",
-        "name": "lengthAdjust",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "lengthAdjust",
       "attr": "lengthAdjust"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "marker": {
     "refX": {
-      "type": {
-        "type": "attribute",
-        "name": "refX",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "refX",
       "attr": "refX"
     },
     "refY": {
-      "type": {
-        "type": "attribute",
-        "name": "refY",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "refY",
       "attr": "refY"
     },
     "markerUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "markerUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "markerUnits",
       "attr": "markerUnits"
     },
     "markerWidth": {
-      "type": {
-        "type": "attribute",
-        "name": "markerWidth",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "markerWidth",
       "attr": "markerWidth"
     },
     "markerHeight": {
-      "type": {
-        "type": "attribute",
-        "name": "markerHeight",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "markerHeight",
       "attr": "markerHeight"
     },
     "orient": {
-      "type": {
-        "type": "attribute",
-        "name": "orient",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "orient",
       "attr": "orient"
     },
     "viewBox": {
-      "type": {
-        "type": "attribute",
-        "name": "viewBox",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedRect"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedRect",
       "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "linearGradient": {
     "x1": {
-      "type": {
-        "type": "attribute",
-        "name": "x1",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x1",
       "attr": "x1"
     },
     "y1": {
-      "type": {
-        "type": "attribute",
-        "name": "y1",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y1",
       "attr": "y1"
     },
     "x2": {
-      "type": {
-        "type": "attribute",
-        "name": "x2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x2",
       "attr": "x2"
     },
     "y2": {
-      "type": {
-        "type": "attribute",
-        "name": "y2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y2",
       "attr": "y2"
     },
     "gradientUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "gradientUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "gradientUnits",
       "attr": "gradientUnits"
     },
     "gradientTransform": {
-      "type": {
-        "type": "attribute",
-        "name": "gradientTransform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "gradientTransform",
       "attr": "gradientTransform"
     },
     "spreadMethod": {
-      "type": {
-        "type": "attribute",
-        "name": "spreadMethod",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "spreadMethod",
       "attr": "spreadMethod"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "radialGradient": {
     "cx": {
-      "type": {
-        "type": "attribute",
-        "name": "cx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "cx",
       "attr": "cx"
     },
     "cy": {
-      "type": {
-        "type": "attribute",
-        "name": "cy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "cy",
       "attr": "cy"
     },
     "r": {
-      "type": {
-        "type": "attribute",
-        "name": "r",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "r",
       "attr": "r"
     },
     "fx": {
-      "type": {
-        "type": "attribute",
-        "name": "fx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "fx",
       "attr": "fx"
     },
     "fy": {
-      "type": {
-        "type": "attribute",
-        "name": "fy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "fy",
       "attr": "fy"
     },
     "fr": {
-      "type": {
-        "type": "attribute",
-        "name": "fr",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "fr",
       "attr": "fr"
     },
     "gradientUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "gradientUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "gradientUnits",
       "attr": "gradientUnits"
     },
     "gradientTransform": {
-      "type": {
-        "type": "attribute",
-        "name": "gradientTransform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "gradientTransform",
       "attr": "gradientTransform"
     },
     "spreadMethod": {
-      "type": {
-        "type": "attribute",
-        "name": "spreadMethod",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "spreadMethod",
       "attr": "spreadMethod"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "stop": {
     "offset": {
-      "type": {
-        "type": "attribute",
-        "name": "offset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "offset",
       "attr": "offset"
     }
   },
   "pattern": {
     "patternUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "patternUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "patternUnits",
       "attr": "patternUnits"
     },
     "patternContentUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "patternContentUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "patternContentUnits",
       "attr": "patternContentUnits"
     },
     "patternTransform": {
-      "type": {
-        "type": "attribute",
-        "name": "patternTransform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "patternTransform",
       "attr": "patternTransform"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "viewBox": {
-      "type": {
-        "type": "attribute",
-        "name": "viewBox",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedRect"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedRect",
       "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "clipPath": {
     "clipPathUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "clipPathUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "clipPathUnits",
       "attr": "clipPathUnits"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     }
   },
   "mask": {
     "maskUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "maskUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "maskUnits",
       "attr": "maskUnits"
     },
     "maskContentUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "maskContentUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "maskContentUnits",
       "attr": "maskContentUnits"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     }
   },
   "filter": {
     "filterUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "filterUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "filterUnits",
       "attr": "filterUnits"
     },
     "primitiveUnits": {
-      "type": {
-        "type": "attribute",
-        "name": "primitiveUnits",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "primitiveUnits",
       "attr": "primitiveUnits"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     }
   },
   "feDistantLight": {
     "azimuth": {
-      "type": {
-        "type": "attribute",
-        "name": "azimuth",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "azimuth",
       "attr": "azimuth"
     },
     "elevation": {
-      "type": {
-        "type": "attribute",
-        "name": "elevation",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "elevation",
       "attr": "elevation"
     }
   },
   "fePointLight": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "y",
       "attr": "y"
     },
     "z": {
-      "type": {
-        "type": "attribute",
-        "name": "z",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "z",
       "attr": "z"
     }
   },
   "feSpotLight": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "y",
       "attr": "y"
     },
     "z": {
-      "type": {
-        "type": "attribute",
-        "name": "z",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "z",
       "attr": "z"
     },
     "pointsAtX": {
-      "type": {
-        "type": "attribute",
-        "name": "pointsAtX",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pointsAtX",
       "attr": "pointsAtX"
     },
     "pointsAtY": {
-      "type": {
-        "type": "attribute",
-        "name": "pointsAtY",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pointsAtY",
       "attr": "pointsAtY"
     },
     "pointsAtZ": {
-      "type": {
-        "type": "attribute",
-        "name": "pointsAtZ",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "pointsAtZ",
       "attr": "pointsAtZ"
     },
     "specularExponent": {
-      "type": {
-        "type": "attribute",
-        "name": "specularExponent",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "specularExponent",
       "attr": "specularExponent"
     },
     "limitingConeAngle": {
-      "type": {
-        "type": "attribute",
-        "name": "limitingConeAngle",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "limitingConeAngle",
       "attr": "limitingConeAngle"
     }
   },
   "feBlend": {
     "in2": {
-      "type": {
-        "type": "attribute",
-        "name": "in2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "in2",
       "attr": "in2"
     },
     "mode": {
-      "type": {
-        "type": "attribute",
-        "name": "mode",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "mode",
       "attr": "mode"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feColorMatrix": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "type",
       "attr": "type"
     },
     "values": {
-      "type": {
-        "type": "attribute",
-        "name": "values",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "values",
       "attr": "values"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feComponentTransfer": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feFuncR": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "type",
       "attr": "type"
     },
     "tableValues": {
-      "type": {
-        "type": "attribute",
-        "name": "tableValues",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
-      "type": {
-        "type": "attribute",
-        "name": "slope",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "slope",
       "attr": "slope"
     },
     "intercept": {
-      "type": {
-        "type": "attribute",
-        "name": "intercept",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
-      "type": {
-        "type": "attribute",
-        "name": "amplitude",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
-      "type": {
-        "type": "attribute",
-        "name": "exponent",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
-      "type": {
-        "type": "attribute",
-        "name": "offset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "offset",
       "attr": "offset"
     }
   },
   "feFuncG": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "type",
       "attr": "type"
     },
     "tableValues": {
-      "type": {
-        "type": "attribute",
-        "name": "tableValues",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
-      "type": {
-        "type": "attribute",
-        "name": "slope",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "slope",
       "attr": "slope"
     },
     "intercept": {
-      "type": {
-        "type": "attribute",
-        "name": "intercept",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
-      "type": {
-        "type": "attribute",
-        "name": "amplitude",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
-      "type": {
-        "type": "attribute",
-        "name": "exponent",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
-      "type": {
-        "type": "attribute",
-        "name": "offset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "offset",
       "attr": "offset"
     }
   },
   "feFuncB": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "type",
       "attr": "type"
     },
     "tableValues": {
-      "type": {
-        "type": "attribute",
-        "name": "tableValues",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
-      "type": {
-        "type": "attribute",
-        "name": "slope",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "slope",
       "attr": "slope"
     },
     "intercept": {
-      "type": {
-        "type": "attribute",
-        "name": "intercept",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
-      "type": {
-        "type": "attribute",
-        "name": "amplitude",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
-      "type": {
-        "type": "attribute",
-        "name": "exponent",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
-      "type": {
-        "type": "attribute",
-        "name": "offset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "offset",
       "attr": "offset"
     }
   },
   "feFuncA": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "type",
       "attr": "type"
     },
     "tableValues": {
-      "type": {
-        "type": "attribute",
-        "name": "tableValues",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
-      "type": {
-        "type": "attribute",
-        "name": "slope",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "slope",
       "attr": "slope"
     },
     "intercept": {
-      "type": {
-        "type": "attribute",
-        "name": "intercept",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
-      "type": {
-        "type": "attribute",
-        "name": "amplitude",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
-      "type": {
-        "type": "attribute",
-        "name": "exponent",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
-      "type": {
-        "type": "attribute",
-        "name": "offset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "offset",
       "attr": "offset"
     }
   },
   "feComposite": {
     "in2": {
-      "type": {
-        "type": "attribute",
-        "name": "in2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "in2",
       "attr": "in2"
     },
     "operator": {
-      "type": {
-        "type": "attribute",
-        "name": "operator",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "operator",
       "attr": "operator"
     },
     "k1": {
-      "type": {
-        "type": "attribute",
-        "name": "k1",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "k1",
       "attr": "k1"
     },
     "k2": {
-      "type": {
-        "type": "attribute",
-        "name": "k2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "k2",
       "attr": "k2"
     },
     "k3": {
-      "type": {
-        "type": "attribute",
-        "name": "k3",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "k3",
       "attr": "k3"
     },
     "k4": {
-      "type": {
-        "type": "attribute",
-        "name": "k4",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "k4",
       "attr": "k4"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feConvolveMatrix": {
     "kernelMatrix": {
-      "type": {
-        "type": "attribute",
-        "name": "kernelMatrix",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumberList"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumberList",
       "name": "kernelMatrix",
       "attr": "kernelMatrix"
     },
     "divisor": {
-      "type": {
-        "type": "attribute",
-        "name": "divisor",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "divisor",
       "attr": "divisor"
     },
     "bias": {
-      "type": {
-        "type": "attribute",
-        "name": "bias",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "bias",
       "attr": "bias"
     },
     "targetX": {
-      "type": {
-        "type": "attribute",
-        "name": "targetX",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedInteger"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedInteger",
       "name": "targetX",
       "attr": "targetX"
     },
     "targetY": {
-      "type": {
-        "type": "attribute",
-        "name": "targetY",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedInteger"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedInteger",
       "name": "targetY",
       "attr": "targetY"
     },
     "edgeMode": {
-      "type": {
-        "type": "attribute",
-        "name": "edgeMode",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "edgeMode",
       "attr": "edgeMode"
     },
     "preserveAlpha": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAlpha",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedBoolean"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedBoolean",
       "name": "preserveAlpha",
       "attr": "preserveAlpha"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feDiffuseLighting": {
     "surfaceScale": {
-      "type": {
-        "type": "attribute",
-        "name": "surfaceScale",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "surfaceScale",
       "attr": "surfaceScale"
     },
     "diffuseConstant": {
-      "type": {
-        "type": "attribute",
-        "name": "diffuseConstant",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "diffuseConstant",
       "attr": "diffuseConstant"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feDisplacementMap": {
     "in2": {
-      "type": {
-        "type": "attribute",
-        "name": "in2",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "in2",
       "attr": "in2"
     },
     "scale": {
-      "type": {
-        "type": "attribute",
-        "name": "scale",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "scale",
       "attr": "scale"
     },
     "xChannelSelector": {
-      "type": {
-        "type": "attribute",
-        "name": "xChannelSelector",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "xChannelSelector",
       "attr": "xChannelSelector"
     },
     "yChannelSelector": {
-      "type": {
-        "type": "attribute",
-        "name": "yChannelSelector",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "yChannelSelector",
       "attr": "yChannelSelector"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feFlood": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feGaussianBlur": {
     "edgeMode": {
-      "type": {
-        "type": "attribute",
-        "name": "edgeMode",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "edgeMode",
       "attr": "edgeMode"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feImage": {
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "feMerge": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
@@ -6710,1266 +1556,321 @@ export const svgProps = {
   "feMergeNode": {},
   "feMorphology": {
     "operator": {
-      "type": {
-        "type": "attribute",
-        "name": "operator",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "operator",
       "attr": "operator"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feOffset": {
     "dx": {
-      "type": {
-        "type": "attribute",
-        "name": "dx",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "dx",
       "attr": "dx"
     },
     "dy": {
-      "type": {
-        "type": "attribute",
-        "name": "dy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "dy",
       "attr": "dy"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feSpecularLighting": {
     "surfaceScale": {
-      "type": {
-        "type": "attribute",
-        "name": "surfaceScale",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "surfaceScale",
       "attr": "surfaceScale"
     },
     "specularConstant": {
-      "type": {
-        "type": "attribute",
-        "name": "specularConstant",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "specularConstant",
       "attr": "specularConstant"
     },
     "specularExponent": {
-      "type": {
-        "type": "attribute",
-        "name": "specularExponent",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "specularExponent",
       "attr": "specularExponent"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feTile": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "feTurbulence": {
     "numOctaves": {
-      "type": {
-        "type": "attribute",
-        "name": "numOctaves",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedInteger"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedInteger",
       "name": "numOctaves",
       "attr": "numOctaves"
     },
     "seed": {
-      "type": {
-        "type": "attribute",
-        "name": "seed",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedNumber"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedNumber",
       "name": "seed",
       "attr": "seed"
     },
     "stitchTiles": {
-      "type": {
-        "type": "attribute",
-        "name": "stitchTiles",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "stitchTiles",
       "attr": "stitchTiles"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedEnumeration"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedEnumeration",
       "name": "type",
       "attr": "type"
     },
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "result": {
-      "type": {
-        "type": "attribute",
-        "name": "result",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "result",
       "attr": "result"
     }
   },
   "a": {
     "target": {
-      "type": {
-        "type": "attribute",
-        "name": "target",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "target",
       "attr": "target"
     },
     "download": {
-      "type": {
-        "type": "attribute",
-        "name": "download",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "download",
       "attr": "download"
     },
     "ping": {
-      "type": {
-        "type": "attribute",
-        "name": "ping",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "ping",
       "attr": "ping"
     },
     "hreflang": {
-      "type": {
-        "type": "attribute",
-        "name": "hreflang",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "hreflang",
       "attr": "hreflang"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "view": {
     "viewBox": {
-      "type": {
-        "type": "attribute",
-        "name": "viewBox",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedRect"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedRect",
       "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
-      "type": {
-        "type": "attribute",
-        "name": "preserveAspectRatio",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedPreserveAspectRatio"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedPreserveAspectRatio",
       "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "script": {
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "animate": {
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "set": {
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "animateMotion": {
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "mpath": {
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedString",
       "name": "href",
       "attr": "href"
     }
   },
   "animateTransform": {
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
@@ -7977,184 +1878,37 @@ export const svgProps = {
   "metadata": {},
   "foreignObject": {
     "x": {
-      "type": {
-        "type": "attribute",
-        "name": "x",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "x",
       "attr": "x"
     },
     "y": {
-      "type": {
-        "type": "attribute",
-        "name": "y",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "y",
       "attr": "y"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedLength"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedLength",
       "name": "height",
       "attr": "height"
     },
     "transform": {
-      "type": {
-        "type": "attribute",
-        "name": "transform",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGAnimatedTransformList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGAnimatedTransformList",
       "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
-      "type": {
-        "type": "attribute",
-        "name": "requiredExtensions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
-      "type": {
-        "type": "attribute",
-        "name": "systemLanguage",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "SVGStringList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "SVGStringList",
       "name": "systemLanguage",
       "attr": "systemLanguage"
     }
@@ -8164,106 +1918,22 @@ export const svgProps = {
 export const htmlProps = {
   "*": {
     "title": {
-      "type": {
-        "type": "attribute",
-        "name": "title",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "title",
       "attr": "title"
     },
     "lang": {
-      "type": {
-        "type": "attribute",
-        "name": "lang",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "lang",
       "attr": "lang"
     },
     "translate": {
-      "type": {
-        "type": "attribute",
-        "name": "translate",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "translate",
       "attr": "translate"
     },
     "dir": {
-      "type": {
-        "type": "attribute",
-        "name": "dir",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "dir",
       "attr": "dir"
     },
@@ -8319,454 +1989,89 @@ export const htmlProps = {
       "attr": "hidden"
     },
     "inert": {
-      "type": {
-        "type": "attribute",
-        "name": "inert",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "inert",
       "attr": "inert"
     },
     "accessKey": {
-      "type": {
-        "type": "attribute",
-        "name": "accessKey",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "accessKey",
       "attr": "accesskey"
     },
     "draggable": {
-      "type": {
-        "type": "attribute",
-        "name": "draggable",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "draggable",
       "attr": "draggable"
     },
     "spellcheck": {
-      "type": {
-        "type": "attribute",
-        "name": "spellcheck",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "spellcheck",
       "attr": "spellcheck"
     },
     "writingSuggestions": {
-      "type": {
-        "type": "attribute",
-        "name": "writingSuggestions",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "writingSuggestions",
       "attr": "writingsuggestions"
     },
     "autocapitalize": {
-      "type": {
-        "type": "attribute",
-        "name": "autocapitalize",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "autocapitalize",
       "attr": "autocapitalize"
     },
     "popover": {
-      "type": {
-        "type": "attribute",
-        "name": "popover",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "popover",
       "attr": "popover"
     },
     "id": {
-      "type": {
-        "type": "attribute",
-        "name": "id",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "id",
       "attr": "id"
     },
     "slot": {
-      "type": {
-        "type": "attribute",
-        "name": "slot",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "Unscopable",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "slot",
       "attr": "slot"
     },
     "style": {
-      "type": {
-        "type": "attribute",
-        "name": "style",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "CSSStyleDeclaration"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "cssText"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "CSSStyleDeclaration",
       "name": "style",
       "attr": "style"
     },
     "contentEditable": {
-      "type": {
-        "type": "attribute",
-        "name": "contentEditable",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "contentEditable",
       "attr": "contenteditable"
     },
     "enterKeyHint": {
-      "type": {
-        "type": "attribute",
-        "name": "enterKeyHint",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "enterKeyHint",
       "attr": "enterkeyhint"
     },
     "inputMode": {
-      "type": {
-        "type": "attribute",
-        "name": "inputMode",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "inputMode",
       "attr": "inputmode"
     },
     "nonce": {
-      "type": {
-        "type": "attribute",
-        "name": "nonce",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "nonce",
       "attr": "nonce"
     },
     "autofocus": {
-      "type": {
-        "type": "attribute",
-        "name": "autofocus",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "autofocus",
       "attr": "autofocus"
     },
     "tabIndex": {
-      "type": {
-        "type": "attribute",
-        "name": "tabIndex",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "tabIndex",
       "attr": "tabindex"
     }
   },
   "html": {
     "version": {
-      "type": {
-        "type": "attribute",
-        "name": "version",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "version",
       "attr": "version"
     }
@@ -8775,956 +2080,180 @@ export const htmlProps = {
   "title": {},
   "base": {
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "href",
       "attr": "href"
     },
     "target": {
-      "type": {
-        "type": "attribute",
-        "name": "target",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "target",
       "attr": "target"
     }
   },
   "link": {
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "href",
       "attr": "href"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "rel": {
-      "type": {
-        "type": "attribute",
-        "name": "rel",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rel",
       "attr": "rel"
     },
     "as": {
-      "type": {
-        "type": "attribute",
-        "name": "as",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "as",
       "attr": "as"
     },
     "media": {
-      "type": {
-        "type": "attribute",
-        "name": "media",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "media",
       "attr": "media"
     },
     "integrity": {
-      "type": {
-        "type": "attribute",
-        "name": "integrity",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "integrity",
       "attr": "integrity"
     },
     "hreflang": {
-      "type": {
-        "type": "attribute",
-        "name": "hreflang",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "hreflang",
       "attr": "hreflang"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "sizes": {
-      "type": {
-        "type": "attribute",
-        "name": "sizes",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMTokenList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "value"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "DOMTokenList",
       "name": "sizes",
       "attr": "sizes"
     },
     "imageSrcset": {
-      "type": {
-        "type": "attribute",
-        "name": "imageSrcset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "imageSrcset",
       "attr": "imagesrcset"
     },
     "imageSizes": {
-      "type": {
-        "type": "attribute",
-        "name": "imageSizes",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "imageSizes",
       "attr": "imagesizes"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "blocking": {
-      "type": {
-        "type": "attribute",
-        "name": "blocking",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMTokenList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "value"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "DOMTokenList",
       "name": "blocking",
       "attr": "blocking"
     },
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "fetchPriority": {
-      "type": {
-        "type": "attribute",
-        "name": "fetchPriority",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "fetchPriority",
       "attr": "fetchpriority"
     },
     "charset": {
-      "type": {
-        "type": "attribute",
-        "name": "charset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "charset",
       "attr": "charset"
     },
     "rev": {
-      "type": {
-        "type": "attribute",
-        "name": "rev",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rev",
       "attr": "rev"
     },
     "target": {
-      "type": {
-        "type": "attribute",
-        "name": "target",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "target",
       "attr": "target"
     }
   },
   "meta": {
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "httpEquiv": {
-      "type": {
-        "type": "attribute",
-        "name": "httpEquiv",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "httpEquiv",
       "attr": "http-equiv"
     },
     "content": {
-      "type": {
-        "type": "attribute",
-        "name": "content",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "content",
       "attr": "content"
     },
     "media": {
-      "type": {
-        "type": "attribute",
-        "name": "media",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "media",
       "attr": "media"
     },
     "scheme": {
-      "type": {
-        "type": "attribute",
-        "name": "scheme",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "scheme",
       "attr": "scheme"
     }
   },
   "style": {
     "media": {
-      "type": {
-        "type": "attribute",
-        "name": "media",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "media",
       "attr": "media"
     },
     "blocking": {
-      "type": {
-        "type": "attribute",
-        "name": "blocking",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMTokenList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "value"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "DOMTokenList",
       "name": "blocking",
       "attr": "blocking"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     }
   },
   "body": {
     "text": {
-      "type": {
-        "type": "attribute",
-        "name": "text",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "text",
       "attr": "text"
     },
     "link": {
-      "type": {
-        "type": "attribute",
-        "name": "link",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "link",
       "attr": "link"
     },
     "vLink": {
-      "type": {
-        "type": "attribute",
-        "name": "vLink",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vLink",
       "attr": "vlink"
     },
     "aLink": {
-      "type": {
-        "type": "attribute",
-        "name": "aLink",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "aLink",
       "attr": "alink"
     },
     "bgColor": {
-      "type": {
-        "type": "attribute",
-        "name": "bgColor",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "bgColor",
       "attr": "bgcolor"
     },
     "background": {
-      "type": {
-        "type": "attribute",
-        "name": "background",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "background",
       "attr": "background"
     }
@@ -9735,168 +2264,42 @@ export const htmlProps = {
   "aside": {},
   "h1": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "h2": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "h3": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "h4": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "h5": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "h6": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
@@ -9907,460 +2310,103 @@ export const htmlProps = {
   "address": {},
   "p": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "hr": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "noShade": {
-      "type": {
-        "type": "attribute",
-        "name": "noShade",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noShade",
       "attr": "noshade"
     },
     "size": {
-      "type": {
-        "type": "attribute",
-        "name": "size",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "size",
       "attr": "size"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     }
   },
   "pre": {
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "width",
       "attr": "width"
     }
   },
   "blockquote": {
     "cite": {
-      "type": {
-        "type": "attribute",
-        "name": "cite",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "cite",
       "attr": "cite"
     }
   },
   "ol": {
     "reversed": {
-      "type": {
-        "type": "attribute",
-        "name": "reversed",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "reversed",
       "attr": "reversed"
     },
     "start": {
-      "type": {
-        "type": "attribute",
-        "name": "start",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "start",
       "attr": "start"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "compact": {
-      "type": {
-        "type": "attribute",
-        "name": "compact",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "compact",
       "attr": "compact"
     }
   },
   "ul": {
     "compact": {
-      "type": {
-        "type": "attribute",
-        "name": "compact",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "compact",
       "attr": "compact"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     }
   },
   "menu": {
     "compact": {
-      "type": {
-        "type": "attribute",
-        "name": "compact",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "compact",
       "attr": "compact"
     }
   },
   "li": {
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "value",
       "attr": "value"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     }
   },
   "dl": {
     "compact": {
-      "type": {
-        "type": "attribute",
-        "name": "compact",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "compact",
       "attr": "compact"
     }
@@ -10373,368 +2419,74 @@ export const htmlProps = {
   "search": {},
   "div": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "a": {
     "target": {
-      "type": {
-        "type": "attribute",
-        "name": "target",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "target",
       "attr": "target"
     },
     "download": {
-      "type": {
-        "type": "attribute",
-        "name": "download",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "download",
       "attr": "download"
     },
     "ping": {
-      "type": {
-        "type": "attribute",
-        "name": "ping",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "ping",
       "attr": "ping"
     },
     "rel": {
-      "type": {
-        "type": "attribute",
-        "name": "rel",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rel",
       "attr": "rel"
     },
     "hreflang": {
-      "type": {
-        "type": "attribute",
-        "name": "hreflang",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "hreflang",
       "attr": "hreflang"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "coords": {
-      "type": {
-        "type": "attribute",
-        "name": "coords",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "coords",
       "attr": "coords"
     },
     "charset": {
-      "type": {
-        "type": "attribute",
-        "name": "charset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "charset",
       "attr": "charset"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "rev": {
-      "type": {
-        "type": "attribute",
-        "name": "rev",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rev",
       "attr": "rev"
     },
     "shape": {
-      "type": {
-        "type": "attribute",
-        "name": "shape",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "shape",
       "attr": "shape"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "stringifier",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "href",
       "attr": "href"
     }
@@ -10746,28 +2498,7 @@ export const htmlProps = {
   "cite": {},
   "q": {
     "cite": {
-      "type": {
-        "type": "attribute",
-        "name": "cite",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "cite",
       "attr": "cite"
     }
@@ -10779,56 +2510,14 @@ export const htmlProps = {
   "rp": {},
   "data": {
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "value",
       "attr": "value"
     }
   },
   "time": {
     "dateTime": {
-      "type": {
-        "type": "attribute",
-        "name": "dateTime",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "dateTime",
       "attr": "datetime"
     }
@@ -10848,28 +2537,7 @@ export const htmlProps = {
   "span": {},
   "br": {
     "clear": {
-      "type": {
-        "type": "attribute",
-        "name": "clear",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "clear",
       "attr": "clear"
     }
@@ -10877,108 +2545,24 @@ export const htmlProps = {
   "wbr": {},
   "ins": {
     "cite": {
-      "type": {
-        "type": "attribute",
-        "name": "cite",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "cite",
       "attr": "cite"
     },
     "dateTime": {
-      "type": {
-        "type": "attribute",
-        "name": "dateTime",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "dateTime",
       "attr": "datetime"
     }
   },
   "del": {
     "cite": {
-      "type": {
-        "type": "attribute",
-        "name": "cite",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "cite",
       "attr": "cite"
     },
     "dateTime": {
-      "type": {
-        "type": "attribute",
-        "name": "dateTime",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "dateTime",
       "attr": "datetime"
     }
@@ -10986,715 +2570,141 @@ export const htmlProps = {
   "picture": {},
   "source": {
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "srcset": {
-      "type": {
-        "type": "attribute",
-        "name": "srcset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "srcset",
       "attr": "srcset"
     },
     "sizes": {
-      "type": {
-        "type": "attribute",
-        "name": "sizes",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "sizes",
       "attr": "sizes"
     },
     "media": {
-      "type": {
-        "type": "attribute",
-        "name": "media",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "media",
       "attr": "media"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "height",
       "attr": "height"
     }
   },
   "img": {
     "alt": {
-      "type": {
-        "type": "attribute",
-        "name": "alt",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "alt",
       "attr": "alt"
     },
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "srcset": {
-      "type": {
-        "type": "attribute",
-        "name": "srcset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "srcset",
       "attr": "srcset"
     },
     "sizes": {
-      "type": {
-        "type": "attribute",
-        "name": "sizes",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "sizes",
       "attr": "sizes"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "useMap": {
-      "type": {
-        "type": "attribute",
-        "name": "useMap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "useMap",
       "attr": "usemap"
     },
     "isMap": {
-      "type": {
-        "type": "attribute",
-        "name": "isMap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "isMap",
       "attr": "ismap"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "height",
       "attr": "height"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "decoding": {
-      "type": {
-        "type": "attribute",
-        "name": "decoding",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "decoding",
       "attr": "decoding"
     },
     "loading": {
-      "type": {
-        "type": "attribute",
-        "name": "loading",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "loading",
       "attr": "loading"
     },
     "fetchPriority": {
-      "type": {
-        "type": "attribute",
-        "name": "fetchPriority",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "fetchPriority",
       "attr": "fetchpriority"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "hspace": {
-      "type": {
-        "type": "attribute",
-        "name": "hspace",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "hspace",
       "attr": "hspace"
     },
     "vspace": {
-      "type": {
-        "type": "attribute",
-        "name": "vspace",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "vspace",
       "attr": "vspace"
     },
     "longDesc": {
-      "type": {
-        "type": "attribute",
-        "name": "longDesc",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "longDesc",
       "attr": "longdesc"
     },
     "border": {
-      "type": {
-        "type": "attribute",
-        "name": "border",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "border",
       "attr": "border"
     }
   },
   "iframe": {
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
@@ -11742,4716 +2752,941 @@ export const htmlProps = {
       "attr": "srcdoc"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "sandbox": {
-      "type": {
-        "type": "attribute",
-        "name": "sandbox",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMTokenList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "value"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "DOMTokenList",
       "name": "sandbox",
       "attr": "sandbox"
     },
     "allow": {
-      "type": {
-        "type": "attribute",
-        "name": "allow",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "allow",
       "attr": "allow"
     },
     "allowFullscreen": {
-      "type": {
-        "type": "attribute",
-        "name": "allowFullscreen",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "allowFullscreen",
       "attr": "allowfullscreen"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "height",
       "attr": "height"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "loading": {
-      "type": {
-        "type": "attribute",
-        "name": "loading",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "loading",
       "attr": "loading"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "scrolling": {
-      "type": {
-        "type": "attribute",
-        "name": "scrolling",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "scrolling",
       "attr": "scrolling"
     },
     "frameBorder": {
-      "type": {
-        "type": "attribute",
-        "name": "frameBorder",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "frameBorder",
       "attr": "frameborder"
     },
     "longDesc": {
-      "type": {
-        "type": "attribute",
-        "name": "longDesc",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "longDesc",
       "attr": "longdesc"
     },
     "marginHeight": {
-      "type": {
-        "type": "attribute",
-        "name": "marginHeight",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "marginHeight",
       "attr": "marginheight"
     },
     "marginWidth": {
-      "type": {
-        "type": "attribute",
-        "name": "marginWidth",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "marginWidth",
       "attr": "marginwidth"
     }
   },
   "embed": {
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "height",
       "attr": "height"
     }
   },
   "object": {
     "data": {
-      "type": {
-        "type": "attribute",
-        "name": "data",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "data",
       "attr": "data"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "height",
       "attr": "height"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "archive": {
-      "type": {
-        "type": "attribute",
-        "name": "archive",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "archive",
       "attr": "archive"
     },
     "declare": {
-      "type": {
-        "type": "attribute",
-        "name": "declare",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "declare",
       "attr": "declare"
     },
     "hspace": {
-      "type": {
-        "type": "attribute",
-        "name": "hspace",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "hspace",
       "attr": "hspace"
     },
     "standby": {
-      "type": {
-        "type": "attribute",
-        "name": "standby",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "standby",
       "attr": "standby"
     },
     "vspace": {
-      "type": {
-        "type": "attribute",
-        "name": "vspace",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "vspace",
       "attr": "vspace"
     },
     "codeBase": {
-      "type": {
-        "type": "attribute",
-        "name": "codeBase",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "codeBase",
       "attr": "codebase"
     },
     "codeType": {
-      "type": {
-        "type": "attribute",
-        "name": "codeType",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "codeType",
       "attr": "codetype"
     },
     "useMap": {
-      "type": {
-        "type": "attribute",
-        "name": "useMap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "useMap",
       "attr": "usemap"
     },
     "border": {
-      "type": {
-        "type": "attribute",
-        "name": "border",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "border",
       "attr": "border"
     }
   },
   "video": {
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "height",
       "attr": "height"
     },
     "poster": {
-      "type": {
-        "type": "attribute",
-        "name": "poster",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "poster",
       "attr": "poster"
     },
     "playsInline": {
-      "type": {
-        "type": "attribute",
-        "name": "playsInline",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "playsInline",
       "attr": "playsinline"
     },
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "preload": {
-      "type": {
-        "type": "attribute",
-        "name": "preload",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "preload",
       "attr": "preload"
     },
     "autoplay": {
-      "type": {
-        "type": "attribute",
-        "name": "autoplay",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "autoplay",
       "attr": "autoplay"
     },
     "loop": {
-      "type": {
-        "type": "attribute",
-        "name": "loop",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "loop",
       "attr": "loop"
     },
     "controls": {
-      "type": {
-        "type": "attribute",
-        "name": "controls",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "controls",
       "attr": "controls"
     },
     "muted": {
-      "type": {
-        "type": "attribute",
-        "name": "muted",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "muted",
       "attr": "muted"
     }
   },
   "audio": {
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "preload": {
-      "type": {
-        "type": "attribute",
-        "name": "preload",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "preload",
       "attr": "preload"
     },
     "autoplay": {
-      "type": {
-        "type": "attribute",
-        "name": "autoplay",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "autoplay",
       "attr": "autoplay"
     },
     "loop": {
-      "type": {
-        "type": "attribute",
-        "name": "loop",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "loop",
       "attr": "loop"
     },
     "controls": {
-      "type": {
-        "type": "attribute",
-        "name": "controls",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "controls",
       "attr": "controls"
     },
     "muted": {
-      "type": {
-        "type": "attribute",
-        "name": "muted",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "muted",
       "attr": "muted"
     }
   },
   "track": {
     "kind": {
-      "type": {
-        "type": "attribute",
-        "name": "kind",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "kind",
       "attr": "kind"
     },
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "srclang": {
-      "type": {
-        "type": "attribute",
-        "name": "srclang",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "srclang",
       "attr": "srclang"
     },
     "label": {
-      "type": {
-        "type": "attribute",
-        "name": "label",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "label",
       "attr": "label"
     },
     "default": {
-      "type": {
-        "type": "attribute",
-        "name": "default",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "default",
       "attr": "default"
     }
   },
   "map": {
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     }
   },
   "area": {
     "alt": {
-      "type": {
-        "type": "attribute",
-        "name": "alt",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "alt",
       "attr": "alt"
     },
     "coords": {
-      "type": {
-        "type": "attribute",
-        "name": "coords",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "coords",
       "attr": "coords"
     },
     "shape": {
-      "type": {
-        "type": "attribute",
-        "name": "shape",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "shape",
       "attr": "shape"
     },
     "target": {
-      "type": {
-        "type": "attribute",
-        "name": "target",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "target",
       "attr": "target"
     },
     "download": {
-      "type": {
-        "type": "attribute",
-        "name": "download",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "download",
       "attr": "download"
     },
     "ping": {
-      "type": {
-        "type": "attribute",
-        "name": "ping",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "ping",
       "attr": "ping"
     },
     "rel": {
-      "type": {
-        "type": "attribute",
-        "name": "rel",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rel",
       "attr": "rel"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "noHref": {
-      "type": {
-        "type": "attribute",
-        "name": "noHref",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noHref",
       "attr": "nohref"
     },
     "href": {
-      "type": {
-        "type": "attribute",
-        "name": "href",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "stringifier",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "href",
       "attr": "href"
     }
   },
   "table": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "border": {
-      "type": {
-        "type": "attribute",
-        "name": "border",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "border",
       "attr": "border"
     },
     "frame": {
-      "type": {
-        "type": "attribute",
-        "name": "frame",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "frame",
       "attr": "frame"
     },
     "rules": {
-      "type": {
-        "type": "attribute",
-        "name": "rules",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rules",
       "attr": "rules"
     },
     "summary": {
-      "type": {
-        "type": "attribute",
-        "name": "summary",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "summary",
       "attr": "summary"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     },
     "bgColor": {
-      "type": {
-        "type": "attribute",
-        "name": "bgColor",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "bgColor",
       "attr": "bgcolor"
     },
     "cellPadding": {
-      "type": {
-        "type": "attribute",
-        "name": "cellPadding",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "cellPadding",
       "attr": "cellpadding"
     },
     "cellSpacing": {
-      "type": {
-        "type": "attribute",
-        "name": "cellSpacing",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "cellSpacing",
       "attr": "cellspacing"
     }
   },
   "caption": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "colgroup": {
     "span": {
-      "type": {
-        "type": "attribute",
-        "name": "span",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "span",
       "attr": "span"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     }
   },
   "col": {
     "span": {
-      "type": {
-        "type": "attribute",
-        "name": "span",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "span",
       "attr": "span"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     }
   },
   "tbody": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     }
   },
   "thead": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     }
   },
   "tfoot": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     }
   },
   "tr": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     },
     "bgColor": {
-      "type": {
-        "type": "attribute",
-        "name": "bgColor",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "bgColor",
       "attr": "bgcolor"
     }
   },
   "td": {
     "colSpan": {
-      "type": {
-        "type": "attribute",
-        "name": "colSpan",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "colSpan",
       "attr": "colspan"
     },
     "rowSpan": {
-      "type": {
-        "type": "attribute",
-        "name": "rowSpan",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "rowSpan",
       "attr": "rowspan"
     },
     "headers": {
-      "type": {
-        "type": "attribute",
-        "name": "headers",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "headers",
       "attr": "headers"
     },
     "scope": {
-      "type": {
-        "type": "attribute",
-        "name": "scope",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "scope",
       "attr": "scope"
     },
     "abbr": {
-      "type": {
-        "type": "attribute",
-        "name": "abbr",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "abbr",
       "attr": "abbr"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "axis": {
-      "type": {
-        "type": "attribute",
-        "name": "axis",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "axis",
       "attr": "axis"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "height",
       "attr": "height"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     },
     "noWrap": {
-      "type": {
-        "type": "attribute",
-        "name": "noWrap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noWrap",
       "attr": "nowrap"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     },
     "bgColor": {
-      "type": {
-        "type": "attribute",
-        "name": "bgColor",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "bgColor",
       "attr": "bgcolor"
     }
   },
   "th": {
     "colSpan": {
-      "type": {
-        "type": "attribute",
-        "name": "colSpan",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "colSpan",
       "attr": "colspan"
     },
     "rowSpan": {
-      "type": {
-        "type": "attribute",
-        "name": "rowSpan",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "rowSpan",
       "attr": "rowspan"
     },
     "headers": {
-      "type": {
-        "type": "attribute",
-        "name": "headers",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "headers",
       "attr": "headers"
     },
     "scope": {
-      "type": {
-        "type": "attribute",
-        "name": "scope",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "scope",
       "attr": "scope"
     },
     "abbr": {
-      "type": {
-        "type": "attribute",
-        "name": "abbr",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "abbr",
       "attr": "abbr"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "axis": {
-      "type": {
-        "type": "attribute",
-        "name": "axis",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "axis",
       "attr": "axis"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "height",
       "attr": "height"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "width",
       "attr": "width"
     },
     "noWrap": {
-      "type": {
-        "type": "attribute",
-        "name": "noWrap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noWrap",
       "attr": "nowrap"
     },
     "vAlign": {
-      "type": {
-        "type": "attribute",
-        "name": "vAlign",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "vAlign",
       "attr": "valign"
     },
     "bgColor": {
-      "type": {
-        "type": "attribute",
-        "name": "bgColor",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "bgColor",
       "attr": "bgcolor"
     }
   },
   "form": {
     "acceptCharset": {
-      "type": {
-        "type": "attribute",
-        "name": "acceptCharset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "acceptCharset",
       "attr": "accept-charset"
     },
     "action": {
-      "type": {
-        "type": "attribute",
-        "name": "action",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "action",
       "attr": "action"
     },
     "autocomplete": {
-      "type": {
-        "type": "attribute",
-        "name": "autocomplete",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "autocomplete",
       "attr": "autocomplete"
     },
     "enctype": {
-      "type": {
-        "type": "attribute",
-        "name": "enctype",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "enctype",
       "attr": "enctype"
     },
     "method": {
-      "type": {
-        "type": "attribute",
-        "name": "method",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "method",
       "attr": "method"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "noValidate": {
-      "type": {
-        "type": "attribute",
-        "name": "noValidate",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noValidate",
       "attr": "novalidate"
     },
     "target": {
-      "type": {
-        "type": "attribute",
-        "name": "target",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "target",
       "attr": "target"
     }
   },
   "label": {
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     }
   },
   "input": {
     "accept": {
-      "type": {
-        "type": "attribute",
-        "name": "accept",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "accept",
       "attr": "accept"
     },
     "alt": {
-      "type": {
-        "type": "attribute",
-        "name": "alt",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "alt",
       "attr": "alt"
     },
     "autocomplete": {
-      "type": {
-        "type": "attribute",
-        "name": "autocomplete",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "autocomplete",
       "attr": "autocomplete"
     },
     "checked": {
-      "type": {
-        "type": "attribute",
-        "name": "checked",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "checked",
       "attr": "checked"
     },
     "dirName": {
-      "type": {
-        "type": "attribute",
-        "name": "dirName",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "dirName",
       "attr": "dirname"
     },
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "formAction": {
-      "type": {
-        "type": "attribute",
-        "name": "formAction",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "formAction",
       "attr": "formaction"
     },
     "formEnctype": {
-      "type": {
-        "type": "attribute",
-        "name": "formEnctype",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "formEnctype",
       "attr": "formenctype"
     },
     "formMethod": {
-      "type": {
-        "type": "attribute",
-        "name": "formMethod",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "formMethod",
       "attr": "formmethod"
     },
     "formNoValidate": {
-      "type": {
-        "type": "attribute",
-        "name": "formNoValidate",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "formNoValidate",
       "attr": "formnovalidate"
     },
     "formTarget": {
-      "type": {
-        "type": "attribute",
-        "name": "formTarget",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "formTarget",
       "attr": "formtarget"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "height",
       "attr": "height"
     },
     "list": {
-      "type": {
-        "type": "attribute",
-        "name": "list",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLDataListElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLDataListElement",
       "name": "list",
       "attr": "list"
     },
     "max": {
-      "type": {
-        "type": "attribute",
-        "name": "max",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "max",
       "attr": "max"
     },
     "maxLength": {
-      "type": {
-        "type": "attribute",
-        "name": "maxLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "maxLength",
       "attr": "maxlength"
     },
     "min": {
-      "type": {
-        "type": "attribute",
-        "name": "min",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "min",
       "attr": "min"
     },
     "minLength": {
-      "type": {
-        "type": "attribute",
-        "name": "minLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "minLength",
       "attr": "minlength"
     },
     "multiple": {
-      "type": {
-        "type": "attribute",
-        "name": "multiple",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "multiple",
       "attr": "multiple"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "pattern": {
-      "type": {
-        "type": "attribute",
-        "name": "pattern",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "pattern",
       "attr": "pattern"
     },
     "placeholder": {
-      "type": {
-        "type": "attribute",
-        "name": "placeholder",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "placeholder",
       "attr": "placeholder"
     },
     "readOnly": {
-      "type": {
-        "type": "attribute",
-        "name": "readOnly",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "readOnly",
       "attr": "readonly"
     },
     "required": {
-      "type": {
-        "type": "attribute",
-        "name": "required",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "required",
       "attr": "required"
     },
     "size": {
-      "type": {
-        "type": "attribute",
-        "name": "size",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "size",
       "attr": "size"
     },
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "step": {
-      "type": {
-        "type": "attribute",
-        "name": "step",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "step",
       "attr": "step"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "value",
       "attr": "value"
     },
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "width",
       "attr": "width"
     },
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     },
     "useMap": {
-      "type": {
-        "type": "attribute",
-        "name": "useMap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "useMap",
       "attr": "usemap"
     },
     "popoverTargetAction": {
-      "type": {
-        "type": "attribute",
-        "name": "popoverTargetAction",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "popoverTargetAction",
       "attr": "popovertargetaction"
     }
   },
   "button": {
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "formAction": {
-      "type": {
-        "type": "attribute",
-        "name": "formAction",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "formAction",
       "attr": "formaction"
     },
     "formEnctype": {
-      "type": {
-        "type": "attribute",
-        "name": "formEnctype",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "formEnctype",
       "attr": "formenctype"
     },
     "formMethod": {
-      "type": {
-        "type": "attribute",
-        "name": "formMethod",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "formMethod",
       "attr": "formmethod"
     },
     "formNoValidate": {
-      "type": {
-        "type": "attribute",
-        "name": "formNoValidate",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "formNoValidate",
       "attr": "formnovalidate"
     },
     "formTarget": {
-      "type": {
-        "type": "attribute",
-        "name": "formTarget",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "formTarget",
       "attr": "formtarget"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "value",
       "attr": "value"
     },
     "popoverTargetAction": {
-      "type": {
-        "type": "attribute",
-        "name": "popoverTargetAction",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "popoverTargetAction",
       "attr": "popovertargetaction"
     }
   },
   "select": {
     "autocomplete": {
-      "type": {
-        "type": "attribute",
-        "name": "autocomplete",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "autocomplete",
       "attr": "autocomplete"
     },
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "multiple": {
-      "type": {
-        "type": "attribute",
-        "name": "multiple",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "multiple",
       "attr": "multiple"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "required": {
-      "type": {
-        "type": "attribute",
-        "name": "required",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "required",
       "attr": "required"
     },
     "size": {
-      "type": {
-        "type": "attribute",
-        "name": "size",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "size",
       "attr": "size"
     }
@@ -16459,900 +3694,193 @@ export const htmlProps = {
   "datalist": {},
   "optgroup": {
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "label": {
-      "type": {
-        "type": "attribute",
-        "name": "label",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "label",
       "attr": "label"
     }
   },
   "option": {
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "label": {
-      "type": {
-        "type": "attribute",
-        "name": "label",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "label",
       "attr": "label"
     },
     "selected": {
-      "type": {
-        "type": "attribute",
-        "name": "selected",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "selected",
       "attr": "selected"
     },
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "value",
       "attr": "value"
     }
   },
   "textarea": {
     "autocomplete": {
-      "type": {
-        "type": "attribute",
-        "name": "autocomplete",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "autocomplete",
       "attr": "autocomplete"
     },
     "cols": {
-      "type": {
-        "type": "attribute",
-        "name": "cols",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "cols",
       "attr": "cols"
     },
     "dirName": {
-      "type": {
-        "type": "attribute",
-        "name": "dirName",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "dirName",
       "attr": "dirname"
     },
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "maxLength": {
-      "type": {
-        "type": "attribute",
-        "name": "maxLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "maxLength",
       "attr": "maxlength"
     },
     "minLength": {
-      "type": {
-        "type": "attribute",
-        "name": "minLength",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "long",
       "name": "minLength",
       "attr": "minlength"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "placeholder": {
-      "type": {
-        "type": "attribute",
-        "name": "placeholder",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "placeholder",
       "attr": "placeholder"
     },
     "readOnly": {
-      "type": {
-        "type": "attribute",
-        "name": "readOnly",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "readOnly",
       "attr": "readonly"
     },
     "required": {
-      "type": {
-        "type": "attribute",
-        "name": "required",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "required",
       "attr": "required"
     },
     "rows": {
-      "type": {
-        "type": "attribute",
-        "name": "rows",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "rows",
       "attr": "rows"
     },
     "wrap": {
-      "type": {
-        "type": "attribute",
-        "name": "wrap",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "wrap",
       "attr": "wrap"
     }
   },
   "output": {
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     }
   },
   "progress": {
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "value",
       "attr": "value"
     },
     "max": {
-      "type": {
-        "type": "attribute",
-        "name": "max",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "max",
       "attr": "max"
     }
   },
   "meter": {
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "value",
       "attr": "value"
     },
     "min": {
-      "type": {
-        "type": "attribute",
-        "name": "min",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "min",
       "attr": "min"
     },
     "max": {
-      "type": {
-        "type": "attribute",
-        "name": "max",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "max",
       "attr": "max"
     },
     "low": {
-      "type": {
-        "type": "attribute",
-        "name": "low",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "low",
       "attr": "low"
     },
     "high": {
-      "type": {
-        "type": "attribute",
-        "name": "high",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "high",
       "attr": "high"
     },
     "optimum": {
-      "type": {
-        "type": "attribute",
-        "name": "optimum",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "double"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "double",
       "name": "optimum",
       "attr": "optimum"
     }
   },
   "fieldset": {
     "disabled": {
-      "type": {
-        "type": "attribute",
-        "name": "disabled",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "disabled",
       "attr": "disabled"
     },
     "form": {
-      "type": {
-        "type": "attribute",
-        "name": "form",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "HTMLFormElement"
-        },
-        "extAttrs": [],
-        "special": "",
-        "readonly": true
-      },
+      "type": "HTMLFormElement",
       "name": "form",
       "attr": "form"
     },
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     }
   },
   "legend": {
     "align": {
-      "type": {
-        "type": "attribute",
-        "name": "align",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "align",
       "attr": "align"
     }
   },
   "details": {
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "open": {
-      "type": {
-        "type": "attribute",
-        "name": "open",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "open",
       "attr": "open"
     }
@@ -17360,325 +3888,64 @@ export const htmlProps = {
   "summary": {},
   "dialog": {
     "open": {
-      "type": {
-        "type": "attribute",
-        "name": "open",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "open",
       "attr": "open"
     }
   },
   "script": {
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "noModule": {
-      "type": {
-        "type": "attribute",
-        "name": "noModule",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noModule",
       "attr": "nomodule"
     },
     "async": {
-      "type": {
-        "type": "attribute",
-        "name": "async",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "async",
       "attr": "async"
     },
     "defer": {
-      "type": {
-        "type": "attribute",
-        "name": "defer",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "defer",
       "attr": "defer"
     },
     "crossOrigin": {
-      "type": {
-        "type": "attribute",
-        "name": "crossOrigin",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "integrity": {
-      "type": {
-        "type": "attribute",
-        "name": "integrity",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "integrity",
       "attr": "integrity"
     },
     "referrerPolicy": {
-      "type": {
-        "type": "attribute",
-        "name": "referrerPolicy",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "blocking": {
-      "type": {
-        "type": "attribute",
-        "name": "blocking",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMTokenList"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "SameObject",
-            "rhs": null,
-            "arguments": []
-          },
-          {
-            "type": "extended-attribute",
-            "name": "PutForwards",
-            "rhs": {
-              "type": "identifier",
-              "value": "value"
-            },
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": true
-      },
+      "type": "DOMTokenList",
       "name": "blocking",
       "attr": "blocking"
     },
     "fetchPriority": {
-      "type": {
-        "type": "attribute",
-        "name": "fetchPriority",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "fetchPriority",
       "attr": "fetchpriority"
     },
     "charset": {
-      "type": {
-        "type": "attribute",
-        "name": "charset",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "charset",
       "attr": "charset"
     }
@@ -17686,162 +3953,36 @@ export const htmlProps = {
   "noscript": {},
   "template": {
     "shadowRootMode": {
-      "type": {
-        "type": "attribute",
-        "name": "shadowRootMode",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "shadowRootMode",
       "attr": "shadowrootmode"
     },
     "shadowRootDelegatesFocus": {
-      "type": {
-        "type": "attribute",
-        "name": "shadowRootDelegatesFocus",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "shadowRootDelegatesFocus",
       "attr": "shadowrootdelegatesfocus"
     },
     "shadowRootClonable": {
-      "type": {
-        "type": "attribute",
-        "name": "shadowRootClonable",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "shadowRootClonable",
       "attr": "shadowrootclonable"
     }
   },
   "slot": {
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     }
   },
   "canvas": {
     "width": {
-      "type": {
-        "type": "attribute",
-        "name": "width",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "width",
       "attr": "width"
     },
     "height": {
-      "type": {
-        "type": "attribute",
-        "name": "height",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "unsigned long"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "unsigned long",
       "name": "height",
       "attr": "height"
     }
@@ -17851,306 +3992,61 @@ export const htmlProps = {
   "bgsound": {},
   "dir": {
     "compact": {
-      "type": {
-        "type": "attribute",
-        "name": "compact",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "compact",
       "attr": "compact"
     }
   },
   "frame": {
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "scrolling": {
-      "type": {
-        "type": "attribute",
-        "name": "scrolling",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "scrolling",
       "attr": "scrolling"
     },
     "src": {
-      "type": {
-        "type": "attribute",
-        "name": "src",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "src",
       "attr": "src"
     },
     "frameBorder": {
-      "type": {
-        "type": "attribute",
-        "name": "frameBorder",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "frameBorder",
       "attr": "frameborder"
     },
     "longDesc": {
-      "type": {
-        "type": "attribute",
-        "name": "longDesc",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "USVString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "USVString",
       "name": "longDesc",
       "attr": "longdesc"
     },
     "noResize": {
-      "type": {
-        "type": "attribute",
-        "name": "noResize",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "boolean"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "boolean",
       "name": "noResize",
       "attr": "noresize"
     },
     "marginHeight": {
-      "type": {
-        "type": "attribute",
-        "name": "marginHeight",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "marginHeight",
       "attr": "marginheight"
     },
     "marginWidth": {
-      "type": {
-        "type": "attribute",
-        "name": "marginWidth",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "marginWidth",
       "attr": "marginwidth"
     }
   },
   "frameset": {
     "cols": {
-      "type": {
-        "type": "attribute",
-        "name": "cols",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "cols",
       "attr": "cols"
     },
     "rows": {
-      "type": {
-        "type": "attribute",
-        "name": "rows",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "rows",
       "attr": "rows"
     }
@@ -18164,106 +4060,22 @@ export const htmlProps = {
   "noembed": {},
   "param": {
     "name": {
-      "type": {
-        "type": "attribute",
-        "name": "name",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "name",
       "attr": "name"
     },
     "value": {
-      "type": {
-        "type": "attribute",
-        "name": "value",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "value",
       "attr": "value"
     },
     "type": {
-      "type": {
-        "type": "attribute",
-        "name": "type",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "type",
       "attr": "type"
     },
     "valueType": {
-      "type": {
-        "type": "attribute",
-        "name": "valueType",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "valueType",
       "attr": "valuetype"
     }
@@ -18279,87 +4091,17 @@ export const htmlProps = {
   "center": {},
   "font": {
     "color": {
-      "type": {
-        "type": "attribute",
-        "name": "color",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [
-            {
-              "type": "extended-attribute",
-              "name": "LegacyNullToEmptyString",
-              "rhs": null,
-              "arguments": []
-            }
-          ],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "color",
       "attr": "color"
     },
     "face": {
-      "type": {
-        "type": "attribute",
-        "name": "face",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "face",
       "attr": "face"
     },
     "size": {
-      "type": {
-        "type": "attribute",
-        "name": "size",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": false,
-          "idlType": "DOMString"
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": "DOMString",
       "name": "size",
       "attr": "size"
     }
