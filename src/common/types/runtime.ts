@@ -26,8 +26,8 @@
 import { MergeObject, PickType, WritableKeys } from '@o2ter/utils-js';
 import { ComponentType, ElementNode, PropsWithChildren, RefAttribute } from './common';
 import { ClassName, StyleProp } from '../styles/types';
-import { CSSProperties, SVGProperties } from '../../_web/css';
-import { globalEventHandlersEventMap } from '../../_web/event';
+import { CSSProperties, SVGProperties } from '../web/css';
+import { globalEventHandlersEventMap } from '../web/event';
 import { ElementTagNameMap } from '../../../generated/elements';
 import { ComponentNode, NativeElementType } from './component';
 
