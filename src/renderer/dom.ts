@@ -36,6 +36,6 @@ export class DOMRenderer extends _DOMRenderer {
   }
 
   get _server(): boolean {
-    return false;
+    return typeof window === 'undefined';
   }
 }
