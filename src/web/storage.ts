@@ -29,19 +29,18 @@ import { useCallback } from '../common/hooks/callback';
 import { SetStateAction } from '../common/types/common';
 
 const _useStorage = (
-  storage: () => Storage | undefined,
+  storage: () => Storage,
   key: string,
   initialValue?: string | null
 ) => {
   const state = useSyncExternalStore((onStoreChange) => {
     const _storage = storage();
-    if (!_storage) return;
     const callback = (ev: StorageEvent) => { 
       if (!ev.storageArea || ev.storageArea === _storage) onStoreChange();
     };
     window.addEventListener('storage', callback);
     return () => window.removeEventListener('storage', callback);
-  }, () => storage()?.getItem(key));
+  }, () => storage().getItem(key), () => undefined);
   const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
     try {
       const _storage = storage();
@@ -63,9 +62,9 @@ const _useStorage = (
 export const useLocalStorage = (
   key: string,
   initialValue?: string | null
-) => _useStorage(() => typeof window === 'undefined' ? undefined : window.localStorage, key, initialValue);
+) => _useStorage(() => window.localStorage, key, initialValue);
 
 export const useSessionStorage = (
   key: string,
   initialValue?: string | null
-) => _useStorage(() => typeof window === 'undefined' ? undefined : window.sessionStorage, key, initialValue);
+) => _useStorage(() => window.sessionStorage, key, initialValue);
