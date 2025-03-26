@@ -24,38 +24,19 @@
 //
 
 import _ from 'lodash';
-import { useCallback } from '../common/hooks/callback';
 import { useSyncExternalStore } from '../common/hooks/sync';
 
-export const useWindowScroll = () => {
-  const scrollTo = useCallback<{
-    (options?: ScrollToOptions): void;
-    (x: number, y: number): void;
-  }>((...args: any[]) => {
-    if (_.isObject(args[0])) {
-      window.scrollTo(args[0]);
-    } else if (_.isNumber(args[0]) && _.isNumber(args[1])) {
-      window.scrollTo(args[0], args[1]);
-    } else {
-      throw new Error(
-        `Invalid arguments passed to scrollTo. See here for more info. https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollTo`
-      );
-    }
-  }, []);
-  const state = useSyncExternalStore((onStoreChange) => {
-    window.addEventListener('scroll', onStoreChange);
-    return () => window.removeEventListener('scroll', onStoreChange);
-  }, () => typeof window === 'undefined' ? ({ x: 0, y: 0 }) : ({
-    x: window.scrollX,
-    y: window.scrollY,
-  }));
-  return [state, scrollTo] as const;
-}
-
-export const useWindowSize = () => useSyncExternalStore((onStoreChange) => {
+export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);
   return () => window.removeEventListener('resize', onStoreChange);
-}, () => typeof window === 'undefined' ? ({ width: 0, height: 0 }) : ({
-  width: window.innerWidth,
-  height: window.innerHeight,
+}, () => typeof window === 'undefined' ? ({
+  innerWidth: 0,
+  innerHeight: 0,
+  scrollX: 0,
+  scrollY: 0,
+}) : ({
+  innerWidth: window.innerWidth,
+  innerHeight: window.innerHeight,
+  scrollX: window.scrollX,
+  scrollY: window.scrollY,
 }));
