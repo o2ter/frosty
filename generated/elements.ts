@@ -4,98 +4,80 @@ export const svgProps = {
   "*": {
     "id": {
       "type": "DOMString",
-      "name": "id",
       "attr": "id"
     },
     "tabIndex": {
       "type": "long",
-      "name": "tabIndex",
       "attr": "tabindex"
     },
     "style": {
       "type": "CSSStyleDeclaration",
-      "name": "style",
       "attr": "style"
     }
   },
   "svg": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "viewBox": {
       "type": "SVGAnimatedRect",
-      "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "g": {
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "defs": {
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
@@ -104,1452 +86,1178 @@ export const svgProps = {
   "symbol": {
     "viewBox": {
       "type": "SVGAnimatedRect",
-      "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "use": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "image": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "switch": {
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "style": {
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "media": {
       "type": "DOMString",
-      "name": "media",
       "attr": "media"
     },
     "title": {
       "type": "DOMString",
-      "name": "title",
       "attr": "title"
     }
   },
   "path": {
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "rect": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "rx": {
       "type": "SVGAnimatedLength",
-      "name": "rx",
       "attr": "rx"
     },
     "ry": {
       "type": "SVGAnimatedLength",
-      "name": "ry",
       "attr": "ry"
     },
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "circle": {
     "cx": {
       "type": "SVGAnimatedLength",
-      "name": "cx",
       "attr": "cx"
     },
     "cy": {
       "type": "SVGAnimatedLength",
-      "name": "cy",
       "attr": "cy"
     },
     "r": {
       "type": "SVGAnimatedLength",
-      "name": "r",
       "attr": "r"
     },
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "ellipse": {
     "cx": {
       "type": "SVGAnimatedLength",
-      "name": "cx",
       "attr": "cx"
     },
     "cy": {
       "type": "SVGAnimatedLength",
-      "name": "cy",
       "attr": "cy"
     },
     "rx": {
       "type": "SVGAnimatedLength",
-      "name": "rx",
       "attr": "rx"
     },
     "ry": {
       "type": "SVGAnimatedLength",
-      "name": "ry",
       "attr": "ry"
     },
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "line": {
     "x1": {
       "type": "SVGAnimatedLength",
-      "name": "x1",
       "attr": "x1"
     },
     "y1": {
       "type": "SVGAnimatedLength",
-      "name": "y1",
       "attr": "y1"
     },
     "x2": {
       "type": "SVGAnimatedLength",
-      "name": "x2",
       "attr": "x2"
     },
     "y2": {
       "type": "SVGAnimatedLength",
-      "name": "y2",
       "attr": "y2"
     },
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "polyline": {
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "points": {
       "type": "SVGPointList",
-      "name": "points",
       "attr": "points"
     }
   },
   "polygon": {
     "pathLength": {
       "type": "SVGAnimatedNumber",
-      "name": "pathLength",
       "attr": "pathLength"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "points": {
       "type": "SVGPointList",
-      "name": "points",
       "attr": "points"
     }
   },
   "text": {
     "x": {
       "type": "SVGAnimatedLengthList",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLengthList",
-      "name": "y",
       "attr": "y"
     },
     "dx": {
       "type": "SVGAnimatedLengthList",
-      "name": "dx",
       "attr": "dx"
     },
     "dy": {
       "type": "SVGAnimatedLengthList",
-      "name": "dy",
       "attr": "dy"
     },
     "rotate": {
       "type": "SVGAnimatedNumberList",
-      "name": "rotate",
       "attr": "rotate"
     },
     "textLength": {
       "type": "SVGAnimatedLength",
-      "name": "textLength",
       "attr": "textLength"
     },
     "lengthAdjust": {
       "type": "SVGAnimatedEnumeration",
-      "name": "lengthAdjust",
       "attr": "lengthAdjust"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "tspan": {
     "x": {
       "type": "SVGAnimatedLengthList",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLengthList",
-      "name": "y",
       "attr": "y"
     },
     "dx": {
       "type": "SVGAnimatedLengthList",
-      "name": "dx",
       "attr": "dx"
     },
     "dy": {
       "type": "SVGAnimatedLengthList",
-      "name": "dy",
       "attr": "dy"
     },
     "rotate": {
       "type": "SVGAnimatedNumberList",
-      "name": "rotate",
       "attr": "rotate"
     },
     "textLength": {
       "type": "SVGAnimatedLength",
-      "name": "textLength",
       "attr": "textLength"
     },
     "lengthAdjust": {
       "type": "SVGAnimatedEnumeration",
-      "name": "lengthAdjust",
       "attr": "lengthAdjust"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "textPath": {
     "startOffset": {
       "type": "SVGAnimatedLength",
-      "name": "startOffset",
       "attr": "startOffset"
     },
     "method": {
       "type": "SVGAnimatedEnumeration",
-      "name": "method",
       "attr": "method"
     },
     "spacing": {
       "type": "SVGAnimatedEnumeration",
-      "name": "spacing",
       "attr": "spacing"
     },
     "textLength": {
       "type": "SVGAnimatedLength",
-      "name": "textLength",
       "attr": "textLength"
     },
     "lengthAdjust": {
       "type": "SVGAnimatedEnumeration",
-      "name": "lengthAdjust",
       "attr": "lengthAdjust"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "marker": {
     "refX": {
       "type": "SVGAnimatedLength",
-      "name": "refX",
       "attr": "refX"
     },
     "refY": {
       "type": "SVGAnimatedLength",
-      "name": "refY",
       "attr": "refY"
     },
     "markerUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "markerUnits",
       "attr": "markerUnits"
     },
     "markerWidth": {
       "type": "SVGAnimatedLength",
-      "name": "markerWidth",
       "attr": "markerWidth"
     },
     "markerHeight": {
       "type": "SVGAnimatedLength",
-      "name": "markerHeight",
       "attr": "markerHeight"
     },
     "orient": {
       "type": "DOMString",
-      "name": "orient",
       "attr": "orient"
     },
     "viewBox": {
       "type": "SVGAnimatedRect",
-      "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "linearGradient": {
     "x1": {
       "type": "SVGAnimatedLength",
-      "name": "x1",
       "attr": "x1"
     },
     "y1": {
       "type": "SVGAnimatedLength",
-      "name": "y1",
       "attr": "y1"
     },
     "x2": {
       "type": "SVGAnimatedLength",
-      "name": "x2",
       "attr": "x2"
     },
     "y2": {
       "type": "SVGAnimatedLength",
-      "name": "y2",
       "attr": "y2"
     },
     "gradientUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "gradientUnits",
       "attr": "gradientUnits"
     },
     "gradientTransform": {
       "type": "SVGAnimatedTransformList",
-      "name": "gradientTransform",
       "attr": "gradientTransform"
     },
     "spreadMethod": {
       "type": "SVGAnimatedEnumeration",
-      "name": "spreadMethod",
       "attr": "spreadMethod"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "radialGradient": {
     "cx": {
       "type": "SVGAnimatedLength",
-      "name": "cx",
       "attr": "cx"
     },
     "cy": {
       "type": "SVGAnimatedLength",
-      "name": "cy",
       "attr": "cy"
     },
     "r": {
       "type": "SVGAnimatedLength",
-      "name": "r",
       "attr": "r"
     },
     "fx": {
       "type": "SVGAnimatedLength",
-      "name": "fx",
       "attr": "fx"
     },
     "fy": {
       "type": "SVGAnimatedLength",
-      "name": "fy",
       "attr": "fy"
     },
     "fr": {
       "type": "SVGAnimatedLength",
-      "name": "fr",
       "attr": "fr"
     },
     "gradientUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "gradientUnits",
       "attr": "gradientUnits"
     },
     "gradientTransform": {
       "type": "SVGAnimatedTransformList",
-      "name": "gradientTransform",
       "attr": "gradientTransform"
     },
     "spreadMethod": {
       "type": "SVGAnimatedEnumeration",
-      "name": "spreadMethod",
       "attr": "spreadMethod"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "stop": {
     "offset": {
       "type": "SVGAnimatedNumber",
-      "name": "offset",
       "attr": "offset"
     }
   },
   "pattern": {
     "patternUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "patternUnits",
       "attr": "patternUnits"
     },
     "patternContentUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "patternContentUnits",
       "attr": "patternContentUnits"
     },
     "patternTransform": {
       "type": "SVGAnimatedTransformList",
-      "name": "patternTransform",
       "attr": "patternTransform"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "viewBox": {
       "type": "SVGAnimatedRect",
-      "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "clipPath": {
     "clipPathUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "clipPathUnits",
       "attr": "clipPathUnits"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     }
   },
   "mask": {
     "maskUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "maskUnits",
       "attr": "maskUnits"
     },
     "maskContentUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "maskContentUnits",
       "attr": "maskContentUnits"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     }
   },
   "filter": {
     "filterUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "filterUnits",
       "attr": "filterUnits"
     },
     "primitiveUnits": {
       "type": "SVGAnimatedEnumeration",
-      "name": "primitiveUnits",
       "attr": "primitiveUnits"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     }
   },
   "feDistantLight": {
     "azimuth": {
       "type": "SVGAnimatedNumber",
-      "name": "azimuth",
       "attr": "azimuth"
     },
     "elevation": {
       "type": "SVGAnimatedNumber",
-      "name": "elevation",
       "attr": "elevation"
     }
   },
   "fePointLight": {
     "x": {
       "type": "SVGAnimatedNumber",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedNumber",
-      "name": "y",
       "attr": "y"
     },
     "z": {
       "type": "SVGAnimatedNumber",
-      "name": "z",
       "attr": "z"
     }
   },
   "feSpotLight": {
     "x": {
       "type": "SVGAnimatedNumber",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedNumber",
-      "name": "y",
       "attr": "y"
     },
     "z": {
       "type": "SVGAnimatedNumber",
-      "name": "z",
       "attr": "z"
     },
     "pointsAtX": {
       "type": "SVGAnimatedNumber",
-      "name": "pointsAtX",
       "attr": "pointsAtX"
     },
     "pointsAtY": {
       "type": "SVGAnimatedNumber",
-      "name": "pointsAtY",
       "attr": "pointsAtY"
     },
     "pointsAtZ": {
       "type": "SVGAnimatedNumber",
-      "name": "pointsAtZ",
       "attr": "pointsAtZ"
     },
     "specularExponent": {
       "type": "SVGAnimatedNumber",
-      "name": "specularExponent",
       "attr": "specularExponent"
     },
     "limitingConeAngle": {
       "type": "SVGAnimatedNumber",
-      "name": "limitingConeAngle",
       "attr": "limitingConeAngle"
     }
   },
   "feBlend": {
     "in2": {
       "type": "SVGAnimatedString",
-      "name": "in2",
       "attr": "in2"
     },
     "mode": {
       "type": "SVGAnimatedEnumeration",
-      "name": "mode",
       "attr": "mode"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feColorMatrix": {
     "type": {
       "type": "SVGAnimatedEnumeration",
-      "name": "type",
       "attr": "type"
     },
     "values": {
       "type": "SVGAnimatedNumberList",
-      "name": "values",
       "attr": "values"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feComponentTransfer": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feFuncR": {
     "type": {
       "type": "SVGAnimatedEnumeration",
-      "name": "type",
       "attr": "type"
     },
     "tableValues": {
       "type": "SVGAnimatedNumberList",
-      "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
       "type": "SVGAnimatedNumber",
-      "name": "slope",
       "attr": "slope"
     },
     "intercept": {
       "type": "SVGAnimatedNumber",
-      "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
       "type": "SVGAnimatedNumber",
-      "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
       "type": "SVGAnimatedNumber",
-      "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
       "type": "SVGAnimatedNumber",
-      "name": "offset",
       "attr": "offset"
     }
   },
   "feFuncG": {
     "type": {
       "type": "SVGAnimatedEnumeration",
-      "name": "type",
       "attr": "type"
     },
     "tableValues": {
       "type": "SVGAnimatedNumberList",
-      "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
       "type": "SVGAnimatedNumber",
-      "name": "slope",
       "attr": "slope"
     },
     "intercept": {
       "type": "SVGAnimatedNumber",
-      "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
       "type": "SVGAnimatedNumber",
-      "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
       "type": "SVGAnimatedNumber",
-      "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
       "type": "SVGAnimatedNumber",
-      "name": "offset",
       "attr": "offset"
     }
   },
   "feFuncB": {
     "type": {
       "type": "SVGAnimatedEnumeration",
-      "name": "type",
       "attr": "type"
     },
     "tableValues": {
       "type": "SVGAnimatedNumberList",
-      "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
       "type": "SVGAnimatedNumber",
-      "name": "slope",
       "attr": "slope"
     },
     "intercept": {
       "type": "SVGAnimatedNumber",
-      "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
       "type": "SVGAnimatedNumber",
-      "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
       "type": "SVGAnimatedNumber",
-      "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
       "type": "SVGAnimatedNumber",
-      "name": "offset",
       "attr": "offset"
     }
   },
   "feFuncA": {
     "type": {
       "type": "SVGAnimatedEnumeration",
-      "name": "type",
       "attr": "type"
     },
     "tableValues": {
       "type": "SVGAnimatedNumberList",
-      "name": "tableValues",
       "attr": "tableValues"
     },
     "slope": {
       "type": "SVGAnimatedNumber",
-      "name": "slope",
       "attr": "slope"
     },
     "intercept": {
       "type": "SVGAnimatedNumber",
-      "name": "intercept",
       "attr": "intercept"
     },
     "amplitude": {
       "type": "SVGAnimatedNumber",
-      "name": "amplitude",
       "attr": "amplitude"
     },
     "exponent": {
       "type": "SVGAnimatedNumber",
-      "name": "exponent",
       "attr": "exponent"
     },
     "offset": {
       "type": "SVGAnimatedNumber",
-      "name": "offset",
       "attr": "offset"
     }
   },
   "feComposite": {
     "in2": {
       "type": "SVGAnimatedString",
-      "name": "in2",
       "attr": "in2"
     },
     "operator": {
       "type": "SVGAnimatedEnumeration",
-      "name": "operator",
       "attr": "operator"
     },
     "k1": {
       "type": "SVGAnimatedNumber",
-      "name": "k1",
       "attr": "k1"
     },
     "k2": {
       "type": "SVGAnimatedNumber",
-      "name": "k2",
       "attr": "k2"
     },
     "k3": {
       "type": "SVGAnimatedNumber",
-      "name": "k3",
       "attr": "k3"
     },
     "k4": {
       "type": "SVGAnimatedNumber",
-      "name": "k4",
       "attr": "k4"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feConvolveMatrix": {
     "kernelMatrix": {
       "type": "SVGAnimatedNumberList",
-      "name": "kernelMatrix",
       "attr": "kernelMatrix"
     },
     "divisor": {
       "type": "SVGAnimatedNumber",
-      "name": "divisor",
       "attr": "divisor"
     },
     "bias": {
       "type": "SVGAnimatedNumber",
-      "name": "bias",
       "attr": "bias"
     },
     "targetX": {
       "type": "SVGAnimatedInteger",
-      "name": "targetX",
       "attr": "targetX"
     },
     "targetY": {
       "type": "SVGAnimatedInteger",
-      "name": "targetY",
       "attr": "targetY"
     },
     "edgeMode": {
       "type": "SVGAnimatedEnumeration",
-      "name": "edgeMode",
       "attr": "edgeMode"
     },
     "preserveAlpha": {
       "type": "SVGAnimatedBoolean",
-      "name": "preserveAlpha",
       "attr": "preserveAlpha"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feDiffuseLighting": {
     "surfaceScale": {
       "type": "SVGAnimatedNumber",
-      "name": "surfaceScale",
       "attr": "surfaceScale"
     },
     "diffuseConstant": {
       "type": "SVGAnimatedNumber",
-      "name": "diffuseConstant",
       "attr": "diffuseConstant"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feDisplacementMap": {
     "in2": {
       "type": "SVGAnimatedString",
-      "name": "in2",
       "attr": "in2"
     },
     "scale": {
       "type": "SVGAnimatedNumber",
-      "name": "scale",
       "attr": "scale"
     },
     "xChannelSelector": {
       "type": "SVGAnimatedEnumeration",
-      "name": "xChannelSelector",
       "attr": "xChannelSelector"
     },
     "yChannelSelector": {
       "type": "SVGAnimatedEnumeration",
-      "name": "yChannelSelector",
       "attr": "yChannelSelector"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feFlood": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feGaussianBlur": {
     "edgeMode": {
       "type": "SVGAnimatedEnumeration",
-      "name": "edgeMode",
       "attr": "edgeMode"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feImage": {
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     },
     "crossOrigin": {
       "type": "SVGAnimatedString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "feMerge": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
@@ -1557,321 +1265,262 @@ export const svgProps = {
   "feMorphology": {
     "operator": {
       "type": "SVGAnimatedEnumeration",
-      "name": "operator",
       "attr": "operator"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feOffset": {
     "dx": {
       "type": "SVGAnimatedNumber",
-      "name": "dx",
       "attr": "dx"
     },
     "dy": {
       "type": "SVGAnimatedNumber",
-      "name": "dy",
       "attr": "dy"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feSpecularLighting": {
     "surfaceScale": {
       "type": "SVGAnimatedNumber",
-      "name": "surfaceScale",
       "attr": "surfaceScale"
     },
     "specularConstant": {
       "type": "SVGAnimatedNumber",
-      "name": "specularConstant",
       "attr": "specularConstant"
     },
     "specularExponent": {
       "type": "SVGAnimatedNumber",
-      "name": "specularExponent",
       "attr": "specularExponent"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feTile": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "feTurbulence": {
     "numOctaves": {
       "type": "SVGAnimatedInteger",
-      "name": "numOctaves",
       "attr": "numOctaves"
     },
     "seed": {
       "type": "SVGAnimatedNumber",
-      "name": "seed",
       "attr": "seed"
     },
     "stitchTiles": {
       "type": "SVGAnimatedEnumeration",
-      "name": "stitchTiles",
       "attr": "stitchTiles"
     },
     "type": {
       "type": "SVGAnimatedEnumeration",
-      "name": "type",
       "attr": "type"
     },
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "result": {
       "type": "SVGAnimatedString",
-      "name": "result",
       "attr": "result"
     }
   },
   "a": {
     "target": {
       "type": "SVGAnimatedString",
-      "name": "target",
       "attr": "target"
     },
     "download": {
       "type": "DOMString",
-      "name": "download",
       "attr": "download"
     },
     "ping": {
       "type": "USVString",
-      "name": "ping",
       "attr": "ping"
     },
     "hreflang": {
       "type": "DOMString",
-      "name": "hreflang",
       "attr": "hreflang"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "view": {
     "viewBox": {
       "type": "SVGAnimatedRect",
-      "name": "viewBox",
       "attr": "viewBox"
     },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
-      "name": "preserveAspectRatio",
       "attr": "preserveAspectRatio"
     }
   },
   "script": {
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "animate": {
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "set": {
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "animateMotion": {
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
   "mpath": {
     "href": {
       "type": "SVGAnimatedString",
-      "name": "href",
       "attr": "href"
     }
   },
   "animateTransform": {
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   },
@@ -1879,37 +1528,30 @@ export const svgProps = {
   "foreignObject": {
     "x": {
       "type": "SVGAnimatedLength",
-      "name": "x",
       "attr": "x"
     },
     "y": {
       "type": "SVGAnimatedLength",
-      "name": "y",
       "attr": "y"
     },
     "width": {
       "type": "SVGAnimatedLength",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "SVGAnimatedLength",
-      "name": "height",
       "attr": "height"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
-      "name": "transform",
       "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
-      "name": "requiredExtensions",
       "attr": "requiredExtensions"
     },
     "systemLanguage": {
       "type": "SVGStringList",
-      "name": "systemLanguage",
       "attr": "systemLanguage"
     }
   }
@@ -1919,22 +1561,18 @@ export const htmlProps = {
   "*": {
     "title": {
       "type": "DOMString",
-      "name": "title",
       "attr": "title"
     },
     "lang": {
       "type": "DOMString",
-      "name": "lang",
       "attr": "lang"
     },
     "translate": {
       "type": "boolean",
-      "name": "translate",
       "attr": "translate"
     },
     "dir": {
       "type": "DOMString",
-      "name": "dir",
       "attr": "dir"
     },
     "hidden": {
@@ -1943,94 +1581,76 @@ export const htmlProps = {
         "unrestricted double",
         "DOMString"
       ],
-      "name": "hidden",
       "attr": "hidden"
     },
     "inert": {
       "type": "boolean",
-      "name": "inert",
       "attr": "inert"
     },
     "accessKey": {
       "type": "DOMString",
-      "name": "accessKey",
       "attr": "accesskey"
     },
     "draggable": {
       "type": "boolean",
-      "name": "draggable",
       "attr": "draggable"
     },
     "spellcheck": {
       "type": "boolean",
-      "name": "spellcheck",
       "attr": "spellcheck"
     },
     "writingSuggestions": {
       "type": "DOMString",
-      "name": "writingSuggestions",
       "attr": "writingsuggestions"
     },
     "autocapitalize": {
       "type": "DOMString",
-      "name": "autocapitalize",
       "attr": "autocapitalize"
     },
     "popover": {
       "type": "DOMString",
-      "name": "popover",
       "attr": "popover"
     },
     "id": {
       "type": "DOMString",
-      "name": "id",
       "attr": "id"
     },
     "slot": {
       "type": "DOMString",
-      "name": "slot",
       "attr": "slot"
     },
     "style": {
       "type": "CSSStyleDeclaration",
-      "name": "style",
       "attr": "style"
     },
     "contentEditable": {
       "type": "DOMString",
-      "name": "contentEditable",
       "attr": "contenteditable"
     },
     "enterKeyHint": {
       "type": "DOMString",
-      "name": "enterKeyHint",
       "attr": "enterkeyhint"
     },
     "inputMode": {
       "type": "DOMString",
-      "name": "inputMode",
       "attr": "inputmode"
     },
     "nonce": {
       "type": "DOMString",
-      "name": "nonce",
       "attr": "nonce"
     },
     "autofocus": {
       "type": "boolean",
-      "name": "autofocus",
       "attr": "autofocus"
     },
     "tabIndex": {
       "type": "long",
-      "name": "tabIndex",
       "attr": "tabindex"
     }
   },
   "html": {
     "version": {
       "type": "DOMString",
-      "name": "version",
       "attr": "version"
     }
   },
@@ -2039,180 +1659,146 @@ export const htmlProps = {
   "base": {
     "href": {
       "type": "USVString",
-      "name": "href",
       "attr": "href"
     },
     "target": {
       "type": "DOMString",
-      "name": "target",
       "attr": "target"
     }
   },
   "link": {
     "href": {
       "type": "USVString",
-      "name": "href",
       "attr": "href"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "rel": {
       "type": "DOMString",
-      "name": "rel",
       "attr": "rel"
     },
     "as": {
       "type": "DOMString",
-      "name": "as",
       "attr": "as"
     },
     "media": {
       "type": "DOMString",
-      "name": "media",
       "attr": "media"
     },
     "integrity": {
       "type": "DOMString",
-      "name": "integrity",
       "attr": "integrity"
     },
     "hreflang": {
       "type": "DOMString",
-      "name": "hreflang",
       "attr": "hreflang"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "sizes": {
       "type": "DOMTokenList",
-      "name": "sizes",
       "attr": "sizes"
     },
     "imageSrcset": {
       "type": "USVString",
-      "name": "imageSrcset",
       "attr": "imagesrcset"
     },
     "imageSizes": {
       "type": "DOMString",
-      "name": "imageSizes",
       "attr": "imagesizes"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "blocking": {
       "type": "DOMTokenList",
-      "name": "blocking",
       "attr": "blocking"
     },
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "fetchPriority": {
       "type": "DOMString",
-      "name": "fetchPriority",
       "attr": "fetchpriority"
     },
     "charset": {
       "type": "DOMString",
-      "name": "charset",
       "attr": "charset"
     },
     "rev": {
       "type": "DOMString",
-      "name": "rev",
       "attr": "rev"
     },
     "target": {
       "type": "DOMString",
-      "name": "target",
       "attr": "target"
     }
   },
   "meta": {
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "httpEquiv": {
       "type": "DOMString",
-      "name": "httpEquiv",
       "attr": "http-equiv"
     },
     "content": {
       "type": "DOMString",
-      "name": "content",
       "attr": "content"
     },
     "media": {
       "type": "DOMString",
-      "name": "media",
       "attr": "media"
     },
     "scheme": {
       "type": "DOMString",
-      "name": "scheme",
       "attr": "scheme"
     }
   },
   "style": {
     "media": {
       "type": "DOMString",
-      "name": "media",
       "attr": "media"
     },
     "blocking": {
       "type": "DOMTokenList",
-      "name": "blocking",
       "attr": "blocking"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     }
   },
   "body": {
     "text": {
       "type": "DOMString",
-      "name": "text",
       "attr": "text"
     },
     "link": {
       "type": "DOMString",
-      "name": "link",
       "attr": "link"
     },
     "vLink": {
       "type": "DOMString",
-      "name": "vLink",
       "attr": "vlink"
     },
     "aLink": {
       "type": "DOMString",
-      "name": "aLink",
       "attr": "alink"
     },
     "bgColor": {
       "type": "DOMString",
-      "name": "bgColor",
       "attr": "bgcolor"
     },
     "background": {
       "type": "DOMString",
-      "name": "background",
       "attr": "background"
     }
   },
@@ -2223,42 +1809,36 @@ export const htmlProps = {
   "h1": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "h2": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "h3": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "h4": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "h5": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "h6": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
@@ -2269,103 +1849,86 @@ export const htmlProps = {
   "p": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "hr": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "noShade": {
       "type": "boolean",
-      "name": "noShade",
       "attr": "noshade"
     },
     "size": {
       "type": "DOMString",
-      "name": "size",
       "attr": "size"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     }
   },
   "pre": {
     "width": {
       "type": "long",
-      "name": "width",
       "attr": "width"
     }
   },
   "blockquote": {
     "cite": {
       "type": "USVString",
-      "name": "cite",
       "attr": "cite"
     }
   },
   "ol": {
     "reversed": {
       "type": "boolean",
-      "name": "reversed",
       "attr": "reversed"
     },
     "start": {
       "type": "long",
-      "name": "start",
       "attr": "start"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "compact": {
       "type": "boolean",
-      "name": "compact",
       "attr": "compact"
     }
   },
   "ul": {
     "compact": {
       "type": "boolean",
-      "name": "compact",
       "attr": "compact"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     }
   },
   "menu": {
     "compact": {
       "type": "boolean",
-      "name": "compact",
       "attr": "compact"
     }
   },
   "li": {
     "value": {
       "type": "long",
-      "name": "value",
       "attr": "value"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     }
   },
   "dl": {
     "compact": {
       "type": "boolean",
-      "name": "compact",
       "attr": "compact"
     }
   },
@@ -2378,74 +1941,60 @@ export const htmlProps = {
   "div": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "a": {
     "target": {
       "type": "DOMString",
-      "name": "target",
       "attr": "target"
     },
     "download": {
       "type": "DOMString",
-      "name": "download",
       "attr": "download"
     },
     "ping": {
       "type": "USVString",
-      "name": "ping",
       "attr": "ping"
     },
     "rel": {
       "type": "DOMString",
-      "name": "rel",
       "attr": "rel"
     },
     "hreflang": {
       "type": "DOMString",
-      "name": "hreflang",
       "attr": "hreflang"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "coords": {
       "type": "DOMString",
-      "name": "coords",
       "attr": "coords"
     },
     "charset": {
       "type": "DOMString",
-      "name": "charset",
       "attr": "charset"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "rev": {
       "type": "DOMString",
-      "name": "rev",
       "attr": "rev"
     },
     "shape": {
       "type": "DOMString",
-      "name": "shape",
       "attr": "shape"
     },
     "href": {
       "type": "USVString",
-      "name": "href",
       "attr": "href"
     }
   },
@@ -2457,7 +2006,6 @@ export const htmlProps = {
   "q": {
     "cite": {
       "type": "USVString",
-      "name": "cite",
       "attr": "cite"
     }
   },
@@ -2469,14 +2017,12 @@ export const htmlProps = {
   "data": {
     "value": {
       "type": "DOMString",
-      "name": "value",
       "attr": "value"
     }
   },
   "time": {
     "dateTime": {
       "type": "DOMString",
-      "name": "dateTime",
       "attr": "datetime"
     }
   },
@@ -2496,7 +2042,6 @@ export const htmlProps = {
   "br": {
     "clear": {
       "type": "DOMString",
-      "name": "clear",
       "attr": "clear"
     }
   },
@@ -2504,24 +2049,20 @@ export const htmlProps = {
   "ins": {
     "cite": {
       "type": "USVString",
-      "name": "cite",
       "attr": "cite"
     },
     "dateTime": {
       "type": "DOMString",
-      "name": "dateTime",
       "attr": "datetime"
     }
   },
   "del": {
     "cite": {
       "type": "USVString",
-      "name": "cite",
       "attr": "cite"
     },
     "dateTime": {
       "type": "DOMString",
-      "name": "dateTime",
       "attr": "datetime"
     }
   },
@@ -2529,141 +2070,114 @@ export const htmlProps = {
   "source": {
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "srcset": {
       "type": "USVString",
-      "name": "srcset",
       "attr": "srcset"
     },
     "sizes": {
       "type": "DOMString",
-      "name": "sizes",
       "attr": "sizes"
     },
     "media": {
       "type": "DOMString",
-      "name": "media",
       "attr": "media"
     },
     "width": {
       "type": "unsigned long",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "unsigned long",
-      "name": "height",
       "attr": "height"
     }
   },
   "img": {
     "alt": {
       "type": "DOMString",
-      "name": "alt",
       "attr": "alt"
     },
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "srcset": {
       "type": "USVString",
-      "name": "srcset",
       "attr": "srcset"
     },
     "sizes": {
       "type": "DOMString",
-      "name": "sizes",
       "attr": "sizes"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "useMap": {
       "type": "DOMString",
-      "name": "useMap",
       "attr": "usemap"
     },
     "isMap": {
       "type": "boolean",
-      "name": "isMap",
       "attr": "ismap"
     },
     "width": {
       "type": "unsigned long",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "unsigned long",
-      "name": "height",
       "attr": "height"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "decoding": {
       "type": "DOMString",
-      "name": "decoding",
       "attr": "decoding"
     },
     "loading": {
       "type": "DOMString",
-      "name": "loading",
       "attr": "loading"
     },
     "fetchPriority": {
       "type": "DOMString",
-      "name": "fetchPriority",
       "attr": "fetchpriority"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "hspace": {
       "type": "unsigned long",
-      "name": "hspace",
       "attr": "hspace"
     },
     "vspace": {
       "type": "unsigned long",
-      "name": "vspace",
       "attr": "vspace"
     },
     "longDesc": {
       "type": "USVString",
-      "name": "longDesc",
       "attr": "longdesc"
     },
     "border": {
       "type": "DOMString",
-      "name": "border",
       "attr": "border"
     }
   },
   "iframe": {
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "srcdoc": {
@@ -2671,946 +2185,766 @@ export const htmlProps = {
         "TrustedHTML",
         "DOMString"
       ],
-      "name": "srcdoc",
       "attr": "srcdoc"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "sandbox": {
       "type": "DOMTokenList",
-      "name": "sandbox",
       "attr": "sandbox"
     },
     "allow": {
       "type": "DOMString",
-      "name": "allow",
       "attr": "allow"
     },
     "allowFullscreen": {
       "type": "boolean",
-      "name": "allowFullscreen",
       "attr": "allowfullscreen"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "DOMString",
-      "name": "height",
       "attr": "height"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "loading": {
       "type": "DOMString",
-      "name": "loading",
       "attr": "loading"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "scrolling": {
       "type": "DOMString",
-      "name": "scrolling",
       "attr": "scrolling"
     },
     "frameBorder": {
       "type": "DOMString",
-      "name": "frameBorder",
       "attr": "frameborder"
     },
     "longDesc": {
       "type": "USVString",
-      "name": "longDesc",
       "attr": "longdesc"
     },
     "marginHeight": {
       "type": "DOMString",
-      "name": "marginHeight",
       "attr": "marginheight"
     },
     "marginWidth": {
       "type": "DOMString",
-      "name": "marginWidth",
       "attr": "marginwidth"
     }
   },
   "embed": {
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "DOMString",
-      "name": "height",
       "attr": "height"
     }
   },
   "object": {
     "data": {
       "type": "USVString",
-      "name": "data",
       "attr": "data"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "DOMString",
-      "name": "height",
       "attr": "height"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "archive": {
       "type": "DOMString",
-      "name": "archive",
       "attr": "archive"
     },
     "declare": {
       "type": "boolean",
-      "name": "declare",
       "attr": "declare"
     },
     "hspace": {
       "type": "unsigned long",
-      "name": "hspace",
       "attr": "hspace"
     },
     "standby": {
       "type": "DOMString",
-      "name": "standby",
       "attr": "standby"
     },
     "vspace": {
       "type": "unsigned long",
-      "name": "vspace",
       "attr": "vspace"
     },
     "codeBase": {
       "type": "DOMString",
-      "name": "codeBase",
       "attr": "codebase"
     },
     "codeType": {
       "type": "DOMString",
-      "name": "codeType",
       "attr": "codetype"
     },
     "useMap": {
       "type": "DOMString",
-      "name": "useMap",
       "attr": "usemap"
     },
     "border": {
       "type": "DOMString",
-      "name": "border",
       "attr": "border"
     }
   },
   "video": {
     "width": {
       "type": "unsigned long",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "unsigned long",
-      "name": "height",
       "attr": "height"
     },
     "poster": {
       "type": "USVString",
-      "name": "poster",
       "attr": "poster"
     },
     "playsInline": {
       "type": "boolean",
-      "name": "playsInline",
       "attr": "playsinline"
     },
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "preload": {
       "type": "DOMString",
-      "name": "preload",
       "attr": "preload"
     },
     "autoplay": {
       "type": "boolean",
-      "name": "autoplay",
       "attr": "autoplay"
     },
     "loop": {
       "type": "boolean",
-      "name": "loop",
       "attr": "loop"
     },
     "controls": {
       "type": "boolean",
-      "name": "controls",
       "attr": "controls"
     },
     "muted": {
       "type": "boolean",
-      "name": "muted",
       "attr": "muted"
     }
   },
   "audio": {
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "preload": {
       "type": "DOMString",
-      "name": "preload",
       "attr": "preload"
     },
     "autoplay": {
       "type": "boolean",
-      "name": "autoplay",
       "attr": "autoplay"
     },
     "loop": {
       "type": "boolean",
-      "name": "loop",
       "attr": "loop"
     },
     "controls": {
       "type": "boolean",
-      "name": "controls",
       "attr": "controls"
     },
     "muted": {
       "type": "boolean",
-      "name": "muted",
       "attr": "muted"
     }
   },
   "track": {
     "kind": {
       "type": "DOMString",
-      "name": "kind",
       "attr": "kind"
     },
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "srclang": {
       "type": "DOMString",
-      "name": "srclang",
       "attr": "srclang"
     },
     "label": {
       "type": "DOMString",
-      "name": "label",
       "attr": "label"
     },
     "default": {
       "type": "boolean",
-      "name": "default",
       "attr": "default"
     }
   },
   "map": {
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     }
   },
   "area": {
     "alt": {
       "type": "DOMString",
-      "name": "alt",
       "attr": "alt"
     },
     "coords": {
       "type": "DOMString",
-      "name": "coords",
       "attr": "coords"
     },
     "shape": {
       "type": "DOMString",
-      "name": "shape",
       "attr": "shape"
     },
     "target": {
       "type": "DOMString",
-      "name": "target",
       "attr": "target"
     },
     "download": {
       "type": "DOMString",
-      "name": "download",
       "attr": "download"
     },
     "ping": {
       "type": "USVString",
-      "name": "ping",
       "attr": "ping"
     },
     "rel": {
       "type": "DOMString",
-      "name": "rel",
       "attr": "rel"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "noHref": {
       "type": "boolean",
-      "name": "noHref",
       "attr": "nohref"
     },
     "href": {
       "type": "USVString",
-      "name": "href",
       "attr": "href"
     }
   },
   "table": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "border": {
       "type": "DOMString",
-      "name": "border",
       "attr": "border"
     },
     "frame": {
       "type": "DOMString",
-      "name": "frame",
       "attr": "frame"
     },
     "rules": {
       "type": "DOMString",
-      "name": "rules",
       "attr": "rules"
     },
     "summary": {
       "type": "DOMString",
-      "name": "summary",
       "attr": "summary"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     },
     "bgColor": {
       "type": "DOMString",
-      "name": "bgColor",
       "attr": "bgcolor"
     },
     "cellPadding": {
       "type": "DOMString",
-      "name": "cellPadding",
       "attr": "cellpadding"
     },
     "cellSpacing": {
       "type": "DOMString",
-      "name": "cellSpacing",
       "attr": "cellspacing"
     }
   },
   "caption": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "colgroup": {
     "span": {
       "type": "unsigned long",
-      "name": "span",
       "attr": "span"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     }
   },
   "col": {
     "span": {
       "type": "unsigned long",
-      "name": "span",
       "attr": "span"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     }
   },
   "tbody": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     }
   },
   "thead": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     }
   },
   "tfoot": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     }
   },
   "tr": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     },
     "bgColor": {
       "type": "DOMString",
-      "name": "bgColor",
       "attr": "bgcolor"
     }
   },
   "td": {
     "colSpan": {
       "type": "unsigned long",
-      "name": "colSpan",
       "attr": "colspan"
     },
     "rowSpan": {
       "type": "unsigned long",
-      "name": "rowSpan",
       "attr": "rowspan"
     },
     "headers": {
       "type": "DOMString",
-      "name": "headers",
       "attr": "headers"
     },
     "scope": {
       "type": "DOMString",
-      "name": "scope",
       "attr": "scope"
     },
     "abbr": {
       "type": "DOMString",
-      "name": "abbr",
       "attr": "abbr"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "axis": {
       "type": "DOMString",
-      "name": "axis",
       "attr": "axis"
     },
     "height": {
       "type": "DOMString",
-      "name": "height",
       "attr": "height"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     },
     "noWrap": {
       "type": "boolean",
-      "name": "noWrap",
       "attr": "nowrap"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     },
     "bgColor": {
       "type": "DOMString",
-      "name": "bgColor",
       "attr": "bgcolor"
     }
   },
   "th": {
     "colSpan": {
       "type": "unsigned long",
-      "name": "colSpan",
       "attr": "colspan"
     },
     "rowSpan": {
       "type": "unsigned long",
-      "name": "rowSpan",
       "attr": "rowspan"
     },
     "headers": {
       "type": "DOMString",
-      "name": "headers",
       "attr": "headers"
     },
     "scope": {
       "type": "DOMString",
-      "name": "scope",
       "attr": "scope"
     },
     "abbr": {
       "type": "DOMString",
-      "name": "abbr",
       "attr": "abbr"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "axis": {
       "type": "DOMString",
-      "name": "axis",
       "attr": "axis"
     },
     "height": {
       "type": "DOMString",
-      "name": "height",
       "attr": "height"
     },
     "width": {
       "type": "DOMString",
-      "name": "width",
       "attr": "width"
     },
     "noWrap": {
       "type": "boolean",
-      "name": "noWrap",
       "attr": "nowrap"
     },
     "vAlign": {
       "type": "DOMString",
-      "name": "vAlign",
       "attr": "valign"
     },
     "bgColor": {
       "type": "DOMString",
-      "name": "bgColor",
       "attr": "bgcolor"
     }
   },
   "form": {
     "acceptCharset": {
       "type": "DOMString",
-      "name": "acceptCharset",
       "attr": "accept-charset"
     },
     "action": {
       "type": "USVString",
-      "name": "action",
       "attr": "action"
     },
     "autocomplete": {
       "type": "DOMString",
-      "name": "autocomplete",
       "attr": "autocomplete"
     },
     "enctype": {
       "type": "DOMString",
-      "name": "enctype",
       "attr": "enctype"
     },
     "method": {
       "type": "DOMString",
-      "name": "method",
       "attr": "method"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "noValidate": {
       "type": "boolean",
-      "name": "noValidate",
       "attr": "novalidate"
     },
     "target": {
       "type": "DOMString",
-      "name": "target",
       "attr": "target"
     }
   },
   "label": {
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     }
   },
   "input": {
     "accept": {
       "type": "DOMString",
-      "name": "accept",
       "attr": "accept"
     },
     "alt": {
       "type": "DOMString",
-      "name": "alt",
       "attr": "alt"
     },
     "autocomplete": {
       "type": "DOMString",
-      "name": "autocomplete",
       "attr": "autocomplete"
     },
     "checked": {
       "type": "boolean",
-      "name": "checked",
       "attr": "checked"
     },
     "dirName": {
       "type": "DOMString",
-      "name": "dirName",
       "attr": "dirname"
     },
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "formAction": {
       "type": "USVString",
-      "name": "formAction",
       "attr": "formaction"
     },
     "formEnctype": {
       "type": "DOMString",
-      "name": "formEnctype",
       "attr": "formenctype"
     },
     "formMethod": {
       "type": "DOMString",
-      "name": "formMethod",
       "attr": "formmethod"
     },
     "formNoValidate": {
       "type": "boolean",
-      "name": "formNoValidate",
       "attr": "formnovalidate"
     },
     "formTarget": {
       "type": "DOMString",
-      "name": "formTarget",
       "attr": "formtarget"
     },
     "height": {
       "type": "unsigned long",
-      "name": "height",
       "attr": "height"
     },
     "list": {
       "type": "HTMLDataListElement",
-      "name": "list",
       "attr": "list"
     },
     "max": {
       "type": "DOMString",
-      "name": "max",
       "attr": "max"
     },
     "maxLength": {
       "type": "long",
-      "name": "maxLength",
       "attr": "maxlength"
     },
     "min": {
       "type": "DOMString",
-      "name": "min",
       "attr": "min"
     },
     "minLength": {
       "type": "long",
-      "name": "minLength",
       "attr": "minlength"
     },
     "multiple": {
       "type": "boolean",
-      "name": "multiple",
       "attr": "multiple"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "pattern": {
       "type": "DOMString",
-      "name": "pattern",
       "attr": "pattern"
     },
     "placeholder": {
       "type": "DOMString",
-      "name": "placeholder",
       "attr": "placeholder"
     },
     "readOnly": {
       "type": "boolean",
-      "name": "readOnly",
       "attr": "readonly"
     },
     "required": {
       "type": "boolean",
-      "name": "required",
       "attr": "required"
     },
     "size": {
       "type": "unsigned long",
-      "name": "size",
       "attr": "size"
     },
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "step": {
       "type": "DOMString",
-      "name": "step",
       "attr": "step"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "value": {
       "type": "DOMString",
-      "name": "value",
       "attr": "value"
     },
     "width": {
       "type": "unsigned long",
-      "name": "width",
       "attr": "width"
     },
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     },
     "useMap": {
       "type": "DOMString",
-      "name": "useMap",
       "attr": "usemap"
     },
     "popoverTargetAction": {
       "type": "DOMString",
-      "name": "popoverTargetAction",
       "attr": "popovertargetaction"
     }
   },
   "button": {
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "formAction": {
       "type": "USVString",
-      "name": "formAction",
       "attr": "formaction"
     },
     "formEnctype": {
       "type": "DOMString",
-      "name": "formEnctype",
       "attr": "formenctype"
     },
     "formMethod": {
       "type": "DOMString",
-      "name": "formMethod",
       "attr": "formmethod"
     },
     "formNoValidate": {
       "type": "boolean",
-      "name": "formNoValidate",
       "attr": "formnovalidate"
     },
     "formTarget": {
       "type": "DOMString",
-      "name": "formTarget",
       "attr": "formtarget"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "value": {
       "type": "DOMString",
-      "name": "value",
       "attr": "value"
     },
     "popoverTargetAction": {
       "type": "DOMString",
-      "name": "popoverTargetAction",
       "attr": "popovertargetaction"
     }
   },
   "select": {
     "autocomplete": {
       "type": "DOMString",
-      "name": "autocomplete",
       "attr": "autocomplete"
     },
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "multiple": {
       "type": "boolean",
-      "name": "multiple",
       "attr": "multiple"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "required": {
       "type": "boolean",
-      "name": "required",
       "attr": "required"
     },
     "size": {
       "type": "unsigned long",
-      "name": "size",
       "attr": "size"
     }
   },
@@ -3618,193 +2952,158 @@ export const htmlProps = {
   "optgroup": {
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "label": {
       "type": "DOMString",
-      "name": "label",
       "attr": "label"
     }
   },
   "option": {
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "label": {
       "type": "DOMString",
-      "name": "label",
       "attr": "label"
     },
     "selected": {
       "type": "boolean",
-      "name": "selected",
       "attr": "selected"
     },
     "value": {
       "type": "DOMString",
-      "name": "value",
       "attr": "value"
     }
   },
   "textarea": {
     "autocomplete": {
       "type": "DOMString",
-      "name": "autocomplete",
       "attr": "autocomplete"
     },
     "cols": {
       "type": "unsigned long",
-      "name": "cols",
       "attr": "cols"
     },
     "dirName": {
       "type": "DOMString",
-      "name": "dirName",
       "attr": "dirname"
     },
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "maxLength": {
       "type": "long",
-      "name": "maxLength",
       "attr": "maxlength"
     },
     "minLength": {
       "type": "long",
-      "name": "minLength",
       "attr": "minlength"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "placeholder": {
       "type": "DOMString",
-      "name": "placeholder",
       "attr": "placeholder"
     },
     "readOnly": {
       "type": "boolean",
-      "name": "readOnly",
       "attr": "readonly"
     },
     "required": {
       "type": "boolean",
-      "name": "required",
       "attr": "required"
     },
     "rows": {
       "type": "unsigned long",
-      "name": "rows",
       "attr": "rows"
     },
     "wrap": {
       "type": "DOMString",
-      "name": "wrap",
       "attr": "wrap"
     }
   },
   "output": {
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     }
   },
   "progress": {
     "value": {
       "type": "double",
-      "name": "value",
       "attr": "value"
     },
     "max": {
       "type": "double",
-      "name": "max",
       "attr": "max"
     }
   },
   "meter": {
     "value": {
       "type": "double",
-      "name": "value",
       "attr": "value"
     },
     "min": {
       "type": "double",
-      "name": "min",
       "attr": "min"
     },
     "max": {
       "type": "double",
-      "name": "max",
       "attr": "max"
     },
     "low": {
       "type": "double",
-      "name": "low",
       "attr": "low"
     },
     "high": {
       "type": "double",
-      "name": "high",
       "attr": "high"
     },
     "optimum": {
       "type": "double",
-      "name": "optimum",
       "attr": "optimum"
     }
   },
   "fieldset": {
     "disabled": {
       "type": "boolean",
-      "name": "disabled",
       "attr": "disabled"
     },
     "form": {
       "type": "HTMLFormElement",
-      "name": "form",
       "attr": "form"
     },
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     }
   },
   "legend": {
     "align": {
       "type": "DOMString",
-      "name": "align",
       "attr": "align"
     }
   },
   "details": {
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "open": {
       "type": "boolean",
-      "name": "open",
       "attr": "open"
     }
   },
@@ -3812,64 +3111,52 @@ export const htmlProps = {
   "dialog": {
     "open": {
       "type": "boolean",
-      "name": "open",
       "attr": "open"
     }
   },
   "script": {
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "noModule": {
       "type": "boolean",
-      "name": "noModule",
       "attr": "nomodule"
     },
     "async": {
       "type": "boolean",
-      "name": "async",
       "attr": "async"
     },
     "defer": {
       "type": "boolean",
-      "name": "defer",
       "attr": "defer"
     },
     "crossOrigin": {
       "type": "DOMString",
-      "name": "crossOrigin",
       "attr": "crossorigin"
     },
     "integrity": {
       "type": "DOMString",
-      "name": "integrity",
       "attr": "integrity"
     },
     "referrerPolicy": {
       "type": "DOMString",
-      "name": "referrerPolicy",
       "attr": "referrerpolicy"
     },
     "blocking": {
       "type": "DOMTokenList",
-      "name": "blocking",
       "attr": "blocking"
     },
     "fetchPriority": {
       "type": "DOMString",
-      "name": "fetchPriority",
       "attr": "fetchpriority"
     },
     "charset": {
       "type": "DOMString",
-      "name": "charset",
       "attr": "charset"
     }
   },
@@ -3877,36 +3164,30 @@ export const htmlProps = {
   "template": {
     "shadowRootMode": {
       "type": "DOMString",
-      "name": "shadowRootMode",
       "attr": "shadowrootmode"
     },
     "shadowRootDelegatesFocus": {
       "type": "boolean",
-      "name": "shadowRootDelegatesFocus",
       "attr": "shadowrootdelegatesfocus"
     },
     "shadowRootClonable": {
       "type": "boolean",
-      "name": "shadowRootClonable",
       "attr": "shadowrootclonable"
     }
   },
   "slot": {
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     }
   },
   "canvas": {
     "width": {
       "type": "unsigned long",
-      "name": "width",
       "attr": "width"
     },
     "height": {
       "type": "unsigned long",
-      "name": "height",
       "attr": "height"
     }
   },
@@ -3916,61 +3197,50 @@ export const htmlProps = {
   "dir": {
     "compact": {
       "type": "boolean",
-      "name": "compact",
       "attr": "compact"
     }
   },
   "frame": {
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "scrolling": {
       "type": "DOMString",
-      "name": "scrolling",
       "attr": "scrolling"
     },
     "src": {
       "type": "USVString",
-      "name": "src",
       "attr": "src"
     },
     "frameBorder": {
       "type": "DOMString",
-      "name": "frameBorder",
       "attr": "frameborder"
     },
     "longDesc": {
       "type": "USVString",
-      "name": "longDesc",
       "attr": "longdesc"
     },
     "noResize": {
       "type": "boolean",
-      "name": "noResize",
       "attr": "noresize"
     },
     "marginHeight": {
       "type": "DOMString",
-      "name": "marginHeight",
       "attr": "marginheight"
     },
     "marginWidth": {
       "type": "DOMString",
-      "name": "marginWidth",
       "attr": "marginwidth"
     }
   },
   "frameset": {
     "cols": {
       "type": "DOMString",
-      "name": "cols",
       "attr": "cols"
     },
     "rows": {
       "type": "DOMString",
-      "name": "rows",
       "attr": "rows"
     }
   },
@@ -3984,22 +3254,18 @@ export const htmlProps = {
   "param": {
     "name": {
       "type": "DOMString",
-      "name": "name",
       "attr": "name"
     },
     "value": {
       "type": "DOMString",
-      "name": "value",
       "attr": "value"
     },
     "type": {
       "type": "DOMString",
-      "name": "type",
       "attr": "type"
     },
     "valueType": {
       "type": "DOMString",
-      "name": "valueType",
       "attr": "valuetype"
     }
   },
@@ -4015,17 +3281,14 @@ export const htmlProps = {
   "font": {
     "color": {
       "type": "DOMString",
-      "name": "color",
       "attr": "color"
     },
     "face": {
       "type": "DOMString",
-      "name": "face",
       "attr": "face"
     },
     "size": {
       "type": "DOMString",
-      "name": "size",
       "attr": "size"
     }
   },

@@ -127,14 +127,14 @@ const select_html_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
 
 const svgElements = _.flatMap(ElementTagNameMap.svg.groups, g => g.elements);
 const svgProps = {
-  '*': _.fromPairs(_.map(select_svg_attrs('SVGElement', '*'), x => [x.name, x])),
-  ..._.fromPairs(_.map(svgElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_svg_attrs(_interface, name), x => [x.name, x]))])),
+  '*': _.fromPairs(_.map(select_svg_attrs('SVGElement', '*'), ({ name, ...x }) => [name, x])),
+  ..._.fromPairs(_.map(svgElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_svg_attrs(_interface, name), ({ name, ...x }) => [name, x]))])),
 };
 
 const htmlElements = _.flatMap(ElementTagNameMap.html.groups, g => g.elements);
 const htmlProps = {
-  '*': _.fromPairs(_.map(select_html_attrs('HTMLElement', '*'), x => [x.name, x])),
-  ..._.fromPairs(_.map(htmlElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_html_attrs(_interface, name), x => [x.name, x]))])),
+  '*': _.fromPairs(_.map(select_html_attrs('HTMLElement', '*'), ({ name, ...x }) => [name, x])),
+  ..._.fromPairs(_.map(htmlElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_html_attrs(_interface, name), ({ name, ...x }) => [name, x]))])),
 };
 
 await fs.writeFile('./generated/elements.ts', `
