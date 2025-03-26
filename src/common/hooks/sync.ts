@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../../reconciler/hooks';
+import { reconciler } from '~/reconciler/state';
 
 export const useSyncExternalStore = <Snapshot>(
   subscribe: (
@@ -35,6 +36,8 @@ export const useSyncExternalStore = <Snapshot>(
   getSnapshot: () => Snapshot,
   getServerSnapshot?: () => Snapshot,
 ) => {
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useSyncExternalStore must be used within a render function.');
   _useEffect('useSyncExternalStore', ({ node }) => {
     const abort = new AbortController();
     try {
@@ -55,5 +58,8 @@ export const useSyncExternalStore = <Snapshot>(
       return () => abort.abort();
     }
   }, null);
+  if (getServerSnapshot && state.server) {
+    return getServerSnapshot();
+  }
   return getSnapshot();
 };
