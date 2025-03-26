@@ -28,15 +28,29 @@ import { useSyncExternalStore } from '../common/hooks/sync';
 
 export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);
-  return () => window.removeEventListener('resize', onStoreChange);
+  window.addEventListener('scroll', onStoreChange);
+  return () => {
+    window.removeEventListener('resize', onStoreChange);
+    window.removeEventListener('scroll', onStoreChange);
+  };
 }, () => typeof window === 'undefined' ? ({
+  devicePixelRatio: 1,
+  outerWidth: 0,
+  outerHeight: 0,
   innerWidth: 0,
   innerHeight: 0,
+  screenX: 0,
+  screenY: 0,
   scrollX: 0,
   scrollY: 0,
 }) : ({
+  devicePixelRatio: window.devicePixelRatio,
+  outerWidth: window.outerWidth,
+  outerHeight: window.outerHeight,
   innerWidth: window.innerWidth,
   innerHeight: window.innerHeight,
+  screenX: window.screenX,
+  screenY: window.screenY,
   scrollX: window.scrollX,
   scrollY: window.scrollY,
 }));
