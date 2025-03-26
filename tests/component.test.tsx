@@ -101,6 +101,11 @@ test('test context', async () => {
             <span>{value}</span>
           )}
         </TestContext.Consumer>
+        <TestContext value={3}>
+          {(value) => (
+            <span>{value}</span>
+          )}
+        </TestContext>
       </TestContext>
     </TestContext>
   </div>;
@@ -108,6 +113,6 @@ test('test context', async () => {
   const renderer = new ServerDOMRenderer();
   const result = renderer.renderToString(element);
 
-  expect(result).toBe('<div><span>0</span><span>1</span><span>2</span></div>');
+  expect(result).toBe('<div><span>0</span><span>1</span><span>2</span><span>3</span></div>');
 
 });
