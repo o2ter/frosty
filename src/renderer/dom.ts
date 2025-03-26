@@ -35,6 +35,7 @@ export class DOMRenderer extends _DOMRenderer {
     return this.default.createRoot(root);
   }
 
+  /** @internal */
   get _server(): boolean {
     return typeof window === 'undefined';
   }
