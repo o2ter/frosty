@@ -84,9 +84,30 @@ test('test create component element with error', async () => {
 test('test context', async () => {
 
   const element = <div>
+    <TestContext.Consumer>
+      {(value) => (
+        <span>{value}</span>
+      )}
+    </TestContext.Consumer>
     <TestContext value={1}>
-      <span></span>
+      <TestContext.Consumer>
+        {(value) => (
+          <span>{value}</span>
+        )}
+      </TestContext.Consumer>
+      <TestContext value={2}>
+        <TestContext.Consumer>
+          {(value) => (
+            <span>{value}</span>
+          )}
+        </TestContext.Consumer>
+      </TestContext>
     </TestContext>
   </div>;
+
+  const renderer = new ServerDOMRenderer();
+  const result = renderer.renderToString(element);
+
+  expect(result).toBe('<div><span>0</span><span>1</span><span>2</span></div>');
 
 });
