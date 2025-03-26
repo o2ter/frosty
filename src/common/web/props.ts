@@ -24,6 +24,12 @@
 //
 
 import _ from 'lodash';
+import { svgProps, htmlProps, ElementTagNameMap } from '../../../generated/elements';
+
+type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
+type _HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
+type _SVGElementTagNameMap = _ElementTagNameMap<'svg'>;
+export type MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
 
 export const _propValue = {
 
@@ -48,10 +54,30 @@ export const _propValue = {
   'SVGAnimatedInteger': 'number',
   'unrestricted double': 'number',
   'double': 'number',
-  'unsigned long': 'string',
+  'unsigned long': 'number',
   'long': 'number',
 
   'SVGAnimatedBoolean': 'boolean',
   'boolean': 'boolean',
 
 } as const;
+
+type _PropValue = {
+  'string': string,
+  'number': number,
+  'boolean': boolean,
+};
+
+type MapPropValue<T> = T extends keyof typeof _propValue
+  ? _PropValue[typeof _propValue[T]]
+  : T extends readonly [infer S]
+  ? MapPropValue<S>
+  : T extends readonly [infer S, ...infer R]
+  ? MapPropValue<S> | MapPropValue<R>
+  : never;
+
+export type HTMLElementTagNameMap = {
+  [x in keyof _HTMLElementTagNameMap]: {
+    [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
+  };
+};
