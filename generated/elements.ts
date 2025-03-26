@@ -1938,53 +1938,11 @@ export const htmlProps = {
       "attr": "dir"
     },
     "hidden": {
-      "type": {
-        "type": "attribute",
-        "name": "hidden",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": true,
-          "union": true,
-          "idlType": [
-            {
-              "type": "attribute-type",
-              "extAttrs": [],
-              "generic": "",
-              "nullable": false,
-              "union": false,
-              "idlType": "boolean"
-            },
-            {
-              "type": "attribute-type",
-              "extAttrs": [],
-              "generic": "",
-              "nullable": false,
-              "union": false,
-              "idlType": "unrestricted double"
-            },
-            {
-              "type": "attribute-type",
-              "extAttrs": [],
-              "generic": "",
-              "nullable": false,
-              "union": false,
-              "idlType": "DOMString"
-            }
-          ]
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": [
+        "boolean",
+        "unrestricted double",
+        "DOMString"
+      ],
       "name": "hidden",
       "attr": "hidden"
     },
@@ -2709,45 +2667,10 @@ export const htmlProps = {
       "attr": "src"
     },
     "srcdoc": {
-      "type": {
-        "type": "attribute",
-        "name": "srcdoc",
-        "idlType": {
-          "type": "attribute-type",
-          "extAttrs": [],
-          "generic": "",
-          "nullable": false,
-          "union": true,
-          "idlType": [
-            {
-              "type": "attribute-type",
-              "extAttrs": [],
-              "generic": "",
-              "nullable": false,
-              "union": false,
-              "idlType": "TrustedHTML"
-            },
-            {
-              "type": "attribute-type",
-              "extAttrs": [],
-              "generic": "",
-              "nullable": false,
-              "union": false,
-              "idlType": "DOMString"
-            }
-          ]
-        },
-        "extAttrs": [
-          {
-            "type": "extended-attribute",
-            "name": "CEReactions",
-            "rhs": null,
-            "arguments": []
-          }
-        ],
-        "special": "",
-        "readonly": false
-      },
+      "type": [
+        "TrustedHTML",
+        "DOMString"
+      ],
       "name": "srcdoc",
       "attr": "srcdoc"
     },

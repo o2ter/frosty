@@ -104,9 +104,12 @@ const collect = (name) => {
 _.forEach(elements, x => collect(x));
 
 const decodeAttrType = (x) => {
-  if (x.type !== 'attribute') return;
+  if (x.type !== 'attribute') throw Error('not attribute type');
   if (_.isString(x.idlType.idlType)) return x.idlType.idlType;
-  return x;
+  if (x.idlType.union && _.isArray(x.idlType.idlType) && _.every(x.idlType.idlType, x => _.isString(x.idlType))) {
+    return _.map(x.idlType.idlType, x => x.idlType);
+  }
+  throw Error('unknown attribute type');
 };
 
 const resolve = (name) => [
