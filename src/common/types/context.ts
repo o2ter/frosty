@@ -26,20 +26,27 @@
 import _ from 'lodash';
 import { ComponentType, ElementNode } from './common';
 import { reconciler } from '../../reconciler/state';
+import { useContext } from '../hooks/context';
 
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
 export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
 
 const _createContext = <Value extends unknown>(defaultValue: Value) => {
-  const context: ComponentType<{
+  const _context: ComponentType<{
     value: Value;
     children?: ElementNode | ((value: Value) => ElementNode);
   }> = ({ value, children }) => {
     return _.isFunction(children) ? children(value) : children;
   };
-  reconciler.contextDefaultValue.set(context, defaultValue);
-  return context;
-}
+  const Consumer: ComponentType<{
+    children: (value: Value) => ElementNode;
+  }> = ({ children }) => {
+    const value = useContext(_context as Context<Value>);
+    return children(value);
+  };
+  reconciler.contextDefaultValue.set(_context as Context<Value>, defaultValue);
+  return _.assign(_context, { Consumer });
+};
 
 export function createContext<Value>(defaultValue: Value): Context<Value>;
 export function createContext<Value = undefined>(): Context<Value | undefined>;

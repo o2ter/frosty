@@ -117,11 +117,11 @@ export class VNode {
       const { type, props } = this._component;
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
-        if (_.isFunction(type) && reconciler.contextDefaultValue.has(type)) {
+        if (reconciler.isContext(type)) {
           const { value } = props;
           if (!_.isEqual(this._content_value, value)) this._content_state += 1;
           this._content_value = value;
-          children = this._resolve_children(type(props));
+          children = this._resolve_children(type(props as any));
         } else {
           const { rendered, state } = reconciler.withHookState({
             server: options.server,

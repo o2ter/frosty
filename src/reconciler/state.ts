@@ -75,6 +75,10 @@ export const reconciler = new class {
     return this._currentHookState;
   }
 
+  isContext(type: any): type is Context<any> {
+    return _.isFunction(type) && this._contextDefaultValue.has(type as any);
+  }
+
   withHookState<R = void>(
     options: ConstructorParameters<typeof HookState>[0],
     callback: (state: HookState) => R,
@@ -118,7 +122,7 @@ export const reconciler = new class {
         };
 
         let _contextValue = contextValue;
-        if (_.isFunction(node.type) && reconciler.contextDefaultValue.has(node.type)) {
+        if (reconciler.isContext(node.type)) {
           _contextValue = new Map(_contextValue);
           _contextValue.set(node.type, {
             value: node.props.value,
