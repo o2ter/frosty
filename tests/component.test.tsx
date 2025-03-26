@@ -25,7 +25,7 @@
 
 import { expect, test } from '@jest/globals';
 import { ComponentType, ComponentNode, ErrorBoundary, createContext } from '~/index';
-import { ServerDOMRenderer } from '~/renderer/server-dom';
+import { ServerDOMRenderer } from '~/renderer/dom/server-dom';
 
 const TestComponent: ComponentType = () => {
   return <></>;

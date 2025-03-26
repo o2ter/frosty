@@ -24,8 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _Renderer } from './base';
-import { _DOMRenderer } from './_dom';
+import { _DOMRenderer } from './common';
 
 export class DOMRenderer extends _DOMRenderer {
 

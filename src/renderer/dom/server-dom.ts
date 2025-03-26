@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { JSDOM } from 'jsdom';
-import { _DOMRenderer } from './_dom';
+import { _DOMRenderer } from './common';
 
 export class ServerDOMRenderer extends _DOMRenderer {
 

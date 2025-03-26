@@ -24,12 +24,12 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../reconciler/vnode';
-import { _Renderer } from './base';
+import { VNode } from '../../reconciler/vnode';
+import { _Renderer } from '../base';
 import { myersSync } from 'myers.js';
-import { globalEventHandlersEventMap } from '../common/web/event';
-import { ComponentNode } from '../common/types/component';
-import { tags } from '../../generated/elements';
+import { globalEventHandlersEventMap } from '../../common/web/event';
+import { ComponentNode } from '../../common/types/component';
+import { tags } from '../../../generated/elements';
 
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
