@@ -29,13 +29,22 @@ import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../web/css';
 import { globalEventHandlersEventMap } from '../web/event';
 import { ComponentNode, NativeElementType } from './component';
-import { ARIAMixin, HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../web/props';
+import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../web/props';
 
 export type _ElementType = string | ComponentType<any>;
 
 export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
+
+type _PropsOfInstance<Instance> = Omit<
+  PickType<{
+    [k in WritableKeys<Instance>]: Instance[k];
+  }, boolean | number | string | null | undefined>,
+  'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
+>;
+
+type Combine<T, R> = Omit<T, keyof R> & R;
 
 type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; } }, Style> = {
   [x in keyof ElementMap]: PropsWithChildren<
@@ -44,10 +53,8 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
       & {
         className?: ClassName;
         style?: StyleProp<Style>;
-        innerHTML?: string;
       }
-      & ElementMap[x]['props']
-      & ARIAMixin
+      & Combine<ElementMap[x]['props'], _PropsOfInstance<ElementMap[x]['type']>>
       & typeof globalEventHandlersEventMap>
   >
 };
@@ -56,7 +63,7 @@ export type _IntrinsicElements = MergeObject<
   | _ElementProps<HTMLElementTagNameMap, CSSProperties>
   | _ElementProps<SVGElementTagNameMap, SVGProperties>
   | _ElementProps<MathMLElementTagNameMap, CSSProperties>
-  > & { [x: string]: any; };
+> & { [x: string]: any; };
 
 export const _createElement = (
   type: _ElementType | NativeElementType,
