@@ -84,7 +84,7 @@ export abstract class _Renderer<T> {
         for (const i of _.range(Math.max(prevState.length, curState.length))) {
           const unmount = prevState[i]?.unmount;
           if (unmount &&
-            (!_.isEqual(prevState[i].hook, curState[i]?.hook) || !equalDeps(prevState[i].deps, curState[i]?.deps))
+            (prevState[i].hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps))
           ) unmount();
           state.push({
             hook: curState[i].hook,

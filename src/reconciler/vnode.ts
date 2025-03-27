@@ -30,6 +30,7 @@ import { Context } from '../common/types/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
+import { equalDeps } from './utils';
 
 export type VNodeState = {
   hook: string;
@@ -119,7 +120,7 @@ export class VNode {
       if (_.isFunction(type)) {
         if (reconciler.isContext(type)) {
           const { value } = props;
-          if (!_.isEqual(this._content_value, value)) this._content_state += 1;
+          if (!equalDeps(this._content_value, value)) this._content_state += 1;
           this._content_value = value;
           children = this._resolve_children(type(props as any));
         } else {
@@ -148,7 +149,7 @@ export class VNode {
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
         if (!(children[i] instanceof VNode)) continue;
-        if (!_.isEqual(item._component.props, children[i]._component.props)) item._dirty = true;
+        if (!equalDeps(item._component.props, children[i]._component.props)) item._dirty = true;
         item._component = children[i]._component;
       }
     } catch (error) {
