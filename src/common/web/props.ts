@@ -30,7 +30,7 @@ import { OmitType } from '@o2ter/utils-js';
 type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
 type _HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
 type _SVGElementTagNameMap = _ElementTagNameMap<'svg'>;
-export type MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
+type _MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
 
 export const _propValue = {
 
@@ -98,3 +98,9 @@ export type SVGElementTagNameMap = {
     }, never>;
   };
 };
+
+export type MathMLElementTagNameMap = {
+  [x in keyof _MathMLElementTagNameMap]: {
+    type: _MathMLElementTagNameMap[x]['type'];
+  };
+}
