@@ -109,6 +109,7 @@ const decodeAttrType = (x) => {
   if (x.idlType.union && _.isArray(x.idlType.idlType) && _.every(x.idlType.idlType, x => _.isString(x.idlType))) {
     return _.map(x.idlType.idlType, x => x.idlType);
   }
+  if (x.idlType.generic === 'FrozenArray') return null;
   throw Error('unknown attribute type');
 };
 
@@ -137,7 +138,11 @@ const htmlProps = {
   ..._.fromPairs(_.map(htmlElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_html_attrs(_interface, name), ({ name, ...x }) => [name, x]))])),
 };
 
+const ariaProps = _.filter(_.map(resolve('ARIAMixin'), x => ({ type: decodeAttrType(x), name: x.name })), x => x.type);
+
 await fs.writeFile('./generated/elements.ts', `
+
+export const ariaProps = ${JSON.stringify(ariaProps, null, 2)} as const;
 
 export const svgProps = ${JSON.stringify(svgProps, null, 2)} as const;
 

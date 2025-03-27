@@ -1,5 +1,188 @@
 
 
+export const ariaProps = [
+  {
+    "type": "DOMString",
+    "name": "role"
+  },
+  {
+    "type": "Element",
+    "name": "ariaActiveDescendantElement"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaAtomic"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaAutoComplete"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaBrailleLabel"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaBrailleRoleDescription"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaBusy"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaChecked"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaColCount"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaColIndex"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaColIndexText"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaColSpan"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaCurrent"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaDescription"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaDisabled"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaExpanded"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaHasPopup"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaHidden"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaInvalid"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaKeyShortcuts"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaLabel"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaLevel"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaLive"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaModal"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaMultiLine"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaMultiSelectable"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaOrientation"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaPlaceholder"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaPosInSet"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaPressed"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaReadOnly"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRelevant"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRequired"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRoleDescription"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRowCount"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRowIndex"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRowIndexText"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaRowSpan"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaSelected"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaSetSize"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaSort"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaValueMax"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaValueMin"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaValueNow"
+  },
+  {
+    "type": "DOMString",
+    "name": "ariaValueText"
+  }
+] as const;
+
 export const svgProps = {
   "*": {
     "id": {
