@@ -90,7 +90,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
 
-      } else if (key.startsWith('aria')) {
+      } else if (key in element) {
         (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
         if (value === false || _.isNil(value)) {

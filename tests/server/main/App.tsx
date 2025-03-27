@@ -9,7 +9,7 @@ export const App = () => {
   }, []);
   return (
     <div>
-      <table bgColor='aliceblue' ariaAtomic=''>
+      <table bgColor='aliceblue'>
         {_.map(_.range(2), i => <tr>
           {_.map(_.range(2), j => <td>{i * counter + j}</td>)}
         </tr>
