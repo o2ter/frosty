@@ -70,15 +70,13 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     const {
       type,
-      props: { className, style, innerHTML, role, ..._props }
+      props: { className, style, innerHTML, ..._props }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
 
     if (!_.isEmpty(innerHTML)) {
       element.innerHTML = innerHTML;
     }
-
-    element.role = _.isString(role) ? role : null;
 
     const removed = _.difference(this._tracked_props.get(element), _.keys(_props));
     const props = {
