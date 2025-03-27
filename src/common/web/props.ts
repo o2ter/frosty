@@ -71,6 +71,12 @@ type _PropValue = {
   'boolean': boolean,
 };
 
+export type ARIAMixin = {
+  role: Element['role'];
+} & OmitType<{
+  [x in keyof Element]: x extends `aria${string}` ? Element[x] : never;
+}, never>;
+
 type MapPropValue<T> = T extends keyof typeof _propValue
   ? _PropValue[typeof _propValue[T]]
   : T extends readonly [infer S]

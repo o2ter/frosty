@@ -29,7 +29,7 @@ import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../web/css';
 import { globalEventHandlersEventMap } from '../web/event';
 import { ComponentNode, NativeElementType } from './component';
-import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../web/props';
+import { ARIAMixin, HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../web/props';
 
 export type _ElementType = string | ComponentType<any>;
 
@@ -47,6 +47,7 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
         innerHTML?: string;
       }
       & ElementMap[x]['props']
+      & ARIAMixin
       & typeof globalEventHandlersEventMap>
   >
 };

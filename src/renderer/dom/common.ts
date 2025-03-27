@@ -68,7 +68,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     const {
       type,
-      props: { className, style, innerHTML, ...props }
+      props: { className, style, innerHTML, role, ...props }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
 
@@ -76,9 +76,13 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
       element.innerHTML = innerHTML;
     }
 
+    element.role = _.isString(role) ? role : null;
+
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
 
+      } else if (key.startsWith('aria')) {
+        (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
         if (value === false || _.isNil(value)) {
           element.removeAttribute(key);
