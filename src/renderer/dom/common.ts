@@ -34,6 +34,8 @@ import { _propValue } from '~/common/web/props';
 
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
+  private _tracked_props = new WeakMap<Element, string[]>();
+
   private _doc?: Document;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
@@ -68,7 +70,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     const {
       type,
-      props: { className, style, innerHTML, role, ...props }
+      props: { className, style, innerHTML, role, ..._props }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
 
@@ -77,6 +79,13 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     }
 
     element.role = _.isString(role) ? role : null;
+
+    const removed = _.difference(this._tracked_props.get(element), _.keys(_props));
+    const props = {
+      ..._props,
+      ..._.fromPairs(_.map(removed, x => [x, undefined])),
+    };
+    this._tracked_props.set(element, _.keys(_props));
 
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
