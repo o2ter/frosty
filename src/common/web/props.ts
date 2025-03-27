@@ -50,7 +50,8 @@ export const _propValue = {
   'HTMLFormElement': 'string',
   'HTMLDataListElement': 'string',
 
-  'SVGAnimatedLength': 'number',
+  'SVGAnimatedLength': 'number|string',
+
   'SVGAnimatedNumber': 'number',
   'SVGAnimatedInteger': 'number',
   'unrestricted double': 'number',
@@ -66,6 +67,7 @@ export const _propValue = {
 type _PropValue = {
   'string': string,
   'number': number,
+  'number|string': number | string,
   'boolean': boolean,
 };
 
