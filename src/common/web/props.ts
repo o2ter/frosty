@@ -24,13 +24,8 @@
 //
 
 import _ from 'lodash';
-import { svgProps, htmlProps, ElementTagNameMap } from '../../../generated/elements';
+import { svgProps, htmlProps } from '../../../generated/elements';
 import { OmitType } from '@o2ter/utils-js';
-
-type _ElementTagNameMap<K extends keyof ElementTagNameMap> = ElementTagNameMap[K][keyof ElementTagNameMap[K]];
-type _HTMLElementTagNameMap = _ElementTagNameMap<'html'>;
-type _SVGElementTagNameMap = _ElementTagNameMap<'svg'>;
-type _MathMLElementTagNameMap = _ElementTagNameMap<'mathml'>;
 
 export const _propValue = {
 
@@ -79,9 +74,11 @@ type MapPropValue<T> = T extends keyof typeof _propValue
   ? MapPropValue<S> | MapPropValue<R>
   : never;
 
-export type HTMLElementTagNameMap = {
-  [x in keyof _HTMLElementTagNameMap]: {
-    type: _HTMLElementTagNameMap[x]['type'];
+type AllHTMLElementTagNameMap = HTMLElementTagNameMap & HTMLElementDeprecatedTagNameMap;
+
+export type _HTMLElementTagNameMap = {
+  [x in keyof AllHTMLElementTagNameMap]: {
+    type: AllHTMLElementTagNameMap[x];
     props: OmitType<{
       -readonly [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
     } & {
@@ -90,19 +87,21 @@ export type HTMLElementTagNameMap = {
   };
 };
 
-export type SVGElementTagNameMap = {
-  [x in keyof _SVGElementTagNameMap]: {
-    type: _SVGElementTagNameMap[x]['type'];
+export type _SVGElementTagNameMap = {
+  [x in keyof SVGElementTagNameMap]: {
+    type: SVGElementTagNameMap[x];
     props: OmitType<{
       -readonly [p in keyof typeof svgProps['*']]: MapPropValue<typeof svgProps['*'][p]['type']>;
-    } & {
+    } & (x extends keyof typeof htmlProps ? {
+      -readonly [p in keyof typeof htmlProps[x]]: typeof htmlProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
+    } : {}) & (x extends keyof typeof svgProps ? {
       -readonly [p in keyof typeof svgProps[x]]: typeof svgProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
-    }, never>;
+    } : {}), never>;
   };
 };
 
-export type MathMLElementTagNameMap = {
-  [x in keyof _MathMLElementTagNameMap]: {
-    type: _MathMLElementTagNameMap[x]['type'];
+export type _MathMLElementTagNameMap = {
+  [x in keyof MathMLElementTagNameMap]: {
+    type: MathMLElementTagNameMap[x];
   };
 }

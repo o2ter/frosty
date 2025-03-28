@@ -29,7 +29,7 @@ import { ClassName, StyleProp } from '../styles/types';
 import { CSSProperties, SVGProperties } from '../web/css';
 import { globalEventHandlersEventMap } from '../web/event';
 import { ComponentNode, NativeElementType } from './component';
-import { HTMLElementTagNameMap, MathMLElementTagNameMap, SVGElementTagNameMap } from '../web/props';
+import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap } from '../web/props';
 
 export type _ElementType = string | ComponentType<any>;
 
@@ -60,9 +60,9 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
 };
 
 export type _IntrinsicElements = MergeObject<
-  | _ElementProps<HTMLElementTagNameMap, CSSProperties>
-  | _ElementProps<SVGElementTagNameMap, SVGProperties>
-  | _ElementProps<MathMLElementTagNameMap, CSSProperties>
+  | _ElementProps<_HTMLElementTagNameMap, CSSProperties>
+  | _ElementProps<_SVGElementTagNameMap, SVGProperties>
+  | _ElementProps<_MathMLElementTagNameMap, CSSProperties>
 > & { [x: string]: any; };
 
 export const _createElement = (

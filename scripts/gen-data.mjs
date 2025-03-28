@@ -144,23 +144,8 @@ export const svgProps = ${JSON.stringify(svgProps, null, 2)} as const;
 
 export const htmlProps = ${JSON.stringify(htmlProps, null, 2)} as const;
 
-export type ElementTagNameMap = {${_.map(ElementTagNameMap, ({ groups }, key) => `
-  ${key}: {${_.map(groups, ({ spec, elements }, group) => `
-    /**
-     * ${spec.title}
-     * ${spec.url}
-     */
-    '${group}': {${_.map(elements, ({ name, href, interface: _interface }) => `
-      /** ${href} */
-      '${name}': {
-        type: ${_interface ?? v.defaultInterface},
-      },`).join('\n')}
-    },`).join('\n')}
-  },`).join('\n')}
-};
-
 export const tags = ${JSON.stringify(_.mapValues(
   ElementTagNameMap,
-  v => _.uniq(_.flatMap(_.values(v.groups), ({ elements }) => _.map(elements, 'name')))
+  v => _.uniq(_.flatMap(_.values(v.groups), ({ elements }) => _.map(elements, 'name'))).sort()
 ), null, 2)} as const;
 `);
