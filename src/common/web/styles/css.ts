@@ -26,10 +26,7 @@
 import _ from 'lodash';
 import * as CSS from 'csstype';
 
-type AtRules =
-  | '@container'
-  | '@media'
-  | '@supports';
+type AtRules = '@container' | '@media';
 
 type PropsWithExtends<Props> = Props & {
   [rule in `${AtRules} ${string}`]?: PropsWithExtends<Props>;
