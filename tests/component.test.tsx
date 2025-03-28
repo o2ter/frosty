@@ -132,8 +132,6 @@ test('test render html', async () => {
   const renderer = new ServerDOMRenderer();
   const result = renderer.renderToString(app);
 
-  console.log(result)
-
   expect(result).toBe('<!DOCTYPE html><html><head><script src=\"/main_bundle.js\" defer=\"\"></script></head><body><div id=\"root\"></div></body></html>');
 
 });
