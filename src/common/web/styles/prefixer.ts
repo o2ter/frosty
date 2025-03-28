@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import postcss from 'postcss';
+import { sync } from 'postcss-js';
 import autoprefixer from 'autoprefixer';
 
-export const css_processor = postcss(autoprefixer);
+export const prefixer = sync([autoprefixer]);
