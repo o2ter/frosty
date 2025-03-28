@@ -116,3 +116,24 @@ test('test context', async () => {
   expect(result).toBe('<div><span>0</span><span>1</span><span>2</span><span>3</span></div>');
 
 });
+
+test('test render html', async () => {
+
+  const app = (
+    <html>
+      <head>
+        <script src="/main_bundle.js" defer />
+      </head>
+      <body>
+        <div id="root"></div>
+      </body>
+    </html>
+  );
+  const renderer = new ServerDOMRenderer();
+  const result = renderer.renderToString(app);
+
+  console.log(result)
+
+  expect(result).toBe('<!DOCTYPE html><html><head><script src=\"/main_bundle.js\" defer=\"\"></script></head><body><div id=\"root\"></div></body></html>');
+
+});
