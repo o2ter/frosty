@@ -58,7 +58,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
   private _tracked_props = new WeakMap<Element, string[]>();
-  private _tracked_head_children = new WeakMap<VNode, Element[]>();
+  private _tracked_head_children: (string | Element)[] = [];
 
   constructor(doc?: Document) {
     super();
@@ -67,6 +67,16 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   get doc() {
     return this._doc ?? document;
+  }
+
+  /** @internal */
+  _beforeUpdate() {
+    this._tracked_head_children = [];
+  }
+
+  /** @internal */
+  _afterUpdate() {
+    this.__replaceChildren(this.doc.head, this._tracked_head_children);
   }
 
   /** @internal */
@@ -141,59 +151,38 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _replaceChildren(node: VNode, element: Element, children: (string | Element)[]): void {
+  _replaceChildren(node: VNode, element: Element, children: (string | Element)[]) {
     const {
       type,
       props: { innerHTML }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     if (type === 'head') {
+      this._tracked_head_children.push(...children);
+    } else if (_.isEmpty(innerHTML)) {
+      this.__replaceChildren(element, children);
+    }
+  }
 
-      const _children = _.filter(children, x => !_.isString(x)) as Element[];
-      const prev = this._tracked_head_children.get(node) ?? [];
-      const diff = myersSync(prev, _children, { compare: (a, b) => a === b });
-
-      const _idx = prev[0] ? _.findIndex(element.childNodes, x => x === prev[0]) : -1;
-      let i = _idx === -1 ? element.childNodes.length : _idx;
-      for (const { remove, insert, equivalent } of diff) {
-        if (equivalent) {
-          i += equivalent.length;
-        } else if (remove) {
-          for (const child of remove) {
-            element.removeChild(element.childNodes[i]);
-          }
-        }
-        if (insert) {
-          for (const child of insert) {
-            const node = _.isString(child) ? this.doc.createTextNode(child) : child;
-            element.insertBefore(node, element.childNodes[i++]);
-          }
+  private __replaceChildren(element: Element, children: (string | Element)[]) {
+    const diff = myersSync(
+      _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
+      children,
+      { compare: (a, b) => a === b },
+    );
+    let i = 0;
+    for (const { remove, insert, equivalent } of diff) {
+      if (equivalent) {
+        i += equivalent.length;
+      } else if (remove) {
+        for (const child of remove) {
+          element.removeChild(element.childNodes[i]);
         }
       }
-
-      this._tracked_head_children.set(node, _children);
-
-    } else if (_.isEmpty(innerHTML)) {
-
-      const diff = myersSync(
-        _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
-        children,
-        { compare: (a, b) => a === b },
-      );
-      let i = 0;
-      for (const { remove, insert, equivalent } of diff) {
-        if (equivalent) {
-          i += equivalent.length;
-        } else if (remove) {
-          for (const child of remove) {
-            element.removeChild(element.childNodes[i]);
-          }
-        }
-        if (insert) {
-          for (const child of insert) {
-            const node = _.isString(child) ? this.doc.createTextNode(child) : child;
-            element.insertBefore(node, element.childNodes[i++]);
-          }
+      if (insert) {
+        for (const child of insert) {
+          const node = _.isString(child) ? this.doc.createTextNode(child) : child;
+          element.insertBefore(node, element.childNodes[i++]);
         }
       }
     }
