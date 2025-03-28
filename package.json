@@ -28,7 +28,8 @@
     "myers.js": "^0.0.19",
     "nextick": "^0.0.2",
     "postcss": "^8.5.3",
-    "postcss-js": "^4.0.1"
+    "postcss-js": "^4.0.1",
+    "postcss-nested": "^7.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",

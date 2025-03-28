@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import postcss from 'postcss';
 import { CssInJs, parse } from 'postcss-js';
+import nested from 'postcss-nested';
 import autoprefixer from 'autoprefixer';
 
-export const processCss = (css: CssInJs) => postcss(autoprefixer).process(css, { parser: parse });
+export const processCss = (css: CssInJs) => postcss(nested, autoprefixer).process(css, { parser: parse });

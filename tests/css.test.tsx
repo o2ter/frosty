@@ -36,7 +36,7 @@ test('test css', async () => {
     }
   };
 
-  const { css } = processCss(style);
+  const { css } = processCss({ '.component': style });
 
   console.log(css)
 
