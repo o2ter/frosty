@@ -76,6 +76,9 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _afterUpdate() {
+    if (!this.doc.head) {
+      this.doc.documentElement.insertBefore(this.doc.createElement('head'), this.doc.body);
+    }
     this.__replaceChildren(this.doc.head, this._tracked_head_children);
   }
 
