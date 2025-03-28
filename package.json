@@ -27,7 +27,7 @@
     "lodash": ">=4.17.21",
     "myers.js": "^0.0.19",
     "nextick": "^0.0.2",
-    "postcss-js": "^4.0.1"
+    "postcss": "^8.5.3"
   },
   "devDependencies": {
     "@babel/core": "^7.24.5",
@@ -42,7 +42,6 @@
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/jsdom": "^21.1.7",
     "@types/lodash": "^4.17.16",
-    "@types/postcss-js": "^4.0.4",
     "@webref/css": "^6.20.4",
     "@webref/elements": "^2.4.0",
     "@webref/events": "^1.18.3",
