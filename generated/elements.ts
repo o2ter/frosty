@@ -6,16 +6,44 @@ export const svgProps = {
       "type": "DOMString",
       "attr": "id"
     },
-    "tabIndex": {
-      "type": "long",
-      "attr": "tabindex"
-    },
     "style": {
       "type": "CSSStyleDeclaration",
       "attr": "style"
+    },
+    "tabIndex": {
+      "type": "long",
+      "attr": "tabindex"
     }
   },
   "svg": {
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
+    "preserveAspectRatio": {
+      "type": "SVGAnimatedPreserveAspectRatio",
+      "attr": "preserveAspectRatio"
+    },
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
+    },
+    "systemLanguage": {
+      "type": "SVGStringList",
+      "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
+    },
+    "viewBox": {
+      "type": "SVGAnimatedRect",
+      "attr": "viewBox"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -23,41 +51,9 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
-    },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
-    },
-    "systemLanguage": {
-      "type": "SVGStringList",
-      "attr": "systemLanguage"
-    },
-    "viewBox": {
-      "type": "SVGAnimatedRect",
-      "attr": "viewBox"
-    },
-    "preserveAspectRatio": {
-      "type": "SVGAnimatedPreserveAspectRatio",
-      "attr": "preserveAspectRatio"
     }
   },
   "g": {
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
-    },
     "requiredExtensions": {
       "type": "SVGStringList",
       "attr": "requiredExtensions"
@@ -65,13 +61,13 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "defs": {
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
-    },
     "requiredExtensions": {
       "type": "SVGStringList",
       "attr": "requiredExtensions"
@@ -79,40 +75,32 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "desc": {},
   "title": {},
   "symbol": {
-    "viewBox": {
-      "type": "SVGAnimatedRect",
-      "attr": "viewBox"
-    },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
       "attr": "preserveAspectRatio"
+    },
+    "viewBox": {
+      "type": "SVGAnimatedRect",
+      "attr": "viewBox"
     }
   },
   "use": {
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
     },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
+    "href": {
+      "type": "SVGAnimatedString",
+      "attr": "href"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -122,12 +110,14 @@ export const svgProps = {
       "type": "SVGStringList",
       "attr": "systemLanguage"
     },
-    "href": {
-      "type": "SVGAnimatedString",
-      "attr": "href"
-    }
-  },
-  "image": {
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -135,44 +125,24 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "preserveAspectRatio": {
-      "type": "SVGAnimatedPreserveAspectRatio",
-      "attr": "preserveAspectRatio"
-    },
+    }
+  },
+  "image": {
     "crossOrigin": {
       "type": "DOMString",
       "attr": "crossorigin"
     },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
-    },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
-    },
-    "systemLanguage": {
-      "type": "SVGStringList",
-      "attr": "systemLanguage"
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
     },
     "href": {
       "type": "SVGAnimatedString",
       "attr": "href"
-    }
-  },
-  "switch": {
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
+    },
+    "preserveAspectRatio": {
+      "type": "SVGAnimatedPreserveAspectRatio",
+      "attr": "preserveAspectRatio"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -181,13 +151,39 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
+    }
+  },
+  "switch": {
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
+    },
+    "systemLanguage": {
+      "type": "SVGStringList",
+      "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "style": {
-    "type": {
-      "type": "DOMString",
-      "attr": "type"
-    },
     "media": {
       "type": "DOMString",
       "attr": "media"
@@ -195,16 +191,16 @@ export const svgProps = {
     "title": {
       "type": "DOMString",
       "attr": "title"
+    },
+    "type": {
+      "type": "DOMString",
+      "attr": "type"
     }
   },
   "path": {
     "pathLength": {
       "type": "SVGAnimatedNumber",
       "attr": "pathLength"
-    },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -213,24 +209,24 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "rect": {
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
+    },
+    "pathLength": {
+      "type": "SVGAnimatedNumber",
+      "attr": "pathLength"
+    },
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
     },
     "rx": {
       "type": "SVGAnimatedLength",
@@ -240,21 +236,25 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "ry"
     },
-    "pathLength": {
-      "type": "SVGAnimatedNumber",
-      "attr": "pathLength"
+    "systemLanguage": {
+      "type": "SVGStringList",
+      "attr": "systemLanguage"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
       "attr": "transform"
     },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
     },
-    "systemLanguage": {
-      "type": "SVGStringList",
-      "attr": "systemLanguage"
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "circle": {
@@ -266,17 +266,13 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "cy"
     },
-    "r": {
-      "type": "SVGAnimatedLength",
-      "attr": "r"
-    },
     "pathLength": {
       "type": "SVGAnimatedNumber",
       "attr": "pathLength"
     },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
+    "r": {
+      "type": "SVGAnimatedLength",
+      "attr": "r"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -285,6 +281,10 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "ellipse": {
@@ -296,6 +296,14 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "cy"
     },
+    "pathLength": {
+      "type": "SVGAnimatedNumber",
+      "attr": "pathLength"
+    },
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
+    },
     "rx": {
       "type": "SVGAnimatedLength",
       "attr": "rx"
@@ -304,13 +312,19 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "ry"
     },
-    "pathLength": {
-      "type": "SVGAnimatedNumber",
-      "attr": "pathLength"
+    "systemLanguage": {
+      "type": "SVGStringList",
+      "attr": "systemLanguage"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
       "attr": "transform"
+    }
+  },
+  "line": {
+    "pathLength": {
+      "type": "SVGAnimatedNumber",
+      "attr": "pathLength"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -319,40 +333,26 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
-    }
-  },
-  "line": {
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
+    },
     "x1": {
       "type": "SVGAnimatedLength",
       "attr": "x1"
-    },
-    "y1": {
-      "type": "SVGAnimatedLength",
-      "attr": "y1"
     },
     "x2": {
       "type": "SVGAnimatedLength",
       "attr": "x2"
     },
+    "y1": {
+      "type": "SVGAnimatedLength",
+      "attr": "y1"
+    },
     "y2": {
       "type": "SVGAnimatedLength",
       "attr": "y2"
-    },
-    "pathLength": {
-      "type": "SVGAnimatedNumber",
-      "attr": "pathLength"
-    },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
-    },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
-    },
-    "systemLanguage": {
-      "type": "SVGStringList",
-      "attr": "systemLanguage"
     }
   },
   "polyline": {
@@ -360,9 +360,9 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "pathLength"
     },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
+    "points": {
+      "type": "SVGPointList",
+      "attr": "points"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -372,9 +372,9 @@ export const svgProps = {
       "type": "SVGStringList",
       "attr": "systemLanguage"
     },
-    "points": {
-      "type": "SVGPointList",
-      "attr": "points"
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "polygon": {
@@ -382,32 +382,24 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "pathLength"
     },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
-    },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
-    },
-    "systemLanguage": {
-      "type": "SVGStringList",
-      "attr": "systemLanguage"
-    },
     "points": {
       "type": "SVGPointList",
       "attr": "points"
+    },
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
+    },
+    "systemLanguage": {
+      "type": "SVGStringList",
+      "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
     }
   },
   "text": {
-    "x": {
-      "type": "SVGAnimatedLengthList",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLengthList",
-      "attr": "y"
-    },
     "dx": {
       "type": "SVGAnimatedLengthList",
       "attr": "dx"
@@ -416,32 +408,30 @@ export const svgProps = {
       "type": "SVGAnimatedLengthList",
       "attr": "dy"
     },
+    "lengthAdjust": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "lengthAdjust"
+    },
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
+    },
     "rotate": {
       "type": "SVGAnimatedNumberList",
       "attr": "rotate"
     },
+    "systemLanguage": {
+      "type": "SVGStringList",
+      "attr": "systemLanguage"
+    },
     "textLength": {
       "type": "SVGAnimatedLength",
       "attr": "textLength"
-    },
-    "lengthAdjust": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "lengthAdjust"
     },
     "transform": {
       "type": "SVGAnimatedTransformList",
       "attr": "transform"
     },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
-    },
-    "systemLanguage": {
-      "type": "SVGStringList",
-      "attr": "systemLanguage"
-    }
-  },
-  "tspan": {
     "x": {
       "type": "SVGAnimatedLengthList",
       "attr": "x"
@@ -449,7 +439,9 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLengthList",
       "attr": "y"
-    },
+    }
+  },
+  "tspan": {
     "dx": {
       "type": "SVGAnimatedLengthList",
       "attr": "dx"
@@ -457,14 +449,6 @@ export const svgProps = {
     "dy": {
       "type": "SVGAnimatedLengthList",
       "attr": "dy"
-    },
-    "rotate": {
-      "type": "SVGAnimatedNumberList",
-      "attr": "rotate"
-    },
-    "textLength": {
-      "type": "SVGAnimatedLength",
-      "attr": "textLength"
     },
     "lengthAdjust": {
       "type": "SVGAnimatedEnumeration",
@@ -474,53 +458,65 @@ export const svgProps = {
       "type": "SVGStringList",
       "attr": "requiredExtensions"
     },
+    "rotate": {
+      "type": "SVGAnimatedNumberList",
+      "attr": "rotate"
+    },
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "textLength": {
+      "type": "SVGAnimatedLength",
+      "attr": "textLength"
+    },
+    "x": {
+      "type": "SVGAnimatedLengthList",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLengthList",
+      "attr": "y"
     }
   },
   "textPath": {
-    "startOffset": {
-      "type": "SVGAnimatedLength",
-      "attr": "startOffset"
+    "href": {
+      "type": "SVGAnimatedString",
+      "attr": "href"
+    },
+    "lengthAdjust": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "lengthAdjust"
     },
     "method": {
       "type": "SVGAnimatedEnumeration",
       "attr": "method"
     },
+    "requiredExtensions": {
+      "type": "SVGStringList",
+      "attr": "requiredExtensions"
+    },
     "spacing": {
       "type": "SVGAnimatedEnumeration",
       "attr": "spacing"
     },
-    "textLength": {
+    "startOffset": {
       "type": "SVGAnimatedLength",
-      "attr": "textLength"
-    },
-    "lengthAdjust": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "lengthAdjust"
-    },
-    "requiredExtensions": {
-      "type": "SVGStringList",
-      "attr": "requiredExtensions"
+      "attr": "startOffset"
     },
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
     },
-    "href": {
-      "type": "SVGAnimatedString",
-      "attr": "href"
+    "textLength": {
+      "type": "SVGAnimatedLength",
+      "attr": "textLength"
     }
   },
   "marker": {
-    "refX": {
+    "markerHeight": {
       "type": "SVGAnimatedLength",
-      "attr": "refX"
-    },
-    "refY": {
-      "type": "SVGAnimatedLength",
-      "attr": "refY"
+      "attr": "markerHeight"
     },
     "markerUnits": {
       "type": "SVGAnimatedEnumeration",
@@ -530,55 +526,59 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "markerWidth"
     },
-    "markerHeight": {
-      "type": "SVGAnimatedLength",
-      "attr": "markerHeight"
-    },
     "orient": {
       "type": "DOMString",
       "attr": "orient"
     },
-    "viewBox": {
-      "type": "SVGAnimatedRect",
-      "attr": "viewBox"
-    },
     "preserveAspectRatio": {
       "type": "SVGAnimatedPreserveAspectRatio",
       "attr": "preserveAspectRatio"
+    },
+    "refX": {
+      "type": "SVGAnimatedLength",
+      "attr": "refX"
+    },
+    "refY": {
+      "type": "SVGAnimatedLength",
+      "attr": "refY"
+    },
+    "viewBox": {
+      "type": "SVGAnimatedRect",
+      "attr": "viewBox"
     }
   },
   "linearGradient": {
-    "x1": {
-      "type": "SVGAnimatedLength",
-      "attr": "x1"
-    },
-    "y1": {
-      "type": "SVGAnimatedLength",
-      "attr": "y1"
-    },
-    "x2": {
-      "type": "SVGAnimatedLength",
-      "attr": "x2"
-    },
-    "y2": {
-      "type": "SVGAnimatedLength",
-      "attr": "y2"
+    "gradientTransform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "gradientTransform"
     },
     "gradientUnits": {
       "type": "SVGAnimatedEnumeration",
       "attr": "gradientUnits"
     },
-    "gradientTransform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "gradientTransform"
+    "href": {
+      "type": "SVGAnimatedString",
+      "attr": "href"
     },
     "spreadMethod": {
       "type": "SVGAnimatedEnumeration",
       "attr": "spreadMethod"
     },
-    "href": {
-      "type": "SVGAnimatedString",
-      "attr": "href"
+    "x1": {
+      "type": "SVGAnimatedLength",
+      "attr": "x1"
+    },
+    "x2": {
+      "type": "SVGAnimatedLength",
+      "attr": "x2"
+    },
+    "y1": {
+      "type": "SVGAnimatedLength",
+      "attr": "y1"
+    },
+    "y2": {
+      "type": "SVGAnimatedLength",
+      "attr": "y2"
     }
   },
   "radialGradient": {
@@ -590,9 +590,9 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "cy"
     },
-    "r": {
+    "fr": {
       "type": "SVGAnimatedLength",
-      "attr": "r"
+      "attr": "fr"
     },
     "fx": {
       "type": "SVGAnimatedLength",
@@ -602,25 +602,25 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "fy"
     },
-    "fr": {
-      "type": "SVGAnimatedLength",
-      "attr": "fr"
+    "gradientTransform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "gradientTransform"
     },
     "gradientUnits": {
       "type": "SVGAnimatedEnumeration",
       "attr": "gradientUnits"
     },
-    "gradientTransform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "gradientTransform"
+    "href": {
+      "type": "SVGAnimatedString",
+      "attr": "href"
+    },
+    "r": {
+      "type": "SVGAnimatedLength",
+      "attr": "r"
     },
     "spreadMethod": {
       "type": "SVGAnimatedEnumeration",
       "attr": "spreadMethod"
-    },
-    "href": {
-      "type": "SVGAnimatedString",
-      "attr": "href"
     }
   },
   "stop": {
@@ -630,9 +630,13 @@ export const svgProps = {
     }
   },
   "pattern": {
-    "patternUnits": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "patternUnits"
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
+    "href": {
+      "type": "SVGAnimatedString",
+      "attr": "href"
     },
     "patternContentUnits": {
       "type": "SVGAnimatedEnumeration",
@@ -642,6 +646,22 @@ export const svgProps = {
       "type": "SVGAnimatedTransformList",
       "attr": "patternTransform"
     },
+    "patternUnits": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "patternUnits"
+    },
+    "preserveAspectRatio": {
+      "type": "SVGAnimatedPreserveAspectRatio",
+      "attr": "preserveAspectRatio"
+    },
+    "viewBox": {
+      "type": "SVGAnimatedRect",
+      "attr": "viewBox"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -649,26 +669,6 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "viewBox": {
-      "type": "SVGAnimatedRect",
-      "attr": "viewBox"
-    },
-    "preserveAspectRatio": {
-      "type": "SVGAnimatedPreserveAspectRatio",
-      "attr": "preserveAspectRatio"
-    },
-    "href": {
-      "type": "SVGAnimatedString",
-      "attr": "href"
     }
   },
   "clipPath": {
@@ -682,13 +682,21 @@ export const svgProps = {
     }
   },
   "mask": {
-    "maskUnits": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "maskUnits"
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
     },
     "maskContentUnits": {
       "type": "SVGAnimatedEnumeration",
       "attr": "maskContentUnits"
+    },
+    "maskUnits": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "maskUnits"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
     },
     "x": {
       "type": "SVGAnimatedLength",
@@ -697,14 +705,6 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
     }
   },
   "filter": {
@@ -712,9 +712,17 @@ export const svgProps = {
       "type": "SVGAnimatedEnumeration",
       "attr": "filterUnits"
     },
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
     "primitiveUnits": {
       "type": "SVGAnimatedEnumeration",
       "attr": "primitiveUnits"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
     },
     "x": {
       "type": "SVGAnimatedLength",
@@ -723,14 +731,6 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
     }
   },
   "feDistantLight": {
@@ -758,17 +758,9 @@ export const svgProps = {
     }
   },
   "feSpotLight": {
-    "x": {
+    "limitingConeAngle": {
       "type": "SVGAnimatedNumber",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedNumber",
-      "attr": "y"
-    },
-    "z": {
-      "type": "SVGAnimatedNumber",
-      "attr": "z"
+      "attr": "limitingConeAngle"
     },
     "pointsAtX": {
       "type": "SVGAnimatedNumber",
@@ -786,12 +778,24 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "specularExponent"
     },
-    "limitingConeAngle": {
+    "x": {
       "type": "SVGAnimatedNumber",
-      "attr": "limitingConeAngle"
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedNumber",
+      "attr": "y"
+    },
+    "z": {
+      "type": "SVGAnimatedNumber",
+      "attr": "z"
     }
   },
   "feBlend": {
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
     "in2": {
       "type": "SVGAnimatedString",
       "attr": "in2"
@@ -800,6 +804,14 @@ export const svgProps = {
       "type": "SVGAnimatedEnumeration",
       "attr": "mode"
     },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -807,11 +819,9 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
+    }
+  },
+  "feColorMatrix": {
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -819,9 +829,7 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
-    }
-  },
-  "feColorMatrix": {
+    },
     "type": {
       "type": "SVGAnimatedEnumeration",
       "attr": "type"
@@ -830,6 +838,10 @@ export const svgProps = {
       "type": "SVGAnimatedNumberList",
       "attr": "values"
     },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -837,33 +849,9 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "feComponentTransfer": {
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -871,25 +859,21 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feFuncR": {
-    "type": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "type"
-    },
-    "tableValues": {
-      "type": "SVGAnimatedNumberList",
-      "attr": "tableValues"
-    },
-    "slope": {
-      "type": "SVGAnimatedNumber",
-      "attr": "slope"
-    },
-    "intercept": {
-      "type": "SVGAnimatedNumber",
-      "attr": "intercept"
-    },
     "amplitude": {
       "type": "SVGAnimatedNumber",
       "attr": "amplitude"
@@ -898,28 +882,28 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "exponent"
     },
+    "intercept": {
+      "type": "SVGAnimatedNumber",
+      "attr": "intercept"
+    },
     "offset": {
       "type": "SVGAnimatedNumber",
       "attr": "offset"
+    },
+    "slope": {
+      "type": "SVGAnimatedNumber",
+      "attr": "slope"
+    },
+    "tableValues": {
+      "type": "SVGAnimatedNumberList",
+      "attr": "tableValues"
+    },
+    "type": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "type"
     }
   },
   "feFuncG": {
-    "type": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "type"
-    },
-    "tableValues": {
-      "type": "SVGAnimatedNumberList",
-      "attr": "tableValues"
-    },
-    "slope": {
-      "type": "SVGAnimatedNumber",
-      "attr": "slope"
-    },
-    "intercept": {
-      "type": "SVGAnimatedNumber",
-      "attr": "intercept"
-    },
     "amplitude": {
       "type": "SVGAnimatedNumber",
       "attr": "amplitude"
@@ -928,28 +912,28 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "exponent"
     },
+    "intercept": {
+      "type": "SVGAnimatedNumber",
+      "attr": "intercept"
+    },
     "offset": {
       "type": "SVGAnimatedNumber",
       "attr": "offset"
+    },
+    "slope": {
+      "type": "SVGAnimatedNumber",
+      "attr": "slope"
+    },
+    "tableValues": {
+      "type": "SVGAnimatedNumberList",
+      "attr": "tableValues"
+    },
+    "type": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "type"
     }
   },
   "feFuncB": {
-    "type": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "type"
-    },
-    "tableValues": {
-      "type": "SVGAnimatedNumberList",
-      "attr": "tableValues"
-    },
-    "slope": {
-      "type": "SVGAnimatedNumber",
-      "attr": "slope"
-    },
-    "intercept": {
-      "type": "SVGAnimatedNumber",
-      "attr": "intercept"
-    },
     "amplitude": {
       "type": "SVGAnimatedNumber",
       "attr": "amplitude"
@@ -958,28 +942,28 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "exponent"
     },
+    "intercept": {
+      "type": "SVGAnimatedNumber",
+      "attr": "intercept"
+    },
     "offset": {
       "type": "SVGAnimatedNumber",
       "attr": "offset"
+    },
+    "slope": {
+      "type": "SVGAnimatedNumber",
+      "attr": "slope"
+    },
+    "tableValues": {
+      "type": "SVGAnimatedNumberList",
+      "attr": "tableValues"
+    },
+    "type": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "type"
     }
   },
   "feFuncA": {
-    "type": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "type"
-    },
-    "tableValues": {
-      "type": "SVGAnimatedNumberList",
-      "attr": "tableValues"
-    },
-    "slope": {
-      "type": "SVGAnimatedNumber",
-      "attr": "slope"
-    },
-    "intercept": {
-      "type": "SVGAnimatedNumber",
-      "attr": "intercept"
-    },
     "amplitude": {
       "type": "SVGAnimatedNumber",
       "attr": "amplitude"
@@ -988,19 +972,35 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "exponent"
     },
+    "intercept": {
+      "type": "SVGAnimatedNumber",
+      "attr": "intercept"
+    },
     "offset": {
       "type": "SVGAnimatedNumber",
       "attr": "offset"
+    },
+    "slope": {
+      "type": "SVGAnimatedNumber",
+      "attr": "slope"
+    },
+    "tableValues": {
+      "type": "SVGAnimatedNumberList",
+      "attr": "tableValues"
+    },
+    "type": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "type"
     }
   },
   "feComposite": {
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
     "in2": {
       "type": "SVGAnimatedString",
       "attr": "in2"
-    },
-    "operator": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "operator"
     },
     "k1": {
       "type": "SVGAnimatedNumber",
@@ -1018,6 +1018,18 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "k4"
     },
+    "operator": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "operator"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -1025,32 +1037,36 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "feConvolveMatrix": {
-    "kernelMatrix": {
-      "type": "SVGAnimatedNumberList",
-      "attr": "kernelMatrix"
+    "bias": {
+      "type": "SVGAnimatedNumber",
+      "attr": "bias"
     },
     "divisor": {
       "type": "SVGAnimatedNumber",
       "attr": "divisor"
     },
-    "bias": {
-      "type": "SVGAnimatedNumber",
-      "attr": "bias"
+    "edgeMode": {
+      "type": "SVGAnimatedEnumeration",
+      "attr": "edgeMode"
+    },
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
+    "kernelMatrix": {
+      "type": "SVGAnimatedNumberList",
+      "attr": "kernelMatrix"
+    },
+    "preserveAlpha": {
+      "type": "SVGAnimatedBoolean",
+      "attr": "preserveAlpha"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
     },
     "targetX": {
       "type": "SVGAnimatedInteger",
@@ -1060,13 +1076,9 @@ export const svgProps = {
       "type": "SVGAnimatedInteger",
       "attr": "targetY"
     },
-    "edgeMode": {
-      "type": "SVGAnimatedEnumeration",
-      "attr": "edgeMode"
-    },
-    "preserveAlpha": {
-      "type": "SVGAnimatedBoolean",
-      "attr": "preserveAlpha"
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
     },
     "x": {
       "type": "SVGAnimatedLength",
@@ -1075,41 +1087,13 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "feDiffuseLighting": {
-    "surfaceScale": {
-      "type": "SVGAnimatedNumber",
-      "attr": "surfaceScale"
-    },
     "diffuseConstant": {
       "type": "SVGAnimatedNumber",
       "attr": "diffuseConstant"
     },
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -1117,59 +1101,63 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "surfaceScale": {
+      "type": "SVGAnimatedNumber",
+      "attr": "surfaceScale"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feDisplacementMap": {
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
     "in2": {
       "type": "SVGAnimatedString",
       "attr": "in2"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
     },
     "scale": {
       "type": "SVGAnimatedNumber",
       "attr": "scale"
     },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
     "xChannelSelector": {
       "type": "SVGAnimatedEnumeration",
       "attr": "xChannelSelector"
     },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
+    },
     "yChannelSelector": {
       "type": "SVGAnimatedEnumeration",
       "attr": "yChannelSelector"
-    },
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "feFlood": {
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -1177,6 +1165,18 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feGaussianBlur": {
@@ -1184,18 +1184,6 @@ export const svgProps = {
       "type": "SVGAnimatedEnumeration",
       "attr": "edgeMode"
     },
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -1203,43 +1191,45 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feImage": {
-    "preserveAspectRatio": {
-      "type": "SVGAnimatedPreserveAspectRatio",
-      "attr": "preserveAspectRatio"
-    },
     "crossOrigin": {
       "type": "SVGAnimatedString",
       "attr": "crossorigin"
     },
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     },
     "href": {
       "type": "SVGAnimatedString",
       "attr": "href"
-    }
-  },
-  "feMerge": {
+    },
+    "preserveAspectRatio": {
+      "type": "SVGAnimatedPreserveAspectRatio",
+      "attr": "preserveAspectRatio"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -1247,11 +1237,9 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
+    }
+  },
+  "feMerge": {
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -1259,13 +1247,37 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feMergeNode": {},
   "feMorphology": {
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
     "operator": {
       "type": "SVGAnimatedEnumeration",
       "attr": "operator"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
     },
     "x": {
       "type": "SVGAnimatedLength",
@@ -1274,18 +1286,6 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "feOffset": {
@@ -1297,18 +1297,6 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "dy"
     },
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -1316,12 +1304,28 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feSpecularLighting": {
-    "surfaceScale": {
-      "type": "SVGAnimatedNumber",
-      "attr": "surfaceScale"
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
     },
     "specularConstant": {
       "type": "SVGAnimatedNumber",
@@ -1331,6 +1335,14 @@ export const svgProps = {
       "type": "SVGAnimatedNumber",
       "attr": "specularExponent"
     },
+    "surfaceScale": {
+      "type": "SVGAnimatedNumber",
+      "attr": "surfaceScale"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -1338,33 +1350,9 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "feTile": {
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
@@ -1372,12 +1360,32 @@ export const svgProps = {
     "result": {
       "type": "SVGAnimatedString",
       "attr": "result"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   },
   "feTurbulence": {
+    "height": {
+      "type": "SVGAnimatedLength",
+      "attr": "height"
+    },
     "numOctaves": {
       "type": "SVGAnimatedInteger",
       "attr": "numOctaves"
+    },
+    "result": {
+      "type": "SVGAnimatedString",
+      "attr": "result"
     },
     "seed": {
       "type": "SVGAnimatedNumber",
@@ -1391,6 +1399,10 @@ export const svgProps = {
       "type": "SVGAnimatedEnumeration",
       "attr": "type"
     },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
     "x": {
       "type": "SVGAnimatedLength",
       "attr": "x"
@@ -1398,48 +1410,28 @@ export const svgProps = {
     "y": {
       "type": "SVGAnimatedLength",
       "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
-    "height": {
-      "type": "SVGAnimatedLength",
-      "attr": "height"
-    },
-    "result": {
-      "type": "SVGAnimatedString",
-      "attr": "result"
     }
   },
   "a": {
-    "target": {
-      "type": "SVGAnimatedString",
-      "attr": "target"
-    },
     "download": {
       "type": "DOMString",
       "attr": "download"
     },
-    "ping": {
-      "type": "USVString",
-      "attr": "ping"
+    "href": {
+      "type": "SVGAnimatedString",
+      "attr": "href"
     },
     "hreflang": {
       "type": "DOMString",
       "attr": "hreflang"
     },
-    "type": {
-      "type": "DOMString",
-      "attr": "type"
+    "ping": {
+      "type": "USVString",
+      "attr": "ping"
     },
     "referrerPolicy": {
       "type": "DOMString",
       "attr": "referrerpolicy"
-    },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -1449,26 +1441,30 @@ export const svgProps = {
       "type": "SVGStringList",
       "attr": "systemLanguage"
     },
-    "href": {
+    "target": {
       "type": "SVGAnimatedString",
-      "attr": "href"
-    }
-  },
-  "view": {
-    "viewBox": {
-      "type": "SVGAnimatedRect",
-      "attr": "viewBox"
+      "attr": "target"
     },
-    "preserveAspectRatio": {
-      "type": "SVGAnimatedPreserveAspectRatio",
-      "attr": "preserveAspectRatio"
-    }
-  },
-  "script": {
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
+    },
     "type": {
       "type": "DOMString",
       "attr": "type"
+    }
+  },
+  "view": {
+    "preserveAspectRatio": {
+      "type": "SVGAnimatedPreserveAspectRatio",
+      "attr": "preserveAspectRatio"
     },
+    "viewBox": {
+      "type": "SVGAnimatedRect",
+      "attr": "viewBox"
+    }
+  },
+  "script": {
     "crossOrigin": {
       "type": "DOMString",
       "attr": "crossorigin"
@@ -1476,6 +1472,10 @@ export const svgProps = {
     "href": {
       "type": "SVGAnimatedString",
       "attr": "href"
+    },
+    "type": {
+      "type": "DOMString",
+      "attr": "type"
     }
   },
   "animate": {
@@ -1526,25 +1526,9 @@ export const svgProps = {
   },
   "metadata": {},
   "foreignObject": {
-    "x": {
-      "type": "SVGAnimatedLength",
-      "attr": "x"
-    },
-    "y": {
-      "type": "SVGAnimatedLength",
-      "attr": "y"
-    },
-    "width": {
-      "type": "SVGAnimatedLength",
-      "attr": "width"
-    },
     "height": {
       "type": "SVGAnimatedLength",
       "attr": "height"
-    },
-    "transform": {
-      "type": "SVGAnimatedTransformList",
-      "attr": "transform"
     },
     "requiredExtensions": {
       "type": "SVGStringList",
@@ -1553,27 +1537,55 @@ export const svgProps = {
     "systemLanguage": {
       "type": "SVGStringList",
       "attr": "systemLanguage"
+    },
+    "transform": {
+      "type": "SVGAnimatedTransformList",
+      "attr": "transform"
+    },
+    "width": {
+      "type": "SVGAnimatedLength",
+      "attr": "width"
+    },
+    "x": {
+      "type": "SVGAnimatedLength",
+      "attr": "x"
+    },
+    "y": {
+      "type": "SVGAnimatedLength",
+      "attr": "y"
     }
   }
 } as const;
 
 export const htmlProps = {
   "*": {
-    "title": {
+    "accessKey": {
       "type": "DOMString",
-      "attr": "title"
+      "attr": "accesskey"
     },
-    "lang": {
+    "autocapitalize": {
       "type": "DOMString",
-      "attr": "lang"
+      "attr": "autocapitalize"
     },
-    "translate": {
+    "autofocus": {
       "type": "boolean",
-      "attr": "translate"
+      "attr": "autofocus"
+    },
+    "contentEditable": {
+      "type": "DOMString",
+      "attr": "contenteditable"
     },
     "dir": {
       "type": "DOMString",
       "attr": "dir"
+    },
+    "draggable": {
+      "type": "boolean",
+      "attr": "draggable"
+    },
+    "enterKeyHint": {
+      "type": "DOMString",
+      "attr": "enterkeyhint"
     },
     "hidden": {
       "type": [
@@ -1583,69 +1595,57 @@ export const htmlProps = {
       ],
       "attr": "hidden"
     },
-    "inert": {
-      "type": "boolean",
-      "attr": "inert"
-    },
-    "accessKey": {
-      "type": "DOMString",
-      "attr": "accesskey"
-    },
-    "draggable": {
-      "type": "boolean",
-      "attr": "draggable"
-    },
-    "spellcheck": {
-      "type": "boolean",
-      "attr": "spellcheck"
-    },
-    "writingSuggestions": {
-      "type": "DOMString",
-      "attr": "writingsuggestions"
-    },
-    "autocapitalize": {
-      "type": "DOMString",
-      "attr": "autocapitalize"
-    },
-    "popover": {
-      "type": "DOMString",
-      "attr": "popover"
-    },
     "id": {
       "type": "DOMString",
       "attr": "id"
     },
-    "slot": {
-      "type": "DOMString",
-      "attr": "slot"
-    },
-    "style": {
-      "type": "CSSStyleDeclaration",
-      "attr": "style"
-    },
-    "contentEditable": {
-      "type": "DOMString",
-      "attr": "contenteditable"
-    },
-    "enterKeyHint": {
-      "type": "DOMString",
-      "attr": "enterkeyhint"
+    "inert": {
+      "type": "boolean",
+      "attr": "inert"
     },
     "inputMode": {
       "type": "DOMString",
       "attr": "inputmode"
     },
+    "lang": {
+      "type": "DOMString",
+      "attr": "lang"
+    },
     "nonce": {
       "type": "DOMString",
       "attr": "nonce"
     },
-    "autofocus": {
+    "popover": {
+      "type": "DOMString",
+      "attr": "popover"
+    },
+    "slot": {
+      "type": "DOMString",
+      "attr": "slot"
+    },
+    "spellcheck": {
       "type": "boolean",
-      "attr": "autofocus"
+      "attr": "spellcheck"
+    },
+    "style": {
+      "type": "CSSStyleDeclaration",
+      "attr": "style"
     },
     "tabIndex": {
       "type": "long",
       "attr": "tabindex"
+    },
+    "title": {
+      "type": "DOMString",
+      "attr": "title"
+    },
+    "translate": {
+      "type": "boolean",
+      "attr": "translate"
+    },
+    "writingSuggestions": {
+      "type": "DOMString",
+      "attr": "writingsuggestions"
     }
   },
   "html": {
@@ -1667,57 +1667,21 @@ export const htmlProps = {
     }
   },
   "link": {
-    "href": {
-      "type": "USVString",
-      "attr": "href"
-    },
-    "crossOrigin": {
-      "type": "DOMString",
-      "attr": "crossorigin"
-    },
-    "rel": {
-      "type": "DOMString",
-      "attr": "rel"
-    },
     "as": {
       "type": "DOMString",
       "attr": "as"
     },
-    "media": {
-      "type": "DOMString",
-      "attr": "media"
-    },
-    "integrity": {
-      "type": "DOMString",
-      "attr": "integrity"
-    },
-    "hreflang": {
-      "type": "DOMString",
-      "attr": "hreflang"
-    },
-    "type": {
-      "type": "DOMString",
-      "attr": "type"
-    },
-    "sizes": {
-      "type": "DOMTokenList",
-      "attr": "sizes"
-    },
-    "imageSrcset": {
-      "type": "USVString",
-      "attr": "imagesrcset"
-    },
-    "imageSizes": {
-      "type": "DOMString",
-      "attr": "imagesizes"
-    },
-    "referrerPolicy": {
-      "type": "DOMString",
-      "attr": "referrerpolicy"
-    },
     "blocking": {
       "type": "DOMTokenList",
       "attr": "blocking"
+    },
+    "charset": {
+      "type": "DOMString",
+      "attr": "charset"
+    },
+    "crossOrigin": {
+      "type": "DOMString",
+      "attr": "crossorigin"
     },
     "disabled": {
       "type": "boolean",
@@ -1727,35 +1691,71 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "fetchpriority"
     },
-    "charset": {
+    "href": {
+      "type": "USVString",
+      "attr": "href"
+    },
+    "hreflang": {
       "type": "DOMString",
-      "attr": "charset"
+      "attr": "hreflang"
+    },
+    "imageSizes": {
+      "type": "DOMString",
+      "attr": "imagesizes"
+    },
+    "imageSrcset": {
+      "type": "USVString",
+      "attr": "imagesrcset"
+    },
+    "integrity": {
+      "type": "DOMString",
+      "attr": "integrity"
+    },
+    "media": {
+      "type": "DOMString",
+      "attr": "media"
+    },
+    "referrerPolicy": {
+      "type": "DOMString",
+      "attr": "referrerpolicy"
+    },
+    "rel": {
+      "type": "DOMString",
+      "attr": "rel"
     },
     "rev": {
       "type": "DOMString",
       "attr": "rev"
     },
+    "sizes": {
+      "type": "DOMTokenList",
+      "attr": "sizes"
+    },
     "target": {
       "type": "DOMString",
       "attr": "target"
+    },
+    "type": {
+      "type": "DOMString",
+      "attr": "type"
     }
   },
   "meta": {
-    "name": {
+    "content": {
       "type": "DOMString",
-      "attr": "name"
+      "attr": "content"
     },
     "httpEquiv": {
       "type": "DOMString",
       "attr": "http-equiv"
     },
-    "content": {
-      "type": "DOMString",
-      "attr": "content"
-    },
     "media": {
       "type": "DOMString",
       "attr": "media"
+    },
+    "name": {
+      "type": "DOMString",
+      "attr": "name"
     },
     "scheme": {
       "type": "DOMString",
@@ -1763,13 +1763,13 @@ export const htmlProps = {
     }
   },
   "style": {
-    "media": {
-      "type": "DOMString",
-      "attr": "media"
-    },
     "blocking": {
       "type": "DOMTokenList",
       "attr": "blocking"
+    },
+    "media": {
+      "type": "DOMString",
+      "attr": "media"
     },
     "type": {
       "type": "DOMString",
@@ -1777,29 +1777,29 @@ export const htmlProps = {
     }
   },
   "body": {
-    "text": {
-      "type": "DOMString",
-      "attr": "text"
-    },
-    "link": {
-      "type": "DOMString",
-      "attr": "link"
-    },
-    "vLink": {
-      "type": "DOMString",
-      "attr": "vlink"
-    },
     "aLink": {
       "type": "DOMString",
       "attr": "alink"
+    },
+    "background": {
+      "type": "DOMString",
+      "attr": "background"
     },
     "bgColor": {
       "type": "DOMString",
       "attr": "bgcolor"
     },
-    "background": {
+    "link": {
       "type": "DOMString",
-      "attr": "background"
+      "attr": "link"
+    },
+    "text": {
+      "type": "DOMString",
+      "attr": "text"
+    },
+    "vLink": {
+      "type": "DOMString",
+      "attr": "vlink"
     }
   },
   "article": {},
@@ -1883,6 +1883,10 @@ export const htmlProps = {
     }
   },
   "ol": {
+    "compact": {
+      "type": "boolean",
+      "attr": "compact"
+    },
     "reversed": {
       "type": "boolean",
       "attr": "reversed"
@@ -1894,10 +1898,6 @@ export const htmlProps = {
     "type": {
       "type": "DOMString",
       "attr": "type"
-    },
-    "compact": {
-      "type": "boolean",
-      "attr": "compact"
     }
   },
   "ul": {
@@ -1917,13 +1917,13 @@ export const htmlProps = {
     }
   },
   "li": {
-    "value": {
-      "type": "long",
-      "attr": "value"
-    },
     "type": {
       "type": "DOMString",
       "attr": "type"
+    },
+    "value": {
+      "type": "long",
+      "attr": "value"
     }
   },
   "dl": {
@@ -1945,45 +1945,41 @@ export const htmlProps = {
     }
   },
   "a": {
-    "target": {
+    "charset": {
       "type": "DOMString",
-      "attr": "target"
-    },
-    "download": {
-      "type": "DOMString",
-      "attr": "download"
-    },
-    "ping": {
-      "type": "USVString",
-      "attr": "ping"
-    },
-    "rel": {
-      "type": "DOMString",
-      "attr": "rel"
-    },
-    "hreflang": {
-      "type": "DOMString",
-      "attr": "hreflang"
-    },
-    "type": {
-      "type": "DOMString",
-      "attr": "type"
-    },
-    "referrerPolicy": {
-      "type": "DOMString",
-      "attr": "referrerpolicy"
+      "attr": "charset"
     },
     "coords": {
       "type": "DOMString",
       "attr": "coords"
     },
-    "charset": {
+    "download": {
       "type": "DOMString",
-      "attr": "charset"
+      "attr": "download"
+    },
+    "href": {
+      "type": "USVString",
+      "attr": "href"
+    },
+    "hreflang": {
+      "type": "DOMString",
+      "attr": "hreflang"
     },
     "name": {
       "type": "DOMString",
       "attr": "name"
+    },
+    "ping": {
+      "type": "USVString",
+      "attr": "ping"
+    },
+    "referrerPolicy": {
+      "type": "DOMString",
+      "attr": "referrerpolicy"
+    },
+    "rel": {
+      "type": "DOMString",
+      "attr": "rel"
     },
     "rev": {
       "type": "DOMString",
@@ -1993,9 +1989,13 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "shape"
     },
-    "href": {
-      "type": "USVString",
-      "attr": "href"
+    "target": {
+      "type": "DOMString",
+      "attr": "target"
+    },
+    "type": {
+      "type": "DOMString",
+      "attr": "type"
     }
   },
   "em": {},
@@ -2068,39 +2068,17 @@ export const htmlProps = {
   },
   "picture": {},
   "source": {
-    "src": {
-      "type": "USVString",
-      "attr": "src"
-    },
-    "type": {
-      "type": "DOMString",
-      "attr": "type"
-    },
-    "srcset": {
-      "type": "USVString",
-      "attr": "srcset"
-    },
-    "sizes": {
-      "type": "DOMString",
-      "attr": "sizes"
+    "height": {
+      "type": "unsigned long",
+      "attr": "height"
     },
     "media": {
       "type": "DOMString",
       "attr": "media"
     },
-    "width": {
-      "type": "unsigned long",
-      "attr": "width"
-    },
-    "height": {
-      "type": "unsigned long",
-      "attr": "height"
-    }
-  },
-  "img": {
-    "alt": {
+    "sizes": {
       "type": "DOMString",
-      "attr": "alt"
+      "attr": "sizes"
     },
     "src": {
       "type": "USVString",
@@ -2110,90 +2088,97 @@ export const htmlProps = {
       "type": "USVString",
       "attr": "srcset"
     },
-    "sizes": {
+    "type": {
       "type": "DOMString",
-      "attr": "sizes"
+      "attr": "type"
+    },
+    "width": {
+      "type": "unsigned long",
+      "attr": "width"
+    }
+  },
+  "img": {
+    "align": {
+      "type": "DOMString",
+      "attr": "align"
+    },
+    "alt": {
+      "type": "DOMString",
+      "attr": "alt"
+    },
+    "border": {
+      "type": "DOMString",
+      "attr": "border"
     },
     "crossOrigin": {
       "type": "DOMString",
       "attr": "crossorigin"
     },
-    "useMap": {
-      "type": "DOMString",
-      "attr": "usemap"
-    },
-    "isMap": {
-      "type": "boolean",
-      "attr": "ismap"
-    },
-    "width": {
-      "type": "unsigned long",
-      "attr": "width"
-    },
-    "height": {
-      "type": "unsigned long",
-      "attr": "height"
-    },
-    "referrerPolicy": {
-      "type": "DOMString",
-      "attr": "referrerpolicy"
-    },
     "decoding": {
       "type": "DOMString",
       "attr": "decoding"
-    },
-    "loading": {
-      "type": "DOMString",
-      "attr": "loading"
     },
     "fetchPriority": {
       "type": "DOMString",
       "attr": "fetchpriority"
     },
-    "name": {
-      "type": "DOMString",
-      "attr": "name"
-    },
-    "align": {
-      "type": "DOMString",
-      "attr": "align"
+    "height": {
+      "type": "unsigned long",
+      "attr": "height"
     },
     "hspace": {
       "type": "unsigned long",
       "attr": "hspace"
     },
-    "vspace": {
-      "type": "unsigned long",
-      "attr": "vspace"
+    "isMap": {
+      "type": "boolean",
+      "attr": "ismap"
+    },
+    "loading": {
+      "type": "DOMString",
+      "attr": "loading"
     },
     "longDesc": {
       "type": "USVString",
       "attr": "longdesc"
     },
-    "border": {
-      "type": "DOMString",
-      "attr": "border"
-    }
-  },
-  "iframe": {
-    "src": {
-      "type": "USVString",
-      "attr": "src"
-    },
-    "srcdoc": {
-      "type": [
-        "TrustedHTML",
-        "DOMString"
-      ],
-      "attr": "srcdoc"
-    },
     "name": {
       "type": "DOMString",
       "attr": "name"
     },
-    "sandbox": {
-      "type": "DOMTokenList",
-      "attr": "sandbox"
+    "referrerPolicy": {
+      "type": "DOMString",
+      "attr": "referrerpolicy"
+    },
+    "sizes": {
+      "type": "DOMString",
+      "attr": "sizes"
+    },
+    "src": {
+      "type": "USVString",
+      "attr": "src"
+    },
+    "srcset": {
+      "type": "USVString",
+      "attr": "srcset"
+    },
+    "useMap": {
+      "type": "DOMString",
+      "attr": "usemap"
+    },
+    "vspace": {
+      "type": "unsigned long",
+      "attr": "vspace"
+    },
+    "width": {
+      "type": "unsigned long",
+      "attr": "width"
+    }
+  },
+  "iframe": {
+    "align": {
+      "type": "DOMString",
+      "attr": "align"
     },
     "allow": {
       "type": "DOMString",
@@ -2203,33 +2188,17 @@ export const htmlProps = {
       "type": "boolean",
       "attr": "allowfullscreen"
     },
-    "width": {
+    "frameBorder": {
       "type": "DOMString",
-      "attr": "width"
+      "attr": "frameborder"
     },
     "height": {
       "type": "DOMString",
       "attr": "height"
     },
-    "referrerPolicy": {
-      "type": "DOMString",
-      "attr": "referrerpolicy"
-    },
     "loading": {
       "type": "DOMString",
       "attr": "loading"
-    },
-    "align": {
-      "type": "DOMString",
-      "attr": "align"
-    },
-    "scrolling": {
-      "type": "DOMString",
-      "attr": "scrolling"
-    },
-    "frameBorder": {
-      "type": "DOMString",
-      "attr": "frameborder"
     },
     "longDesc": {
       "type": "USVString",
@@ -2242,9 +2211,44 @@ export const htmlProps = {
     "marginWidth": {
       "type": "DOMString",
       "attr": "marginwidth"
+    },
+    "name": {
+      "type": "DOMString",
+      "attr": "name"
+    },
+    "referrerPolicy": {
+      "type": "DOMString",
+      "attr": "referrerpolicy"
+    },
+    "sandbox": {
+      "type": "DOMTokenList",
+      "attr": "sandbox"
+    },
+    "scrolling": {
+      "type": "DOMString",
+      "attr": "scrolling"
+    },
+    "src": {
+      "type": "USVString",
+      "attr": "src"
+    },
+    "srcdoc": {
+      "type": [
+        "TrustedHTML",
+        "DOMString"
+      ],
+      "attr": "srcdoc"
+    },
+    "width": {
+      "type": "DOMString",
+      "attr": "width"
     }
   },
   "embed": {
+    "height": {
+      "type": "DOMString",
+      "attr": "height"
+    },
     "src": {
       "type": "USVString",
       "attr": "src"
@@ -2256,37 +2260,9 @@ export const htmlProps = {
     "width": {
       "type": "DOMString",
       "attr": "width"
-    },
-    "height": {
-      "type": "DOMString",
-      "attr": "height"
     }
   },
   "object": {
-    "data": {
-      "type": "USVString",
-      "attr": "data"
-    },
-    "type": {
-      "type": "DOMString",
-      "attr": "type"
-    },
-    "name": {
-      "type": "DOMString",
-      "attr": "name"
-    },
-    "form": {
-      "type": "HTMLFormElement",
-      "attr": "form"
-    },
-    "width": {
-      "type": "DOMString",
-      "attr": "width"
-    },
-    "height": {
-      "type": "DOMString",
-      "attr": "height"
-    },
     "align": {
       "type": "DOMString",
       "attr": "align"
@@ -2295,21 +2271,9 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "archive"
     },
-    "declare": {
-      "type": "boolean",
-      "attr": "declare"
-    },
-    "hspace": {
-      "type": "unsigned long",
-      "attr": "hspace"
-    },
-    "standby": {
+    "border": {
       "type": "DOMString",
-      "attr": "standby"
-    },
-    "vspace": {
-      "type": "unsigned long",
-      "attr": "vspace"
+      "attr": "border"
     },
     "codeBase": {
       "type": "DOMString",
@@ -2319,95 +2283,139 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "codetype"
     },
+    "data": {
+      "type": "USVString",
+      "attr": "data"
+    },
+    "declare": {
+      "type": "boolean",
+      "attr": "declare"
+    },
+    "form": {
+      "type": "HTMLFormElement",
+      "attr": "form"
+    },
+    "height": {
+      "type": "DOMString",
+      "attr": "height"
+    },
+    "hspace": {
+      "type": "unsigned long",
+      "attr": "hspace"
+    },
+    "name": {
+      "type": "DOMString",
+      "attr": "name"
+    },
+    "standby": {
+      "type": "DOMString",
+      "attr": "standby"
+    },
+    "type": {
+      "type": "DOMString",
+      "attr": "type"
+    },
     "useMap": {
       "type": "DOMString",
       "attr": "usemap"
     },
-    "border": {
+    "vspace": {
+      "type": "unsigned long",
+      "attr": "vspace"
+    },
+    "width": {
       "type": "DOMString",
-      "attr": "border"
+      "attr": "width"
     }
   },
   "video": {
-    "width": {
-      "type": "unsigned long",
-      "attr": "width"
+    "autoplay": {
+      "type": "boolean",
+      "attr": "autoplay"
+    },
+    "controls": {
+      "type": "boolean",
+      "attr": "controls"
+    },
+    "crossOrigin": {
+      "type": "DOMString",
+      "attr": "crossorigin"
     },
     "height": {
       "type": "unsigned long",
       "attr": "height"
     },
-    "poster": {
-      "type": "USVString",
-      "attr": "poster"
+    "loop": {
+      "type": "boolean",
+      "attr": "loop"
+    },
+    "muted": {
+      "type": "boolean",
+      "attr": "muted"
     },
     "playsInline": {
       "type": "boolean",
       "attr": "playsinline"
     },
-    "src": {
+    "poster": {
       "type": "USVString",
-      "attr": "src"
-    },
-    "crossOrigin": {
-      "type": "DOMString",
-      "attr": "crossorigin"
+      "attr": "poster"
     },
     "preload": {
       "type": "DOMString",
       "attr": "preload"
     },
-    "autoplay": {
-      "type": "boolean",
-      "attr": "autoplay"
+    "src": {
+      "type": "USVString",
+      "attr": "src"
     },
-    "loop": {
-      "type": "boolean",
-      "attr": "loop"
-    },
-    "controls": {
-      "type": "boolean",
-      "attr": "controls"
-    },
-    "muted": {
-      "type": "boolean",
-      "attr": "muted"
+    "width": {
+      "type": "unsigned long",
+      "attr": "width"
     }
   },
   "audio": {
-    "src": {
-      "type": "USVString",
-      "attr": "src"
-    },
-    "crossOrigin": {
-      "type": "DOMString",
-      "attr": "crossorigin"
-    },
-    "preload": {
-      "type": "DOMString",
-      "attr": "preload"
-    },
     "autoplay": {
       "type": "boolean",
       "attr": "autoplay"
-    },
-    "loop": {
-      "type": "boolean",
-      "attr": "loop"
     },
     "controls": {
       "type": "boolean",
       "attr": "controls"
     },
+    "crossOrigin": {
+      "type": "DOMString",
+      "attr": "crossorigin"
+    },
+    "loop": {
+      "type": "boolean",
+      "attr": "loop"
+    },
     "muted": {
       "type": "boolean",
       "attr": "muted"
+    },
+    "preload": {
+      "type": "DOMString",
+      "attr": "preload"
+    },
+    "src": {
+      "type": "USVString",
+      "attr": "src"
     }
   },
   "track": {
+    "default": {
+      "type": "boolean",
+      "attr": "default"
+    },
     "kind": {
       "type": "DOMString",
       "attr": "kind"
+    },
+    "label": {
+      "type": "DOMString",
+      "attr": "label"
     },
     "src": {
       "type": "USVString",
@@ -2416,14 +2424,6 @@ export const htmlProps = {
     "srclang": {
       "type": "DOMString",
       "attr": "srclang"
-    },
-    "label": {
-      "type": "DOMString",
-      "attr": "label"
-    },
-    "default": {
-      "type": "boolean",
-      "attr": "default"
     }
   },
   "map": {
@@ -2441,6 +2441,30 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "coords"
     },
+    "download": {
+      "type": "DOMString",
+      "attr": "download"
+    },
+    "href": {
+      "type": "USVString",
+      "attr": "href"
+    },
+    "noHref": {
+      "type": "boolean",
+      "attr": "nohref"
+    },
+    "ping": {
+      "type": "USVString",
+      "attr": "ping"
+    },
+    "referrerPolicy": {
+      "type": "DOMString",
+      "attr": "referrerpolicy"
+    },
+    "rel": {
+      "type": "DOMString",
+      "attr": "rel"
+    },
     "shape": {
       "type": "DOMString",
       "attr": "shape"
@@ -2448,30 +2472,6 @@ export const htmlProps = {
     "target": {
       "type": "DOMString",
       "attr": "target"
-    },
-    "download": {
-      "type": "DOMString",
-      "attr": "download"
-    },
-    "ping": {
-      "type": "USVString",
-      "attr": "ping"
-    },
-    "rel": {
-      "type": "DOMString",
-      "attr": "rel"
-    },
-    "referrerPolicy": {
-      "type": "DOMString",
-      "attr": "referrerpolicy"
-    },
-    "noHref": {
-      "type": "boolean",
-      "attr": "nohref"
-    },
-    "href": {
-      "type": "USVString",
-      "attr": "href"
     }
   },
   "table": {
@@ -2479,9 +2479,21 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "align"
     },
+    "bgColor": {
+      "type": "DOMString",
+      "attr": "bgcolor"
+    },
     "border": {
       "type": "DOMString",
       "attr": "border"
+    },
+    "cellPadding": {
+      "type": "DOMString",
+      "attr": "cellpadding"
+    },
+    "cellSpacing": {
+      "type": "DOMString",
+      "attr": "cellspacing"
     },
     "frame": {
       "type": "DOMString",
@@ -2498,18 +2510,6 @@ export const htmlProps = {
     "width": {
       "type": "DOMString",
       "attr": "width"
-    },
-    "bgColor": {
-      "type": "DOMString",
-      "attr": "bgcolor"
-    },
-    "cellPadding": {
-      "type": "DOMString",
-      "attr": "cellpadding"
-    },
-    "cellSpacing": {
-      "type": "DOMString",
-      "attr": "cellspacing"
     }
   },
   "caption": {
@@ -2519,13 +2519,13 @@ export const htmlProps = {
     }
   },
   "colgroup": {
-    "span": {
-      "type": "unsigned long",
-      "attr": "span"
-    },
     "align": {
       "type": "DOMString",
       "attr": "align"
+    },
+    "span": {
+      "type": "unsigned long",
+      "attr": "span"
     },
     "vAlign": {
       "type": "DOMString",
@@ -2537,13 +2537,13 @@ export const htmlProps = {
     }
   },
   "col": {
-    "span": {
-      "type": "unsigned long",
-      "attr": "span"
-    },
     "align": {
       "type": "DOMString",
       "attr": "align"
+    },
+    "span": {
+      "type": "unsigned long",
+      "attr": "span"
     },
     "vAlign": {
       "type": "DOMString",
@@ -2589,32 +2589,16 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "align"
     },
-    "vAlign": {
-      "type": "DOMString",
-      "attr": "valign"
-    },
     "bgColor": {
       "type": "DOMString",
       "attr": "bgcolor"
+    },
+    "vAlign": {
+      "type": "DOMString",
+      "attr": "valign"
     }
   },
   "td": {
-    "colSpan": {
-      "type": "unsigned long",
-      "attr": "colspan"
-    },
-    "rowSpan": {
-      "type": "unsigned long",
-      "attr": "rowspan"
-    },
-    "headers": {
-      "type": "DOMString",
-      "attr": "headers"
-    },
-    "scope": {
-      "type": "DOMString",
-      "attr": "scope"
-    },
     "abbr": {
       "type": "DOMString",
       "attr": "abbr"
@@ -2627,44 +2611,44 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "axis"
     },
+    "bgColor": {
+      "type": "DOMString",
+      "attr": "bgcolor"
+    },
+    "colSpan": {
+      "type": "unsigned long",
+      "attr": "colspan"
+    },
+    "headers": {
+      "type": "DOMString",
+      "attr": "headers"
+    },
     "height": {
       "type": "DOMString",
       "attr": "height"
-    },
-    "width": {
-      "type": "DOMString",
-      "attr": "width"
     },
     "noWrap": {
       "type": "boolean",
       "attr": "nowrap"
     },
+    "rowSpan": {
+      "type": "unsigned long",
+      "attr": "rowspan"
+    },
+    "scope": {
+      "type": "DOMString",
+      "attr": "scope"
+    },
     "vAlign": {
       "type": "DOMString",
       "attr": "valign"
     },
-    "bgColor": {
+    "width": {
       "type": "DOMString",
-      "attr": "bgcolor"
+      "attr": "width"
     }
   },
   "th": {
-    "colSpan": {
-      "type": "unsigned long",
-      "attr": "colspan"
-    },
-    "rowSpan": {
-      "type": "unsigned long",
-      "attr": "rowspan"
-    },
-    "headers": {
-      "type": "DOMString",
-      "attr": "headers"
-    },
-    "scope": {
-      "type": "DOMString",
-      "attr": "scope"
-    },
     "abbr": {
       "type": "DOMString",
       "attr": "abbr"
@@ -2677,25 +2661,41 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "axis"
     },
+    "bgColor": {
+      "type": "DOMString",
+      "attr": "bgcolor"
+    },
+    "colSpan": {
+      "type": "unsigned long",
+      "attr": "colspan"
+    },
+    "headers": {
+      "type": "DOMString",
+      "attr": "headers"
+    },
     "height": {
       "type": "DOMString",
       "attr": "height"
-    },
-    "width": {
-      "type": "DOMString",
-      "attr": "width"
     },
     "noWrap": {
       "type": "boolean",
       "attr": "nowrap"
     },
+    "rowSpan": {
+      "type": "unsigned long",
+      "attr": "rowspan"
+    },
+    "scope": {
+      "type": "DOMString",
+      "attr": "scope"
+    },
     "vAlign": {
       "type": "DOMString",
       "attr": "valign"
     },
-    "bgColor": {
+    "width": {
       "type": "DOMString",
-      "attr": "bgcolor"
+      "attr": "width"
     }
   },
   "form": {
@@ -2742,6 +2742,10 @@ export const htmlProps = {
     "accept": {
       "type": "DOMString",
       "attr": "accept"
+    },
+    "align": {
+      "type": "DOMString",
+      "attr": "align"
     },
     "alt": {
       "type": "DOMString",
@@ -2827,6 +2831,10 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "placeholder"
     },
+    "popoverTargetAction": {
+      "type": "DOMString",
+      "attr": "popovertargetaction"
+    },
     "readOnly": {
       "type": "boolean",
       "attr": "readonly"
@@ -2851,6 +2859,10 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "type"
     },
+    "useMap": {
+      "type": "DOMString",
+      "attr": "usemap"
+    },
     "value": {
       "type": "DOMString",
       "attr": "value"
@@ -2858,18 +2870,6 @@ export const htmlProps = {
     "width": {
       "type": "unsigned long",
       "attr": "width"
-    },
-    "align": {
-      "type": "DOMString",
-      "attr": "align"
-    },
-    "useMap": {
-      "type": "DOMString",
-      "attr": "usemap"
-    },
-    "popoverTargetAction": {
-      "type": "DOMString",
-      "attr": "popovertargetaction"
     }
   },
   "button": {
@@ -2905,6 +2905,10 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "name"
     },
+    "popoverTargetAction": {
+      "type": "DOMString",
+      "attr": "popovertargetaction"
+    },
     "type": {
       "type": "DOMString",
       "attr": "type"
@@ -2912,10 +2916,6 @@ export const htmlProps = {
     "value": {
       "type": "DOMString",
       "attr": "value"
-    },
-    "popoverTargetAction": {
-      "type": "DOMString",
-      "attr": "popovertargetaction"
     }
   },
   "select": {
@@ -3042,39 +3042,39 @@ export const htmlProps = {
     }
   },
   "progress": {
-    "value": {
-      "type": "double",
-      "attr": "value"
-    },
     "max": {
       "type": "double",
       "attr": "max"
+    },
+    "value": {
+      "type": "double",
+      "attr": "value"
     }
   },
   "meter": {
-    "value": {
+    "high": {
       "type": "double",
-      "attr": "value"
-    },
-    "min": {
-      "type": "double",
-      "attr": "min"
-    },
-    "max": {
-      "type": "double",
-      "attr": "max"
+      "attr": "high"
     },
     "low": {
       "type": "double",
       "attr": "low"
     },
-    "high": {
+    "max": {
       "type": "double",
-      "attr": "high"
+      "attr": "max"
+    },
+    "min": {
+      "type": "double",
+      "attr": "min"
     },
     "optimum": {
       "type": "double",
       "attr": "optimum"
+    },
+    "value": {
+      "type": "double",
+      "attr": "value"
     }
   },
   "fieldset": {
@@ -3115,6 +3115,42 @@ export const htmlProps = {
     }
   },
   "script": {
+    "async": {
+      "type": "boolean",
+      "attr": "async"
+    },
+    "blocking": {
+      "type": "DOMTokenList",
+      "attr": "blocking"
+    },
+    "charset": {
+      "type": "DOMString",
+      "attr": "charset"
+    },
+    "crossOrigin": {
+      "type": "DOMString",
+      "attr": "crossorigin"
+    },
+    "defer": {
+      "type": "boolean",
+      "attr": "defer"
+    },
+    "fetchPriority": {
+      "type": "DOMString",
+      "attr": "fetchpriority"
+    },
+    "integrity": {
+      "type": "DOMString",
+      "attr": "integrity"
+    },
+    "noModule": {
+      "type": "boolean",
+      "attr": "nomodule"
+    },
+    "referrerPolicy": {
+      "type": "DOMString",
+      "attr": "referrerpolicy"
+    },
     "src": {
       "type": "USVString",
       "attr": "src"
@@ -3122,57 +3158,21 @@ export const htmlProps = {
     "type": {
       "type": "DOMString",
       "attr": "type"
-    },
-    "noModule": {
-      "type": "boolean",
-      "attr": "nomodule"
-    },
-    "async": {
-      "type": "boolean",
-      "attr": "async"
-    },
-    "defer": {
-      "type": "boolean",
-      "attr": "defer"
-    },
-    "crossOrigin": {
-      "type": "DOMString",
-      "attr": "crossorigin"
-    },
-    "integrity": {
-      "type": "DOMString",
-      "attr": "integrity"
-    },
-    "referrerPolicy": {
-      "type": "DOMString",
-      "attr": "referrerpolicy"
-    },
-    "blocking": {
-      "type": "DOMTokenList",
-      "attr": "blocking"
-    },
-    "fetchPriority": {
-      "type": "DOMString",
-      "attr": "fetchpriority"
-    },
-    "charset": {
-      "type": "DOMString",
-      "attr": "charset"
     }
   },
   "noscript": {},
   "template": {
-    "shadowRootMode": {
-      "type": "DOMString",
-      "attr": "shadowrootmode"
+    "shadowRootClonable": {
+      "type": "boolean",
+      "attr": "shadowrootclonable"
     },
     "shadowRootDelegatesFocus": {
       "type": "boolean",
       "attr": "shadowrootdelegatesfocus"
     },
-    "shadowRootClonable": {
-      "type": "boolean",
-      "attr": "shadowrootclonable"
+    "shadowRootMode": {
+      "type": "DOMString",
+      "attr": "shadowrootmode"
     }
   },
   "slot": {
@@ -3182,13 +3182,13 @@ export const htmlProps = {
     }
   },
   "canvas": {
-    "width": {
-      "type": "unsigned long",
-      "attr": "width"
-    },
     "height": {
       "type": "unsigned long",
       "attr": "height"
+    },
+    "width": {
+      "type": "unsigned long",
+      "attr": "width"
     }
   },
   "applet": {},
@@ -3201,18 +3201,6 @@ export const htmlProps = {
     }
   },
   "frame": {
-    "name": {
-      "type": "DOMString",
-      "attr": "name"
-    },
-    "scrolling": {
-      "type": "DOMString",
-      "attr": "scrolling"
-    },
-    "src": {
-      "type": "USVString",
-      "attr": "src"
-    },
     "frameBorder": {
       "type": "DOMString",
       "attr": "frameborder"
@@ -3221,10 +3209,6 @@ export const htmlProps = {
       "type": "USVString",
       "attr": "longdesc"
     },
-    "noResize": {
-      "type": "boolean",
-      "attr": "noresize"
-    },
     "marginHeight": {
       "type": "DOMString",
       "attr": "marginheight"
@@ -3232,6 +3216,22 @@ export const htmlProps = {
     "marginWidth": {
       "type": "DOMString",
       "attr": "marginwidth"
+    },
+    "name": {
+      "type": "DOMString",
+      "attr": "name"
+    },
+    "noResize": {
+      "type": "boolean",
+      "attr": "noresize"
+    },
+    "scrolling": {
+      "type": "DOMString",
+      "attr": "scrolling"
+    },
+    "src": {
+      "type": "USVString",
+      "attr": "src"
     }
   },
   "frameset": {
@@ -3256,13 +3256,13 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "name"
     },
-    "value": {
-      "type": "DOMString",
-      "attr": "value"
-    },
     "type": {
       "type": "DOMString",
       "attr": "type"
+    },
+    "value": {
+      "type": "DOMString",
+      "attr": "value"
     },
     "valueType": {
       "type": "DOMString",

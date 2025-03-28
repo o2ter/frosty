@@ -113,10 +113,10 @@ const decodeAttrType = (x) => {
   throw Error('unknown attribute type');
 };
 
-const resolve = (name) => [
+const resolve = (name) => _.orderBy([
   ...interfaces[name].attribute,
   ..._.flatMap(interfaces[name].implements, resolve),
-];
+], 'name');
 const select_svg_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
   const attr = _.find(svgElementAttributes[tag], a => _.camelCase(a).toLowerCase() === _.camelCase(x.name).toLowerCase());
   return attr && { type: decodeAttrType(x), name: x.name, attr };
