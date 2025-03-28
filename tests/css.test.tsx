@@ -1,5 +1,5 @@
 //
-//  prefixer.ts
+//  css.test.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,9 +23,15 @@
 //  THE SOFTWARE.
 //
 
-import _ from 'lodash';
-import postcss from 'postcss';
-import { CssInJs, parse } from 'postcss-js';
-import autoprefixer from 'autoprefixer';
+import { expect, test } from '@jest/globals';
+import { processCss } from '~/common/web/styles/process';
 
-export const process = (css: CssInJs) => postcss(autoprefixer).process(css, { parser: parse }).css;
+test('test css', async () => {
+
+  const css = processCss({
+    root: {
+      color: 'red',
+    }
+  });
+
+});
