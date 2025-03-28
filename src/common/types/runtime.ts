@@ -26,7 +26,7 @@
 import { MergeObject, PickType, WritableKeys } from '@o2ter/utils-js';
 import { ComponentType, ElementNode, PropsWithChildren, RefAttribute } from './common';
 import { ClassName, StyleProp } from '../styles/types';
-import { CSSProperties, SVGProperties } from '../web/css';
+import { CSSProperties } from '../web/css';
 import { globalEventHandlersEventMap } from '../web/event';
 import { ComponentNode, NativeElementType } from './component';
 import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap } from '../web/props';
@@ -46,13 +46,13 @@ type _PropsOfInstance<Instance> = Omit<
 
 type Combine<T, R> = Omit<T, keyof R> & R;
 
-type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; } }, Style> = {
+type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; } }> = {
   [x in keyof ElementMap]: PropsWithChildren<
     Partial<
       RefAttribute<ElementMap[x]['type']>
       & {
         className?: ClassName;
-        style?: StyleProp<Style>;
+        style?: StyleProp<CSSProperties>;
       }
       & Combine<ElementMap[x]['props'], _PropsOfInstance<ElementMap[x]['type']>>
       & typeof globalEventHandlersEventMap>
@@ -60,9 +60,9 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
 };
 
 export type _IntrinsicElements = MergeObject<
-  | _ElementProps<_HTMLElementTagNameMap, CSSProperties>
-  | _ElementProps<_SVGElementTagNameMap, SVGProperties>
-  | _ElementProps<_MathMLElementTagNameMap, CSSProperties>
+  | _ElementProps<_HTMLElementTagNameMap>
+  | _ElementProps<_SVGElementTagNameMap>
+  | _ElementProps<_MathMLElementTagNameMap>
 > & { [x: string]: any; };
 
 export const _createElement = (
