@@ -28,10 +28,15 @@ import { processCss } from '~/common/web/styles/process';
 
 test('test css', async () => {
 
-  const css = processCss({
-    root: {
-      color: 'red',
+  const style = {
+    top: 10,
+    '&:hover': {
+      top: 5,
     }
-  });
+  };
+
+  const { css } = processCss(style);
+
+  console.log(css)
 
 });
