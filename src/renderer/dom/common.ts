@@ -54,10 +54,11 @@ const isWriteable = (object: any, propertyName: string) => {
 
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
-  private _tracked_props = new WeakMap<Element, string[]>();
-
   private _doc?: Document;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
+
+  private _tracked_props = new WeakMap<Element, string[]>();
+  private _tracked_head_children = new WeakMap<VNode, Element[]>();
 
   constructor(doc?: Document) {
     super();
@@ -72,6 +73,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   _createElement(node: VNode, stack: VNode[]) {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
+    if (type === 'head') return this.doc.head;
     const _ns_list = _.compact([
       _.includes(tags.svg, type) && 'http://www.w3.org/2000/svg',
       _.includes(tags.html, type) && 'http://www.w3.org/1999/xhtml',
@@ -93,6 +95,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
       props: { className, style, innerHTML, ..._props }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
+    if (type === 'head') return;
 
     if (!_.isEmpty(innerHTML)) {
       element.innerHTML = innerHTML;
@@ -139,25 +142,43 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _replaceChildren(node: VNode, element: Element, children: (string | Element)[]): void {
-    if (!_.isEmpty(node.props['innerHTML'])) return;
-    const diff = myersSync(
-      _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
-      children,
-      { compare: (a, b) => a === b },
-    );
-    let i = 0;
-    for (const { remove, insert, equivalent } of diff) {
-      if (equivalent) {
-        i += equivalent.length;
-      } else if (remove) {
-        for (const child of remove) {
-          element.removeChild(element.childNodes[i]);
-        }
+    const {
+      type,
+      props: { innerHTML }
+    } = node;
+    if (!_.isString(type)) throw Error('Invalid type');
+    if (type === 'head') {
+
+      const _children = _.filter(children, x => !_.isString(x)) as Element[];
+      const prev = this._tracked_head_children.get(node) ?? [];
+      const diff = myersSync(prev, _children, { compare: (a, b) => a === b });
+
+      for (const { remove, insert, equivalent } of diff) {
       }
-      if (insert) {
-        for (const child of insert) {
-          const node = _.isString(child) ? this.doc.createTextNode(child) : child;
-          element.insertBefore(node, element.childNodes[i++]);
+
+      this._tracked_head_children.set(node, _children);
+
+    } else if (_.isEmpty(innerHTML)) {
+
+      const diff = myersSync(
+        _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
+        children,
+        { compare: (a, b) => a === b },
+      );
+      let i = 0;
+      for (const { remove, insert, equivalent } of diff) {
+        if (equivalent) {
+          i += equivalent.length;
+        } else if (remove) {
+          for (const child of remove) {
+            element.removeChild(element.childNodes[i]);
+          }
+        }
+        if (insert) {
+          for (const child of insert) {
+            const node = _.isString(child) ? this.doc.createTextNode(child) : child;
+            element.insertBefore(node, element.childNodes[i++]);
+          }
         }
       }
     }
