@@ -63,11 +63,11 @@ export abstract class _Renderer<T> {
 
     const mountState = new Map<VNode, _State[]>();
 
-    const commit = (elements: Map<VNode, T>) => {
+    const children = (node: VNode, elements: Map<VNode, T>): (string | T)[] => {
+      return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x, elements));
+    };
 
-      const children = (node: VNode): (string | T)[] => {
-        return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
-      };
+    const commit = (elements: Map<VNode, T>) => {
 
       const _mount = (
         node: VNode,
@@ -92,7 +92,7 @@ export abstract class _Renderer<T> {
           });
         }
         mountState.set(node, state);
-        if (element) this._replaceChildren(node, element, children(node));
+        if (element) this._replaceChildren(node, element, children(node, elements));
       };
 
       for (const [node, state] of mountState) {
@@ -101,15 +101,15 @@ export abstract class _Renderer<T> {
         mountState.delete(node);
       }
       _mount(runtime.node);
-      if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
+      if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node, elements)));
     };
 
-    const update = (elements: Map<VNode, T>) => {
+    const update = (elements?: Map<VNode, T>) => {
       const map = new Map<VNode, T>();
       for (const { node, stack, updated } of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
         if (updated) {
-          let elem = elements.get(node);
+          let elem = elements?.get(node);
           if (elem) {
             this._updateElement(node, elem, stack);
           } else {
@@ -117,7 +117,7 @@ export abstract class _Renderer<T> {
           }
           map.set(node, elem);
         } else {
-          map.set(node, elements.get(node) ?? this._createElement(node, stack));
+          map.set(node, elements?.get(node) ?? this._createElement(node, stack));
         }
       }
       commit(map);
@@ -127,7 +127,7 @@ export abstract class _Renderer<T> {
     let update_count = 0;
     let render_count = 0;
     let destroyed = false;
-    let elements = update(new Map<VNode, T>());
+    let elements = update();
 
     const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
@@ -141,7 +141,7 @@ export abstract class _Renderer<T> {
     return {
       get root() {
         if (root) return root;
-        const elems = _.castArray(elements.get(runtime.node) ?? children(runtime.node));
+        const elems = _.castArray(elements.get(runtime.node) ?? children(runtime.node, elements));
         const nodes = _.filter(elems, x => !_.isString(x)) as T[];
         return nodes.length === 1 ? nodes[0] : nodes;
       },
