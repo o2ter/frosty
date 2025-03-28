@@ -34,6 +34,7 @@ type AtRules =
 type PropsWithExtends<Props> = Props & {
   [rule in `${AtRules} ${string}`]?: PropsWithExtends<Props>;
 } & {
+  '@keyframes': Record<string, PropsWithExtends<Props>>;
   [selector: `$${string}`]: PropsWithExtends<Props>;
   [variable: `--${string}`]: string | 0;
 };
