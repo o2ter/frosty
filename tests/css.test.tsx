@@ -29,6 +29,7 @@ import { processCss } from '~/common/web/styles/process';
 test('test css', async () => {
 
   const style = {
+    userSelect: 'none',
     top: 10,
     '&:hover': {
       top: 5,
