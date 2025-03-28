@@ -61,7 +61,6 @@ export abstract class _Renderer<T> {
       unmount?: () => void;
     };
 
-    let elements = new Map<VNode, T>();
     const mountState = new Map<VNode, _State[]>();
 
     const commit = (elements: Map<VNode, T>) => {
@@ -105,7 +104,7 @@ export abstract class _Renderer<T> {
       if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node)));
     };
 
-    const update = () => {
+    const update = (elements: Map<VNode, T>) => {
       const map = new Map<VNode, T>();
       for (const { node, stack, updated } of runtime.excute()) {
         if (_.isFunction(node.type)) continue;
@@ -121,24 +120,23 @@ export abstract class _Renderer<T> {
           map.set(node, elements.get(node) ?? this._createElement(node, stack));
         }
       }
-      elements = map;
+      commit(map);
+      return map;
     };
 
     let update_count = 0;
     let render_count = 0;
     let destroyed = false;
+    let elements = update(new Map<VNode, T>());
 
     const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
       nextick(() => {
         if (destroyed) return;
         render_count = update_count;
-        update();
-        commit(elements);
+        elements = update(elements);
       });
     });
-    update();
-    commit(elements);
 
     return {
       get root() {
