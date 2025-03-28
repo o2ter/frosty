@@ -76,9 +76,6 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _afterUpdate() {
-    if (!this.doc.head) {
-      this.doc.documentElement.insertBefore(this.doc.createElement('head'), this.doc.body);
-    }
     this.__replaceChildren(this.doc.head, this._tracked_head_children);
   }
 
@@ -86,7 +83,12 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   _createElement(node: VNode, stack: VNode[]) {
     const { type } = node;
     if (!_.isString(type)) throw Error('Invalid type');
-    if (type === 'head') return this.doc.head;
+    switch (type) {
+      case 'html': return this.doc.documentElement;
+      case 'head': return this.doc.head ?? this.doc.createElement('head');
+      case 'body': return this.doc.body ?? this.doc.createElement('body');
+      default: break;
+    }
     const _ns_list = _.compact([
       _.includes(tags.svg, type) && 'http://www.w3.org/2000/svg',
       _.includes(tags.html, type) && 'http://www.w3.org/1999/xhtml',
@@ -169,7 +171,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   private __replaceChildren(element: Element, children: (string | Element)[]) {
     const diff = myersSync(
-      _.map(element.childNodes, x => x.nodeType === Node.TEXT_NODE ? x.textContent ?? '' : x),
+      _.map(element.childNodes, x => x.nodeType === this.doc.TEXT_NODE ? x.textContent ?? '' : x),
       children,
       { compare: (a, b) => a === b },
     );
