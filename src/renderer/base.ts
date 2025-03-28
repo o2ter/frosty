@@ -64,11 +64,11 @@ export abstract class _Renderer<T> {
     let elements = new Map<VNode, T>();
     const mountState = new Map<VNode, _State[]>();
 
-    const children = (node: VNode): (string | T)[] => {
-      return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
-    };
-
     const commit = (elements: Map<VNode, T>) => {
+
+      const children = (node: VNode): (string | T)[] => {
+        return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x) ?? children(x));
+      };
 
       const _mount = (
         node: VNode,
