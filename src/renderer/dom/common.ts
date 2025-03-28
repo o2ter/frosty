@@ -32,6 +32,26 @@ import { ComponentNode } from '../../common/types/component';
 import { svgProps, htmlProps, tags } from '../../../generated/elements';
 import { _propValue } from '~/common/web/props';
 
+const findPrototypeProperty = (object: any, propertyName: string) => {
+  while (object && object.constructor && object.constructor.name !== 'Object') {
+    let desc = Object.getOwnPropertyDescriptor(object, propertyName);
+    if (desc) return desc;
+    object = Object.getPrototypeOf(object);
+  }
+  return null;
+};
+
+const isWriteable = (object: any, propertyName: string) => {
+  let desc = findPrototypeProperty(object, propertyName);
+  if (!desc) {
+    return false;
+  }
+  if (desc.writable && typeof desc.value !== "function") {
+    return true;
+  }
+  return !!desc.set;
+};
+
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
   private _tracked_props = new WeakMap<Element, string[]>();
@@ -88,7 +108,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
 
-      } else if (key in element) {
+      } else if (isWriteable(element, key)) {
         (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
         if (value === false || _.isNil(value)) {
