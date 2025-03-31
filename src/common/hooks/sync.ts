@@ -58,7 +58,7 @@ export const useSyncExternalStore = <Snapshot>(
       return () => abort.abort();
     }
   }, null);
-  if (getServerSnapshot && state.server) {
+  if (getServerSnapshot && state.renderer._server) {
     return getServerSnapshot();
   }
   return getSnapshot();

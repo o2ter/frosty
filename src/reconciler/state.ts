@@ -30,10 +30,11 @@ import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
 import { PropsProvider } from '../common/types/props';
 import { ErrorBoundary } from './../common/types/error';
+import { _Renderer } from '../renderer/base';
 
 class HookState {
 
-  server: boolean;
+  renderer: _Renderer<any>;
 
   contextValue: Map<Context<any>, _ContextState>;
   prevState?: VNodeState[];
@@ -44,13 +45,13 @@ class HookState {
   listens = new WeakSet<Context<any>>();
 
   constructor(options: {
-    server: boolean;
+    renderer: _Renderer<any>;
     node: VNode;
     stack: VNode[];
     state?: VNodeState[];
     contextValue: Map<Context<any>, _ContextState>;
   }) {
-    this.server = options.server;
+    this.renderer = options.renderer;
     this.node = options.node;
     this.stack = options.stack;
     this.prevState = options.state;
@@ -91,9 +92,7 @@ export const reconciler = new class {
     }
   }
 
-  buildVNodes(component: ComponentNode, options: {
-    server: boolean;
-  }) {
+  buildVNodes(component: ComponentNode, renderer: _Renderer<any>) {
     const event = new EventEmitter();
     const root = new VNode(component, event);
     const excute = function* () {
@@ -117,7 +116,7 @@ export const reconciler = new class {
           node,
           stack,
           updated: node.updateIfNeed({
-            server: options.server,
+            renderer,
             stack,
             propsProvider,
             errorBoundary,

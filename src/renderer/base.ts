@@ -62,7 +62,7 @@ export abstract class _Renderer<T> {
     },
   ) {
 
-    const runtime = reconciler.buildVNodes(component, { server: this._server });
+    const runtime = reconciler.buildVNodes(component, this);
 
     type _State = {
       hook: string;

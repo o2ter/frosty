@@ -30,6 +30,7 @@ import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
 import { equalDeps } from './utils';
+import { _Renderer } from '../renderer/base';
 
 export type VNodeState = {
   hook: string;
@@ -108,7 +109,7 @@ export class VNode {
   }
 
   updateIfNeed(options: {
-    server: boolean;
+    renderer: _Renderer<any>;
     stack: VNode[];
     propsProvider: VNode[];
     errorBoundary?: VNode;
@@ -127,7 +128,7 @@ export class VNode {
           children = this._resolve_children(type(props as any));
         } else {
           const { rendered, state } = reconciler.withHookState({
-            server: options.server,
+            renderer: options.renderer,
             node: this,
             state: this._state,
             stack: options.stack,

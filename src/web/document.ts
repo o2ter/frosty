@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  document.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,7 +23,16 @@
 //  THE SOFTWARE.
 //
 
-export * from './observer';
-export * from './storage';
-export * from './window';
-export * from './document';
+import _ from 'lodash';
+import { reconciler } from '../reconciler/state';
+import { _DOMRenderer } from '../renderer/dom/common';
+
+export const useDocument = () => {
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useSyncExternalStore must be used within a render function.');
+  if (state.renderer instanceof _DOMRenderer) {
+    return state.renderer.doc;
+  } else {
+    throw Error('Unsupported renderer.');
+  }
+}
