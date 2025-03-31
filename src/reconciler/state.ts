@@ -135,8 +135,8 @@ export const reconciler = new class {
           });
         }
 
-        let _propsProvider = node.type === PropsProvider ? [...propsProvider, node] : propsProvider;
-        let _errorBoundary = node.type === ErrorBoundary ? node : errorBoundary;
+        const _propsProvider = node.type === PropsProvider ? [...propsProvider, node] : propsProvider;
+        const _errorBoundary = node.type === ErrorBoundary ? node : errorBoundary;
 
         const _stack = [...stack, node];
         for (const item of node.children) {
