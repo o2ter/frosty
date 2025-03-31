@@ -199,7 +199,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   _destroyElement(node: VNode, element: Element) {
     const tracked_listener = this._tracked_listener.get(element) ?? {};
     for (const [key, listener] of _.entries(tracked_listener)) {
-      const event = key.endsWith('Capture') ? key.slice(0, -7).toLowerCase() : key.toLowerCase();
+      const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
       if (_.isFunction(listener)) {
         element.removeEventListener(event, listener, { capture: key.endsWith('Capture') });
       }
