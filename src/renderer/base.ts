@@ -46,6 +46,9 @@ export abstract class _Renderer<T> {
   abstract _updateElement(node: VNode, element: T, stack: VNode[]): void;
 
   /** @internal */
+  abstract _destroyElement(node: VNode, element: T): void;
+
+  /** @internal */
   abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
 
   /** @internal */
@@ -128,6 +131,12 @@ export abstract class _Renderer<T> {
         }
       }
       commit(map);
+      if (elements) {
+        for (const [node, element] of elements) {
+          if (map.has(node)) continue;
+          this._destroyElement(node, element);
+        }
+      }
       this._afterUpdate();
       return map;
     };

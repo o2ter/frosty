@@ -105,20 +105,24 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     return elem;
   }
 
-  private __updateElementStyle(element: Element, className: ClassName, style: StyleProp<CSSProperties>) {
+  private __updateElementStyle(
+    element: Element,
+    className: ClassName,
+    style: StyleProp<CSSProperties>,
+  ) {
 
   }
 
   private __updateEventListener(
     element: Element,
     key: string,
-    listener: EventListener,
-    options?: AddEventListenerOptions
+    listener: EventListener | undefined,
+    options?: AddEventListenerOptions,
   ) {
-    const event = key.endsWith('Capture') ? key.slice(0, -7).toLowerCase() : key.toLowerCase()
+    const event = key.endsWith('Capture') ? key.slice(0, -7).toLowerCase() : key.toLowerCase();
     const tracked_listener = this._tracked_listener.get(element) ?? {};
     if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
-    element.addEventListener(event, listener, options);
+    if (_.isFunction(listener)) element.addEventListener(event, listener, options);
     tracked_listener[key] = listener;
     this._tracked_listener.set(element, tracked_listener);
   }
@@ -188,6 +192,17 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
       this._tracked_head_children.push(...children);
     } else if (_.isEmpty(innerHTML)) {
       this.__replaceChildren(element, children);
+    }
+  }
+
+  /** @internal */
+  _destroyElement(node: VNode, element: Element) {
+    const tracked_listener = this._tracked_listener.get(element) ?? {};
+    for (const [key, listener] of _.entries(tracked_listener)) {
+      const event = key.endsWith('Capture') ? key.slice(0, -7).toLowerCase() : key.toLowerCase();
+      if (_.isFunction(tracked_listener[key])) {
+        element.removeEventListener(event, tracked_listener[key], { capture: key.endsWith('Capture') });
+      }
     }
   }
 
