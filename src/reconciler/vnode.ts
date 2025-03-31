@@ -124,7 +124,7 @@ export class VNode {
           const { value } = props;
           if (!equalDeps(this._content_value, value)) this._content_state += 1;
           this._content_value = value;
-          children = this._resolve_children(type(props as any));
+          children = this._resolve_children(type(props));
         } else {
           const { rendered, state } = reconciler.withHookState({
             server: options.server,
