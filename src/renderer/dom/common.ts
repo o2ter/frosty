@@ -58,6 +58,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
   private _tracked_props = new WeakMap<Element, string[]>();
+  private _tracked_listener = new WeakMap<Element, Record<string, EventListener | undefined>>();
   private _tracked_head_children: (string | Element)[] = [];
 
   constructor(doc?: Document) {
@@ -102,6 +103,20 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     return elem;
   }
 
+  private __updateEventListener(
+    element: Element,
+    key: string,
+    listener: EventListener,
+    options?: AddEventListenerOptions
+  ) {
+    const event = key.endsWith('Capture') ? key.slice(0, -7) : key;
+    const tracked_listener = this._tracked_listener.get(element) ?? {};
+    if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
+    element.addEventListener(event, listener, options);
+    tracked_listener[key] = listener;
+    this._tracked_listener.set(element, tracked_listener);
+  }
+
   /** @internal */
   _updateElement(node: VNode, element: Element, stack: VNode[]) {
 
@@ -125,9 +140,9 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
-
+        this.__updateEventListener(element, key, value, { capture: false });
       } else if (key.endsWith('Capture') && key.slice(0, -7) in globalEventHandlersEventMap) {
-
+        this.__updateEventListener(element, key, value, { capture: true });
       } else if (isWriteable(element, key)) {
         (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
