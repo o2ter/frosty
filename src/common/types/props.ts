@@ -30,7 +30,7 @@ import { _ElementType, PropsType } from './runtime';
 type Callback = (v: {
   type: _ElementType | NativeElementType,
   props: PropsType
-}) => PropsType;
+}) => PropsType | undefined | null;
 
 export const PropsProvider: ComponentType<PropsWithChildren<{
   callback: Callback;
