@@ -119,7 +119,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     listener: EventListener | undefined,
     options?: AddEventListenerOptions,
   ) {
-    const event = key.endsWith('Capture') ? key.slice(0, -7).toLowerCase() : key.toLowerCase();
+    const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
     const tracked_listener = this._tracked_listener.get(element) ?? {};
     if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
     if (_.isFunction(listener)) element.addEventListener(event, listener, options);
