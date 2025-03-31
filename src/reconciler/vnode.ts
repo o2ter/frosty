@@ -1,4 +1,3 @@
-import { ErrorBoundary } from './../common/types/error';
 //
 //  vnode.ts
 //
@@ -32,6 +31,7 @@ import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
 import { equalDeps } from './utils';
 import { PropsContext } from '../common/types/props';
+import { ErrorBoundary } from './../common/types/error';
 
 export type VNodeState = {
   hook: string;
