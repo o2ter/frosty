@@ -117,7 +117,7 @@ export class VNode {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
       const { type, props: _props } = this._component;
-      const props = options.propsProvider?.props?.callback({ type, props: _props }) ?? _props;
+      const props = options.propsProvider?.props.callback({ type, props: _props }) ?? _props;
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         if (reconciler.isContext(type)) {
