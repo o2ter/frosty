@@ -121,8 +121,10 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   ) {
     const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
     const tracked_listener = this._tracked_listener.get(element) ?? {};
-    if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
-    if (_.isFunction(listener)) element.addEventListener(event, listener, options);
+    if (tracked_listener[key] !== listener) {
+      if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
+      if (_.isFunction(listener)) element.addEventListener(event, listener, options);
+    }
     tracked_listener[key] = listener;
     this._tracked_listener.set(element, tracked_listener);
   }
