@@ -29,8 +29,7 @@ import { _DOMRenderer } from './common';
 
 export class ServerDOMRenderer extends _DOMRenderer {
 
-  constructor() {
-    const dom = new JSDOM();
+  constructor(dom = new JSDOM()) {
     super(dom.window.document);
   }
 
