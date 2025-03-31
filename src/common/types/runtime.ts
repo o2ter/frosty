@@ -39,12 +39,18 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
 
 export type PropsType = Record<string, any>;
 
+type EventHandler<T extends Event> = (event: T) => void;
+
 type _PropsOfInstance<Instance> = Omit<
   PickType<{
     [k in WritableKeys<Instance>]: Instance[k];
   }, boolean | number | string | null | undefined>,
   'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
->;
+> & {
+  [x in keyof typeof globalEventHandlersEventMap]?: EventHandler<InstanceType<typeof globalEventHandlersEventMap[x]>>;
+} & {
+  [x in keyof typeof globalEventHandlersEventMap as `${x}Capture`]?: EventHandler<InstanceType<typeof globalEventHandlersEventMap[x]>>;
+};
 
 type Combine<T, R> = Omit<T, keyof R> & R;
 
@@ -57,7 +63,7 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
         style?: StyleProp<CSSProperties>;
       }
       & Combine<ElementMap[x]['props'], _PropsOfInstance<ElementMap[x]['type']>>
-      & typeof globalEventHandlersEventMap>
+    >
   >
 };
 

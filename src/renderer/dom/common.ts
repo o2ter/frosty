@@ -126,6 +126,8 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     for (const [key, value] of _.entries(props)) {
       if (key in globalEventHandlersEventMap) {
 
+      } else if (key.endsWith('Capture') && key.slice(0, -7) in globalEventHandlersEventMap) {
+
       } else if (isWriteable(element, key)) {
         (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
