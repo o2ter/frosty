@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  props.tsx
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,20 +23,20 @@
 //  THE SOFTWARE.
 //
 
-export * from './common/types/common';
-export { useEffect } from './common/hooks/effect';
-export { useContext } from './common/hooks/context';
-export { useMemo } from './common/hooks/memo';
-export { useRef, useRefHandle } from './common/hooks/ref';
-export { useCallback } from './common/hooks/callback';
-export { useState } from './common/hooks/state';
-export { useStack } from './common/hooks/stack';
-export { useReducer } from './common/hooks/reducer';
-export { useSyncExternalStore } from './common/hooks/sync';
-export { ComponentNode } from './common/types/component';
-export { Context, ContextType, createContext } from './common/types/context';
-export { ErrorBoundary } from './common/types/error';
-export { Fragment } from './common/types/fragment';
-export { PropsProvider } from './common/types/props';
-export { _ElementType as ElementType, createElement } from './common/types/runtime';
-export { mergeRefs } from './common/utils';
+import { ComponentType, PropsWithChildren } from './common';
+import { NativeElementType } from './component';
+import { createContext } from './context';
+import { _ElementType, PropsType } from './runtime';
+
+type Callback = (v: {
+  type: _ElementType | NativeElementType,
+  props: PropsType
+}) => PropsType;
+
+export const PropsContext = createContext<Callback>(({ props }) => props);
+
+export const PropsProvider: ComponentType<PropsWithChildren<{
+  callback: Callback;
+}>> = ({ callback, children }) => (
+  <PropsContext value={callback}>{children}</PropsContext>
+);

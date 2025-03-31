@@ -31,6 +31,7 @@ import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
 import { equalDeps } from './utils';
+import { PropsContext } from '../common/types/props';
 
 export type VNodeState = {
   hook: string;
@@ -115,7 +116,8 @@ export class VNode {
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
-      const { type, props } = this._component;
+      const { type, props: _props } = this._component;
+      const props = options.contextValue.get(PropsContext)!.value({ type, props: _props });
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         if (reconciler.isContext(type)) {

@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ComponentNode } from '../common/types/component';
-import { Context } from '../common/types/context';
+import { _contextDefaultValue, Context } from '../common/types/context';
 import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
 
@@ -62,13 +62,10 @@ export const reconciler = new class {
   _registry = new WeakMap<any, string>();
 
   /** @internal */
-  _contextDefaultValue = new Map<Context<any>, any>();
-
-  /** @internal */
   _currentHookState: HookState | undefined;
 
   get contextDefaultValue() {
-    return this._contextDefaultValue;
+    return _contextDefaultValue;
   }
 
   get currentHookState() {
@@ -76,7 +73,7 @@ export const reconciler = new class {
   }
 
   isContext(type: any): type is Context<any> {
-    return _.isFunction(type) && this._contextDefaultValue.has(type as any);
+    return _.isFunction(type) && _contextDefaultValue.has(type as any);
   }
 
   withHookState<R = void>(
@@ -105,8 +102,8 @@ export const reconciler = new class {
       }[] = [{
         node: root,
         stack: [],
-        contextValue: new Map(reconciler.contextDefaultValue.entries().map(([k, v]) => [k, { value: v, state: 0, node: root }])),
-        }]; 
+        contextValue: new Map(_contextDefaultValue.entries().map(([k, v]) => [k, { value: v, state: 0, node: root }])),
+      }];
       let item;
       while (item = items.shift()) {
 

@@ -24,7 +24,7 @@
 //
 
 import { ComponentNode, NativeElementType } from './common/types/component';
-import { _createElement, _ElementType, _IntrinsicAttributes, _IntrinsicElements } from './common/types/runtime';
+import { _createElement, _ElementType, _IntrinsicAttributes, _IntrinsicElements, PropsType } from './common/types/runtime';
 
 export { Fragment } from './common/types/fragment';
 
@@ -42,7 +42,7 @@ export const JSX = Object.freeze({
 
 export function jsx(
   type: _ElementType,
-  props: Record<string, any>,
+  props: PropsType,
   key?: string | number
 ): ComponentNode {
   return _createElement(type, { ...props, key });
@@ -52,7 +52,7 @@ export const jsxs = jsx;
 
 export function jsxNative(
   type: NativeElementType,
-  props: Record<string, any>,
+  props: PropsType,
   key?: string | number
 ): ComponentNode {
   return _createElement(type, { ...props, key });

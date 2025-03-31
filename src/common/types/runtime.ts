@@ -37,6 +37,8 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
   key?: string | number;
 };
 
+export type PropsType = Record<string, any>;
+
 type _PropsOfInstance<Instance> = Omit<
   PickType<{
     [k in WritableKeys<Instance>]: Instance[k];
@@ -67,7 +69,7 @@ export type _IntrinsicElements = MergeObject<
 
 export const _createElement = (
   type: _ElementType | NativeElementType,
-  props: Record<string, any>
+  props: PropsType
 ) => {
   const { key, ..._props } = props;
   return new ComponentNode(type, _props, key);
@@ -75,6 +77,6 @@ export const _createElement = (
 
 export const createElement = (
   type: _ElementType,
-  props?: Record<string, any> | null,
+  props?: PropsType | null,
   ...children: ElementNode[]
 ) => _createElement(type, { ...props ?? {}, children });

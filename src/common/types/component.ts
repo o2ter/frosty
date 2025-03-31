@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { _ElementType } from './runtime';
+import { _ElementType, PropsType } from './runtime';
 
 export abstract class NativeElementType { }
 
@@ -33,7 +33,7 @@ export class ComponentNode {
   private _type: _ElementType | NativeElementType;
 
   /** @internal */
-  private _props: Record<string, any>;
+  private _props: PropsType;
 
   /** @internal */
   private _key?: string | number;
@@ -41,7 +41,7 @@ export class ComponentNode {
   /** @internal */
   constructor(
     type: _ElementType | NativeElementType,
-    props: Record<string, any>,
+    props: PropsType,
     key?: string | number
   ) {
     this._type = type;

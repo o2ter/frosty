@@ -25,8 +25,9 @@
 
 import _ from 'lodash';
 import { ComponentType, ElementNode } from './common';
-import { reconciler } from '../../reconciler/state';
 import { useContext } from '../hooks/context';
+
+export const _contextDefaultValue = new Map<Context<any>, any>();
 
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
 export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
@@ -44,7 +45,7 @@ const _createContext = <Value extends unknown>(defaultValue: Value) => {
     const value = useContext(_context as Context<Value>);
     return children(value);
   };
-  reconciler.contextDefaultValue.set(_context as Context<Value>, defaultValue);
+  _contextDefaultValue.set(_context as Context<Value>, defaultValue);
   return _.assign(_context, { Consumer });
 };
 
