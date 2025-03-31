@@ -187,7 +187,6 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
       type,
       props: { innerHTML }
     } = node;
-    if (!_.isString(type)) throw Error('Invalid type');
     if (type === 'head') {
       this._tracked_head_children.push(...children);
     } else if (_.isEmpty(innerHTML)) {
