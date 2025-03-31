@@ -25,119 +25,119 @@
 
 import _ from 'lodash';
 
-export const globalEventHandlersEventMap = {
+export const globalEventHandlersEventMap: {
 
   // Clipboard Events
-  onCopy: null as ClipboardEvent | null,
-  onCut: null as ClipboardEvent | null,
-  onPaste: null as ClipboardEvent | null,
+  onCopy?: ClipboardEvent,
+  onCut?: ClipboardEvent,
+  onPaste?: ClipboardEvent,
 
   // Composition Events
-  onCompositionEnd: null as CompositionEvent | null,
-  onCompositionStart: null as CompositionEvent | null,
-  onCompositionUpdate: null as CompositionEvent | null,
+  onCompositionEnd?: CompositionEvent,
+  onCompositionStart?: CompositionEvent,
+  onCompositionUpdate?: CompositionEvent,
 
   // Focus Events
-  onFocus: null as FocusEvent | null,
-  onBlur: null as FocusEvent | null,
+  onFocus?: FocusEvent,
+  onBlur?: FocusEvent,
 
   // Form Events
-  onFormData: null as FormDataEvent | null,
-  onChange: null as Event | null,
-  onBeforeInput: null as InputEvent | null,
-  onInput: null as Event | null,
-  onReset: null as Event | null,
-  onSubmit: null as SubmitEvent | null,
-  onInvalid: null as Event | null,
+  onFormData?: FormDataEvent,
+  onChange?: Event,
+  onBeforeInput?: InputEvent,
+  onInput?: Event,
+  onReset?: Event,
+  onSubmit?: SubmitEvent,
+  onInvalid?: Event,
 
   // Image Events
-  onLoad: null as Event | null,
-  onError: null as Event | null,
+  onLoad?: Event,
+  onError?: Event,
 
   // Keyboard Events
-  onKeyDown: null as KeyboardEvent | null,
+  onKeyDown?: KeyboardEvent,
   /** @deprecated */
-  onKeyPress: null as KeyboardEvent | null,
+  onKeyPress?: KeyboardEvent,
   /** @deprecated */
-  onKeyUp: null as KeyboardEvent | null,
+  onKeyUp?: KeyboardEvent,
 
   // Media Events
-  onAbort: null as Event | null,
-  onCanPlay: null as Event | null,
-  onCanPlayThrough: null as Event | null,
-  onDurationChange: null as Event | null,
-  onEmptied: null as Event | null,
-  onEncrypted: null as Event | null,
-  onEnded: null as Event | null,
-  onLoadedData: null as Event | null,
-  onLoadedMetadata: null as Event | null,
-  onLoadStart: null as Event | null,
-  onPause: null as Event | null,
-  onPlay: null as Event | null,
-  onPlaying: null as Event | null,
-  onProgress: null as Event | null,
-  onRateChange: null as Event | null,
-  onResize: null as Event | null,
-  onSeeked: null as Event | null,
-  onSeeking: null as Event | null,
-  onStalled: null as Event | null,
-  onSuspend: null as Event | null,
-  onTimeUpdate: null as Event | null,
-  onVolumeChange: null as Event | null,
-  onWaiting: null as Event | null,
+  onAbort?: Event,
+  onCanPlay?: Event,
+  onCanPlayThrough?: Event,
+  onDurationChange?: Event,
+  onEmptied?: Event,
+  onEncrypted?: Event,
+  onEnded?: Event,
+  onLoadedData?: Event,
+  onLoadedMetadata?: Event,
+  onLoadStart?: Event,
+  onPause?: Event,
+  onPlay?: Event,
+  onPlaying?: Event,
+  onProgress?: Event,
+  onRateChange?: Event,
+  onResize?: Event,
+  onSeeked?: Event,
+  onSeeking?: Event,
+  onStalled?: Event,
+  onSuspend?: Event,
+  onTimeUpdate?: Event,
+  onVolumeChange?: Event,
+  onWaiting?: Event,
 
   // MouseEvents
-  onAuxClick: null as MouseEvent | null,
-  onClick: null as MouseEvent | null,
-  onContextMenu: null as MouseEvent | null,
-  onDoubleClick: null as MouseEvent | null,
-  onDrag: null as DragEvent | null,
-  onDragEnd: null as DragEvent | null,
-  onDragEnter: null as DragEvent | null,
-  onDragExit: null as DragEvent | null,
-  onDragLeave: null as DragEvent | null,
-  onDragOver: null as DragEvent | null,
-  onDragStart: null as DragEvent | null,
-  onDrop: null as DragEvent | null,
-  onMouseDown: null as MouseEvent | null,
-  onMouseEnter: null as MouseEvent | null,
-  onMouseLeave: null as MouseEvent | null,
-  onMouseMove: null as MouseEvent | null,
-  onMouseOut: null as MouseEvent | null,
-  onMouseOver: null as MouseEvent | null,
-  onMouseUp: null as MouseEvent | null,
+  onAuxClick?: MouseEvent,
+  onClick?: MouseEvent,
+  onContextMenu?: MouseEvent,
+  onDoubleClick?: MouseEvent,
+  onDrag?: DragEvent,
+  onDragEnd?: DragEvent,
+  onDragEnter?: DragEvent,
+  onDragExit?: DragEvent,
+  onDragLeave?: DragEvent,
+  onDragOver?: DragEvent,
+  onDragStart?: DragEvent,
+  onDrop?: DragEvent,
+  onMouseDown?: MouseEvent,
+  onMouseEnter?: MouseEvent,
+  onMouseLeave?: MouseEvent,
+  onMouseMove?: MouseEvent,
+  onMouseOut?: MouseEvent,
+  onMouseOver?: MouseEvent,
+  onMouseUp?: MouseEvent,
 
   // Selection Events
-  onSelect: null as Event | null,
+  onSelect?: Event,
 
   // Touch Events
-  onTouchCancel: null as TouchEvent | null,
-  onTouchEnd: null as TouchEvent | null,
-  onTouchMove: null as TouchEvent | null,
-  onTouchStart: null as TouchEvent | null,
+  onTouchCancel?: TouchEvent,
+  onTouchEnd?: TouchEvent,
+  onTouchMove?: TouchEvent,
+  onTouchStart?: TouchEvent,
 
   // Pointer Events
-  onPointerDown: null as PointerEvent | null,
-  onPointerMove: null as PointerEvent | null,
-  onPointerUp: null as PointerEvent | null,
-  onPointerCancel: null as PointerEvent | null,
-  onPointerEnter: null as PointerEvent | null,
-  onPointerLeave: null as PointerEvent | null,
-  onPointerOver: null as PointerEvent | null,
-  onPointerOut: null as PointerEvent | null,
+  onPointerDown?: PointerEvent,
+  onPointerMove?: PointerEvent,
+  onPointerUp?: PointerEvent,
+  onPointerCancel?: PointerEvent,
+  onPointerEnter?: PointerEvent,
+  onPointerLeave?: PointerEvent,
+  onPointerOver?: PointerEvent,
+  onPointerOut?: PointerEvent,
 
   // UI Events
-  onScroll: null as UIEvent | null,
+  onScroll?: UIEvent,
 
   // Wheel Events
-  onWheel: null as WheelEvent | null,
+  onWheel?: WheelEvent,
 
   // Animation Events
-  onAnimationStart: null as AnimationEvent | null,
-  onAnimationEnd: null as AnimationEvent | null,
-  onAnimationIteration: null as AnimationEvent | null,
+  onAnimationStart?: AnimationEvent,
+  onAnimationEnd?: AnimationEvent,
+  onAnimationIteration?: AnimationEvent,
 
   // Transition Events
-  onTransitionEnd: null as TransitionEvent | null,
+  onTransitionEnd?: TransitionEvent,
 
-};
+} = {};
