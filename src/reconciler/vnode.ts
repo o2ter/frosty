@@ -110,21 +110,21 @@ export class VNode {
   updateIfNeed(options: {
     server: boolean;
     stack: VNode[];
-    propsProvider?: VNode;
+    propsProvider: VNode[];
     errorBoundary?: VNode;
     contextValue: Map<Context<any>, _ContextState>;
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
       const { type, props: _props } = this._component;
-      const props = options.propsProvider?.props.callback({ type, props: _props }) ?? _props;
+      const props = options.propsProvider.reduceRight((p, node) => node.props.callback({ type, props: p }), _props);
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         if (reconciler.isContext(type)) {
           const { value } = props;
           if (!equalDeps(this._content_value, value)) this._content_state += 1;
           this._content_value = value;
-          children = this._resolve_children(type(props));
+          children = this._resolve_children(type(props as any));
         } else {
           const { rendered, state } = reconciler.withHookState({
             server: options.server,

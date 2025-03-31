@@ -100,12 +100,13 @@ export const reconciler = new class {
       const items: {
         node: VNode;
         stack: VNode[];
-        propsProvider?: VNode;
+        propsProvider: VNode[];
         errorBoundary?: VNode;
         contextValue: Map<Context<any>, _ContextState>;
       }[] = [{
         node: root,
         stack: [],
+        propsProvider: [],
         contextValue: new Map(_contextDefaultValue.entries().map(([k, v]) => [k, { value: v, state: 0, node: root }])),
       }];
       let item;
@@ -134,7 +135,7 @@ export const reconciler = new class {
           });
         }
 
-        let _propsProvider = node.type === PropsProvider ? node : propsProvider;
+        let _propsProvider = node.type === PropsProvider ? [...propsProvider, node] : propsProvider;
         let _errorBoundary = node.type === ErrorBoundary ? node : errorBoundary;
 
         const _stack = [...stack, node];
