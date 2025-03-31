@@ -1,5 +1,5 @@
 //
-//  props.tsx
+//  props.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -25,7 +25,6 @@
 
 import { ComponentType, PropsWithChildren } from './common';
 import { NativeElementType } from './component';
-import { createContext } from './context';
 import { _ElementType, PropsType } from './runtime';
 
 type Callback = (v: {
@@ -33,10 +32,8 @@ type Callback = (v: {
   props: PropsType
 }) => PropsType;
 
-export const PropsContext = createContext<Callback>(({ props }) => props);
-
 export const PropsProvider: ComponentType<PropsWithChildren<{
   callback: Callback;
-}>> = ({ callback, children }) => (
-  <PropsContext value={callback}>{children}</PropsContext>
-);
+}>> = ({ children }) => {
+  return children;
+}

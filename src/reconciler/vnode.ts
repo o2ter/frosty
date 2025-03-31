@@ -30,8 +30,6 @@ import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
 import { equalDeps } from './utils';
-import { PropsContext } from '../common/types/props';
-import { ErrorBoundary } from './../common/types/error';
 
 export type VNodeState = {
   hook: string;
@@ -112,12 +110,14 @@ export class VNode {
   updateIfNeed(options: {
     server: boolean;
     stack: VNode[];
+    propsProvider?: VNode;
+    errorBoundary?: VNode;
     contextValue: Map<Context<any>, _ContextState>;
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
       const { type, props: _props } = this._component;
-      const props = options.contextValue.get(PropsContext)!.value({ type, props: _props });
+      const props = options.propsProvider?.props?.callback({ type, props: _props }) ?? _props;
       let children: (VNode | string)[];
       if (_.isFunction(type)) {
         if (reconciler.isContext(type)) {
@@ -158,8 +158,7 @@ export class VNode {
       this._children = [];
       (async () => {
         try {
-          const boundary = _.findLast(options.stack, x => x.type === ErrorBoundary);
-          const { onError, silent } = boundary?.props ?? {};
+          const { onError, silent } = options.errorBoundary?.props ?? {};
           if (!silent) console.error(error);
           if (_.isFunction(onError)) await onError(error, this._component, _.map(options.stack, x => x._component));
         } catch (e) {

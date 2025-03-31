@@ -28,6 +28,8 @@ import { ComponentNode } from '../common/types/component';
 import { _contextDefaultValue, Context } from '../common/types/context';
 import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
+import { PropsProvider } from '../common/types/props';
+import { ErrorBoundary } from './../common/types/error';
 
 class HookState {
 
@@ -98,6 +100,8 @@ export const reconciler = new class {
       const items: {
         node: VNode;
         stack: VNode[];
+        propsProvider?: VNode;
+        errorBoundary?: VNode;
         contextValue: Map<Context<any>, _ContextState>;
       }[] = [{
         node: root,
@@ -107,13 +111,15 @@ export const reconciler = new class {
       let item;
       while (item = items.shift()) {
 
-        const { node, stack, contextValue } = item;
+        const { node, stack, propsProvider, errorBoundary, contextValue } = item;
         yield {
           node,
           stack,
           updated: node.updateIfNeed({
             server: options.server,
             stack,
+            propsProvider,
+            errorBoundary,
             contextValue
           }),
         };
@@ -128,12 +134,17 @@ export const reconciler = new class {
           });
         }
 
+        let _propsProvider = node.type === PropsProvider ? node : propsProvider;
+        let _errorBoundary = node.type === ErrorBoundary ? node : errorBoundary;
+
         const _stack = [...stack, node];
         for (const item of node.children) {
           if (item instanceof VNode) {
             items.push({
               node: item,
               stack: _stack,
+              propsProvider: _propsProvider,
+              errorBoundary: _errorBoundary,
               contextValue: _contextValue,
             });
           }
