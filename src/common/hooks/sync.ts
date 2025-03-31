@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../../reconciler/hooks';
-import { reconciler } from '~/reconciler/state';
+import { reconciler } from '../../reconciler/state';
 
 export const useSyncExternalStore = <Snapshot>(
   subscribe: (

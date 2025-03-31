@@ -30,7 +30,9 @@ import { myersSync } from 'myers.js';
 import { globalEventHandlersEventMap } from '../../common/web/event';
 import { ComponentNode } from '../../common/types/component';
 import { svgProps, htmlProps, tags } from '../../../generated/elements';
-import { _propValue } from '~/common/web/props';
+import { _propValue } from '../../common/web/props';
+import { ClassName, StyleProp } from '../../common/web/styles/types';
+import { CSSProperties } from '../../common/web/styles/css';
 
 const findPrototypeProperty = (object: any, propertyName: string) => {
   while (object && object.constructor && object.constructor.name !== 'Object') {
@@ -103,6 +105,10 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     return elem;
   }
 
+  private __updateElementStyle(element: Element, className: ClassName, style: StyleProp<CSSProperties>) {
+
+  }
+
   private __updateEventListener(
     element: Element,
     key: string,
@@ -127,9 +133,8 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     if (!_.isString(type)) throw Error('Invalid type');
     if (type === 'head') return;
 
-    if (!_.isEmpty(innerHTML)) {
-      element.innerHTML = innerHTML;
-    }
+    this.__updateElementStyle(element, className, style);
+    if (!_.isEmpty(innerHTML)) element.innerHTML = innerHTML;
 
     const removed = _.difference(this._tracked_props.get(element), _.keys(_props));
     const props = {
