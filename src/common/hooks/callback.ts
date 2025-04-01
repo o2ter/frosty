@@ -26,6 +26,24 @@
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
 
+/**
+ * A custom hook that memoizes a callback function, ensuring that it only changes
+ * if its dependencies change. This is useful for optimizing performance by preventing
+ * unnecessary re-creations of functions.
+ *
+ * @template T - The type of the callback function.
+ * @param callback - The callback function to be memoized.
+ * @param deps - An optional array of dependencies. If provided, the callback
+ *               will only be updated when one of these dependencies changes.
+ *               If not provided, the callback will remain stable.
+ * @returns - A stable version of the callback function that will not change unless
+ *            its dependencies change.
+ *
+ * @example
+ * const memoizedCallback = useCallback(() => {
+ *   console.log('This function is memoized!');
+ * }, [dependency]);
+ */
 export const useCallback = <T extends (...args: any) => any>(
   callback: T,
   deps?: any

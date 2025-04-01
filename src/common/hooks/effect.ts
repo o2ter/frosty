@@ -27,6 +27,35 @@ import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../../reconciler/hooks';
 
+/**
+ * A custom hook that manages side effects with support for an `AbortSignal`.
+ * It ensures proper cleanup logic and handles asynchronous operations effectively.
+ *
+ * @param effect - 
+ *   A function that receives an `AbortSignal` and performs side effects. 
+ *   It can optionally return a cleanup function or a promise that resolves to a cleanup function.
+ *
+ * @param deps - 
+ *   An optional array of dependencies that determines when the effect should be re-executed.
+ *
+ * @example
+ * useEffect((signal) => {
+  *   fetch('/api/data', { signal })
+ *     .then(response => response.json())
+ *     .then(data => console.log(data))
+ *     .catch(err => {
+ *       if (err.name === 'AbortError') {
+ *         console.log('Fetch aborted');
+ *       } else {
+ *         console.error(err);
+ *       }
+ *     });
+ *   
+ *   return () => {
+ *     console.log('Cleanup logic here');
+ *   };
+ * }, []);
+ */
 export const useEffect = (
   effect: (
     signal: AbortSignal,

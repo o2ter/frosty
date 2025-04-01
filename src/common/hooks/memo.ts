@@ -26,6 +26,15 @@
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
 
+/**
+ * A utility function that memoizes the result of a factory function.
+ * 
+ * @template T The type of the value returned by the factory function.
+ * @param factory A function that produces a value to be memoized.
+ * @param deps An optional dependency array. The memoized value is recalculated 
+ *             only when the dependencies change.
+ * @returns The memoized value produced by the factory function.
+ */
 export const useMemo = <T>(
   factory: () => T,
   deps?: any,

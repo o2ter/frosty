@@ -26,6 +26,29 @@
 import { Context } from '../types/context';
 import { reconciler } from '../../reconciler/state';
 
+/**
+ * A custom hook that retrieves the current value of a context and optionally applies
+ * a selector function to transform the context value. This hook ensures that the component
+ * subscribes to the context and re-renders when the context value changes.
+ *
+ * @template T - The type of the context value.
+ * @template R - The type of the transformed value returned by the selector.
+ * @param context - The context object to retrieve the value from.
+ * @param selector - An optional selector function to transform the context value.
+ *                   Defaults to an identity function.
+ * @returns - The current value of the context, optionally transformed by the selector.
+ *
+ * @throws - Throws an error if the provided context is invalid or if the hook
+ *           is used outside of a render function.
+ *
+ * @example
+ * const MyContext = createContext({ user: null });
+ * 
+ * function MyComponent() {
+ *   const user = useContext(MyContext, context => context.user);
+ *   return <div>{user ? `Hello, ${user.name}` : 'Hello, Guest'}</div>;
+ * }
+ */
 export const useContext = <T, R = T>(
   context: Context<T>,
   selector: (state: T) => R = v => v as any

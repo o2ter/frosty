@@ -26,6 +26,15 @@
 import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
 
+/**
+ * A utility function that manages state using a reducer pattern.
+ * 
+ * @template T The type of the state.
+ * @template A The type of the action object (optional).
+ * @param reducer A function that takes the current state and an action, and returns the new state.
+ * @param initialState The initial state value or a function that returns the initial state.
+ * @returns A tuple containing the current state and a dispatch function to update the state.
+ */
 export function useReducer<T>(
   reducer: (prevState: T) => T,
   initialState: T | (() => T),
