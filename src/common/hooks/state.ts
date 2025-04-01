@@ -27,6 +27,24 @@ import _ from 'lodash';
 import { _useMemo } from '../../reconciler/hooks';
 import { SetStateAction } from '../types/common';
 
+/**
+ * A hook function for managing state within a custom framework or library.
+ *
+ * @template T - The type of the state value.
+ * @param - The initial state value or a function that returns the initial state.
+ * @returns - A tuple containing the current state value and a function to update the state.
+ *
+ * The `useState` function provides a way to manage stateful values. It returns the current state
+ * and a setter function that can update the state. The setter function accepts either a new value
+ * or a function that receives the current state and returns the updated state.
+ *
+ * Example:
+ * ```typescript
+ * const [count, setCount] = useState(0);
+ * setCount(5); // Updates the state to 5
+ * setCount(prev => prev + 1); // Updates the state to the previous value + 1
+ * ```
+ */
 export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStateAction<T>) => void];
 export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
 

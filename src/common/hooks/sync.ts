@@ -28,6 +28,21 @@ import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../../reconciler/hooks';
 import { reconciler } from '../../reconciler/state';
 
+/**
+ * A hook utility for synchronizing with an external store.
+ *
+ * @template Snapshot - The type of the snapshot returned by the store.
+ * @param subscribe - A function that sets up a subscription to the external store.
+ *   - `onStoreChange`: A callback to invoke when the store changes.
+ *   - `signal`: An `AbortSignal` to handle cleanup when the subscription is no longer needed.
+ *   - Returns an optional cleanup function or a promise resolving to one.
+ * @param getSnapshot - A function that retrieves the current snapshot of the store.
+ * @param getServerSnapshot - (Optional) A function that retrieves the snapshot of the store
+ *   in a server environment.
+ * @returns The current snapshot of the store.
+ *
+ * @throws Will throw an error if used outside of a valid render context.
+ */
 export const useSyncExternalStore = <Snapshot>(
   subscribe: (
     onStoreChange: () => void,

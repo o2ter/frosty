@@ -26,6 +26,16 @@
 import _ from 'lodash';
 import { reconciler } from '../../reconciler/state';
 
+/**
+ * Retrieves the stack of parent components from the current hook state.
+ *
+ * This function accesses the current hook state and extracts the stack of 
+ * parent components. It throws an error if called outside of a valid render 
+ * context.
+ *
+ * @returns An array of parent components from the current hook state.
+ * @throws Will throw an error if the function is called outside of a valid render context.
+ */
 export const useStack = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useStack must be used within a render function.');
