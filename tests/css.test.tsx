@@ -40,6 +40,10 @@ test('test css', async () => {
     '@container myContainer (width < 500px)': {
       backgroundColor: 'lightblue',
     },
+    '@keyframes': {
+      from: { top: '0px' },
+      to: { top: '200px' },
+    },
   };
 
   const { css } = processCss({ '.component': style });
