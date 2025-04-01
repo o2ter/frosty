@@ -31,8 +31,9 @@ import { ComponentNode } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
 import { ClassName, StyleProp } from '../core/web/styles/types';
-import { BasicCSSProperties, CSSProperties } from '../core/web/styles/css';
+import { CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
+import { nanoid } from 'nanoid';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -62,11 +63,22 @@ class StyleBuilder {
 
   registry: {
     name: string; 
-    style: BasicCSSProperties;
+    style: CSSProperties;
   }[] = [];
 
-  buildStyle(style: CSSProperties[]) {
+  buildStyle(styles: CSSProperties[]) {
 
+    let searchIdx = 0;
+
+    for (const style of styles) {
+      const found = _.findIndex(this.registry, x => x.style === style, searchIdx);
+      if (found === -1) {
+        const name = nanoid();
+        this.registry.push({ name, style });
+      } else {
+
+      }
+    }
   }
 }
 

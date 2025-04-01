@@ -36,6 +36,5 @@ type PropsWithExtends<Props> = Props & {
   [variable: `--${string}`]: string | 0;
 };
 
-export type BasicCSSProperties = CSS.StandardProperties<string | number> & CSS.SvgProperties<string | number>;
-
-export type CSSProperties = PropsWithExtends<BasicCSSProperties>;
+export type _CSSProperties = CSS.StandardProperties<string | number> & CSS.SvgProperties<string | number>;
+export type CSSProperties = PropsWithExtends<_CSSProperties>;
