@@ -71,7 +71,7 @@ class StyleBuilder {
     for (const { name, style } of this.registry) {
       const keyframes = style['@keyframes'];
       const animationName = keyframes ? `__${_.uniqueId()}` : undefined;
-      _style[name] = {
+      _style[`.${name}`] = {
         ..._.omit(style, '@keyframes'),
         ...animationName ? { animationName } : {},
       };
@@ -96,9 +96,9 @@ class StyleBuilder {
       if (found === -1) {
         const name = `__${_.uniqueId()}`;
         this.registry.push({ name, style });
-        className.push(`.${name}`);
+        className.push(name);
       } else {
-        className.push(`.${this.registry[found].name}`);
+        className.push(this.registry[found].name);
       }
     }
     return className;
@@ -141,6 +141,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     } else {
       const styleElem = this.doc.querySelector('style[data-frosty-style]') ?? this.doc.createElementNS(HTML_NS, 'style');
       styleElem.setAttribute('data-frosty-style', '');
+      styleElem.textContent = this._tracked_style.css;
       if (this._server) {
         this.__replaceChildren(this.doc.head, [...this._tracked_head_children, styleElem]);
       } else if (styleElem.parentNode !== this.doc.head) {
