@@ -31,7 +31,7 @@ type AtRules = '@container' | '@media';
 type PropsWithExtends<Props> = Props & {
   [rule in `${AtRules} ${string}`]?: Omit<PropsWithExtends<Props>, `${AtRules} ${string}`>;
 } & {
-  '@keyframes'?: Props;
+  '@keyframes'?: Record<string, Props>;
   [selector: `$${string}`]: PropsWithExtends<Props>;
   [variable: `--${string}`]: string | 0;
 };
