@@ -74,12 +74,16 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _beforeUpdate() {
-    this._tracked_head_children = [];
+    if (this._server) {
+      this._tracked_head_children = [];
+    }
   }
 
   /** @internal */
   _afterUpdate() {
-    this.__replaceChildren(this.doc.head, this._tracked_head_children);
+    if (this._server) {
+      this.__replaceChildren(this.doc.head, this._tracked_head_children);
+    }
   }
 
   /** @internal */
