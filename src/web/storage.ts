@@ -24,9 +24,9 @@
 //
 
 import _ from 'lodash';
-import { useSyncExternalStore } from '../common/hooks/sync';
-import { useCallback } from '../common/hooks/callback';
-import { SetStateAction } from '../common/types/common';
+import { useSyncExternalStore } from '../core/hooks/sync';
+import { useCallback } from '../core/hooks/callback';
+import { SetStateAction } from '../core/types/common';
 
 const _useStorage = (
   storage: () => Storage,

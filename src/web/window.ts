@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { useSyncExternalStore } from '../common/hooks/sync';
+import { useSyncExternalStore } from '../core/hooks/sync';
 
 export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);

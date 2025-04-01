@@ -23,10 +23,10 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode, NativeElementType } from './common/types/component';
-import { _createElement, _ElementType, _IntrinsicAttributes, _IntrinsicElements, PropsType } from './common/types/runtime';
+import { ComponentNode, NativeElementType } from './core/types/component';
+import { _createElement, _ElementType, _IntrinsicAttributes, _IntrinsicElements, PropsType } from './core/types/runtime';
 
-export { Fragment } from './common/types/fragment';
+export { Fragment } from './core/types/fragment';
 
 export declare namespace JSX {
   type IntrinsicElements = _IntrinsicElements;

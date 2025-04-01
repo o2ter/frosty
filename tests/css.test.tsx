@@ -24,7 +24,7 @@
 //
 
 import { expect, test } from '@jest/globals';
-import { processCss } from '~/common/web/styles/process';
+import { processCss } from '~/core/web/styles/process';
 
 test('test css', async () => {
 

@@ -25,10 +25,10 @@
 
 import _ from 'lodash';
 import { VNode } from '../reconciler/vnode';
-import { ComponentNode } from '../common/types/component';
+import { ComponentNode } from '../core/types/component';
 import { reconciler } from '../reconciler/state';
 import nextick from 'nextick';
-import { mergeRefs } from '../common/utils';
+import { mergeRefs } from '../core/utils';
 import { equalDeps } from '../reconciler/utils';
 
 export abstract class _Renderer<T> {

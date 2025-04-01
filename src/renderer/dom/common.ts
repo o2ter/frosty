@@ -27,12 +27,12 @@ import _ from 'lodash';
 import { VNode } from '../../reconciler/vnode';
 import { _Renderer } from '../base';
 import { myersSync } from 'myers.js';
-import { globalEventHandlersEventMap } from '../../common/web/event';
-import { ComponentNode } from '../../common/types/component';
+import { globalEventHandlersEventMap } from '../../core/web/event';
+import { ComponentNode } from '../../core/types/component';
 import { svgProps, htmlProps, tags } from '../../../generated/elements';
-import { _propValue } from '../../common/web/props';
-import { ClassName, StyleProp } from '../../common/web/styles/types';
-import { CSSProperties } from '../../common/web/styles/css';
+import { _propValue } from '../../core/web/props';
+import { ClassName, StyleProp } from '../../core/web/styles/types';
+import { CSSProperties } from '../../core/web/styles/css';
 
 const findPrototypeProperty = (object: any, propertyName: string) => {
   while (object && object.constructor && object.constructor.name !== 'Object') {
