@@ -31,7 +31,7 @@ import { ComponentNode } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
 import { ClassName, StyleProp } from '../core/web/styles/types';
-import { _CSSProperties, CSSProperties } from '../core/web/styles/css';
+import { CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 import { processCss } from '~/core/web/styles/process';
 
