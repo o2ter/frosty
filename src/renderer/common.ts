@@ -31,7 +31,7 @@ import { ComponentNode } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
 import { ClassName, StyleProp } from '../core/web/styles/types';
-import { CSSProperties } from '../core/web/styles/css';
+import { BasicCSSProperties, CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -60,6 +60,14 @@ const isWriteable = (object: any, propertyName: string) => {
 
 class StyleBuilder {
 
+  registry: {
+    name: string; 
+    style: BasicCSSProperties;
+  }[] = [];
+
+  buildStyle(style: CSSProperties[]) {
+
+  }
 }
 
 export abstract class _DOMRenderer extends _Renderer<Element> {
@@ -129,7 +137,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     style: StyleProp<CSSProperties>,
   ) {
     const _className = _.compact(_.flattenDeep([className]));
-    const _style = _.compact(_.flattenDeep([style]));
+    const built = this._tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
   }
 
   private __updateEventListener(
