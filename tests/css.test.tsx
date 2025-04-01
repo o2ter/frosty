@@ -33,7 +33,13 @@ test('test css', async () => {
     top: 10,
     '&:hover': {
       top: 5,
-    }
+    },
+    '@media only screen and (max-width: 600px)': {
+      backgroundColor: 'lightblue',
+    },
+    '@container myContainer (width < 500px)': {
+      backgroundColor: 'lightblue',
+    },
   };
 
   const { css } = processCss({ '.component': style });
