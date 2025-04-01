@@ -24,7 +24,7 @@
 //
 
 import { expect, test } from '@jest/globals';
-import { ComponentType, ComponentNode, ErrorBoundary, createContext } from '~/index';
+import { ComponentType, ComponentNode, ErrorBoundary, createContext, PropsProvider } from '~/index';
 import { ServerDOMRenderer } from '~/renderer/dom/server-dom';
 
 const TestComponent: ComponentType = () => {
@@ -64,7 +64,7 @@ test('test create component element with key', async () => {
 
 });
 
-test('test create component element with error', async () => {
+test('test with error', async () => {
 
   let error;
 
@@ -133,5 +133,28 @@ test('test render html', async () => {
   const result = renderer.renderToString(app);
 
   expect(result).toBe('<!DOCTYPE html><html><head><script src=\"/main_bundle.js\" defer=\"\"></script></head><body><div id=\"root\"></div></body></html>');
+
+});
+
+test('test with props modify', async () => {
+
+  const app = (
+    <PropsProvider
+      callback={({ type, props }) => ({ ...props, 'data-test': 0 })}
+    >
+      <html>
+        <head>
+          <script src="/main_bundle.js" defer />
+        </head>
+        <body>
+          <div id="root"></div>
+        </body>
+      </html>
+    </PropsProvider>
+  );
+  const renderer = new ServerDOMRenderer();
+  const result = renderer.renderToString(app);
+
+  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script></head><body><div id="root" data-test="0"></div></body></html>');
 
 });

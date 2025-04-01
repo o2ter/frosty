@@ -31,6 +31,7 @@ import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
 import { equalDeps } from './utils';
 import { _Renderer } from '../../renderer/base';
+import { PropsType } from '../types/runtime';
 
 export type VNodeState = {
   hook: string;
@@ -51,6 +52,7 @@ export class VNode {
   _component: ComponentNode;
 
   private _event: EventEmitter;
+  private _props: PropsType = {};
   private _children: (VNode | string)[] = [];
   private _state?: VNodeState[];
   private _dirty = true;
@@ -81,7 +83,7 @@ export class VNode {
   }
 
   get props() {
-    return _.omit(this._component.props, 'children');
+    return this._props;
   }
 
   get key() {
@@ -148,6 +150,7 @@ export class VNode {
           return false;
         },
       });
+      this._props = _.omit(props, 'children');
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
