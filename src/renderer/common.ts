@@ -31,9 +31,9 @@ import { ComponentNode } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
 import { ClassName, StyleProp } from '../core/web/styles/types';
-import { CSSProperties } from '../core/web/styles/css';
+import { _CSSProperties, CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
-import { nanoid } from 'nanoid';
+import { processCss } from '~/core/web/styles/process';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -66,19 +66,39 @@ class StyleBuilder {
     style: CSSProperties;
   }[] = [];
 
+  _decompose(style: CSSProperties) {
+    const base: _CSSProperties = {};
+    
+    return base;
+  }
+
+  get css() {
+    const style: Record<string, _CSSProperties> = {};
+    for (const { name, style } of this.registry) {
+    }
+    const { css } = processCss(style);
+    return css;
+  }
+
+  get isEmpty() {
+    return _.isEmpty(this.registry);
+  }
+
   buildStyle(styles: CSSProperties[]) {
-
+    const className: string[] = [];
     let searchIdx = 0;
-
     for (const style of styles) {
       const found = _.findIndex(this.registry, x => x.style === style, searchIdx);
+      searchIdx = found === -1 ? this.registry.length : found;
       if (found === -1) {
-        const name = nanoid();
+        const name = `__${_.uniqueId()}`;
         this.registry.push({ name, style });
+        className.push(`.${name}`);
       } else {
-
+        className.push(`.${this.registry[found].name}`);
       }
     }
+    return className;
   }
 }
 
@@ -111,12 +131,18 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
   /** @internal */
   _afterUpdate() {
-    const styleElem = this.doc.querySelector('style[data-frosty-style]') ?? this.doc.createElementNS(HTML_NS, 'style');
-    styleElem.setAttribute('data-frosty-style', '');
-    if (this._server) {
-      this.__replaceChildren(this.doc.head, [...this._tracked_head_children, styleElem]);
-    } else if (styleElem.parentNode !== this.doc.head) {
-      this.doc.head.appendChild(styleElem);
+    if (this._tracked_style.isEmpty) {
+      if (this._server) {
+        this.__replaceChildren(this.doc.head, this._tracked_head_children);
+      }
+    } else {
+      const styleElem = this.doc.querySelector('style[data-frosty-style]') ?? this.doc.createElementNS(HTML_NS, 'style');
+      styleElem.setAttribute('data-frosty-style', '');
+      if (this._server) {
+        this.__replaceChildren(this.doc.head, [...this._tracked_head_children, styleElem]);
+      } else if (styleElem.parentNode !== this.doc.head) {
+        this.doc.head.appendChild(styleElem);
+      }
     }
   }
 
@@ -150,6 +176,12 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   ) {
     const _className = _.compact(_.flattenDeep([className]));
     const built = this._tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
+    const joined = [..._className, ...built].join(' ');
+    if (_.isEmpty(joined)) {
+      element.removeAttribute('class');
+    } else {
+      element.className = joined;
+    }
   }
 
   private __updateEventListener(
