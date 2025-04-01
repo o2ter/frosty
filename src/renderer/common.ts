@@ -34,6 +34,10 @@ import { ClassName, StyleProp } from '../core/web/styles/types';
 import { CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const HTML_NS = 'http://www.w3.org/1999/xhtml';
+const MATHML_NS = 'http://www.w3.org/1998/Math/MathML';
+
 const findPrototypeProperty = (object: any, propertyName: string) => {
   while (object && object.constructor && object.constructor.name !== 'Object') {
     let desc = Object.getOwnPropertyDescriptor(object, propertyName);
@@ -54,6 +58,10 @@ const isWriteable = (object: any, propertyName: string) => {
   return !!desc.set;
 };
 
+class StyleBuilder {
+
+}
+
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
   private _doc?: Document;
@@ -62,6 +70,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   private _tracked_props = new WeakMap<Element, string[]>();
   private _tracked_listener = new WeakMap<Element, Record<string, EventListener | undefined>>();
   private _tracked_head_children: (string | Element)[] = [];
+  private _tracked_style = new StyleBuilder();
 
   constructor(doc?: Document) {
     super();
@@ -77,12 +86,17 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     if (this._server) {
       this._tracked_head_children = [];
     }
+    this._tracked_style = new StyleBuilder();
   }
 
   /** @internal */
   _afterUpdate() {
+    const styleElem = this.doc.querySelector('style[data-frosty-style]') ?? this.doc.createElementNS(HTML_NS, 'style');
+    styleElem.setAttribute('data-frosty-style', '');
     if (this._server) {
-      this.__replaceChildren(this.doc.head, this._tracked_head_children);
+      this.__replaceChildren(this.doc.head, [...this._tracked_head_children, styleElem]);
+    } else if (styleElem.parentNode !== this.doc.head) {
+      this.doc.head.appendChild(styleElem);
     }
   }
 
@@ -92,14 +106,14 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     if (!_.isString(type)) throw Error('Invalid type');
     switch (type) {
       case 'html': return this.doc.documentElement;
-      case 'head': return this.doc.head ?? this.doc.createElement('head');
-      case 'body': return this.doc.body ?? this.doc.createElement('body');
+      case 'head': return this.doc.head ?? this.doc.createElementNS(HTML_NS, 'head');
+      case 'body': return this.doc.body ?? this.doc.createElementNS(HTML_NS, 'body');
       default: break;
     }
     const _ns_list = _.compact([
-      _.includes(tags.svg, type) && 'http://www.w3.org/2000/svg',
-      _.includes(tags.html, type) && 'http://www.w3.org/1999/xhtml',
-      _.includes(tags.mathml, type) && 'http://www.w3.org/1998/Math/MathML',
+      _.includes(tags.svg, type) && SVG_NS,
+      _.includes(tags.html, type) && HTML_NS,
+      _.includes(tags.mathml, type) && MATHML_NS,
     ]);
     const parent = _.last(stack);
     const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this._namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
@@ -114,7 +128,8 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     className: ClassName,
     style: StyleProp<CSSProperties>,
   ) {
-
+    const _className = _.compact(_.flattenDeep([className]));
+    const _style = _.compact(_.flattenDeep([style]));
   }
 
   private __updateEventListener(
