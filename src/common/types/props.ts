@@ -27,13 +27,13 @@ import { ComponentType, PropsWithChildren } from './common';
 import { NativeElementType } from './component';
 import { _ElementType, PropsType } from './runtime';
 
-type Callback = (v: {
-  type: _ElementType | NativeElementType,
-  props: PropsType
-}) => PropsType | undefined | null;
+type PropsProviderProps = PropsWithChildren<{
+  callback: (v: {
+    type: _ElementType | NativeElementType,
+    props: PropsType
+  }) => PropsType | undefined | null;
+}>;
 
-export const PropsProvider: ComponentType<PropsWithChildren<{
-  callback: Callback;
-}>> = ({ children }) => {
+export const PropsProvider: ComponentType<PropsProviderProps> = ({ children }) => {
   return children;
 }

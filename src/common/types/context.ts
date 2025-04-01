@@ -49,6 +49,16 @@ const _createContext = <Value extends unknown>(defaultValue: Value) => {
   return _.assign(_context, { Consumer });
 };
 
+/**
+ * Creates a new context object with an optional default value.
+ * 
+ * A context object allows you to share a value across a component tree
+ * without explicitly passing it as a prop to every level.
+ * 
+ * @template Value - The type of the value to be stored in the context.
+ * @param - The default value for the context.
+ * @returns A context object that can be used to provide and consume the value.
+ */
 export function createContext<Value>(defaultValue: Value): Context<Value>;
 export function createContext<Value = undefined>(): Context<Value | undefined>;
 

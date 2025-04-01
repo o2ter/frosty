@@ -26,13 +26,15 @@
 import { ComponentType, PropsWithChildren } from './common';
 import { ComponentNode } from './component';
 
-export const ErrorBoundary: ComponentType<PropsWithChildren<{
+type ErrorBoundaryProps = PropsWithChildren<{
   silent?: boolean;
   onError?: (
     error: any,
     component: ComponentNode,
     stack: ComponentNode[],
   ) => void;
-}>> = ({ children }) => {
+}>;
+
+export const ErrorBoundary: ComponentType<ErrorBoundaryProps> = ({ children }) => {
   return children;
 }
