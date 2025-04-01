@@ -24,12 +24,12 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../reconciler/vnode';
+import { VNode } from '../core/reconciler/vnode';
 import { ComponentNode } from '../core/types/component';
-import { reconciler } from '../reconciler/state';
+import { reconciler } from '../core/reconciler/state';
 import nextick from 'nextick';
 import { mergeRefs } from '../core/utils';
-import { equalDeps } from '../reconciler/utils';
+import { equalDeps } from '../core/reconciler/utils';
 
 export abstract class _Renderer<T> {
 

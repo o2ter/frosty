@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../../reconciler/state';
+import { reconciler } from '../reconciler/state';
 
 /**
  * Retrieves the stack of parent components from the current hook state.

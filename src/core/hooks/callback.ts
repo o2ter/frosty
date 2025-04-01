@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _useMemo } from '../../reconciler/hooks';
+import { _useMemo } from '../reconciler/hooks';
 
 /**
  * A custom hook that memoizes a callback function, ensuring that it only changes

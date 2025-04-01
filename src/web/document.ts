@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../reconciler/state';
+import { reconciler } from '../core/reconciler/state';
 import { _DOMRenderer } from '../renderer/dom/common';
 
 export const useDocument = () => {

@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _useMemo } from '../../reconciler/hooks';
+import { _useMemo } from '../reconciler/hooks';
 
 /**
  * A utility function that memoizes the result of a factory function.

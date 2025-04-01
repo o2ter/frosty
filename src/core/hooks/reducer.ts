@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { _useMemo } from '../../reconciler/hooks';
+import { _useMemo } from '../reconciler/hooks';
 
 /**
  * A utility function that manages state using a reducer pattern.

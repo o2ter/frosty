@@ -25,8 +25,8 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
-import { _useEffect } from '../../reconciler/hooks';
-import { reconciler } from '../../reconciler/state';
+import { _useEffect } from '../reconciler/hooks';
+import { reconciler } from '../reconciler/state';
 
 /**
  * A hook utility for synchronizing with an external store.

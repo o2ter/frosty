@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../../reconciler/vnode';
+import { VNode } from '../../core/reconciler/vnode';
 import { _Renderer } from '../base';
 import { myersSync } from 'myers.js';
 import { globalEventHandlersEventMap } from '../../core/web/event';

@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
-import { _useEffect } from '../../reconciler/hooks';
+import { _useEffect } from '../reconciler/hooks';
 
 /**
  * A custom hook that manages side effects with support for an `AbortSignal`.

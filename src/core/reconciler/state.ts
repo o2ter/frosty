@@ -24,13 +24,13 @@
 //
 
 import _ from 'lodash';
-import { ComponentNode } from '../core/types/component';
-import { _contextDefaultValue, Context } from '../core/types/context';
+import { ComponentNode } from '../types/component';
+import { _contextDefaultValue, Context } from '../types/context';
 import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
-import { PropsProvider } from '../core/types/props';
-import { ErrorBoundary } from '../core/types/error';
-import { _Renderer } from '../renderer/base';
+import { PropsProvider } from '../types/props';
+import { ErrorBoundary } from '../types/error';
+import { _Renderer } from '../../renderer/base';
 
 class HookState {
 
