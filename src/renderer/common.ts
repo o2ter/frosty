@@ -66,15 +66,10 @@ class StyleBuilder {
     style: CSSProperties;
   }[] = [];
 
-  _decompose(style: CSSProperties) {
-    const base: _CSSProperties = {};
-    
-    return base;
-  }
-
   get css() {
-    const style: Record<string, _CSSProperties> = {};
+    const style: Record<string, CSSProperties> = {};
     for (const { name, style } of this.registry) {
+      const keyframes = style['@keyframes'];
     }
     const { css } = processCss(style);
     return css;
