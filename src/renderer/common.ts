@@ -67,11 +67,19 @@ class StyleBuilder {
   }[] = [];
 
   get css() {
-    const style: Record<string, CSSProperties> = {};
+    const _style: any = {};
     for (const { name, style } of this.registry) {
       const keyframes = style['@keyframes'];
+      const animationName = keyframes ? `__${_.uniqueId()}` : undefined;
+      _style[name] = {
+        ..._.omit(style, '@keyframes'),
+        ...animationName ? { animationName } : {},
+      };
+      if (animationName) {
+        _style[`@keyframes ${animationName}`] = keyframes;
+      }
     }
-    const { css } = processCss(style);
+    const { css } = processCss(_style);
     return css;
   }
 
