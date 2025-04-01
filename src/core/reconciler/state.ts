@@ -30,7 +30,7 @@ import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
 import { PropsProvider } from '../types/props';
 import { ErrorBoundary } from '../types/error';
-import { _Renderer } from '../../renderer/base';
+import { _Renderer } from '../renderer';
 
 class HookState {
 

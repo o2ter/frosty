@@ -1,4 +1,4 @@
-import { DOMRenderer } from '~/renderer/dom/dom';
+import { DOMRenderer } from '~/renderer/dom';
 import { App } from './App';
 
 const root = document.getElementById('root');

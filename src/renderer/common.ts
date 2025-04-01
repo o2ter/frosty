@@ -24,15 +24,15 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../../core/reconciler/vnode';
-import { _Renderer } from '../base';
+import { VNode } from '../core/reconciler/vnode';
 import { myersSync } from 'myers.js';
-import { globalEventHandlersEventMap } from '../../core/web/event';
-import { ComponentNode } from '../../core/types/component';
-import { svgProps, htmlProps, tags } from '../../../generated/elements';
-import { _propValue } from '../../core/web/props';
-import { ClassName, StyleProp } from '../../core/web/styles/types';
-import { CSSProperties } from '../../core/web/styles/css';
+import { globalEventHandlersEventMap } from '../core/web/event';
+import { ComponentNode } from '../core/types/component';
+import { svgProps, htmlProps, tags } from '../../generated/elements';
+import { _propValue } from '../core/web/props';
+import { ClassName, StyleProp } from '../core/web/styles/types';
+import { CSSProperties } from '../core/web/styles/css';
+import { _Renderer } from '../core/renderer';
 
 const findPrototypeProperty = (object: any, propertyName: string) => {
   while (object && object.constructor && object.constructor.name !== 'Object') {

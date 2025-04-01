@@ -30,7 +30,7 @@ import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
 import { equalDeps } from './utils';
-import { _Renderer } from '../../renderer/base';
+import { _Renderer } from '../renderer';
 import { PropsType } from '../types/runtime';
 
 export type VNodeState = {

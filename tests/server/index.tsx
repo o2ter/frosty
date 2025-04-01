@@ -27,7 +27,7 @@ import _ from 'lodash';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
 import { App } from './main/App';
-import { ServerDOMRenderer } from '~/renderer/dom/server-dom';
+import { ServerDOMRenderer } from '~/renderer/server-dom';
 
 const app = new Server({
   http: 'v1',

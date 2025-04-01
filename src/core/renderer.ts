@@ -1,5 +1,5 @@
 //
-//  base.ts
+//  renderer.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,12 +24,12 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../core/reconciler/vnode';
-import { ComponentNode } from '../core/types/component';
-import { reconciler } from '../core/reconciler/state';
+import { VNode } from './reconciler/vnode';
+import { ComponentNode } from './types/component';
+import { reconciler } from './reconciler/state';
 import nextick from 'nextick';
-import { mergeRefs } from '../core/utils';
-import { equalDeps } from '../core/reconciler/utils';
+import { mergeRefs } from './utils';
+import { equalDeps } from './reconciler/utils';
 
 export abstract class _Renderer<T> {
 

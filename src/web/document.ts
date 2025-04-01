@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { reconciler } from '../core/reconciler/state';
-import { _DOMRenderer } from '../renderer/dom/common';
+import { _DOMRenderer } from '../renderer/common';
 
 export const useDocument = () => {
   const state = reconciler.currentHookState;
