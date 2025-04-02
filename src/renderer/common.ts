@@ -64,6 +64,7 @@ class StyleBuilder {
   registry: {
     name: string; 
     style: CSSProperties;
+    _style: string;
   }[] = [];
 
   get css() {
@@ -91,11 +92,12 @@ class StyleBuilder {
     const className: string[] = [];
     let searchIdx = 0;
     for (const style of styles) {
-      const found = _.findIndex(this.registry, x => x.style === style, searchIdx);
+      const _style = JSON.stringify(style);
+      const found = _.findIndex(this.registry, x => x._style === _style, searchIdx);
       searchIdx = found === -1 ? this.registry.length : found;
       if (found === -1) {
         const name = `__frosty_style_${_.uniqueId()}`;
-        this.registry.push({ name, style });
+        this.registry.push({ name, style, _style });
         className.push(name);
       } else {
         className.push(this.registry[found].name);
