@@ -84,6 +84,11 @@ class StyleBuilder {
     return css;
   }
 
+  select(names: string[]) {
+    names = _.uniq(names);
+    this.registry = _.filter(this.registry, x => _.includes(names, x.name));
+  }
+
   get isEmpty() {
     return _.isEmpty(this.registry);
   }
@@ -116,6 +121,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   private _tracked_listener = new WeakMap<Element, Record<string, EventListener | undefined>>();
   private _tracked_head_children: (string | Element)[] = [];
   private _tracked_style = new StyleBuilder();
+  private _tracked_style_names: string[] = [];
 
   constructor(doc?: Document) {
     super();
@@ -131,10 +137,12 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     if (this._server) {
       this._tracked_head_children = [];
     }
+    this._tracked_style_names = [];
   }
 
   /** @internal */
   _afterUpdate() {
+    this._tracked_style.select(this._tracked_style_names);
     if (this._tracked_style.isEmpty) {
       if (this._server) {
         this.__replaceChildren(this.doc.head, this._tracked_head_children);
@@ -187,6 +195,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     } else {
       element.className = joined;
     }
+    this._tracked_style_names.push(...built);
   }
 
   private __updateEventListener(
