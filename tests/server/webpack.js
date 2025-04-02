@@ -2,6 +2,7 @@
 
 const _ = require('lodash');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
 
@@ -53,6 +54,11 @@ module.exports = (env, argv) => {
     },
   };
 
+  const webpackPlugins = [
+    new Dotenv({ path: path.join(process.cwd(), '.env') }),
+    new Dotenv({ path: path.join(process.cwd(), '.env.local') }),
+  ];
+
   const moduleSuffixes = {
     client: ['.browser', '.web', ''],
     server: ['.node', '.server', '.web', ''],
@@ -61,6 +67,7 @@ module.exports = (env, argv) => {
   return [
     {
       ...webpackConfiguration,
+      plugins: webpackPlugins,
       entry: {
         main_bundle: [
           'core-js/stable',
@@ -87,6 +94,7 @@ module.exports = (env, argv) => {
     {
       ...webpackConfiguration,
       target: 'node',
+      plugins: webpackPlugins,
       entry: {
         server: [
           'core-js/stable',
