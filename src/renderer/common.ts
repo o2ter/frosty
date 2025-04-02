@@ -131,7 +131,6 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     if (this._server) {
       this._tracked_head_children = [];
     }
-    this._tracked_style = new StyleBuilder();
   }
 
   /** @internal */
