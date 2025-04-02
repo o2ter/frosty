@@ -1,5 +1,5 @@
 //
-//  _dom.ts
+//  common.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -34,6 +34,7 @@ import { ClassName, StyleProp } from '../core/web/styles/types';
 import { CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 import { processCss } from '~/core/web/styles/process';
+import { StyleBuilder } from './style';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -58,59 +59,6 @@ const isWriteable = (object: any, propertyName: string) => {
   }
   return !!desc.set;
 };
-
-class StyleBuilder {
-
-  registry: {
-    name: string; 
-    style: CSSProperties;
-    _style: string;
-  }[] = [];
-
-  get css() {
-    const _style: any = {};
-    for (const { name, style } of this.registry) {
-      const keyframes = style['@keyframes'];
-      const animationName = keyframes ? `__a_${_.uniqueId()}` : undefined;
-      _style[`.${name}`] = {
-        ..._.omit(style, '@keyframes'),
-        ...animationName ? { animationName } : {},
-      };
-      if (animationName) {
-        _style[`@keyframes ${animationName}`] = keyframes;
-      }
-    }
-    const { css } = processCss(_style);
-    return css;
-  }
-
-  select(names: string[]) {
-    names = _.uniq(names);
-    this.registry = _.filter(this.registry, x => _.includes(names, x.name));
-  }
-
-  get isEmpty() {
-    return _.isEmpty(this.registry);
-  }
-
-  buildStyle(styles: CSSProperties[]) {
-    const className: string[] = [];
-    let searchIdx = 0;
-    for (const style of styles) {
-      const _style = JSON.stringify(style);
-      const found = _.findIndex(this.registry, x => x._style === _style, searchIdx);
-      searchIdx = found === -1 ? this.registry.length : found;
-      if (found === -1) {
-        const name = `__v_${_.uniqueId()}`;
-        this.registry.push({ name, style, _style });
-        className.push(name);
-      } else {
-        className.push(this.registry[found].name);
-      }
-    }
-    return className;
-  }
-}
 
 export abstract class _DOMRenderer extends _Renderer<Element> {
 
