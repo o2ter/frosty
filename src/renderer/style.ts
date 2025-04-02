@@ -37,7 +37,7 @@ export class StyleBuilder {
 
   private _registry: Rule[] = [];
 
-  private _cache?: any;
+  private _cache?: Rule[];
   private _cached_css?: string;
 
   get registry() {
