@@ -9,7 +9,7 @@ export const App = () => {
     return () => clearTimeout(handle);
   }, []);
   return (
-    <div style={{ padding: 64 }} inlineStyle={{ padding: 32 }}>
+    <div style={{ padding: 64, margin: 16 }} inlineStyle={{ padding: 32, margin: 16 }}>
       <table bgColor='aliceblue'>
         {_.map(_.range(2), i => <tr>
           {_.map(_.range(2), j => <td>{i * counter + j}</td>)}
