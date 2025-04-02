@@ -234,7 +234,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     if (inlineStyle) {
       const { css } = processCss(inlineStyle);
-      element.setAttribute('style', css);
+      element.setAttribute('style', css.split('\n').join(''));
     } else {
       element.removeAttribute('style');
     }
