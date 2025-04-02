@@ -26,7 +26,7 @@
 import { MergeObject, PickType, WritableKeys } from '@o2ter/utils-js';
 import { ComponentType, ElementNode, PropsWithChildren, RefAttribute } from './common';
 import { ClassName, StyleProp } from '../web/styles/types';
-import { CSSProperties } from '../web/styles/css';
+import { _CSSProperties, CSSProperties } from '../web/styles/css';
 import { globalEventHandlersEventMap } from '../web/event';
 import { ComponentNode, NativeElementType } from './component';
 import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap } from '../web/props';
@@ -62,6 +62,7 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
       & {
         className?: ClassName;
         style?: StyleProp<CSSProperties>;
+        inlineStyle?: _CSSProperties;
       }
       & Combine<ElementMap[x]['props'], _PropsOfInstance<ElementMap[x]['type']>>
     >

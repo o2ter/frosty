@@ -219,7 +219,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     const {
       type,
-      props: { className, style, innerHTML, ..._props }
+      props: { className, style, inlineStyle, innerHTML, ..._props }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
     switch (type) {
@@ -231,6 +231,13 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
 
     this.__updateElementStyle(element, className, style);
     if (!_.isEmpty(innerHTML)) element.innerHTML = innerHTML;
+
+    if (inlineStyle) {
+      const { css } = processCss(inlineStyle);
+      element.setAttribute('style', css);
+    } else {
+      element.removeAttribute('style');
+    }
 
     const removed = _.difference(this._tracked_props.get(element), _.keys(_props));
     const props = {
