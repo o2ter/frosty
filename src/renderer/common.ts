@@ -222,7 +222,12 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
       props: { className, style, innerHTML, ..._props }
     } = node;
     if (!_.isString(type)) throw Error('Invalid type');
-    if (type === 'head') return;
+    switch (type) {
+      case 'html': return;
+      case 'head': return;
+      case 'body': return;
+      default: break;
+    }
 
     this.__updateElementStyle(element, className, style);
     if (!_.isEmpty(innerHTML)) element.innerHTML = innerHTML;
