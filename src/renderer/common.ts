@@ -70,7 +70,7 @@ class StyleBuilder {
     const _style: any = {};
     for (const { name, style } of this.registry) {
       const keyframes = style['@keyframes'];
-      const animationName = keyframes ? `__${_.uniqueId()}` : undefined;
+      const animationName = keyframes ? `__frosty_style_anim_${_.uniqueId()}` : undefined;
       _style[`.${name}`] = {
         ..._.omit(style, '@keyframes'),
         ...animationName ? { animationName } : {},
@@ -94,7 +94,7 @@ class StyleBuilder {
       const found = _.findIndex(this.registry, x => x.style === style, searchIdx);
       searchIdx = found === -1 ? this.registry.length : found;
       if (found === -1) {
-        const name = `__${_.uniqueId()}`;
+        const name = `__frosty_style_${_.uniqueId()}`;
         this.registry.push({ name, style });
         className.push(name);
       } else {
