@@ -31,6 +31,7 @@ type Rule = {
   name: string;
   style: CSSProperties;
   _style: string;
+  _css?: string;
 };
 
 export class StyleBuilder {
@@ -58,19 +59,23 @@ export class StyleBuilder {
 
   get css() {
     if (this._cached_css) return this._cached_css;
-    const _style: any = {};
-    for (const { name, style } of this.registry) {
-      const keyframes = style['@keyframes'];
+    for (const rule of this.registry) {
+      if (rule._css) continue;
+      const { name, style: { '@keyframes': keyframes, ...style } } = rule;
       const animationName = keyframes ? `__a_${_.uniqueId()}` : undefined;
-      _style[`.${name}`] = {
-        ..._.omit(style, '@keyframes'),
-        ...animationName ? { animationName } : {},
+      const _style: any = {
+        [`.${name}`]: {
+          ..._.omit(style, '@keyframes'),
+          ...animationName ? { animationName } : {},
+        },
+        ...animationName ? {
+          [`@keyframes ${animationName}`]: keyframes,
+        } : {},
       };
-      if (animationName) {
-        _style[`@keyframes ${animationName}`] = keyframes;
-      }
+      const { css } = processCss(_style);
+      rule._css = css;
     }
-    const { css } = processCss(_style);
+    const css = _.compact(_.map(this.registry, x => x._css)).join('\n');
     this._cached_css = css;
     return css;
   }
