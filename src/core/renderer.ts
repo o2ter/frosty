@@ -33,17 +33,17 @@ import { equalDeps } from './reconciler/utils';
 
 export abstract class _Renderer<T> {
 
-  abstract _beforeUpdate(): void;
+  protected abstract _beforeUpdate(): void;
 
-  abstract _afterUpdate(): void;
+  protected abstract _afterUpdate(): void;
 
-  abstract _createElement(node: VNode, stack: VNode[]): T;
+  protected abstract _createElement(node: VNode, stack: VNode[]): T;
 
-  abstract _updateElement(node: VNode, element: T, stack: VNode[]): void;
+  protected abstract _updateElement(node: VNode, element: T, stack: VNode[]): void;
 
-  abstract _destroyElement(node: VNode, element: T): void;
+  protected abstract _destroyElement(node: VNode, element: T): void;
 
-  abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
+  protected abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
 
   abstract get _server(): boolean;
 

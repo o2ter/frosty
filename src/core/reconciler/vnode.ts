@@ -106,7 +106,7 @@ export class VNode {
   }
 
   /** @internal */
-  _check_context(values: Map<Context<any>, Omit<_ContextState, 'value'>>) {
+  private _check_context(values: Map<Context<any>, Omit<_ContextState, 'value'>>) {
     return this._listens.entries().every(([k, v]) => {
       const { state, node } = values.get(k) ?? {};
       return state === v.state && node === v.node;
