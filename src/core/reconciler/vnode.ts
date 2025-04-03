@@ -62,6 +62,7 @@ export class VNode {
   _content_state = 0;
   private _content_value?: any;
 
+  /** @internal */
   constructor(component: ComponentNode, event: EventEmitter) {
     this._component = component;
     this._event = event;
@@ -104,6 +105,7 @@ export class VNode {
     this._event.emit('onchange');
   }
 
+  /** @internal */
   _check_context(values: Map<Context<any>, Omit<_ContextState, 'value'>>) {
     return this._listens.entries().every(([k, v]) => {
       const { state, node } = values.get(k) ?? {};
