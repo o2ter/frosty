@@ -54,7 +54,7 @@ const isWriteable = (object: any, propertyName: string) => {
   if (!desc) {
     return false;
   }
-  if (desc.writable && typeof desc.value !== "function") {
+  if (desc.writable && typeof desc.value !== 'function') {
     return true;
   }
   return !!desc.set;

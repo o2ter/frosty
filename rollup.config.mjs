@@ -12,6 +12,7 @@ const rollupConfig = {
     web: 'src/web/index',
     dom: 'src/renderer/dom',
     'server-dom': 'src/renderer/server-dom',
+    '_native': 'src/renderer/native',
   },
   external: [
     /node_modules/
