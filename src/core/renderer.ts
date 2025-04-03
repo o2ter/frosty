@@ -33,25 +33,18 @@ import { equalDeps } from './reconciler/utils';
 
 export abstract class _Renderer<T> {
 
-  /** @internal */
   abstract _beforeUpdate(): void;
 
-  /** @internal */
   abstract _afterUpdate(): void;
 
-  /** @internal */
   abstract _createElement(node: VNode, stack: VNode[]): T;
 
-  /** @internal */
   abstract _updateElement(node: VNode, element: T, stack: VNode[]): void;
 
-  /** @internal */
   abstract _destroyElement(node: VNode, element: T): void;
 
-  /** @internal */
   abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
 
-  /** @internal */
   abstract get _server(): boolean;
 
   private _createRoot(

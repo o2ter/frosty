@@ -98,7 +98,8 @@ export class VNode {
     return this._children;
   }
 
-  setDirty() {
+  /** @internal */
+  _setDirty() {
     this._dirty = true;
     this._event.emit('onchange');
   }
@@ -110,7 +111,8 @@ export class VNode {
     });
   }
 
-  updateIfNeed(options: {
+  /** @internal */
+  _updateIfNeed(options: {
     renderer: _Renderer<any>;
     stack: VNode[];
     propsProvider: VNode[];

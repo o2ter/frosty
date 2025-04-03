@@ -54,7 +54,7 @@ export function useState(initialState?: any) {
       value: _.isFunction(initialState) ? initialState() : initialState,
       setValue: (dispatch: SetStateAction<any>) => {
         state.value = _.isFunction(dispatch) ? dispatch(state.value) : dispatch;
-        node?.setDirty();
+        node?._setDirty();
       },
     };
     return state;

@@ -56,7 +56,7 @@ export const useSyncExternalStore = <Snapshot>(
   _useEffect('useSyncExternalStore', ({ node }) => {
     const abort = new AbortController();
     try {
-      const destructor = subscribe(() => { node?.setDirty(); }, abort.signal);
+      const destructor = subscribe(() => { node?._setDirty(); }, abort.signal);
       return () => {
         abort.abort();
         (async () => {

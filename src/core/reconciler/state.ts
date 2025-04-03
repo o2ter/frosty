@@ -115,7 +115,7 @@ export const reconciler = new class {
         yield {
           node,
           stack,
-          updated: node.updateIfNeed({
+          updated: node._updateIfNeed({
             renderer,
             stack,
             propsProvider,
