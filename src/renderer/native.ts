@@ -27,7 +27,7 @@ import { _createElement, PropsType } from '../core/types/runtime';
 import { ComponentNode, NativeElementType } from '../core/types/component';
 export { _Renderer } from '../core/renderer';
 
-export function _createElementNative(
+export function _createNativeElement(
   type: NativeElementType,
   props: PropsType,
   key?: string | number
