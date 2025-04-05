@@ -29,7 +29,7 @@ import { _ElementType, PropsType } from './runtime';
 
 type PropsProviderProps = PropsWithChildren<{
   callback: (v: {
-    type: _ElementType | NativeElementType,
+    type: _ElementType | typeof NativeElementType,
     props: PropsType
   }) => PropsType | undefined | null;
 }>;

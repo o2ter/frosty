@@ -76,7 +76,7 @@ export type _IntrinsicElements = MergeObject<
 > & { [x: string]: any; };
 
 export const _createElement = (
-  type: _ElementType | NativeElementType,
+  type: _ElementType | typeof NativeElementType,
   props: PropsType
 ) => {
   const { key, ..._props } = props;

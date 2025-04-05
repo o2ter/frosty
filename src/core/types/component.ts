@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { _ElementType, PropsType } from './runtime';
 
 export abstract class NativeElementType { }
@@ -30,7 +31,7 @@ export abstract class NativeElementType { }
 export class ComponentNode {
 
   /** @internal */
-  private _type: _ElementType | NativeElementType;
+  private _type: _ElementType | typeof NativeElementType;
 
   /** @internal */
   private _props: PropsType;
@@ -40,7 +41,7 @@ export class ComponentNode {
 
   /** @internal */
   constructor(
-    type: _ElementType | NativeElementType,
+    type: _ElementType | typeof NativeElementType,
     props: PropsType,
     key?: string | number
   ) {
@@ -59,10 +60,6 @@ export class ComponentNode {
 
   get key() {
     return this._key;
-  }
-
-  get isNative() {
-    return this._type instanceof NativeElementType;
   }
 
   /** @internal */

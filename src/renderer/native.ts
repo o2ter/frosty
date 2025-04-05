@@ -31,7 +31,7 @@ export { VNode } from '../core/reconciler/vnode';
 export { NativeElementType } from '../core/types/component';
 
 export function _createNativeElement(
-  type: NativeElementType,
+  type: typeof NativeElementType,
   props: PropsType,
   key?: string | number
 ): ComponentNode {
