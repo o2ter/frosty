@@ -52,6 +52,7 @@ export default [
         dir: './dist',
         format: 'cjs',
         sourcemap: true,
+        exports: 'named',
       },
       {
         entryFileNames: '[name].mjs',
@@ -59,6 +60,7 @@ export default [
         dir: './dist',
         format: 'esm',
         sourcemap: true,
+        exports: 'named',
       },
     ],
     plugins: [
@@ -75,6 +77,7 @@ export default [
         dir: './dist',
         format: 'es',
         sourcemap: true,
+        exports: 'named',
       },
     ],
     plugins: [
