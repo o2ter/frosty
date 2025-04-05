@@ -25,7 +25,9 @@
 
 import { _createElement, PropsType } from '../core/types/runtime';
 import { ComponentNode, NativeElementType } from '../core/types/component';
+
 export { _Renderer } from '../core/renderer';
+export { VNode } from '../core/reconciler/vnode';
 export { NativeElementType } from '../core/types/component';
 
 export function _createNativeElement(
