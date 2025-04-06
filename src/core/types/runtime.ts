@@ -39,7 +39,10 @@ export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
 
 export type PropsType = Record<string, any>;
 
-type EventHandler<T extends Event> = (event: T) => void;
+type EventHandler<E extends Event, C, T = EventTarget> = (event: E & {
+  currentTarget: C;
+  target: T;
+ }) => void;
 type EventMap = typeof globalEventHandlersEventMap;
 
 type _PropsOfInstance<Instance> = Omit<
@@ -48,9 +51,9 @@ type _PropsOfInstance<Instance> = Omit<
   }, boolean | number | string | null | undefined>,
   'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
 > & {
-  [x in keyof EventMap]?: EventHandler<NonNullable<EventMap[x]>>;
+  [x in keyof EventMap]?: EventHandler<NonNullable<EventMap[x]>, Instance>;
 } & {
-  [x in keyof EventMap as `${x}Capture`]?: EventHandler<NonNullable<EventMap[x]>>;
+  [x in keyof EventMap as `${x}Capture`]?: EventHandler<NonNullable<EventMap[x]>, Instance>;
 };
 
 type Combine<T, R> = Omit<T, keyof R> & R;

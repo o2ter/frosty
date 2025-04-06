@@ -31,10 +31,10 @@ export const App = () => {
       <button onClick={() => setCounter2(v => v + 1)}>Click</button>
       <span>{counter2}</span>
       <input value={text} onInput={(e) => {
-        setText(e.target.value);
+        setText(e.currentTarget.value);
       }} />
       <input value={text} onInput={(e) => {
-        setText(e.target.value);
+        setText(e.currentTarget.value);
       }} />
     </div>
   );
