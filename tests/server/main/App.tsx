@@ -5,10 +5,10 @@ export const App = () => {
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [text, setText] = useState('');
-  // useEffect(() => {
-  //   const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
-  //   return () => clearTimeout(handle);
-  // }, []);
+  useEffect(() => {
+    const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
+    return () => clearTimeout(handle);
+  }, []);
   return (
     <div
       style={{
@@ -30,10 +30,10 @@ export const App = () => {
       <div innerHTML={`<span>${counter}</span>`} />
       <button onClick={() => setCounter2(v => v + 1)}>Click</button>
       <span>{counter2}</span>
-      <input value={text} onChange={(e) => {
+      <input value={text} onInput={(e) => {
         setText(e.target.value);
       }} />
-      <input value={text} onChange={(e) => {
+      <input value={text} onInput={(e) => {
         setText(e.target.value);
       }} />
     </div>
