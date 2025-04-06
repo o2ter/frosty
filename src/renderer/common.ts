@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { VNode } from '../core/reconciler/vnode';
 import { myersSync } from 'myers.js';
-import { globalEventHandlersEventMap } from '../core/web/event';
+import { globalEvents } from '../core/web/event';
 import { ComponentNode } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
@@ -195,9 +195,9 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     this._tracked_props.set(element, _.keys(_props));
 
     for (const [key, value] of _.entries(props)) {
-      if (key in globalEventHandlersEventMap) {
+      if (_.includes(globalEvents, key)) {
         this.__updateEventListener(element, key, value, { capture: false });
-      } else if (key.endsWith('Capture') && key.slice(0, -7) in globalEventHandlersEventMap) {
+      } else if (key.endsWith('Capture') && _.includes(globalEvents, key.slice(0, -7))) {
         this.__updateEventListener(element, key, value, { capture: true });
       } else if (isWriteable(element, key)) {
         (element as any)[key] = value;

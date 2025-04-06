@@ -27,7 +27,7 @@ import { MergeObject, PickType, WritableKeys } from '@o2ter/utils-js';
 import { ComponentType, ElementNode, PropsWithChildren, RefAttribute } from './common';
 import { ClassName, StyleProp } from '../web/styles/types';
 import { _CSSProperties, CSSProperties } from '../web/styles/css';
-import { globalEventHandlersEventMap } from '../web/event';
+import { globalEvents } from '../web/event';
 import { ComponentNode, NativeElementType } from './component';
 import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap } from '../web/props';
 
@@ -43,7 +43,11 @@ type EventHandler<E extends Event, C, T = EventTarget> = (event: E & {
   currentTarget: C;
   target: T;
  }) => void;
-type EventMap = typeof globalEventHandlersEventMap;
+type EventMap = {
+  [ev in typeof globalEvents[number]]: ev extends `on${infer x}`
+  ? Lowercase<x> extends keyof GlobalEventHandlersEventMap ? GlobalEventHandlersEventMap[Lowercase<x>] : Event
+  : never;
+};
 
 type _PropsOfInstance<Instance> = Omit<
   PickType<{
@@ -51,9 +55,9 @@ type _PropsOfInstance<Instance> = Omit<
   }, boolean | number | string | null | undefined>,
   'className' | 'style' | 'innerText' | 'outerText' | 'outerHTML' | 'nodeValue'
 > & {
-  [x in keyof EventMap]?: EventHandler<NonNullable<EventMap[x]>, Instance>;
+  [x in keyof EventMap]?: EventHandler<EventMap[x], Instance>;
 } & {
-  [x in keyof EventMap as `${x}Capture`]?: EventHandler<NonNullable<EventMap[x]>, Instance>;
+  [x in keyof EventMap as `${x}Capture`]?: EventHandler<EventMap[x], Instance>;
 };
 
 type Combine<T, R> = Omit<T, keyof R> & R;
