@@ -75,7 +75,10 @@ export abstract class _Renderer<T> {
         node: VNode,
       ) => {
         const element = elements.get(node);
-        if (element) mergeRefs(node.props.ref)(element);
+        if (element) {
+          mergeRefs(node.props.ref)(element);
+          this._replaceChildren(node, element, children(node, elements));
+        }
         for (const item of node.children) {
           if (item instanceof VNode) _mount(item);
         }
@@ -94,7 +97,6 @@ export abstract class _Renderer<T> {
           });
         }
         mountState.set(node, state);
-        if (element) this._replaceChildren(node, element, children(node, elements));
       };
 
       for (const [node, state] of mountState) {
@@ -102,8 +104,8 @@ export abstract class _Renderer<T> {
         for (const { unmount } of state) unmount?.();
         mountState.delete(node);
       }
-      _mount(runtime.node);
       if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node) ?? children(runtime.node, elements)));
+      _mount(runtime.node);
     };
 
     const update = (elements?: Map<VNode, T>) => {
