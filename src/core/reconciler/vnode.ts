@@ -53,6 +53,7 @@ export class VNode {
 
   private _event: EventEmitter;
   private _props: PropsType = {};
+  private _error?: any;
   private _children: (VNode | string)[] = [];
   private _state?: VNodeState[];
   private _dirty = true;
@@ -97,6 +98,10 @@ export class VNode {
 
   get children() {
     return this._children;
+  }
+
+  get error() {
+    return this._error;
   }
 
   /** @internal */
@@ -156,6 +161,7 @@ export class VNode {
       });
       this._props = _.omit(props, 'children');
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
+      this._error = undefined;
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
         if (!(children[i] instanceof VNode)) continue;
@@ -163,7 +169,9 @@ export class VNode {
         item._component = children[i]._component;
       }
     } catch (error) {
+      this._props = {};
       this._children = [];
+      this._error = error;
       (async () => {
         try {
           const { onError, silent } = options.errorBoundary?.props ?? {};
