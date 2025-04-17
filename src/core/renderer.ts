@@ -112,7 +112,7 @@ export abstract class _Renderer<T> {
       this._beforeUpdate();
       const map = new Map<VNode, T>();
       for (const { node, stack, updated } of runtime.excute()) {
-        if (_.isFunction(node.type)) continue;
+        if (_.isFunction(node.type) || node.error) continue;
         if (updated) {
           let elem = elements?.get(node);
           if (elem) {
