@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { ComponentNode } from '../types/component';
+import { ComponentNode, NativeElementType } from '../types/component';
 import { Context } from '../types/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
@@ -131,26 +131,26 @@ export class VNode {
       const { type, props: _props } = this._component;
       const props = options.propsProvider.reduceRight((p, node) => node.props.callback({ type, props: p }), _props);
       let children: (VNode | string)[];
-      if (_.isFunction(type)) {
-        if (reconciler.isContext(type)) {
-          const { value } = props;
-          if (!equalDeps(this._content_value, value)) this._content_state += 1;
-          this._content_value = value;
-          children = this._resolve_children(type(props as any));
-        } else {
-          const { rendered, state } = reconciler.withHookState({
-            renderer: options.renderer,
-            node: this,
-            state: this._state,
-            stack: options.stack,
-            contextValue: options.contextValue,
-          }, (state) => ({ rendered: type(props), state }));
-          this._state = state.state;
-          this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));
-          children = this._resolve_children(rendered);
-        }
-      } else {
+      if (_.isString(type) || type.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children);
+      } else if (reconciler.isContext(type)) {
+        const { value } = props;
+        if (!equalDeps(this._content_value, value)) this._content_state += 1;
+        this._content_value = value;
+        children = this._resolve_children(type(props as any));
+      } else if (_.isFunction(type)) {
+        const { rendered, state } = reconciler.withHookState({
+          renderer: options.renderer,
+          node: this,
+          state: this._state,
+          stack: options.stack,
+          contextValue: options.contextValue,
+        }, (state) => ({ rendered: type(props), state }));
+        this._state = state.state;
+        this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));
+        children = this._resolve_children(rendered);
+      } else {
+        throw Error(`Invalid node type ${type}`);
       }
       const diff = myersSync(this._children, children, {
         compare: (lhs, rhs) => {
