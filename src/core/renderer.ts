@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { VNode } from './reconciler/vnode';
-import { ComponentNode } from './types/component';
+import { ComponentNode, NativeElementType } from './types/component';
 import { reconciler } from './reconciler/state';
 import nextick from 'nextick';
 import { mergeRefs } from './utils';
@@ -112,7 +112,8 @@ export abstract class _Renderer<T> {
       this._beforeUpdate();
       const map = new Map<VNode, T>();
       for (const { node, stack, updated } of runtime.excute()) {
-        if (_.isFunction(node.type) || node.error) continue;
+        if (node.error) continue;
+        if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) continue;
         if (updated) {
           let elem = elements?.get(node);
           if (elem) {
