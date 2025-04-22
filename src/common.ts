@@ -24,6 +24,7 @@
 //
 
 export * from './core/types/common';
+export { useDebounce, useAsyncDebounce } from './core/hooks/debounce';
 export { useEffect } from './core/hooks/effect';
 export { useContext } from './core/hooks/context';
 export { useMemo } from './core/hooks/memo';
