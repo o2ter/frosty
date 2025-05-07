@@ -62,6 +62,17 @@ type InterpolateOptions = {
 };
 
 /**
+ * Represents an interpolated value and provides a method to further interpolate it.
+ * 
+ * @property value - The interpolated value.
+ * @property interpolate - A function to interpolate the current value based on new input and output ranges.
+ */
+type AnimatedInterpolation = {
+  value: number;
+  interpolate: ({ inputRange, outputRange }: InterpolateOptions) => AnimatedInterpolation;
+};
+
+/**
  * A custom hook to manage animations with support for starting, stopping, and interpolating values.
  * 
  * @param initialValue - The initial value of the animation.
@@ -115,7 +126,7 @@ export const useAnimate = (initialValue: number) => {
       }
     }
   });
-  const interpolate = (value: number) => ({ inputRange, outputRange }: InterpolateOptions) => {
+  const interpolate = (value: number) => ({ inputRange, outputRange }: InterpolateOptions): AnimatedInterpolation => {
     const [inputMin, inputMax] = inputRange;
     const [outputMin, outputMax] = outputRange;
     const t = (value - inputMin) / (inputMax - inputMin);
