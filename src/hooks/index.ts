@@ -23,4 +23,5 @@
 //  THE SOFTWARE.
 //
 
+export * from './animate';
 export * from './asyncResource';
