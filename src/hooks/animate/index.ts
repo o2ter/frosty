@@ -90,7 +90,7 @@ const interpolate = (value: number) => ({ inputRange, outputRange }: Interpolate
 };
 
 /**
- * A custom hook to manage animations with support for starting, stopping, and interpolating values.
+ * A hook to manage animations with support for starting, stopping, and interpolating values.
  * 
  * @param initialValue - The initial value of the animation.
  * 
