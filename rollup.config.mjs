@@ -10,6 +10,7 @@ const rollupConfig = {
     index: 'src/index',
     'jsx-runtime': 'src/jsx-runtime',
     web: 'src/web/index',
+    hooks: 'src/hooks/index',
     dom: 'src/renderer/dom',
     'server-dom': 'src/renderer/server-dom',
     '_native': 'src/renderer/native',
