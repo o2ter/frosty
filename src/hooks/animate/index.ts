@@ -75,11 +75,17 @@ type AnimatedInterpolation = {
 const interpolate = (value: number) => ({ inputRange, outputRange }: InterpolateOptions): AnimatedInterpolation => {
   const [inputMin, inputMax] = inputRange;
   const [outputMin, outputMax] = outputRange;
+
+  // Safeguard against division by zero
+  if (inputMax === inputMin) {
+    throw new Error('Input range must have distinct values.');
+  }
+
   const t = (value - inputMin) / (inputMax - inputMin);
-  const r = outputMin + t * (outputMax - outputMin);
+  const interpolatedValue = outputMin + t * (outputMax - outputMin);
   return {
-    value: r,
-    interpolate: interpolate(r),
+    value: interpolatedValue,
+    interpolate: interpolate(interpolatedValue),
   };
 };
 
