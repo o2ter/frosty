@@ -132,7 +132,7 @@ export const useAnimate = (initialValue: number) => {
           } else if (t >= 0) {
             setValue((toValue - fromValue) * easing(_.clamp(t, 0, 1)) + fromValue);
           }
-        }, 1),
+        }, 16),
         callback: onCompleted,
       }
     }
