@@ -72,6 +72,17 @@ type AnimatedInterpolation = {
   interpolate: ({ inputRange, outputRange }: InterpolateOptions) => AnimatedInterpolation;
 };
 
+const interpolate = (value: number) => ({ inputRange, outputRange }: InterpolateOptions): AnimatedInterpolation => {
+  const [inputMin, inputMax] = inputRange;
+  const [outputMin, outputMax] = outputRange;
+  const t = (value - inputMin) / (inputMax - inputMin);
+  const r = outputMin + t * (outputMax - outputMin);
+  return {
+    value: r,
+    interpolate: interpolate(r),
+  };
+};
+
 /**
  * A custom hook to manage animations with support for starting, stopping, and interpolating values.
  * 
@@ -126,16 +137,6 @@ export const useAnimate = (initialValue: number) => {
       }
     }
   });
-  const interpolate = (value: number) => ({ inputRange, outputRange }: InterpolateOptions): AnimatedInterpolation => {
-    const [inputMin, inputMax] = inputRange;
-    const [outputMin, outputMax] = outputRange;
-    const t = (value - inputMin) / (inputMax - inputMin);
-    const r = outputMin + t * (outputMax - outputMin);
-    return {
-      value: r,
-      interpolate: interpolate(r),
-    };
-  };
   return {
     value,
     stop,
