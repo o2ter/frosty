@@ -65,7 +65,7 @@ const asyncDebounce = <T extends (...args: any) => PromiseLike<any>>(
 };
 
 /**
- * A custom hook that creates a debounced version of a function.
+ * A hook that creates a debounced version of a function.
  * The debounced function delays invoking the callback until after
  * the specified wait time has elapsed since the last time it was called.
  * 
@@ -95,7 +95,7 @@ export const useDebounce = <T extends (...args: any) => any>(
 }
 
 /**
- * A custom hook that creates a debounced version of an asynchronous function.
+ * A hook that creates a debounced version of an asynchronous function.
  * The debounced function delays invoking the callback until after
  * the specified wait time has elapsed since the last time it was called.
  * 

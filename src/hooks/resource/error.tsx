@@ -78,7 +78,7 @@ export const ResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
 }
 
 /**
- * A custom hook to access the list of asynchronous resource errors.
+ * A hook to access the list of asynchronous resource errors.
  * 
  * This hook allows components to retrieve the current list of errors being tracked
  * in the `ResourceErrors` context. It must be used within a component that is

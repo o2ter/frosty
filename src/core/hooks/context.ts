@@ -27,7 +27,7 @@ import { Context } from '../types/context';
 import { reconciler } from '../reconciler/state';
 
 /**
- * A custom hook that retrieves the current value of a context and optionally applies
+ * A hook that retrieves the current value of a context and optionally applies
  * a selector function to transform the context value. This hook ensures that the component
  * subscribes to the context and re-renders when the context value changes.
  *

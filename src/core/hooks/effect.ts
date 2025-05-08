@@ -28,7 +28,7 @@ import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../reconciler/hooks';
 
 /**
- * A custom hook that manages side effects with support for an `AbortSignal`.
+ * A hook that manages side effects with support for an `AbortSignal`.
  * It ensures proper cleanup logic and handles asynchronous operations effectively.
  *
  * @param effect - 

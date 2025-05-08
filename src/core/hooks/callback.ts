@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { _useMemo } from '../reconciler/hooks';
 
 /**
- * A custom hook that memoizes a callback function, ensuring that it only changes
+ * A hook that memoizes a callback function, ensuring that it only changes
  * if its dependencies change. This is useful for optimizing performance by preventing
  * unnecessary re-creations of functions.
  *
