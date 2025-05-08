@@ -24,4 +24,4 @@
 //
 
 export * from './animate';
-export * from './asyncResource';
+export * from './resource';

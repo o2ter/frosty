@@ -32,7 +32,7 @@ import { useContext } from '../../core/hooks/context';
 import { useCallback } from '../../core/hooks/callback';
 import { useAsyncDebounce } from '../../core/hooks/debounce';
 import { Context as ErrorContext } from './error';
-export { AsyncResourceErrors, useAsyncResourceErrors } from './error';
+export { ResourceErrors, useResourceErrors } from './error';
 
 /**
  * A hook to manage asynchronous resources with support for debouncing, error handling, and state management.
@@ -54,7 +54,7 @@ export { AsyncResourceErrors, useAsyncResourceErrors } from './error';
  * - `next`: A function to fetch the next set of data (for paginated resources).
  * - `setResource`: A function to manually update the resource state.
  */
-export const useAsyncResource = <T, P = any>(
+export const useResource = <T, P = any>(
   config: Fetch<T, P> | Config<Fetch<T, P>>,
   deps?: any,
 ) => {
@@ -168,15 +168,15 @@ export const useAsyncResource = <T, P = any>(
  * @param config - The fetch function or a configuration object containing the fetch function and optional debounce settings.
  * @param deps - An optional dependency array to control when the resource is refreshed.
  * 
- * @returns An object containing the same properties as `useAsyncResource`, but optimized for iterable resources.
+ * @returns An object containing the same properties as `useResource`, but optimized for iterable resources.
  */
-export const useAsyncIterableResource = <T, P = any>(
+export const useIterableResource = <T, P = any>(
   config: FetchWithIterable<T, P> | Config<FetchWithIterable<T, P>>,
   deps?: any,
 ) => {
   const fetch = _.isFunction(config) ? config : config.fetch;
   const debounce = _.isFunction(config) ? {} : config.debounce;
-  const { next, ...result } = useAsyncResource<T[]>({
+  const { next, ...result } = useResource<T[]>({
     fetch: async ({ dispatch, abortSignal, param }) => {
       const resource = await fetch({ abortSignal, param });
       for await (const item of resource) {

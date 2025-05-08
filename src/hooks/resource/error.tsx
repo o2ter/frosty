@@ -52,22 +52,22 @@ export const Context = createContext<{
  * 
  * This component provides a shared context for tracking errors encountered during
  * asynchronous operations. It allows child components to access and manage these errors
- * using the `useAsyncResourceErrors` hook.
+ * using the `useResourceErrors` hook.
  * 
  * ### Usage:
  * Wrap your application or specific parts of it with this component to enable error tracking:
  * 
  * ```tsx
- * <AsyncResourceErrors>
+ * <ResourceErrors>
  *   <YourComponent />
- * </AsyncResourceErrors>
+ * </ResourceErrors>
  * ```
  * 
  * @param children - The child components that will have access to the error context.
  * 
  * @returns A context provider that wraps the provided children.
  */
-export const AsyncResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
+export const ResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
   children
 }) => {
   const [errors, setErrors] = useState<Errors>([]);
@@ -81,12 +81,12 @@ export const AsyncResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
  * A custom hook to access the list of asynchronous resource errors.
  * 
  * This hook allows components to retrieve the current list of errors being tracked
- * in the `AsyncResourceErrors` context. It must be used within a component that is
- * a descendant of the `AsyncResourceErrors` provider.
+ * in the `ResourceErrors` context. It must be used within a component that is
+ * a descendant of the `ResourceErrors` provider.
  * 
  * ### Usage:
  * ```tsx
- * const errors = useAsyncResourceErrors();
+ * const errors = useResourceErrors();
  * 
  * errors.forEach(({ token, error, refresh }) => {
  *   console.error(`Error [${token}]:`, error);
@@ -99,4 +99,4 @@ export const AsyncResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
  * - `error`: The error object or message.
  * - `refresh`: A function to retry the operation that caused the error.
  */
-export const useAsyncResourceErrors = () => useContext(Context).errors;
+export const useResourceErrors = () => useContext(Context).errors;
