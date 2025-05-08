@@ -29,7 +29,7 @@ import { _DOMRenderer } from '../renderer/common';
 
 export const useDocument = () => {
   const state = reconciler.currentHookState;
-  if (!state) throw Error('useSyncExternalStore must be used within a render function.');
+  if (!state) throw Error('useDocument must be used within a render function.');
   if (state.renderer instanceof _DOMRenderer) {
     return state.renderer.doc;
   } else {
