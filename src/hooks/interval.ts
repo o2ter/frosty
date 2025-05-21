@@ -26,7 +26,7 @@
 import { useEffect } from '../core/hooks/effect';
 
 /**
- * A custom hook that repeatedly calls the provided callback function at the specified interval.
+ * A hook that repeatedly calls the provided callback function at the specified interval.
  * 
  * @param callback - The function to be executed at each interval.
  * @param ms - The delay in milliseconds between each call to the callback. If not provided, the interval will not be set.
