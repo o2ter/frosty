@@ -45,20 +45,36 @@ class Store<T> {
   #listeners = new Set<(oldVal: T, newVal: T) => void>();
   #value: T;
 
+  /** @internal */
   constructor(initialValue: T) {
     this.#value = initialValue;
   }
 
+  /**
+   * Gets the current value of the store.
+   * 
+   * @returns The current value of the store.
+   */
   get value() {
     return this.#value;
   }
 
+  /**
+   * Sets the value of the store and notifies all subscribers.
+   * 
+   * @param dispatch - The new value or a function that returns the new value.
+   */
   setValue(dispatch: SetStateAction<T>) {
     const oldVal = this.#value;
     dispatch = _.isFunction(dispatch) ? dispatch(this.#value) : this.#value;
     this.#listeners.forEach(listener => void listener(oldVal, this.#value));
   }
 
+  /**
+   * Sets the value of the store and notifies all subscribers.
+   * 
+   * @param dispatch - The new value or a function that returns the new value.
+   */
   subscribe(callback: (oldVal: T, newVal: T) => void) {
     this.#listeners.add(callback);
     return () => { this.#listeners.delete(callback); };
