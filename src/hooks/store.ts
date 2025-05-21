@@ -71,9 +71,10 @@ class Store<T> {
   }
 
   /**
-   * Sets the value of the store and notifies all subscribers.
+   * Subscribes to changes in the store's value.
    * 
-   * @param dispatch - The new value or a function that returns the new value.
+   * @param callback - The function to call when the value changes.
+   * @returns A function to unsubscribe from the store.
    */
   subscribe(callback: (oldVal: T, newVal: T) => void) {
     this.#listeners.add(callback);
