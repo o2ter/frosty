@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  animate.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,9 +24,9 @@
 //
 
 import _ from 'lodash';
-import { useRef } from '../../core/hooks/ref';
-import { useState } from '../../core/hooks/state';
-import { useCallback } from '../../core/hooks/callback';
+import { useRef } from '../core/hooks/ref';
+import { useState } from '../core/hooks/state';
+import { useCallback } from '../core/hooks/callback';
 
 /**
  * Options for configuring the animation.
