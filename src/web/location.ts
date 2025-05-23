@@ -40,7 +40,7 @@ const emitter = new EventEmitter();
 export const useLocation = () => {
   const document = useDocument();
   const result = (history?: History) => ({
-    ..._.pick(document.location, 'pathname', 'search', 'hash'),
+    ..._.pick(document.location, 'hash', 'host', 'hostname', 'href', 'origin', 'pathname', 'port', 'protocol', 'search'),
     state: history?.state ?? null,
     back: () => {
       history?.back();
