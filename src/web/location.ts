@@ -32,6 +32,11 @@ import { useDocument } from './document';
 
 const emitter = new EventEmitter();
 
+/**
+ * A hook that provides the current location object and methods to manipulate the browser history.
+ * 
+ * @returns The current location object, which contains the pathname, search, hash, state, and methods to manipulate the history.
+ */
 export const useLocation = () => {
   const document = useDocument();
   const result = (history?: History) => ({
@@ -66,6 +71,11 @@ export const useLocation = () => {
 
 type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
 
+/**
+ * A hook that provides a way to manage URL search parameters.
+ * 
+ * @returns An array containing the current search parameters and a function to set new search parameters.
+ */
 export const useSearchParams = () => {
   const location = useLocation();
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
