@@ -24,6 +24,8 @@
 //
 
 import _ from 'lodash';
+import { useMemo } from '../core/hooks/memo';
+import { useCallback } from '../core/hooks/callback';
 import { useSyncExternalStore } from '../core/hooks/sync';
 import { EventEmitter } from '../core/reconciler/events';
 import { useDocument } from './document';
@@ -60,4 +62,16 @@ export const useLocation = () => {
       event.remove();
     }
   }, () => result(window.history), () => result());
+}
+
+type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
+
+export const useSearchParams = () => {
+  const location = useLocation();
+  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const setSearchParams = useCallback((params: URLSearchParamsInit) => {
+    const newParams = new URLSearchParams(params);
+    location.pushState(location.state, `?${newParams.toString()}`);
+  });
+  return [searchParams, setSearchParams];
 }
