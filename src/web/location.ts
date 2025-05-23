@@ -33,9 +33,30 @@ import { useDocument } from './document';
 const emitter = new EventEmitter();
 
 /**
- * A hook that provides the current location object and methods to manipulate the browser history.
- * 
- * @returns The current location object, which contains the pathname, search, hash, state, and methods to manipulate the history.
+ * A hook that provides the current browser location and methods to manipulate the browser history.
+ *
+ * @returns An object with the following properties and methods:
+ * - `hash`: The fragment identifier of the URL.
+ * - `host`: The hostname and port number.
+ * - `hostname`: The domain name.
+ * - `href`: The full URL.
+ * - `origin`: The protocol, hostname, and port.
+ * - `pathname`: The path of the URL.
+ * - `port`: The port number.
+ * - `protocol`: The protocol scheme.
+ * - `search`: The query string.
+ * - `state`: The current state object associated with the history entry.
+ * - `back()`: Navigates to the previous entry in the history stack.
+ * - `forward()`: Navigates to the next entry in the history stack.
+ * - `pushState(data, url)`: Pushes a new entry onto the history stack.
+ * - `replaceState(data, url)`: Replaces the current history entry.
+ *
+ * The hook subscribes to changes in the browser's history and location, causing components to re-render when navigation occurs.
+ *
+ * @example
+ * const location = useLocation();
+ * console.log(location.pathname); // e.g., "/about"
+ * location.pushState({ some: 'state' }, '/new-path');
  */
 export const useLocation = () => {
   const document = useDocument();
@@ -72,9 +93,19 @@ export const useLocation = () => {
 type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
 
 /**
- * A hook that provides a way to manage URL search parameters.
- * 
- * @returns An array containing the current search parameters and a function to set new search parameters.
+ * A hook for reading and updating the URL's query string (search parameters).
+ *
+ * @returns A tuple:
+ *   - The first element is a `URLSearchParams` instance representing the current query string.
+ *   - The second element is a function to update the search parameters, which accepts any valid
+ *     `URLSearchParams` initializer (string, array, or object).
+ *
+ * Updating the search parameters will push a new history entry and update the URL in the address bar.
+ *
+ * @example
+ * const [searchParams, setSearchParams] = useSearchParams();
+ * const page = searchParams.get('page');
+ * setSearchParams({ page: '2', filter: 'active' });
  */
 export const useSearchParams = () => {
   const location = useLocation();
