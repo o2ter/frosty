@@ -27,3 +27,4 @@ export * from './observer';
 export * from './storage';
 export * from './window';
 export * from './document';
+export * from './location';
