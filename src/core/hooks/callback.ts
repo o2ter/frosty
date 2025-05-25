@@ -33,7 +33,7 @@ import { _useMemo } from '../reconciler/hooks';
  *
  * @template T - The type of the callback function.
  * @param callback - The callback function to be memoized.
- * @param deps - An optional array of dependencies. If provided, the callback
+ * @param deps - An optional dependencies. If provided, the callback
  *               will only be updated when one of these dependencies changes.
  *               If not provided, the callback will remain stable.
  * @returns - A stable version of the callback function that will not change unless

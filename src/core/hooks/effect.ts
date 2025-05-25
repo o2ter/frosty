@@ -36,7 +36,7 @@ import { _useEffect } from '../reconciler/hooks';
  *   It can optionally return a cleanup function or a promise that resolves to a cleanup function.
  *
  * @param deps - 
- *   An optional array of dependencies that determines when the effect should be re-executed.
+ *   An optional dependencies that determines when the effect should be re-executed.
  *
  * @example
  * useEffect((signal) => {
