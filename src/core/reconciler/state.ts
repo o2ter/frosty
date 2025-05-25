@@ -67,16 +67,12 @@ export const reconciler = new class {
   /** @internal */
   _currentHookState: HookState | undefined;
 
-  get contextDefaultValue() {
-    return _contextDefaultValue;
-  }
-
   get currentHookState() {
     return this._currentHookState;
   }
 
   isContext(type: any): type is Context<any> {
-    return _.isFunction(type) && _contextDefaultValue.has(type as any);
+    return _contextDefaultValue.has(type as any);
   }
 
   withHookState<R = void>(
@@ -106,7 +102,7 @@ export const reconciler = new class {
         node: root,
         stack: [],
         propsProvider: [],
-        contextValue: new Map(_contextDefaultValue.entries().map(([k, v]) => [k, { value: v, state: 0, node: root }])),
+        contextValue: new Map(),
       }];
       let item;
       while (item = items.shift()) {

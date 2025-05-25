@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { Context } from '../types/context';
+import { _contextDefaultValue, Context } from '../types/context';
 import { reconciler } from '../reconciler/state';
 
 /**
@@ -58,5 +58,6 @@ export const useContext = <T, R = T>(
   if (!state) throw Error('useContext must be used within a render function.');
   const { contextValue, listens } = state;
   listens.add(context);
-  return selector(contextValue.get(context)?.value);
+  const { value = _contextDefaultValue.get(context) } = contextValue.get(context) ?? {};
+  return selector(value);
 }

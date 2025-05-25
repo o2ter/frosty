@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { ComponentType, ElementNode } from './common';
 import { useContext } from '../hooks/context';
 
-export const _contextDefaultValue = new Map<Context<any>, any>();
+export const _contextDefaultValue = new WeakMap<Context<any>, any>();
 
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
 export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
