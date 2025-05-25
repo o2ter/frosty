@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
 import { ComponentType, PropsWithChildren, SetStateAction } from '../../core/types/common';
-import { createContext } from '~/core/hooks/context';
+import { createContext } from '../../core/hooks/context';
 import { useContext } from '../../core/hooks/context';
 import { useState } from '../../core/hooks/state';
 import { useMemo } from '../../core/hooks/memo';
