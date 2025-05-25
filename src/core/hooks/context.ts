@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { reconciler } from '../reconciler/state';
-import { ComponentType, ElementNode } from '~/common';
+import { ComponentType, ElementNode } from '../types/common';
 
 export const _contextDefaultValue = new WeakMap<Context<any>, any>();
 
