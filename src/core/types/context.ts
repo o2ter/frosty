@@ -29,6 +29,10 @@ import { useContext } from '../hooks/context';
 
 export const _contextDefaultValue = new WeakMap<Context<any>, any>();
 
+export const isContext = (type: any): type is Context<any> => {
+  return _contextDefaultValue.has(type as any);
+}
+
 export type Context<Value> = ReturnType<typeof _createContext<Value>>;
 export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
 

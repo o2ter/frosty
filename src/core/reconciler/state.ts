@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ComponentNode } from '../types/component';
-import { _contextDefaultValue, Context } from '../types/context';
+import { Context, isContext } from '../types/context';
 import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
 import { PropsProvider } from '../types/props';
@@ -69,10 +69,6 @@ export const reconciler = new class {
 
   get currentHookState() {
     return this._currentHookState;
-  }
-
-  isContext(type: any): type is Context<any> {
-    return _contextDefaultValue.has(type as any);
   }
 
   withHookState<R = void>(
@@ -121,7 +117,7 @@ export const reconciler = new class {
         };
 
         let _contextValue = contextValue;
-        if (reconciler.isContext(node.type)) {
+        if (isContext(node.type)) {
           _contextValue = new Map(_contextValue);
           _contextValue.set(node.type, {
             value: node.props.value,

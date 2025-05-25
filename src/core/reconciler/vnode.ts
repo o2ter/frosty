@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ComponentNode, NativeElementType } from '../types/component';
-import { Context } from '../types/context';
+import { Context, isContext } from '../types/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
@@ -133,7 +133,7 @@ export class VNode {
       let children: (VNode | string)[];
       if (_.isString(type) || type.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children);
-      } else if (reconciler.isContext(type)) {
+      } else if (isContext(type)) {
         const { value } = props;
         if (!equalDeps(this._content_value, value)) this._content_state += 1;
         this._content_value = value;
