@@ -23,8 +23,53 @@
 //  THE SOFTWARE.
 //
 
-import { _contextDefaultValue, Context, isContext } from '../types/context';
+import _ from 'lodash';
 import { reconciler } from '../reconciler/state';
+import { ComponentType, ElementNode } from '~/common';
+
+export const _contextDefaultValue = new WeakMap<Context<any>, any>();
+
+export const isContext = (type: any): type is Context<any> => {
+  return _contextDefaultValue.has(type as any);
+};
+
+export type Context<Value> = ReturnType<typeof _createContext<Value>>;
+export type ContextType<C extends Context<any>> = C extends Context<infer T> ? T : never;
+
+const _createContext = <Value extends unknown>(defaultValue: Value) => {
+  const _context: ComponentType<{
+    value: Value;
+    children?: ElementNode | ((value: Value) => ElementNode);
+  }> = ({ value, children }) => {
+    return _.isFunction(children) ? children(value) : children;
+  };
+  const Consumer: ComponentType<{
+    children: (value: Value) => ElementNode;
+  }> = ({ children }) => {
+    const value = useContext(_context as Context<Value>);
+    return children(value);
+  };
+  _contextDefaultValue.set(_context as Context<Value>, defaultValue);
+  return _.assign(_context, { Consumer });
+};
+
+/**
+ * Creates a new context object with an optional default value.
+ *
+ * A context object allows you to share a value across a component tree
+ * without explicitly passing it as a prop to every level.
+ *
+ * @template Value - The type of the value to be stored in the context.
+ * @param - The default value for the context.
+ * @returns A context object that can be used to provide and consume the value.
+ */
+
+export function createContext<Value>(defaultValue: Value): Context<Value>;
+export function createContext<Value = undefined>(): Context<Value | undefined>;
+
+export function createContext(defaultValue?: any) {
+  return _createContext(defaultValue);
+}
 
 /**
  * A hook that retrieves the current value of a context and optionally applies
@@ -60,4 +105,4 @@ export const useContext = <T, R = T>(
   listens.add(context);
   const { value = _contextDefaultValue.get(context) } = contextValue.get(context) ?? {};
   return selector(value);
-}
+};

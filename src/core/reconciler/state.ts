@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ComponentNode } from '../types/component';
-import { Context, isContext } from '../types/context';
+import { Context, isContext } from '../hooks/context';
 import { _ContextState, VNode, VNodeState } from './vnode';
 import { EventEmitter } from './events';
 import { PropsProvider } from '../types/props';

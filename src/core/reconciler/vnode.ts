@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ComponentNode, NativeElementType } from '../types/component';
-import { Context, isContext } from '../types/context';
+import { Context, isContext } from '../hooks/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
