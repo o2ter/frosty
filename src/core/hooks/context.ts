@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { reconciler } from '../reconciler/state';
 import { ComponentType, ElementNode } from '../types/common';
 
-export const _contextDefaultValue = new WeakMap<Context<any>, any>();
+const _contextDefaultValue = new WeakMap<Context<any>, any>();
 
 export const isContext = (type: any): type is Context<any> => {
   return _contextDefaultValue.has(type as any);
