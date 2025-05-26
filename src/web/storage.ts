@@ -30,6 +30,10 @@ import { SetStateAction } from '../core/types/common';
 import { EventEmitter } from '../core/reconciler/events';
 
 const emitters = new WeakMap<Storage, EventEmitter>();
+const emitterFor = (storage: Storage) => {
+  if (!emitters.has(storage)) emitters.set(storage, new EventEmitter());
+  return emitters.get(storage)!;
+}
 
 const _useStorage = (
   storage: () => Storage,
@@ -38,8 +42,7 @@ const _useStorage = (
 ) => {
   const state = useSyncExternalStore((onStoreChange) => {
     const _storage = storage();
-    if (!emitters.has(_storage)) emitters.set(_storage, new EventEmitter());
-    const emitter = emitters.get(_storage)!;
+    const emitter = emitterFor(_storage);
     const callback = (ev: StorageEvent) => { 
       if (!ev.storageArea || ev.storageArea === _storage) onStoreChange();
     };
@@ -53,8 +56,7 @@ const _useStorage = (
   const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
     try {
       const _storage = storage();
-      if (!emitters.has(_storage)) emitters.set(_storage, new EventEmitter());
-      const emitter = emitters.get(_storage)!;
+      const emitter = emitterFor(_storage);
       if (!_storage) return;
       const newValue = _.isFunction(v) ? v(state) : v;
       if (_.isNil(newValue)) {

@@ -31,6 +31,10 @@ import { EventEmitter } from '../core/reconciler/events';
 import { useDocument } from './document';
 
 const emitters = new WeakMap<Document, EventEmitter>();
+const emitterFor = (document: Document) => {
+  if (!emitters.has(document)) emitters.set(document, new EventEmitter());
+  return emitters.get(document)!;
+}
 
 /**
  * A hook that provides the current browser location and methods to manipulate the browser history.
@@ -60,8 +64,7 @@ const emitters = new WeakMap<Document, EventEmitter>();
  */
 export const useLocation = () => {
   const document = useDocument();
-  if (!emitters.has(document)) emitters.set(document, new EventEmitter());
-  const emitter = emitters.get(document)!;
+  const emitter = emitterFor(document);
   const result = (history?: History) => ({
     ..._.pick(document.location, 'hash', 'host', 'hostname', 'href', 'origin', 'pathname', 'port', 'protocol', 'search'),
     state: history?.state ?? null,
