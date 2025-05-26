@@ -56,7 +56,6 @@ const _useStorage = (
   const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
     try {
       const _storage = storage();
-      if (!_storage) return;
       const newValue = _.isFunction(v) ? v(state) : v;
       if (_.isNil(newValue)) {
         _storage.removeItem(key);
