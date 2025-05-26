@@ -27,6 +27,9 @@ import _ from 'lodash';
 import { useSyncExternalStore } from '../core/hooks/sync';
 import { useCallback } from '../core/hooks/callback';
 import { SetStateAction } from '../core/types/common';
+import { EventEmitter } from '../core/reconciler/events';
+
+const emitters = new WeakMap<Storage, EventEmitter>();
 
 const _useStorage = (
   storage: () => Storage,
@@ -35,15 +38,23 @@ const _useStorage = (
 ) => {
   const state = useSyncExternalStore((onStoreChange) => {
     const _storage = storage();
+    if (!emitters.has(_storage)) emitters.set(_storage, new EventEmitter());
+    const emitter = emitters.get(_storage)!;
     const callback = (ev: StorageEvent) => { 
       if (!ev.storageArea || ev.storageArea === _storage) onStoreChange();
     };
     window.addEventListener('storage', callback);
-    return () => window.removeEventListener('storage', callback);
+    const event = emitter.register('change', () => { onStoreChange() });
+    return () => {
+      window.removeEventListener('storage', callback);
+      event.remove();
+    }
   }, () => storage().getItem(key), () => undefined);
   const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
     try {
       const _storage = storage();
+      if (!emitters.has(_storage)) emitters.set(_storage, new EventEmitter());
+      const emitter = emitters.get(_storage)!;
       if (!_storage) return;
       const newValue = _.isFunction(v) ? v(state) : v;
       if (_.isNil(newValue)) {
@@ -51,7 +62,7 @@ const _useStorage = (
       } else {
         _storage.setItem(key, newValue);
       }
-      window.dispatchEvent(new StorageEvent('storage', { key, newValue, storageArea: _storage }));
+      emitter.emit('change');
     } catch (e) {
       console.error(e);
     }
