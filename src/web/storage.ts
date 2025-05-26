@@ -56,7 +56,6 @@ const _useStorage = (
   const setState = useCallback((v: SetStateAction<string | null | undefined>) => {
     try {
       const _storage = storage();
-      const emitter = emitterFor(_storage);
       if (!_storage) return;
       const newValue = _.isFunction(v) ? v(state) : v;
       if (_.isNil(newValue)) {
@@ -64,6 +63,7 @@ const _useStorage = (
       } else {
         _storage.setItem(key, newValue);
       }
+      const emitter = emitterFor(_storage);
       emitter.emit('change');
     } catch (e) {
       console.error(e);
