@@ -56,7 +56,7 @@ const _useStorage = (
       console.error(e);
     }
   }, [key]);
-  return [state ?? initialValue, setState] as const;
+  return [state ?? initialValue ?? null, setState] as const;
 }
 
 export const useLocalStorage = (
