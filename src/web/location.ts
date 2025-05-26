@@ -30,7 +30,7 @@ import { useSyncExternalStore } from '../core/hooks/sync';
 import { EventEmitter } from '../core/reconciler/events';
 import { useDocument } from './document';
 
-const emitter = new EventEmitter();
+const emitters = new WeakMap<Document, EventEmitter>();
 
 /**
  * A hook that provides the current browser location and methods to manipulate the browser history.
@@ -60,6 +60,8 @@ const emitter = new EventEmitter();
  */
 export const useLocation = () => {
   const document = useDocument();
+  if (!emitters.has(document)) emitters.set(document, new EventEmitter());
+  const emitter = emitters.get(document)!;
   const result = (history?: History) => ({
     ..._.pick(document.location, 'hash', 'host', 'hostname', 'href', 'origin', 'pathname', 'port', 'protocol', 'search'),
     state: history?.state ?? null,
