@@ -23,8 +23,9 @@
 //  THE SOFTWARE.
 //
 
-export * from './observer';
-export * from './storage';
-export * from './window';
 export * from './document';
 export * from './location';
+export * from './observer';
+export * from './online';
+export * from './storage';
+export * from './window';
