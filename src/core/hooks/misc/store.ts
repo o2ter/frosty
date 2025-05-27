@@ -24,8 +24,8 @@
 //
 
 import _ from 'lodash';
-import { SetStateAction } from '../core/types/common';
-import { useSyncExternalStore } from '../core/hooks/sync';
+import { SetStateAction } from '../../types/common';
+import { useSyncExternalStore } from '../sync';
 
 /**
  * A class representing a store that holds a value and allows for subscription

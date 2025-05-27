@@ -25,11 +25,11 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
-import { ComponentType, PropsWithChildren, SetStateAction } from '../../core/types/common';
-import { createContext } from '../../core/hooks/context';
-import { useContext } from '../../core/hooks/context';
-import { useState } from '../../core/hooks/state';
-import { useMemo } from '../../core/hooks/memo';
+import { ComponentType, PropsWithChildren, SetStateAction } from '../../../types/common';
+import { createContext } from '../../context';
+import { useContext } from '../../context';
+import { useState } from '../../state';
+import { useMemo } from '../../memo';
 
 type Errors = {
   token: string;

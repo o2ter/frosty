@@ -24,9 +24,9 @@
 //
 
 import _ from 'lodash';
-import { useRef } from '../core/hooks/ref';
-import { useState } from '../core/hooks/state';
-import { useCallback } from '../core/hooks/callback';
+import { useRef } from '../ref';
+import { useState } from '../state';
+import { useCallback } from '../callback';
 
 /**
  * Options for configuring the animation.

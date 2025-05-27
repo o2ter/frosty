@@ -24,13 +24,13 @@
 //
 
 import _ from 'lodash';
-import { SetStateAction } from '../../core/types/common';
+import { SetStateAction } from '../../../types/common';
 import { Config, Fetch, FetchWithIterable } from './types';
-import { useState } from '../../core/hooks/state';
-import { useEffect } from '../../core/hooks/effect';
-import { useContext } from '../../core/hooks/context';
-import { useCallback } from '../../core/hooks/callback';
-import { useAsyncDebounce } from '../../core/hooks/debounce';
+import { useState } from '../../state';
+import { useEffect } from '../../effect';
+import { useContext } from '../../context';
+import { useCallback } from '../../callback';
+import { useAsyncDebounce } from '../../debounce';
 import { Context as ErrorContext } from './error';
 export { ResourceErrors, useResourceErrors } from './error';
 
