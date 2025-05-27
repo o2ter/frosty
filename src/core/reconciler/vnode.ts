@@ -42,7 +42,7 @@ export type VNodeState = {
 
 export type _ContextState = {
   value: any;
-  state: number;
+  state: string;
   node: VNode;
 };
 
@@ -60,7 +60,7 @@ export class VNode {
   private _listens = new Map<Context<any>, Omit<_ContextState, 'value'>>();
 
   /** @internal */
-  _content_state = 0;
+  _content_state = _.uniqueId();
   private _content_value?: any;
 
   /** @internal */
@@ -135,7 +135,7 @@ export class VNode {
         children = this._resolve_children(props.children);
       } else if (isContext(type)) {
         const { value } = props;
-        if (!equalDeps(this._content_value, value)) this._content_state += 1;
+        if (!equalDeps(this._content_value, value)) this._content_state = _.uniqueId();
         this._content_value = value;
         children = this._resolve_children(type(props as any));
       } else if (_.isFunction(type)) {
