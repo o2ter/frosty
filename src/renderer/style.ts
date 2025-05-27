@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { CSSProperties } from '../core/web/styles/css';
 import { processCss } from '../core/web/styles/process';
+import { uniqueId } from '../core/utils';
 
 type Rule = {
   name: string;
@@ -62,7 +63,7 @@ export class StyleBuilder {
     for (const rule of this.registry) {
       if (rule._css) continue;
       const { name, style: { '@keyframes': keyframes, ...style } } = rule;
-      const animationName = keyframes ? `__a_${_.uniqueId()}` : undefined;
+      const animationName = keyframes ? `__a_${uniqueId()}` : undefined;
       const _style: any = {
         [`.${name}`]: {
           ..._.omit(style, '@keyframes'),
@@ -97,7 +98,7 @@ export class StyleBuilder {
       const found = _.findIndex(this.registry, x => x._style === _style, searchIdx);
       searchIdx = found === -1 ? this.registry.length : found;
       if (found === -1) {
-        const name = `__v_${_.uniqueId()}`;
+        const name = `__v_${uniqueId()}`;
         this.registry.push({ name, style, _style });
         this.clearCache();
         className.push(name);

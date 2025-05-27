@@ -36,3 +36,5 @@ export const mergeRefs = <T>(...refs: Ref<T>[]) => (x: T) => {
     }
   }
 }
+
+export const uniqueId = () => _.uniqueId();

@@ -32,6 +32,7 @@ import { EventEmitter } from './events';
 import { equalDeps } from './utils';
 import { _Renderer } from '../renderer';
 import { PropsType } from '../types/runtime';
+import { uniqueId } from '../utils';
 
 export type VNodeState = {
   hook: string;
@@ -60,7 +61,7 @@ export class VNode {
   private _listens = new Map<Context<any>, Omit<_ContextState, 'value'>>();
 
   /** @internal */
-  _content_state = _.uniqueId();
+  _content_state = uniqueId();
   private _content_value?: any;
 
   /** @internal */
@@ -135,7 +136,7 @@ export class VNode {
         children = this._resolve_children(props.children);
       } else if (isContext(type)) {
         const { value } = props;
-        if (!equalDeps(this._content_value, value)) this._content_state = _.uniqueId();
+        if (!equalDeps(this._content_value, value)) this._content_state = uniqueId();
         this._content_value = value;
         children = this._resolve_children(type(props as any));
       } else if (_.isFunction(type)) {

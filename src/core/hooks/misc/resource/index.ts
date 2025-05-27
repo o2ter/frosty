@@ -32,6 +32,7 @@ import { useContext } from '../../context';
 import { useCallback } from '../../callback';
 import { useAsyncDebounce } from '../../debounce';
 import { Context as ErrorContext } from './error';
+import { uniqueId } from '../../../../core/utils';
 export { ResourceErrors, useResourceErrors } from './error';
 
 /**
@@ -89,7 +90,7 @@ export const useResource = <T, P = any>(
     prevState?: T,
   ) => {
 
-    const token = _.uniqueId();
+    const token = uniqueId();
     setState(state => ({ ...state, type, token, abort, flag: !reset }));
 
     try {
@@ -134,7 +135,7 @@ export const useResource = <T, P = any>(
 
   const { setErrors } = useContext(ErrorContext);
   useEffect(() => {
-    const { type, abort, token = _.uniqueId(), error } = state;
+    const { type, abort, token = uniqueId(), error } = state;
     if (!error) return;
     setErrors(v => [...v, {
       token,
