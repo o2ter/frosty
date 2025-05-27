@@ -37,4 +37,10 @@ export const mergeRefs = <T>(...refs: Ref<T>[]) => (x: T) => {
   }
 }
 
-export const uniqueId = () => _.uniqueId();
+let counter = 0;
+
+export const uniqueId = () => [
+  Date.now().toString(36),
+  (counter++).toString(36),
+  Math.random().toString(36).slice(2)
+].join('');
