@@ -85,11 +85,10 @@ export const useLocation = () => {
     },
   });
   return useSyncExternalStore((onStoreChange) => {
-    const callback = () => { onStoreChange(); };
-    window.addEventListener('popstate', callback);
-    const event = emitter.register('change', callback);
+    window.addEventListener('popstate', onStoreChange);
+    const event = emitter.register('change', onStoreChange);
     return () => {
-      window.removeEventListener('popstate', callback);
+      window.removeEventListener('popstate', onStoreChange);
       event.remove();
     }
   }, () => result(window.history), () => result());

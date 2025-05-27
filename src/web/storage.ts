@@ -47,7 +47,7 @@ const _useStorage = (
       if (!ev.storageArea || ev.storageArea === _storage) onStoreChange();
     };
     window.addEventListener('storage', callback);
-    const event = emitter.register('change', () => { onStoreChange() });
+    const event = emitter.register('change', onStoreChange);
     return () => {
       window.removeEventListener('storage', callback);
       event.remove();
