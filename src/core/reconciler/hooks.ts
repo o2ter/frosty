@@ -57,13 +57,13 @@ export const _useEffect = (
       ...prevState[idx],
       deps,
     });
-    return;
+  } else {
+    newState.push({
+      deps,
+      mount: () => effect(state),
+      hook,
+    });
   }
-  newState.push({
-    deps,
-    mount: () => effect(state),
-    hook,
-  });
 };
 
 export const _useMemo = <T>(
@@ -83,12 +83,13 @@ export const _useMemo = <T>(
       deps,
     });
     return prevState[idx].data;
+  } else {
+    const data = factory(state);
+    newState.push({
+      deps,
+      hook,
+      data
+    });
+    return data;
   }
-  const data = factory(state);
-  newState.push({
-    deps,
-    hook,
-    data
-  });
-  return data;
 };
