@@ -87,13 +87,12 @@ export abstract class _Renderer<T> {
         const curState = node.state;
         for (const i of _.range(Math.max(prevState.length, curState.length))) {
           const unmount = prevState[i]?.unmount;
-          if (unmount &&
-            (prevState[i].hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps))
-          ) unmount();
+          const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
+          if (unmount && changed) unmount();
           state.push({
             hook: curState[i].hook,
             deps: curState[i].deps,
-            unmount: options?.skipMount ? undefined : curState[i].mount?.(),
+            unmount: options?.skipMount || !changed ? prevState[i]?.unmount : curState[i].mount?.(),
           });
         }
         mountState.set(node, state);
