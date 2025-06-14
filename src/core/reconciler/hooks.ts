@@ -47,23 +47,12 @@ export const _useEffect = (
   deps?: any
 ) => {
   const state = _useHookState(hook);
-  const { prevState, state: newState } = state;
-  const idx = newState.length;
-  if (
-    prevState?.[idx]?.hook === hook &&
-    equalDeps(prevState[idx].deps, deps)
-  ) {
-    newState.push({
-      ...prevState[idx],
-      deps,
-    });
-  } else {
-    newState.push({
-      deps,
-      mount: () => effect(state),
-      hook,
-    });
-  }
+  const { state: newState } = state;
+  newState.push({
+    mount: () => effect(state),
+    deps,
+    hook,
+  });
 };
 
 export const _useMemo = <T>(
@@ -74,22 +63,12 @@ export const _useMemo = <T>(
   const state = _useHookState(hook);
   const { prevState, state: newState } = state;
   const idx = newState.length;
-  if (
-    prevState?.[idx]?.hook === hook &&
-    equalDeps(prevState[idx].deps, deps)
-  ) {
-    newState.push({
-      ...prevState[idx],
-      deps,
-    });
-    return prevState[idx].data;
-  } else {
-    const data = factory(state);
-    newState.push({
-      deps,
-      hook,
-      data
-    });
-    return data;
-  }
+  const changed = prevState?.[idx]?.hook !== hook || !equalDeps(prevState[idx].deps, deps);
+  const data = changed ? factory(state) : prevState[idx].data;
+  newState.push({
+    deps,
+    hook,
+    data
+  });
+  return data;
 };
