@@ -52,6 +52,8 @@ export class VNode {
   /** @internal */
   _component: ComponentNode;
 
+  private _id = uniqueId();
+
   private _event: EventEmitter;
   private _props: PropsType = {};
   private _error?: any;
@@ -79,6 +81,10 @@ export class VNode {
     if (_.isArrayLikeObject(child)) return _.flatMap(child, x => this._resolve_children(x));
     if (typeof child[Symbol.iterator] === 'function') return _.flatMap([...child], x => this._resolve_children(x));
     throw Error(`${child} are not valid as a child.`);
+  }
+
+  get id() {
+    return this._id;
   }
 
   get type() {
