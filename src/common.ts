@@ -31,3 +31,4 @@ export { Fragment } from './core/types/fragment';
 export { PropsProvider } from './core/types/props';
 export { _ElementType as ElementType, createElement } from './core/types/runtime';
 export { mergeRefs } from './core/utils';
+export { ClassName, StyleProp } from './core/types/style';

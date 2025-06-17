@@ -30,7 +30,7 @@ import { globalEvents } from '../core/web/event';
 import { ComponentNode } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
-import { ClassName, StyleProp } from '../core/web/styles/types';
+import { ClassName, StyleProp } from '../core/types/style';
 import { CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 import { processCss } from '../core/web/styles/process';
