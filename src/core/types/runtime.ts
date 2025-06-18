@@ -33,7 +33,7 @@ import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap
 
 export type _ElementType = string | ComponentType<any>;
 
-export type _IntrinsicAttributes<T = any> = RefAttribute<T | null | undefined> & {
+export type _IntrinsicAttributes = {
   key?: string | number;
 };
 
