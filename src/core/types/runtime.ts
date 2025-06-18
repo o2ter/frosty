@@ -33,7 +33,7 @@ import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap
 
 export type _ElementType = string | ComponentType<any>;
 
-export type _IntrinsicAttributes<T = any> = RefAttribute<T> & {
+export type _IntrinsicAttributes<T = any> = RefAttribute<T | null | undefined> & {
   key?: string | number;
 };
 
@@ -65,7 +65,7 @@ type Combine<T, R> = Omit<T, keyof R> & R;
 type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; } }> = {
   [x in keyof ElementMap]: PropsWithChildren<
     Partial<
-      RefAttribute<ElementMap[x]['type']>
+      RefAttribute<ElementMap[x]['type'] | null | undefined>
       & {
         className?: ClassName;
         style?: StyleProp<CSSProperties>;
