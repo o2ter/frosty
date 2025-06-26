@@ -115,7 +115,7 @@ export const useStore = <T extends unknown = any, S = T>(
   equal: (value: S, other: S) => boolean = _.isEqual,
 ): S => useSyncExternalStore(
   (onStoreChange) => store.subscribe((oldVal, newVal) => {
-    if (equal(selector(oldVal), selector(newVal))) onStoreChange();
+    if (!equal(selector(oldVal), selector(newVal))) onStoreChange();
   }),
   () => selector(store.value)
 );
