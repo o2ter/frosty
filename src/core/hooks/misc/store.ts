@@ -66,7 +66,7 @@ class Store<T> {
    */
   setValue(dispatch: SetStateAction<T>) {
     const oldVal = this.#value;
-    this.#value = _.isFunction(dispatch) ? dispatch(this.#value) : this.#value;
+    this.#value = _.isFunction(dispatch) ? dispatch(this.#value) : dispatch;
     this.#listeners.forEach(listener => void listener(oldVal, this.#value));
   }
 
