@@ -25,8 +25,42 @@
 
 import _ from 'lodash';
 import { useSyncExternalStore } from '../core/hooks/sync';
+import { uniqueId } from '../core/utils';
 
 const colorSchemeDark = typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : undefined;
+
+const emptyInsets = { top: 0, left: 0, right: 0, bottom: 0 };
+const safeAreaInsets = () => {
+  let support;
+  if (!('CSS' in window) || typeof CSS.supports != 'function') {
+    return emptyInsets;
+  }
+  if (CSS.supports('top: env(safe-area-inset-top)')) {
+    support = 'env'
+  } else if (CSS.supports('top: constant(safe-area-inset-top)')) {
+    support = 'constant'
+  } else {
+    return emptyInsets;
+  }
+  const id = uniqueId();
+  const style = document.createElement('style');
+  style.textContent = `:root {
+    --${id}-top: ${support}(safe-area-inset-top);
+    --${id}-left: ${support}(safe-area-inset-left);
+    --${id}-right: ${support}(safe-area-inset-right);
+    --${id}-bottom: ${support}(safe-area-inset-bottom);
+  }`;
+  document.head.appendChild(style);
+  const computedStyle = getComputedStyle(document.documentElement);
+  const insets = {
+    top: computedStyle.getPropertyValue(`--${id}-top`),
+    left: computedStyle.getPropertyValue(`--${id}-left`),
+    right: computedStyle.getPropertyValue(`--${id}-right`),
+    bottom: computedStyle.getPropertyValue(`--${id}-bottom`),
+  };
+  style.remove();
+  return _.mapValues(insets, v => parseFloat(v));
+}
 
 export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);
@@ -39,6 +73,7 @@ export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   };
 }, () => ({
   colorScheme: colorSchemeDark?.matches ? 'dark' : 'light',
+  safeAreaInsets: safeAreaInsets(),
   devicePixelRatio: window.devicePixelRatio,
   outerWidth: window.outerWidth,
   outerHeight: window.outerHeight,
@@ -50,6 +85,7 @@ export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   scrollY: window.scrollY,
 }), () => ({
   colorScheme: 'light',
+  safeAreaInsets: emptyInsets,
   devicePixelRatio: 1,
   outerWidth: 0,
   outerHeight: 0,
