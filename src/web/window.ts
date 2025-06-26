@@ -26,14 +26,19 @@
 import _ from 'lodash';
 import { useSyncExternalStore } from '../core/hooks/sync';
 
+const prefersColorScheme = typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : undefined;
+
 export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);
   window.addEventListener('scroll', onStoreChange);
+  prefersColorScheme?.addEventListener('change', onStoreChange);
   return () => {
     window.removeEventListener('resize', onStoreChange);
     window.removeEventListener('scroll', onStoreChange);
+    prefersColorScheme?.removeEventListener('change', onStoreChange);
   };
 }, () => ({
+  colorScheme: prefersColorScheme?.matches ? 'dark' : 'light',
   devicePixelRatio: window.devicePixelRatio,
   outerWidth: window.outerWidth,
   outerHeight: window.outerHeight,
@@ -44,6 +49,7 @@ export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   scrollX: window.scrollX,
   scrollY: window.scrollY,
 }), () => ({
+  colorScheme: 'light',
   devicePixelRatio: 1,
   outerWidth: 0,
   outerHeight: 0,
