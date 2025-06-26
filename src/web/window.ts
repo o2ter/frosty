@@ -64,35 +64,41 @@ const safeAreaInsets = () => {
 
 export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('resize', onStoreChange);
-  window.addEventListener('scroll', onStoreChange);
-  colorSchemeDark?.addEventListener('change', onStoreChange);
   return () => {
     window.removeEventListener('resize', onStoreChange);
-    window.removeEventListener('scroll', onStoreChange);
-    colorSchemeDark?.removeEventListener('change', onStoreChange);
   };
 }, () => ({
-  colorScheme: colorSchemeDark?.matches ? 'dark' : 'light',
   safeAreaInsets: safeAreaInsets(),
   devicePixelRatio: window.devicePixelRatio,
   outerWidth: window.outerWidth,
   outerHeight: window.outerHeight,
   innerWidth: window.innerWidth,
   innerHeight: window.innerHeight,
-  screenX: window.screenX,
-  screenY: window.screenY,
-  scrollX: window.scrollX,
-  scrollY: window.scrollY,
 }), () => ({
-  colorScheme: 'light',
   safeAreaInsets: emptyInsets,
   devicePixelRatio: 1,
   outerWidth: 0,
   outerHeight: 0,
   innerWidth: 0,
   innerHeight: 0,
-  screenX: 0,
-  screenY: 0,
+}));
+
+export const useWindowScroll = () => useSyncExternalStore((onStoreChange) => {
+  window.addEventListener('scroll', onStoreChange);
+  return () => {
+    window.removeEventListener('scroll', onStoreChange);
+  };
+}, () => ({
+  scrollX: window.scrollX,
+  scrollY: window.scrollY,
+}), () => ({
   scrollX: 0,
   scrollY: 0,
 }));
+
+export const useColorScheme = () => useSyncExternalStore((onStoreChange) => {
+  colorSchemeDark?.addEventListener('change', onStoreChange);
+  return () => {
+    colorSchemeDark?.removeEventListener('change', onStoreChange);
+  };
+}, () => colorSchemeDark?.matches ? 'dark' : 'light', () => 'light');
