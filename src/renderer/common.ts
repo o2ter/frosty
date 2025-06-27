@@ -35,6 +35,7 @@ import { CSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 import { processCss } from '../core/web/styles/process';
 import { StyleBuilder } from './style';
+import { mergeRefs } from '~/common';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -67,6 +68,7 @@ export abstract class DOMNativeNode extends NativeElementType {
   abstract get target(): Element;
 
   abstract update(props: Record<string, any> & {
+    ref?: (x: any) => void;
     className?: string;
     style?: string;
     innerHTML?: string;
@@ -184,13 +186,14 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     const {
       type,
-      props: { className, style, inlineStyle, innerHTML, ..._props }
+      props: { ref, className, style, inlineStyle, innerHTML, ..._props }
     } = node;
 
     if (element instanceof DOMNativeNode) {
       const builtClassName = this.__createBuiltClassName(className, style);
       const { css } = inlineStyle ? processCss(inlineStyle) : {};
       element.update({
+        ref: ref ? mergeRefs(ref) : undefined,
         className: builtClassName ? builtClassName : undefined,
         style: css,
         innerHTML,
@@ -200,6 +203,9 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
 
     if (!_.isString(type)) throw Error('Invalid type');
+
+    mergeRefs(ref)(element);
+
     switch (type) {
       case 'html': return;
       case 'head': return;

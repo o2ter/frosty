@@ -28,7 +28,6 @@ import { VNode } from './reconciler/vnode';
 import { ComponentNode, NativeElementType } from './types/component';
 import { reconciler } from './reconciler/state';
 import nextick from 'nextick';
-import { mergeRefs } from './utils';
 import { equalDeps } from './reconciler/utils';
 
 export abstract class _Renderer<T> {
@@ -76,7 +75,6 @@ export abstract class _Renderer<T> {
       ) => {
         const element = elements.get(node)?.native;
         if (element) {
-          mergeRefs(node.props.ref)(element);
           this._replaceChildren(node, element, children(node, elements));
         }
         for (const item of node.children) {
