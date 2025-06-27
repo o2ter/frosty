@@ -29,4 +29,4 @@ export * from './observer';
 export * from './online';
 export * from './storage';
 export * from './window';
-export { DOMNativeNode } from '../renderer/common';
+export { DOMNativeNode, type _DOMRenderer } from '../renderer/common';
