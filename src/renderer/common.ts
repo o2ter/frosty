@@ -67,12 +67,7 @@ export abstract class DOMNativeNode extends NativeElementType {
 
   abstract get target(): Element;
 
-  abstract update(props: Record<string, any> & {
-    ref?: (x: any) => void;
-    className?: string;
-    style?: string;
-    innerHTML?: string;
-  }): void;
+  abstract update(props: Record<string, any>): void;
 
   abstract replaceChildren(children: (string | Element | DOMNativeNode)[]): void;
 
@@ -184,23 +179,15 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   /** @internal */
   _updateElement(node: VNode, element: Element | DOMNativeNode, stack: VNode[]) {
 
+    if (element instanceof DOMNativeNode) {
+      element.update(node.props);
+      return;
+    }
+
     const {
       type,
       props: { ref, className, style, inlineStyle, innerHTML, ..._props }
     } = node;
-
-    if (element instanceof DOMNativeNode) {
-      const builtClassName = this.__createBuiltClassName(className, style);
-      const { css } = inlineStyle ? processCss(inlineStyle) : {};
-      element.update({
-        ref: ref ? mergeRefs(ref) : undefined,
-        className: builtClassName ? builtClassName : undefined,
-        style: css,
-        innerHTML,
-        ..._props,
-      });
-      return;
-    }
 
     if (!_.isString(type)) throw Error('Invalid type');
     switch (type) {
@@ -270,16 +257,18 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   /** @internal */
   _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[]) {
-    const {
-      type,
-      props: { innerHTML }
-    } = node;
-    if (type === 'head') {
-      this._tracked_head_children.push(...children);
-    } else if (element instanceof DOMNativeNode) {
+    if (element instanceof DOMNativeNode) {
       element.replaceChildren(children);
-    } else if (_.isEmpty(innerHTML)) {
-      this.__replaceChildren(element, children);
+    } else {
+      const {
+        type,
+        props: { innerHTML }
+      } = node;
+      if (type === 'head') {
+        this._tracked_head_children.push(...children);
+      } else if (_.isEmpty(innerHTML)) {
+        this.__replaceChildren(element, children);
+      }
     }
   }
 
