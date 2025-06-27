@@ -63,7 +63,7 @@ const isWriteable = (object: any, propertyName: string) => {
 
 export abstract class DOMNativeNode extends NativeElementType {
 
-  static createElement: () => DOMNativeNode;
+  static createElement: (doc: Document) => DOMNativeNode;
 
   abstract get target(): Element;
 
@@ -131,7 +131,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const { type } = node;
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
-      const elem = ElementType.createElement();
+      const elem = ElementType.createElement(this.doc);
       this._updateElement(node, elem, stack);
       return elem;
     }
