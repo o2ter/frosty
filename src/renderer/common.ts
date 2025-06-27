@@ -210,7 +210,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       default: break;
     }
 
-    mergeRefs(ref)(element);
+    if (ref) mergeRefs(ref)(element);
 
     const builtClassName = this.__createBuiltClassName(className, style);
     if (_.isEmpty(builtClassName)) {
