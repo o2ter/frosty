@@ -203,15 +203,14 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
 
     if (!_.isString(type)) throw Error('Invalid type');
-
-    mergeRefs(ref)(element);
-
     switch (type) {
       case 'html': return;
       case 'head': return;
       case 'body': return;
       default: break;
     }
+
+    mergeRefs(ref)(element);
 
     const builtClassName = this.__createBuiltClassName(className, style);
     if (_.isEmpty(builtClassName)) {
