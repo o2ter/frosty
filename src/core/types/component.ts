@@ -26,7 +26,9 @@
 import _ from 'lodash';
 import { _ElementType, PropsType } from './runtime';
 
-export abstract class NativeElementType { }
+export abstract class NativeElementType {
+  constructor(...args: any[]) { };
+}
 
 export class ComponentNode {
 
