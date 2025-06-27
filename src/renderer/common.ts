@@ -191,7 +191,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       const builtClassName = this.__createBuiltClassName(className, style);
       const { css } = inlineStyle ? processCss(inlineStyle) : {};
       element.update({
-        className: builtClassName,
+        className: builtClassName ? builtClassName : undefined,
         style: css,
         innerHTML,
         ..._props,
