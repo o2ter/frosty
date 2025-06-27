@@ -63,7 +63,7 @@ const isWriteable = (object: any, propertyName: string) => {
 
 export abstract class DOMNativeNode extends NativeElementType {
 
-  static createElement: (doc: Document) => DOMNativeNode;
+  static createElement: (doc: Document, renderer: _DOMRenderer) => DOMNativeNode;
 
   abstract get target(): Element;
 
@@ -126,7 +126,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const { type } = node;
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
-      const elem = ElementType.createElement(this.doc);
+      const elem = ElementType.createElement(this.doc, this);
       this._updateElement(node, elem, stack);
       return elem;
     }
@@ -287,7 +287,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
   }
 
-  private __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[]) {
+  __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[]) {
     const diff = myersSync(
       _.map(element.childNodes, x => x.nodeType === this.doc.TEXT_NODE ? x.textContent ?? '' : x),
       _.map(children, x => x instanceof DOMNativeNode ? x.target : x),
