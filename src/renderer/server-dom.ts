@@ -29,6 +29,8 @@ import { _DOMRenderer } from './common';
 
 export * from 'jsdom';
 
+export { DOMNativeNode } from './common';
+
 export class ServerDOMRenderer extends _DOMRenderer {
 
   constructor(dom = new JSDOM()) {

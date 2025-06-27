@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { VNode } from '../core/reconciler/vnode';
 import { myersSync } from 'myers.js';
 import { globalEvents } from '../core/web/event';
-import { ComponentNode } from '../core/types/component';
+import { ComponentNode, NativeElementType } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
 import { ClassName, StyleProp } from '../core/types/style';
@@ -60,14 +60,27 @@ const isWriteable = (object: any, propertyName: string) => {
   return !!desc.set;
 };
 
-export abstract class _DOMRenderer extends _Renderer<Element> {
+export abstract class DOMNativeNode extends NativeElementType {
+
+  static createElement: () => DOMNativeNode;
+
+  abstract get target(): Element;
+
+  abstract update(props: Record<string, any>): void;
+
+  abstract replaceChildren(children: (string | Element | DOMNativeNode)[]): void;
+
+  abstract destroy(): void;
+}
+
+export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   private _doc?: Document;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
   private _tracked_props = new WeakMap<Element, string[]>();
   private _tracked_listener = new WeakMap<Element, Record<string, EventListener | undefined>>();
-  private _tracked_head_children: (string | Element)[] = [];
+  private _tracked_head_children: (string | Element | DOMNativeNode)[] = [];
   private _tracked_style = new StyleBuilder();
   private _tracked_style_names: string[] = [];
 
@@ -110,6 +123,12 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   /** @internal */
   _createElement(node: VNode, stack: VNode[]) {
     const { type } = node;
+    if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
+      const ElementType = type as typeof DOMNativeNode;
+      const elem = ElementType.createElement();
+      this._updateElement(node, elem, stack);
+      return elem;
+    }
     if (!_.isString(type)) throw Error('Invalid type');
     switch (type) {
       case 'html': return this.doc.documentElement;
@@ -130,20 +149,14 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     return elem;
   }
 
-  private __updateElementStyle(
-    element: Element,
+  private __createBuiltClassName(
     className: ClassName,
     style: StyleProp<CSSProperties>,
   ) {
     const _className = _.compact(_.flattenDeep([className]));
     const built = this._tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
-    const joined = [..._className, ...built].join(' ');
-    if (_.isEmpty(joined)) {
-      element.removeAttribute('class');
-    } else {
-      element.className = joined;
-    }
     this._tracked_style_names.push(...built);
+    return [..._className, ...built].join(' ');
   }
 
   private __updateEventListener(
@@ -163,12 +176,19 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _updateElement(node: VNode, element: Element, stack: VNode[]) {
+  _updateElement(node: VNode, element: Element | DOMNativeNode, stack: VNode[]) {
 
     const {
       type,
       props: { className, style, inlineStyle, innerHTML, ..._props }
     } = node;
+
+    if (element instanceof DOMNativeNode) {
+      const builtClassName = this.__createBuiltClassName(className, style);
+      element.update({ className: builtClassName, style: inlineStyle, innerHTML, ..._props });
+      return;
+    }
+
     if (!_.isString(type)) throw Error('Invalid type');
     switch (type) {
       case 'html': return;
@@ -177,7 +197,12 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
       default: break;
     }
 
-    this.__updateElementStyle(element, className, style);
+    const builtClassName = this.__createBuiltClassName(className, style);
+    if (_.isEmpty(builtClassName)) {
+      element.removeAttribute('class');
+    } else {
+      element.className = builtClassName;
+    }
     if (!_.isEmpty(innerHTML)) element.innerHTML = innerHTML;
 
     if (inlineStyle) {
@@ -229,33 +254,39 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
   }
 
   /** @internal */
-  _replaceChildren(node: VNode, element: Element, children: (string | Element)[]) {
+  _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[]) {
     const {
       type,
       props: { innerHTML }
     } = node;
     if (type === 'head') {
       this._tracked_head_children.push(...children);
+    } else if (element instanceof DOMNativeNode) {
+      element.replaceChildren(children);
     } else if (_.isEmpty(innerHTML)) {
       this.__replaceChildren(element, children);
     }
   }
 
   /** @internal */
-  _destroyElement(node: VNode, element: Element) {
-    const tracked_listener = this._tracked_listener.get(element) ?? {};
-    for (const [key, listener] of _.entries(tracked_listener)) {
-      const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
-      if (_.isFunction(listener)) {
-        element.removeEventListener(event, listener, { capture: key.endsWith('Capture') });
+  _destroyElement(node: VNode, element: Element | DOMNativeNode) {
+    if (element instanceof DOMNativeNode) {
+      element.destroy();
+    } else {
+      const tracked_listener = this._tracked_listener.get(element) ?? {};
+      for (const [key, listener] of _.entries(tracked_listener)) {
+        const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
+        if (_.isFunction(listener)) {
+          element.removeEventListener(event, listener, { capture: key.endsWith('Capture') });
+        }
       }
     }
   }
 
-  private __replaceChildren(element: Element, children: (string | Element)[]) {
+  private __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[]) {
     const diff = myersSync(
       _.map(element.childNodes, x => x.nodeType === this.doc.TEXT_NODE ? x.textContent ?? '' : x),
-      children,
+      _.map(children, x => x instanceof DOMNativeNode ? x.target : x),
       { compare: (a, b) => a === b },
     );
     let i = 0;
@@ -280,7 +311,7 @@ export abstract class _DOMRenderer extends _Renderer<Element> {
     const root = this.createRoot();
     try {
       root.mount(component, { skipMount: true });
-      const str = _.map(_.castArray(root.root ?? []), x => x.outerHTML).join('');
+      const str = _.map(_.castArray(root.root ?? []), x => (x instanceof DOMNativeNode ? x.target : x).outerHTML).join('');
       return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
     } finally {
       root.unmount();

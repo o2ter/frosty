@@ -26,6 +26,8 @@
 import _ from 'lodash';
 import { _DOMRenderer } from './common';
 
+export { DOMNativeNode } from './common';
+
 export class DOMRenderer extends _DOMRenderer {
 
   static default = new DOMRenderer();
