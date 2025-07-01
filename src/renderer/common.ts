@@ -67,7 +67,10 @@ export abstract class DOMNativeNode extends NativeElementType {
 
   abstract get target(): Element;
 
-  abstract update(props: Record<string, any>): void;
+  abstract update(props: Record<string, any> & {
+    className?: string;
+    style?: string;
+  }): void;
 
   abstract replaceChildren(children: (string | Element | DOMNativeNode)[]): void;
 
@@ -180,7 +183,16 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   _updateElement(node: VNode, element: Element | DOMNativeNode, stack: VNode[]) {
 
     if (element instanceof DOMNativeNode) {
-      element.update(node.props);
+      const {
+        props: { className, style, inlineStyle, ..._props }
+      } = node;
+      const builtClassName = this.__createBuiltClassName(className, style);
+      const { css } = processCss(inlineStyle);
+      element.update({
+        className: builtClassName ? builtClassName : undefined,
+        style: css ? css : undefined,
+        ..._props
+      });
       return;
     }
 
