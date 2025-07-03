@@ -23,5 +23,13 @@
 //  THE SOFTWARE.
 //
 
-export * from './common';
-export * as default from './common';
+export * from './core/types/common';
+export * from './core/hooks';
+export { ComponentNode } from './core/types/component';
+export { ErrorBoundary } from './core/types/error';
+export { Fragment } from './core/types/fragment';
+export { PropsProvider } from './core/types/props';
+export { _ElementType as ElementType, createElement } from './core/types/runtime';
+export { mergeRefs } from './core/utils';
+export { ClassName, StyleProp } from './core/types/style';
+export { ExtendedCSSProperties, CSSProperties } from './core/web/styles/css';

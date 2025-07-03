@@ -35,7 +35,7 @@ import { ExtendedCSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 import { processCss } from '../core/web/styles/process';
 import { StyleBuilder } from './style';
-import { mergeRefs } from '~/common';
+import { mergeRefs } from '../core/utils';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
