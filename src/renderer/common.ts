@@ -80,7 +80,6 @@ export abstract class DOMNativeNode extends NativeElementType {
 
 export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
-  private _doc?: Document;
   private _window?: Window | DOMWindow;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
@@ -90,14 +89,13 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   private _tracked_style = new StyleBuilder();
   private _tracked_style_names: string[] = [];
 
-  constructor(doc?: Document, window?: Window | DOMWindow) {
+  constructor(window?: Window | DOMWindow) {
     super();
-    this._doc = doc;
     this._window = window;
   }
 
-  get doc() {
-    return this._doc ?? document;
+  get document() {
+    return this.window.document;
   }
 
   get window() {
@@ -117,16 +115,16 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     this._tracked_style.select(this._tracked_style_names);
     if (this._tracked_style.isEmpty) {
       if (this._server) {
-        this.__replaceChildren(this.doc.head, this._tracked_head_children);
+        this.__replaceChildren(this.document.head, this._tracked_head_children);
       }
     } else {
-      const styleElem = this.doc.querySelector('style[data-frosty-style]') ?? this.doc.createElementNS(HTML_NS, 'style');
+      const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
       styleElem.setAttribute('data-frosty-style', '');
       styleElem.textContent = this._tracked_style.css;
       if (this._server) {
-        this.__replaceChildren(this.doc.head, [...this._tracked_head_children, styleElem]);
-      } else if (styleElem.parentNode !== this.doc.head) {
-        this.doc.head.appendChild(styleElem);
+        this.__replaceChildren(this.document.head, [...this._tracked_head_children, styleElem]);
+      } else if (styleElem.parentNode !== this.document.head) {
+        this.document.head.appendChild(styleElem);
       }
     }
   }
@@ -136,15 +134,15 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const { type } = node;
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
-      const elem = ElementType.createElement(this.doc, this);
+      const elem = ElementType.createElement(this.document, this);
       this._updateElement(node, elem, stack);
       return elem;
     }
     if (!_.isString(type)) throw Error('Invalid type');
     switch (type) {
-      case 'html': return this.doc.documentElement;
-      case 'head': return this.doc.head ?? this.doc.createElementNS(HTML_NS, 'head');
-      case 'body': return this.doc.body ?? this.doc.createElementNS(HTML_NS, 'body');
+      case 'html': return this.document.documentElement;
+      case 'head': return this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
+      case 'body': return this.document.body ?? this.document.createElementNS(HTML_NS, 'body');
       default: break;
     }
     const _ns_list = _.compact([
@@ -154,7 +152,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     ]);
     const parent = _.last(stack);
     const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this._namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
-    const elem = ns ? this.doc.createElementNS(ns, type) : this.doc.createElement(type);
+    const elem = ns ? this.document.createElementNS(ns, type) : this.document.createElement(type);
     this._namespace_map.set(node, ns);
     this._updateElement(node, elem, stack);
     return elem;
@@ -308,7 +306,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[]) {
     const diff = myersSync(
-      _.map(element.childNodes, x => x.nodeType === this.doc.TEXT_NODE ? x.textContent ?? '' : x),
+      _.map(element.childNodes, x => x.nodeType === this.document.TEXT_NODE ? x.textContent ?? '' : x),
       _.map(children, x => x instanceof DOMNativeNode ? x.target : x),
       { compare: (a, b) => a === b },
     );
@@ -323,7 +321,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       }
       if (insert) {
         for (const child of insert) {
-          const node = _.isString(child) ? this.doc.createTextNode(child) : child;
+          const node = _.isString(child) ? this.document.createTextNode(child) : child;
           element.insertBefore(node, element.childNodes[i++]);
         }
       }

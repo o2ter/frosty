@@ -32,7 +32,7 @@ export * from 'jsdom';
 export class ServerDOMRenderer extends _DOMRenderer {
 
   constructor(dom = new JSDOM()) {
-    super(dom.window.document, dom.window);
+    super(dom.window);
   }
 
   /** @internal */

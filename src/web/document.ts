@@ -31,7 +31,7 @@ export const useDocument = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useDocument must be used within a render function.');
   if (state.renderer instanceof _DOMRenderer) {
-    return state.renderer.doc;
+    return state.renderer.document;
   } else {
     throw Error('Unsupported renderer.');
   }
