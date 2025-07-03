@@ -24,13 +24,13 @@
 //
 
 import _ from 'lodash';
-import { CSSProperties } from '../core/web/styles/css';
+import { ExtendedCSSProperties } from '../core/web/styles/css';
 import { processCss } from '../core/web/styles/process';
 import { uniqueId } from '../core/utils';
 
 type Rule = {
   name: string;
-  style: CSSProperties;
+  style: ExtendedCSSProperties;
   _style: string;
   _css?: string;
 };
@@ -90,7 +90,7 @@ export class StyleBuilder {
     return _.isEmpty(this.registry);
   }
 
-  buildStyle(styles: CSSProperties[]) {
+  buildStyle(styles: ExtendedCSSProperties[]) {
     const className: string[] = [];
     let searchIdx = 0;
     for (const style of styles) {

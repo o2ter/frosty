@@ -32,3 +32,4 @@ export { PropsProvider } from './core/types/props';
 export { _ElementType as ElementType, createElement } from './core/types/runtime';
 export { mergeRefs } from './core/utils';
 export { ClassName, StyleProp } from './core/types/style';
+export { ExtendedCSSProperties, CSSProperties } from './core/web/styles/css';

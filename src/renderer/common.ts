@@ -31,7 +31,7 @@ import { ComponentNode, NativeElementType } from '../core/types/component';
 import { svgProps, htmlProps, tags } from '../../generated/elements';
 import { _propValue } from '../core/web/props';
 import { ClassName, StyleProp } from '../core/types/style';
-import { CSSProperties } from '../core/web/styles/css';
+import { ExtendedCSSProperties } from '../core/web/styles/css';
 import { _Renderer } from '../core/renderer';
 import { processCss } from '../core/web/styles/process';
 import { StyleBuilder } from './style';
@@ -155,7 +155,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   private __createBuiltClassName(
     className: ClassName,
-    style: StyleProp<CSSProperties>,
+    style: StyleProp<ExtendedCSSProperties>,
   ) {
     const _className = _.compact(_.flattenDeep([className]));
     const built = this._tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
