@@ -36,6 +36,7 @@ import { _Renderer } from '../core/renderer';
 import { processCss } from '../core/web/styles/process';
 import { StyleBuilder } from './style';
 import { mergeRefs } from '../core/utils';
+import type { DOMWindow } from 'jsdom';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -80,6 +81,7 @@ export abstract class DOMNativeNode extends NativeElementType {
 export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   private _doc?: Document;
+  private _window?: Window | DOMWindow;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
   private _tracked_props = new WeakMap<Element, string[]>();
@@ -88,13 +90,18 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   private _tracked_style = new StyleBuilder();
   private _tracked_style_names: string[] = [];
 
-  constructor(doc?: Document) {
+  constructor(doc?: Document, window?: Window | DOMWindow) {
     super();
     this._doc = doc;
+    this._window = window;
   }
 
   get doc() {
     return this._doc ?? document;
+  }
+
+  get window() {
+    return this._window ?? window;
   }
 
   /** @internal */

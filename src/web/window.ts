@@ -26,8 +26,20 @@
 import _ from 'lodash';
 import { useSyncExternalStore } from '../core/hooks/sync';
 import { uniqueId } from '../core/utils';
+import { reconciler } from '../core/reconciler/state';
+import { _DOMRenderer } from '../renderer/common';
 
 const colorSchemeDark = typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : undefined;
+
+export const useWindow = () => {
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useWindow must be used within a render function.');
+  if (state.renderer instanceof _DOMRenderer) {
+    return state.renderer.window;
+  } else {
+    throw Error('Unsupported renderer.');
+  }
+}
 
 const emptyInsets = { top: 0, left: 0, right: 0, bottom: 0 };
 const safeAreaInsets = () => {
