@@ -42,12 +42,12 @@ export const useWindow = () => {
 const emptyInsets = { top: 0, left: 0, right: 0, bottom: 0 };
 const safeAreaInsets = (window: ReturnType<typeof useWindow>) => {
   let support;
-  if (!('CSS' in window) || typeof CSS.supports != 'function') {
+  if (!('CSS' in window) || !_.isFunction(window.CSS.supports)) {
     return emptyInsets;
   }
-  if (CSS.supports('top: env(safe-area-inset-top)')) {
+  if (window.CSS.supports('top: env(safe-area-inset-top)')) {
     support = 'env'
-  } else if (CSS.supports('top: constant(safe-area-inset-top)')) {
+  } else if (window.CSS.supports('top: constant(safe-area-inset-top)')) {
     support = 'constant'
   } else {
     return emptyInsets;
