@@ -29,8 +29,6 @@ import { uniqueId } from '../core/utils';
 import { reconciler } from '../core/reconciler/state';
 import { _DOMRenderer } from '../renderer/common';
 
-const colorSchemeDark = typeof window !== 'undefined' ? window.matchMedia?.('(prefers-color-scheme: dark)') : undefined;
-
 export const useWindow = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useWindow must be used within a render function.');
@@ -42,7 +40,7 @@ export const useWindow = () => {
 }
 
 const emptyInsets = { top: 0, left: 0, right: 0, bottom: 0 };
-const safeAreaInsets = () => {
+const safeAreaInsets = (window: ReturnType<typeof useWindow>) => {
   let support;
   if (!('CSS' in window) || typeof CSS.supports != 'function') {
     return emptyInsets;
@@ -74,43 +72,46 @@ const safeAreaInsets = () => {
   return _.mapValues(insets, v => parseFloat(v));
 }
 
-export const useWindowMetrics = () => useSyncExternalStore((onStoreChange) => {
-  window.addEventListener('resize', onStoreChange);
-  return () => {
-    window.removeEventListener('resize', onStoreChange);
-  };
-}, () => ({
-  safeAreaInsets: safeAreaInsets(),
-  devicePixelRatio: window.devicePixelRatio,
-  outerWidth: window.outerWidth,
-  outerHeight: window.outerHeight,
-  innerWidth: window.innerWidth,
-  innerHeight: window.innerHeight,
-}), () => ({
-  safeAreaInsets: emptyInsets,
-  devicePixelRatio: 1,
-  outerWidth: 0,
-  outerHeight: 0,
-  innerWidth: 0,
-  innerHeight: 0,
-}));
+export const useWindowMetrics = () => {
+  const window = useWindow();
+  return useSyncExternalStore((onStoreChange) => {
+    window.addEventListener('resize', onStoreChange);
+    return () => {
+      window.removeEventListener('resize', onStoreChange);
+    };
+  }, () => ({
+    safeAreaInsets: safeAreaInsets(window),
+    devicePixelRatio: window.devicePixelRatio,
+    outerWidth: window.outerWidth,
+    outerHeight: window.outerHeight,
+    innerWidth: window.innerWidth,
+    innerHeight: window.innerHeight,
+  }));
+}
 
-export const useWindowScroll = () => useSyncExternalStore((onStoreChange) => {
-  window.addEventListener('scroll', onStoreChange);
-  return () => {
-    window.removeEventListener('scroll', onStoreChange);
-  };
-}, () => ({
-  scrollX: window.scrollX,
-  scrollY: window.scrollY,
-}), () => ({
-  scrollX: 0,
-  scrollY: 0,
-}));
+export const useWindowScroll = () => {
+  const window = useWindow();
+  return useSyncExternalStore((onStoreChange) => {
+    window.addEventListener('scroll', onStoreChange);
+    return () => {
+      window.removeEventListener('scroll', onStoreChange);
+    };
+  }, () => ({
+    scrollX: window.scrollX,
+    scrollY: window.scrollY,
+  }));
+}
 
-export const useColorScheme = () => useSyncExternalStore((onStoreChange) => {
-  colorSchemeDark?.addEventListener('change', onStoreChange);
-  return () => {
-    colorSchemeDark?.removeEventListener('change', onStoreChange);
-  };
-}, () => colorSchemeDark?.matches ? 'dark' : 'light', () => 'light');
+const colorSchemeDarkCache = new WeakMap<ReturnType<typeof useWindow>, MediaQueryList | undefined>();
+
+export const useColorScheme = () => {
+  const window = useWindow();
+  if (!colorSchemeDarkCache.has(window)) colorSchemeDarkCache.set(window, window.matchMedia?.('(prefers-color-scheme: dark)'));
+  const colorSchemeDark = colorSchemeDarkCache.get(window);
+  return useSyncExternalStore((onStoreChange) => {
+    colorSchemeDark?.addEventListener('change', onStoreChange);
+    return () => {
+      colorSchemeDark?.removeEventListener('change', onStoreChange);
+    };
+  }, () => colorSchemeDark?.matches ? 'dark' : 'light');
+}
