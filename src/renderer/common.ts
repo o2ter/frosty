@@ -80,7 +80,7 @@ export abstract class DOMNativeNode extends NativeElementType {
 
 export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
-  private _window?: Window | DOMWindow;
+  private _window: Window | DOMWindow;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
   private _tracked_props = new WeakMap<Element, string[]>();
@@ -89,7 +89,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   private _tracked_style = new StyleBuilder();
   private _tracked_style_names: string[] = [];
 
-  constructor(window?: Window | DOMWindow) {
+  constructor(window: Window | DOMWindow) {
     super();
     this._window = window;
   }
@@ -99,7 +99,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   get window() {
-    return this._window ?? window;
+    return this._window;
   }
 
   /** @internal */

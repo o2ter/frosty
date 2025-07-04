@@ -28,7 +28,7 @@ import { _DOMRenderer } from './common';
 
 export class DOMRenderer extends _DOMRenderer {
 
-  static default = new DOMRenderer();
+  static default = new DOMRenderer(window);
 
   static createRoot(root: Element): ReturnType<typeof DOMRenderer.default.createRoot> {
     return this.default.createRoot(root);
@@ -36,6 +36,6 @@ export class DOMRenderer extends _DOMRenderer {
 
   /** @internal */
   get _server(): boolean {
-    return typeof window === 'undefined';
+    return false;
   }
 }
