@@ -83,6 +83,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   private _window: Window | DOMWindow;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
+  private _tracked_elements = new WeakSet<Element>();
   private _tracked_props = new WeakMap<Element, string[]>();
   private _tracked_listener = new WeakMap<Element, Record<string, EventListener | undefined>>();
   private _tracked_head_children: (string | Element | DOMNativeNode)[] = [];
@@ -155,6 +156,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const elem = ns ? this.document.createElementNS(ns, type) : this.document.createElement(type);
     this._namespace_map.set(node, ns);
     this._updateElement(node, elem, stack);
+    this._tracked_elements.add(elem);
     return elem;
   }
 
@@ -273,7 +275,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   /** @internal */
-  _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[]) {
+  _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[], force?: boolean) {
     if (element instanceof DOMNativeNode) {
       element.replaceChildren(children);
     } else {
@@ -284,7 +286,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       if (type === 'head') {
         this._tracked_head_children.push(...children);
       } else if (_.isEmpty(innerHTML)) {
-        this.__replaceChildren(element, children);
+        this.__replaceChildren(element, children, force);
       }
     }
   }
@@ -304,7 +306,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
   }
 
-  __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[]) {
+  __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[], force?: boolean) {
     const diff = myersSync(
       _.map(element.childNodes, x => x.nodeType === this.document.TEXT_NODE ? x.textContent ?? '' : x),
       _.map(children, x => x instanceof DOMNativeNode ? x.target : x),
@@ -316,7 +318,11 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         i += equivalent.length;
       } else if (remove) {
         for (const child of remove) {
-          element.removeChild(element.childNodes[i]);
+          if (force || _.isString(child) || this._tracked_elements.has(child as any)) {
+            element.removeChild(element.childNodes[i]);
+          } else {
+            i++;
+          }
         }
       }
       if (insert) {

@@ -42,7 +42,7 @@ export abstract class _Renderer<T> {
 
   protected abstract _destroyElement(node: VNode, element: T): void;
 
-  protected abstract _replaceChildren(node: VNode, element: T, children: (T | string)[]): void;
+  protected abstract _replaceChildren(node: VNode, element: T, children: (T | string)[], force?: boolean): void;
 
   abstract get _server(): boolean;
 
@@ -101,7 +101,12 @@ export abstract class _Renderer<T> {
         for (const { unmount } of state) unmount?.();
         mountState.delete(node);
       }
-      if (root) this._replaceChildren(runtime.node, root, _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements)));
+      if (root) this._replaceChildren(
+        runtime.node,
+        root,
+        _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements)),
+        true
+      );
       _mount(runtime.node);
     };
 
@@ -159,7 +164,7 @@ export abstract class _Renderer<T> {
         return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
-        if (root) this._replaceChildren(runtime.node, root, []);
+        if (root) this._replaceChildren(runtime.node, root, [], true);
         destroyed = true;
         listener.remove();
         for (const state of mountState.values()) {
