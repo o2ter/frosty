@@ -114,19 +114,23 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   /** @internal */
   _afterUpdate() {
     this._tracked_style.select(this._tracked_style_names);
+    const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
     if (this._tracked_style.isEmpty) {
       if (this._server) {
-        this.__replaceChildren(this.document.head, this._tracked_head_children);
+        this.__replaceChildren(head, this._tracked_head_children);
       }
     } else {
       const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
       styleElem.setAttribute('data-frosty-style', '');
       styleElem.textContent = this._tracked_style.css;
       if (this._server) {
-        this.__replaceChildren(this.document.head, [...this._tracked_head_children, styleElem]);
-      } else if (styleElem.parentNode !== this.document.head) {
-        this.document.head.appendChild(styleElem);
+        this.__replaceChildren(head, [...this._tracked_head_children, styleElem]);
+      } else if (styleElem.parentNode !== head) {
+        head.appendChild(styleElem);
       }
+    }
+    if (!this.document.head) {
+      this.document.documentElement.insertBefore(head, this.document.body);
     }
   }
 
