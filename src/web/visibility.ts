@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  visibility.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,11 +23,24 @@
 //  THE SOFTWARE.
 //
 
-export * from './document';
-export * from './location';
-export * from './observer';
-export * from './online';
-export * from './storage';
-export * from './visibility';
-export * from './window';
-export { DOMNativeNode, type _DOMRenderer } from '../renderer/common';
+import _ from 'lodash';
+import { useSyncExternalStore } from '../core/hooks/sync';
+import { useDocument } from './document';
+
+export const useVisibility = () => {
+  const document = useDocument();
+  return useSyncExternalStore((onStoreChange) => {
+    document.addEventListener('visibilitychange', onStoreChange);
+    return () => {
+      document.removeEventListener('visibilitychange', onStoreChange);
+    }
+  }, () => {
+    if (document.hasFocus()) {
+      return 'active' as const;
+    } else if (document.visibilityState === 'visible') {
+      return 'inactive' as const;
+    } else {
+      return 'background' as const;
+    }
+  }, () => 'unknown' as const);
+}
