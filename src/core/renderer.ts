@@ -42,7 +42,7 @@ export abstract class _Renderer<T> {
 
   protected abstract _destroyElement(node: VNode, element: T): void;
 
-  protected abstract _replaceChildren(node: VNode, element: T, children: (T | string)[], force?: boolean): void;
+  protected abstract _replaceChildren(node: VNode, element: T, children: (T | string)[], stack: VNode[], force?: boolean): void;
 
   abstract get _server(): boolean;
 
@@ -70,15 +70,13 @@ export abstract class _Renderer<T> {
 
     const commit = (elements: Map<VNode, { native?: T }>) => {
 
-      const _mount = (
-        node: VNode,
-      ) => {
+      const _mount = (node: VNode, stack: VNode[]) => {
+        for (const item of node.children) {
+          if (item instanceof VNode) _mount(item, [...stack, node]);
+        }
         const element = elements.get(node)?.native;
         if (element) {
-          this._replaceChildren(node, element, children(node, elements));
-        }
-        for (const item of node.children) {
-          if (item instanceof VNode) _mount(item);
+          this._replaceChildren(node, element, children(node, elements), stack);
         }
         const state: _State[] = [];
         const prevState = mountState.get(node) ?? [];
@@ -102,12 +100,11 @@ export abstract class _Renderer<T> {
         mountState.delete(node);
       }
       if (root) this._replaceChildren(
-        runtime.node,
-        root,
+        runtime.node, root,
         _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements)),
-        true
+        [], true
       );
-      _mount(runtime.node);
+      _mount(runtime.node, []);
     };
 
     const update = (elements?: Map<VNode, { native?: T }>) => {
@@ -164,7 +161,7 @@ export abstract class _Renderer<T> {
         return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
-        if (root) this._replaceChildren(runtime.node, root, [], true);
+        if (root) this._replaceChildren(runtime.node, root, [], [], true);
         destroyed = true;
         listener.remove();
         for (const state of mountState.values()) {

@@ -279,7 +279,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   /** @internal */
-  _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[], force?: boolean) {
+  _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[], stack: VNode[], force?: boolean) {
     if (element instanceof DOMNativeNode) {
       element.replaceChildren(children);
     } else {
