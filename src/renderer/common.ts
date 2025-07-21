@@ -195,8 +195,9 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     if (element instanceof DOMNativeNode) {
       const {
-        props: { className, style, inlineStyle, ..._props }
+        props: { ref, className, style, inlineStyle, ..._props }
       } = node;
+      if (ref) mergeRefs(ref)(element.target);
       const builtClassName = this.__createBuiltClassName(className, style);
       const { css } = processCss(inlineStyle);
       element.update({
