@@ -31,7 +31,6 @@ import { uniqueId } from '../core/utils';
 type Rule = {
   name: string;
   style: ExtendedCSSProperties;
-  _style: string;
   _css?: string;
 };
 
@@ -94,12 +93,11 @@ export class StyleBuilder {
     const className: string[] = [];
     let searchIdx = 0;
     for (const style of styles) {
-      const _style = JSON.stringify(style);
-      const found = _.findIndex(this.registry, x => x._style === _style, searchIdx);
+      const found = _.findIndex(this.registry, x => _.isEqual(x.style, style), searchIdx);
       searchIdx = found === -1 ? this.registry.length : found;
       if (found === -1) {
         const name = `__v_${uniqueId()}`;
-        this.registry.push({ name, style, _style });
+        this.registry.push({ name, style });
         this.clearCache();
         className.push(name);
       } else {
