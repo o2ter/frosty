@@ -118,7 +118,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     } else {
       const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
       styleElem.setAttribute('data-frosty-style', '');
-      styleElem.textContent = this._tracked_style.css;
+      if (styleElem.textContent !== this._tracked_style.css)
+        styleElem.textContent = this._tracked_style.css;
       if (this._server) {
         this.__replaceChildren(head, [...this._tracked_head_children, styleElem]);
       } else if (styleElem.parentNode !== head) {
@@ -232,7 +233,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     const builtClassName = this.__createBuiltClassName(element, className, style);
     if (_.isEmpty(builtClassName)) {
-      if (!_.isNil(element.getAttribute('class'))) element.removeAttribute('class');
+      if (!_.isNil(element.getAttribute('class')))
+        element.removeAttribute('class');
     } else if (element.className !== builtClassName) {
       element.className = builtClassName;
     }
@@ -242,7 +244,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       const { css } = processCss(inlineStyle);
       const oldValue = element.getAttribute('style');
       const newValue = css.split('\n').join('');
-      if (oldValue !== newValue) element.setAttribute('style', newValue);
+      if (oldValue !== newValue)
+        element.setAttribute('style', newValue);
     } else if (!_.isNil(element.getAttribute('style'))) {
       element.removeAttribute('style');
     }
@@ -262,14 +265,17 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       } else if (key.endsWith('Capture') && _.includes(globalEvents, key.slice(0, -7))) {
         this.__updateEventListener(element, key, value, { capture: true });
       } else if (isWriteable(element, key)) {
-        if ((element as any)[key] !== value) (element as any)[key] = value;
+        if ((element as any)[key] !== value)
+          (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
         const oldValue = element.getAttribute(key);
         if (value === false || _.isNil(value)) {
-          if (!_.isNil(oldValue)) element.removeAttribute(key);
+          if (!_.isNil(oldValue))
+            element.removeAttribute(key);
         } else {
           const newValue = value === true ? '' : `${value}`;
-          if (oldValue !== newValue) element.setAttribute(key, newValue);
+          if (oldValue !== newValue)
+            element.setAttribute(key, newValue);
         }
       } else {
         const { type: _type, attr } = (htmlProps as any)['*'][key]
@@ -280,10 +286,12 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         if (_type && attr && (_propValue as any)[_type]) {
           const oldValue = element.getAttribute(key);
           if (value === false || _.isNil(value)) {
-            if (!_.isNil(oldValue)) element.removeAttribute(key);
+            if (!_.isNil(oldValue))
+              element.removeAttribute(key);
           } else {
             const newValue = value === true ? '' : `${value}`;
-            if (oldValue !== newValue) element.setAttribute(key, newValue);
+            if (oldValue !== newValue)
+              element.setAttribute(key, newValue);
           }
         }
       }
