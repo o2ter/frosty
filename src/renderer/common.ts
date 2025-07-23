@@ -83,12 +83,9 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   private _window: Window | DOMWindow;
   private _namespace_map = new WeakMap<VNode, string | undefined>();
 
-  private _tracked_elements = new WeakSet<Element>();
-  private _tracked_props = new WeakMap<Element, string[]>();
-  private _tracked_listener = new WeakMap<Element, Record<string, EventListener | undefined>>();
   private _tracked_head_children: (string | Element | DOMNativeNode)[] = [];
   private _tracked_style = new StyleBuilder();
-  private _tracked_style_names: string[] = [];
+  private _tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; listener: Record<string, EventListener | undefined>; }>();
 
   constructor(window: Window | DOMWindow) {
     super();
@@ -108,12 +105,11 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (this._server) {
       this._tracked_head_children = [];
     }
-    this._tracked_style_names = [];
   }
 
   /** @internal */
   _afterUpdate() {
-    this._tracked_style.select(this._tracked_style_names);
+    this._tracked_style.select([...this._tracked_elements.values().flatMap(({ className }) => className)]);
     const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
     if (this._tracked_style.isEmpty) {
       if (this._server) {
@@ -140,6 +136,11 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
       const elem = ElementType.createElement(this.document, this);
+      this._tracked_elements.set(elem, {
+        props: [],
+        className: [],
+        listener: {},
+      });
       this._updateElement(node, elem, stack);
       return elem;
     }
@@ -159,18 +160,24 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this._namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
     const elem = ns ? this.document.createElementNS(ns, type) : this.document.createElement(type);
     this._namespace_map.set(node, ns);
+    this._tracked_elements.set(elem, {
+      props: [],
+      className: [],
+      listener: {},
+    });
     this._updateElement(node, elem, stack);
-    this._tracked_elements.add(elem);
     return elem;
   }
 
   private __createBuiltClassName(
+    element: Element | DOMNativeNode,
     className: ClassName,
     style: StyleProp<ExtendedCSSProperties>,
   ) {
     const _className = _.compact(_.flattenDeep([className]));
     const built = this._tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
-    this._tracked_style_names.push(...built);
+    const tracked = this._tracked_elements.get(element);
+    if (tracked) tracked.className = built;
     return [..._className, ...built].join(' ');
   }
 
@@ -181,13 +188,13 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     options?: AddEventListenerOptions,
   ) {
     const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
-    const tracked_listener = this._tracked_listener.get(element) ?? {};
+    const tracked_listener = this._tracked_elements.get(element)?.listener;
+    if (!tracked_listener) return;
     if (tracked_listener[key] !== listener) {
       if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
       if (_.isFunction(listener)) element.addEventListener(event, listener, options);
     }
     tracked_listener[key] = listener;
-    this._tracked_listener.set(element, tracked_listener);
   }
 
   /** @internal */
@@ -198,7 +205,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         props: { ref, className, style, inlineStyle, ..._props }
       } = node;
       if (ref) mergeRefs(ref)(element.target);
-      const builtClassName = this.__createBuiltClassName(className, style);
+      const builtClassName = this.__createBuiltClassName(element, className, style);
       const { css } = processCss(inlineStyle);
       element.update({
         className: builtClassName ? builtClassName : undefined,
@@ -223,7 +230,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     if (ref) mergeRefs(ref)(element);
 
-    const builtClassName = this.__createBuiltClassName(className, style);
+    const builtClassName = this.__createBuiltClassName(element, className, style);
     if (_.isEmpty(builtClassName)) {
       element.removeAttribute('class');
     } else {
@@ -238,12 +245,14 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       element.removeAttribute('style');
     }
 
-    const removed = _.difference(this._tracked_props.get(element), _.keys(_props));
+    const tracked = this._tracked_elements.get(element);
+    if (!tracked) return;
+    const removed = _.difference(tracked.props, _.keys(_props));
     const props = {
       ..._props,
       ..._.fromPairs(_.map(removed, x => [x, undefined])),
     };
-    this._tracked_props.set(element, _.keys(_props));
+    tracked.props = _.keys(_props);
 
     for (const [key, value] of _.entries(props)) {
       if (_.includes(globalEvents, key)) {
@@ -301,7 +310,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (element instanceof DOMNativeNode) {
       element.destroy();
     } else {
-      const tracked_listener = this._tracked_listener.get(element) ?? {};
+      const tracked_listener = this._tracked_elements.get(element)?.listener;
       for (const [key, listener] of _.entries(tracked_listener)) {
         const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
         if (_.isFunction(listener)) {
@@ -309,6 +318,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         }
       }
     }
+    this._tracked_elements.delete(element);
   }
 
   __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[], force?: boolean) {
