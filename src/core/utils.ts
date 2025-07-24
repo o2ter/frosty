@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { Ref } from './types/common';
 
-export const mergeRefs = <T>(...refs: Ref<T>[]) => (x: T) => {
+export const mergeRefs = <T>(...refs: (Ref<T> | null | undefined)[]) => (x: T) => {
   for (const ref of refs) {
     if (_.isNil(ref)) continue;
     else if (typeof ref === 'function') ref(x);
