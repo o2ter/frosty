@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { useEffect } from '../core/hooks/effect';
 import { useCallback } from '../core/hooks/callback';
+import { RefObject } from '~/core/types/common';
 
 interface _Observer<T> {
   observe(target: Element, options?: T): void;
@@ -68,40 +69,43 @@ const observer = typeof window === 'undefined' ? undefined : {
 };
 
 export const useResizeObserver = (
-  target: Element | null | undefined,
+  target: RefObject<Element | null | undefined> | Element | null | undefined,
   callback: (entry: ResizeObserverEntry) => void,
   options?: ResizeObserverOptions,
 ) => {
   const _callback = useCallback(callback);
   useEffect(() => {
-    if (!observer || !target) return;
-    observer.resize.observe(target, _callback, options);
-    return () => observer.resize.unobserve(target, _callback);
+    const _target = target && 'current' in target ? target.current : target;
+    if (!observer || !_target) return;
+    observer.resize.observe(_target, _callback, options);
+    return () => observer.resize.unobserve(_target, _callback);
   }, [target]);
 }
 
 export const useIntersectionObserver = (
-  target: Element | null | undefined,
+  target: RefObject<Element | null | undefined> | Element | null | undefined,
   callback: (entry: IntersectionObserverEntry) => void,
 ) => {
   const _callback = useCallback(callback);
   useEffect(() => {
-    if (!observer || !target) return;
-    observer.intersection.observe(target, _callback);
-    return () => observer.intersection.unobserve(target, _callback);
+    const _target = target && 'current' in target ? target.current : target;
+    if (!observer || !_target) return;
+    observer.intersection.observe(_target, _callback);
+    return () => observer.intersection.unobserve(_target, _callback);
   }, [target]);
 }
 
 export const useMutationObserver = (
-  target: Node | null | undefined,
+  target: RefObject<Node | null | undefined> | Node | null | undefined,
   callback: MutationCallback,
   options?: MutationObserverInit,
 ) => {
   const _callback = useCallback(callback);
   useEffect(() => {
-    if (typeof window === 'undefined' || !target) return;
+    const _target = target && 'current' in target ? target.current : target;
+    if (typeof window === 'undefined' || !_target) return;
     const observer = new MutationObserver(_callback);
-    observer.observe(target, options);
+    observer.observe(_target, options);
     return () => observer.disconnect();
   }, [target]);
 }
