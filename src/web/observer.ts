@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { useEffect } from '../core/hooks/effect';
 import { useCallback } from '../core/hooks/callback';
-import { RefObject } from '~/core/types/common';
+import { RefObject } from '../core/types/common';
 
 interface _Observer<T> {
   observe(target: Element, options?: T): void;
