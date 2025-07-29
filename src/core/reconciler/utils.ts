@@ -25,4 +25,4 @@
 
 import _ from 'lodash';
 
-export const equalDeps = (lhs: any, rhs: any) => _.isEqual(lhs ?? null, rhs);
+export const equalDeps = (lhs: any, rhs: any, customizer?: _.IsEqualCustomizer) => customizer ? _.isEqualWith(lhs ?? null, rhs, customizer) : _.isEqual(lhs ?? null, rhs);
