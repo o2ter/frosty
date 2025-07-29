@@ -136,7 +136,13 @@ export class VNode {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
       const { type, props: _props } = this._component;
-      const props = options.propsProvider.reduceRight((p, node) => node.props.callback({ type, props: p }), _props);
+      const props = _.mapValues(
+        options.propsProvider.reduceRight((p, node) => node.props.callback({ type, props: p }), _props),
+        (v, k) => _.isFunction(v) ? (...args: any[]) => {
+          const current = this._component.props[k];
+          return _.isFunction(current) ? current(...args) : v(...args);
+        } : v,
+      );
       let children: (VNode | string)[];
       if (_.isString(type) || type.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children);
@@ -172,7 +178,7 @@ export class VNode {
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
         if (!(children[i] instanceof VNode)) continue;
-        if (!equalDeps(item._component.props, children[i]._component.props)) item._dirty = true;
+        if (!equalDeps(item._component.props, children[i]._component.props, (l, r) => _.isFunction(l) && _.isFunction(r) ? true : undefined)) item._dirty = true;
         item._component = children[i]._component;
       }
     } catch (error) {
