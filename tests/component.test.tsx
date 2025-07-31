@@ -75,7 +75,7 @@ test('test with error', async () => {
   );
 
   const renderer = new ServerDOMRenderer();
-  renderer.renderToString(element);
+  await renderer.renderToString(element);
 
   expect(error).toBeInstanceOf(Error);
   
@@ -111,7 +111,7 @@ test('test context', async () => {
   </div>;
 
   const renderer = new ServerDOMRenderer();
-  const result = renderer.renderToString(element);
+  const result = await renderer.renderToString(element);
 
   expect(result).toBe('<div><span>0</span><span>1</span><span>2</span><span>3</span></div>');
 
@@ -130,7 +130,7 @@ test('test render html', async () => {
     </html>
   );
   const renderer = new ServerDOMRenderer();
-  const result = renderer.renderToString(app);
+  const result = await renderer.renderToString(app);
 
   expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer=""></script></head><body><div id="root"></div></body></html>');
 
@@ -153,7 +153,7 @@ test('test with props modify', async () => {
     </PropsProvider>
   );
   const renderer = new ServerDOMRenderer();
-  const result = renderer.renderToString(app);
+  const result = await renderer.renderToString(app);
 
   expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script></head><body><div id="root" data-test="0"></div></body></html>');
 

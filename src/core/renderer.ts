@@ -46,7 +46,7 @@ export abstract class _Renderer<T> {
 
   abstract get _server(): boolean;
 
-  private _createRoot(
+  private async _createRoot(
     root: T | null,
     component: ComponentNode,
     options?: {
@@ -107,10 +107,10 @@ export abstract class _Renderer<T> {
       _mount(runtime.node, []);
     };
 
-    const update = (elements?: Map<VNode, { native?: T }>) => {
+    const update = async (elements?: Map<VNode, { native?: T }>) => {
       this._beforeUpdate();
       const map = new Map<VNode, { native?: T }>();
-      for (const { node, stack, updated } of runtime.excute()) {
+      for await (const { node, stack, updated } of runtime.excute()) {
         if (node.error) continue;
         if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
           map.set(node, {});
@@ -142,14 +142,14 @@ export abstract class _Renderer<T> {
     let update_count = 0;
     let render_count = 0;
     let destroyed = false;
-    let elements = update();
+    let elements = await update();
 
     const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
-      nextick(() => {
+      nextick(async () => {
         if (destroyed) return;
+        elements = await update(elements);
         render_count = update_count;
-        elements = update(elements);
       });
     });
 
@@ -172,18 +172,18 @@ export abstract class _Renderer<T> {
   }
 
   createRoot(root?: T) {
-    let state: ReturnType<typeof this._createRoot> | undefined;
+    let state: Awaited<ReturnType<typeof this._createRoot>> | undefined;
     return {
       get root() {
         return state?.root;
       },
-      mount: (
+      mount: async (
         component: ComponentNode,
         options?: {
           skipMount?: boolean;
         },
       ) => {
-        state = this._createRoot(root ?? null, component, options);
+        state = await this._createRoot(root ?? null, component, options);
       },
       unmount: () => {
         state?.destroy();

@@ -126,7 +126,7 @@ export class VNode {
   }
 
   /** @internal */
-  _updateIfNeed(options: {
+  async _updateIfNeed(options: {
     renderer: _Renderer<any>;
     stack: VNode[];
     propsProvider: VNode[];
@@ -152,16 +152,21 @@ export class VNode {
         this._content_value = value;
         children = this._resolve_children(type(props as any));
       } else if (_.isFunction(type)) {
-        const { rendered, state } = reconciler.withHookState({
-          renderer: options.renderer,
-          node: this,
-          state: this._state,
-          stack: options.stack,
-          contextValue: options.contextValue,
-        }, (state) => ({ rendered: type(props), state }));
-        this._state = state.state;
-        this._listens = new Map(options.contextValue.entries().filter(([k]) => state.listens.has(k)));
-        children = this._resolve_children(rendered);
+        let resolved;
+        while (true) {
+          resolved = reconciler.withHookState({
+            renderer: options.renderer,
+            node: this,
+            state: this._state,
+            stack: options.stack,
+            contextValue: options.contextValue,
+          }, (state) => ({ rendered: type(props), state }));
+          this._state = resolved.state.state;
+          if (_.isEmpty(resolved.state.tasks)) break;
+          await Promise.all(resolved.state.tasks);
+        }
+        this._listens = new Map(options.contextValue.entries().filter(([k]) => resolved.state.listens.has(k)));
+        children = this._resolve_children(resolved.rendered);
       } else {
         throw Error(`Invalid node type ${type}`);
       }

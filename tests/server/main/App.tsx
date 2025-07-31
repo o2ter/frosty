@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { useState, useEffect } from '~/index';
+import { useState, useEffect, useAsyncEager } from '~/index';
 
 export const App = () => {
   const [counter, setCounter] = useState(0);
@@ -8,6 +8,10 @@ export const App = () => {
   useEffect(() => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
+  }, []);
+  useAsyncEager(async () => {
+    console.log('hello')
+    await new Promise(res => setTimeout(res, 1000));
   }, []);
   return (
     <div

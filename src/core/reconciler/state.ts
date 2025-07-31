@@ -44,6 +44,8 @@ class HookState {
 
   listens = new WeakSet<Context<any>>();
 
+  tasks: PromiseLike<void>[] = [];
+
   constructor(options: {
     renderer: _Renderer<any>;
     node: VNode;
@@ -87,7 +89,7 @@ export const reconciler = new class {
   buildVNodes(component: ComponentNode, renderer: _Renderer<any>) {
     const event = new EventEmitter();
     const root = new VNode(component, event);
-    const excute = function* () {
+    const excute = async function* () {
       const items: {
         node: VNode;
         stack: VNode[];
@@ -107,7 +109,7 @@ export const reconciler = new class {
         yield {
           node,
           stack,
-          updated: node._updateIfNeed({
+          updated: await node._updateIfNeed({
             renderer,
             stack,
             propsProvider,

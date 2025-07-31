@@ -24,6 +24,7 @@
 //
 
 export * from './misc';
+export { useAsyncEager } from './asyncEager';
 export { useDebounce, useAsyncDebounce } from './debounce';
 export { useEffect } from './effect';
 export { Context, ContextType, createContext, useContext } from './context';

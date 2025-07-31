@@ -359,10 +359,10 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
   }
 
-  renderToString(component: ComponentNode) {
+  async renderToString(component: ComponentNode) {
     const root = this.createRoot();
     try {
-      root.mount(component, { skipMount: true });
+      await root.mount(component, { skipMount: true });
       const str = _.map(_.castArray(root.root ?? []), x => (x instanceof DOMNativeNode ? x.target : x).outerHTML).join('');
       return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
     } finally {
