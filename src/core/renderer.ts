@@ -147,9 +147,12 @@ export abstract class _Renderer<T> {
     const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
       nextick(async () => {
-        if (destroyed) return;
-        elements = await update(elements);
-        render_count = update_count;
+        while (render_count !== update_count) {
+          if (destroyed) return;
+          const current = update_count;
+          elements = await update(elements);
+          render_count = current;
+        }
       });
     });
 
