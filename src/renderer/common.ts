@@ -66,7 +66,7 @@ export abstract class DOMNativeNode extends NativeElementType {
 
   static createElement: (doc: Document, renderer: _DOMRenderer) => DOMNativeNode;
 
-  abstract get target(): Element;
+  abstract get target(): Element | Element[];
 
   abstract update(props: Record<string, any> & {
     className?: string;
@@ -334,7 +334,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[], force?: boolean) {
     const diff = myersSync(
       _.map(element.childNodes, x => x.nodeType === this.document.TEXT_NODE ? x.textContent ?? '' : x),
-      _.map(children, x => x instanceof DOMNativeNode ? x.target : x),
+      _.flatMap(children, x => x instanceof DOMNativeNode ? x.target : x),
       { compare: (a, b) => a === b },
     );
     let i = 0;
@@ -363,7 +363,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const root = this.createRoot();
     try {
       await root.mount(component, { skipMount: true });
-      const str = _.map(_.castArray(root.root ?? []), x => (x instanceof DOMNativeNode ? x.target : x).outerHTML).join('');
+      const elements = _.flatMap(_.castArray(root.root ?? []), x => x instanceof DOMNativeNode ? x.target : x);
+      const str = _.map(elements, x => x.outerHTML).join('');
       return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
     } finally {
       root.unmount();
