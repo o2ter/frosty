@@ -44,19 +44,29 @@ import { _useMemo } from '../reconciler/hooks';
  *   console.log('This function is memoized!');
  * }, [dependency]);
  */
-export const useCallback = <T extends (...args: any) => any>(
+
+export function useCallback<T extends (...args: any) => any>(
   callback: T,
   deps?: any
-): T => {
-  if (!_.isUndefined(deps)) return _useMemo('useCallback', callback, deps);
+): T;
+
+export function useCallback<T extends (...args: any) => any>(
+  callback: T | _.Falsey,
+  deps?: any
+): T | _.Falsey;
+
+export function useCallback<T extends (...args: any) => any>(
+  callback: T | _.Falsey,
+  deps?: any
+): T | _.Falsey {
   if (!_.isUndefined(deps)) return _useMemo('useCallback', () => callback, deps);
   const store = _useMemo('useCallback', () => {
     const store = {
       current: callback,
-      stable: (...args: Parameters<T>): ReturnType<T> => store.current(...args),
+      stable: (...args: Parameters<T>): ReturnType<T> => (store.current as T)(...args),
     };
     return store;
   }, null);
-  store.current = callback;
-  return store.stable as T;
+  if (callback) store.current = callback;
+  return callback && (store.stable as T);
 }
