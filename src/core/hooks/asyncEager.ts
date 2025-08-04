@@ -56,7 +56,7 @@ export const useAsyncEager = <T>(
 ) => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useAsyncEager must be used within a render function.');
-  const promise = _useMemo('useAsyncEager', factory, deps);
+  const promise = _useMemo('useAsyncEager', () => factory(), deps);
   if (resolved.has(promise)) {
     const { result, error } = resolved.get(promise) ?? {};
     if (error) throw error;

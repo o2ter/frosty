@@ -38,4 +38,4 @@ import { _useMemo } from '../reconciler/hooks';
 export const useMemo = <T>(
   factory: () => T,
   deps?: any,
-) => _useMemo('useMemo', factory, deps);
+) => _useMemo('useMemo', () => factory(), deps);
