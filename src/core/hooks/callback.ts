@@ -50,20 +50,20 @@ export function useCallback<T extends (...args: any) => any>(
   deps?: any
 ): T;
 
-export function useCallback<T extends (...args: any) => any>(
-  callback: T | _.Falsey,
+export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
+  callback: T,
   deps?: any
-): T | _.Falsey;
+): T;
 
-export function useCallback<T extends (...args: any) => any>(
-  callback: T | _.Falsey,
+export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
+  callback: T,
   deps?: any
-): T | _.Falsey {
+): T {
   if (!_.isUndefined(deps)) return _useMemo('useCallback', () => callback, deps);
   const store = _useMemo('useCallback', () => {
     const store = {
       current: callback,
-      stable: (...args: Parameters<T>) => {
+      stable: (...args: any) => {
         if (store.current) return store.current(...args);
       },
     };
