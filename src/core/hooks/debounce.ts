@@ -46,21 +46,22 @@ const asyncDebounce = <T extends (...args: any) => PromiseLike<any>>(
   type R = T extends (...args: any) => PromiseLike<infer R> ? R : never;
   let preflight: Promise<R>;
 
-  const debounced = debounce(async (
+  const debounced = debounce(async function (
+    this: any,
     resolve?: (value: PromiseLike<R>) => void,
     ...args: Parameters<T>
-  ) => {
-    const result = func(...args as any) as PromiseLike<R>;
+  ) {
+    const result = func.call(this, ...args as any) as PromiseLike<R>;
     if (_.isFunction(resolve)) resolve(result);
     return result;
   }, settings);
 
-  return (...args: Parameters<T>) => {
+  return function (this: any, ...args: Parameters<T>) {
     if (_.isNil(preflight)) {
-      preflight = new Promise<R>(r => debounced(r, ...args));
+      preflight = new Promise<R>(r => debounced.call(this, r, ...args));
       return preflight;
     }
-    return debounced(undefined, ...args) ?? preflight;
+    return debounced.call(this, undefined, ...args) ?? preflight;
   };
 };
 
