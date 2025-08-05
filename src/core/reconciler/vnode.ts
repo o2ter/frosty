@@ -135,12 +135,13 @@ export class VNode {
   }) {
     if (!this._dirty && this._check_context(options.contextValue)) return false;
     try {
+      const self = this;
       const { type, props: _props } = this._component;
       const props = _.mapValues(
         options.propsProvider.reduceRight((p, node) => node.props.callback({ type, props: p }), _props),
-        (v, k) => _.isFunction(v) ? (...args: any[]) => {
-          const current = this._component.props[k];
-          return _.isFunction(current) ? current(...args) : v(...args);
+        (v, k) => _.isFunction(v) ? function (this: any, ...args: any[]) {
+          const current = self._component.props[k];
+          return _.isFunction(current) ? current.call(this, ...args) : v.call(this, ...args);
         } : v,
       );
       let children: (VNode | string)[];
