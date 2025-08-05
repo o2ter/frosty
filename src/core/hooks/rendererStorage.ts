@@ -28,6 +28,14 @@ import { reconciler } from '../reconciler/state';
 
 const storage = new WeakMap<any, Map<any, any>>();
 
+/**
+ * Returns a persistent storage Map associated with the current renderer instance.
+ * This hook allows components to store and retrieve values that persist across renders,
+ * scoped to the renderer. Must be called within a render function.
+ *
+ * @throws Error if called outside of a render function.
+ * @returns {Map<any, any>} The storage map for the current renderer.
+ */
 export const useRendererStorage = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useRendererStorage must be used within a render function.');
