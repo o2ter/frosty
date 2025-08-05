@@ -30,6 +30,7 @@ import { createContext } from '../../context';
 import { useContext } from '../../context';
 import { useState } from '../../state';
 import { useMemo } from '../../memo';
+import { reconciler } from '../../../../core/reconciler/state';
 
 type Errors = {
   token: string;
@@ -39,13 +40,13 @@ type Errors = {
   loading: boolean;
 }[];
 
-export const Context = createContext<{
+type ContextValue = {
   errors: Errors;
   setErrors: (values: SetStateAction<Errors>) => void;
-}>({
-  errors: [],
-  setErrors: () => { },
-});
+};
+
+const defaultContextValue = new WeakMap<any, ContextValue>();
+const Context = createContext<ContextValue>();
 
 /**
  * A context provider component for managing asynchronous resource errors.
@@ -77,6 +78,26 @@ export const ResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
   );
 }
 
+export const useErrorContext = () => {
+  const value = useContext(Context);
+  if (value) return value;
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useErrorContext must be used within a render function.');
+
+  const defaults = defaultContextValue.get(state.renderer);
+  if (defaults) return defaults;
+
+  const store: ContextValue = {
+    errors: [],
+    setErrors: (values: SetStateAction<Errors>) => {
+      store.errors = _.isFunction(values) ? values(store.errors) : values;
+    },
+  };
+
+  defaultContextValue.set(state.renderer, store);
+  return store;
+};
+
 /**
  * A hook to access the list of asynchronous resource errors.
  * 
@@ -99,4 +120,4 @@ export const ResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
  * - `error`: The error object or message.
  * - `refresh`: A function to retry the operation that caused the error.
  */
-export const useResourceErrors = () => useContext(Context).errors;
+export const useResourceErrors = () => useErrorContext().errors;

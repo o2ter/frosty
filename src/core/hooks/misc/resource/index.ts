@@ -28,10 +28,9 @@ import { SetStateAction } from '../../../types/common';
 import { Config, Fetch, FetchWithIterable } from './types';
 import { useState } from '../../state';
 import { useEffect } from '../../effect';
-import { useContext } from '../../context';
 import { useCallback } from '../../callback';
 import { useAsyncDebounce } from '../../debounce';
-import { Context as ErrorContext } from './error';
+import { useErrorContext } from './error';
 import { uniqueId } from '../../../../core/utils';
 export { ResourceErrors, useResourceErrors } from './error';
 
@@ -133,7 +132,7 @@ export const useResource = <T, P = any>(
     resource: _.isFunction(resource) ? resource(state.resource) : resource,
   })));
 
-  const { setErrors } = useContext(ErrorContext);
+  const { setErrors } = useErrorContext();
   useEffect(() => {
     const { type, abort, token = uniqueId(), error } = state;
     if (!error) return;
