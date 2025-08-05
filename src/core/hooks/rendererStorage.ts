@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  rendererStorage.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,16 +23,16 @@
 //  THE SOFTWARE.
 //
 
-export * from './misc';
-export { useAsyncEager } from './asyncEager';
-export { useDebounce, useAsyncDebounce } from './debounce';
-export { useEffect } from './effect';
-export { Context, ContextType, createContext, useContext } from './context';
-export { useMemo } from './memo';
-export { useRef, useRefHandle } from './ref';
-export { useCallback } from './callback';
-export { useState } from './state';
-export { useStack } from './stack';
-export { useReducer } from './reducer';
-export { useSyncExternalStore } from './sync';
-export { useRendererStorage } from './rendererStorage';
+import _ from 'lodash';
+import { reconciler } from '../reconciler/state';
+
+const storage = new WeakMap<any, Map<any, any>>();
+
+export const useRendererStorage = () => {
+  const state = reconciler.currentHookState;
+  if (!state) throw Error('useRendererStorage must be used within a render function.');
+  const found = storage.get(state.renderer);
+  const store = found ?? new Map<any, any>();
+  if (!found) storage.set(state.renderer, store);
+  return store;
+};

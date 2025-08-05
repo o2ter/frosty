@@ -30,7 +30,7 @@ import { createContext } from '../../context';
 import { useContext } from '../../context';
 import { useState } from '../../state';
 import { useMemo } from '../../memo';
-import { reconciler } from '../../../../core/reconciler/state';
+import { useRendererStorage } from '../../rendererStorage';
 
 type Errors = {
   token: string;
@@ -45,7 +45,7 @@ type ContextValue = {
   setErrors: (values: SetStateAction<Errors>) => void;
 };
 
-const defaultContextValue = new WeakMap<any, ContextValue>();
+const defaultStorageKey = Symbol();
 const Context = createContext<ContextValue>();
 
 /**
@@ -81,20 +81,16 @@ export const ResourceErrors: ComponentType<PropsWithChildren<{}>> = ({
 export const useErrorContext = () => {
   const value = useContext(Context);
   if (value) return value;
-  const state = reconciler.currentHookState;
-  if (!state) throw Error('useErrorContext must be used within a render function.');
-
-  const defaults = defaultContextValue.get(state.renderer);
-  if (defaults) return defaults;
-
+  const storage = useRendererStorage();
+  const found = storage.get(defaultStorageKey);
+  if (found) return found as ContextValue;
   const store: ContextValue = {
     errors: [],
     setErrors: (values: SetStateAction<Errors>) => {
       store.errors = _.isFunction(values) ? values(store.errors) : values;
     },
   };
-
-  defaultContextValue.set(state.renderer, store);
+  storage.set(defaultStorageKey, store);
   return store;
 };
 
