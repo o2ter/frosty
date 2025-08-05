@@ -61,7 +61,7 @@ const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>()
 export const useAsyncEager = <T>(
   factory: () => PromiseLike<T>,
   deps?: any,
-) => {
+): T | undefined => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useAsyncEager must be used within a render function.');
   const promise = _useMemo('useAsyncEager', () => factory(), deps);
