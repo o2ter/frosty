@@ -86,7 +86,7 @@ export const useDebounce = <T extends (...args: any) => any>(
   const store = _useMemo('useDebounce', () => {
     const store = {
       current: callback,
-      stable: debounce(((...args) => store.current(...args)) as T, settings),
+      stable: debounce(((...args) => store.current.call(undefined, ...args)) as T, settings),
     };
     return store;
   }, null);
@@ -116,7 +116,7 @@ export const useAsyncDebounce = <T extends (...args: any) => PromiseLike<any>>(
   const store = _useMemo('useAsyncDebounce', () => {
     const store = {
       current: callback,
-      stable: asyncDebounce(((...args) => store.current(...args)) as T, settings),
+      stable: asyncDebounce(((...args) => store.current.call(undefined, ...args)) as T, settings),
     };
     return store;
   }, null);
