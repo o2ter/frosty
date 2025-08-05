@@ -32,23 +32,31 @@ const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>()
 /**
  * Eagerly resolves a promise returned by the factory function and caches its result or error.
  *
- * - If the promise resolves, returns the resolved value.
- * - If the promise rejects, throws the error.
- * - If the promise is still pending, schedules its resolution and returns `undefined`.
- * - The renderer will wait for the promise to settle within a single render cycle,
- *   ensuring that the result or error is available before the next render.
+ * This hook ensures the promise settles before rendering completes. If the promise is still pending,
+ * it returns `undefined` and schedules an immediate rerender of the current component. Once resolved, it returns the value.
+ * If rejected, it throws the error.
  *
- * **Usage Notes:**
- * - Must be called inside a render function (e.g., within a component).
- * - The promise is memoized based on the provided dependencies.
- * - The result or error is cached for the lifetime of the promise instance.
+ * #### Usage
+ * ```typescript
+ * const data = useAsyncEager(() => fetchData(id), [id]);
+ * ```
+ *
+ * #### Parameters
+ * - `factory`: `() => PromiseLike<T>`  
+ *   A function that returns a promise to resolve.
+ * - `deps` (optional): `any`  
+ *   Dependency array for memoization. The promise is recreated when dependencies change.
+ *
+ * #### Returns
+ * - `T | undefined`  
+ *   The resolved value, once available. Returns `undefined` while the promise is pending.
+ * - Throws the rejection error if the promise fails.
+ *
+ * #### Throws
+ * - Error if used outside a render function.
+ * - The rejection error if the promise fails.
  *
  * @template T Type of the resolved value.
- * @param factory Function returning a Promise-like object to resolve.
- * @param deps Optional dependencies array for memoization. The promise is recreated if dependencies change.
- * @returns The resolved value of the promise, or throws the error if rejected.
- *          Returns `undefined` while the promise is pending.
- * @throws Error if used outside a render function, or if the promise rejects.
  */
 export const useAsyncEager = <T>(
   factory: () => PromiseLike<T>,
