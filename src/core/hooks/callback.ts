@@ -63,8 +63,8 @@ export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
   const store = _useMemo('useCallback', () => {
     const store = {
       current: callback,
-      stable: (...args: any) => {
-        if (store.current) return store.current(...args);
+      stable: function (this: any, ...args: any) {
+        if (store.current) return store.current.call(this, ...args);
       },
     };
     return store;
