@@ -39,7 +39,7 @@ export type _IntrinsicAttributes = {
 
 export type PropsType = Record<string, any>;
 
-type EventHandler<E extends Event, C, T = EventTarget> = (event: E & {
+type EventHandler<E extends Event, C, T = EventTarget> = (this: C, event: E & {
   currentTarget: C;
   target: T;
  }) => void;
