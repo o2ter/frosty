@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
+import { SetStateAction } from '../../../types/common';
 
 /**
  * Represents a function to fetch asynchronous resources.
@@ -44,7 +45,7 @@ export type Fetch<T, P> = (x: {
   abortSignal: AbortSignal;
   param?: P;
   prevState?: T;
-  dispatch: (value: T | ((prevState?: T) => T)) => void;
+  dispatch: (value: SetStateAction<T, T | undefined>) => void;
 }) => PromiseLike<void | T>;
 
 /**

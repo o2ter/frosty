@@ -28,6 +28,7 @@ import { useMemo } from '../core/hooks/memo';
 import { useCallback } from '../core/hooks/callback';
 import { useSyncExternalStore } from '../core/hooks/sync';
 import { EventEmitter } from '../core/reconciler/events';
+import { SetStateAction } from '../core/types/common';
 import { useWindow } from './window';
 
 const emitters = new WeakMap<Document, EventEmitter>();
@@ -115,7 +116,7 @@ export const useSearchParams = () => {
   const location = useLocation();
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
   const setSearchParams = useCallback((
-    dispatch: URLSearchParamsInit | ((prevState: URLSearchParams) => URLSearchParamsInit),
+    dispatch: SetStateAction<URLSearchParamsInit, URLSearchParams>,
     config?: {
       replace?: boolean;
     },
