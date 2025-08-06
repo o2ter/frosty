@@ -2,9 +2,19 @@
 
 const _ = require('lodash');
 const path = require('path');
+const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const TerserPlugin = require('terser-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
-const serverConfig = require(path.resolve(process.cwd(), 'server.config.js'));
+const serverConfig = (() => {
+  try {
+    return require(path.resolve(process.cwd(), 'server.config.js'));
+  } catch {
+    return {};
+  }
+})();
 
 module.exports = (env, argv) => {
 
@@ -129,7 +139,6 @@ module.exports = (env, argv) => {
   const webpackPlugins = [
     new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
     new webpack.DefinePlugin({ __DEV__: JSON.stringify(!IS_PRODUCTION) }),
-    new LoadablePlugin({ outputAsset: false }),
     new Dotenv({ path: path.join(process.cwd(), '.env') }),
     new Dotenv({ path: path.join(process.cwd(), '.env.local') }),
     new webpack.ProvidePlugin({
