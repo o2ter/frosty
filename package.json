@@ -37,10 +37,7 @@
     "gen-data": "node ./scripts/gen-data.mjs",
     "clean": "rm -rf ./dist/*",
     "rollup": "yarn clean && rollup -c",
-    "test": "jest",
-    "watch:build": "./tests/server/bin/build.sh -w",
-    "watch:start": "until [ -f ./tests/server/dist/server.js ]; do sleep 1; done && npx nodemon --watch ./tests/server/dist ./tests/server/dist/server.js",
-    "start": "rm -rf ./tests/server/dist/* && npx npm-run-all --parallel watch:*"
+    "test": "jest"
   },
   "bin": {
     "frosty": "./bin/frosty.sh"
