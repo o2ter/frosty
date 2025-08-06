@@ -31,3 +31,5 @@ cd "$SCRIPT_DIR"
 
 export FROSTY_CLI_ROOT="$( realpath "$SCRIPT_DIR/../.." )"
 export PROJECT_ROOT="${PROJECT_ROOT:-$( realpath "$INIT_CWD" )}"
+
+cd "$PROJECT_ROOT"
