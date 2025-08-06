@@ -1,7 +1,10 @@
 /* eslint no-var: 0 */
 
 const _ = require('lodash');
+const os = require('os');
+const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -147,27 +150,42 @@ module.exports = (env, argv) => {
     ...config.options?.plugins ?? [],
   ];
 
+  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.js');
+
+  const random = crypto.randomUUID();
+  const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
+  const applications = path.resolve(tempDir, `applications-${random}.js`);
+
+  fs.writeFileSync(applications, `
+    ${_.map(config.client, ({ entry }, name) => `import * as ${name} from '${path.resolve(process.cwd(), entry)}';`).join('\n')}
+    export { ${_.keys(config.client).join(',')} };
+  `);
+
   const moduleSuffixes = {
     client: config.moduleSuffixes?.client ?? ['.browser', '.web', ''],
     server: config.moduleSuffixes?.server ?? ['.node', '.server', '.web', ''],
   };
 
   return [
-    {
+    ..._.map(config.client, ({ entry }, name) => ({
       ...webpackConfiguration,
       optimization: webpackOptimization({ server: false }),
       plugins: webpackPlugins,
       entry: {
-        main_bundle: [
+        [`${name}_bundle`]: [
           'core-js/stable',
-          path.resolve(__dirname, './src/index.tsx'),
+          path.resolve(__dirname, './client/index.js'),
         ],
       },
       output: {
-        path: path.join(__dirname, 'dist/public'),
+        path: config.output ? path.join(config.output, 'public') : path.join(__dirname, 'dist/public'),
       },
       resolve: {
         ...webpackConfiguration.resolve,
+        alias: {
+          ...webpackConfiguration.resolve.alias,
+          __APPLICATION__: path.resolve(process.cwd(), entry),
+        },
         extensions: [
           ...moduleSuffixes.client.flatMap(x => [`${x}.tsx`, `${x}.jsx`]),
           ...moduleSuffixes.client.flatMap(x => [`${x}.ts`, `${x}.mjs`, `${x}.js`]),
@@ -183,7 +201,7 @@ module.exports = (env, argv) => {
           ...config.options?.module?.rules ?? [],
         ]
       }
-    },
+    })),
     {
       ...webpackConfiguration,
       optimization: webpackOptimization({ server: false }),
@@ -197,17 +215,18 @@ module.exports = (env, argv) => {
       entry: {
         server: [
           'core-js/stable',
-          path.resolve(__dirname, './src/index.tsx'),
+          path.resolve(__dirname, './src/server/index.js'),
         ],
       },
       output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: config.output || path.resolve(__dirname, 'dist'),
       },
       resolve: {
         ...webpackConfiguration.resolve,
         alias: {
           ...webpackConfiguration.resolve.alias,
-          __APPLICATION__: path.resolve(process.cwd(), entry),
+          __APPLICATIONS__: applications,
+          __SERVER__: server,
         },
         extensions: [
           ...moduleSuffixes.server.flatMap(x => [`${x}.tsx`, `${x}.jsx`]),

@@ -1,5 +1,5 @@
 //
-//  index.tsx
+//  default.js
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,13 +23,10 @@
 //  THE SOFTWARE.
 //
 
-import _ from 'lodash';
-import path from 'path';
 import { Server } from '@o2ter/server-js';
-import App from '__APPLICATION__';
-import { ServerDOMRenderer } from 'frosty/server-dom';
 
-const app = new Server({
+/** @type {Server.Options} */
+export const serverOptions = {
   http: 'v1',
   express: {
     cors: {
@@ -41,26 +38,6 @@ const app = new Server({
       limit: 1000,
     },
   },
-});
+};
 
-app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
-
-app.express().get('*', async (req, res) => {
-  const renderer = new ServerDOMRenderer();
-  const component = (
-    <html>
-      <head>
-        <script src="/main_bundle.js" defer />
-      </head>
-      <body>
-        <div id="root"><App /></div>
-      </body>
-    </html>
-  );
-  res.setHeader('Content-Type', 'text/html');
-  res.send(await renderer.renderToString(component));
-});
-
-const PORT = !_.isEmpty(process.env.PORT) ? parseInt(process.env.PORT!) : 8080;
-
-app.listen(PORT, () => console.info(`listening on port ${PORT}`));
+export default () => {};
