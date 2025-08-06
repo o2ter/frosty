@@ -28,7 +28,7 @@ import { useMemo } from '../core/hooks/memo';
 import { useCallback } from '../core/hooks/callback';
 import { useSyncExternalStore } from '../core/hooks/sync';
 import { EventEmitter } from '../core/reconciler/events';
-import { useDocument } from './document';
+import { useWindow } from './window';
 
 const emitters = new WeakMap<Document, EventEmitter>();
 const emitterFor = (document: Document) => {
@@ -63,10 +63,10 @@ const emitterFor = (document: Document) => {
  * location.pushState({ some: 'state' }, '/new-path');
  */
 export const useLocation = () => {
-  const document = useDocument();
-  const emitter = emitterFor(document);
+  const window = useWindow();
+  const emitter = emitterFor(window.document);
   const result = (history?: History) => ({
-    ..._.pick(document.location, 'hash', 'host', 'hostname', 'href', 'origin', 'pathname', 'port', 'protocol', 'search'),
+    ..._.pick(window.document.location, 'hash', 'host', 'hostname', 'href', 'origin', 'pathname', 'port', 'protocol', 'search'),
     state: history?.state ?? null,
     back: () => {
       history?.back();
@@ -91,7 +91,7 @@ export const useLocation = () => {
       window.removeEventListener('popstate', onStoreChange);
       event.remove();
     }
-  }, () => result(window.history), () => result());
+  }, () => result(window.history));
 }
 
 type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
@@ -114,9 +114,19 @@ type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
 export const useSearchParams = () => {
   const location = useLocation();
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
-  const setSearchParams = useCallback((params: URLSearchParamsInit) => {
+  const setSearchParams = useCallback((
+    dispatch: URLSearchParamsInit | ((prevState: URLSearchParams) => URLSearchParamsInit),
+    config?: {
+      replace?: boolean;
+    },
+  ) => {
+    const params = _.isFunction(dispatch) ? dispatch(new URLSearchParams(location.search)) : dispatch;
     const newParams = new URLSearchParams(params);
-    location.pushState(location.state, `?${newParams.toString()}`);
+    if (config?.replace === false) {
+      location.pushState(location.state, `?${newParams.toString()}`);
+    } else {
+      location.replaceState(location.state, `?${newParams.toString()}`);
+    }
   });
-  return [searchParams, setSearchParams];
+  return [searchParams, setSearchParams] as const;
 }

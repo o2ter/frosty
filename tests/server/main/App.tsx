@@ -1,10 +1,13 @@
 import _ from 'lodash';
 import { useState, useEffect, useAsyncEager } from '~/index';
+import { useLocation, useSearchParams } from '~/web';
 
 export const App = () => {
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [text, setText] = useState('');
+  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
@@ -33,6 +36,10 @@ export const App = () => {
       </table>
       <div innerHTML={`<span>${counter}</span>`} />
       <button onClick={() => setCounter2(v => v + 1)}>Click</button>
+      <button onClick={() => setSearchParams(v => {
+        v.set('test', `${counter}`);
+        return v;
+      })}>Click2</button>
       <span>{counter2}</span>
       <input value={text} onInput={(e) => {
         setText(e.currentTarget.value);
