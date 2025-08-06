@@ -7,16 +7,20 @@ A fast, flexible, and modern JSX-based UI library.
 - ⚡ Fast rendering and reconciliation
 - 🧩 Flexible component model
 - 🎨 Built-in style and CSS support
-- 🪝 Modern hooks API
-- 🌐 SSR-ready
+- 🪝 Modern hooks API (React-like)
+- 🌐 SSR-ready (Server-side rendering)
 
 ## Installation
+
+Install Frosty using npm:
 
 ```sh
 npm install frosty
 ```
 
-## Usage
+## Quick Start
+
+Here's a simple example to get you started:
 
 ```tsx
 import { useState } from 'frosty';
@@ -32,11 +36,44 @@ function App() {
 }
 ```
 
-See the [API documentation](./docs) for more details.
+See the [API documentation](./docs) for more details and advanced usage.
+
+## TypeScript Setup
+
+To enable JSX support with Frosty in TypeScript, update your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "frosty"
+  }
+}
+```
+
+This configures TypeScript to use Frosty's JSX runtime.
+
+## Babel Setup
+
+To use Frosty with Babel, add the following to your Babel config:
+
+```json
+{
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic",
+        "importSource": "frosty"
+      }
+    ]
+  ]
+}
+```
 
 ## Contributing
 
-Contributions are welcome! Please open issues or submit pull requests.
+We welcome contributions! Please open issues or submit pull requests.
 
 ## License
 
