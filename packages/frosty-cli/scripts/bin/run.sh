@@ -33,3 +33,47 @@ export FROSTY_CLI_ROOT="$( realpath "$SCRIPT_DIR/../.." )"
 export PROJECT_ROOT="${PROJECT_ROOT:-$( realpath "$INIT_CWD" )}"
 
 cd "$PROJECT_ROOT"
+
+POSITIONAL_ARGS=()
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -w|--watch)
+      WATCH_MODE=true
+      shift
+      ;;
+    -d|--debug)
+      DEBUG_MODE=true
+      shift
+      ;;
+    -p|--port)
+      PORT="$2"
+      shift 2
+      ;;
+    -*)
+      echo "Unknown option $1"
+      print_usage
+      exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.js""
+
+if [ $DEBUG_MODE ]; then
+   SCRIPT="$SCRIPT --mode development"
+else
+   SCRIPT="$SCRIPT --mode production"
+fi
+
+if [ $WATCH ]; then
+   SCRIPT="$SCRIPT --watch"
+fi
+
+exec $SCRIPT
