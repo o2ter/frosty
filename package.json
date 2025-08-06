@@ -27,7 +27,8 @@
     }
   },
   "files": [
-    "dist/*"
+    "dist/*",
+    "scripts/bin/*"
   ],
   "repository": "https://github.com/o2ter/frosty.git",
   "author": "Susan Cheng <susan.doggie@gmail.com>",
@@ -40,6 +41,9 @@
     "watch:build": "./tests/server/bin/build.sh -w",
     "watch:start": "until [ -f ./tests/server/dist/server.js ]; do sleep 1; done && npx nodemon --watch ./tests/server/dist ./tests/server/dist/server.js",
     "start": "rm -rf ./tests/server/dist/* && npx npm-run-all --parallel watch:*"
+  },
+  "bin": {
+    "frosty": "./bin/frosty.sh"
   },
   "dependencies": {
     "@o2ter/utils-js": "^0.0.19",
