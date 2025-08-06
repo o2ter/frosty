@@ -29,4 +29,5 @@ set -e
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR"
 
-export PROJECT_ROOT="$INIT_CWD"
+export FROSTY_CLI_ROOT="$( realpath "$SCRIPT_DIR/../.." )"
+export PROJECT_ROOT="${PROJECT_ROOT:-$( realpath "$INIT_CWD" )}"
