@@ -126,6 +126,10 @@ OUTPUT_DIR="${OUTPUT_DIR:-"$( node -pe "(() => {
 
 OUTPUT_DIR="${OUTPUT_DIR:-"$FROSTY_CLI_ROOT/dist"}"
 
+if [ ! $NO_BUILD ]; then
+  rm -rf "$OUTPUT_DIR"
+fi
+
 if [ ! $BUILD_ONLY ] && [ $WATCH ]; then
   until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" &
 fi
