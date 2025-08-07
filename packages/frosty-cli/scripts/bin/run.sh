@@ -132,25 +132,25 @@ fi
 
 if [ ! $NO_BUILD ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
-  SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs" --env CONFIG_FILE="$CONFIG_FILE" --env OUTPUT_DIR="$OUTPUT_DIR""
+  BUILD_SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs" --env CONFIG_FILE="$CONFIG_FILE" --env OUTPUT_DIR="$OUTPUT_DIR""
   if [ $DEBUG_MODE ]; then
-    SCRIPT="$SCRIPT --mode development"
+    BUILD_SCRIPT="$BUILD_SCRIPT --mode development"
   else
-    SCRIPT="$SCRIPT --mode production"
+    BUILD_SCRIPT="$BUILD_SCRIPT --mode production"
   fi
   if [ $INPUT_FILE ]; then
-    SCRIPT="$SCRIPT --env INPUT_FILE="$INPUT_FILE""
+    BUILD_SCRIPT="$BUILD_SCRIPT --env INPUT_FILE="$INPUT_FILE""
   fi
   if [ $SRCROOT ]; then
-    SCRIPT="$SCRIPT --env SRCROOT="$SRCROOT""
+    BUILD_SCRIPT="$BUILD_SCRIPT --env SRCROOT="$SRCROOT""
   fi
   if [ $PORT ]; then
-    SCRIPT="$SCRIPT --env PORT="$PORT""
+    BUILD_SCRIPT="$BUILD_SCRIPT --env PORT="$PORT""
   fi
   if [ $WATCH ]; then
-    exec $SCRIPT --watch &
+    exec $BUILD_SCRIPT --watch &
   else
-    exec $SCRIPT
+    exec $BUILD_SCRIPT
   fi
 fi
 
