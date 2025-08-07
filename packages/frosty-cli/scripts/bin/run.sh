@@ -34,6 +34,27 @@ export PROJECT_ROOT="${PROJECT_ROOT:-$( realpath "$INIT_CWD" )}"
 
 cd "$PROJECT_ROOT"
 
+print_usage() {
+  echo "Usage: frosty run [options] [input-file]"
+  echo ""
+  echo "Options:"
+  echo "  -w, --watch                Enable watch mode (rebuild on file changes)"
+  echo "  -d, --debug                Enable debug mode (development build)"
+  echo "  -b, --build-only           Only build, do not run the output"
+  echo "  -B, --no-build             Skip build step"
+  echo "  -p, --port <port>          Specify port for the server (if applicable)"
+  echo "  -c, --configuration <file> Specify configuration file to use"
+  echo "  -s, --src <dir>            Specify source root directory"
+  echo "  -o, --output <dir>         Specify output directory for build artifacts"
+  echo "  -h, --help                 Show this help message and exit"
+  echo ""
+  echo "Arguments:"
+  echo "  input-file                 Optional input file to process"
+  echo ""
+  echo "Examples:"
+  echo "  frosty run app.js"
+}
+
 POSITIONAL_ARGS=()
 
 while [[ $# -gt 0 ]]; do
@@ -70,6 +91,10 @@ while [[ $# -gt 0 ]]; do
       OUTPUT_DIR="$2"
       shift 2
       ;;
+    -h|--help)
+      print_usage
+      exit 0
+      ;;
     -*)
       echo "Unknown option $1"
       print_usage
@@ -84,6 +109,10 @@ done
 
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
+if [ $# -gt 0 ]; then
+  INPUT_FILE="$1"
+fi
+
 if [ ! $NO_BUILD ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
   SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs""
@@ -94,6 +123,9 @@ if [ ! $NO_BUILD ]; then
   fi
   if [ $CONFIG_FILE ]; then
     SCRIPT="$SCRIPT --env CONFIG_FILE="$CONFIG_FILE""
+  fi
+  if [ $INPUT_FILE ]; then
+    SCRIPT="$SCRIPT --env INPUT_FILE="$INPUT_FILE""
   fi
   if [ $SRCROOT ]; then
     SCRIPT="$SCRIPT --env SRCROOT="$SRCROOT""

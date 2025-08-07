@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { useState, useEffect, useAsyncEager } from '~/index';
 import { useLocation, useSearchParams } from '~/web';
 
-export const App = () => {
+export default () => {
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [text, setText] = useState('');

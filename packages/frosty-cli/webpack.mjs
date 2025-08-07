@@ -11,7 +11,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 
 export default async (env, argv) => {
 
-  const { CONFIG_FILE = 'server.config.js' } = env;
+  const { CONFIG_FILE = 'server.config.js', INPUT_FILE } = env;
 
   const serverConfig = await (async () => {
     try {
@@ -182,10 +182,11 @@ export default async (env, argv) => {
   const random = crypto.randomUUID();
   const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
   const applications = path.resolve(tempDir, `applications-${random}.js`);
+  const inputs = INPUT_FILE ? { main: { entry: INPUT_FILE, uri: '/' } } : config.client;
 
   fs.writeFileSync(applications, `
-    ${_.map(config.client, ({ entry }, name) => `import * as ${name} from '${path.resolve(process.cwd(), entry)}';`).join('\n')}
-    export { ${_.keys(config.client).join(',')} };
+    ${_.map(inputs, ({ entry }, name) => `import * as ${name} from '${path.resolve(process.cwd(), entry)}';`).join('\n')}
+    export { ${_.keys(inputs).join(',')} };
   `);
 
   const moduleSuffixes = {
@@ -194,14 +195,14 @@ export default async (env, argv) => {
   };
 
   return [
-    ..._.map(config.client, ({ entry }, name) => ({
+    ..._.map(inputs, ({ entry }, name) => ({
       ...webpackConfiguration,
       optimization: webpackOptimization({ server: false }),
       plugins: webpackPlugins,
       entry: {
         [`${name}_bundle`]: [
           'core-js/stable',
-          path.resolve(import.meta.dirname, './client/index.js'),
+          path.resolve(import.meta.dirname, './src/client/index.js'),
         ],
       },
       output: {

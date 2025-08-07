@@ -37,7 +37,8 @@
     "gen-data": "node ./scripts/gen-data.mjs",
     "clean": "rm -rf ./dist/*",
     "rollup": "yarn clean && rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "start": "npx frosty run -d -w -s ./src tests/server/app.tsx"
   },
   "subPackages": [
     "packages/frosty-cli"
