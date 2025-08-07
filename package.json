@@ -39,9 +39,6 @@
     "rollup": "yarn clean && rollup -c",
     "test": "jest"
   },
-  "bin": {
-    "frosty": "./bin/frosty.sh"
-  },
   "dependencies": {
     "@o2ter/utils-js": "^0.0.19",
     "@types/jsdom": "^21.1.7",
