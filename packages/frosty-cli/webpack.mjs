@@ -242,6 +242,13 @@ export default async (env, argv) => {
         new webpack.EnvironmentPlugin({ PORT }),
         ...config.options?.server?.plugins ?? [],
         config.serverAssets && new CopyPlugin({ patterns: config.serverAssets }),
+        new webpack.DefinePlugin({
+          __applications__: JSON.stringify(_.mapValues(inputs, x => ({
+            path: x.uri,
+            basename: x.basename,
+            env: x.env ?? {},
+          }))),
+        }),
       ]),
       target: 'node',
       entry: {
