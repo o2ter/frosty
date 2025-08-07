@@ -5,7 +5,7 @@ import babel from '@rollup/plugin-babel';
 import json from '@rollup/plugin-json';
 import dts from 'rollup-plugin-dts';
 
-const rollupConfig = {
+export const rollupConfig = {
   input: {
     index: 'src/index',
     'jsx-runtime': 'src/jsx-runtime',

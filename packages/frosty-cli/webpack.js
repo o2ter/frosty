@@ -19,6 +19,24 @@ const serverConfig = (() => {
   }
 })();
 
+const frosty = (() => {
+  try {
+    return require.resolve('frosty');
+  } catch {
+    return;
+  }
+})();
+
+const frostyDevPrj = (() => {
+  if (frosty) return {};
+  const { rollupConfig: { input } } = require(path.resolve(__dirname, '../../rollup.config.mjs'));
+  const resolved = {};
+  for (const [k, v] of _.entries(input)) {
+    resolved[k === 'index' ? 'frosty' : `frosty/${k}`] = path.resolve(__dirname, '../..', v);
+  }
+  return resolved;
+})();
+
 module.exports = (env, argv) => {
 
   const config = _.isFunction(serverConfig) ? serverConfig(env, argv) : serverConfig;
@@ -131,8 +149,7 @@ module.exports = (env, argv) => {
     resolve: {
       ...config.options?.resolve ?? {},
       alias: {
-        '~': path.resolve(__dirname, '../../src'),
-        'frosty': path.resolve(__dirname, '../../src'),
+        ...frosty ? { frosty } : frostyDevPrj,
         ...config.options?.resolve?.alias ?? {},
       },
     },
