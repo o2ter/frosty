@@ -25,6 +25,7 @@ export default async (env, argv) => {
   const IS_PRODUCTION = argv.mode !== 'development';
 
   const {
+    PORT = 8080,
     SRCROOT = config.src,
     OUTPUT_DIR = config.output || path.resolve(import.meta.dirname, 'dist'),
   } = env;
@@ -235,11 +236,11 @@ export default async (env, argv) => {
       optimization: webpackOptimization({ server: false }),
       plugins: _.compact([
         ...webpackPlugins,
+        new webpack.EnvironmentPlugin({ PORT }),
         ...config.options?.server?.plugins ?? [],
         config.serverAssets && new CopyPlugin({ patterns: config.serverAssets }),
       ]),
       target: 'node',
-      plugins: webpackPlugins,
       entry: {
         server: [
           'core-js/stable',

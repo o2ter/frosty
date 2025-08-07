@@ -133,6 +133,9 @@ if [ ! $NO_BUILD ]; then
   if [ $OUTPUT_DIR ]; then
     SCRIPT="$SCRIPT --env OUTPUT_DIR="$OUTPUT_DIR""
   fi
+  if [ $PORT ]; then
+    SCRIPT="$SCRIPT --env PORT="$PORT""
+  fi
   if [ $WATCH ]; then
     SCRIPT="$SCRIPT --watch"
   fi
