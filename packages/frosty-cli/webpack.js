@@ -32,9 +32,13 @@ const frostyDevPrj = (() => {
   const { rollupConfig: { input } } = require(path.resolve(__dirname, '../../rollup.config.mjs'));
   const resolved = {};
   for (const [k, v] of _.entries(input)) {
-    resolved[k === 'index' ? 'frosty' : `frosty/${k}`] = path.resolve(__dirname, '../..', v);
+    if (k === 'index') continue;
+    resolved[`frosty/${k}`] = path.resolve(__dirname, '../..', v);
   }
-  return resolved;
+  return {
+    ...resolved,
+    frosty: path.resolve(__dirname, '../../src/index'),
+  };
 })();
 
 module.exports = (env, argv) => {
