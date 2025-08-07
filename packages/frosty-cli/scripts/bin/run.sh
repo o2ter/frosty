@@ -113,6 +113,10 @@ if [ $# -gt 0 ]; then
   INPUT_FILE="$1"
 fi
 
+if [ ! $BUILD_ONLY ] && [ $WATCH ]; then
+  until [ -f ./dist/server.js ]; do sleep 1; done && npx nodemon --watch ./dist ./dist/server.js
+fi
+
 if [ ! $NO_BUILD ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
   SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs""
@@ -137,10 +141,11 @@ if [ ! $NO_BUILD ]; then
     SCRIPT="$SCRIPT --env PORT="$PORT""
   fi
   if [ $WATCH ]; then
-    SCRIPT="$SCRIPT --watch"
+    exec $SCRIPT --watch
+  else
+    exec $SCRIPT
   fi
-  exec $SCRIPT
 fi
 
-if [ ! $BUILD_ONLY ]; then
+if [ ! $BUILD_ONLY ] && [ ! $WATCH ]; then
 fi

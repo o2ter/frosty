@@ -11,7 +11,11 @@ import CopyPlugin from 'copy-webpack-plugin';
 
 export default async (env, argv) => {
 
-  const { CONFIG_FILE = 'server.config.js', INPUT_FILE } = env;
+  const {
+    CONFIG_FILE = 'server.config.js',
+    INPUT_FILE,
+    PORT = 8080,
+  } = env;
 
   const serverConfig = await (async () => {
     try {
@@ -25,7 +29,6 @@ export default async (env, argv) => {
   const IS_PRODUCTION = argv.mode !== 'development';
 
   const {
-    PORT = 8080,
     SRCROOT = config.src,
     OUTPUT_DIR = config.output || path.resolve(import.meta.dirname, 'dist'),
   } = env;
