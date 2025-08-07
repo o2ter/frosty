@@ -38,6 +38,39 @@ function App() {
 
 See the [API documentation](./docs) for more details and advanced usage.
 
+## Usage
+
+To run your app with Frosty CLI using `npx`:
+
+```sh
+npx frosty run app.js
+```
+
+### Common Options
+
+- `-w, --watch`   Enable watch mode (rebuild on file changes)
+- `-d, --debug`   Enable debug mode (development build)
+- `-p, --port <port>` Specify server port (default: 8080)
+- `-c, --configuration <file>` Use a custom config file (default: server.config.js)
+- `-s, --src <dir>`  Specify source directory
+- `-o, --output <dir>` Specify output directory
+
+### Example Commands
+
+Start your app in development mode with watch:
+
+```sh
+npx frosty run --watch --debug app.js
+```
+
+Run with a custom port and config:
+
+```sh
+npx frosty run --port 3000 --configuration my.config.js app.js
+```
+
+See `npx frosty run --help` for the full list of options.
+
 ## TypeScript Setup
 
 To enable JSX support with Frosty in TypeScript, update your `tsconfig.json`:
