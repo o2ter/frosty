@@ -58,6 +58,18 @@ while [[ $# -gt 0 ]]; do
       PORT="$2"
       shift 2
       ;;
+    -c|--configuration)
+      CONFIG_FILE="$2"
+      shift 2
+      ;;
+    -s|--src)
+      SRCROOT="$2"
+      shift 2
+      ;;
+    -o|--output)
+      OUTPUT_DIR="$2"
+      shift 2
+      ;;
     -*)
       echo "Unknown option $1"
       print_usage
@@ -74,11 +86,20 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 if [ ! $NO_BUILD ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
-  SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.js""
+  SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs""
   if [ $DEBUG_MODE ]; then
     SCRIPT="$SCRIPT --mode development"
   else
     SCRIPT="$SCRIPT --mode production"
+  fi
+  if [ $CONFIG_FILE ]; then
+    SCRIPT="$SCRIPT --env CONFIG_FILE="$CONFIG_FILE""
+  fi
+  if [ $SRCROOT ]; then
+    SCRIPT="$SCRIPT --env SRCROOT="$SRCROOT""
+  fi
+  if [ $OUTPUT_DIR ]; then
+    SCRIPT="$SCRIPT --env OUTPUT_DIR="$OUTPUT_DIR""
   fi
   if [ $WATCH ]; then
     SCRIPT="$SCRIPT --watch"

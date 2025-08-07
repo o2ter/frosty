@@ -1,48 +1,53 @@
-/* eslint no-var: 0 */
+import _ from 'lodash';
+import os from 'os';
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import webpack from 'webpack';
+import Dotenv from 'dotenv-webpack';
+import TerserPlugin from 'terser-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CopyPlugin from 'copy-webpack-plugin';
 
-const _ = require('lodash');
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
-const webpack = require('webpack');
-const Dotenv = require('dotenv-webpack');
-const TerserPlugin = require('terser-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+export default async (env, argv) => {
 
-const serverConfig = (() => {
-  try {
-    return require(path.resolve(process.cwd(), 'server.config.js'));
-  } catch {
-    return {};
-  }
-})();
+  const { CONFIG_FILE = 'server.config.js' } = env;
 
-const frostyDeps = (() => {
-  try {
-    const resolved = require.resolve('frosty');
-    return {
-      frosty: resolved.endsWith('/dist/index.js') ? resolved.replace('/index.js', '') : resolved,
-    };
-  } catch {
-    const { rollupConfig: { input } } = require(path.resolve(__dirname, '../../rollup.config.mjs'));
-    const resolved = {};
-    for (const [k, v] of _.entries(input)) {
-      if (k === 'index') continue;
-      resolved[`frosty/${k}`] = path.resolve(__dirname, '../..', v);
+  const serverConfig = await (async () => {
+    try {
+      return await import(path.resolve(process.cwd(), CONFIG_FILE));
+    } catch {
+      return {};
     }
-    return {
-      ...resolved,
-      frosty: path.resolve(__dirname, '../../src/index'),
-    };
-  }
-})();
-
-module.exports = (env, argv) => {
+  })();
 
   const config = _.isFunction(serverConfig) ? serverConfig(env, argv) : serverConfig;
   const IS_PRODUCTION = argv.mode !== 'development';
+
+  const {
+    SRCROOT = config.src,
+    OUTPUT_DIR = config.output || path.resolve(import.meta.dirname, 'dist'),
+  } = env;
+
+  const frostyDeps = await (async () => {
+    try {
+      const resolved = import.meta.resolve('frosty');
+      return {
+        frosty: resolved.endsWith('/dist/index.js') ? resolved.replace('/index.js', '') : resolved,
+      };
+    } catch {
+      const { rollupConfig: { input } } = await import(path.resolve(import.meta.dirname, '../../rollup.config.mjs'));
+      const resolved = {};
+      for (const [k, v] of _.entries(input)) {
+        if (k === 'index') continue;
+        resolved[`frosty/${k}`] = path.resolve(import.meta.dirname, '../..', v);
+      }
+      return {
+        ...resolved,
+        frosty: path.resolve(import.meta.dirname, '../../src/index'),
+      };
+    }
+  })();
 
   const babelLoaderConfiguration = ({ server }) => ({
     test: /\.(ts|tsx|m?js)?$/i,
@@ -151,6 +156,9 @@ module.exports = (env, argv) => {
     resolve: {
       ...config.options?.resolve ?? {},
       alias: {
+        ...SRCROOT ? {
+          '~': path.resolve(process.cwd(), SRCROOT),
+        } : {},
         ...frostyDeps,
         ...config.options?.resolve?.alias ?? {},
       },
@@ -169,7 +177,7 @@ module.exports = (env, argv) => {
     ...config.options?.plugins ?? [],
   ];
 
-  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.js');
+  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(import.meta.dirname, './src/server/default.js');
 
   const random = crypto.randomUUID();
   const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
@@ -193,11 +201,11 @@ module.exports = (env, argv) => {
       entry: {
         [`${name}_bundle`]: [
           'core-js/stable',
-          path.resolve(__dirname, './client/index.js'),
+          path.resolve(import.meta.dirname, './client/index.js'),
         ],
       },
       output: {
-        path: config.output ? path.join(config.output, 'public') : path.join(__dirname, 'dist/public'),
+        path: path.join(OUTPUT_DIR, 'public'),
       },
       resolve: {
         ...webpackConfiguration.resolve,
@@ -234,11 +242,11 @@ module.exports = (env, argv) => {
       entry: {
         server: [
           'core-js/stable',
-          path.resolve(__dirname, './src/server/index.js'),
+          path.resolve(import.meta.dirname, './src/server/index.js'),
         ],
       },
       output: {
-        path: config.output || path.resolve(__dirname, 'dist'),
+        path: OUTPUT_DIR,
       },
       resolve: {
         ...webpackConfiguration.resolve,
