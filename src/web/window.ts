@@ -89,6 +89,20 @@ export const useWindowMetrics = () => {
   }));
 }
 
+export const useVisualViewportMetrics = () => {
+  const { visualViewport } = useWindow();
+  return useSyncExternalStore((onStoreChange) => {
+    visualViewport?.addEventListener('resize', onStoreChange);
+    return () => {
+      visualViewport?.removeEventListener('resize', onStoreChange);
+    };
+  }, () => visualViewport && ({
+    width: visualViewport.width,
+    height: visualViewport.height,
+    scale: visualViewport.scale,
+  }));
+}
+
 export const useWindowScroll = () => {
   const window = useWindow();
   return useSyncExternalStore((onStoreChange) => {
