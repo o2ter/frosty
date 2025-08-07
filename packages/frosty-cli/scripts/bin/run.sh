@@ -46,6 +46,10 @@ while [[ $# -gt 0 ]]; do
       DEBUG_MODE=true
       shift
       ;;
+    -b|--build)
+      BUILD_ONLY=true
+      shift
+      ;;
     -p|--port)
       PORT="$2"
       shift 2
