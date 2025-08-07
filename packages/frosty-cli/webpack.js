@@ -19,26 +19,24 @@ const serverConfig = (() => {
   }
 })();
 
-const frosty = (() => {
+const frostyDeps = (() => {
   try {
-    return require.resolve('frosty');
+    const resolved = require.resolve('frosty');
+    return {
+      frosty: resolved.endsWith('/dist/index.js') ? resolved.replace('/index.js', '') : resolved,
+    };
   } catch {
-    return;
+    const { rollupConfig: { input } } = require(path.resolve(__dirname, '../../rollup.config.mjs'));
+    const resolved = {};
+    for (const [k, v] of _.entries(input)) {
+      if (k === 'index') continue;
+      resolved[`frosty/${k}`] = path.resolve(__dirname, '../..', v);
+    }
+    return {
+      ...resolved,
+      frosty: path.resolve(__dirname, '../../src/index'),
+    };
   }
-})();
-
-const frostyDevPrj = (() => {
-  if (frosty) return {};
-  const { rollupConfig: { input } } = require(path.resolve(__dirname, '../../rollup.config.mjs'));
-  const resolved = {};
-  for (const [k, v] of _.entries(input)) {
-    if (k === 'index') continue;
-    resolved[`frosty/${k}`] = path.resolve(__dirname, '../..', v);
-  }
-  return {
-    ...resolved,
-    frosty: path.resolve(__dirname, '../../src/index'),
-  };
 })();
 
 module.exports = (env, argv) => {
@@ -153,7 +151,7 @@ module.exports = (env, argv) => {
     resolve: {
       ...config.options?.resolve ?? {},
       alias: {
-        ...frosty ? { frosty } : frostyDevPrj,
+        ...frostyDeps,
         ...config.options?.resolve?.alias ?? {},
       },
     },
