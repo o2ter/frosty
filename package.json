@@ -34,7 +34,6 @@
   "author": "Susan Cheng <susan.doggie@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "postinstall": "if [ -z $SKIP_LINK_CLI ]; then npm link ./packages/frosty-cli; fi",
     "gen-data": "node ./scripts/gen-data.mjs",
     "clean": "rm -rf ./dist/*",
     "rollup": "yarn clean && rollup -c",
