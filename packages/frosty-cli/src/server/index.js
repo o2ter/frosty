@@ -26,8 +26,7 @@
 import _ from 'lodash';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
-import { ReactRoute } from '../route';
-import application from '../common/run/application';
+import { ReactRoute } from './route';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
 
 let __SERVER__ = {};
@@ -45,8 +44,8 @@ const server_env = {};
 if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
 
 for (const [name, { path, basename, env }] of _.toPairs(__applications__)) {
-  const { default: App, root: Root } = __APPLICATIONS__[name];
-  const route = ReactRoute(application(App, Root), {
+  const { default: App } = __APPLICATIONS__[name];
+  const route = ReactRoute(App, {
     env: {
       ...server_env,
       ...env,
