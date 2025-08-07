@@ -34,7 +34,6 @@
   "author": "Susan Cheng <susan.doggie@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "postinstall": "subpkg install",
     "gen-data": "node ./scripts/gen-data.mjs",
     "clean": "rm -rf ./dist/*",
     "rollup": "yarn clean && rollup -c",
@@ -58,8 +57,7 @@
     "nextick": "^0.0.2",
     "postcss": "^8.5.3",
     "postcss-js": "^4.0.1",
-    "postcss-nested": "^7.0.2",
-    "subpkg": "^4.1.0"
+    "postcss-nested": "^7.0.2"
   },
   "devDependencies": {
     "@rollup/plugin-babel": "^6.0.4",

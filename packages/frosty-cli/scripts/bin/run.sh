@@ -73,6 +73,7 @@ done
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 if [ ! $NO_BUILD ]; then
+  yarn install --cwd "$FROSTY_CLI_ROOT"
   SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.js""
   if [ $DEBUG_MODE ]; then
     SCRIPT="$SCRIPT --mode development"
