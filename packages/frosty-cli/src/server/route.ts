@@ -30,7 +30,6 @@ import { renderToHTML } from './render';
 import { Awaitable } from '@o2ter/utils-js';
 
 type ReactRouteOptions = {
-  env: any;
   jsSrc: string;
   cssSrc: string;
   basename: string;
@@ -50,7 +49,6 @@ const defaultPreferredLocale = (req: Request) => {
 }
 
 export const ReactRoute = (App: any, {
-  env = {},
   jsSrc,
   cssSrc,
   basename,
@@ -66,7 +64,6 @@ export const ReactRoute = (App: any, {
     await renderToHTML(App, {
       request: req,
       response: res,
-      env,
       jsSrc,
       cssSrc,
       basename,

@@ -29,7 +29,6 @@ import { ServerDOMRenderer } from 'frosty/server-dom';
 export const renderToHTML = async (App, {
   request,
   response,
-  env,
   jsSrc,
   cssSrc,
   basename,

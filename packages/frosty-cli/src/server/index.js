@@ -46,10 +46,6 @@ if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
 for (const [name, { path, basename, env }] of _.toPairs(__applications__)) {
   const { default: App } = __APPLICATIONS__[name];
   const route = ReactRoute(App, {
-    env: {
-      ...server_env,
-      ...env,
-    },
     jsSrc: `/${name}_bundle.js`,
     cssSrc: `/css/${name}_bundle.css`,
     basename: basename ?? '/',
