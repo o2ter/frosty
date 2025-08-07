@@ -39,7 +39,7 @@ export const renderToHTML = async (App, {
     <html>
       <head>
         <script src={jsSrc} defer />
-        <link rel='stylesheet' type='text/css' href={cssSrc} />
+        {cssSrc && <link rel='stylesheet' type='text/css' href={cssSrc} />}
       </head>
       <body>
         <div id="root"><App /></div>

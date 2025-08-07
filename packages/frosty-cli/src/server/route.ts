@@ -31,7 +31,7 @@ import { Awaitable } from '@o2ter/utils-js';
 
 type ReactRouteOptions = {
   jsSrc: string;
-  cssSrc: string;
+  cssSrc: string | undefined;
   basename: string;
   preferredLocale?: (req: Request) => Awaitable<string | undefined>;
 }

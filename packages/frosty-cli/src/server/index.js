@@ -24,6 +24,7 @@
 //
 
 import _ from 'lodash';
+import fs from 'fs';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
 import { ReactRoute } from './route';
@@ -44,18 +45,19 @@ app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
 const server_env = {};
 if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
 
-for (const [name, { path, basename, env }] of _.toPairs(__applications__)) {
+for (const [name, { path: pathname, basename }] of _.toPairs(__applications__)) {
   const { default: App } = __APPLICATIONS__[name];
+  const cssExists = fs.existsSync(path.join(__dirname, `public/css/${name}_bundle.css`));
   const route = ReactRoute(App, {
     jsSrc: `/${name}_bundle.js`,
-    cssSrc: `/css/${name}_bundle.css`,
+    cssSrc: cssExists ? `/css/${name}_bundle.css` : undefined,
     basename: basename ?? '/',
     preferredLocale: 'preferredLocale' in __SERVER__ ? (req) => __SERVER__.preferredLocale(app, name, req) : undefined,
   });
-  if (_.isEmpty(path) || path === '/') {
+  if (_.isEmpty(pathname) || pathname === '/') {
     app.use(route);
   } else {
-    app.use(path, route);
+    app.use(pathname, route);
   }
 }
 

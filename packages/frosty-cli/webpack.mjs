@@ -210,7 +210,7 @@ export default async (env, argv) => {
   const random = crypto.randomUUID();
   const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
   const applications = path.resolve(tempDir, `applications-${random}.js`);
-  const inputs = INPUT_FILE ? { main: { entry: INPUT_FILE, uri: '/' } } : config.client;
+  const inputs = INPUT_FILE ? { main: { entry: path.join(process.cwd(), INPUT_FILE), uri: '/' } } : config.client;
 
   fs.writeFileSync(applications, `
     ${_.map(inputs, ({ entry }, name) => `import * as ${name} from '${path.resolve(process.cwd(), entry)}';`).join('\n')}
@@ -268,7 +268,6 @@ export default async (env, argv) => {
           __applications__: JSON.stringify(_.mapValues(inputs, x => ({
             path: x.uri,
             basename: x.basename,
-            env: x.env ?? {},
           }))),
         }),
         ...config.options?.server?.plugins ?? [],
