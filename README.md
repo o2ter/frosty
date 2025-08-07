@@ -46,6 +46,23 @@ To run your app with Frosty CLI using `npx`:
 npx frosty run app.js
 ```
 
+### Configuration File
+
+You can customize the build and server behavior by providing a `server.config.js` file in your project root. This file can export an object or a function that returns configuration options for Frosty’s CLI and build process. Common settings include specifying source/output directories, custom plugins, module rules, and server options.
+
+Example `server.config.js`:
+
+```js
+module.exports = {
+  src: 'src',
+  output: 'dist',
+  serverEntry: 'server.js',
+  options: {
+    // custom webpack or build options
+  }
+};
+```
+
 ### Common Options
 
 - `-w, --watch`   Enable watch mode (rebuild on file changes)

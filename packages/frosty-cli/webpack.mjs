@@ -7,7 +7,6 @@ import webpack from 'webpack';
 import Dotenv from 'dotenv-webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import CopyPlugin from 'copy-webpack-plugin';
 
 export default async (env, argv) => {
 
@@ -240,8 +239,6 @@ export default async (env, argv) => {
       plugins: _.compact([
         ...webpackPlugins,
         new webpack.EnvironmentPlugin({ PORT }),
-        ...config.options?.server?.plugins ?? [],
-        config.serverAssets && new CopyPlugin({ patterns: config.serverAssets }),
         new webpack.DefinePlugin({
           __applications__: JSON.stringify(_.mapValues(inputs, x => ({
             path: x.uri,
@@ -249,6 +246,7 @@ export default async (env, argv) => {
             env: x.env ?? {},
           }))),
         }),
+        ...config.options?.server?.plugins ?? [],
       ]),
       target: 'node',
       entry: {
