@@ -130,7 +130,7 @@ if [ ! $NO_BUILD ]; then
   rm -rf "$OUTPUT_DIR"
 fi
 
-if [ ! $BUILD_ONLY ] && [ $WATCH ]; then
+if [ ! $BUILD_ONLY ] && [ $WATCH_MODE ]; then
   until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" &
 fi
 
@@ -151,14 +151,14 @@ if [ ! $NO_BUILD ]; then
   if [ $PORT ]; then
     BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   fi
-  if [ $WATCH ]; then
+  if [ $WATCH_MODE ]; then
     npx webpack $BUILD_OPTS --watch &
   else
     npx webpack $BUILD_OPTS
   fi
 fi
 
-if [ $WATCH ]; then
+if [ $WATCH_MODE ]; then
   wait
 elif [ ! $BUILD_ONLY ]; then
   node "$OUTPUT_DIR/server.js"
