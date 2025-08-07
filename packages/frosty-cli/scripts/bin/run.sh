@@ -46,8 +46,12 @@ while [[ $# -gt 0 ]]; do
       DEBUG_MODE=true
       shift
       ;;
-    -b|--build)
+    -b|--build-only)
       BUILD_ONLY=true
+      shift
+      ;;
+    -B|--no-build)
+      NO_BUILD=true
       shift
       ;;
     -p|--port)
@@ -68,16 +72,18 @@ done
 
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
-SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.js""
-
-if [ $DEBUG_MODE ]; then
-   SCRIPT="$SCRIPT --mode development"
-else
-   SCRIPT="$SCRIPT --mode production"
+if [ ! $NO_BUILD ]; then
+  SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.js""
+  if [ $DEBUG_MODE ]; then
+    SCRIPT="$SCRIPT --mode development"
+  else
+    SCRIPT="$SCRIPT --mode production"
+  fi
+  if [ $WATCH ]; then
+    SCRIPT="$SCRIPT --watch"
+  fi
+  exec $SCRIPT
 fi
 
-if [ $WATCH ]; then
-   SCRIPT="$SCRIPT --watch"
+if [ ! $BUILD_ONLY ]; then
 fi
-
-exec $SCRIPT
