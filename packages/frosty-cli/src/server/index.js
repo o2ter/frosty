@@ -28,6 +28,7 @@ import path from 'path';
 import { Server } from '@o2ter/server-js';
 import { ReactRoute } from './route';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
+import { PORT } from './env';
 
 let __SERVER__ = {};
 try {
@@ -61,7 +62,5 @@ for (const [name, { path, basename, env }] of _.toPairs(__applications__)) {
 app.use((err, req, res, next) => {
   res.status(500).json(err instanceof Error ? { message: err.message } : err);
 });
-
-const PORT = !_.isEmpty(process.env.PORT) ? parseInt(process.env.PORT) : 8080;
 
 app.listen(PORT, () => console.info(`listening on port ${PORT}`));

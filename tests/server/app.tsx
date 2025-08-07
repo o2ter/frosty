@@ -8,6 +8,7 @@ export default () => {
   const [text, setText] = useState('');
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  console.log(location)
   useEffect(() => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);

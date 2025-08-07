@@ -1,5 +1,5 @@
 //
-//  render.ts
+//  env.js
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,32 +23,4 @@
 //  THE SOFTWARE.
 //
 
-import _ from 'lodash';
-import { ServerDOMRenderer } from 'frosty/server-dom';
-import { JSDOM } from 'frosty/server-dom';
-
-export const renderToHTML = async (App, {
-  request: req,
-  response: res,
-  jsSrc,
-  cssSrc,
-  basename,
-  preferredLocale,
-}) => {
-  const component = (
-    <html>
-      <head>
-        <script src={jsSrc} defer />
-        <link rel='stylesheet' type='text/css' href={cssSrc} />
-      </head>
-      <body>
-        <div id="root"><App /></div>
-      </body>
-    </html>
-  );
-  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-  const dom = new JSDOM(undefined, { url });
-  const renderer = new ServerDOMRenderer(dom);
-  res.setHeader('Content-Type', 'text/html');
-  res.send(await renderer.renderToString(component));
-}
+export const PORT = !_.isEmpty(process.env.PORT) ? parseInt(process.env.PORT) : 8080;
