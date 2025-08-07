@@ -25,6 +25,7 @@
 
 import _ from 'lodash';
 import { ServerDOMRenderer } from 'frosty/server-dom';
+import { JSDOM } from 'frosty/server-dom';
 
 export const renderToHTML = async (App, {
   request,
@@ -47,7 +48,8 @@ export const renderToHTML = async (App, {
     </html>
   );
 
-  const renderer = new ServerDOMRenderer();
+  const dom = new JSDOM();
+  const renderer = new ServerDOMRenderer(dom);
   response.setHeader('Content-Type', 'text/html');
   response.send(await renderer.renderToString(component));
 }
