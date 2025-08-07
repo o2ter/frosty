@@ -115,50 +115,52 @@ fi
 
 CONFIG_FILE="${CONFIG_FILE:-"$PROJECT_ROOT/server.config.js"}"
 
-OUTPUT_DIR="${OUTPUT_DIR:-"$( node -pe "(() => { 
-  try { 
-    const config = require('$CONFIG_FILE'); 
-    return typeof config === 'function' ? config().output : config.output;
-  } catch {
-    return '';
-  } 
-})()" )"}"
+if [ -f "$CONFIG_FILE" ]; then
+  OUTPUT_DIR="${OUTPUT_DIR:-"$( node -pe "(() => { 
+    try { 
+      const config = require('$CONFIG_FILE'); 
+      return typeof config === 'function' ? config().output : config.output;
+    } catch {
+      return '';
+    } 
+  })()" )"}"
+fi
 
 OUTPUT_DIR="${OUTPUT_DIR:-"$FROSTY_CLI_ROOT/dist"}"
 
-if [ ! $NO_BUILD ]; then
+if [ "$NO_BUILD" != "true" ]; then
   rm -rf "$OUTPUT_DIR"
 fi
 
-if [ ! $BUILD_ONLY ] && [ $WATCH_MODE ]; then
+if [ "$BUILD_ONLY" != "true" ] && [ "$WATCH_MODE" = "true" ]; then
   until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" &
 fi
 
-if [ ! $NO_BUILD ]; then
+if [ "$NO_BUILD" != "true" ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
   BUILD_OPTS="-c "$FROSTY_CLI_ROOT/webpack.mjs" --env CONFIG_FILE="$CONFIG_FILE" --env OUTPUT_DIR="$OUTPUT_DIR""
-  if [ $DEBUG_MODE ]; then
+  if [ "$DEBUG_MODE" = "true" ]; then
     BUILD_OPTS="$BUILD_OPTS --mode development"
   else
     BUILD_OPTS="$BUILD_OPTS --mode production"
   fi
-  if [ $INPUT_FILE ]; then
+  if [ -n "$INPUT_FILE" ]; then
     BUILD_OPTS="$BUILD_OPTS --env INPUT_FILE="$INPUT_FILE""
   fi
-  if [ $SRCROOT ]; then
+  if [ -n "$SRCROOT" ]; then
     BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
   fi
-  if [ $PORT ]; then
+  if [ -n "$PORT" ]; then
     BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   fi
-  if [ $WATCH_MODE ]; then
+  if [ "$WATCH_MODE" = "true" ]; then
     npx webpack $BUILD_OPTS --watch &
   else
     npx webpack $BUILD_OPTS
   fi
 fi
 
-if [ $WATCH_MODE ]; then
+if [ "$WATCH_MODE" = "true" ]; then
   wait
 elif [ ! $BUILD_ONLY ]; then
   node "$OUTPUT_DIR/server.js"
