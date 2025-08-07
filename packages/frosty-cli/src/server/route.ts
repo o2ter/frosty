@@ -35,7 +35,6 @@ type ReactRouteOptions = {
   cssSrc: string;
   basename: string;
   preferredLocale?: (req: Request) => Awaitable<string | undefined>;
-  resources?: (req: Request) => Awaitable<any>;
 }
 
 const defaultPreferredLocale = (req: Request) => {
@@ -56,7 +55,6 @@ export const ReactRoute = (App: any, {
   cssSrc,
   basename,
   preferredLocale = defaultPreferredLocale,
-  resources,
 }: ReactRouteOptions) => {
 
   const router = Server.Router();
@@ -73,7 +71,6 @@ export const ReactRoute = (App: any, {
       cssSrc,
       basename,
       preferredLocale: _preferredLocale,
-      resources: await resources?.(req),
     });
   });
 

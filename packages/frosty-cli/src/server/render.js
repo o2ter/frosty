@@ -34,7 +34,6 @@ export const renderToHTML = async (App, {
   cssSrc,
   basename,
   preferredLocale,
-  resources: _resources,
 }) => {
 
   const component = (
