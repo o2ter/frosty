@@ -113,20 +113,30 @@ if [ $# -gt 0 ]; then
   INPUT_FILE="$1"
 fi
 
+CONFIG_FILE="${CONFIG_FILE:-"$PROJECT_ROOT/server.config.js"}"
+
+OUTPUT_DIR="${OUTPUT_DIR:-"$( node -pe "(() => { 
+  try { 
+    const config = require('$CONFIG_FILE'); 
+    return typeof config === 'function' ? config().output : config.output;
+  } catch {
+    return '';
+  } 
+})()" )"}"
+
+OUTPUT_DIR="${OUTPUT_DIR:-"$FROSTY_CLI_ROOT/dist"}"
+
 if [ ! $BUILD_ONLY ] && [ $WATCH ]; then
-  until [ -f ./dist/server.js ]; do sleep 1; done && npx nodemon --watch ./dist ./dist/server.js
+  until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" &
 fi
 
 if [ ! $NO_BUILD ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
-  SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs""
+  SCRIPT="npx webpack -c "$FROSTY_CLI_ROOT/webpack.mjs" --env CONFIG_FILE="$CONFIG_FILE" --env OUTPUT_DIR="$OUTPUT_DIR""
   if [ $DEBUG_MODE ]; then
     SCRIPT="$SCRIPT --mode development"
   else
     SCRIPT="$SCRIPT --mode production"
-  fi
-  if [ $CONFIG_FILE ]; then
-    SCRIPT="$SCRIPT --env CONFIG_FILE="$CONFIG_FILE""
   fi
   if [ $INPUT_FILE ]; then
     SCRIPT="$SCRIPT --env INPUT_FILE="$INPUT_FILE""
@@ -134,18 +144,18 @@ if [ ! $NO_BUILD ]; then
   if [ $SRCROOT ]; then
     SCRIPT="$SCRIPT --env SRCROOT="$SRCROOT""
   fi
-  if [ $OUTPUT_DIR ]; then
-    SCRIPT="$SCRIPT --env OUTPUT_DIR="$OUTPUT_DIR""
-  fi
   if [ $PORT ]; then
     SCRIPT="$SCRIPT --env PORT="$PORT""
   fi
   if [ $WATCH ]; then
-    exec $SCRIPT --watch
+    exec $SCRIPT --watch &
   else
     exec $SCRIPT
   fi
 fi
 
-if [ ! $BUILD_ONLY ] && [ ! $WATCH ]; then
+if [ $WATCH ]; then
+  wait
+elif [ ! $BUILD_ONLY ]; then
+  node "$OUTPUT_DIR/server.js"
 fi
