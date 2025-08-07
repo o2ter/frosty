@@ -56,58 +56,25 @@ print_usage() {
 }
 
 POSITIONAL_ARGS=()
-
-while [[ $# -gt 0 ]]; do
-  case $1 in
-    -w|--watch)
-      WATCH_MODE=true
-      shift
-      ;;
-    -d|--debug)
-      DEBUG_MODE=true
-      shift
-      ;;
-    -b|--build-only)
-      BUILD_ONLY=true
-      shift
-      ;;
-    -B|--no-build)
-      NO_BUILD=true
-      shift
-      ;;
-    -p|--port)
-      PORT="$2"
-      shift 2
-      ;;
-    -c|--configuration)
-      CONFIG_FILE="$2"
-      shift 2
-      ;;
-    -s|--src)
-      SRCROOT="$2"
-      shift 2
-      ;;
-    -o|--output)
-      OUTPUT_DIR="$2"
-      shift 2
-      ;;
-    -h|--help)
-      print_usage
-      exit 0
-      ;;
-    -*)
-      echo "Unknown option $1"
-      print_usage
-      exit 1
-      ;;
-    *)
-      POSITIONAL_ARGS+=("$1") # save positional arg
-      shift # past argument
-      ;;
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -w|--watch) WATCH_MODE=true; shift ;;
+    -d|--debug) DEBUG_MODE=true; shift ;;
+    -b|--build-only) BUILD_ONLY=true; shift ;;
+    -B|--no-build) NO_BUILD=true; shift ;;
+    -p|--port) PORT="$2"; shift 2 ;;
+    -c|--configuration) CONFIG_FILE="$2"; shift 2 ;;
+    -s|--src) SRCROOT="$2"; shift 2 ;;
+    -o|--output) OUTPUT_DIR="$2"; shift 2 ;;
+    -h|--help) print_usage; exit 0 ;;
+    --) shift; break ;;
+    -*) echo "Unknown option $1"; print_usage; exit 1 ;;
+    *) POSITIONAL_ARGS+=("$1"); shift ;;
   esac
 done
 
-set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+# Restore positional parameters
+set -- "${POSITIONAL_ARGS[@]}"
 
 if [ $# -gt 0 ]; then
   INPUT_FILE="$1"
@@ -115,15 +82,16 @@ fi
 
 CONFIG_FILE="${CONFIG_FILE:-"$PROJECT_ROOT/server.config.js"}"
 
-if [ -f "$CONFIG_FILE" ]; then
-  OUTPUT_DIR="${OUTPUT_DIR:-"$( node -pe "(() => { 
+# Get output dir from config if not set
+if [ -f "$CONFIG_FILE" ] && [ -z "$OUTPUT_DIR" ]; then
+  OUTPUT_DIR="$(node -pe "(() => { 
     try { 
       const config = require('$CONFIG_FILE'); 
       return typeof config === 'function' ? config().output : config.output;
     } catch {
       return '';
     } 
-  })()" )"}"
+  })()")"
 fi
 
 OUTPUT_DIR="${OUTPUT_DIR:-"$FROSTY_CLI_ROOT/dist"}"
@@ -144,19 +112,13 @@ if [ "$NO_BUILD" != "true" ]; then
   else
     BUILD_OPTS="$BUILD_OPTS --mode production"
   fi
-  if [ -n "$INPUT_FILE" ]; then
-    BUILD_OPTS="$BUILD_OPTS --env INPUT_FILE="$INPUT_FILE""
-  fi
-  if [ -n "$SRCROOT" ]; then
-    BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
-  fi
-  if [ -n "$PORT" ]; then
-    BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
-  fi
+  [ -n "$INPUT_FILE" ] && BUILD_OPTS="$BUILD_OPTS --env INPUT_FILE="$INPUT_FILE""
+  [ -n "$SRCROOT" ] && BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
+  [ -n "$PORT" ] && BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   if [ "$WATCH_MODE" = "true" ]; then
-    npx webpack $BUILD_OPTS --watch &
+    eval npx webpack $BUILD_OPTS --watch &
   else
-    npx webpack $BUILD_OPTS
+    eval npx webpack $BUILD_OPTS
   fi
 fi
 
