@@ -56,7 +56,7 @@ export const ReactRoute = (App: any, {
 }: ReactRouteOptions) => {
 
   const router = Server.Router();
-  router.use(cookieParser() as any);
+  router.use(cookieParser());
 
   router.get('*path', async (req, res) => {
     const _preferredLocale = await preferredLocale(req);
