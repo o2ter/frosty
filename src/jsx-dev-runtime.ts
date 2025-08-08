@@ -23,5 +23,19 @@
 //  THE SOFTWARE.
 //
 
+import { ComponentNode } from './core/types/component';
+import { _ElementType, PropsType } from './core/types/runtime';
+import { jsx } from './jsx-runtime';
+
 export * from './jsx-runtime';
-export { jsx as jsxDEV } from './jsx-runtime';
+
+export function jsxDEV(
+  type: _ElementType,
+  props: PropsType,
+  key?: string | number,
+  isStaticChildren?: boolean,
+  source?: any,
+  self?: any
+): ComponentNode {
+  return jsx(type, props, key);
+}
