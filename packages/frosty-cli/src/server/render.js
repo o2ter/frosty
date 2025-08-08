@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { ServerDOMRenderer } from 'frosty/server-dom';
-import { JSDOM } from 'frosty/server-dom';
+import { JSDOM } from 'jsdom';
 
 export const renderToHTML = async (App, {
   request: req,
@@ -35,7 +35,13 @@ export const renderToHTML = async (App, {
   basename,
   preferredLocale,
 }) => {
-  const component = (
+  const dom = new JSDOM(undefined, {
+    url: `${req.protocol}://${req.get('host')}${req.originalUrl}`,
+    referrer: req.get('Referrer'),
+  });
+  const renderer = new ServerDOMRenderer(dom);
+  res.setHeader('Content-Type', 'text/html');
+  res.send(await renderer.renderToString(
     <html>
       <head>
         <script src={jsSrc} defer />
@@ -45,11 +51,5 @@ export const renderToHTML = async (App, {
         <div id="root"><App /></div>
       </body>
     </html>
-  );
-  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-  const referrer = req.get('Referrer');
-  const dom = new JSDOM(undefined, { url, referrer });
-  const renderer = new ServerDOMRenderer(dom);
-  res.setHeader('Content-Type', 'text/html');
-  res.send(await renderer.renderToString(component));
+  ));
 }

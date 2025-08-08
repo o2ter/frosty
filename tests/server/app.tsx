@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { useState, useEffect, useRenderResource } from '~/index';
-import { useLocation, useSearchParams } from '~/web';
+import { useLocation, useSearchParams, useWindow } from '~/web';
 
 export const App = () => {
   const [counter, setCounter] = useState(0);
@@ -33,13 +33,12 @@ export const App = () => {
   const [text, setText] = useState('');
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(location)
   useEffect(() => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
   }, []);
   useRenderResource(async () => {
-    console.log('hello')
+    console.log(location);
     await new Promise(res => setTimeout(res, 1000));
   }, []);
   return (
