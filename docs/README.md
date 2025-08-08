@@ -30,6 +30,8 @@ function App() {
     </div>
   );
 }
+
+export default App;
 ```
 
 ## API Documentation
