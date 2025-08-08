@@ -32,38 +32,21 @@ type ReactRouteOptions = {
   jsSrc: string;
   cssSrc: string | undefined;
   basename: string;
-  preferredLocale?: (req: Request) => Awaitable<string | undefined>;
-}
-
-const defaultPreferredLocale = (req: Request) => {
-  if (_.isString(req.cookies['PREFERRED_LOCALE'])) {
-    return req.cookies['PREFERRED_LOCALE'];
-  }
-  if (_.isString(req.headers['accept-language'])) {
-    const acceptLanguage = req.headers['accept-language'].split(',');
-    for (const language of acceptLanguage) {
-      return language.split(';')[0].trim();
-    }
-  }
 }
 
 export const ReactRoute = (App: any, {
   jsSrc,
   cssSrc,
   basename,
-  preferredLocale = defaultPreferredLocale,
 }: ReactRouteOptions) => {
   const router = Server.Router();
   router.get('*path', async (req, res) => {
-    const _preferredLocale = await preferredLocale(req);
-    res.cookie('PREFERRED_LOCALE', _preferredLocale, { maxAge: 31536000 });
     await renderToHTML(App, {
       request: req,
       response: res,
       jsSrc,
       cssSrc,
       basename,
-      preferredLocale: _preferredLocale,
     });
   });
   return router;

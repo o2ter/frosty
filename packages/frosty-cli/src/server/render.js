@@ -33,7 +33,6 @@ export const renderToHTML = async (App, {
   jsSrc,
   cssSrc,
   basename,
-  preferredLocale,
 }) => {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   const cookieJar = new CookieJar();
