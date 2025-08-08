@@ -61,9 +61,9 @@ export default async (env, argv) => {
 
   const frostyDeps = await (async () => {
     try {
-      const resolved = import.meta.resolve('frosty');
+      const resolved = new URL(import.meta.resolve('frosty'));
       return {
-        frosty: path.dirname(resolved.replace('file://', '')),
+        frosty: decodeURI(path.dirname(resolved.pathname)),
       };
     } catch {
       const { rollupConfig: { input } } = await import(path.resolve(__dirname, '../../rollup.config.mjs'));
