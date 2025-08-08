@@ -24,9 +24,8 @@
 //
 
 import _ from 'lodash';
-import { Server, Request } from '@o2ter/server-js';
+import { Server } from '@o2ter/server-js';
 import { renderToHTML } from './render';
-import { Awaitable } from '@o2ter/utils-js';
 
 type ReactRouteOptions = {
   jsSrc: string;
