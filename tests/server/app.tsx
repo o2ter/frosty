@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { useState, useEffect, useAsyncEager } from '~/index';
+import { useState, useEffect, useRenderResource } from '~/index';
 import { useLocation, useSearchParams } from '~/web';
 
 export default () => {
@@ -38,7 +38,7 @@ export default () => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
   }, []);
-  useAsyncEager(async () => {
+  useRenderResource(async () => {
     console.log('hello')
     await new Promise(res => setTimeout(res, 1000));
   }, []);

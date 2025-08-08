@@ -38,7 +38,7 @@ const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>()
  *
  * #### Usage
  * ```typescript
- * const data = useAsyncEager(() => fetchData(id), [id]);
+ * const data = useRenderResource(() => fetchData(id), [id]);
  * ```
  *
  * #### Parameters
@@ -58,13 +58,13 @@ const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>()
  *
  * @template T Type of the resolved value.
  */
-export const useAsyncEager = <T>(
+export const useRenderResource = <T>(
   factory: () => PromiseLike<T>,
   deps?: any,
 ): T | undefined => {
   const state = reconciler.currentHookState;
-  if (!state) throw Error('useAsyncEager must be used within a render function.');
-  const promise = _useMemo('useAsyncEager', () => factory(), deps);
+  if (!state) throw Error('useRenderResource must be used within a render function.');
+  const promise = _useMemo('useRenderResource', () => factory(), deps);
   if (resolved.has(promise)) {
     const { result, error } = resolved.get(promise) ?? {};
     if (error) throw error;
