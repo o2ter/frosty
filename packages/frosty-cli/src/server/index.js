@@ -47,6 +47,12 @@ if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
 
 for (const [name, { path: pathname, basename }] of _.toPairs(__applications__)) {
   const { default: App } = __APPLICATIONS__[name];
+  if (!_.isFunction(App)) {
+    throw new Error(
+      `Failed to load client app "${name}": default export is not a function.\n` +
+      `Please ensure "${name}" exports a valid Frosty component as its default export.`
+    );
+  }
   const cssExists = fs.existsSync(path.join(__dirname, `public/css/${name}_bundle.css`));
   const route = ReactRoute(App, {
     jsSrc: `/${name}_bundle.js`,
