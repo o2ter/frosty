@@ -34,6 +34,8 @@ function App() {
     </div>
   );
 }
+
+export default App;
 ```
 
 See the [API documentation](./docs) for more details and advanced usage.
