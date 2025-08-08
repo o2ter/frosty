@@ -15,8 +15,12 @@
     "@o2ter/server-js": "^0.0.20",
     "babel-jest": "^29.7.0",
     "babel-loader": "^10.0.0",
+    "css-loader": "^7.1.2",
     "dotenv-webpack": "^8.1.1",
+    "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.9.3",
+    "postcss-loader": "^8.1.1",
+    "sass-loader": "^16.0.5",
     "terser-webpack-plugin": "^5.3.14",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"

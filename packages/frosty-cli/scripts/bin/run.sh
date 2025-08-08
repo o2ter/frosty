@@ -116,9 +116,9 @@ if [ "$NO_BUILD" != "true" ]; then
   [ -n "$SRCROOT" ] && BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
   [ -n "$PORT" ] && BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   if [ "$WATCH_MODE" = "true" ]; then
-    eval npx webpack $BUILD_OPTS --watch &
+    npx webpack $BUILD_OPTS --watch &
   else
-    eval npx webpack $BUILD_OPTS
+    npx webpack $BUILD_OPTS
   fi
 fi
 
