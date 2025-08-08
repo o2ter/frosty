@@ -33,12 +33,14 @@ export const App = () => {
   const [text, setText] = useState('');
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const window = useWindow();
   useEffect(() => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
   }, []);
   useRenderResource(async () => {
     console.log(location);
+    console.log(window.document.cookie);
     await new Promise(res => setTimeout(res, 1000));
   }, []);
   return (

@@ -26,6 +26,7 @@
 import _ from 'lodash';
 import { ServerDOMRenderer } from 'frosty/server-dom';
 import { JSDOM } from 'jsdom';
+import { Cookie, CookieJar, MemoryCookieStore } from 'tough-cookie';
 
 export const renderToHTML = async (App, {
   request: req,
@@ -35,10 +36,12 @@ export const renderToHTML = async (App, {
   basename,
   preferredLocale,
 }) => {
-  const dom = new JSDOM(undefined, {
-    url: `${req.protocol}://${req.get('host')}${req.originalUrl}`,
-    referrer: req.get('Referrer'),
-  });
+  const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  const cookieJar = new CookieJar();
+  for (const cookie of _.split(req.get('cookie'), ';').map(Cookie.parse)) {
+    cookieJar.setCookieSync(cookie, url);
+  }
+  const dom = new JSDOM(undefined, { url, referrer: req.get('Referrer'), cookieJar });
   const renderer = new ServerDOMRenderer(dom);
   res.setHeader('Content-Type', 'text/html');
   res.send(await renderer.renderToString(
