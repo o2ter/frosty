@@ -145,7 +145,7 @@ export class VNode {
         } : v,
       );
       let children: (VNode | string)[];
-      if (_.isString(type) || type.prototype instanceof NativeElementType) {
+      if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children);
       } else if (isContext(type)) {
         const { value } = props;
