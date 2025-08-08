@@ -25,7 +25,6 @@
 
 import _ from 'lodash';
 import { Server, Request } from '@o2ter/server-js';
-import cookieParser from 'cookie-parser';
 import { renderToHTML } from './render';
 import { Awaitable } from '@o2ter/utils-js';
 
@@ -54,10 +53,7 @@ export const ReactRoute = (App: any, {
   basename,
   preferredLocale = defaultPreferredLocale,
 }: ReactRouteOptions) => {
-
   const router = Server.Router();
-  router.use(cookieParser());
-
   router.get('*path', async (req, res) => {
     const _preferredLocale = await preferredLocale(req);
     res.cookie('PREFERRED_LOCALE', _preferredLocale, { maxAge: 31536000 });
@@ -70,6 +66,5 @@ export const ReactRoute = (App: any, {
       preferredLocale: _preferredLocale,
     });
   });
-
   return router;
 }
