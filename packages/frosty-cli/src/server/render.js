@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { ServerDOMRenderer } from 'frosty/server-dom';
 import { JSDOM } from 'jsdom';
-import { Cookie, CookieJar, MemoryCookieStore } from 'tough-cookie';
+import { Cookie, CookieJar } from 'tough-cookie';
 
 export const renderToHTML = async (App, {
   request: req,
