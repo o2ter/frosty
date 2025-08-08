@@ -231,7 +231,7 @@ export default async (env, argv) => {
       plugins: webpackPlugins,
       entry: {
         [`${name}_bundle`]: [
-          'core-js/stable',
+          path.resolve(__dirname, 'node_modules/core-js/stable'),
           path.resolve(__dirname, './src/client/index.js'),
         ],
       },
@@ -277,7 +277,7 @@ export default async (env, argv) => {
       target: 'node',
       entry: {
         server: [
-          'core-js/stable',
+          path.resolve(__dirname, 'node_modules/core-js/stable'),
           path.resolve(__dirname, './src/server/index.js'),
         ],
       },

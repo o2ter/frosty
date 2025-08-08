@@ -2546,7 +2546,7 @@ core-js-compat@^3.43.0:
   dependencies:
     browserslist "^4.25.1"
 
-core-js@^3.41.0:
+core-js@^3.41.0, core-js@^3.45.0:
   version "3.45.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.45.0.tgz#556c2af44a2d9c73ea7b49504392474a9f7c947e"
   integrity sha512-c2KZL9lP4DjkN3hk/an4pWn5b5ZefhRJnAc42n6LJ19kSnbeRbdQZE5dSeE2LBol1OwJD3X1BQvFTAsa8ReeDA==
@@ -3085,6 +3085,7 @@ frosty-cli@./packages/frosty-cli:
     "@o2ter/server-js" "^0.0.20"
     babel-jest "^29.7.0"
     babel-loader "^10.0.0"
+    core-js "^3.45.0"
     css-loader "^7.1.2"
     dotenv-webpack "^8.1.1"
     file-loader "^6.2.0"
@@ -3093,8 +3094,6 @@ frosty-cli@./packages/frosty-cli:
     sass "^1.90.0"
     sass-loader "^16.0.5"
     terser-webpack-plugin "^5.3.14"
-    webpack "^5.98.0"
-    webpack-cli "^6.0.1"
 
 fs.realpath@^1.0.0:
   version "1.0.0"
