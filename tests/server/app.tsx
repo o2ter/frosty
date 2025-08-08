@@ -27,7 +27,7 @@ import _ from 'lodash';
 import { useState, useEffect, useRenderResource } from '~/index';
 import { useLocation, useSearchParams } from '~/web';
 
-export default () => {
+export const App = () => {
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
   const [text, setText] = useState('');
@@ -76,3 +76,5 @@ export default () => {
     </div>
   );
 };
+
+export default App;
