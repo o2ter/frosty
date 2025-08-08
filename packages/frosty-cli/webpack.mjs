@@ -33,6 +33,8 @@ import Dotenv from 'dotenv-webpack';
 import TerserPlugin from 'terser-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
+const { dirname: __dirname } = import.meta;
+
 export default async (env, argv) => {
 
   const {
@@ -54,25 +56,25 @@ export default async (env, argv) => {
 
   const {
     SRCROOT = config.src,
-    OUTPUT_DIR = config.output || path.resolve(import.meta.dirname, 'dist'),
+    OUTPUT_DIR = config.output || path.resolve(__dirname, 'dist'),
   } = env;
 
   const frostyDeps = await (async () => {
     try {
       const resolved = import.meta.resolve('frosty');
       return {
-        frosty: resolved.endsWith('/dist/index.js') ? resolved.replace('/index.js', '') : resolved,
+        frosty: path.dirname(resolved.replace('file://', '')),
       };
     } catch {
-      const { rollupConfig: { input } } = await import(path.resolve(import.meta.dirname, '../../rollup.config.mjs'));
+      const { rollupConfig: { input } } = await import(path.resolve(__dirname, '../../rollup.config.mjs'));
       const resolved = {};
       for (const [k, v] of _.entries(input)) {
         if (k === 'index') continue;
-        resolved[`frosty/${k}`] = path.resolve(import.meta.dirname, '../..', v);
+        resolved[`frosty/${k}`] = path.resolve(__dirname, '../..', v);
       }
       return {
         ...resolved,
-        frosty: path.resolve(import.meta.dirname, '../../src/index'),
+        frosty: path.resolve(__dirname, '../../src/index'),
       };
     }
   })();
@@ -205,7 +207,7 @@ export default async (env, argv) => {
     ...config.options?.plugins ?? [],
   ];
 
-  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(import.meta.dirname, './src/server/default.js');
+  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.js');
 
   const random = crypto.randomUUID();
   const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
@@ -230,7 +232,7 @@ export default async (env, argv) => {
       entry: {
         [`${name}_bundle`]: [
           'core-js/stable',
-          path.resolve(import.meta.dirname, './src/client/index.js'),
+          path.resolve(__dirname, './src/client/index.js'),
         ],
       },
       output: {
@@ -276,7 +278,7 @@ export default async (env, argv) => {
       entry: {
         server: [
           'core-js/stable',
-          path.resolve(import.meta.dirname, './src/server/index.js'),
+          path.resolve(__dirname, './src/server/index.js'),
         ],
       },
       output: {
