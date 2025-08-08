@@ -77,7 +77,7 @@ done
 set -- "${POSITIONAL_ARGS[@]}"
 
 if [ $# -gt 0 ]; then
-  INPUT_FILE="$1"
+  INPUT_FILE="$1"; shift ;
 fi
 
 CONFIG_FILE="${CONFIG_FILE:-"$PROJECT_ROOT/server.config.js"}"
@@ -101,7 +101,7 @@ if [ "$NO_BUILD" != "true" ]; then
 fi
 
 if [ "$BUILD_ONLY" != "true" ] && [ "$WATCH_MODE" = "true" ]; then
-  until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" &
+  until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" $@ &
 fi
 
 if [ "$NO_BUILD" != "true" ]; then
@@ -125,5 +125,5 @@ fi
 if [ "$WATCH_MODE" = "true" ]; then
   wait
 elif [ ! $BUILD_ONLY ]; then
-  node "$OUTPUT_DIR/server.js"
+  node "$OUTPUT_DIR/server.js" $@
 fi
