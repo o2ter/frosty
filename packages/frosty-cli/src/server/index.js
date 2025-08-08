@@ -43,7 +43,7 @@ app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
 const server_env = {};
 if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
 
-for (const [name, { path: pathname, basename }] of _.toPairs(__applications__)) {
+for (const [name, { path: pathname }] of _.toPairs(__applications__)) {
   const { default: App } = __APPLICATIONS__[name];
   if (!_.isFunction(App)) {
     throw new Error(
@@ -55,7 +55,6 @@ for (const [name, { path: pathname, basename }] of _.toPairs(__applications__)) 
   const route = ReactRoute(App, {
     jsSrc: `/${name}_bundle.js`,
     cssSrc: cssExists ? `/css/${name}_bundle.css` : undefined,
-    basename: basename ?? '/',
   });
   if (_.isEmpty(pathname) || pathname === '/') {
     app.use(route);

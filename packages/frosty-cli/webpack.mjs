@@ -261,7 +261,6 @@ export default async (env, argv) => {
         new webpack.DefinePlugin({
           __applications__: JSON.stringify(_.mapValues(inputs, x => ({
             path: x.uri,
-            basename: x.basename,
           }))),
         }),
         ...config.options?.server?.plugins ?? [],

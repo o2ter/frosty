@@ -31,13 +31,11 @@ import { Awaitable } from '@o2ter/utils-js';
 type ReactRouteOptions = {
   jsSrc: string;
   cssSrc: string | undefined;
-  basename: string;
 }
 
 export const ReactRoute = (App: any, {
   jsSrc,
   cssSrc,
-  basename,
 }: ReactRouteOptions) => {
   const router = Server.Router();
   router.get('*path', async (req, res) => {
@@ -46,7 +44,6 @@ export const ReactRoute = (App: any, {
       response: res,
       jsSrc,
       cssSrc,
-      basename,
     });
   });
   return router;

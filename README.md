@@ -89,7 +89,6 @@ module.exports = {
     main: {
       entry: 'src/app.js',   // Path to client entry file
       uri: '/',              // (Optional) URI path
-      basename: '/'           // (Optional) Basename
     }
   },
   moduleSuffixes: {          // (Optional) Custom module resolution suffixes
