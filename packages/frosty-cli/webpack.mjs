@@ -118,9 +118,9 @@ export default async (env, argv) => {
     test: /\.(css|sass|scss)$/,
     use: [
       !server && MiniCssExtractPlugin.loader,
-      'css-loader',
+      path.resolve(__dirname, 'node_modules/css-loader'),
       {
-        loader: 'postcss-loader',
+        loader: path.resolve(__dirname, 'node_modules/postcss-loader'),
         options: {
           postcssOptions: {
             plugins: [
@@ -129,14 +129,14 @@ export default async (env, argv) => {
           }
         }
       },
-      'sass-loader',
+      path.resolve(__dirname, 'node_modules/sass-loader'),
     ].filter(Boolean),
   });
 
   const imageLoaderConfiguration = ({ server }) => ({
     test: /\.(gif|jpe?g|a?png|svg)$/i,
     use: {
-      loader: 'file-loader',
+      loader: path.resolve(__dirname, 'node_modules/file-loader'),
       options: {
         name: '[name].[contenthash].[ext]',
         publicPath: '/images',
@@ -149,7 +149,7 @@ export default async (env, argv) => {
   const fontLoaderConfiguration = ({ server }) => ({
     test: /\.ttf$/i,
     use: {
-      loader: 'file-loader',
+      loader: path.resolve(__dirname, 'node_modules/file-loader'),
       options: {
         name: '[name].[contenthash].[ext]',
         publicPath: '/fonts',
