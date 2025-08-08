@@ -106,7 +106,10 @@ fi
 
 if [ "$NO_BUILD" != "true" ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
-  BUILD_OPTS="-c "$FROSTY_CLI_ROOT/webpack.mjs" --env CONFIG_FILE="$CONFIG_FILE" --env OUTPUT_DIR="$OUTPUT_DIR""
+  BUILD_OPTS=""$FROSTY_CLI_ROOT/node_modules/.bin/webpack""
+  BUILD_OPTS="$BUILD_OPTS -c "$FROSTY_CLI_ROOT/webpack.mjs""
+  BUILD_OPTS="$BUILD_OPTS --env CONFIG_FILE="$CONFIG_FILE""
+  BUILD_OPTS="$BUILD_OPTS --env OUTPUT_DIR="$OUTPUT_DIR""
   if [ "$DEBUG_MODE" = "true" ]; then
     BUILD_OPTS="$BUILD_OPTS --mode development"
   else
@@ -116,9 +119,9 @@ if [ "$NO_BUILD" != "true" ]; then
   [ -n "$SRCROOT" ] && BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
   [ -n "$PORT" ] && BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   if [ "$WATCH_MODE" = "true" ]; then
-    npx webpack $BUILD_OPTS --watch &
+    npx -c "$BUILD_OPTS --watch" &
   else
-    npx webpack $BUILD_OPTS
+    npx -c "$BUILD_OPTS --watch"
   fi
 fi
 

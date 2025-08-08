@@ -82,7 +82,7 @@ export default async (env, argv) => {
   const babelLoaderConfiguration = ({ server }) => ({
     test: /\.(ts|tsx|m?js)?$/i,
     use: {
-      loader: path.resolve(__dirname, 'node_modules/babel-loader'),
+      loader: 'babel-loader',
       options: {
         compact: IS_PRODUCTION,
         cacheDirectory: true,
@@ -118,9 +118,9 @@ export default async (env, argv) => {
     test: /\.(css|sass|scss)$/,
     use: [
       !server && MiniCssExtractPlugin.loader,
-      path.resolve(__dirname, 'node_modules/css-loader'),
+      'css-loader',
       {
-        loader: path.resolve(__dirname, 'node_modules/postcss-loader'),
+        loader: 'postcss-loader',
         options: {
           postcssOptions: {
             plugins: [
@@ -129,14 +129,14 @@ export default async (env, argv) => {
           }
         }
       },
-      path.resolve(__dirname, 'node_modules/sass-loader'),
+      'sass-loader',
     ].filter(Boolean),
   });
 
   const imageLoaderConfiguration = ({ server }) => ({
     test: /\.(gif|jpe?g|a?png|svg)$/i,
     use: {
-      loader: path.resolve(__dirname, 'node_modules/file-loader'),
+      loader: 'file-loader',
       options: {
         name: '[name].[contenthash].[ext]',
         publicPath: '/images',
@@ -149,7 +149,7 @@ export default async (env, argv) => {
   const fontLoaderConfiguration = ({ server }) => ({
     test: /\.ttf$/i,
     use: {
-      loader: path.resolve(__dirname, 'node_modules/file-loader'),
+      loader: 'file-loader',
       options: {
         name: '[name].[contenthash].[ext]',
         publicPath: '/fonts',
