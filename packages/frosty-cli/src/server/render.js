@@ -47,7 +47,8 @@ export const renderToHTML = async (App, {
     </html>
   );
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-  const dom = new JSDOM(undefined, { url });
+  const referrer = req.get('Referrer');
+  const dom = new JSDOM(undefined, { url, referrer });
   const renderer = new ServerDOMRenderer(dom);
   res.setHeader('Content-Type', 'text/html');
   res.send(await renderer.renderToString(component));
