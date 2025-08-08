@@ -34,9 +34,7 @@ import { PORT } from './env';
 let __SERVER__ = {};
 try {
   __SERVER__ = await import('__SERVER__');
-} catch(e) {
-  console.error(e);
-};
+} catch {};
 
 const app = 'serverOptions' in __SERVER__ ? new Server(__SERVER__.serverOptions) : new Server;
 
