@@ -73,7 +73,7 @@ npx frosty run --port 3000 --configuration my.config.js app.js
 
 See `npx frosty run --help` for the full list of options.
 
-### Configuration File
+### Configuration File (Optional)
 
 You can customize the build and server behavior by providing a `server.config.js` file in your project root. This file can export an object or a function that returns configuration options for Frosty’s CLI and build process. Common settings include specifying source/output directories, custom plugins, module rules, and server options.
 
