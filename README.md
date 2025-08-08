@@ -75,17 +75,41 @@ See `npx frosty run --help` for the full list of options.
 
 ### Configuration File (Optional)
 
-You can customize the build and server behavior by providing a `server.config.js` file in your project root. This file can export an object or a function that returns configuration options for Frosty’s CLI and build process. Common settings include specifying source/output directories, custom plugins, module rules, and server options.
+Customize build and server behavior with a `server.config.js` file in your project root.
 
-Example `server.config.js`:
+- You may export an object or a function `(env, argv) => config`.
+- All fields are optional.
 
 ```js
 module.exports = {
-  src: 'src',
-  output: 'dist',
-  serverEntry: 'server.js',
-  options: {
-    // custom webpack or build options
+  src: 'src',                // Source directory
+  output: 'dist',            // Output directory
+  serverEntry: 'server.js',  // Server entry file
+  client: {                  // (Optional) Client entry points
+    main: {
+      entry: 'src/app.js',   // Path to client entry file
+      uri: '/',              // (Optional) URI path
+      basename: '/'           // (Optional) Basename
+    }
+  },
+  moduleSuffixes: {          // (Optional) Custom module resolution suffixes
+    client: ['.browser', '.web', ''],
+    server: ['.node', '.server', '.web', '']
+  },
+  polyfills: {},             // (Optional) Polyfill options for Babel
+  options: {                 // (Optional) Webpack and build options
+    resolve: {},             // Custom resolve options (e.g., alias)
+    externals: {},           // Webpack externals
+    plugins: [],             // Additional Webpack plugins
+    module: {
+      rules: []              // Additional Webpack module rules
+    },
+    server: {
+      plugins: [],           // Server-specific plugins
+      module: {
+        rules: []            // Server-specific module rules
+      }
+    }
   }
 };
 ```
