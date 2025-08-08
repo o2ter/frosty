@@ -82,7 +82,7 @@ export default async (env, argv) => {
   const babelLoaderConfiguration = ({ server }) => ({
     test: /\.(ts|tsx|m?js)?$/i,
     use: {
-      loader: 'babel-loader',
+      loader: path.resolve(__dirname, 'node_modules/babel-loader'),
       options: {
         compact: IS_PRODUCTION,
         cacheDirectory: true,
