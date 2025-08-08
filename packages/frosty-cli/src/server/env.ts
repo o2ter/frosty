@@ -1,5 +1,5 @@
 //
-//  default.js
+//  env.js
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,21 +23,6 @@
 //  THE SOFTWARE.
 //
 
-import { Server } from '@o2ter/server-js';
+import _ from 'lodash';
 
-/** @type {Server.Options} */
-export const serverOptions = {
-  http: 'v1',
-  express: {
-    cors: {
-      credentials: true,
-      origin: true,
-    },
-    rateLimit: {
-      windowMs: 1000,
-      limit: 1000,
-    },
-  },
-};
-
-export default () => {};
+export const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8080;
