@@ -88,24 +88,16 @@ export default async (env, argv) => {
         cacheDirectory: true,
         configFile: false,
         presets: [
-          ['@babel/preset-env', {
-            exclude: [
-              '@babel/plugin-transform-regenerator',
-              '@babel/plugin-transform-async-generator-functions',
-              '@babel/plugin-transform-async-to-generator',
-            ],
+          [path.resolve(__dirname, 'node_modules/@babel/preset-env'), {
             targets: server ? { node: 'current' } : 'defaults',
             ...server ? {} : config.polyfills ?? {},
           }],
-          [
-            "@babel/preset-react",
-            {
-              development: !IS_PRODUCTION,
-              runtime: 'automatic',
-              importSource: 'frosty',
-            }
-          ],
-          '@babel/preset-typescript',
+          [path.resolve(__dirname, "node_modules/@babel/preset-react"), {
+            development: !IS_PRODUCTION,
+            runtime: 'automatic',
+            importSource: 'frosty',
+          }],
+          path.resolve(__dirname, 'node_modules/@babel/preset-typescript'),
         ]
       },
     },
