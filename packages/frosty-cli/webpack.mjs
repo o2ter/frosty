@@ -45,8 +45,10 @@ export default async (env, argv) => {
 
   const serverConfig = await (async () => {
     try {
-      return await import(path.resolve(process.cwd(), CONFIG_FILE));
-    } catch {
+      const { default: resolved } = await import(path.resolve(process.cwd(), CONFIG_FILE));
+      return resolved;
+    } catch (e) {
+      console.log(e);
       return {};
     }
   })();
