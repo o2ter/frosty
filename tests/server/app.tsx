@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { useState, useEffect, useRenderResource } from '~/index';
+import { useState, useEffect, useAwaited } from '~/index';
 import { useLocation, useSearchParams, useWindow } from '~/web';
 
 export const App = () => {
@@ -38,7 +38,7 @@ export const App = () => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
   }, []);
-  useRenderResource(async () => {
+  useAwaited(async () => {
     console.log(location);
     console.log(window.document.cookie);
     await new Promise(res => setTimeout(res, 1000));

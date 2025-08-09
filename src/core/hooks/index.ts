@@ -24,7 +24,7 @@
 //
 
 export * from './misc';
-export { useRenderResource } from './renderResource';
+export { useAwaited } from './awaited';
 export { useDebounce, useAsyncDebounce } from './debounce';
 export { useEffect } from './effect';
 export { Context, ContextType, createContext, useContext } from './context';

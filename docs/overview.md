@@ -4,6 +4,7 @@
 
 - useAnimate
 - useAsyncDebounce
+- useAwaited
 - useCallback
 - useContext
 - useDebounce
@@ -14,7 +15,6 @@
 - useReducer
 - useRef
 - useRefHandle
-- useRenderResource
 - useRendererStorage
 - useResource
 - useResourceErrors

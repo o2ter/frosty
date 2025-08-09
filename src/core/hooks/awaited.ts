@@ -1,5 +1,5 @@
 //
-//  renderResource.ts
+//  awaited.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -38,7 +38,7 @@ const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>()
  *
  * #### Usage
  * ```typescript
- * const data = useRenderResource(() => fetchData(id), [id]);
+ * const data = useAwaited(() => fetchData(id), [id]);
  * ```
  *
  * #### Parameters
@@ -58,13 +58,13 @@ const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>()
  *
  * @template T Type of the resolved value.
  */
-export const useRenderResource = <T>(
+export const useAwaited = <T>(
   factory: () => PromiseLike<T>,
   deps?: any,
 ): T | undefined => {
   const state = reconciler.currentHookState;
-  if (!state) throw Error('useRenderResource must be used within a render function.');
-  const promise = _useMemo('useRenderResource', () => factory(), deps);
+  if (!state) throw Error('useAwaited must be used within a render function.');
+  const promise = _useMemo('useAwaited', () => factory(), deps);
   if (resolved.has(promise)) {
     const { result, error } = resolved.get(promise) ?? {};
     if (error) throw error;
