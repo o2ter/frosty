@@ -28,13 +28,9 @@ import fs from 'fs';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
 import { ReactRoute } from './route';
+import __SERVER__ from '__SERVER__';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
 import { PORT } from './env';
-
-let __SERVER__ = {};
-try {
-  __SERVER__ = await import('__SERVER__');
-} catch {};
 
 const app = 'serverOptions' in __SERVER__ ? new Server(__SERVER__.serverOptions) : new Server;
 

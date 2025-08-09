@@ -198,7 +198,7 @@ export default async (env, argv) => {
     ...config.options?.plugins ?? [],
   ];
 
-  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.js');
+  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.ts');
 
   const random = crypto.randomUUID();
   const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
