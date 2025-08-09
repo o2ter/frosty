@@ -44,13 +44,10 @@ export default async (env, argv) => {
   } = env;
 
   const serverConfig = await (async () => {
-    try {
-      const { default: resolved } = await import(path.resolve(process.cwd(), CONFIG_FILE));
-      return resolved;
-    } catch (e) {
-      console.log(e);
-      return {};
-    }
+    const configPath = path.resolve(process.cwd(), CONFIG_FILE);
+    if (!fs.existsSync(configPath)) return {};
+    const { default: resolved } = await import(configPath);
+    return resolved;
   })();
 
   const config = _.isFunction(serverConfig) ? serverConfig(env, argv) : serverConfig;
