@@ -27,6 +27,10 @@ import _ from 'lodash';
 import { ServerDOMRenderer } from 'frosty/server-dom';
 import { JSDOM, CookieJar, ResourceLoader } from 'jsdom';
 
+class NoOpResourceLoader extends ResourceLoader {
+  fetch(url, options) { return null; }
+}
+
 export const renderToHTML = async (App, {
   request: req,
   response: res,
@@ -40,7 +44,7 @@ export const renderToHTML = async (App, {
   for (const cookie of _.split(req.get('cookie'), ';')) {
     cookieJar.setCookieSync(cookie, url);
   }
-  const loader = new ResourceLoader({ userAgent });
+  const loader = new NoOpResourceLoader({ userAgent });
   const dom = new JSDOM(undefined, { url, referrer, userAgent, resources: loader, cookieJar });
   const renderer = new ServerDOMRenderer(dom);
   res.setHeader('Content-Type', 'text/html');
