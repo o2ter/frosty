@@ -38,7 +38,9 @@ export const renderToHTML = async (App, {
   for (const cookie of _.split(req.get('cookie'), ';')) {
     cookieJar.setCookieSync(cookie, url);
   }
-  const dom = new JSDOM(undefined, { url, referrer: req.get('Referrer'), cookieJar });
+  const referrer = req.get('Referrer');
+  const userAgent = req.get('User-Agent');
+  const dom = new JSDOM(undefined, { url, referrer, userAgent, cookieJar });
   const renderer = new ServerDOMRenderer(dom);
   res.setHeader('Content-Type', 'text/html');
   res.send(await renderer.renderToString(
