@@ -296,7 +296,7 @@ export default async (env, argv) => {
           {
             test: /\.node$/,
             use: {
-              loader: 'node-loader',
+              loader: path.resolve(__dirname, 'node_modules/node-loader'),
               options: {
                 name: '[name].[contenthash].[ext]',
               }
