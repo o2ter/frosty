@@ -111,20 +111,14 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   _afterUpdate() {
     this._tracked_style.select([...this._tracked_elements.values().flatMap(({ className }) => className)]);
     const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
-    if (this._tracked_style.isEmpty) {
-      if (this._server) {
-        this.__replaceChildren(head, this._tracked_head_children);
-      }
-    } else {
-      const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
-      styleElem.setAttribute('data-frosty-style', '');
-      if (styleElem.textContent !== this._tracked_style.css)
-        styleElem.textContent = this._tracked_style.css;
-      if (this._server) {
-        this.__replaceChildren(head, [...this._tracked_head_children, styleElem]);
-      } else if (styleElem.parentNode !== head) {
-        head.appendChild(styleElem);
-      }
+    const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
+    styleElem.setAttribute('data-frosty-style', '');
+    if (styleElem.textContent !== this._tracked_style.css)
+      styleElem.textContent = this._tracked_style.css;
+    if (this._server) {
+      this.__replaceChildren(head, [...this._tracked_head_children, styleElem]);
+    } else if (styleElem.parentNode !== head) {
+      head.appendChild(styleElem);
     }
     if (!this.document.head) {
       this.document.documentElement.insertBefore(head, this.document.body);
