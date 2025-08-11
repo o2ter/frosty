@@ -64,11 +64,12 @@ export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
     const store = {
       current: callback,
       stable: function (this: any, ...args: any) {
-        if (store.current) return store.current.call(this, ...args);
+        if (_.isFunction(store.current))
+          return store.current.call(this, ...args);
       },
     };
     return store;
   }, null);
-  if (callback) store.current = callback;
+  if (_.isFunction(callback)) store.current = callback;
   return callback && (store.stable as T);
 }
