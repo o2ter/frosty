@@ -35,6 +35,7 @@
 - usePerformanceObserver
 - useResizeObserver
 - useSearchParams
+- useServerResource
 - useSessionStorage
 - useVisibility
 - useVisualViewportMetrics
