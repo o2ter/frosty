@@ -28,7 +28,7 @@ import { reconciler } from '../core/reconciler/state';
 import { _DOMRenderer } from '../renderer/common';
 import { decompress } from '../renderer/minify/decompress';
 
-let decodedSsrData: any;
+const decodedSsrData = new WeakMap<Document, any>();
 
 export const useServerResource = (key: string, resource: () => string): string | undefined => {
   const state = reconciler.currentHookState;
@@ -39,21 +39,22 @@ export const useServerResource = (key: string, resource: () => string): string |
       state.renderer._tracked_server_resource.set(key, data);
       return data;
     } else {
-      if (_.isNil(decodedSsrData)) {
-        const ssrData = state.renderer.document.querySelector('script[data-frosty-ssr-data]');
-        if (ssrData instanceof HTMLElement) {
-          try {
-            decodedSsrData = JSON.parse(decompress(ssrData.innerText.trim()));
-          } catch (e) {
-            console.error(e);
-            decodedSsrData = {};
-          }
-          ssrData.remove();
-        } else {
-          decodedSsrData = {};
+      const cached = decodedSsrData.get(state.renderer.document);
+      if (!_.isNil(cached)) return cached[key];
+      const ssrData = state.renderer.document.querySelector('script[data-frosty-ssr-data]');
+      if (ssrData instanceof HTMLElement) {
+        try {
+          const decoded = JSON.parse(decompress(ssrData.innerText.trim()));
+          decodedSsrData.set(state.renderer.document, decoded);
+          return decoded[key];
+        } catch (e) {
+          console.error(e);
+          decodedSsrData.set(state.renderer.document, {});
         }
+        ssrData.remove();
+      } else {
+        decodedSsrData.set(state.renderer.document, {});
       }
-      return decodedSsrData[key];
     }
   } else {
     throw Error('Unsupported renderer.');
