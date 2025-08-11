@@ -37,6 +37,7 @@ import { processCss } from '../core/web/styles/process';
 import { StyleBuilder } from './style';
 import { mergeRefs } from '../core/utils';
 import type { DOMWindow } from 'jsdom';
+import { compress } from './minify/compress';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -85,6 +86,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   private _tracked_head_children: (string | Element | DOMNativeNode)[] = [];
   private _tracked_style = new StyleBuilder();
+  /** @internal */
+  _tracked_server_resource = new Map<string, string>();
   private _tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; listener: Record<string, EventListener | undefined>; }>();
 
   constructor(window: Window | DOMWindow) {
@@ -104,6 +107,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   _beforeUpdate() {
     if (this._server) {
       this._tracked_head_children = [];
+      this._tracked_server_resource = new Map<string, string>();
     }
   }
 
@@ -116,7 +120,13 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (styleElem.textContent !== this._tracked_style.css)
       styleElem.textContent = this._tracked_style.css;
     if (this._server) {
-      this.__replaceChildren(head, [...this._tracked_head_children, styleElem]);
+      const ssrData = this._tracked_server_resource.size ? this.document.createElementNS(HTML_NS, 'script') : undefined;
+      if (ssrData) {
+        ssrData.setAttribute('data-frosty-ssr-data', '');
+        ssrData.setAttribute('type', 'text/plain');
+        ssrData.innerHTML = compress(JSON.stringify(Object.fromEntries(this._tracked_server_resource)));
+      }
+      this.__replaceChildren(head, _.compact([...this._tracked_head_children, styleElem, ssrData]));
     } else if (styleElem.parentNode !== head) {
       head.appendChild(styleElem);
     }

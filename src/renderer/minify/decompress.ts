@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  decompress.js
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,12 +23,22 @@
 //  THE SOFTWARE.
 //
 
-export * from './document';
-export * from './location';
-export * from './observer';
-export * from './online';
-export * from './server';
-export * from './storage';
-export * from './visibility';
-export * from './window';
-export { DOMNativeNode, type _DOMRenderer } from '../renderer/common';
+// @ts-nocheck
+export const decompress = (o: string) => {
+  function r(r) {
+    for (i = f = 0; i < r; )
+      A < 2 && ((A = 64), (a = 92 < (a = o.charCodeAt(C++)) ? a - 59 : a - 58)),
+        (f |= (0 < (a & (A /= 2))) << i),
+        ++i;
+  }
+  for (var n, f, i, t, a, e = [], u = 1, _ = 3, c = 1, h = [], A = 0, C = 0;;) {
+    if ((r(c + 1), 2 == f)) return h.join("");
+    -2 & (t = f) ||
+      (r(8 * f + 8),
+      (e[(t = _++)] = String.fromCharCode(f)),
+      --u || (u = 2 << c++)),
+      h.push((t = e[t] || n + n[0])),
+      n && ((e[_++] = n + t[0]), --u || (u = 2 << c++)),
+      (n = t);
+  }
+};
