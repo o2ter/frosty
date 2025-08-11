@@ -35,4 +35,4 @@ export { useState } from './state';
 export { useStack } from './stack';
 export { useReducer } from './reducer';
 export { useSyncExternalStore } from './sync';
-export { useRendererStorage } from './rendererStorage';
+export { useRendererStorage } from './storage';

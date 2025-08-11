@@ -30,7 +30,7 @@ import { createContext } from '../../context';
 import { useContext } from '../../context';
 import { useState } from '../../state';
 import { useMemo } from '../../memo';
-import { useRendererStorage } from '../../rendererStorage';
+import { useRendererStorage } from '../../storage';
 
 type Errors = {
   token: string;
