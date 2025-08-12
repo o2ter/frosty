@@ -30,12 +30,12 @@ import { decompress } from '../renderer/minify/decompress';
 
 const decodedSsrData = new WeakMap<Document, any>();
 
-export const useServerResource = (key: string, resource: () => string): string | undefined => {
+export const useServerResource = (key: string, resource?: () => string): string | undefined => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useServerResource must be used within a render function.');
   if (state.renderer instanceof _DOMRenderer) {
     if (state.renderer._server) {
-      const data = resource();
+      const data = resource?.();
       if (!_.isString(data)) throw Error('Invalid return type of resource');
       state.renderer._tracked_server_resource.set(key, data);
       return data;
