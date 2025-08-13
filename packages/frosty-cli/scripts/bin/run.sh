@@ -121,7 +121,7 @@ fi
 if [ "$BUILD_ONLY" != "true" ]; then
   if [ "$WATCH_MODE" = "true" ]; then
     until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done
-    npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" $@
+    node --watch-path="$OUTPUT_DIR" "$OUTPUT_DIR/server.js" $@
   else
     node "$OUTPUT_DIR/server.js" $@
   fi
