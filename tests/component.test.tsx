@@ -132,7 +132,7 @@ test('test render html', async () => {
   const renderer = new ServerDOMRenderer();
   const result = await renderer.renderToString(app);
 
-  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer=""></script></head><body><div id="root"></div></body></html>');
+  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer=""></script><style data-frosty-style=""></style></head><body><div id="root"></div></body></html>');
 
 });
 
@@ -155,6 +155,6 @@ test('test with props modify', async () => {
   const renderer = new ServerDOMRenderer();
   const result = await renderer.renderToString(app);
 
-  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script></head><body><div id="root" data-test="0"></div></body></html>');
+  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script><style data-frosty-style=""></style></head><body><div id="root" data-test="0"></div></body></html>');
 
 });
