@@ -40,9 +40,6 @@
     "test": "jest",
     "start": "npx frosty run -d -w -s ./src tests/server/app.tsx"
   },
-  "subPackages": [
-    "packages/frosty-cli"
-  ],
   "bin": {
     "frosty": "./packages/frosty-cli/bin/frosty.sh"
   },
