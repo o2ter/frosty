@@ -100,10 +100,6 @@ if [ "$NO_BUILD" != "true" ]; then
   rm -rf "$OUTPUT_DIR"
 fi
 
-if [ "$BUILD_ONLY" != "true" ] && [ "$WATCH_MODE" = "true" ]; then
-  until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done && npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" $@ &
-fi
-
 if [ "$NO_BUILD" != "true" ]; then
   yarn install --cwd "$FROSTY_CLI_ROOT"
   BUILD_OPTS="-c "$FROSTY_CLI_ROOT/webpack.mjs" --env CONFIG_FILE="$CONFIG_FILE" --env OUTPUT_DIR="$OUTPUT_DIR""
@@ -122,8 +118,11 @@ if [ "$NO_BUILD" != "true" ]; then
   fi
 fi
 
-if [ "$WATCH_MODE" = "true" ]; then
-  wait
-elif [ ! $BUILD_ONLY ]; then
-  node "$OUTPUT_DIR/server.js" $@
+if [ "$BUILD_ONLY" != "true" ]; then
+  if [ "$WATCH_MODE" = "true" ]; then
+    until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done
+    npx nodemon --watch "$OUTPUT_DIR" "$OUTPUT_DIR/server.js" $@
+  else
+    node "$OUTPUT_DIR/server.js" $@
+  fi
 fi
