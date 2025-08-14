@@ -190,12 +190,12 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     element: Element,
     key: string,
     listener: EventListener | undefined,
-    options?: AddEventListenerOptions,
   ) {
     const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
     const tracked_listener = this._tracked_elements.get(element)?.listener;
     if (!tracked_listener) return;
     if (tracked_listener[key] !== listener) {
+      const options = { capture: key.endsWith('Capture') };
       if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
       if (_.isFunction(listener)) element.addEventListener(event, listener, options);
     }
@@ -265,9 +265,9 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     for (const [key, value] of _.entries(props)) {
       if (_.includes(globalEvents, key)) {
-        this.__updateEventListener(element, key, value, { capture: false });
+        this.__updateEventListener(element, key, value);
       } else if (key.endsWith('Capture') && _.includes(globalEvents, key.slice(0, -7))) {
-        this.__updateEventListener(element, key, value, { capture: true });
+        this.__updateEventListener(element, key, value);
       } else if (isWriteable(element, key)) {
         if ((element as any)[key] !== value)
           (element as any)[key] = value;
