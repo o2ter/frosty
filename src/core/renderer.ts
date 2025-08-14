@@ -68,7 +68,7 @@ export abstract class _Renderer<T> {
       return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x)?.native ?? children(x, elements));
     };
 
-    const commit = (elements: Map<VNode, { native?: T }>) => {
+    const commit = (elements: Map<VNode, { native?: T }>, force?: boolean) => {
 
       const _mount = (node: VNode, stack: VNode[]) => {
         for (const item of node.children) {
@@ -76,7 +76,7 @@ export abstract class _Renderer<T> {
         }
         const element = elements.get(node)?.native;
         if (element) {
-          this._replaceChildren(node, element, children(node, elements), stack);
+          this._replaceChildren(node, element, children(node, elements), stack, force);
         }
         const state: _State[] = [];
         const prevState = mountState.get(node) ?? [];
@@ -102,12 +102,13 @@ export abstract class _Renderer<T> {
       if (root) this._replaceChildren(
         runtime.node, root,
         _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements)),
-        [], true
+        [], 
+        force,
       );
       _mount(runtime.node, []);
     };
 
-    const update = async (elements?: Map<VNode, { native?: T }>) => {
+    const update = async (elements?: Map<VNode, { native?: T }>, force?: boolean) => {
       this._beforeUpdate();
       const map = new Map<VNode, { native?: T }>();
       for await (const { node, stack, updated } of runtime.excute()) {
@@ -128,7 +129,7 @@ export abstract class _Renderer<T> {
           map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
         }
       }
-      commit(map);
+      commit(map, force);
       if (elements) {
         for (const [node, element] of elements) {
           if (map.has(node) || !element.native) continue;
@@ -142,7 +143,7 @@ export abstract class _Renderer<T> {
     let update_count = 0;
     let render_count = 0;
     let destroyed = false;
-    let elements = await update();
+    let elements = await update(undefined, true);
 
     const listener = runtime.event.register('onchange', () => {
       if (render_count !== update_count++) return;
@@ -150,7 +151,7 @@ export abstract class _Renderer<T> {
         while (render_count !== update_count) {
           if (destroyed) return;
           const current = update_count;
-          elements = await update(elements);
+          elements = await update(elements, false);
           render_count = current;
         }
       });
