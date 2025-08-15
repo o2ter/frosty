@@ -95,8 +95,6 @@ export const useLocation = () => {
   }, () => result(window.history));
 }
 
-type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
-
 /**
  * A hook for reading and updating the URL's query string (search parameters).
  *
@@ -115,6 +113,7 @@ type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
 export const useSearchParams = () => {
   const location = useLocation();
   const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
+  type URLSearchParamsInit = ConstructorParameters<typeof URLSearchParams>[0];
   const setSearchParams = useCallback((
     dispatch: SetStateAction<URLSearchParamsInit, URLSearchParams>,
     config?: {
