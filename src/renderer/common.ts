@@ -268,9 +268,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         this.__updateEventListener(element, key, value);
       } else if (key.endsWith('Capture') && _.includes(globalEvents, key.slice(0, -7))) {
         this.__updateEventListener(element, key, value);
-      } else if (isWriteable(element, key)) {
-        if ((element as any)[key] !== value)
-          (element as any)[key] = value;
       } else if (key.startsWith('data-')) {
         const oldValue = element.getAttribute(key);
         if (value === false || _.isNil(value)) {
@@ -287,7 +284,10 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
           ?? (svgProps as any)['*'][key]
           ?? (svgProps as any)[type]?.[key]
           ?? {};
-        if (_type && attr && (_propValue as any)[_type]) {
+        const writeable = isWriteable(element, key);
+        if (writeable && !_.isNil(value)) {
+          if ((element as any)[key] !== value) (element as any)[key] = value;
+        } else if (_type && attr && (_propValue as any)[_type]) {
           const oldValue = element.getAttribute(key);
           if (value === false || _.isNil(value)) {
             if (!_.isNil(oldValue))
@@ -297,6 +297,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
             if (oldValue !== newValue)
               element.setAttribute(key, newValue);
           }
+        } else if (writeable) {
+          if ((element as any)[key] !== value) (element as any)[key] = value;
         }
       }
     }
