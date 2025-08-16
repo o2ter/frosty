@@ -187,10 +187,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const tracked = this._tracked_elements.get(element);
     if (!tracked) return;
     const removed = _.difference(tracked.props, _.keys(_props));
-    const props = {
-      ..._props,
-      ..._.fromPairs(_.map(removed, x => [x, undefined])),
-    };
     tracked.props = _.keys(_props);
 
     const builtClassName = this.__createBuiltClassName(element, className, style);
@@ -199,7 +195,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     DOMNativeNode.Utils.update(element, {
       className: builtClassName,
       style: inlineStyle ? processCss(inlineStyle).css : undefined,
-      ...props,
+      ..._props,
+      ..._.fromPairs(_.map(removed, x => [x, undefined])),
     });
   }
 
