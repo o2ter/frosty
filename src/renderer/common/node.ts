@@ -166,7 +166,7 @@ const DOMUtils = new class {
     }
   }
 
-  destroyElement(element: Element) {
+  destroy(element: Element) {
     const listeners = tracked_listeners.get(element);
     for (const [key, listener] of _.entries(listeners)) {
       const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();

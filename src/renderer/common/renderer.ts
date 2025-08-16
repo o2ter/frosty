@@ -222,7 +222,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (element instanceof DOMNativeNode) {
       element.destroy();
     } else {
-      DOMNativeNode.Utils.destroyElement(element);
+      DOMNativeNode.Utils.destroy(element);
     }
   }
 
