@@ -126,8 +126,12 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         ssrData.setAttribute('type', 'text/plain');
         ssrData.innerHTML = compress(JSON.stringify(Object.fromEntries(this._tracked_server_resource)));
       }
-      this.__replaceChildren(head, _.compact([...this._tracked_head_children, styleElem, ssrData]));
-    } else if (styleElem.parentNode !== head) {
+      this.__replaceChildren(head, _.compact([
+        ...this._tracked_head_children,
+        styleElem.textContent && styleElem,
+        ssrData,
+      ]));
+    } else if (styleElem.parentNode !== head && styleElem.textContent) {
       head.appendChild(styleElem);
     }
     if (!this.document.head) {
