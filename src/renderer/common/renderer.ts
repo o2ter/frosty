@@ -1,5 +1,5 @@
 //
-//  common.ts
+//  renderer.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,60 +24,23 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../core/reconciler/vnode';
-import { myersSync } from 'myers.js';
-import { globalEvents } from '../core/web/event';
-import { ComponentNode, NativeElementType } from '../core/types/component';
-import { svgProps, htmlProps, tags } from '../../generated/elements';
-import { _propValue } from '../core/web/props';
-import { ClassName, StyleProp } from '../core/types/style';
-import { ExtendedCSSProperties } from '../core/web/styles/css';
-import { _Renderer } from '../core/renderer';
-import { processCss } from '../core/web/styles/process';
-import { StyleBuilder } from './style';
-import { mergeRefs } from '../core/utils';
+import { VNode } from '../../core/reconciler/vnode';
+import { ComponentNode } from '../../core/types/component';
+import { tags } from '../../../generated/elements';
+import { _propValue } from '../../core/web/props';
+import { ClassName, StyleProp } from '../../core/types/style';
+import { ExtendedCSSProperties } from '../../core/web/styles/css';
+import { _Renderer } from '../../core/renderer';
+import { processCss } from '../../core/web/styles/process';
+import { StyleBuilder } from '../style';
+import { mergeRefs } from '../../core/utils';
 import type { DOMWindow } from 'jsdom';
-import { compress } from './minify/compress';
+import { compress } from '../minify/compress';
+import { DOMNativeNode } from './node';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
 const MATHML_NS = 'http://www.w3.org/1998/Math/MathML';
-
-const findPrototypeProperty = (object: any, propertyName: string) => {
-  while (object && object.constructor && object.constructor.name !== 'Object') {
-    let desc = Object.getOwnPropertyDescriptor(object, propertyName);
-    if (desc) return desc;
-    object = Object.getPrototypeOf(object);
-  }
-  return null;
-};
-
-const isWriteable = (object: any, propertyName: string) => {
-  let desc = findPrototypeProperty(object, propertyName);
-  if (!desc) {
-    return false;
-  }
-  if (desc.writable && typeof desc.value !== 'function') {
-    return true;
-  }
-  return !!desc.set;
-};
-
-export abstract class DOMNativeNode extends NativeElementType {
-
-  static createElement: (doc: Document, renderer: _DOMRenderer) => DOMNativeNode;
-
-  abstract get target(): Element | Element[];
-
-  abstract update(props: Record<string, any> & {
-    className?: string;
-    style?: string;
-  }): void;
-
-  abstract replaceChildren(children: (string | Element | DOMNativeNode)[]): void;
-
-  abstract destroy(): void;
-}
 
 export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
@@ -88,7 +51,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   private _tracked_style = new StyleBuilder();
   /** @internal */
   _tracked_server_resource = new Map<string, string>();
-  private _tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; listener: Record<string, EventListener | undefined>; }>();
+  private _tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; }>();
 
   constructor(window: Window | DOMWindow) {
     super();
@@ -126,11 +89,11 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         ssrData.setAttribute('type', 'text/plain');
         ssrData.innerHTML = compress(JSON.stringify(Object.fromEntries(this._tracked_server_resource)));
       }
-      this.__replaceChildren(head, _.compact([
+      DOMNativeNode.Utils.replaceChildren(head, _.compact([
         ...this._tracked_head_children,
         styleElem.textContent && styleElem,
         ssrData,
-      ]));
+      ]), (x) => this._tracked_elements.has(x as any));
     } else if (styleElem.parentNode !== head && styleElem.textContent) {
       head.appendChild(styleElem);
     }
@@ -148,7 +111,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       this._tracked_elements.set(elem, {
         props: [],
         className: [],
-        listener: {},
       });
       this._updateElement(node, elem, stack);
       return elem;
@@ -172,7 +134,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     this._tracked_elements.set(elem, {
       props: [],
       className: [],
-      listener: {},
     });
     this._updateElement(node, elem, stack);
     return elem;
@@ -188,22 +149,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     const tracked = this._tracked_elements.get(element);
     if (tracked) tracked.className = built;
     return [..._className, ...built].join(' ');
-  }
-
-  private __updateEventListener(
-    element: Element,
-    key: string,
-    listener: EventListener | undefined,
-  ) {
-    const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
-    const tracked_listener = this._tracked_elements.get(element)?.listener;
-    if (!tracked_listener) return;
-    if (tracked_listener[key] !== listener) {
-      const options = { capture: key.endsWith('Capture') };
-      if (_.isFunction(tracked_listener[key])) element.removeEventListener(event, tracked_listener[key], options);
-      if (_.isFunction(listener)) element.addEventListener(event, listener, options);
-    }
-    tracked_listener[key] = listener;
   }
 
   /** @internal */
@@ -239,25 +184,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     if (ref) mergeRefs(ref)(element);
 
-    const builtClassName = this.__createBuiltClassName(element, className, style);
-    if (_.isEmpty(builtClassName)) {
-      if (!_.isNil(element.getAttribute('class')))
-        element.removeAttribute('class');
-    } else if (element.className !== builtClassName) {
-      element.className = builtClassName;
-    }
-    if (!_.isEmpty(innerHTML) && element.innerHTML !== innerHTML) element.innerHTML = innerHTML;
-
-    if (inlineStyle) {
-      const { css } = processCss(inlineStyle);
-      const oldValue = element.getAttribute('style');
-      const newValue = css.split('\n').join('');
-      if (oldValue !== newValue)
-        element.setAttribute('style', newValue);
-    } else if (!_.isNil(element.getAttribute('style'))) {
-      element.removeAttribute('style');
-    }
-
     const tracked = this._tracked_elements.get(element);
     if (!tracked) return;
     const removed = _.difference(tracked.props, _.keys(_props));
@@ -267,45 +193,14 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     };
     tracked.props = _.keys(_props);
 
-    for (const [key, value] of _.entries(props)) {
-      if (_.includes(globalEvents, key)) {
-        this.__updateEventListener(element, key, value);
-      } else if (key.endsWith('Capture') && _.includes(globalEvents, key.slice(0, -7))) {
-        this.__updateEventListener(element, key, value);
-      } else if (key.startsWith('data-')) {
-        const oldValue = element.getAttribute(key);
-        if (value === false || _.isNil(value)) {
-          if (!_.isNil(oldValue))
-            element.removeAttribute(key);
-        } else {
-          const newValue = value === true ? '' : `${value}`;
-          if (oldValue !== newValue)
-            element.setAttribute(key, newValue);
-        }
-      } else {
-        const { type: _type, attr } = (htmlProps as any)['*'][key]
-          ?? (htmlProps as any)[type]?.[key]
-          ?? (svgProps as any)['*'][key]
-          ?? (svgProps as any)[type]?.[key]
-          ?? {};
-        const writeable = isWriteable(element, key);
-        if (writeable && !_.isNil(value)) {
-          if ((element as any)[key] !== value) (element as any)[key] = value;
-        } else if (_type && attr && (_propValue as any)[_type]) {
-          const oldValue = element.getAttribute(key);
-          if (value === false || _.isNil(value)) {
-            if (!_.isNil(oldValue))
-              element.removeAttribute(key);
-          } else {
-            const newValue = value === true ? '' : `${value}`;
-            if (oldValue !== newValue)
-              element.setAttribute(key, newValue);
-          }
-        } else if (writeable) {
-          if ((element as any)[key] !== value) (element as any)[key] = value;
-        }
-      }
-    }
+    const builtClassName = this.__createBuiltClassName(element, className, style);
+    if (!_.isEmpty(innerHTML) && element.innerHTML !== innerHTML) element.innerHTML = innerHTML;
+
+    DOMNativeNode.Utils.update(element, {
+      className: builtClassName,
+      style: inlineStyle ? processCss(inlineStyle).css : undefined,
+      ...props,
+    });
   }
 
   /** @internal */
@@ -320,7 +215,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       if (type === 'head') {
         this._tracked_head_children.push(...children);
       } else if (_.isEmpty(innerHTML)) {
-        this.__replaceChildren(element, children, force);
+        DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
       }
     }
   }
@@ -330,42 +225,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (element instanceof DOMNativeNode) {
       element.destroy();
     } else {
-      const tracked_listener = this._tracked_elements.get(element)?.listener;
-      for (const [key, listener] of _.entries(tracked_listener)) {
-        const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
-        if (_.isFunction(listener)) {
-          element.removeEventListener(event, listener, { capture: key.endsWith('Capture') });
-        }
-      }
-    }
-    this._tracked_elements.delete(element);
-  }
-
-  __replaceChildren(element: Element, children: (string | Element | DOMNativeNode)[], force?: boolean) {
-    const diff = myersSync(
-      _.map(element.childNodes, x => x.nodeType === this.document.TEXT_NODE ? x.textContent ?? '' : x),
-      _.flatMap(children, x => x instanceof DOMNativeNode ? x.target : x),
-      { compare: (a, b) => a === b },
-    );
-    let i = 0;
-    for (const { remove, insert, equivalent } of diff) {
-      if (equivalent) {
-        i += equivalent.length;
-      } else if (remove) {
-        for (const child of remove) {
-          if (force || _.isString(child) || this._tracked_elements.has(child as any)) {
-            element.removeChild(element.childNodes[i]);
-          } else {
-            i++;
-          }
-        }
-      }
-      if (insert) {
-        for (const child of insert) {
-          const node = _.isString(child) ? this.document.createTextNode(child) : child;
-          element.insertBefore(node, element.childNodes[i++]);
-        }
-      }
+      DOMNativeNode.Utils.destroyElement(element);
     }
   }
 
