@@ -107,23 +107,24 @@ const DOMUtils = new class {
             element.setAttribute(key, newValue);
         }
       } else {
+        const tagName = _.toLower(element.tagName);
         const { type: _type, attr } = (htmlProps as any)['*'][key]
-          ?? (htmlProps as any)[element.tagName]?.[key]
+          ?? (htmlProps as any)[tagName]?.[key]
           ?? (svgProps as any)['*'][key]
-          ?? (svgProps as any)[element.tagName]?.[key]
+          ?? (svgProps as any)[tagName]?.[key]
           ?? {};
         const writeable = isWriteable(element, key);
         if (writeable && !_.isNil(value)) {
           if ((element as any)[key] !== value) (element as any)[key] = value;
         } else if (_type && attr && (_propValue as any)[_type]) {
-          const oldValue = element.getAttribute(key);
+          const oldValue = element.getAttribute(attr);
           if (value === false || _.isNil(value)) {
             if (!_.isNil(oldValue))
-              element.removeAttribute(key);
+              element.removeAttribute(attr);
           } else {
             const newValue = value === true ? '' : `${value}`;
             if (oldValue !== newValue)
-              element.setAttribute(key, newValue);
+              element.setAttribute(attr, newValue);
           }
         } else if (writeable) {
           if ((element as any)[key] !== value) (element as any)[key] = value;
