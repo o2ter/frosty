@@ -21,8 +21,8 @@ import { PropsProvider } from 'frosty';
 
 | Name     | Type                                                                 | Description                                                                                   |
 |----------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| callback | `(v: { type: ElementType, props: PropsType }) => PropsType \| null`  | A function that receives the type and props of each element/component and returns new props.   |
-| children | `ComponentNode`                                                          | The subtree to which the props provider applies.                                              |
+| callback | `(v: { type: ElementType, props: PropsType }) => PropsType \| null`  | A function that receives the type and props of each element/component and returns new props.  |
+| children | `ComponentNode`                                                      | The subtree to which the props provider applies.                                              |
 
 - **callback**: Called for every descendant element/component. Return a new props object to override, or `null`/`undefined` to leave props unchanged.
 - **children**: The components/elements that will receive the injected/modified props.
