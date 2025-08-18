@@ -22,7 +22,7 @@ Frosty offers a comprehensive set of hooks for managing state, side effects, and
 - [useRendererStorage](./hooks/useRendererStorage.md) – Store values tied to the renderer lifecycle.
 - [useResource](./hooks/useResource.md) – Fetch and cache async resources.
 - [useResourceErrors](./hooks/useResource.md) – Track errors from resource hooks.
-- [useStack](./hooks/useStack.md) – Manage a stack of values or states.
+- [useStack](./hooks/useStack.md) – Retrieves the stack of parent components from the current hook state.
 - [useState](./hooks/useState.md) – Manage local component state.
 - [useStore](./hooks/useStore.md) – Bind to external store/state.
 - [useSyncExternalStore](./hooks/useSyncExternalStore.md) – Subscribe to external data sources.
