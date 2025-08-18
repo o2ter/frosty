@@ -7,21 +7,21 @@ Welcome to Frosty’s documentation! This page provides a high-level summary of 
 Frosty offers a comprehensive set of hooks for managing state, side effects, and more:
 
 - [useAnimate](./hooks/useAnimate.md) – Animate values or components over time.
-- [useAsyncDebounce](./hooks/useAsyncDebounce.md) – Debounce async functions to limit execution rate.
+- [useAsyncDebounce](./hooks/useDebounce.md) – Debounce async functions to limit execution rate.
 - [useAwaited](./hooks/useAwaited.md) – Handle promises and async effects in components.
 - [useCallback](./hooks/useCallback.md) – Memoize callback functions between renders.
 - [useContext](./hooks/useContext.md) – Access values from a React-like context.
 - [useDebounce](./hooks/useDebounce.md) – Debounce synchronous values or callbacks.
 - [useEffect](./hooks/useEffect.md) – Run side effects after render.
 - [useInterval](./hooks/useInterval.md) – Set up intervals in components.
-- [useIterableResource](./hooks/useIterableResource.md) – Manage async iterable data sources.
+- [useIterableResource](./hooks/useResource.md) – Manage async iterable data sources.
 - [useMemo](./hooks/useMemo.md) – Memoize expensive calculations.
 - [useReducer](./hooks/useReducer.md) – Manage complex state logic with reducers.
 - [useRef](./hooks/useRef.md) – Access mutable values that persist across renders.
 - [useRefHandle](./hooks/useRefHandle.md) – Expose imperative methods to parent components.
 - [useRendererStorage](./hooks/useRendererStorage.md) – Store values tied to the renderer lifecycle.
 - [useResource](./hooks/useResource.md) – Fetch and cache async resources.
-- [useResourceErrors](./hooks/useResourceErrors.md) – Track errors from resource hooks.
+- [useResourceErrors](./hooks/useResource.md) – Track errors from resource hooks.
 - [useStack](./hooks/useStack.md) – Manage a stack of values or states.
 - [useState](./hooks/useState.md) – Manage local component state.
 - [useStore](./hooks/useStore.md) – Bind to external store/state.
@@ -55,7 +55,7 @@ Frosty includes several components to simplify error handling and prop managemen
 
 - [ErrorBoundary](./components/ErrorBoundary.md) – Catch and handle errors in the component tree.
 - [PropsProvider](./components/PropsProvider.md) – Inject or override props for child components.
-- [ResourceErrors](./components/ResourceErrors.md) – Display errors from resource hooks.
+- [ResourceErrors](./hooks/useResource.md) – Display errors from resource hooks.
 
 ---
 
