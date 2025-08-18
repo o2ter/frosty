@@ -55,7 +55,7 @@ Frosty includes several components to simplify error handling and prop managemen
 
 - [ErrorBoundary](./components/ErrorBoundary.md) – Catch and handle errors in the component tree.
 - [PropsProvider](./components/PropsProvider.md) – Inject or override props for child components.
-- [ResourceErrors](./hooks/useResource.md) – Display errors from resource hooks.
+- [ResourceErrors](./hooks/useResource.md) – Boundary of useResourceErrors hook.
 
 ---
 
