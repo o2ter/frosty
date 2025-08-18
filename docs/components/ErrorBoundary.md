@@ -2,8 +2,6 @@
 
 The `ErrorBoundary` component is a component designed to catch JavaScript errors anywhere in its child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This ensures that your application remains functional even when parts of it encounter unexpected issues.
 
----
-
 ## Features
 
 - **Error Handling**: Catches errors during rendering, lifecycle methods, and constructors of child components.
@@ -11,16 +9,12 @@ The `ErrorBoundary` component is a component designed to catch JavaScript errors
 - **Error Logging**: Optionally logs error details for debugging purposes.
 - **Silent Mode**: Can suppress error handling if needed using the `silent` prop.
 
----
-
 ## Props
 
 | Prop Name   | Type                                   | Default | Description                                                                 |
 |-------------|----------------------------------------|---------|-----------------------------------------------------------------------------|
 | `silent`    | `boolean`                             | `false` | If `true`, suppresses error handling and fallback UI.                       |
 | `onError`   | `(error, component, stack) => void`   | `null`  | Callback function triggered when an error is caught. Useful for logging.    |
-
----
 
 ## Usage
 
@@ -46,15 +40,11 @@ You can provide a custom fallback UI by wrapping it in the `ErrorBoundary`:
 </ErrorBoundary>
 ```
 
----
-
 ## How It Works
 
 1. **Error Detection**: The `ErrorBoundary` monitors its child components for errors during rendering, lifecycle methods, and constructors.
 2. **Fallback UI**: When an error is detected, the `ErrorBoundary` replaces the crashed component tree with the fallback UI.
 3. **Error Logging**: If the `onError` callback is provided, it is invoked with details about the error, the component where it occurred, and the stack trace.
-
----
 
 ## Best Practices
 
@@ -62,8 +52,6 @@ You can provide a custom fallback UI by wrapping it in the `ErrorBoundary`:
 - **Custom Fallbacks**: Provide user-friendly fallback UIs to improve the user experience during errors.
 - **Error Logging**: Use the `onError` callback to log errors for debugging and monitoring purposes.
 - **Silent Mode**: Use the `silent` prop for scenarios where error handling should be suppressed (e.g., during testing).
-
----
 
 ## Advanced Example
 
@@ -84,8 +72,6 @@ const handleError = (error, component, stack) => {
   <MyComponent />
 </ErrorBoundary>
 ```
-
----
 
 ## Notes
 
