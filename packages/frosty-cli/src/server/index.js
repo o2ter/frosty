@@ -27,7 +27,7 @@ import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
 import { Server } from '@o2ter/server-js';
-import { ReactRoute } from './route';
+import { FrostyRoute } from './route';
 import * as __SERVER__ from '__SERVER__';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
 import { PORT } from './env';
@@ -48,7 +48,7 @@ for (const [name, { path: pathname }] of _.toPairs(__applications__)) {
     );
   }
   const cssExists = fs.existsSync(path.join(__dirname, `public/css/${name}_bundle.css`));
-  const route = ReactRoute(App, {
+  const route = FrostyRoute(App, {
     jsSrc: `/${name}_bundle.js`,
     cssSrc: cssExists ? `/css/${name}_bundle.css` : undefined,
   });

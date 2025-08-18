@@ -27,15 +27,15 @@ import _ from 'lodash';
 import { Server } from '@o2ter/server-js';
 import { renderToHTML } from './render';
 
-type ReactRouteOptions = {
+type FrostyRouteOptions = {
   jsSrc: string;
   cssSrc: string | undefined;
 }
 
-export const ReactRoute = (App: any, {
+export const FrostyRoute = (App: any, {
   jsSrc,
   cssSrc,
-}: ReactRouteOptions) => {
+}: FrostyRouteOptions) => {
   const router = Server.Router();
   router.get('*path', async (req, res) => {
     await renderToHTML(App, {

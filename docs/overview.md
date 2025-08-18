@@ -10,7 +10,7 @@ Frosty offers a comprehensive set of hooks for managing state, side effects, and
 - [useAsyncDebounce](./hooks/useDebounce.md) – Debounce async functions to limit execution rate.
 - [useAwaited](./hooks/useAwaited.md) – Handle promises and async effects in components.
 - [useCallback](./hooks/useCallback.md) – Memoize callback functions between renders.
-- [useContext](./hooks/useContext.md) – Access values from a React-like context.
+- [useContext](./hooks/useContext.md) – Access values from a context.
 - [useDebounce](./hooks/useDebounce.md) – Debounce synchronous values or callbacks.
 - [useEffect](./hooks/useEffect.md) – Run side effects after render.
 - [useInterval](./hooks/useInterval.md) – Set up intervals in components.
