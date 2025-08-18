@@ -2,8 +2,6 @@
 
 Welcome to Frosty’s documentation! This page provides a high-level summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
 
----
-
 ## Core Hooks
 
 Frosty offers a comprehensive set of hooks for managing state, side effects, and more:
@@ -29,8 +27,6 @@ Frosty offers a comprehensive set of hooks for managing state, side effects, and
 - [useStore](./hooks/useStore.md) – Bind to external store/state.
 - [useSyncExternalStore](./hooks/useSyncExternalStore.md) – Subscribe to external data sources.
 
----
-
 ## Web-Specific Hooks
 
 Enhance your web applications with hooks for browser APIs and platform features:
@@ -52,8 +48,6 @@ Enhance your web applications with hooks for browser APIs and platform features:
 - [useWindow](./hooks/useWindow.md) – Access the window object.
 - [useWindowMetrics](./hooks/useWindowMetrics.md) – Get window size and metrics.
 - [useWindowScroll](./hooks/useWindowScroll.md) – Track window scroll position.
-
----
 
 ## Built-in Components
 
