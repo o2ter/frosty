@@ -4,18 +4,32 @@ The `useStack` hook provides access to the stack of parent components leading up
 
 ## Features
 
-- Access the hierarchy of parent components during rendering.
-- Useful for debugging or introspecting component trees.
-- Supports both functional and class components.
+- **Component Hierarchy Access**: Retrieve the hierarchy of parent components during rendering.
+- **Debugging Tool**: Introspect the component tree to identify rendering issues.
+- **Context-Aware Logic**: Enable components to adapt their behavior based on their position in the component tree.
+- **Supports All Components**: Works with both functional and class components.
+
+## Parameters
+
+The `useStack` hook does not take any parameters.
+
+## Returns
+
+- **`stack`**: `ComponentNode[]`  
+  An array of `ComponentNode` instances representing the parent components in the rendering stack. Each `ComponentNode` contains information about:
+  - **`type`**: The type of the component (e.g., a DOM element or a custom component).
+  - **`props`**: The props passed to the component.
+  - **`children`**: The children of the component.
 
 ## Usage
+
+### Basic Example
 
 ```tsx
 import { useStack } from 'frosty';
 
 function MyComponent() {
   const stack = useStack();
-  // `stack` is an array of ComponentNode instances representing the parent components.
 
   return (
     <div>
@@ -25,7 +39,7 @@ function MyComponent() {
           <li key={i}>
             {typeof node.type === 'string'
               ? node.type // For DOM elements
-              : node.type.name || 'Anonymous'} // For Frosty components
+              : node.type.name || 'Anonymous'} // For custom components
           </li>
         ))}
       </ul>
@@ -34,18 +48,11 @@ function MyComponent() {
 }
 ```
 
-## Parameters
-
-The `useStack` hook does not take any parameters.
-
-## Returns
-
-- **`stack`**: `ComponentNode[]`  
-  An array of component nodes (`ComponentNode`) representing the parent components in the rendering stack. Each `ComponentNode` contains information about the component type, props, and children.
-
-## Example
+## Examples
 
 ### Debugging Component Hierarchy
+
+Use the `useStack` hook to log the rendering stack for debugging purposes:
 
 ```tsx
 import { useStack } from 'frosty';
@@ -60,6 +67,8 @@ function DebugComponent() {
 ```
 
 ### Context-Aware Logic
+
+Implement logic that adapts based on the component's position in the tree:
 
 ```tsx
 import { useStack } from 'frosty';
@@ -83,4 +92,6 @@ function ThemedComponent() {
 
 ## Notes
 
-- The `useStack` hook is primarily intended for advanced use cases. For most applications, it is not necessary to access the rendering stack directly.
+- **Advanced Use Cases**: The `useStack` hook is primarily intended for advanced scenarios. For most applications, direct access to the rendering stack is unnecessary.
+- **Error Handling**: Ensure the `useStack` hook is only used within a valid render context. Using it outside of a render function will throw an error.
+- **Performance Considerations**: Avoid overusing the `useStack` hook in performance-critical components, as introspecting the stack may introduce overhead.

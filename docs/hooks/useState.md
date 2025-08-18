@@ -41,7 +41,3 @@ const [name, setName] = useState('Susan');
 
 - Calling the setter function will re-render the component.
 - You can use any type as the initial state (number, string, object, etc.).
-
-## See Also
-
--
