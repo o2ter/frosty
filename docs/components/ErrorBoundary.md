@@ -23,54 +23,38 @@ Wrap any part of your application that might throw errors with the `ErrorBoundar
 ### Basic Example
 
 ```jsx
-import ErrorBoundary from 'path/to/ErrorBoundary';
+import { ErrorBoundary } from 'frosty';
 
-<ErrorBoundary>
-  <MyComponent />
-</ErrorBoundary>
+function App() {
+  return (
+    <ErrorBoundary>
+      <MyComponent />
+    </ErrorBoundary>
+  );
+}
 ```
-
-### Custom Fallback UI
-
-You can provide a custom fallback UI by wrapping it in the `ErrorBoundary`:
-
-```jsx
-<ErrorBoundary>
-  <MyComponent />
-</ErrorBoundary>
-```
-
-## How It Works
-
-1. **Error Detection**: The `ErrorBoundary` monitors its child components for errors during rendering, lifecycle methods, and constructors.
-2. **Fallback UI**: When an error is detected, the `ErrorBoundary` replaces the crashed component tree with the fallback UI.
-3. **Error Logging**: If the `onError` callback is provided, it is invoked with details about the error, the component where it occurred, and the stack trace.
-
-## Best Practices
-
-- **Strategic Placement**: Use `ErrorBoundary` at high levels of your app (e.g., around routes or major sections) to prevent the entire app from crashing.
-- **Custom Fallbacks**: Provide user-friendly fallback UIs to improve the user experience during errors.
-- **Error Logging**: Use the `onError` callback to log errors for debugging and monitoring purposes.
-- **Silent Mode**: Use the `silent` prop for scenarios where error handling should be suppressed (e.g., during testing).
 
 ## Advanced Example
 
-Here’s an example with a custom `onError` handler and a fallback UI:
+Here’s an example with a custom `onError` handler:
 
 ```jsx
-import ErrorBoundary from 'path/to/ErrorBoundary';
+import { ErrorBoundary } from 'frosty';
 
-const FallbackUI = () => <div>Something went wrong. Please try again later.</div>;
+function App() {
 
-const handleError = (error, component, stack) => {
-  console.error('Error caught by ErrorBoundary:', error);
-  console.error('Component:', component);
-  console.error('Stack trace:', stack);
-};
+  const handleError = (error, component, stack) => {
+    console.error('Error caught by ErrorBoundary:', error);
+    console.error('Component:', component);
+    console.error('Stack trace:', stack);
+  };
 
-<ErrorBoundary onError={handleError}>
-  <MyComponent />
-</ErrorBoundary>
+  return (
+    <ErrorBoundary onError={handleError}>
+      <MyComponent />
+    </ErrorBoundary>
+  );
+}
 ```
 
 ## Notes
