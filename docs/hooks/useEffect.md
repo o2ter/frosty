@@ -118,5 +118,4 @@ function Counter() {
 ## See Also
 
 - [useState](./useState.md) – For managing local state in functional components.
-- [useLayoutEffect](./useLayoutEffect.md) – For effects that need to run synchronously after DOM mutations.
 - [useMemo](./useMemo.md) – For memoizing expensive calculations.
