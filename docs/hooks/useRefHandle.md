@@ -2,14 +2,10 @@
 
 The `useRefHandle` hook allows you to expose imperative methods or properties from a child component to its parent. This is useful for scenarios where the parent needs to directly interact with the child component, such as triggering animations, focusing inputs, or resetting forms.
 
----
-
 ## Features
 
 - **Expose Methods**: Share imperative methods from a child component to its parent.
 - **Flexible Integration**: Works seamlessly with functional components.
-
----
 
 ## Usage
 
@@ -60,8 +56,6 @@ function ParentComponent() {
 }
 ```
 
----
-
 ## Parameters
 
 1. **`ref`**: A `ref` object passed from the parent component.  
@@ -70,13 +64,9 @@ function ParentComponent() {
 2. **`methods`**: An object containing the methods or properties to expose.  
    Each key in the object represents a method or property that the parent can access.
 
----
-
 ## Returns
 
 The `useRefHandle` hook does not return any value.
-
----
 
 ## Example
 
@@ -115,14 +105,10 @@ function App() {
 }
 ```
 
----
-
 ## Notes
 
 - **Avoid Overuse**: Use `useRefHandle` sparingly. Prefer declarative patterns whenever possible.
 - **Type Safety**: When using TypeScript, define the type of the exposed methods for better type safety.
-
----
 
 ## See Also
 

@@ -2,15 +2,11 @@
 
 The `useReducer` hook is an alternative to `useState` for managing more complex state logic in functional components. It is particularly useful when the state depends on previous values or when multiple state transitions share logic.
 
----
-
 ## Features
 
 - **Complex State Management**: Ideal for managing state with multiple sub-values or interdependent updates.
 - **Predictable Updates**: State transitions are handled by a reducer function, ensuring predictable updates.
 - **Centralized Logic**: Encapsulates state update logic in a single function, making it easier to test and maintain.
-
----
 
 ## Usage
 
@@ -41,8 +37,6 @@ function Counter() {
 }
 ```
 
----
-
 ## Parameters
 
 1. **`reducer`**: `(state, action) => newState`  
@@ -54,16 +48,12 @@ function Counter() {
 3. **`init`** _(optional)_: `(initialArg) => initialState`  
    A function to lazily initialize the state. Useful for expensive initializations.
 
----
-
 ## Returns
 
 An array with two elements:
 
 1. **`state`**: The current state value.
 2. **`dispatch`**: A function to dispatch actions to update the state.
-
----
 
 ## Example
 
@@ -136,15 +126,11 @@ function Counter({ initialCount }) {
 }
 ```
 
----
-
 ## Notes
 
 - **When to Use**: Use `useReducer` when state logic is complex or when multiple state variables are interdependent.
 - **Avoid Overuse**: For simple state updates, prefer `useState` for better readability.
 - **Performance**: The `reducer` function is not re-created on every render, making it efficient for frequent updates.
-
----
 
 ## See Also
 
