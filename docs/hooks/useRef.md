@@ -89,6 +89,8 @@ function Timer() {
 
 ## See Also
 
-- useState – For managing reactive state.
-- useRefHandle – To expose imperative methods to parent components.
-- useEffect – For side effects and DOM manipulations.
+- [useState](./useState.md) – For managing reactive state.
+- [useEffect](./useEffect.md) – For handling side effects and DOM manipulations.
+- [useResource](./useResource.md) – For managing asynchronous resources with state and lifecycle management.
+- [useIterableResource](./useIterableResource.md) – For managing asynchronous iterable resources like streams or paginated data.
+- [useRefHandle](./useRefHandle.md) – To expose imperative methods to parent components.
