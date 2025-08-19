@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import _ from 'lodash';
 import { useEffect } from '../effect';
 
 /**
@@ -41,8 +42,9 @@ export const useInterval = (
   callback: () => void,
   ms?: number,
 ) => useEffect(() => {
+  if (_.isNil(ms)) return;
   const interval = setInterval(() => {
     callback();
   }, ms);
   return () => clearInterval(interval);
-}, []);
+}, [ms]);
