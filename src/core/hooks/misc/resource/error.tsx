@@ -103,12 +103,17 @@ export const useErrorContext = () => {
  * 
  * ### Usage:
  * ```tsx
+ * import { useEffect } from 'react';
+ * import { useResourceErrors } from 'frosty';
+ * 
  * const errors = useResourceErrors();
  * 
- * errors.forEach(({ token, error, refresh }) => {
- *   console.error(`Error [${token}]:`, error);
- *   // Optionally call refresh() to retry the operation
- * });
+ * useEffect(() => {
+ *   errors.forEach(({ token, error, refresh }) => {
+ *     console.error(`Error [${token}]:`, error);
+ *     // Optionally call refresh() to retry the operation
+ *   });
+ * }, [errors]);
  * ```
  * 
  * @returns The list of errors currently being tracked in the context. Each error includes:

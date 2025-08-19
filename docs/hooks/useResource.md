@@ -221,7 +221,72 @@ function PaginatedPosts({ userId }) {
 - **Dependencies**: Use the `deps` parameter to refetch resources when specific values change.
 - **Debouncing**: Use the `debounce` option to control the frequency of fetch calls.
 
+## `ResourceErrors` Component
+
+The `ResourceErrors` component is a context provider for managing asynchronous resource errors. It allows you to track, manage, and retry errors encountered during asynchronous operations in your application.
+
+### Features
+
+- **Centralized Error Management**: Provides a shared context for tracking errors across components.
+- **Retry Mechanism**: Allows retrying failed operations using the `refresh` function.
+- **Declarative API**: Simplifies error handling in complex applications.
+
+### Usage
+
+Wrap your application or specific parts of it with the `ResourceErrors` component to enable error tracking:
+
+```tsx
+import { ResourceErrors } from 'frosty';
+
+function App() {
+  return (
+    <ResourceErrors>
+      <YourComponent />
+    </ResourceErrors>
+  );
+}
+```
+
+### Accessing Errors with `useResourceErrors`
+
+The `useResourceErrors` hook allows you to access the list of errors being tracked in the `ResourceErrors` context. Each error includes:
+
+- **`token`**: A unique identifier for the error.
+- **`error`**: The error object or message.
+- **`refresh`**: A function to retry the operation that caused the error.
+- **`refreshing`**: A boolean indicating if the operation is currently being retried.
+- **`loading`**: A boolean indicating if the operation is still in progress.
+
+#### Example
+
+```tsx
+import { useResourceErrors } from 'frosty';
+
+function ErrorList() {
+  const errors = useResourceErrors();
+
+  return (
+    <div>
+      {errors.map(({ token, error, refresh, refreshing }) => (
+        <div key={token}>
+          <p>Error: {error.message}</p>
+          <button onClick={refresh} disabled={refreshing}>
+            {refreshing ? 'Retrying...' : 'Retry'}
+          </button>
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+### Notes
+
+- **Error Context**: The `ResourceErrors` component must wrap any components that use the `useResourceErrors` hook.
+- **Retry Logic**: Use the `refresh` function to retry failed operations. Ensure proper error handling to avoid infinite retry loops.
+- **Default Behavior**: If no `ResourceErrors` provider is found, a default context will be created automatically, but it is recommended to explicitly wrap your components with the provider for better control.
+
 ### See Also
 
-- [useState](./useState.md) – For managing local state.
-- [useEffect](./useEffect.md) – For side effects like data fetching.
+- [useResource](#useresource-hook) – For managing asynchronous resource fetching.
+- [useIterableResource](#useiterableresource-hook) – For managing asynchronous iterable resources.
