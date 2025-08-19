@@ -16,8 +16,10 @@ import { useDocument } from 'frosty';
 function DocumentTitle() {
   const document = useDocument();
   
-  // Update document title based on component state
-  document.title = "My Frosty App";
+  useEffect(() => {
+    // Update document title based on component state
+    document.title = "My Frosty App";
+  }, [document]);
   
   return (
     <div>
