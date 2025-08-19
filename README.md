@@ -7,7 +7,7 @@ A fast, flexible, and modern JSX-based UI library.
 - ⚡ Fast rendering and reconciliation
 - 🧩 Flexible component model
 - 🎨 Built-in style and CSS support
-- 🪝 Modern hooks API (React-like)
+- 🪝 Modern hooks API
 - 🌐 SSR-ready (Server-side rendering)
 
 ## Installation
