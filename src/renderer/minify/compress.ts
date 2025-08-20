@@ -138,7 +138,7 @@ function compressInternal(input: string, bitsPerChar: number, charFromCode: (cod
   // Write end-of-stream marker (code 2)
   writeBits(2, bitsPerCode);
 
-  // Flush remaining bits (preserve original logic exactly)
+  // Flush remaining bits
   while (true) {
     bitBuffer <<= 1;
     if (bitPosition === bitsPerChar - 1) {
