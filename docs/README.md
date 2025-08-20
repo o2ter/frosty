@@ -34,9 +34,20 @@ function App() {
 export default App;
 ```
 
+## CLI
+
+Frosty includes a powerful CLI tool for building and running applications. See the [CLI documentation](./CLI.md) for detailed usage instructions and configuration options.
+
 ## API Documentation
 
 For detailed information about the API and available components, please refer to the API documentation in the `./docs` directory.
+
+### Components
+- [ErrorBoundary](./components/ErrorBoundary.md) - Error handling component
+- [PropsProvider](./components/PropsProvider.md) - Context provider for props
+
+### Hooks
+- [Core Hooks](./hooks/) - Complete list of available hooks including useState, useEffect, useContext, and more
 
 ## Contributing
 
