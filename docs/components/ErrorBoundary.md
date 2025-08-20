@@ -4,17 +4,17 @@ The `ErrorBoundary` component is a component designed to catch JavaScript errors
 
 ## Features
 
-- **Error Handling**: Catches errors during rendering, lifecycle methods, and constructors of child components.
-- **Fallback UI**: Displays a customizable fallback UI when an error is caught.
-- **Error Logging**: Optionally logs error details for debugging purposes.
-- **Silent Mode**: Can suppress error handling if needed using the `silent` prop.
+- **Error Handling**: Catches errors during rendering, lifecycle methods, and constructors of child components
+- **Fallback UI**: Displays a customizable fallback UI when an error is caught
+- **Error Logging**: Optionally logs error details for debugging purposes
+- **Silent Mode**: Can suppress error handling if needed using the `silent` prop
 
 ## Props
 
 | Prop Name   | Type                                   | Default | Description                                                                 |
 |-------------|----------------------------------------|---------|-----------------------------------------------------------------------------|
-| `silent`    | `boolean`                              | `false` | If `true`, suppresses error handling and fallback UI.                       |
-| `onError`   | `(error, component, stack) => void`    | `null`  | Callback function triggered when an error is caught. Useful for logging.    |
+| `silent`    | `boolean`                              | `false` | If `true`, suppresses error handling and fallback UI                       |
+| `onError`   | `(error, component, stack) => void`    | `null`  | Callback function triggered when an error is caught. Useful for logging    |
 
 ## Usage
 

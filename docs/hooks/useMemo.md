@@ -1,13 +1,13 @@
-# `useMemo` Hook
+# useMemo
 
 The `useMemo` hook is used to memoize the result of an expensive calculation, ensuring that it is only recalculated when its dependencies change. This can significantly improve performance by preventing unnecessary computations on every render.
 
 ## Features
 
-- **Memoization**: Caches the result of expensive calculations between renders.
-- **Performance Optimization**: Prevents unnecessary recalculations when dependencies haven't changed.
-- **Dependency Tracking**: Automatically recalculates when specified dependencies change.
-- **Flexible Dependencies**: Supports any type of dependency values for comparison.
+- **Memoization**: Caches the result of expensive calculations between renders
+- **Performance Optimization**: Prevents unnecessary recalculations when dependencies haven't changed
+- **Dependency Tracking**: Automatically recalculates when specified dependencies change
+- **Flexible Dependencies**: Supports any type of dependency values for comparison
 
 ## Usage
 
@@ -38,8 +38,11 @@ function ExpensiveComponent() {
 
 ## Parameters
 
-1. **Factory Function**: `() => T` - A function that returns the value to be memoized.
-2. **Dependencies**: `any[]` - An array of values that the memoized value depends on. The value will be recalculated only when one of these dependencies changes.
+1. **Factory Function**: `() => T`  
+   A function that returns the value to be memoized
+
+2. **Dependencies**: `any[]`  
+   An array of values that the memoized value depends on. The value will be recalculated only when one of these dependencies changes
 
 ## Returns
 

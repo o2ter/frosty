@@ -1,14 +1,14 @@
-# `useLocalStorage` Hook
+# useLocalStorage
 
 The `useLocalStorage` hook provides a way to synchronize component state with the browser's localStorage, allowing data to persist across browser sessions. Changes to localStorage from other tabs or windows will automatically update the component state.
 
 ## Features
 
-- **Persistent Storage**: Data persists across browser sessions and page reloads.
-- **Cross-Tab Synchronization**: Automatically syncs with localStorage changes from other tabs.
-- **Type Safety**: Maintains string and null types for localStorage values.
-- **Error Handling**: Gracefully handles localStorage errors (quota exceeded, disabled storage, etc.).
-- **Automatic Cleanup**: Removes items when set to null or undefined.
+- **Persistent Storage**: Data persists across browser sessions and page reloads
+- **Cross-Tab Synchronization**: Automatically syncs with localStorage changes from other tabs
+- **Type Safety**: Maintains string and null types for localStorage values
+- **Error Handling**: Gracefully handles localStorage errors (quota exceeded, disabled storage, etc.)
+- **Automatic Cleanup**: Removes items when set to null or undefined
 
 ## Usage
 
@@ -40,8 +40,11 @@ function UserPreferences() {
 
 ## Parameters
 
-1. **key**: `string` - The localStorage key to use for storing the value.
-2. **initialValue**: `string | null` (optional) - The default value to use when no value exists in localStorage.
+1. **key**: `string`  
+   The localStorage key to use for storing the value
+
+2. **initialValue**: `string | null` _(optional)_  
+   The default value to use when no value exists in localStorage
 
 ## Returns
 
