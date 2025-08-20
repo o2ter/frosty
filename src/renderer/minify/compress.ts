@@ -30,6 +30,34 @@ const COMPRESSION_ALPHABET = ":;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijkl
 
 /**
  * Internal compression function implementing LZW-like compression algorithm
+ * 
+ * Algorithm Description:
+ * This function uses a modified Lempel-Ziv-Welch (LZW) compression algorithm that works by:
+ * 
+ * 1. Dictionary Building: Creates a dynamic dictionary of patterns as it processes the input.
+ *    - Starts with individual characters and builds longer patterns over time
+ *    - Each new pattern gets assigned an incrementing numeric code
+ * 
+ * 2. Pattern Matching: Scans the input to find the longest matching pattern in the dictionary.
+ *    - When a pattern is found, it extends it by one character and looks for that extended pattern
+ *    - If the extended pattern exists, continues building; if not, outputs the current pattern
+ * 
+ * 3. Variable-Length Encoding: Uses a variable number of bits per code to optimize compression.
+ *    - Starts with 2 bits per code and increases as the dictionary grows
+ *    - Special handling for character codes (8-bit for ASCII, 16-bit for Unicode)
+ * 
+ * 4. Bit Packing: Efficiently packs codes into a bit stream using the custom alphabet.
+ *    - Groups bits into chunks based on bitsPerChar parameter
+ *    - Uses a custom base-64-like alphabet for output encoding
+ * 
+ * 5. Special Codes:
+ *    - Code 0/1: Flags for 8-bit/16-bit character literals
+ *    - Code 2: End-of-stream marker
+ *    - Code 3+: Dictionary entries for patterns
+ * 
+ * The algorithm is particularly effective for text with repeated patterns, as it replaces
+ * common sequences with shorter codes, achieving compression ratios that improve with
+ * pattern repetition in the input data.
  */
 function compressInternal(input: string, bitsPerChar: number, charFromCode: (code: number) => string): string {
   if (input == null) {
