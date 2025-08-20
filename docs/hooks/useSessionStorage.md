@@ -1,14 +1,14 @@
-# `useSessionStorage` Hook
+# useSessionStorage
 
 The `useSessionStorage` hook provides a way to synchronize component state with the browser's sessionStorage, allowing data to persist only for the current browser session. Unlike localStorage, sessionStorage data is cleared when the tab is closed but syncs across the same tab/window.
 
 ## Features
 
-- **Session Persistence**: Data persists across page reloads but only for the current session.
-- **Same-Tab Synchronization**: Automatically syncs with sessionStorage changes within the same tab.
-- **Type Safety**: Maintains string and null types for sessionStorage values.
+- **Session Persistence**: Data persists across page reloads but only for the current session
+- **Same-Tab Synchronization**: Automatically syncs with sessionStorage changes within the same tab
+- **Type Safety**: Maintains string and null types for sessionStorage values
 - **Error Handling**: Gracefully handles sessionStorage errors (quota exceeded, disabled storage, etc.).
-- **Automatic Cleanup**: Removes items when set to null or undefined.
+- **Automatic Cleanup**: Removes items when set to null or undefined
 
 ## Usage
 
@@ -47,8 +47,8 @@ function SessionForm() {
 ## Returns
 
 A tuple containing:
-- **value**: `string | null` - The current value from sessionStorage or the initial value.
-- **setValue**: `(value: string | null | undefined | ((prev: string | null | undefined) => string | null | undefined)) => void` - Function to update the sessionStorage value.
+- **value**: `string | null` - The current value from sessionStorage or the initial value
+- **setValue**: `(value: string | null | undefined | ((prev: string | null | undefined) => string | null | undefined)) => void` - Function to update the sessionStorage value
 
 ## Examples
 
@@ -304,26 +304,26 @@ function CounterSession() {
 
 The hook automatically handles sessionStorage errors:
 
-- **Storage Disabled**: When sessionStorage is disabled by the browser.
-- **Quota Exceeded**: When the storage quota is full.
-- **Security Restrictions**: When running in certain contexts.
+- **Storage Disabled**: When sessionStorage is disabled by the browser
+- **Quota Exceeded**: When the storage quota is full
+- **Security Restrictions**: When running in certain contexts
 
 Errors are logged to the console, and the hook continues to function with in-memory state only.
 
 ## Common Use Cases
 
-- **Form Drafts**: Save form progress temporarily.
-- **Wizard State**: Maintain multi-step process state.
-- **View Preferences**: Remember view modes for the current session.
-- **Temporary Calculations**: Store intermediate results.
-- **Navigation State**: Remember expanded/collapsed states.
+- **Form Drafts**: Save form progress temporarily
+- **Wizard State**: Maintain multi-step process state
+- **View Preferences**: Remember view modes for the current session
+- **Temporary Calculations**: Store intermediate results
+- **Navigation State**: Remember expanded/collapsed states
 
 ## Notes
 
 - **String Values Only**: sessionStorage only stores strings. Use `JSON.stringify`/`JSON.parse` for objects.
-- **Session Scope**: Data is cleared when the tab is closed.
-- **No Cross-Tab Sync**: Unlike localStorage, sessionStorage doesn't sync across tabs.
-- **Same Origin**: Data is only accessible within the same origin (protocol + domain + port).
+- **Session Scope**: Data is cleared when the tab is closed
+- **No Cross-Tab Sync**: Unlike localStorage, sessionStorage doesn't sync across tabs
+- **Same Origin**: Data is only accessible within the same origin (protocol + domain + port)
 
 ## See Also
 

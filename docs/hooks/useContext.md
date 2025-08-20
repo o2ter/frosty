@@ -1,4 +1,4 @@
-# `useContext` Hook
+# useContext
 
 The `useContext` hook allows you to access the value of a context in functional components. It simplifies consuming context values without needing to wrap components with a `Context.Consumer`.
 
@@ -28,7 +28,7 @@ function ThemedComponent() {
 ## Parameters
 
 1. **Context**: `Context<T>`  
-   The context object created by `createContext`. The hook will return the current value of this context.
+   The context object created by `createContext`. The hook will return the current value of this context
 
 ## Returns
 

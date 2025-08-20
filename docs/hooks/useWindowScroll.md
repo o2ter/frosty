@@ -1,13 +1,13 @@
-# `useWindowScroll` Hook
+# useWindowScroll
 
 The `useWindowScroll` hook tracks the current scroll position of the window, automatically updating when the user scrolls. This is useful for implementing scroll-based features like scroll indicators, sticky headers, or infinite scrolling.
 
 ## Features
 
-- **Reactive Scrolling**: Automatically updates when window scroll position changes.
-- **Horizontal and Vertical**: Tracks both X and Y scroll positions.
-- **Performance Optimized**: Efficiently handles scroll events.
-- **Automatic Cleanup**: Event listeners are automatically managed.
+- **Reactive Scrolling**: Automatically updates when window scroll position changes
+- **Horizontal and Vertical**: Tracks both X and Y scroll positions
+- **Performance Optimized**: Efficiently handles scroll events
+- **Automatic Cleanup**: Event listeners are automatically managed
 
 ## Usage
 
@@ -439,9 +439,9 @@ function ReadingProgress() {
 
 ## Performance Considerations
 
-- **Throttling**: The hook efficiently handles scroll events but consider throttling for very intensive operations.
-- **Will-Change**: Use `will-change: transform` CSS property for elements that will be animated based on scroll.
-- **Passive Listeners**: Scroll listeners are optimized for performance.
+- **Throttling**: The hook efficiently handles scroll events but consider throttling for very intensive operations
+- **Will-Change**: Use `will-change: transform` CSS property for elements that will be animated based on scroll
+- **Passive Listeners**: Scroll listeners are optimized for performance
 
 ## Common Use Cases
 
@@ -454,9 +454,9 @@ function ReadingProgress() {
 
 ## Notes
 
-- **Automatic Updates**: Components re-render automatically when scroll position changes.
-- **Cross-browser Support**: Works consistently across all modern browsers.
-- **Memory Efficient**: Event listeners are properly cleaned up when components unmount.
+- **Automatic Updates**: Components re-render automatically when scroll position changes
+- **Cross-browser Support**: Works consistently across all modern browsers
+- **Memory Efficient**: Event listeners are properly cleaned up when components unmount
 
 ## See Also
 

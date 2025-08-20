@@ -1,4 +1,4 @@
-# `useColorScheme` Hook
+# useColorScheme
 
 The `useColorScheme` hook allows you to detect and respond to the user's system color scheme preference (light or dark mode). This is useful for implementing theme switching in your application.
 
@@ -31,7 +31,7 @@ function ThemeAwareComponent() {
 ## Parameters
 
 1. **`defaultScheme`** _(optional)_: `'light' | 'dark'`  
-   The default color scheme to use when the system preference cannot be determined (e.g., on the server). Defaults to `'light'`.
+   The default color scheme to use when the system preference cannot be determined (e.g., on the server). Defaults to `'light'`
 
 ## Returns
 

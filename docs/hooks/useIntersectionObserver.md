@@ -1,14 +1,14 @@
-# `useIntersectionObserver` Hook
+# useIntersectionObserver
 
 The `useIntersectionObserver` hook provides a way to observe when DOM elements enter or leave the viewport using the Intersection Observer API. This is perfect for implementing lazy loading, infinite scrolling, scroll-triggered animations, and analytics tracking.
 
 ## Features
 
-- **Viewport Tracking**: Detect when elements become visible or hidden in the viewport.
-- **Performance Optimized**: Uses the native IntersectionObserver API for efficient visibility detection.
-- **Threshold Support**: Configure how much of an element must be visible to trigger callbacks.
-- **Root Margin**: Extend the observation area with configurable margins.
-- **Automatic Cleanup**: Observers are automatically disconnected when components unmount.
+- **Viewport Tracking**: Detect when elements become visible or hidden in the viewport
+- **Performance Optimized**: Uses the native IntersectionObserver API for efficient visibility detection
+- **Threshold Support**: Configure how much of an element must be visible to trigger callbacks
+- **Root Margin**: Extend the observation area with configurable margins
+- **Automatic Cleanup**: Observers are automatically disconnected when components unmount
 
 ## Usage
 

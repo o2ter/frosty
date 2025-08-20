@@ -49,8 +49,8 @@ function UserPreferences() {
 ## Returns
 
 A tuple containing:
-- **value**: `string | null` - The current value from localStorage or the initial value.
-- **setValue**: `(value: string | null | undefined | ((prev: string | null | undefined) => string | null | undefined)) => void` - Function to update the localStorage value.
+- **value**: `string | null` - The current value from localStorage or the initial value
+- **setValue**: `(value: string | null | undefined | ((prev: string | null | undefined) => string | null | undefined)) => void` - Function to update the localStorage value
 
 ## Examples
 
@@ -231,9 +231,9 @@ function DataManager() {
 
 The hook automatically handles localStorage errors:
 
-- **Storage Disabled**: When localStorage is disabled by the browser.
-- **Quota Exceeded**: When the storage quota is full.
-- **Security Restrictions**: When running in certain contexts (like file:// protocol).
+- **Storage Disabled**: When localStorage is disabled by the browser
+- **Quota Exceeded**: When the storage quota is full
+- **Security Restrictions**: When running in certain contexts (like file:// protocol)
 
 Errors are logged to the console, and the hook continues to function with in-memory state only.
 
@@ -260,9 +260,9 @@ function CrossTabDemo() {
 ## Notes
 
 - **String Values Only**: localStorage only stores strings. Use `JSON.stringify`/`JSON.parse` for objects.
-- **Synchronous Operation**: localStorage operations are synchronous but the hook handles errors gracefully.
-- **Storage Events**: Only changes from other tabs/windows trigger storage events, not changes from the same tab.
-- **Memory Usage**: Values are cached in memory for performance, updated only when localStorage changes.
+- **Synchronous Operation**: localStorage operations are synchronous but the hook handles errors gracefully
+- **Storage Events**: Only changes from other tabs/windows trigger storage events, not changes from the same tab
+- **Memory Usage**: Values are cached in memory for performance, updated only when localStorage changes
 
 ## See Also
 

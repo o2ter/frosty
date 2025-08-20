@@ -1,14 +1,14 @@
-# `usePerformanceObserver` Hook
+# usePerformanceObserver
 
 The `usePerformanceObserver` hook provides access to the Performance Observer API for monitoring various performance metrics and timing data. This is useful for tracking application performance, identifying bottlenecks, and implementing performance monitoring solutions.
 
 ## Features
 
-- **Performance Monitoring**: Track various performance metrics like navigation, resource loading, and user interactions.
+- **Performance Monitoring**: Track various performance metrics like navigation, resource loading, and user interactions
 - **Entry Type Filtering**: Monitor specific types of performance entries (navigation, resource, measure, etc.).
-- **Real-time Metrics**: Get performance data as it becomes available.
-- **Buffered Entries**: Access historical performance data when the observer starts.
-- **Automatic Cleanup**: Observers are automatically disconnected when components unmount.
+- **Real-time Metrics**: Get performance data as it becomes available
+- **Buffered Entries**: Access historical performance data when the observer starts
+- **Automatic Cleanup**: Observers are automatically disconnected when components unmount
 
 ## Usage
 
@@ -683,7 +683,7 @@ function ResourcePerformanceTracker() {
             ))
           ) : (
             <div style={{ padding: '40px', textAlign: 'center', color: '#6c757d' }}>
-              No resources loaded yet. Try loading a test image or script above.
+              No resources loaded yet. Try loading a test image or script above
             </div>
           )}
         </div>
@@ -903,7 +903,7 @@ function LongTaskMonitor() {
             })
           ) : (
             <div style={{ padding: '40px', textAlign: 'center', color: '#6c757d' }}>
-              No long tasks detected yet. Try running a heavy task above to see monitoring in action.
+              No long tasks detected yet. Try running a heavy task above to see monitoring in action
             </div>
           )}
         </div>
@@ -924,7 +924,7 @@ function LongTaskMonitor() {
           <li><strong>200ms+:</strong> Significant performance issues, users will notice</li>
         </ul>
         <p style={{ margin: 0 }}>
-          <strong>Tip:</strong> Break up long tasks using setTimeout, requestIdleCallback, or Web Workers.
+          <strong>Tip:</strong> Break up long tasks using setTimeout, requestIdleCallback, or Web Workers
         </p>
       </div>
     </div>

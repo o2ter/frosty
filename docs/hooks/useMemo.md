@@ -194,22 +194,22 @@ function DataProcessor({ apiData }) {
 
 ### When to Use `useMemo`
 
-- **Expensive Calculations**: Use for computationally expensive operations that don't need to run on every render.
-- **Complex Object Creation**: When creating objects or arrays that are passed as props to child components.
-- **Derived State**: For calculating values derived from props or state that involve non-trivial logic.
+- **Expensive Calculations**: Use for computationally expensive operations that don't need to run on every render
+- **Complex Object Creation**: When creating objects or arrays that are passed as props to child components
+- **Derived State**: For calculating values derived from props or state that involve non-trivial logic
 
 ### When NOT to Use `useMemo`
 
-- **Simple Calculations**: Don't use for simple operations that are already fast.
-- **Always Changing Dependencies**: If dependencies change on every render, memoization provides no benefit.
-- **Premature Optimization**: Only use when you've identified an actual performance issue.
+- **Simple Calculations**: Don't use for simple operations that are already fast
+- **Always Changing Dependencies**: If dependencies change on every render, memoization provides no benefit
+- **Premature Optimization**: Only use when you've identified an actual performance issue
 
 ## Notes
 
 - **Dependency Comparison**: Dependencies are compared using shallow equality (Object.is).
-- **Initial Calculation**: The factory function runs once on the first render, regardless of dependencies.
-- **Memory Trade-off**: Memoization uses memory to store cached values, so use judiciously.
-- **Referential Equality**: Memoized objects maintain referential equality when dependencies haven't changed.
+- **Initial Calculation**: The factory function runs once on the first render, regardless of dependencies
+- **Memory Trade-off**: Memoization uses memory to store cached values, so use judiciously
+- **Referential Equality**: Memoized objects maintain referential equality when dependencies haven't changed
 
 ## See Also
 

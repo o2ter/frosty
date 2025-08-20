@@ -1,13 +1,13 @@
-# `useWindow` Hook
+# useWindow
 
 The `useWindow` hook provides access to the current window object within components. This hook is essential for accessing browser APIs and window-specific functionality in a way that's compatible with Frosty's rendering system.
 
 ## Features
 
-- **Window Access**: Direct access to the current window object.
-- **Renderer Compatibility**: Works with Frosty's DOM renderer system.
-- **Safe Usage**: Throws clear errors when used in unsupported contexts.
-- **Type Safety**: Returns properly typed window object.
+- **Window Access**: Direct access to the current window object
+- **Renderer Compatibility**: Works with Frosty's DOM renderer system
+- **Safe Usage**: Throws clear errors when used in unsupported contexts
+- **Type Safety**: Returns properly typed window object
 
 ## Usage
 
@@ -399,10 +399,10 @@ function SafeWindowUsage() {
 
 ## Notes
 
-- **Server-Side Rendering**: This hook will not work during server-side rendering.
-- **Renderer Dependency**: Only works with Frosty's DOM renderer.
-- **Memory Management**: Remember to clean up event listeners in useEffect cleanup functions.
-- **Type Safety**: The returned window object is fully typed for TypeScript users.
+- **Server-Side Rendering**: This hook will not work during server-side rendering
+- **Renderer Dependency**: Only works with Frosty's DOM renderer
+- **Memory Management**: Remember to clean up event listeners in useEffect cleanup functions
+- **Type Safety**: The returned window object is fully typed for TypeScript users
 
 ## See Also
 

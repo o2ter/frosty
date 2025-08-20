@@ -1,14 +1,14 @@
-# `useOnline` Hook
+# useOnline
 
 The `useOnline` hook tracks the browser's online/offline status, automatically updating when the network connection changes. This is useful for showing connection status to users and handling offline scenarios gracefully.
 
 ## Features
 
-- **Real-time Status**: Automatically detects changes in network connectivity.
-- **Browser Events**: Listens to native `online` and `offline` events.
-- **Simple Boolean**: Returns a simple boolean value indicating connection status.
-- **Cross-browser Support**: Works across all modern browsers.
-- **Automatic Cleanup**: Event listeners are automatically managed.
+- **Real-time Status**: Automatically detects changes in network connectivity
+- **Browser Events**: Listens to native `online` and `offline` events
+- **Simple Boolean**: Returns a simple boolean value indicating connection status
+- **Cross-browser Support**: Works across all modern browsers
+- **Automatic Cleanup**: Event listeners are automatically managed
 
 ## Usage
 
@@ -141,7 +141,7 @@ function ContactForm() {
           marginBottom: '10px',
           borderRadius: '4px'
         }}>
-          ⚠️ You are currently offline. Form submission is disabled.
+          ⚠️ You are currently offline. Form submission is disabled
         </div>
       )}
       
@@ -341,7 +341,7 @@ function OfflineStorage() {
       <h2>Posts {!isOnline && '(Cached)'}</h2>
       {!isOnline && (
         <p style={{ color: 'orange' }}>
-          📱 Showing cached content. Connect to internet for latest updates.
+          📱 Showing cached content. Connect to internet for latest updates
         </p>
       )}
       
@@ -370,8 +370,8 @@ The `useOnline` hook relies on the `navigator.onLine` property and `online`/`off
 ## Limitations
 
 - **Not Always Accurate**: `navigator.onLine` only detects network interface status, not actual internet connectivity.
-- **No Bandwidth Info**: Doesn't provide information about connection quality or speed.
-- **Local Network**: May show "online" even when connected to a local network without internet access.
+- **No Bandwidth Info**: Doesn't provide information about connection quality or speed
+- **Local Network**: May show "online" even when connected to a local network without internet access
 
 ## Common Use Cases
 

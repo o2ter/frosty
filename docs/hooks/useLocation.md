@@ -1,14 +1,14 @@
-# `useLocation` Hook
+# useLocation
 
 The `useLocation` hook provides access to the current browser location and methods for programmatic navigation. It automatically updates when the URL changes and offers a convenient API for managing browser history and URL manipulation.
 
 ## Features
 
-- **Reactive Location**: Automatically updates when the URL changes.
-- **History Management**: Provides methods to navigate browser history.
+- **Reactive Location**: Automatically updates when the URL changes
+- **History Management**: Provides methods to navigate browser history
 - **URL Properties**: Access to all URL components (pathname, search, hash, etc.).
-- **State Management**: Handle browser history state objects.
-- **Navigation Control**: Push new entries or replace current history entry.
+- **State Management**: Handle browser history state objects
+- **Navigation Control**: Push new entries or replace current history entry
 
 ## Usage
 
@@ -420,10 +420,10 @@ const navigateWithConfirmation = (path) => {
 
 ## Notes
 
-- **Automatic Updates**: The hook automatically re-renders components when the URL changes.
-- **Browser Events**: Listens to `popstate` events for browser navigation.
-- **State Objects**: Can store arbitrary data with history entries.
-- **URL Encoding**: URLs are automatically encoded/decoded as needed.
+- **Automatic Updates**: The hook automatically re-renders components when the URL changes
+- **Browser Events**: Listens to `popstate` events for browser navigation
+- **State Objects**: Can store arbitrary data with history entries
+- **URL Encoding**: URLs are automatically encoded/decoded as needed
 
 ## See Also
 

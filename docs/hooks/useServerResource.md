@@ -1,14 +1,14 @@
-# `useServerResource` Hook
+# useServerResource
 
 The `useServerResource` hook provides a way to access server-side rendered data and manage resources during the SSR/hydration process. This hook enables sharing data between server and client during the initial page load, supporting data compression and efficient hydration.
 
 ## Features
 
-- **SSR Data Sharing**: Access data that was rendered on the server during hydration.
-- **Data Compression**: Automatic compression/decompression of large data sets.
-- **Hydration Support**: Seamless integration with server-side rendering workflows.
-- **Type Safety**: Full TypeScript support with proper typing.
-- **Performance Optimized**: Efficient data transfer and storage mechanisms.
+- **SSR Data Sharing**: Access data that was rendered on the server during hydration
+- **Data Compression**: Automatic compression/decompression of large data sets
+- **Hydration Support**: Seamless integration with server-side rendering workflows
+- **Type Safety**: Full TypeScript support with proper typing
+- **Performance Optimized**: Efficient data transfer and storage mechanisms
 
 ## Usage
 
@@ -713,7 +713,7 @@ function BlogArticlePage() {
                 textAlign: 'center'
               }}>
                 <p style={{ margin: '0 0 10px 0' }}>
-                  Please log in to post a comment.
+                  Please log in to post a comment
                 </p>
                 <button style={{
                   padding: '8px 16px',

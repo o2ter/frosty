@@ -1,4 +1,4 @@
-# `useVisibility` Hook
+# useVisibility
 
 The `useVisibility` hook allows you to track the current visibility state of your document. This is useful for pausing/resuming activities when users switch tabs or minimize the browser window.
 

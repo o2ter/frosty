@@ -1,14 +1,14 @@
-# `useSearchParams` Hook
+# useSearchParams
 
 The `useSearchParams` hook provides a convenient way to read and update URL search parameters (query string). It returns a `URLSearchParams` object for reading and a setter function for updating the URL parameters, automatically managing browser history.
 
 ## Features
 
-- **URLSearchParams API**: Full access to the standard URLSearchParams interface.
-- **Automatic Updates**: Components re-render when search parameters change.
-- **History Management**: Choose between pushing new history entries or replacing current.
-- **Type Safety**: Works with any valid URLSearchParams initializer.
-- **Reactive**: Automatically syncs with URL changes from other sources.
+- **URLSearchParams API**: Full access to the standard URLSearchParams interface
+- **Automatic Updates**: Components re-render when search parameters change
+- **History Management**: Choose between pushing new history entries or replacing current
+- **Type Safety**: Works with any valid URLSearchParams initializer
+- **Reactive**: Automatically syncs with URL changes from other sources
 
 ## Usage
 
@@ -570,10 +570,10 @@ setSearchParams(prev => {
 
 ## Notes
 
-- **Automatic Encoding**: Parameter names and values are automatically URL-encoded.
+- **Automatic Encoding**: Parameter names and values are automatically URL-encoded
 - **History Management**: By default, updates push new history entries. Use `{ replace: true }` to replace.
-- **Reactive Updates**: Components automatically re-render when search parameters change.
-- **Browser Navigation**: Works seamlessly with browser back/forward buttons.
+- **Reactive Updates**: Components automatically re-render when search parameters change
+- **Browser Navigation**: Works seamlessly with browser back/forward buttons
 
 ## See Also
 

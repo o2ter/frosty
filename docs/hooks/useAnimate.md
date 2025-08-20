@@ -1,14 +1,14 @@
-# `useAnimate` Hook
+# useAnimate
 
 The `useAnimate` hook provides powerful animation capabilities for numeric values, allowing you to smoothly transition between different values over time with customizable easing functions and timing controls.
 
 ## Features
 
-- **Smooth Animations**: Animate numeric values with configurable duration and easing.
-- **Interpolation**: Transform animated values using input/output ranges.
-- **Animation Control**: Start, stop, and configure animations programmatically.
-- **Custom Easing**: Apply custom easing functions for different animation curves.
-- **Completion Callbacks**: Execute code when animations complete or are interrupted.
+- **Smooth Animations**: Animate numeric values with configurable duration and easing
+- **Interpolation**: Transform animated values using input/output ranges
+- **Animation Control**: Start, stop, and configure animations programmatically
+- **Custom Easing**: Apply custom easing functions for different animation curves
+- **Completion Callbacks**: Execute code when animations complete or are interrupted
 
 ## Usage
 
@@ -43,27 +43,27 @@ function AnimatedComponent() {
 
 ## Parameters
 
-- **initialValue**: `number` - The starting value for the animation.
+- **initialValue**: `number` - The starting value for the animation
 
 ## Returns
 
 An object containing:
 
-- **value**: `number` - The current animated value.
-- **start**: `(options: AnimateOptions) => void` - Function to start an animation.
-- **stop**: `() => void` - Function to stop the current animation.
-- **interpolate**: `(options: InterpolateOptions) => AnimatedInterpolation` - Function to interpolate the current value.
+- **value**: `number` - The current animated value
+- **start**: `(options: AnimateOptions) => void` - Function to start an animation
+- **stop**: `() => void` - Function to stop the current animation
+- **interpolate**: `(options: InterpolateOptions) => AnimatedInterpolation` - Function to interpolate the current value
 
 ## Animation Options
 
 The `start` function accepts an `AnimateOptions` object:
 
-- **toValue**: `number` - The target value for the animation.
-- **duration**: `number` - Duration in milliseconds.
-- **fromValue?**: `number` - Starting value (defaults to current value).
-- **easing?**: `(t: number) => number` - Easing function (defaults to linear).
-- **delay?**: `number` - Delay before starting in milliseconds (defaults to 0).
-- **onCompleted?**: `(result: { value: number; finished: boolean }) => void` - Completion callback.
+- **toValue**: `number` - The target value for the animation
+- **duration**: `number` - Duration in milliseconds
+- **fromValue?**: `number` - Starting value (defaults to current value)
+- **easing?**: `(t: number) => number` - Easing function (defaults to linear)
+- **delay?**: `number` - Delay before starting in milliseconds (defaults to 0)
+- **onCompleted?**: `(result: { value: number; finished: boolean }) => void` - Completion callback
 
 ## Interpolation
 

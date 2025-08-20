@@ -1,15 +1,15 @@
-# `useAwaited` Hook
+# useAwaited
 
 The `useAwaited` hook provides a way to eagerly resolve promises during component rendering, ensuring that asynchronous operations complete before rendering is finished. This hook is particularly designed for server-side rendering (SSR) scenarios where you need to wait for data to be loaded before the component renders. When using `useAwaited`, the component will not render until all promises have resolved.
 
 ## Features
 
-- **Promise Resolution**: Eagerly resolves promises and caches results for efficiency.
-- **SSR Optimized**: Ensures promises settle before server-side rendering completes.
-- **Deferred Rendering**: Component rendering is deferred until all promises resolve.
-- **Error Handling**: Automatically throws promise rejection errors during rendering.
-- **Memoization**: Uses dependency array for intelligent promise recreation.
-- **WeakMap Caching**: Efficient memory management with automatic cleanup.
+- **Promise Resolution**: Eagerly resolves promises and caches results for efficiency
+- **SSR Optimized**: Ensures promises settle before server-side rendering completes
+- **Deferred Rendering**: Component rendering is deferred until all promises resolve
+- **Error Handling**: Automatically throws promise rejection errors during rendering
+- **Memoization**: Uses dependency array for intelligent promise recreation
+- **WeakMap Caching**: Efficient memory management with automatic cleanup
 
 ## Usage
 
@@ -101,8 +101,8 @@ function UserProfile({ userId }: { userId: string }) {
 
 ## Throws
 
-- **Error**: If used outside a render function context.
-- **Promise Rejection**: If the promise rejects, the error is thrown during rendering.
+- **Error**: If used outside a render function context
+- **Promise Rejection**: If the promise rejects, the error is thrown during rendering
 
 ## Examples
 

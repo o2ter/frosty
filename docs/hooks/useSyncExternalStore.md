@@ -1,6 +1,13 @@
-# `useSyncExternalStore` Hook
+# useSyncExternalStore
 
 The `useSyncExternalStore` hook is used to subscribe to an external store and synchronize its state with your component. It ensures consistent behavior across server and client rendering.
+
+## Features
+
+- **External Store Integration**: Subscribe to external state management systems
+- **SSR Support**: Provides server-side rendering compatibility
+- **Automatic Subscriptions**: Handles subscription and unsubscription lifecycle
+- **Consistent Updates**: Ensures consistent state updates across renders
 
 ## Usage
 
@@ -21,13 +28,13 @@ function ExampleComponent() {
 ## Parameters
 
 1. **subscribe**: `(onStoreChange: () => void) => () => void`  
-   A function that registers a callback to be called whenever the store changes. It should return an unsubscribe function.
+   A function that registers a callback to be called whenever the store changes. It should return an unsubscribe function
 
 2. **getSnapshot**: `() => T`  
-   A function that retrieves the current state of the store.
+   A function that retrieves the current state of the store
 
 3. **getServerSnapshot** _(optional)_: `() => T`  
-   A function that retrieves the state of the store for server-side rendering. This is optional and only used in SSR environments.
+   A function that retrieves the state of the store for server-side rendering. This is optional and only used in SSR environments
 
 ## Returns
 

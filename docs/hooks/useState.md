@@ -1,10 +1,16 @@
 # useState
 
-`useState` is a Hook that lets you add state to functional components.
+The `useState` hook lets you add state to functional components.
+
+## Features
+
+- **State Management**: Add reactive state to functional components
+- **Automatic Re-renders**: Component automatically re-renders when state changes
+- **Type Safety**: Full TypeScript support for type-safe state management
 
 ## Usage
 
-```jsx
+```tsx
 import { useState } from 'frosty';
 
 function Counter() {
@@ -12,7 +18,7 @@ function Counter() {
 
   return (
     <div>
-      <p>You clicked {count} times.</p>
+      <p>You clicked {count} times</p>
       <button onClick={() => setCount(count + 1)}>
         Click me
       </button>
@@ -23,21 +29,40 @@ function Counter() {
 
 ## Parameters
 
-- **initialState**: The initial value of the state variable.
+1. **initialState**: `T | (() => T)`  
+   The initial value of the state variable, or a function that returns the initial value
 
 ## Returns
 
 An array with two elements:
-1. The current state value.
-2. A function to update the state.
+
+- **state**: The current state value
+- **setState**: A function to update the state
 
 ## Example
 
-```jsx
-const [name, setName] = useState('Susan');
+### Basic Usage
+
+```tsx
+import { useState } from 'frosty';
+
+function NameForm() {
+  const [name, setName] = useState('Susan');
+
+  return (
+    <div>
+      <input 
+        value={name} 
+        onChange={(e) => setName(e.target.value)} 
+      />
+      <p>Hello, {name}!</p>
+    </div>
+  );
+}
 ```
 
 ## Notes
 
-- Calling the setter function will re-render the component.
-- You can use any type as the initial state (number, string, object, etc.).
+- **Re-renders**: Calling the setter function will trigger a re-render of the component
+- **Types**: You can use any type as the initial state (number, string, object, etc.)
+- **Functional Updates**: The setter function can accept a function for complex state updates

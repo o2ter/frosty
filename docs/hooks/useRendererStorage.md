@@ -1,14 +1,14 @@
-# `useRendererStorage` Hook
+# useRendererStorage
 
 The `useRendererStorage` hook provides renderer-scoped persistent storage that maintains data across component renders and updates. This storage is tied to the specific renderer instance and provides a way to store data that persists beyond individual component lifecycles.
 
 ## Features
 
-- **Renderer-Scoped**: Storage is isolated per renderer instance.
-- **Persistent**: Data persists across component unmounts and remounts.
-- **WeakMap Based**: Uses WeakMap for efficient memory management and garbage collection.
-- **Type Safe**: Full TypeScript support with generic typing.
-- **Cross-Component**: Share data between different components within the same renderer.
+- **Renderer-Scoped**: Storage is isolated per renderer instance
+- **Persistent**: Data persists across component unmounts and remounts
+- **WeakMap Based**: Uses WeakMap for efficient memory management and garbage collection
+- **Type Safe**: Full TypeScript support with generic typing
+- **Cross-Component**: Share data between different components within the same renderer
 
 ## Usage
 
@@ -76,7 +76,7 @@ function PreferencesManager() {
     <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
       <h2>Application Preferences</h2>
       <p style={{ color: '#6c757d', marginBottom: '30px' }}>
-        These settings are stored in renderer storage and persist across component updates.
+        These settings are stored in renderer storage and persist across component updates
       </p>
 
       <div style={{
@@ -735,7 +735,7 @@ function ShoppingApp() {
     <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
       <h1>Shopping Demo</h1>
       <p style={{ color: '#6c757d', marginBottom: '40px' }}>
-        Cart data is stored in renderer storage and persists across component updates.
+        Cart data is stored in renderer storage and persists across component updates
       </p>
       
       <ProductList />
@@ -1311,7 +1311,7 @@ function MultiStepFormManager() {
 - **User Preferences**: Store application settings and user preferences
 - **Form State**: Maintain form data across multiple steps or sessions
 - **Shopping Carts**: Persist cart contents across page navigation
-- **UI State**: Remember collapsed/expanded states, selected tabs, etc.
+- **UI State**: Remember collapsed/expanded states, selected tabs, etc
 - **Cache Management**: Store computed or fetched data temporarily
 - **Cross-Component Communication**: Share data between disconnected components
 

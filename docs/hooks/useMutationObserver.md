@@ -1,14 +1,14 @@
-# `useMutationObserver` Hook
+# useMutationObserver
 
 The `useMutationObserver` hook provides a way to observe changes to the DOM tree using the MutationObserver API. This is useful for tracking dynamic content changes, monitoring third-party modifications, and implementing reactive behaviors based on DOM mutations.
 
 ## Features
 
-- **DOM Change Tracking**: Monitor additions, removals, and modifications to DOM elements.
+- **DOM Change Tracking**: Monitor additions, removals, and modifications to DOM elements
 - **Flexible Configuration**: Configure which types of mutations to observe (attributes, childList, subtree, etc.).
-- **Performance Optimized**: Uses the native MutationObserver API for efficient DOM monitoring.
-- **Ref Support**: Works with both ref objects and direct node references.
-- **Automatic Cleanup**: Observers are automatically disconnected when components unmount.
+- **Performance Optimized**: Uses the native MutationObserver API for efficient DOM monitoring
+- **Ref Support**: Works with both ref objects and direct node references
+- **Automatic Cleanup**: Observers are automatically disconnected when components unmount
 
 ## Usage
 

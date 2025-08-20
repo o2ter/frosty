@@ -1,12 +1,12 @@
-# `useDebounce` Hook
+# useDebounce
 
 The `useDebounce` hook allows you to debounce a function, ensuring that updates or executions occur only after a specified delay. This is useful for scenarios like search inputs, API calls, or any situation where you want to limit the frequency of updates.
 
 ## Features
 
-- **Debounce Functions**: Prevent a function from being called too frequently.
-- **Customizable Delay**: Specify the debounce delay in milliseconds.
-- **Efficient Updates**: Automatically cancels pending updates when the value or dependencies change.
+- **Debounce Functions**: Prevent a function from being called too frequently
+- **Customizable Delay**: Specify the debounce delay in milliseconds
+- **Efficient Updates**: Automatically cancels pending updates when the value or dependencies change
 
 ## Usage
 
@@ -35,17 +35,17 @@ function ResizeHandler() {
 ## Parameters
 
 1. **`callback`**:  
-   - The function to debounce.
+   - The function to debounce
 
 2. **`settings`**:  
    - Configuration options for debouncing, including:
-     - **`wait`**: The debounce delay in milliseconds.
-     - **`leading`**: If `true`, the function is invoked on the leading edge of the delay. Default is `true`.
-     - **`trailing`**: If `true`, the function is invoked on the trailing edge of the delay. Default is `true`.
+     - **`wait`**: The debounce delay in milliseconds
+     - **`leading`**: If `true`, the function is invoked on the leading edge of the delay. Default is `true`
+     - **`trailing`**: If `true`, the function is invoked on the trailing edge of the delay. Default is `true`
 
 ## Returns
 
-- **Debounced Function**: A debounced version of the function.
+- **Debounced Function**: A debounced version of the function
 
 ## Example
 
@@ -82,20 +82,20 @@ function Search() {
 ## Notes
 
 - **String Input Not Supported**: `useDebounce` does not directly support string inputs. To debounce a string value, wrap the logic in a function and debounce that function.
-- **Cancellation**: The hook automatically cancels pending updates when the component unmounts or dependencies change.
-- **Leading vs. Trailing**: Use the `settings` parameter to control whether the function executes at the start or end of the delay.
+- **Cancellation**: The hook automatically cancels pending updates when the component unmounts or dependencies change
+- **Leading vs. Trailing**: Use the `settings` parameter to control whether the function executes at the start or end of the delay
 
 ---
 
-# `useAsyncDebounce` Hook
+# useAsyncDebounce
 
 The `useAsyncDebounce` hook is a variation of `useDebounce` designed specifically for asynchronous functions. It ensures that the debounced function resolves its promise only after the specified delay, making it ideal for scenarios like API calls or other async operations.
 
 ## Features
 
-- **Debounce Async Functions**: Delay the execution of an asynchronous function until after the specified delay.
-- **Promise Resolution**: Ensures that the returned promise resolves only after the debounce delay.
-- **Customizable Delay**: Specify the debounce delay in milliseconds.
+- **Debounce Async Functions**: Delay the execution of an asynchronous function until after the specified delay
+- **Promise Resolution**: Ensures that the returned promise resolves only after the debounce delay
+- **Customizable Delay**: Specify the debounce delay in milliseconds
 
 ## Usage
 
@@ -128,17 +128,17 @@ function SearchWithAsyncDebounce() {
 ## Parameters
 
 1. **`callback`**:  
-   - The asynchronous function to debounce.
+   - The asynchronous function to debounce
 
 2. **`settings`**:  
    - Configuration options for debouncing, including:
-     - **`wait`**: The debounce delay in milliseconds.
-     - **`leading`**: If `true`, the function is invoked on the leading edge of the delay. Default is `true`.
-     - **`trailing`**: If `true`, the function is invoked on the trailing edge of the delay. Default is `true`.
+     - **`wait`**: The debounce delay in milliseconds
+     - **`leading`**: If `true`, the function is invoked on the leading edge of the delay. Default is `true`
+     - **`trailing`**: If `true`, the function is invoked on the trailing edge of the delay. Default is `true`
 
 ## Returns
 
-- **Debounced Async Function**: A debounced version of the asynchronous function.
+- **Debounced Async Function**: A debounced version of the asynchronous function
 
 ## Example
 
@@ -170,8 +170,8 @@ function Search() {
 
 ## Notes
 
-- **Cancellation**: The hook ensures that pending promises are canceled when the component unmounts or dependencies change.
-- **Error Handling**: Make sure to handle errors within the async function to avoid unhandled promise rejections.
+- **Cancellation**: The hook ensures that pending promises are canceled when the component unmounts or dependencies change
+- **Error Handling**: Make sure to handle errors within the async function to avoid unhandled promise rejections
 
 ## See Also
 

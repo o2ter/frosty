@@ -1,13 +1,13 @@
-# `useStack` Hook
+# useStack
 
 The `useStack` hook provides access to the stack of parent components leading up to the current component during rendering. This can be useful for debugging, implementing context-aware logic, or creating advanced component patterns.
 
 ## Features
 
-- **Component Hierarchy Access**: Retrieve the hierarchy of parent components during rendering.
-- **Debugging Tool**: Introspect the component tree to identify rendering issues.
-- **Context-Aware Logic**: Enable components to adapt their behavior based on their position in the component tree.
-- **Supports All Components**: Works with both functional and class components.
+- **Component Hierarchy Access**: Retrieve the hierarchy of parent components during rendering
+- **Debugging Tool**: Introspect the component tree to identify rendering issues
+- **Context-Aware Logic**: Enable components to adapt their behavior based on their position in the component tree
+- **Supports All Components**: Works with both functional and class components
 
 ## Parameters
 
@@ -94,4 +94,4 @@ function ThemedComponent() {
 
 - **Advanced Use Cases**: The `useStack` hook is primarily intended for advanced scenarios. For most applications, direct access to the rendering stack is unnecessary.
 - **Error Handling**: Ensure the `useStack` hook is only used within a valid render context. Using it outside of a render function will throw an error.
-- **Performance Considerations**: Avoid overusing the `useStack` hook in performance-critical components, as introspecting the stack may introduce overhead.
+- **Performance Considerations**: Avoid overusing the `useStack` hook in performance-critical components, as introspecting the stack may introduce overhead

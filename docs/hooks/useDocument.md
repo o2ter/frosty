@@ -1,4 +1,4 @@
-# `useDocument` Hook
+# useDocument
 
 The `useDocument` hook provides access to the current document object in the browser environment. This is useful when you need to interact with the DOM directly or use document-specific APIs.
 
@@ -35,7 +35,7 @@ This hook doesn't accept any parameters.
 
 ## Returns
 
-- **`document`**: The current document object from the renderer.
+- **`document`**: The current document object from the renderer
 
 ## Example
 

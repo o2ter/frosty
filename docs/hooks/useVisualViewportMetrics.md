@@ -1,14 +1,14 @@
-# `useVisualViewportMetrics` Hook
+# useVisualViewportMetrics
 
 The `useVisualViewportMetrics` hook provides access to the visual viewport metrics, which represent the portion of the page that's actually visible to the user. This is particularly useful for mobile devices where the visual viewport can change due to on-screen keyboards, browser UI, or zoom operations.
 
 ## Features
 
-- **Dynamic Viewport**: Tracks the actual visible viewport area, not just the layout viewport.
-- **Mobile Keyboard Support**: Adjusts when virtual keyboards appear/disappear.
-- **Zoom Detection**: Tracks viewport changes due to pinch-to-zoom.
-- **Real-time Updates**: Automatically updates when visual viewport changes.
-- **Fallback Support**: Gracefully handles browsers without Visual Viewport API support.
+- **Dynamic Viewport**: Tracks the actual visible viewport area, not just the layout viewport
+- **Mobile Keyboard Support**: Adjusts when virtual keyboards appear/disappear
+- **Zoom Detection**: Tracks viewport changes due to pinch-to-zoom
+- **Real-time Updates**: Automatically updates when visual viewport changes
+- **Fallback Support**: Gracefully handles browsers without Visual Viewport API support
 
 ## Usage
 
@@ -378,7 +378,7 @@ function ChatInput() {
               backgroundColor: i % 2 ? '#f8f9fa' : '#e9ecef',
               borderRadius: '8px'
             }}>
-              Message {i + 1}: This is a sample chat message.
+              Message {i + 1}: This is a sample chat message
             </div>
           ))}
         </div>

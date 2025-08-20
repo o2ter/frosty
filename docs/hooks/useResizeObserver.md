@@ -1,14 +1,14 @@
-# `useResizeObserver` Hook
+# useResizeObserver
 
 The `useResizeObserver` hook provides a way to observe changes to the size of DOM elements using the modern ResizeObserver API. This is useful for responsive layouts, element size tracking, and implementing size-based logic.
 
 ## Features
 
-- **Element Size Tracking**: Monitor width, height, and other size metrics of DOM elements.
-- **Performance Optimized**: Uses the native ResizeObserver API for efficient size monitoring.
-- **Ref Support**: Works with both ref objects and direct element references.
-- **Automatic Cleanup**: Observers are automatically disconnected when components unmount.
-- **Flexible Targeting**: Observe any DOM element or ref.
+- **Element Size Tracking**: Monitor width, height, and other size metrics of DOM elements
+- **Performance Optimized**: Uses the native ResizeObserver API for efficient size monitoring
+- **Ref Support**: Works with both ref objects and direct element references
+- **Automatic Cleanup**: Observers are automatically disconnected when components unmount
+- **Flexible Targeting**: Observe any DOM element or ref
 
 ## Usage
 

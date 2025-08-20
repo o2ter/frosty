@@ -1,13 +1,13 @@
-# `useInterval` Hook
+# useInterval
 
 The `useInterval` hook provides a declarative way to set up intervals in functional components. It automatically manages the interval lifecycle, ensuring proper cleanup when the component unmounts or when the interval changes.
 
 ## Features
 
-- **Declarative Intervals**: Set up intervals using a simple hook interface.
-- **Automatic Cleanup**: Intervals are automatically cleared when the component unmounts.
-- **Conditional Intervals**: Easily start and stop intervals by passing `undefined` for the delay.
-- **Component Integration**: Works seamlessly with React's component lifecycle.
+- **Declarative Intervals**: Set up intervals using a simple hook interface
+- **Automatic Cleanup**: Intervals are automatically cleared when the component unmounts
+- **Conditional Intervals**: Easily start and stop intervals by passing `undefined` for the delay
+- **Component Integration**: Works seamlessly with React's component lifecycle
 
 ## Usage
 
@@ -283,17 +283,17 @@ useInterval(() => {
 
 ## Notes
 
-- **Automatic Cleanup**: The interval is automatically cleared when the component unmounts.
-- **Dependency Array**: The hook uses an empty dependency array, so the callback should use functional state updates or handle its own dependencies.
-- **Performance**: Be mindful of interval frequency to avoid performance issues.
-- **Conditional Execution**: Pass `undefined` as the delay to temporarily disable the interval.
+- **Automatic Cleanup**: The interval is automatically cleared when the component unmounts
+- **Dependency Array**: The hook uses an empty dependency array, so the callback should use functional state updates or handle its own dependencies
+- **Performance**: Be mindful of interval frequency to avoid performance issues
+- **Conditional Execution**: Pass `undefined` as the delay to temporarily disable the interval
 
 ## Best Practices
 
-- **Use Functional Updates**: When updating state based on previous state, use functional updates to avoid stale closures.
-- **Memory Leaks**: The hook automatically prevents memory leaks by cleaning up intervals.
-- **Performance**: Use reasonable intervals - very short intervals (< 16ms) might impact performance.
-- **Conditional Logic**: Prefer disabling intervals with `undefined` rather than adding conditions inside the callback.
+- **Use Functional Updates**: When updating state based on previous state, use functional updates to avoid stale closures
+- **Memory Leaks**: The hook automatically prevents memory leaks by cleaning up intervals
+- **Performance**: Use reasonable intervals - very short intervals (< 16ms) might impact performance
+- **Conditional Logic**: Prefer disabling intervals with `undefined` rather than adding conditions inside the callback
 
 ## See Also
 

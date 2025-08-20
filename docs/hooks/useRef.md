@@ -1,12 +1,12 @@
-# `useRef` Hook
+# useRef
 
 The `useRef` hook provides a way to persist a mutable value across renders without causing a re-render when the value changes. It is commonly used to access DOM elements or store mutable values.
 
 ## Features
 
-- **Mutable References**: Store a value that persists across renders without triggering re-renders.
-- **DOM Access**: Access and manipulate DOM elements directly.
-- **Imperative Logic**: Useful for scenarios where imperative logic is required.
+- **Mutable References**: Store a value that persists across renders without triggering re-renders
+- **DOM Access**: Access and manipulate DOM elements directly
+- **Imperative Logic**: Useful for scenarios where imperative logic is required
 
 ## Usage
 
@@ -84,8 +84,8 @@ function Timer() {
 ## Notes
 
 - **Avoid Overuse**: Use `useRef` only when necessary. For most cases, prefer `useState` for reactive state.
-- **No Re-Renders**: Updating the `current` property does not trigger a re-render.
-- **Initial Value**: The `current` property is initialized to the value passed to `useRef` and can be updated later.
+- **No Re-Renders**: Updating the `current` property does not trigger a re-render
+- **Initial Value**: The `current` property is initialized to the value passed to `useRef` and can be updated later
 
 ## See Also
 

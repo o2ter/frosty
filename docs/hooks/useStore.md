@@ -1,6 +1,13 @@
-# `useStore` Hook
+# useStore
 
 A hook for subscribing to a custom store and selecting a slice of its state. The component will re-render when the selected state changes.
+
+## Features
+
+- **Store Subscription**: Subscribe to changes in a custom store
+- **Selective Updates**: Only re-render when selected state changes
+- **Performance Optimization**: Efficient subscription management
+- **Type Safety**: Full TypeScript support for type-safe state selection
 
 ## Usage
 
@@ -55,7 +62,7 @@ useStore<T, S>(
 ): S
 ```
 
-- **store**: The store instance to subscribe to.
+- **store**: The store instance to subscribe to
 - **selector** _(optional)_: Function to select a part of the store's state. Defaults to the entire state.
 - **equal** _(optional)_: Function to compare selected values for equality. Defaults to deep equality (`_.isEqual`).
 

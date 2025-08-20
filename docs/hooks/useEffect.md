@@ -1,12 +1,12 @@
-# `useEffect` Hook
+# useEffect
 
 The `useEffect` hook allows you to perform side effects in your components. It runs after the render phase and can be used for tasks such as data fetching, subscriptions, or manually changing the DOM.
 
 ## Features
 
-- Perform side effects in functional components.
-- Cleanup effects to avoid memory leaks.
-- Control when the effect runs using dependencies.
+- **Side Effects**: Perform side effects in functional components
+- **Cleanup**: Cleanup effects to avoid memory leaks
+- **Dependencies**: Control when the effect runs using dependencies
 
 ## Usage
 
@@ -28,11 +28,11 @@ function ExampleComponent() {
 
 ## Parameters
 
-1. **Effect Function**: `() => void | (() => void)`  
-   A function that contains the side effect logic. It can optionally return a cleanup function to run when the component unmounts or before the effect re-runs.
+1. **effect**: `() => void | (() => void)`  
+   A function that contains the side effect logic. It can optionally return a cleanup function to run when the component unmounts or before the effect re-runs
 
-2. **Dependencies**: `any[]` _(optional)_  
-   An array of values that the effect depends on. The effect will re-run whenever one of these values changes. If omitted, the effect runs after every render.
+2. **deps**: `any[]` _(optional)_  
+   An array of values that the effect depends on. The effect will re-run whenever one of these values changes. If omitted, the effect runs after every render
 
 ## Returns
 

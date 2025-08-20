@@ -1,14 +1,14 @@
-# `useWindowMetrics` Hook
+# useWindowMetrics
 
 The `useWindowMetrics` hook provides reactive access to window dimensions and metrics, automatically updating when the window is resized. It includes safe area insets for mobile devices and device pixel ratio information.
 
 ## Features
 
-- **Reactive Metrics**: Automatically updates when window size changes.
-- **Safe Area Support**: Provides safe area insets for mobile devices with notches/dynamic islands.
-- **Device Information**: Includes device pixel ratio for high-DPI displays.
-- **Multiple Dimensions**: Provides both inner and outer window dimensions.
-- **Automatic Cleanup**: Event listeners are automatically managed.
+- **Reactive Metrics**: Automatically updates when window size changes
+- **Safe Area Support**: Provides safe area insets for mobile devices with notches/dynamic islands
+- **Device Information**: Includes device pixel ratio for high-DPI displays
+- **Multiple Dimensions**: Provides both inner and outer window dimensions
+- **Automatic Cleanup**: Event listeners are automatically managed
 
 ## Usage
 
@@ -368,10 +368,10 @@ Safe area insets will return `{ top: 0, right: 0, bottom: 0, left: 0 }` on devic
 
 ## Notes
 
-- **Automatic Updates**: The hook automatically re-renders when window is resized.
-- **Performance**: Uses efficient event listeners that are automatically cleaned up.
-- **Safe Area Detection**: Automatically detects and uses appropriate CSS environment variables.
-- **Cross-Platform**: Works consistently across different devices and browsers.
+- **Automatic Updates**: The hook automatically re-renders when window is resized
+- **Performance**: Uses efficient event listeners that are automatically cleaned up
+- **Safe Area Detection**: Automatically detects and uses appropriate CSS environment variables
+- **Cross-Platform**: Works consistently across different devices and browsers
 
 ## See Also
 

@@ -45,14 +45,14 @@ function UserProfile({ userId }) {
 ## Parameters
 
 1. **config**: `Function | Object`  
-   A fetch function or a configuration object containing the fetch function and optional debounce settings.
+   A fetch function or a configuration object containing the fetch function and optional debounce settings
    - If a function, it should return a promise resolving to the resource data
    - If an object, it should include:
      - `fetch`: The fetch function
      - `debounce`: Optional debounce settings to control fetch frequency
 
 2. **deps**: `any[]` _(optional)_  
-   An array of dependencies that trigger a refetch when changed.
+   An array of dependencies that trigger a refetch when changed
 
 ## Returns
 
@@ -157,14 +157,14 @@ function PaginatedList({ userId }) {
 ### Parameters
 
 1. **config**: `Function | Object`  
-   A fetch function or a configuration object containing the fetch function and optional debounce settings.
+   A fetch function or a configuration object containing the fetch function and optional debounce settings
    - If a function, it should return an `AsyncIterable` that yields the resource items
    - If an object, it should include:
      - `fetch`: The fetch function
      - `debounce`: Optional debounce settings to control fetch frequency
 
 2. **deps**: `any[]` _(optional)_  
-   An array of dependencies that trigger a refetch when changed.
+   An array of dependencies that trigger a refetch when changed
 
 ### Returns
 

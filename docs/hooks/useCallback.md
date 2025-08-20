@@ -30,10 +30,10 @@ function ChildComponent({ onIncrement }: { onIncrement: () => void }) {
 
 ## Parameters
 
-1. **Callback Function**: `() => void`  
+1. **callback**: `() => void`  
    The function to be memoized
 
-2. **Dependencies**: `any[]`  
+2. **deps**: `any[]`  
    An array of values that the callback depends on. The callback will be recreated only when one of these values changes
 
 ## Returns
@@ -93,7 +93,7 @@ function CounterWithMultiplier() {
 ## Notes
 
 - **Avoid Overuse**: Only use `useCallback` when passing callbacks to child components or hooks that rely on stable references. Overusing it can lead to unnecessary complexity.
-- **Dependencies**: Always include all variables used inside the callback in the dependency array to avoid stale closures.
+- **Dependencies**: Always include all variables used inside the callback in the dependency array to avoid stale closures
 - **Comparison with `useMemo`**: While `useCallback` memoizes functions, `useMemo` memoizes values. Use `useMemo` for expensive calculations and `useCallback` for functions.
 
 ## See Also
