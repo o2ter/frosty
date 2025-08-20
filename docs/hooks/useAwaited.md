@@ -354,7 +354,7 @@ function UserDashboard({ userId }: { userId: string }) {
 ### Error Handling and Fallbacks
 
 ```tsx
-import { useAwaited, useState } from 'frosty';
+import { useAwaited, useState, ComponentNode } from 'frosty';
 
 interface APIResponse<T> {
   data: T;
@@ -410,8 +410,8 @@ function ErrorBoundary({
   children, 
   fallback 
 }: { 
-  children: React.ReactNode;
-  fallback: (error: Error) => React.ReactNode;
+  children: ComponentNode;
+  fallback: (error: Error) => ComponentNode;
 }) {
   const [error, setError] = useState<Error | null>(null);
 
@@ -573,7 +573,7 @@ async function loadServerConfig(): Promise<ServerConfig> {
   };
 }
 
-function ConfigurationProvider({ children }: { children: React.ReactNode }) {
+function ConfigurationProvider({ children }: { children: ComponentNode }) {
   // Load configuration during SSR
   const config = useAwaited(() => loadServerConfig(), []);
 
