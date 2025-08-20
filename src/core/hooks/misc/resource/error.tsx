@@ -103,8 +103,7 @@ export const useErrorContext = () => {
  * 
  * ### Usage:
  * ```tsx
- * import { useEffect } from 'react';
- * import { useResourceErrors } from 'frosty';
+ * import { useEffect, useResourceErrors } from 'frosty';
  * 
  * const errors = useResourceErrors();
  * 
