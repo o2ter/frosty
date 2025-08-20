@@ -97,7 +97,7 @@ function UserProfile({ userId }: { userId: string }) {
 
 ## Returns
 
-`T | undefined` - The resolved value of the promise. In practice, when the component renders, the value will always be `T` because the renderer waits for promise resolution before rendering the component.
+`T | undefined` - The resolved value of the promise. If the promise is still pending, it returns `undefined`. The component will rerender when the promise resolves.
 
 ## Throws
 
