@@ -65,3 +65,43 @@ npx frosty run --port 3000 --configuration my-config.js
 # Production build
 npx frosty run --build-only app.js
 ```
+
+### Configuration File (Optional)
+
+Customize build and server behavior with a `server.config.js` file in your project root.
+
+- You may export an object or a function `(env, argv) => config`.
+- All fields are optional.
+
+```js
+module.exports = {
+  src: 'src',                // Source directory
+  output: 'dist',            // Output directory
+  serverEntry: 'server.js',  // Server entry file
+  client: {                  // (Optional) Client entry points
+    main: {
+      entry: 'src/app.js',   // Path to client entry file
+      uri: '/',              // (Optional) URI path
+    }
+  },
+  moduleSuffixes: {          // (Optional) Custom module resolution suffixes
+    client: ['.browser', '.web', ''],
+    server: ['.node', '.server', '.web', '']
+  },
+  polyfills: {},             // (Optional) Polyfill options for Babel
+  options: {                 // (Optional) Webpack and build options
+    resolve: {},             // Custom resolve options (e.g., alias)
+    externals: {},           // Webpack externals
+    plugins: [],             // Additional Webpack plugins
+    module: {
+      rules: []              // Additional Webpack module rules
+    },
+    server: {
+      plugins: [],           // Server-specific plugins
+      module: {
+        rules: []            // Server-specific module rules
+      }
+    }
+  }
+};
+```
