@@ -1,5 +1,5 @@
 //
-//  decompress.js
+//  decompress.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,22 +23,101 @@
 //  THE SOFTWARE.
 //
 
-// @ts-nocheck
-export const decompress = (o: string) => {
-  function r(r) {
-    for (i = f = 0; i < r; )
-      A < 2 && ((A = 64), (a = 92 < (a = o.charCodeAt(C++)) ? a - 59 : a - 58)),
-        (f |= (0 < (a & (A /= 2))) << i),
-        ++i;
+/**
+ * Decompresses a string that was compressed using the compress function
+ * @param compressedInput - The compressed string to decompress
+ * @returns The original uncompressed string
+ */
+export const decompress = (compressedInput: string): string => {
+  // Algorithm state variables
+  let previousEntry: string | undefined;
+  let bitValue = 0;
+  let bitIndex = 0;
+  let currentEntry: string | number;
+  let charCode = 0;
+
+  // Dictionary for storing code->string mappings during decompression
+  const dictionary: string[] = [];
+
+  // Decompression parameters
+  let resetCounter = 1;
+  let nextCode = 3;
+  let bitsPerCode = 1;
+
+  // Output buffer - memory optimized with mutable string
+  let result = "";
+
+  // Bit reading state
+  let bitBuffer = 0;
+  let inputPosition = 0;
+
+  /**
+   * Reads the specified number of bits from the compressed input
+   * @param numBits - Number of bits to read
+   */
+  function readBits(numBits: number): void {
+    bitIndex = bitValue = 0;
+
+    while (bitIndex < numBits) {
+      // Refill bit buffer when needed
+      if (bitBuffer < 2) {
+        bitBuffer = 64;
+        charCode = compressedInput.charCodeAt(inputPosition++);
+        // Convert from custom alphabet back to numeric value
+        charCode = charCode > 92 ? charCode - 59 : charCode - 58;
+      }
+
+      // Extract bits and build the value
+      bitValue |= ((charCode & (bitBuffer /= 2)) > 0 ? 1 : 0) << bitIndex;
+      ++bitIndex;
+    }
   }
-  for (var n, f, i, t, a, e = [], u = 1, _ = 3, c = 1, h = [], A = 0, C = 0;;) {
-    if ((r(c + 1), 2 == f)) return h.join("");
-    -2 & (t = f) ||
-      (r(8 * f + 8),
-      (e[(t = _++)] = String.fromCharCode(f)),
-      --u || (u = 2 << c++)),
-      h.push((t = e[t] || n + n[0])),
-      n && ((e[_++] = n + t[0]), --u || (u = 2 << c++)),
-      (n = t);
+
+  // Main decompression loop
+  while (true) {
+    // Read the next code from input
+    readBits(bitsPerCode + 1);
+
+    // Check for end-of-stream marker
+    if (bitValue === 2) {
+      return result;
+    }
+
+    // Handle the current code
+    currentEntry = bitValue;
+
+    // Check if this is a character code (bit pattern check)
+    if ((-2 & (currentEntry as number)) === 0) {
+      // This is a raw character code, read the character value
+      readBits(8 * bitValue + 8);
+
+      // Create dictionary entry for this character
+      currentEntry = nextCode++;
+      dictionary[currentEntry] = String.fromCharCode(bitValue);
+
+      // Update compression parameters
+      if (--resetCounter === 0) {
+        resetCounter = 2 << bitsPerCode++;
+      }
+    }
+
+    // Get the string for this code (from dictionary or construct it)
+    const entryString = dictionary[currentEntry as number] || (previousEntry ? previousEntry + previousEntry[0] : "");
+
+    // Add to output using string concatenation
+    result += entryString;
+
+    // Update dictionary with new combination if we have a previous entry
+    if (previousEntry) {
+      dictionary[nextCode++] = previousEntry + entryString[0];
+
+      // Update compression parameters
+      if (--resetCounter === 0) {
+        resetCounter = 2 << bitsPerCode++;
+      }
+    }
+
+    // Remember this entry for next iteration
+    previousEntry = entryString;
   }
 };

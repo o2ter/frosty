@@ -1,5 +1,5 @@
 //
-//  compress.js
+//  compress.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,60 +23,139 @@
 //  THE SOFTWARE.
 //
 
-// @ts-nocheck
-function _compress(r, e, o) {
-  if (null == r) return "";
-  var t, a, h, f = {},
-    p = {},
-    c = "",
-    s = "",
-    n = "",
-    u = 2,
-    l = 3,
-    i = 2,
-    A = [],
-    d = 0,
-    C = 0;
-  for (h = 0; h < r.length; h += 1)
-    if (c = r.charAt(h), Object.prototype.hasOwnProperty.call(f, c) || (f[c] = l++, p[c] = !0), s = n + c, Object.prototype.hasOwnProperty.call(f, s)) n = s;
-    else {
-      if (Object.prototype.hasOwnProperty.call(p, n)) {
-        if (n.charCodeAt(0) < 256) {
-          for (t = 0; t < i; t++) d <<= 1, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++;
-          for (a = n.charCodeAt(0), t = 0; t < 8; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1
-        } else {
-          for (a = 1, t = 0; t < i; t++) d = d << 1 | a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a = 0;
-          for (a = n.charCodeAt(0), t = 0; t < 16; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1
-        }
-        0 == --u && (u = Math.pow(2, i), i++), delete p[n]
-      } else
-        for (a = f[n], t = 0; t < i; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1;
-      0 == --u && (u = Math.pow(2, i), i++), f[s] = l++, n = String(c)
-    } if ("" !== n) {
-      if (Object.prototype.hasOwnProperty.call(p, n)) {
-        if (n.charCodeAt(0) < 256) {
-          for (t = 0; t < i; t++) d <<= 1, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++;
-          for (a = n.charCodeAt(0), t = 0; t < 8; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1
-        } else {
-          for (a = 1, t = 0; t < i; t++) d = d << 1 | a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a = 0;
-          for (a = n.charCodeAt(0), t = 0; t < 16; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1
-        }
-        0 == --u && (u = Math.pow(2, i), i++), delete p[n]
-      } else
-        for (a = f[n], t = 0; t < i; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1;
-      0 == --u && (u = Math.pow(2, i), i++)
-    }
-  for (a = 2, t = 0; t < i; t++) d = d << 1 | 1 & a, C == e - 1 ? (C = 0, A.push(o(d)), d = 0) : C++, a >>= 1;
-  for (; ;) {
-    if (d <<= 1, C == e - 1) {
-      A.push(o(d));
-      break
-    }
-    C++
+/**
+ * Custom alphabet used for encoding compressed output
+ */
+const COMPRESSION_ALPHABET = ":;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz";
+
+/**
+ * Internal compression function implementing LZW-like compression algorithm
+ */
+function compressInternal(input: string, bitsPerChar: number, charFromCode: (code: number) => string): string {
+  if (input == null) {
+    return "";
   }
-  return A.join("")
+
+  // Algorithm state
+  const dictionary: Record<string, number> = {};
+  const isCharacterCode: Record<string, boolean> = {};
+  let resetCounter = 2;
+  let nextCode = 3;
+  let bitsPerCode = 2;
+  let previousPattern = "";
+
+  // Output buffer - memory optimized with mutable string
+  let result = "";
+  let bitBuffer = 0;
+  let bitPosition = 0;
+
+  /**
+   * Write bits to output buffer
+   */
+  const writeBits = (value: number, numBits: number): void => {
+    for (let bitIndex = 0; bitIndex < numBits; bitIndex++) {
+      bitBuffer = (bitBuffer << 1) | (value & 1);
+      if (bitPosition === bitsPerChar - 1) {
+        bitPosition = 0;
+        result += charFromCode(bitBuffer);
+        bitBuffer = 0;
+      } else {
+        bitPosition++;
+      }
+      value >>= 1;
+    }
+  };
+
+  /**
+   * Update compression parameters
+   */
+  const updateParameters = (): void => {
+    if (--resetCounter === 0) {
+      resetCounter = Math.pow(2, bitsPerCode);
+      bitsPerCode++;
+    }
+  };
+
+  /**
+   * Process a pattern (either character or dictionary entry)
+   */
+  const processPattern = (pattern: string): void => {
+    if (isCharacterCode[pattern]) {
+      // Single character - write character flag and value
+      const charCode = pattern.charCodeAt(0);
+
+      if (charCode < 256) {
+        // 8-bit character: write 0 flag then 8 bits
+        writeBits(0, bitsPerCode);
+        writeBits(charCode, 8);
+      } else {
+        // 16-bit character: write 1 flag then 16 bits
+        writeBits(1, bitsPerCode);
+        writeBits(charCode, 16);
+      }
+
+      updateParameters();
+      delete isCharacterCode[pattern];
+    } else {
+      // Dictionary entry - write code
+      writeBits(dictionary[pattern], bitsPerCode);
+    }
+    updateParameters();
+  };
+
+  // Main compression loop
+  for (let i = 0; i < input.length; i++) {
+    const currentChar = input.charAt(i);
+
+    // Add new single characters to dictionary
+    if (!(currentChar in dictionary)) {
+      dictionary[currentChar] = nextCode++;
+      isCharacterCode[currentChar] = true;
+    }
+
+    const combinedPattern = previousPattern + currentChar;
+
+    if (combinedPattern in dictionary) {
+      // Pattern exists, continue building
+      previousPattern = combinedPattern;
+    } else {
+      // Pattern not found
+      if (previousPattern !== "") {
+        processPattern(previousPattern);
+      }
+
+      // Add new pattern to dictionary
+      dictionary[combinedPattern] = nextCode++;
+      previousPattern = currentChar;
+    }
+  }
+
+  // Handle remaining pattern
+  if (previousPattern !== "") {
+    processPattern(previousPattern);
+  }
+
+  // Write end-of-stream marker (code 2)
+  writeBits(2, bitsPerCode);
+
+  // Flush remaining bits (preserve original logic exactly)
+  while (true) {
+    bitBuffer <<= 1;
+    if (bitPosition === bitsPerChar - 1) {
+      result += charFromCode(bitBuffer);
+      break;
+    }
+    bitPosition++;
+  }
+
+  return result;
 }
 
-const altAlpha = ":;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz";
-
-export const compress = (r: string) => _compress(r, 6, r => altAlpha.charAt(r));
+/**
+ * Compresses a string using LZW-like compression algorithm
+ * @param input - The string to compress
+ * @returns Compressed string encoded with custom alphabet
+ */
+export const compress = (input: string): string => {
+  return compressInternal(input, 6, (code) => COMPRESSION_ALPHABET.charAt(code));
+};
