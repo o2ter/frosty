@@ -13,7 +13,8 @@ The `useIntersectionObserver` hook provides a way to observe when DOM elements e
 ## Usage
 
 ```tsx
-import { useIntersectionObserver, useRef, useState } from 'frosty';
+import { useIntersectionObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function LazyImage({ src, alt, placeholder }) {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -81,7 +82,8 @@ The callback receives an `IntersectionObserverEntry` with these useful propertie
 ### Scroll-Triggered Animations
 
 ```tsx
-import { useIntersectionObserver, useRef, useState } from 'frosty';
+import { useIntersectionObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function AnimatedSection({ children, animation = 'fadeInUp' }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -152,7 +154,8 @@ function AnimationDemo() {
 ### Infinite Scrolling
 
 ```tsx
-import { useIntersectionObserver, useRef, useState, useEffect } from 'frosty';
+import { useIntersectionObserver } from 'frosty/web';
+import { useRef, useState, useEffect } from 'frosty';
 
 function InfiniteList() {
   const [items, setItems] = useState(Array.from({ length: 20 }, (_, i) => i + 1));
@@ -260,7 +263,8 @@ function InfiniteList() {
 ### Visibility Analytics
 
 ```tsx
-import { useIntersectionObserver, useRef, useState, useEffect } from 'frosty';
+import { useIntersectionObserver } from 'frosty/web';
+import { useRef, useState, useEffect } from 'frosty';
 
 function AnalyticsSection({ id, title, children }) {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -376,7 +380,8 @@ function AnalyticsDemo() {
 ### Progressive Image Loading
 
 ```tsx
-import { useIntersectionObserver, useRef, useState } from 'frosty';
+import { useIntersectionObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function ProgressiveImage({ 
   lowQualitySrc, 
@@ -530,7 +535,8 @@ function ProgressiveGallery() {
 ### Sticky Header with Intersection
 
 ```tsx
-import { useIntersectionObserver, useRef, useState } from 'frosty';
+import { useIntersectionObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function StickyHeader() {
   const sentinelRef = useRef<HTMLDivElement>(null);

@@ -13,7 +13,7 @@ The `useVisualViewportMetrics` hook provides access to the visual viewport metri
 ## Usage
 
 ```tsx
-import { useVisualViewportMetrics } from 'frosty';
+import { useVisualViewportMetrics } from 'frosty/web';
 
 function VisualViewportInfo() {
   const viewport = useVisualViewportMetrics();
@@ -50,7 +50,8 @@ An object containing the visual viewport metrics, or `undefined` if the Visual V
 ### Mobile Keyboard Detection
 
 ```tsx
-import { useVisualViewportMetrics, useWindowMetrics, useState, useEffect } from 'frosty';
+import { useVisualViewportMetrics } from 'frosty/web';
+import { useWindowMetrics, useState, useEffect } from 'frosty';
 
 function KeyboardDetection() {
   const visualViewport = useVisualViewportMetrics();
@@ -93,7 +94,8 @@ function KeyboardDetection() {
 ### Responsive Form Layout
 
 ```tsx
-import { useVisualViewportMetrics, useWindowMetrics } from 'frosty';
+import { useVisualViewportMetrics } from 'frosty/web';
+import { useWindowMetrics } from 'frosty';
 
 function ResponsiveForm() {
   const visualViewport = useVisualViewportMetrics();
@@ -210,7 +212,8 @@ function ResponsiveForm() {
 ### Zoom Detection
 
 ```tsx
-import { useVisualViewportMetrics, useState, useEffect } from 'frosty';
+import { useVisualViewportMetrics } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function ZoomDetection() {
   const visualViewport = useVisualViewportMetrics();
@@ -314,7 +317,8 @@ function ZoomDetection() {
 ### Fixed Position Elements with Keyboard
 
 ```tsx
-import { useVisualViewportMetrics, useWindowMetrics } from 'frosty';
+import { useVisualViewportMetrics } from 'frosty/web';
+import { useWindowMetrics } from 'frosty';
 
 function FixedFooter({ children }) {
   const visualViewport = useVisualViewportMetrics();
@@ -421,7 +425,8 @@ function ChatInput() {
 ### Visual Viewport Dashboard
 
 ```tsx
-import { useVisualViewportMetrics, useWindowMetrics } from 'frosty';
+import { useVisualViewportMetrics } from 'frosty/web';
+import { useWindowMetrics } from 'frosty';
 
 function VisualViewportDashboard() {
   const visualViewport = useVisualViewportMetrics();

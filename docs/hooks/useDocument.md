@@ -11,7 +11,7 @@ The `useDocument` hook provides access to the current document object in the bro
 ## Usage
 
 ```tsx
-import { useDocument } from 'frosty';
+import { useDocument } from 'frosty/web';
 
 function DocumentTitle() {
   const document = useDocument();
@@ -42,7 +42,8 @@ This hook doesn't accept any parameters.
 ### Accessing Document Properties
 
 ```tsx
-import { useDocument, useEffect } from 'frosty';
+import { useDocument } from 'frosty/web';
+import { useEffect } from 'frosty';
 
 function DocumentMetadata() {
   const document = useDocument();

@@ -38,7 +38,7 @@ function App() {
 export default App;
 ```
 
-See the [API documentation](./docs) for more details and advanced usage.
+See the [comprehensive documentation](./docs) for detailed guides, API reference, and advanced usage patterns.
 
 ## Usage
 

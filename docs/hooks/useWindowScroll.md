@@ -12,7 +12,7 @@ The `useWindowScroll` hook tracks the current scroll position of the window, aut
 ## Usage
 
 ```tsx
-import { useWindowScroll } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
 
 function ScrollIndicator() {
   const { scrollX, scrollY } = useWindowScroll();
@@ -49,7 +49,8 @@ An object containing:
 ### Scroll Progress Bar
 
 ```tsx
-import { useWindowScroll, useWindowMetrics } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
+import { useWindowMetrics } from 'frosty/web';
 
 function ScrollProgressBar() {
   const { scrollY } = useWindowScroll();
@@ -84,7 +85,8 @@ function ScrollProgressBar() {
 ### Sticky Header with Scroll Detection
 
 ```tsx
-import { useWindowScroll, useState, useEffect } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function StickyHeader() {
   const { scrollY } = useWindowScroll();
@@ -121,7 +123,7 @@ function StickyHeader() {
 ### Back to Top Button
 
 ```tsx
-import { useWindowScroll } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
 
 function BackToTopButton() {
   const { scrollY } = useWindowScroll();
@@ -166,7 +168,7 @@ function BackToTopButton() {
 ### Parallax Scrolling Effect
 
 ```tsx
-import { useWindowScroll } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
 
 function ParallaxSection({ children, speed = 0.5 }) {
   const { scrollY } = useWindowScroll();
@@ -227,7 +229,8 @@ function ParallaxDemo() {
 ### Scroll-based Animations
 
 ```tsx
-import { useWindowScroll, useWindowMetrics } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
+import { useWindowMetrics } from 'frosty/web';
 
 function ScrollAnimatedElement({ children, triggerOffset = 0.2 }) {
   const { scrollY } = useWindowScroll();
@@ -282,7 +285,9 @@ function ScrollAnimationDemo() {
 ### Infinite Scroll Implementation
 
 ```tsx
-import { useWindowScroll, useWindowMetrics, useState, useEffect } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
+import { useWindowMetrics } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function InfiniteScrollList() {
   const { scrollY } = useWindowScroll();
@@ -343,7 +348,8 @@ function InfiniteScrollList() {
 ### Scroll Position Memory
 
 ```tsx
-import { useWindowScroll, useEffect } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
+import { useEffect } from 'frosty';
 
 function ScrollMemory({ storageKey = 'scrollPosition' }) {
   const { scrollX, scrollY } = useWindowScroll();
@@ -394,7 +400,7 @@ function PageWithScrollMemory() {
 ### Reading Progress Indicator
 
 ```tsx
-import { useWindowScroll } from 'frosty';
+import { useWindowScroll } from 'frosty/web';
 
 function ReadingProgress() {
   const { scrollY } = useWindowScroll();

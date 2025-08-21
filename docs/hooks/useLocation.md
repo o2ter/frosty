@@ -13,7 +13,7 @@ The `useLocation` hook provides access to the current browser location and metho
 ## Usage
 
 ```tsx
-import { useLocation } from 'frosty';
+import { useLocation } from 'frosty/web';
 
 function LocationDisplay() {
   const location = useLocation();
@@ -70,7 +70,7 @@ An object with the following properties and methods:
 ### Basic Navigation
 
 ```tsx
-import { useLocation } from 'frosty';
+import { useLocation } from 'frosty/web';
 
 function Navigation() {
   const location = useLocation();
@@ -96,7 +96,7 @@ function Navigation() {
 ### Route-based Component Rendering
 
 ```tsx
-import { useLocation } from 'frosty';
+import { useLocation } from 'frosty/web';
 
 function Router() {
   const location = useLocation();
@@ -144,7 +144,7 @@ function AboutPage() {
 ### State Management
 
 ```tsx
-import { useLocation } from 'frosty';
+import { useLocation } from 'frosty/web';
 
 function StatefulNavigation() {
   const location = useLocation();
@@ -186,7 +186,7 @@ function StatefulNavigation() {
 ### URL Parameters Parser
 
 ```tsx
-import { useLocation } from 'frosty';
+import { useLocation } from 'frosty/web';
 
 function URLParametersDemo() {
   const location = useLocation();
@@ -237,7 +237,8 @@ function URLParametersDemo() {
 ### Breadcrumb Navigation
 
 ```tsx
-import { useLocation, useState, useEffect } from 'frosty';
+import { useLocation } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function BreadcrumbNavigation() {
   const location = useLocation();
@@ -287,7 +288,7 @@ function BreadcrumbNavigation() {
 ### Modal with URL State
 
 ```tsx
-import { useLocation } from 'frosty';
+import { useLocation } from 'frosty/web';
 
 function ModalWithURL() {
   const location = useLocation();
@@ -342,7 +343,8 @@ function ModalWithURL() {
 ### History Management
 
 ```tsx
-import { useLocation, useState } from 'frosty';
+import { useLocation } from 'frosty/web';
+import { useState } from 'frosty';
 
 function HistoryManager() {
   const location = useLocation();

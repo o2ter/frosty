@@ -45,7 +45,8 @@ The `useCallback` hook returns the memoized version of the callback function.
 ### Basic Example
 
 ```tsx
-import { useCallback, useState } from 'frosty';
+import { useCallback } from 'frosty';
+import { useState } from 'frosty';
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -66,7 +67,8 @@ function Counter() {
 ### With Dependencies
 
 ```tsx
-import { useCallback, useState } from 'frosty';
+import { useCallback } from 'frosty';
+import { useState } from 'frosty';
 
 function CounterWithMultiplier() {
   const [count, setCount] = useState(0);

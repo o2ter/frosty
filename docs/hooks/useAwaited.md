@@ -38,7 +38,8 @@ function UserProfile({ userId }: { userId: string }) {
 ## Basic Example
 
 ```tsx
-import { useAwaited, useState } from 'frosty';
+import { useAwaited } from 'frosty/web';
+import { useState } from 'frosty';
 
 interface UserData {
   id: string;
@@ -109,7 +110,8 @@ function UserProfile({ userId }: { userId: string }) {
 ### Data Fetching with Loading States
 
 ```tsx
-import { useAwaited, useState } from 'frosty';
+import { useAwaited } from 'frosty/web';
+import { useState } from 'frosty';
 
 interface Article {
   id: string;
@@ -354,7 +356,8 @@ function UserDashboard({ userId }: { userId: string }) {
 ### Error Handling and Fallbacks
 
 ```tsx
-import { useAwaited, useState, ComponentNode } from 'frosty';
+import { useAwaited } from 'frosty/web';
+import { useState, ComponentNode } from 'frosty';
 
 interface APIResponse<T> {
   data: T;

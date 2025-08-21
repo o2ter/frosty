@@ -43,7 +43,8 @@ The `useEffect` hook does not return any value.
 ### Fetching Data
 
 ```tsx
-import { useEffect, useState } from 'frosty';
+import { useEffect } from 'frosty';
+import { useState } from 'frosty';
 
 function DataFetcher() {
   const [data, setData] = useState(null);
@@ -91,7 +92,8 @@ function EventListenerComponent() {
 ### Effect with Dependencies
 
 ```tsx
-import { useEffect, useState } from 'frosty';
+import { useEffect } from 'frosty';
+import { useState } from 'frosty';
 
 function Counter() {
   const [count, setCount] = useState(0);

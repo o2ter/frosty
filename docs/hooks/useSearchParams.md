@@ -13,7 +13,7 @@ The `useSearchParams` hook provides a convenient way to read and update URL sear
 ## Usage
 
 ```tsx
-import { useSearchParams } from 'frosty';
+import { useSearchParams } from 'frosty/web';
 
 function SearchInterface() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -76,7 +76,7 @@ A tuple containing:
 ### Basic Parameter Management
 
 ```tsx
-import { useSearchParams } from 'frosty';
+import { useSearchParams } from 'frosty/web';
 
 function FilterControls() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -162,7 +162,7 @@ function FilterControls() {
 ### Pagination Component
 
 ```tsx
-import { useSearchParams } from 'frosty';
+import { useSearchParams } from 'frosty/web';
 
 function Pagination({ totalPages }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -222,7 +222,9 @@ function Pagination({ totalPages }) {
 ### Search with Debounce
 
 ```tsx
-import { useSearchParams, useState, useEffect } from 'frosty';
+import { useSearchParams } from 'frosty/web';
+import { useState } from 'frosty';
+import { useEffect } from 'frosty';
 
 function SearchWithDebounce() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -271,7 +273,7 @@ function SearchWithDebounce() {
 ### Complex Filter Form
 
 ```tsx
-import { useSearchParams } from 'frosty';
+import { useSearchParams } from 'frosty/web';
 
 function AdvancedFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -403,7 +405,7 @@ function AdvancedFilters() {
 ### Tab Navigation
 
 ```tsx
-import { useSearchParams } from 'frosty';
+import { useSearchParams } from 'frosty/web';
 
 function TabNavigation() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -455,7 +457,9 @@ function TabNavigation() {
 ### URL State Synchronization
 
 ```tsx
-import { useSearchParams, useState, useEffect } from 'frosty';
+import { useSearchParams } from 'frosty/web';
+import { useState } from 'frosty';
+import { useEffect } from 'frosty';
 
 function StateSyncExample() {
   const [searchParams, setSearchParams] = useSearchParams();

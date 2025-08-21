@@ -12,7 +12,7 @@ The `useVisibility` hook allows you to track the current visibility state of you
 ## Usage
 
 ```tsx
-import { useVisibility } from 'frosty';
+import { useVisibility } from 'frosty/web';
 
 function MyComponent() {
   const visibilityState = useVisibility();
@@ -46,7 +46,8 @@ A string representing the current document visibility state:
 ### Pausing Media When Tab Is Not Visible
 
 ```tsx
-import { useVisibility, useEffect, useRef } from 'frosty';
+import { useVisibility } from 'frosty/web';
+import { useEffect, useRef } from 'frosty';
 
 function VideoPlayer({ src }) {
   const videoRef = useRef(null);
@@ -77,7 +78,8 @@ function VideoPlayer({ src }) {
 ### Optimizing Performance Based on Visibility
 
 ```tsx
-import { useVisibility, useState, useEffect } from 'frosty';
+import { useVisibility } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function DataDashboard() {
   const [updateInterval, setUpdateInterval] = useState(1000);

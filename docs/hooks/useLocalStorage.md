@@ -13,7 +13,7 @@ The `useLocalStorage` hook provides a way to synchronize component state with th
 ## Usage
 
 ```tsx
-import { useLocalStorage } from 'frosty';
+import { useLocalStorage } from 'frosty/web';
 
 function UserPreferences() {
   const [username, setUsername] = useLocalStorage('username', 'Guest');
@@ -57,7 +57,7 @@ A tuple containing:
 ### Basic Usage
 
 ```tsx
-import { useLocalStorage } from 'frosty';
+import { useLocalStorage } from 'frosty/web';
 
 function Settings() {
   const [language, setLanguage] = useLocalStorage('language', 'en');
@@ -78,7 +78,7 @@ function Settings() {
 ### Form Data Persistence
 
 ```tsx
-import { useLocalStorage } from 'frosty';
+import { useLocalStorage } from 'frosty/web';
 
 function ContactForm() {
   const [name, setName] = useLocalStorage('form-name', '');
@@ -124,7 +124,7 @@ function ContactForm() {
 ### Functional Updates
 
 ```tsx
-import { useLocalStorage } from 'frosty';
+import { useLocalStorage } from 'frosty/web';
 
 function ShoppingCart() {
   const [cartItems, setCartItems] = useLocalStorage('cart', '[]');
@@ -163,7 +163,7 @@ function ShoppingCart() {
 ### User Preferences with JSON
 
 ```tsx
-import { useLocalStorage } from 'frosty';
+import { useLocalStorage } from 'frosty/web';
 
 function UserDashboard() {
   const [preferences, setPreferences] = useLocalStorage('user-prefs', '{}');
@@ -205,7 +205,7 @@ function UserDashboard() {
 ### Clearing Data
 
 ```tsx
-import { useLocalStorage } from 'frosty';
+import { useLocalStorage } from 'frosty/web';
 
 function DataManager() {
   const [data, setData] = useLocalStorage('app-data', null);

@@ -13,7 +13,7 @@ The `useSessionStorage` hook provides a way to synchronize component state with 
 ## Usage
 
 ```tsx
-import { useSessionStorage } from 'frosty';
+import { useSessionStorage } from 'frosty/web';
 
 function SessionForm() {
   const [formData, setFormData] = useSessionStorage('form-draft', '');
@@ -55,7 +55,7 @@ A tuple containing:
 ### Basic Usage
 
 ```tsx
-import { useSessionStorage } from 'frosty';
+import { useSessionStorage } from 'frosty/web';
 
 function TabSettings() {
   const [viewMode, setViewMode] = useSessionStorage('view-mode', 'grid');
@@ -74,7 +74,7 @@ function TabSettings() {
 ### Temporary Form State
 
 ```tsx
-import { useSessionStorage } from 'frosty';
+import { useSessionStorage } from 'frosty/web';
 
 function TemporaryNote() {
   const [note, setNote] = useSessionStorage('temp-note', '');
@@ -114,7 +114,7 @@ function TemporaryNote() {
 ### Shopping Session
 
 ```tsx
-import { useSessionStorage } from 'frosty';
+import { useSessionStorage } from 'frosty/web';
 
 function ShoppingSession() {
   const [sessionCart, setSessionCart] = useSessionStorage('session-cart', '[]');
@@ -177,7 +177,7 @@ function ShoppingSession() {
 ### Wizard Progress
 
 ```tsx
-import { useSessionStorage } from 'frosty';
+import { useSessionStorage } from 'frosty/web';
 
 function SetupWizard() {
   const [currentStep, setCurrentStep] = useSessionStorage('wizard-step', '1');
@@ -257,7 +257,7 @@ function SetupWizard() {
 ### Functional Updates
 
 ```tsx
-import { useSessionStorage } from 'frosty';
+import { useSessionStorage } from 'frosty/web';
 
 function CounterSession() {
   const [counter, setCounter] = useSessionStorage('session-counter', '0');

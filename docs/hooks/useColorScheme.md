@@ -12,7 +12,7 @@ The `useColorScheme` hook allows you to detect and respond to the user's system 
 ## Usage
 
 ```tsx
-import { useColorScheme } from 'frosty';
+import { useColorScheme } from 'frosty/web';
 
 function ThemeAwareComponent() {
   const colorScheme = useColorScheme();
@@ -43,7 +43,7 @@ function ThemeAwareComponent() {
 ### With Custom Default
 
 ```tsx
-import { useColorScheme } from 'frosty';
+import { useColorScheme } from 'frosty/web';
 
 function DarkModePreferred() {
   const colorScheme = useColorScheme('dark');
@@ -60,7 +60,8 @@ function DarkModePreferred() {
 ### Implementing Theme Switching
 
 ```tsx
-import { useColorScheme, useState, useEffect } from 'frosty';
+import { useColorScheme } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function ThemeSwitcher() {
   const systemColorScheme = useColorScheme();

@@ -12,7 +12,8 @@ The `useInterval` hook provides a declarative way to set up intervals in functio
 ## Usage
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function Timer() {
   const [seconds, setSeconds] = useState(0);
@@ -48,7 +49,8 @@ function Timer() {
 ### Basic Counter
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -64,7 +66,8 @@ function Counter() {
 ### Conditional Interval
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function ConditionalTimer() {
   const [time, setTime] = useState(0);
@@ -89,7 +92,8 @@ function ConditionalTimer() {
 ### Data Polling
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function DataPoller() {
   const [data, setData] = useState(null);
@@ -125,7 +129,8 @@ function DataPoller() {
 ### Clock Component
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function Clock() {
   const [time, setTime] = useState(new Date());
@@ -146,7 +151,8 @@ function Clock() {
 ### Animation Frame Counter
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function AnimationDemo() {
   const [position, setPosition] = useState(0);
@@ -178,7 +184,8 @@ function AnimationDemo() {
 ### Multiple Intervals
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function MultipleTimers() {
   const [fastCount, setFastCount] = useState(0);
@@ -206,7 +213,8 @@ function MultipleTimers() {
 ### Countdown Timer
 
 ```tsx
-import { useInterval, useState } from 'frosty';
+import { useInterval } from 'frosty/web';
+import { useState } from 'frosty';
 
 function CountdownTimer({ initialTime = 60 }) {
   const [timeLeft, setTimeLeft] = useState(initialTime);

@@ -12,7 +12,8 @@ The `useMemo` hook is used to memoize the result of an expensive calculation, en
 ## Usage
 
 ```tsx
-import { useMemo, useState } from 'frosty';
+import { useMemo } from 'frosty';
+import { useState } from 'frosty';
 
 function ExpensiveComponent() {
   const [count, setCount] = useState(0);
@@ -53,7 +54,8 @@ The `useMemo` hook returns the memoized value of type `T` returned by the factor
 ### Basic Memoization
 
 ```tsx
-import { useMemo, useState } from 'frosty';
+import { useMemo } from 'frosty';
+import { useState } from 'frosty';
 
 function FilteredList() {
   const [items, setItems] = useState(['apple', 'banana', 'cherry']);
@@ -85,7 +87,8 @@ function FilteredList() {
 ### Complex Object Memoization
 
 ```tsx
-import { useMemo, useState } from 'frosty';
+import { useMemo } from 'frosty';
+import { useState } from 'frosty';
 
 function UserProfile() {
   const [user, setUser] = useState({ name: 'John', age: 30 });
@@ -113,7 +116,8 @@ function UserProfile() {
 ### Expensive Computation
 
 ```tsx
-import { useMemo, useState } from 'frosty';
+import { useMemo } from 'frosty';
+import { useState } from 'frosty';
 
 function PrimeCalculator() {
   const [number, setNumber] = useState(10);
@@ -156,7 +160,8 @@ function PrimeCalculator() {
 ### Memoizing with External Dependencies
 
 ```tsx
-import { useMemo, useState, useEffect } from 'frosty';
+import { useMemo } from 'frosty';
+import { useState, useEffect } from 'frosty';
 
 function DataProcessor({ apiData }) {
   const [sortOrder, setSortOrder] = useState('asc');

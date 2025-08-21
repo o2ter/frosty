@@ -13,7 +13,7 @@ The `useWindowMetrics` hook provides reactive access to window dimensions and me
 ## Usage
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function WindowMetricsDisplay() {
   const metrics = useWindowMetrics();
@@ -56,7 +56,7 @@ An object containing:
 ### Responsive Layout
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function ResponsiveLayout({ children }) {
   const { innerWidth, innerHeight } = useWindowMetrics();
@@ -86,7 +86,7 @@ function ResponsiveLayout({ children }) {
 ### Safe Area Layout
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function SafeAreaLayout() {
   const { safeAreaInsets } = useWindowMetrics();
@@ -127,7 +127,7 @@ function SafeAreaLayout() {
 ### High-DPI Image Loading
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function HighDPIImage({ src, alt, ...props }) {
   const { devicePixelRatio } = useWindowMetrics();
@@ -158,7 +158,7 @@ function HighDPIImage({ src, alt, ...props }) {
 ### Aspect Ratio Container
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function AspectRatioContainer({ aspectRatio = 16/9, children }) {
   const { innerWidth, innerHeight } = useWindowMetrics();
@@ -189,7 +189,7 @@ function AspectRatioContainer({ aspectRatio = 16/9, children }) {
 ### Breakpoint Hook
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function useBreakpoint() {
   const { innerWidth } = useWindowMetrics();
@@ -226,7 +226,7 @@ function BreakpointDemo() {
 ### Window Metrics Dashboard
 
 ```tsx
-import { useWindowMetrics } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
 
 function WindowMetricsDashboard() {
   const metrics = useWindowMetrics();
@@ -289,7 +289,8 @@ function WindowMetricsDashboard() {
 ### Modal Positioning
 
 ```tsx
-import { useWindowMetrics, useState } from 'frosty';
+import { useWindowMetrics } from 'frosty/web';
+import { useState } from 'frosty';
 
 function CenteredModal({ isOpen, onClose, children }) {
   const { innerWidth, innerHeight, safeAreaInsets } = useWindowMetrics();

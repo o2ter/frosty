@@ -13,7 +13,8 @@ The `useRendererStorage` hook provides renderer-scoped persistent storage that m
 ## Usage
 
 ```tsx
-import { useRendererStorage, useState, useEffect } from 'frosty';
+import { useRendererStorage } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 interface AppPreferences {
   theme: 'light' | 'dark';
@@ -300,7 +301,8 @@ function PreferencesManager() {
 ### Cross-Component Shopping Cart
 
 ```tsx
-import { useRendererStorage, useState } from 'frosty';
+import { useRendererStorage } from 'frosty/web';
+import { useState } from 'frosty';
 
 interface CartItem {
   id: string;
@@ -748,7 +750,8 @@ function ShoppingApp() {
 ### Form State Management
 
 ```tsx
-import { useRendererStorage, useState, useEffect } from 'frosty';
+import { useRendererStorage } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 interface FormData {
   personalInfo: {

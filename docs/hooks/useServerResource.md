@@ -14,7 +14,7 @@ The `useServerResource` hook provides a way to share server-side rendered data w
 ## Usage
 
 ```tsx
-import { useServerResource } from 'frosty';
+import { useServerResource } from 'frosty/web';
 
 // Server-side: Serialize data for client access
 const encoded = useServerResource('user-data', () => JSON.stringify(userData), [userData]);
@@ -53,7 +53,8 @@ The serialized data that can be parsed on the client
 
 **components/DataProvider.server.tsx**
 ```tsx
-import { useServerResource, createContext, useContext, useAwaited } from 'frosty';
+import { useServerResource } from 'frosty/web';
+import { createContext, useContext, useAwaited } from 'frosty';
 
 const DataContext = createContext<any>(null);
 
@@ -63,7 +64,7 @@ export const useMyData = () => {
   return context;
 };
 
-export const DataProvider = ({ children }: { children: React.ReactNode }) => {
+export const DataProvider = ({ children }: { children: ElementNode }) => {
   const data = useAwaited(async () => {
     const response = await fetch('/api/my-data');
     if (!response.ok) throw new Error('Failed to fetch data');
@@ -82,7 +83,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 
 **components/DataProvider.tsx**
 ```tsx
-import { useServerResource, createContext, useContext } from 'frosty';
+import { useServerResource } from 'frosty/web';
+import { createContext, useContext } from 'frosty';
 
 const DataContext = createContext<any>(null);
 
@@ -92,7 +94,7 @@ export const useMyData = () => {
   return context;
 };
 
-export const DataProvider = ({ children }: { children: React.ReactNode }) => {
+export const DataProvider = ({ children }: { children: ElementNode }) => {
   const encoded = useServerResource('my-data-key');
   const data = JSON.parse(encoded);
 
@@ -108,7 +110,8 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
 
 **components/UserProvider.server.tsx**
 ```tsx
-import { useServerResource, createContext, useContext, useAwaited } from 'frosty';
+import { useServerResource } from 'frosty/web';
+import { createContext, useContext, useAwaited } from 'frosty';
 
 interface User {
   id: string;
@@ -132,7 +135,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children, userId }: { 
-  children: React.ReactNode; 
+  children: ElementNode; 
   userId: string;
 }) => {
   const userState = useAwaited(async (): Promise<UserState> => {
@@ -167,7 +170,8 @@ export const UserProvider = ({ children, userId }: {
 
 **components/UserProvider.tsx**
 ```tsx
-import { useServerResource, createContext, useContext } from 'frosty';
+import { useServerResource } from 'frosty/web';
+import { createContext, useContext } from 'frosty';
 
 interface User {
   id: string;
@@ -191,7 +195,7 @@ export const useUser = () => {
 };
 
 export const UserProvider = ({ children, userId }: { 
-  children: React.ReactNode; 
+  children: ElementNode; 
   userId: string;
 }) => {
   const encoded = useServerResource(`user-${userId}`);

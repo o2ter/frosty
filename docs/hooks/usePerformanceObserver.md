@@ -13,7 +13,8 @@ The `usePerformanceObserver` hook provides access to the Performance Observer AP
 ## Usage
 
 ```tsx
-import { usePerformanceObserver, useState, useCallback } from 'frosty';
+import { usePerformanceObserver } from 'frosty/web';
+import { useState, useCallback } from 'frosty';
 
 function PerformanceMonitor() {
   const [performanceData, setPerformanceData] = useState<{
@@ -261,7 +262,8 @@ Common performance entry types:
 ### Core Web Vitals Monitor
 
 ```tsx
-import { usePerformanceObserver, useState, useCallback, useEffect } from 'frosty';
+import { usePerformanceObserver } from 'frosty/web';
+import { useState, useCallback, useEffect } from 'frosty';
 
 function CoreWebVitalsMonitor() {
   const [webVitals, setWebVitals] = useState<{
@@ -478,7 +480,8 @@ function CoreWebVitalsMonitor() {
 ### Resource Performance Tracker
 
 ```tsx
-import { usePerformanceObserver, useState, useCallback } from 'frosty';
+import { usePerformanceObserver } from 'frosty/web';
+import { useState, useCallback } from 'frosty';
 
 function ResourcePerformanceTracker() {
   const [resourceMetrics, setResourceMetrics] = useState<{
@@ -696,7 +699,8 @@ function ResourcePerformanceTracker() {
 ### Long Task Monitor
 
 ```tsx
-import { usePerformanceObserver, useState, useCallback } from 'frosty';
+import { usePerformanceObserver } from 'frosty/web';
+import { useState, useCallback } from 'frosty';
 
 function LongTaskMonitor() {
   const [longTasks, setLongTasks] = useState<Array<{

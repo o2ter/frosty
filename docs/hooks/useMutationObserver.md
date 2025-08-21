@@ -13,7 +13,8 @@ The `useMutationObserver` hook provides a way to observe changes to the DOM tree
 ## Usage
 
 ```tsx
-import { useMutationObserver, useRef, useState } from 'frosty';
+import { useMutationObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function DynamicContentTracker() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -149,7 +150,8 @@ The callback receives `MutationRecord` objects with these properties:
 ### Form Validation Tracker
 
 ```tsx
-import { useMutationObserver, useRef, useState } from 'frosty';
+import { useMutationObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function FormValidationTracker() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -347,7 +349,8 @@ function FormValidationTracker() {
 ### Content Change Monitor
 
 ```tsx
-import { useMutationObserver, useRef, useState, useEffect } from 'frosty';
+import { useMutationObserver } from 'frosty/web';
+import { useRef, useState, useEffect } from 'frosty';
 
 function ContentChangeMonitor() {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -527,7 +530,8 @@ function ContentChangeMonitor() {
 ### Third-Party Integration Monitor
 
 ```tsx
-import { useMutationObserver, useRef, useState, useEffect } from 'frosty';
+import { useMutationObserver } from 'frosty/web';
+import { useRef, useState, useEffect } from 'frosty';
 
 function ThirdPartyIntegrationMonitor() {
   const integrationRef = useRef<HTMLDivElement>(null);

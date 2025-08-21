@@ -13,7 +13,7 @@ The `useOnline` hook tracks the browser's online/offline status, automatically u
 ## Usage
 
 ```tsx
-import { useOnline } from 'frosty';
+import { useOnline } from 'frosty/web';
 
 function NetworkStatus() {
   const isOnline = useOnline();
@@ -48,7 +48,7 @@ None - this hook takes no parameters.
 ### Basic Online Indicator
 
 ```tsx
-import { useOnline } from 'frosty';
+import { useOnline } from 'frosty/web';
 
 function OnlineIndicator() {
   const isOnline = useOnline();
@@ -64,7 +64,8 @@ function OnlineIndicator() {
 ### Conditional Data Fetching
 
 ```tsx
-import { useOnline, useState, useEffect } from 'frosty';
+import { useOnline } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function DataLoader() {
   const isOnline = useOnline();
@@ -110,7 +111,8 @@ function DataLoader() {
 ### Form with Offline Warning
 
 ```tsx
-import { useOnline, useState } from 'frosty';
+import { useOnline } from 'frosty/web';
+import { useState } from 'frosty';
 
 function ContactForm() {
   const isOnline = useOnline();
@@ -176,7 +178,8 @@ function ContactForm() {
 ### Sync Queue
 
 ```tsx
-import { useOnline, useState, useEffect } from 'frosty';
+import { useOnline } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function SyncQueue() {
   const isOnline = useOnline();
@@ -245,7 +248,8 @@ function SyncQueue() {
 ### App-wide Connectivity Banner
 
 ```tsx
-import { useOnline, useState, useEffect } from 'frosty';
+import { useOnline } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function ConnectivityBanner() {
   const isOnline = useOnline();
@@ -304,7 +308,8 @@ function App() {
 ### Offline Storage
 
 ```tsx
-import { useOnline, useState, useEffect } from 'frosty';
+import { useOnline } from 'frosty/web';
+import { useState, useEffect } from 'frosty';
 
 function OfflineStorage() {
   const isOnline = useOnline();

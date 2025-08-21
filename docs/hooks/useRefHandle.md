@@ -10,7 +10,8 @@ The `useRefHandle` hook allows you to expose imperative methods or properties fr
 ## Usage
 
 ```tsx
-import { useRef, useRefHandle } from 'frosty';
+import { useRef } from 'frosty';
+import { useRefHandle } from 'frosty';
 
 function ChildComponent({ ref, ...props }) {
   const localRef = useRef(null);
@@ -73,7 +74,8 @@ The `useRefHandle` hook does not return any value.
 ### Exposing Custom Methods
 
 ```tsx
-import { useRef, useRefHandle } from 'frosty';
+import { useRef } from 'frosty';
+import { useRefHandle } from 'frosty';
 
 function Modal({ ref, ...props }) {
   const [isOpen, setIsOpen] = useState(false);

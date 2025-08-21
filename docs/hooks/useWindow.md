@@ -12,7 +12,7 @@ The `useWindow` hook provides access to the current window object within compone
 ## Usage
 
 ```tsx
-import { useWindow } from 'frosty';
+import { useWindow } from 'frosty/web';
 
 function WindowInfo() {
   const window = useWindow();
@@ -43,7 +43,7 @@ None - this hook takes no parameters.
 ### Browser Detection
 
 ```tsx
-import { useWindow } from 'frosty';
+import { useWindow } from 'frosty/web';
 
 function BrowserDetection() {
   const window = useWindow();
@@ -72,7 +72,8 @@ function BrowserDetection() {
 ### Geolocation Access
 
 ```tsx
-import { useWindow, useState } from 'frosty';
+import { useWindow } from 'frosty/web';
+import { useState } from 'frosty';
 
 function GeolocationDemo() {
   const window = useWindow();
@@ -129,9 +130,11 @@ function GeolocationDemo() {
 ### Local Storage Operations
 
 ```tsx
-import { useWindow, useState } from 'frosty';
+```tsx
+import { useWindow } from 'frosty/web';
+import { useState } from 'frosty';
 
-function LocalStorageManager() {
+function LocalStorageDemo() {
   const window = useWindow();
   const [key, setKey] = useState('');
   const [value, setValue] = useState('');
@@ -209,7 +212,9 @@ function LocalStorageManager() {
 ### Window Events
 
 ```tsx
-import { useWindow, useState, useEffect } from 'frosty';
+import { useWindow } from 'frosty/web';
+import { useState } from 'frosty';
+import { useEffect } from 'frosty';
 
 function WindowEventDemo() {
   const window = useWindow();
@@ -262,7 +267,8 @@ function WindowEventDemo() {
 ### Clipboard Operations
 
 ```tsx
-import { useWindow, useState } from 'frosty';
+import { useWindow } from 'frosty/web';
+import { useState } from 'frosty';
 
 function ClipboardDemo() {
   const window = useWindow();
@@ -315,7 +321,9 @@ function ClipboardDemo() {
 ### Page Visibility
 
 ```tsx
-import { useWindow, useState, useEffect } from 'frosty';
+import { useWindow } from 'frosty/web';
+import { useState } from 'frosty';
+import { useEffect } from 'frosty';
 
 function PageVisibilityDemo() {
   const window = useWindow();
@@ -349,7 +357,7 @@ function PageVisibilityDemo() {
 ### Screen Information
 
 ```tsx
-import { useWindow } from 'frosty';
+import { useWindow } from 'frosty/web';
 
 function ScreenInfo() {
   const window = useWindow();
@@ -377,14 +385,10 @@ The hook will throw an error if:
 - Used with an unsupported renderer (not DOM renderer)
 
 ```tsx
+```tsx
+import { useWindow } from 'frosty/web';
+
 function SafeWindowUsage() {
-  try {
-    const window = useWindow();
-    return <div>Window available: {window.location.host}</div>;
-  } catch (error) {
-    return <div>Window not available: {error.message}</div>;
-  }
-}
 ```
 
 ## Common Use Cases

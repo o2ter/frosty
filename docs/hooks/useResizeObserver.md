@@ -13,7 +13,8 @@ The `useResizeObserver` hook provides a way to observe changes to the size of DO
 ## Usage
 
 ```tsx
-import { useResizeObserver, useRef } from 'frosty';
+import { useResizeObserver } from 'frosty/web';
+import { useRef } from 'frosty';
 
 function ResizableBox() {
   const boxRef = useRef<HTMLDivElement>(null);
@@ -71,7 +72,8 @@ The callback receives a `ResizeObserverEntry` with these useful properties:
 ### Responsive Component
 
 ```tsx
-import { useResizeObserver, useRef, useState } from 'frosty';
+import { useResizeObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function ResponsiveCard() {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -152,7 +154,8 @@ function ResponsiveCard() {
 ### Chart Container
 
 ```tsx
-import { useResizeObserver, useRef, useState, useEffect } from 'frosty';
+import { useResizeObserver } from 'frosty/web';
+import { useRef, useState, useEffect } from 'frosty';
 
 function ChartContainer() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -248,7 +251,8 @@ function ChartContainer() {
 ### Masonry Layout
 
 ```tsx
-import { useResizeObserver, useRef, useState, useEffect } from 'frosty';
+import { useResizeObserver } from 'frosty/web';
+import { useRef, useState, useEffect } from 'frosty';
 
 function MasonryLayout({ items }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -350,7 +354,8 @@ function MasonryDemo() {
 ### Text Area Auto-Resize
 
 ```tsx
-import { useResizeObserver, useRef, useState } from 'frosty';
+import { useResizeObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function AutoResizeTextArea() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -403,7 +408,8 @@ function AutoResizeTextArea() {
 ### Performance Monitor
 
 ```tsx
-import { useResizeObserver, useRef, useState } from 'frosty';
+import { useResizeObserver } from 'frosty/web';
+import { useRef, useState } from 'frosty';
 
 function PerformanceMonitor() {
   const monitorRef = useRef<HTMLDivElement>(null);
