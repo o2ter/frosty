@@ -7,15 +7,15 @@ Welcome to the comprehensive documentation for Frosty - a fast, flexible, and mo
 ### 📚 Essential Guides
 - **[Quick Start](../README.md)** - Get up and running with Frosty
 - **[Architecture Overview](./contribution/ARCHITECTURE.md)** - Understand Frosty's design and principles
-- **[Core Concepts](./contribution/CORE_CONCEPTS.md)** - Learn fundamental concepts and patterns
+- **[Core Concepts](./CORE_CONCEPTS.md)** - Learn fundamental concepts and patterns
 - **[Project Structure](./contribution/PROJECT_STRUCTURE.md)** - Explore the codebase organization
 - **[Development Guide](./contribution/DEVELOPMENT.md)** - Contributing and development workflow
-- **[API Reference](./contribution/API_REFERENCE.md)** - Complete API documentation
+- **[API Reference](./API_REFERENCE.md)** - Complete API documentation
 
 ### 🛠️ Development Tools
 - **[CLI Documentation](./CLI.md)** - Command-line interface and build tools
 - **[Style Guide](./contribution/STYLE_GUIDE.md)** - Coding standards and conventions
-- **[Comparison Guide](./contribution/COMPARISON.md)** - Compare Frosty with other libraries
+- **[Comparison Guide](./COMPARISON.md)** - Compare Frosty with other libraries
 
 ## Core Hooks
 
