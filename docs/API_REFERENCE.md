@@ -189,7 +189,7 @@ function Counter() {
 
 #### useEffect
 
-Performs side effects in components.
+Performs side effects in components with automatic cleanup support.
 
 ```tsx
 import { useEffect } from 'frosty';
@@ -197,22 +197,35 @@ import { useEffect } from 'frosty';
 function DataFetcher({ userId }: { userId: string }) {
   const [user, setUser] = useState(null);
 
-  // Effect with dependencies
-  useEffect(() => {
-    fetchUser(userId).then(setUser);
+  // Effect with dependencies and AbortSignal
+  useEffect(async (signal) => {
+    try {
+      const userData = await fetchUser(userId, { signal });
+      setUser(userData);
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        console.log('Fetch aborted');
+      } else {
+        console.error('Fetch failed:', error);
+      }
+    }
   }, [userId]);
 
   // Effect with cleanup
-  useEffect(() => {
+  useEffect((signal) => {
     const timer = setInterval(() => {
       console.log('Timer tick');
     }, 1000);
+
+    signal.addEventListener('abort', () => {
+      console.log('Effect is being cleaned up');
+    });
 
     return () => clearInterval(timer);
   }, []);
 
   // Effect on every render
-  useEffect(() => {
+  useEffect((signal) => {
     document.title = user ? `User: ${user.name}` : 'Loading...';
   });
 
