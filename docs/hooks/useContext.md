@@ -81,7 +81,7 @@ function MultiContextComponent() {
 ### Default Value Example
 
 ```tsx
-import { useContext } from 'frosty/web';
+import { useContext } from 'frosty';
 import { createContext } from 'frosty';
 
 const DefaultContext = createContext('Default Value');
