@@ -430,5 +430,5 @@ const navigateWithConfirmation = (path) => {
 ## See Also
 
 - [useSearchParams](./useSearchParams.md) – Manage URL query parameters with a dedicated hook.
-- [useEffect](./useEffect.md) – React to location changes with side effects.
+- [useEffect](./useEffect.md) – Respond to location changes with side effects.
 - [useState](./useState.md) – Manage component state based on location.

@@ -7,7 +7,7 @@ The `useInterval` hook provides a declarative way to set up intervals in functio
 - **Declarative Intervals**: Set up intervals using a simple hook interface
 - **Automatic Cleanup**: Intervals are automatically cleared when the component unmounts
 - **Conditional Intervals**: Easily start and stop intervals by passing `undefined` for the delay
-- **Component Integration**: Works seamlessly with React's component lifecycle
+- **Component Integration**: Works seamlessly with Frosty's component lifecycle
 
 ## Usage
 

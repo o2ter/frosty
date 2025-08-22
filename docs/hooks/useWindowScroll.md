@@ -468,4 +468,4 @@ function ReadingProgress() {
 
 - [useWindowMetrics](./useWindowMetrics.md) – Get window dimensions for scroll calculations.
 - [useIntersectionObserver](./useIntersectionObserver.md) – Track element visibility instead of manual scroll calculations.
-- [useEffect](./useEffect.md) – React to scroll position changes with side effects.
+- [useEffect](./useEffect.md) – Respond to scroll position changes with side effects.

@@ -583,4 +583,4 @@ setSearchParams(prev => {
 
 - [useLocation](./useLocation.md) – Access full location information and navigation methods.
 - [useState](./useState.md) – Manage local component state.
-- [useEffect](./useEffect.md) – React to search parameter changes.
+- [useEffect](./useEffect.md) – Respond to search parameter changes.

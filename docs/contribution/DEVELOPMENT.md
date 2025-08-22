@@ -253,7 +253,6 @@ The project uses strict TypeScript and follows these conventions:
 
 ```typescript
 // 1. Imports (external first, then internal)
-import React from 'react';
 import _ from 'lodash';
 
 import { useContext } from '~/core/hooks';
@@ -330,11 +329,49 @@ npm start -- --debug
 
 ### Browser DevTools
 
-Use React DevTools for component inspection:
+Use standard browser debugging tools for Frosty applications:
 
-1. Install React DevTools browser extension
-2. Open browser DevTools
-3. Navigate to "Components" or "Profiler" tab
+1. Open browser DevTools (F12)
+2. Use the "Elements" tab to inspect DOM structure
+3. Use the "Console" tab for debugging output
+4. Use the "Sources" tab for breakpoint debugging
+5. Use the "Performance" tab for profiling
+
+### Frosty-specific Debugging
+
+Debug Frosty components using built-in utilities:
+
+```typescript
+import { useStack, useRendererStorage } from 'frosty';
+
+function DebugComponent() {
+  const stack = useStack();
+  const storage = useRendererStorage();
+  
+  // Log component stack for debugging
+  console.log('Component stack:', stack);
+  
+  // Debug renderer state
+  console.log('Renderer storage:', storage);
+  
+  return <div>Debug info in console</div>;
+}
+```
+
+### Component State Debugging
+
+Use debug mode for detailed component lifecycle logging:
+
+```typescript
+// Enable debug logging in development
+if (process.env.NODE_ENV === 'development') {
+  // Add debug logging to effects
+  useEffect(() => {
+    console.log('Effect triggered', { dependencies });
+    return () => console.log('Effect cleanup');
+  }, [dependencies]);
+}
+```
 
 ### VS Code Debugging
 
