@@ -40,7 +40,7 @@ function ChildComponent({ onIncrement }: { onIncrement: () => void }) {
 
 The `useCallback` hook returns the memoized version of the callback function.
 
-## Example
+## Examples
 
 ### Basic Example
 

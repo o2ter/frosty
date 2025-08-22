@@ -38,7 +38,7 @@ function ThemeAwareComponent() {
 - **`colorScheme`**: `'light' | 'dark'`  
   A string representing the current color scheme preference.
 
-## Example
+## Examples
 
 ### With Custom Default
 

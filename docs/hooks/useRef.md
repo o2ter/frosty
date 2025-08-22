@@ -39,7 +39,7 @@ The `useRef` hook does not take any parameters.
 
 - **`ref`**: An object with a `current` property. The `current` property can be set to any value and persists across renders.
 
-## Example
+## Examples
 
 ### Storing a DOM Reference
 

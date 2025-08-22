@@ -55,7 +55,7 @@ An array with two elements:
 1. **`state`**: The current state value.
 2. **`dispatch`**: A function to dispatch actions to update the state.
 
-## Example
+## Examples
 
 ### Basic Example
 

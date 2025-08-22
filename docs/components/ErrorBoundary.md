@@ -4,20 +4,6 @@
 
 The `ErrorBoundary` component is a component designed to catch JavaScript errors anywhere in its child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This ensures that your application remains functional even when parts of it encounter unexpected issues.
 
-### Basic Example
-
-```tsx
-import { ErrorBoundary } from 'frosty';
-
-function App() {
-  return (
-    <ErrorBoundary>
-      <MyComponent />
-    </ErrorBoundary>
-  );
-}
-```
-
 ## Features
 
 - **Error Handling**: Catches errors during rendering, lifecycle methods, and constructors of child components
@@ -36,9 +22,11 @@ function App() {
 
 Wrap any part of your application that might throw errors with the `ErrorBoundary` component. This ensures that errors in child components do not crash the entire application.
 
+## Examples
+
 ### Basic Example
 
-```jsx
+```tsx
 import { ErrorBoundary } from 'frosty';
 
 function App() {
@@ -50,15 +38,12 @@ function App() {
 }
 ```
 
-## Advanced Example
+### Advanced Example with Error Handling
 
-Here’s an example with a custom `onError` handler:
-
-```jsx
+```tsx
 import { ErrorBoundary } from 'frosty';
 
 function App() {
-
   const handleError = (error, component, stack) => {
     console.error('Error caught by ErrorBoundary:', error);
     console.error('Component:', component);
@@ -71,13 +56,3 @@ function App() {
     </ErrorBoundary>
   );
 }
-```
-
-## Notes
-
-- The `ErrorBoundary` does not catch errors in:
-  - Event handlers
-  - Asynchronous code (e.g., `setTimeout`, `fetch`)
-  - Server-side rendering
-  - Errors thrown in the `ErrorBoundary` itself
-- For these cases, consider additional error handling strategies.

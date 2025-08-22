@@ -41,7 +41,7 @@ A string representing the current document visibility state:
 - **`'background'`**: The document is hidden (in a background tab or the window is minimized)
 - **`'unknown'`**: The visibility state couldn't be determined (e.g., on the server)
 
-## Example
+## Examples
 
 ### Pausing Media When Tab Is Not Visible
 

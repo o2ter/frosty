@@ -40,7 +40,7 @@ function ExampleComponent() {
 
 The current state of the store.
 
-## Example
+## Examples
 
 ### Basic Example
 

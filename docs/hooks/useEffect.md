@@ -50,7 +50,7 @@ function ExampleComponent() {
 
 The `useEffect` hook does not return any value.
 
-## Example
+## Examples
 
 ### Fetching Data
 

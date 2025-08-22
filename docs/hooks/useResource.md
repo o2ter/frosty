@@ -67,7 +67,7 @@ The `useResource` hook returns an object with the following properties:
 - **count**: The number of times the resource has been fetched
 - **refreshing**: A boolean indicating if the resource is currently being refreshed
 
-## Example
+## Examples
 
 ### Fetching Data with Dependencies
 
