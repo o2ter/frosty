@@ -130,8 +130,6 @@ export const addNotification = (notification) => {
 
 ## useStore
 
-## useStore
-
 A hook that subscribes to a store and re-renders the component when the selected state changes.
 
 ### API
@@ -387,21 +385,3 @@ export const actions = {
 - [useSyncExternalStore](./useSyncExternalStore.md) – Lower-level hook for external store synchronization
 - [useState](./useState.md) – For component-local state management
 - [useReducer](./useReducer.md) – For complex local state logic
-
-## API
-
-```typescript
-useStore<T, S>(
-  store: Store<T>,
-  selector?: (state: T) => S,
-  equal?: (value: S, other: S) => boolean
-): S
-```
-
-- **store**: The store instance to subscribe to
-- **selector** _(optional)_: Function to select a part of the store's state. Defaults to the entire state.
-- **equal** _(optional)_: Function to compare selected values for equality. Defaults to deep equality (`_.isEqual`).
-
-## Returns
-
-The selected slice of the store's state. The component will re-render only when the selected value changes according to the equality function.
