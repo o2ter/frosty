@@ -69,7 +69,7 @@ function ParentComponent() {
 
 The `useRefHandle` hook does not return any value.
 
-## Example
+## Examples
 
 ### Exposing Custom Methods
 

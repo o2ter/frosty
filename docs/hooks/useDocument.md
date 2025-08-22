@@ -37,7 +37,7 @@ This hook doesn't accept any parameters.
 
 - **`document`**: The current document object from the renderer
 
-## Example
+## Examples
 
 ### Accessing Document Properties
 

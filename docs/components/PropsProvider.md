@@ -31,7 +31,7 @@ import { PropsProvider } from 'frosty';
 </PropsProvider>
 ```
 
-## Example
+## Examples
 
 ### Adding Attributes to Specific Elements
 

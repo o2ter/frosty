@@ -39,7 +39,7 @@ An array with two elements:
 - **state**: The current state value
 - **setState**: A function to update the state
 
-## Example
+## Examples
 
 ### Basic Usage
 
@@ -66,3 +66,10 @@ function NameForm() {
 - **Re-renders**: Calling the setter function will trigger a re-render of the component
 - **Types**: You can use any type as the initial state (number, string, object, etc.)
 - **Functional Updates**: The setter function can accept a function for complex state updates
+
+## See Also
+
+- [useReducer](./useReducer.md) – For managing complex state logic with reducers
+- [useRef](./useRef.md) – For accessing mutable values that persist across renders
+- [useCallback](./useCallback.md) – For memoizing callback functions
+- [useMemo](./useMemo.md) – For memoizing expensive calculations

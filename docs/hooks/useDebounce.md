@@ -47,7 +47,7 @@ function ResizeHandler() {
 
 - **Debounced Function**: A debounced version of the function
 
-## Example
+## Examples
 
 ### Debouncing API Calls
 
@@ -140,7 +140,7 @@ function SearchWithAsyncDebounce() {
 
 - **Debounced Async Function**: A debounced version of the asynchronous function
 
-## Example
+## Examples
 
 ### Debouncing API Calls with Async Functions
 
