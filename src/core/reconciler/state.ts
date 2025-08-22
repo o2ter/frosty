@@ -77,10 +77,12 @@ export const reconciler = new class {
     options: ConstructorParameters<typeof HookState>[0],
     callback: (state: HookState) => R,
   ) {
+    const state = new HookState(options);
     try {
-      const state = new HookState(options);
       reconciler._currentHookState = state;
-      return callback(state);
+      return { resolved: callback(state), state };
+    } catch (error) {
+      return { error, state };
     } finally {
       reconciler._currentHookState = undefined;
     }

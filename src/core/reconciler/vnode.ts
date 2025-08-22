@@ -155,16 +155,24 @@ export class VNode {
       } else if (_.isFunction(type)) {
         let resolved;
         while (true) {
-          resolved = reconciler.withHookState({
+          const {
+            resolved: rendered,
+            error,
+            state,
+          } = reconciler.withHookState({
             renderer: options.renderer,
             node: this,
             state: this._state,
             stack: options.stack,
             contextValue: options.contextValue,
-          }, (state) => ({ rendered: type(props), state }));
-          this._state = resolved.state.state;
-          if (_.isEmpty(resolved.state.tasks)) break;
-          await Promise.all(resolved.state.tasks);
+          }, () => type(props));
+          this._state = state.state;
+          if (_.isEmpty(state.tasks)) {
+            if (error) throw error;
+            resolved = { rendered, state };
+            break;
+          }
+          await Promise.all(state.tasks);
         }
         this._listens = new Map(options.contextValue.entries().filter(([k]) => resolved.state.listens.has(k)));
         children = this._resolve_children(resolved.rendered);
