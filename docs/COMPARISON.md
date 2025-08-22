@@ -48,7 +48,7 @@ import ReactDOM from 'react-dom/client';
 
 // Frosty
 import { useState, useEffect } from 'frosty';
-import { _Renderer } from 'frosty/dom';
+import { DOMRenderer } from 'frosty/dom';
 
 // Component code remains largely the same
 function MyComponent() {
@@ -70,8 +70,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<MyComponent />);
 
 // Frosty mounting
-const renderer = new _Renderer(document.getElementById('root'));
-renderer.render(<MyComponent />);
+const root = DOMRenderer.createRoot(document.getElementById('root'));
+await root.mount(<MyComponent />);
 ```
 
 ### Frosty Advantages over React
