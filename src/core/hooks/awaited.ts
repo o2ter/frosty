@@ -64,7 +64,7 @@ export const useAwaited = <T>(
 ): T | undefined => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useAwaited must be used within a render function.');
-  const promise = _useMemo('useAwaited', () => factory(), deps);
+  const promise = _useMemo('useAwaited', () => factory(), deps ?? null);
   if (resolved.has(promise)) {
     const { result, error } = resolved.get(promise) ?? {};
     if (error) throw error;
