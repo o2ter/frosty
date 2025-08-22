@@ -339,11 +339,46 @@ Use standard browser debugging tools for Frosty applications:
 
 ### Frosty-specific Debugging
 
-Debug Frosty components using built-in utilities:
+Debug Frosty components using built-in utilities and error boundaries:
 
 ```typescript
-import { useStack, useRendererStorage } from 'frosty';
+import { ErrorBoundary, useStack, useRendererStorage } from 'frosty';
 
+// Error tracking with ErrorBoundary (recommended)
+function App() {
+  return (
+    <ErrorBoundary
+      fallback={({ error }) => (
+        <div style={{ color: 'red', padding: '1rem' }}>
+          <h2>Something went wrong:</h2>
+          <pre>{error.message}</pre>
+          <details>
+            <summary>Stack trace</summary>
+            <pre>{error.stack}</pre>
+          </details>
+        </div>
+      )}
+      onError={(error, component, stack) => {
+        // Log detailed error information
+        console.error('Error caught by boundary:', {
+          error: error.message,
+          component: component.type?.name || 'Unknown',
+          stack: stack.map(c => c.type?.name || 'Anonymous'),
+          fullStack: error.stack
+        });
+        
+        // Send to error reporting service in production
+        if (process.env.NODE_ENV === 'production') {
+          // reportError(error, { component, stack });
+        }
+      }}
+    >
+      <MyApplication />
+    </ErrorBoundary>
+  );
+}
+
+// Component debugging utilities
 function DebugComponent() {
   const stack = useStack();
   const storage = useRendererStorage();
@@ -363,13 +398,37 @@ function DebugComponent() {
 Use debug mode for detailed component lifecycle logging:
 
 ```typescript
-// Enable debug logging in development
-if (process.env.NODE_ENV === 'development') {
-  // Add debug logging to effects
+import { useEffect, ErrorBoundary } from 'frosty';
+
+// Component with conditional debug logging
+function DebugComponent({ userId }: { userId: string }) {
   useEffect(() => {
-    console.log('Effect triggered', { dependencies });
-    return () => console.log('Effect cleanup');
-  }, [dependencies]);
+    // Enable debug logging only in development
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Effect triggered for userId:', userId);
+    }
+    
+    return () => {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Effect cleanup for userId:', userId);
+      }
+    };
+  }, [userId]);
+
+  return <div>User: {userId}</div>;
+}
+
+// Use nested ErrorBoundaries for granular error tracking
+function FeatureSection() {
+  return (
+    <ErrorBoundary
+      fallback={({ error }) => <div>Feature unavailable: {error.message}</div>}
+      onError={(error) => console.error('Feature error:', error)}
+      silent={true} // Don't bubble up to parent boundary
+    >
+      <ComplexFeature />
+    </ErrorBoundary>
+  );
 }
 ```
 
