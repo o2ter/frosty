@@ -63,6 +63,7 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
+    "@types/jest": "^30.0.0",
     "@types/postcss-js": "^4.0.4",
     "@webref/css": "^6.20.4",
     "@webref/elements": "^2.4.0",
