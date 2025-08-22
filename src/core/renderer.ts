@@ -124,7 +124,7 @@ export abstract class _Renderer<T> {
       if (root) this._replaceChildren(
         runtime.node, root,
         _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements)),
-        [], 
+        [],
         force,
       );
       _mount(runtime.node, []);
@@ -143,20 +143,20 @@ export abstract class _Renderer<T> {
           map.set(node, {});
           continue;
         }
-        if (updated) {
-          let elem = elements?.get(node)?.native;
-          if (elem) {
-            try {
+        try {
+          if (updated) {
+            let elem = elements?.get(node)?.native;
+            if (elem) {
               this._updateElement(node, elem, stack);
-            } catch (e) {
-              console.error(e);
+            } else {
+              elem = this._createElement(node, stack);
             }
+            map.set(node, { native: elem });
           } else {
-            elem = this._createElement(node, stack);
+            map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
           }
-          map.set(node, { native: elem });
-        } else {
-          map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
+        } catch (e) {
+          console.error(e);
         }
       }
       commit(map, force);
