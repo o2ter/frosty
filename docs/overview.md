@@ -1,5 +1,19 @@
 # Frosty Overview
 
+Welcome to Frosty's documentation! This page provides a high-level summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
+
+## Styling
+
+Frosty provides powerful and flexible styling capabilities through multiple approaches:
+
+- **className** - Apply CSS classes with support for arrays and conditional logic
+- **style** - CSS-in-JS with automatic processing and caching
+- **inlineStyle** - Direct inline CSS for specific overrides
+
+See the [Styling Guide](./STYLING.md) for comprehensive documentation and examples.
+
+## Core Hookssty Overview
+
 Welcome to Frosty’s documentation! This page provides a high-level summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
 
 ## Core Hooks

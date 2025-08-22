@@ -8,6 +8,7 @@ Welcome to the comprehensive documentation for Frosty - a fast, flexible, and mo
 - **[Quick Start](../README.md)** - Get up and running with Frosty
 - **[Architecture Overview](./contribution/ARCHITECTURE.md)** - Understand Frosty's design and principles
 - **[Core Concepts](./CORE_CONCEPTS.md)** - Learn fundamental concepts and patterns
+- **[Styling Guide](./STYLING.md)** - Comprehensive styling documentation
 - **[Project Structure](./contribution/PROJECT_STRUCTURE.md)** - Explore the codebase organization
 - **[Development Guide](./contribution/DEVELOPMENT.md)** - Contributing and development workflow
 - **[API Reference](./API_REFERENCE.md)** - Complete API documentation

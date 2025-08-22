@@ -5,6 +5,7 @@ This document provides a comprehensive API reference for all Frosty components, 
 ## Table of Contents
 
 - [Core Components](#core-components)
+- [Styling](#styling)
 - [Hooks API](#hooks-api)
 - [Web Hooks](#web-hooks)
 - [Renderer API](#renderer-api)
@@ -96,6 +97,116 @@ function App() {
   );
 }
 ```
+
+## Styling
+
+Frosty provides flexible styling capabilities through three main properties:
+
+### className
+
+Apply CSS classes to elements with support for arrays and conditional classes.
+
+```tsx
+// Simple usage
+<div className="container">Content</div>
+
+// Dynamic classes
+<div className={['base', isActive && 'active', variant]}>
+  Dynamic content
+</div>
+
+// Conditional styling
+function Button({ primary, large, disabled }: ButtonProps) {
+  return (
+    <button 
+      className={[
+        'btn',
+        primary ? 'btn-primary' : 'btn-secondary',
+        large && 'btn-large',
+        disabled && 'btn-disabled'
+      ]}
+    >
+      Click me
+    </button>
+  );
+}
+```
+
+### style
+
+Apply CSS-in-JS styles that are processed and cached by Frosty's style builder.
+
+```tsx
+// Basic styling
+<div style={{
+  backgroundColor: '#f0f0f0',
+  padding: '1rem',
+  borderRadius: '8px'
+}}>
+  Styled content
+</div>
+
+// Dynamic styles with arrays
+function Card({ theme, highlighted }: CardProps) {
+  return (
+    <div style={[
+      {
+        padding: '1rem',
+        borderRadius: '4px',
+        border: '1px solid #ddd'
+      },
+      theme === 'dark' && {
+        backgroundColor: '#333',
+        color: '#fff',
+        borderColor: '#555'
+      },
+      highlighted && {
+        boxShadow: '0 0 0 2px rgba(0,123,255,0.25)'
+      }
+    ]}>
+      Card content
+    </div>
+  );
+}
+```
+
+### inlineStyle
+
+Apply direct inline CSS without processing through the style builder.
+
+```tsx
+// Direct inline styles
+<div inlineStyle={{
+  color: 'red',
+  fontSize: '16px',
+  fontWeight: 'bold'
+}}>
+  Inline styled content
+</div>
+
+// Use for overrides
+<div 
+  className="default-styles"
+  inlineStyle={{ color: 'red !important' }}
+>
+  Override content
+</div>
+```
+
+### Type Definitions
+
+```typescript
+type ClassName = Many<string | _.Falsey>;
+type StyleProp<T> = Many<T | _.Falsey>;
+type Many<T> = T | _.RecursiveArray<T>;
+
+// Extended CSS properties with Frosty enhancements
+interface ExtendedCSSProperties extends CSSProperties {
+  // Additional properties and vendor prefixes
+}
+```
+
+For detailed styling documentation and examples, see [STYLING.md](./STYLING.md).
 
 ## Hooks API
 
