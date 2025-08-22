@@ -30,11 +30,11 @@ function ChildComponent({ onIncrement }: { onIncrement: () => void }) {
 
 ## Parameters
 
-1. **callback**: `() => void`  
-   The function to be memoized
+1. **callback**: `T extends ((...args: any) => any) | _.Falsey`  
+   The function to be memoized. Can be any function type or falsy value
 
-2. **deps**: `any[]`  
-   An array of values that the callback depends on. The callback will be recreated only when one of these values changes
+2. **deps**: `any[]` _(optional)_  
+   An array of values that the callback depends on. The callback will be recreated only when one of these values changes. If omitted, the callback will be stable across renders
 
 ## Returns
 

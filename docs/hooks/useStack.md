@@ -17,9 +17,9 @@ The `useStack` hook does not take any parameters.
 
 - **`stack`**: `ComponentNode[]`  
   An array of `ComponentNode` instances representing the parent components in the rendering stack. Each `ComponentNode` contains information about:
-  - **`type`**: The type of the component (e.g., a DOM element or a custom component).
+  - **`type`**: The type of the component (e.g., a DOM element string like 'div' or a custom component function).
   - **`props`**: The props passed to the component.
-  - **`children`**: The children of the component.
+  - **`key`**: The key used for component reconciliation (if provided).
 
 ## Usage
 

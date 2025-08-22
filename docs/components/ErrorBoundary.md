@@ -1,6 +1,10 @@
 # ErrorBoundary
 
-The `### Basic Example
+## Overview
+
+The `ErrorBoundary` component is a component designed to catch JavaScript errors anywhere in its child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This ensures that your application remains functional even when parts of it encounter unexpected issues.
+
+### Basic Example
 
 ```tsx
 import { ErrorBoundary } from 'frosty';
@@ -13,10 +17,6 @@ function App() {
   );
 }
 ```
-
-## Overview
-
-The `ErrorBoundary` component is a component designed to catch JavaScript errors anywhere in its child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. This ensures that your application remains functional even when parts of it encounter unexpected issues.
 
 ## Features
 

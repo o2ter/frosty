@@ -12,7 +12,7 @@ The `useInterval` hook provides a declarative way to set up intervals in functio
 ## Usage
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function Timer() {
@@ -49,7 +49,7 @@ function Timer() {
 ### Basic Counter
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function Counter() {
@@ -66,7 +66,7 @@ function Counter() {
 ### Conditional Interval
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function ConditionalTimer() {
@@ -92,7 +92,7 @@ function ConditionalTimer() {
 ### Data Polling
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function DataPoller() {
@@ -129,7 +129,7 @@ function DataPoller() {
 ### Clock Component
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function Clock() {
@@ -151,7 +151,7 @@ function Clock() {
 ### Animation Frame Counter
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function AnimationDemo() {
@@ -184,7 +184,7 @@ function AnimationDemo() {
 ### Multiple Intervals
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function MultipleTimers() {
@@ -213,7 +213,7 @@ function MultipleTimers() {
 ### Countdown Timer
 
 ```tsx
-import { useInterval } from 'frosty/web';
+import { useInterval } from 'frosty';
 import { useState } from 'frosty';
 
 function CountdownTimer({ initialTime = 60 }) {

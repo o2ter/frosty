@@ -13,7 +13,7 @@ The `useDebounce` hook allows you to debounce a function, ensuring that updates 
 ### Debouncing a Function
 
 ```tsx
-import { useDebounce } from 'frosty/web';
+import { useDebounce } from 'frosty';
 import { useEffect } from 'frosty';
 
 function ResizeHandler() {
@@ -52,7 +52,7 @@ function ResizeHandler() {
 ### Debouncing API Calls
 
 ```tsx
-import { useDebounce } from 'frosty/web';
+import { useDebounce } from 'frosty';
 import { useState, useEffect } from 'frosty';
 
 function Search() {
