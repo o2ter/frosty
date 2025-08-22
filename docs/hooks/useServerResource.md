@@ -74,9 +74,9 @@ export const DataProvider = ({ children }: { children: ElementNode }) => {
   const encoded = useServerResource('my-data-key', () => JSON.stringify(data), [data]);
 
   return (
-    <DataContext.Provider value={data}>
+    <DataContext value={data}>
       {children}
-    </DataContext.Provider>
+    </DataContext>
   );
 };
 ```
@@ -99,9 +99,9 @@ export const DataProvider = ({ children }: { children: ElementNode }) => {
   const data = JSON.parse(encoded);
 
   return (
-    <DataContext.Provider value={data}>
+    <DataContext value={data}>
       {children}
-    </DataContext.Provider>
+    </DataContext>
   );
 };
 ```
@@ -161,9 +161,9 @@ export const UserProvider = ({ children, userId }: {
   );
 
   return (
-    <UserContext.Provider value={userState}>
+    <UserContext value={userState}>
       {children}
-    </UserContext.Provider>
+    </UserContext>
   );
 };
 ```
@@ -209,9 +209,9 @@ export const UserProvider = ({ children, userId }: {
   }
 
   return (
-    <UserContext.Provider value={userState}>
+    <UserContext value={userState}>
       {children}
-    </UserContext.Provider>
+    </UserContext>
   );
 };
 ```

@@ -216,17 +216,17 @@ abstract class _Renderer<T> {
 
 ### Context Creation
 
-Contexts provide a way to pass data through the component tree:
+Contexts provide a way to pass data through the component tree. In Frosty, the context object itself acts as the provider component:
 
 ```typescript
 const ThemeContext = createContext<'light' | 'dark'>('light');
 
 function App() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <Header />
       <Main />
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 

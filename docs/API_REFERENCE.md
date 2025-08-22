@@ -400,6 +400,8 @@ function ExpensiveComponent({ data }: { data: any[] }) {
 
 ### Context Hooks
 
+**Note**: In Frosty, the context object returned by `createContext` acts as the provider component. You use the context object directly as a component with a `value` prop.
+
 #### createContext
 
 Creates a context object.
@@ -430,9 +432,9 @@ function ThemeProvider({ children }: { children: ElementNode }) {
   }), [theme, toggleTheme]);
 
   return (
-    <ThemeContext.Provider value={value}>
+    <ThemeContext value={value}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```

@@ -73,7 +73,7 @@ Creates a new context object with an optional default value.
 
 - **Context Object**: `Context<T>`  
   Returns a context object with the following properties:
-  - **Provider**: A component that provides the context value to its children
+  - **The context object itself acts as the Provider component** that provides the context value to its children
   - **Consumer**: A component that consumes the context value using render props pattern
   - Can be used with `useContext` hook to access the value
 
@@ -99,9 +99,11 @@ Retrieves the current value of a context and optionally applies a selector funct
 #### Returns
 
 - **value**: `T | R`  
-  The current value of the context, optionally transformed by the selector function. This value is determined by the nearest `Context.Provider` above the component in the tree. If no provider is found, the default value passed to `createContext` is returned.
+  The current value of the context, optionally transformed by the selector function. This value is determined by the nearest context provider above the component in the tree. If no provider is found, the default value passed to `createContext` is returned.
 
 ## Examples
+
+**Note**: In Frosty, the context object returned by `createContext` acts as the provider component. You use the context object directly as a component with a `value` prop.
 
 ### Basic Theme Context
 
@@ -116,9 +118,9 @@ function ThemeProvider({ children }: { children: ElementNode }) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext value={theme}>
       {children}
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 
@@ -174,9 +176,9 @@ function UserProvider({ children }: { children: ElementNode }) {
   const value = { user, login, logout };
   
   return (
-    <UserContext.Provider value={value}>
+    <UserContext value={value}>
       {children}
-    </UserContext.Provider>
+    </UserContext>
   );
 }
 
@@ -245,7 +247,7 @@ const ThemeContext = createContext<'light' | 'dark'>('light');
 
 function App() {
   return (
-    <ThemeContext.Provider value="dark">
+    <ThemeContext value="dark">
       <ThemeContext.Consumer>
         {(theme) => (
           <div style={{ 
@@ -256,7 +258,7 @@ function App() {
           </div>
         )}
       </ThemeContext.Consumer>
-    </ThemeContext.Provider>
+    </ThemeContext>
   );
 }
 ```
@@ -286,11 +288,11 @@ function MultiContextComponent() {
 
 function App() {
   return (
-    <ThemeContext.Provider value="dark">
-      <LanguageContext.Provider value="fr">
+    <ThemeContext value="dark">
+      <LanguageContext value="fr">
         <MultiContextComponent />
-      </LanguageContext.Provider>
-    </ThemeContext.Provider>
+      </LanguageContext>
+    </ThemeContext>
   );
 }
 ```
@@ -326,7 +328,7 @@ function App() {
 
 ### useContext
 
-- **Provider Requirement**: Ensure that a `Context.Provider` is present in the component tree to provide a value; otherwise, the default value will be used
+- **Provider Requirement**: Ensure that a context provider is present in the component tree to provide a value; otherwise, the default value will be used
 - **Performance Optimization**: Use the selector parameter to subscribe only to specific parts of the context value
 - **Avoid Overuse**: Don't overuse context for all state management. For complex state, consider using a state management library like the built-in store system
 - **Re-render Behavior**: Context updates trigger re-renders for all components consuming the context. Use selectors to optimize performance
