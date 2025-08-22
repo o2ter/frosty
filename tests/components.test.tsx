@@ -1,5 +1,5 @@
 //
-//  component.test.ts
+//  components.test.tsx
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,138 +23,140 @@
 //  THE SOFTWARE.
 //
 
-import { expect, test } from '@jest/globals';
+import { expect, test, describe, beforeEach } from '@jest/globals';
 import { ComponentType, ComponentNode, ErrorBoundary, createContext, PropsProvider } from '~/index';
 import { ServerDOMRenderer } from '~/renderer/server-dom';
 
+// Test Components
 const TestComponent: ComponentType = () => {
   return <></>;
-}
+};
 
 const TestErrorComponent: ComponentType = () => {
-  throw Error('error');
-}
+  throw new Error('Test error');
+};
 
 const TestContext = createContext(0);
 
-test('test create html element', async () => {
+describe('Component Tests', () => {
+  let renderer: ServerDOMRenderer;
 
-  const element = <span />;
+  beforeEach(() => {
+    renderer = new ServerDOMRenderer();
+  });
 
-  expect(element).toBeInstanceOf(ComponentNode);
-  expect(element.type).toBe('span');
-});
+  describe('Element Creation', () => {
+    test('should create HTML elements', () => {
+      const element = <span />;
 
-test('test create component element', async () => {
+      expect(element).toBeInstanceOf(ComponentNode);
+      expect(element.type).toBe('span');
+    });
 
-  const element = <TestComponent />;
+    test('should create component elements', () => {
+      const element = <TestComponent />;
 
-  expect(element).toBeInstanceOf(ComponentNode);
-  expect(element.type).toBe(TestComponent);
+      expect(element).toBeInstanceOf(ComponentNode);
+      expect(element.type).toBe(TestComponent);
+    });
 
-});
+    test('should create component elements with keys', () => {
+      const element = <TestComponent key="test" />;
 
-test('test create component element with key', async () => {
+      expect(element).toBeInstanceOf(ComponentNode);
+      expect(element.type).toBe(TestComponent);
+      expect(element.key).toBe('test');
+    });
+  });
 
-  const element = <TestComponent key='test' />;
+  describe('Error Handling', () => {
+    test('should handle component errors with error boundary', async () => {
+      let caughtError: Error | undefined;
 
-  expect(element).toBeInstanceOf(ComponentNode);
-  expect(element.type).toBe(TestComponent);
-  expect(element.key).toBe('test');
+      const element = (
+        <ErrorBoundary
+          silent
+          onError={(error) => { caughtError = error; }}
+        >
+          <TestErrorComponent />
+        </ErrorBoundary>
+      );
 
-});
+      await renderer.renderToString(element);
 
-test('test with error', async () => {
+      expect(caughtError).toBeInstanceOf(Error);
+      expect(caughtError?.message).toBe('Test error');
+    });
+  });
 
-  let error;
+  describe('Context API', () => {
+    test('should handle context providers and consumers', async () => {
+      const element = (
+        <div>
+          <TestContext.Consumer>
+            {(value) => <span>{value}</span>}
+          </TestContext.Consumer>
+          <TestContext value={1}>
+            <TestContext.Consumer>
+              {(value) => <span>{value}</span>}
+            </TestContext.Consumer>
+            <TestContext value={2}>
+              <TestContext.Consumer>
+                {(value) => <span>{value}</span>}
+              </TestContext.Consumer>
+              <TestContext value={3}>
+                {(value) => <span>{value}</span>}
+              </TestContext>
+            </TestContext>
+          </TestContext>
+        </div>
+      );
 
-  const element = (
-    <ErrorBoundary silent onError={(e) => { error = e; }}>
-      <TestErrorComponent />
-    </ErrorBoundary>
-  );
+      const result = await renderer.renderToString(element);
 
-  const renderer = new ServerDOMRenderer();
-  await renderer.renderToString(element);
+      expect(result).toBe('<div><span>0</span><span>1</span><span>2</span><span>3</span></div>');
+    });
+  });
 
-  expect(error).toBeInstanceOf(Error);
-  
-});
+  describe('HTML Document Rendering', () => {
+    test('should render complete HTML documents', async () => {
+      const app = (
+        <html>
+          <head>
+            <script src="/main_bundle.js" defer />
+          </head>
+          <body>
+            <div id="root"></div>
+          </body>
+        </html>
+      );
 
-test('test context', async () => {
+      const result = await renderer.renderToString(app);
 
-  const element = <div>
-    <TestContext.Consumer>
-      {(value) => (
-        <span>{value}</span>
-      )}
-    </TestContext.Consumer>
-    <TestContext value={1}>
-      <TestContext.Consumer>
-        {(value) => (
-          <span>{value}</span>
-        )}
-      </TestContext.Consumer>
-      <TestContext value={2}>
-        <TestContext.Consumer>
-          {(value) => (
-            <span>{value}</span>
-          )}
-        </TestContext.Consumer>
-        <TestContext value={3}>
-          {(value) => (
-            <span>{value}</span>
-          )}
-        </TestContext>
-      </TestContext>
-    </TestContext>
-  </div>;
+      expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer=""></script></head><body><div id="root"></div></body></html>');
+    });
+  });
 
-  const renderer = new ServerDOMRenderer();
-  const result = await renderer.renderToString(element);
+  describe('Props Provider', () => {
+    test('should modify props through providers', async () => {
+      const app = (
+        <PropsProvider
+          callback={({ type, props }) => ({ ...props, 'data-test': 0 })}
+        >
+          <html>
+            <head>
+              <script src="/main_bundle.js" defer />
+            </head>
+            <body>
+              <div id="root"></div>
+            </body>
+          </html>
+        </PropsProvider>
+      );
 
-  expect(result).toBe('<div><span>0</span><span>1</span><span>2</span><span>3</span></div>');
+      const result = await renderer.renderToString(app);
 
-});
-
-test('test render html', async () => {
-
-  const app = (
-    <html>
-      <head>
-        <script src="/main_bundle.js" defer />
-      </head>
-      <body>
-        <div id="root"></div>
-      </body>
-    </html>
-  );
-  const renderer = new ServerDOMRenderer();
-  const result = await renderer.renderToString(app);
-
-  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer=""></script></head><body><div id="root"></div></body></html>');
-
-});
-
-test('test with props modify', async () => {
-
-  const app = (
-    <PropsProvider
-      callback={({ type, props }) => ({ ...props, 'data-test': 0 })}
-    >
-      <html>
-        <head>
-          <script src="/main_bundle.js" defer />
-        </head>
-        <body>
-          <div id="root"></div>
-        </body>
-      </html>
-    </PropsProvider>
-  );
-  const renderer = new ServerDOMRenderer();
-  const result = await renderer.renderToString(app);
-
-  expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script></head><body><div id="root" data-test="0"></div></body></html>');
-
+      expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script></head><body><div id="root" data-test="0"></div></body></html>');
+    });
+  });
 });

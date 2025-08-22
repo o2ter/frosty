@@ -1,5 +1,5 @@
 //
-//  css.test.ts
+//  css.test.tsx
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,31 +23,46 @@
 //  THE SOFTWARE.
 //
 
-import { expect, test } from '@jest/globals';
+import { expect, test, describe } from '@jest/globals';
 import { processCss } from '~/core/web/styles/process';
 
-test('test css', async () => {
+describe('CSS Processing Tests', () => {
+  describe('Complex Style Processing', () => {
+    test('should process complex CSS with pseudo-selectors, media queries, and keyframes', () => {
+      const style = {
+        userSelect: 'none',
+        top: 10,
+        '&:hover': {
+          top: 5,
+        },
+        '@media only screen and (max-width: 600px)': {
+          backgroundColor: 'lightblue',
+        },
+        '@container myContainer (width < 500px)': {
+          backgroundColor: 'lightblue',
+        },
+        '@keyframes': {
+          from: { top: '0px' },
+          to: { top: '200px' },
+        },
+      };
 
-  const style = {
-    userSelect: 'none',
-    top: 10,
-    '&:hover': {
-      top: 5,
-    },
-    '@media only screen and (max-width: 600px)': {
-      backgroundColor: 'lightblue',
-    },
-    '@container myContainer (width < 500px)': {
-      backgroundColor: 'lightblue',
-    },
-    '@keyframes': {
-      from: { top: '0px' },
-      to: { top: '200px' },
-    },
-  };
+      const { css } = processCss({ '.component': style });
 
-  const { css } = processCss({ '.component': style });
-
-  console.log(css)
-
+      expect(css).toBeDefined();
+      expect(typeof css).toBe('string');
+      expect(css).toContain('user-select: none');
+      expect(css).toContain('top: 10px');
+      expect(css).toContain(':hover');
+      expect(css).toContain('top: 5px');
+      expect(css).toContain('@media only screen and (max-width: 600px)');
+      expect(css).toContain('background-color: lightblue');
+      expect(css).toContain('@container myContainer (width < 500px)');
+      expect(css).toContain('@keyframes');
+      expect(css).toContain('from');
+      expect(css).toContain('to');
+      expect(css).toContain('top: 0px');
+      expect(css).toContain('top: 200px');
+    });
+  });
 });

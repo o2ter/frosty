@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { expect, test, describe, beforeEach, afterEach } from '@jest/globals';
+import { expect, test, describe, beforeEach } from '@jest/globals';
 import { 
   ComponentType, 
   useState, 
@@ -305,7 +305,7 @@ describe('Hook Tests', () => {
     });
 
     test('should handle dispatch actions', async () => {
-      let dispatch: ((action: (action: CounterAction) => void) => void) | undefined;
+      let dispatch: ((dispatch: (action: CounterAction) => void) => void) | undefined;
 
       const TestComponent: ComponentType = () => {
         const [count, _dispatch] = useReducer(counterReducer, 0);

@@ -23,12 +23,12 @@
 //  THE SOFTWARE.
 //
 
-import { describe, test, expect } from '@jest/globals';
+import { expect, test, describe } from '@jest/globals';
 import { compress } from '~/renderer/minify/compress';
 import { decompress } from '~/renderer/minify/decompress';
 
-describe('Compression and Decompression', () => {
-  describe('Basic functionality', () => {
+describe('Compression and Decompression Tests', () => {
+  describe('Basic Functionality', () => {
     test('should handle empty string', () => {
       const original = '';
       const compressed = compress(original);
@@ -66,7 +66,7 @@ describe('Compression and Decompression', () => {
     });
   });
 
-  describe('Typical use cases', () => {
+  describe('Typical Use Cases', () => {
     test('should compress and decompress CSS snippet', () => {
       const original = '.btn{padding:8px;margin:4px}.btn-primary{color:blue}';
       const compressed = compress(original);
@@ -92,7 +92,7 @@ describe('Compression and Decompression', () => {
     });
   });
 
-  describe('Algorithm validation', () => {
+  describe('Algorithm Validation', () => {
     test('compressed output uses valid alphabet', () => {
       const original = 'test string';
       const compressed = compress(original);

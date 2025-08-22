@@ -23,7 +23,7 @@
 //  THE SOFTWARE.
 //
 
-import { expect, test, describe } from '@jest/globals';
+import { expect, test, describe, beforeEach } from '@jest/globals';
 import { ComponentType } from '~/index';
 import { ServerDOMRenderer } from '~/renderer/server-dom';
 import { processCss } from '~/core/web/styles/process';
