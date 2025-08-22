@@ -52,7 +52,6 @@ import { ErrorBoundary } from 'frosty';
 
 interface ErrorBoundaryProps {
   children: ElementNode;
-  fallback?: ComponentType<{ error: Error }>;
   onError?: (error: Error, component: ComponentNode, stack: ComponentNode[]) => void;
   silent?: boolean;
 }
@@ -60,7 +59,6 @@ interface ErrorBoundaryProps {
 function App() {
   return (
     <ErrorBoundary
-      fallback={({ error }) => <div>Error: {error.message}</div>}
       onError={(error, component, stack) => {
         console.error('Error caught:', error);
         // Send to error reporting service

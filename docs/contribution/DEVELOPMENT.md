@@ -348,16 +348,6 @@ import { ErrorBoundary, useStack, useRendererStorage } from 'frosty';
 function App() {
   return (
     <ErrorBoundary
-      fallback={({ error }) => (
-        <div style={{ color: 'red', padding: '1rem' }}>
-          <h2>Something went wrong:</h2>
-          <pre>{error.message}</pre>
-          <details>
-            <summary>Stack trace</summary>
-            <pre>{error.stack}</pre>
-          </details>
-        </div>
-      )}
       onError={(error, component, stack) => {
         // Log detailed error information
         console.error('Error caught by boundary:', {
@@ -422,7 +412,6 @@ function DebugComponent({ userId }: { userId: string }) {
 function FeatureSection() {
   return (
     <ErrorBoundary
-      fallback={({ error }) => <div>Feature unavailable: {error.message}</div>}
       onError={(error) => console.error('Feature error:', error)}
       silent={true} // Don't bubble up to parent boundary
     >
