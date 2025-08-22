@@ -64,3 +64,7 @@ In this example, all `<button>` elements inside the provider will receive a `dat
 - **Return Values**: Return `null` or `undefined` from the callback to leave props unchanged
 
 ## See Also
+
+- [`ErrorBoundary`](./ErrorBoundary.md) - Component for handling errors in the component tree
+- [`useContext`](../hooks/useContext.md) - Hook for consuming context values
+- [Core Concepts](../CORE_CONCEPTS.md) - Understanding Frosty's component system
