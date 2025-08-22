@@ -76,7 +76,11 @@ export abstract class _Renderer<T> {
         }
         const element = elements.get(node)?.native;
         if (element) {
-          this._replaceChildren(node, element, children(node, elements), stack, force);
+          try {
+            this._replaceChildren(node, element, children(node, elements), stack, force);
+          } catch (e) {
+            console.error(e);
+          }
         }
         const state: _State[] = [];
         const prevState = mountState.get(node) ?? [];
@@ -84,11 +88,23 @@ export abstract class _Renderer<T> {
         for (const i of _.range(Math.max(prevState.length, curState.length))) {
           const unmount = prevState[i]?.unmount;
           const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
-          if (unmount && changed) unmount();
+          if (unmount && changed) {
+            try {
+              unmount();
+            } catch (e) {
+              console.error(e);
+            }
+          }
           state.push({
             hook: curState[i].hook,
             deps: curState[i].deps,
-            unmount: options?.skipMount || !changed ? prevState[i]?.unmount : curState[i].mount?.(),
+            unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+              try {
+                return curState[i].mount?.();
+              } catch (e) {
+                console.error(e);
+              }
+            })(),
           });
         }
         mountState.set(node, state);
@@ -96,7 +112,13 @@ export abstract class _Renderer<T> {
 
       for (const [node, state] of mountState) {
         if (elements.has(node)) continue;
-        for (const { unmount } of state) unmount?.();
+        for (const { unmount } of state) {
+          try {
+            unmount?.();
+          } catch (e) {
+            console.error(e);
+          }
+        }
         mountState.delete(node);
       }
       if (root) this._replaceChildren(
@@ -109,7 +131,11 @@ export abstract class _Renderer<T> {
     };
 
     const update = async (elements?: Map<VNode, { native?: T }>, force?: boolean) => {
-      this._beforeUpdate();
+      try {
+        this._beforeUpdate();
+      } catch (e) {
+        console.error(e);
+      }
       const map = new Map<VNode, { native?: T }>();
       for await (const { node, stack, updated } of runtime.excute()) {
         if (node.error) continue;
@@ -120,7 +146,11 @@ export abstract class _Renderer<T> {
         if (updated) {
           let elem = elements?.get(node)?.native;
           if (elem) {
-            this._updateElement(node, elem, stack);
+            try {
+              this._updateElement(node, elem, stack);
+            } catch (e) {
+              console.error(e);
+            }
           } else {
             elem = this._createElement(node, stack);
           }
@@ -133,10 +163,18 @@ export abstract class _Renderer<T> {
       if (elements) {
         for (const [node, element] of elements) {
           if (map.has(node) || !element.native) continue;
-          this._destroyElement(node, element.native);
+          try {
+            this._destroyElement(node, element.native);
+          } catch (e) {
+            console.error(e);
+          }
         }
       }
-      this._afterUpdate();
+      try {
+        this._afterUpdate();
+      } catch (e) {
+        console.error(e);
+      }
       return map;
     };
 
