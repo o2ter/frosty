@@ -487,7 +487,7 @@ describe('Renderer Tests', () => {
       expect(result).toContain('<meta name="description" content="Test description">');
       expect(result).toContain('<link rel="icon" href="/favicon.ico">');
       expect(result).toContain('<img src="/image.jpg" alt="Test image" width="100" height="100">');
-      expect(result).toContain('<input name="username" required="">');
+      expect(result).toContain('<input type="text" name="username" required="">');
       expect(result).toContain('<br>');
       expect(result).toContain('<hr>');
       expect(result).toContain('<area shape="rect" coords="0,0,100,100" href="/link" alt="Area">');
