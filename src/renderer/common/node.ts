@@ -52,6 +52,7 @@ const isWriteable = (object: any, propertyName: string) => {
   return !!desc.set;
 };
 
+const tracked_props = new WeakMap<Element, string[]>();
 const tracked_listeners = new WeakMap<Element, Record<string, EventListener | undefined>>();
 const _updateEventListener = (
   element: Element,
@@ -113,9 +114,13 @@ const DOMUtils = new class {
           ?? (svgProps as any)['*'][key]
           ?? (svgProps as any)[tagName]?.[key]
           ?? {};
+        const tracked = tracked_props.get(element) ?? [];
         const writeable = isWriteable(element, key);
+        if (!tracked_props.has(element)) tracked_props.set(element, tracked);
+        const assigned = _.includes(tracked, key);
         if (writeable && !_.isNil(value)) {
-          if ((element as any)[key] !== value) (element as any)[key] = value;
+          if (!assigned || (element as any)[key] !== value) (element as any)[key] = value;
+          if (!assigned) tracked.push(key);
         } else if (_type && attr && (_propValue as any)[_type]) {
           const oldValue = element.getAttribute(attr);
           if (value === false || _.isNil(value)) {
@@ -127,7 +132,8 @@ const DOMUtils = new class {
               element.setAttribute(attr, newValue);
           }
         } else if (writeable) {
-          if ((element as any)[key] !== value) (element as any)[key] = value;
+          if (!assigned || (element as any)[key] !== value) (element as any)[key] = value;
+          if (!assigned) tracked.push(key);
         }
       }
     }
