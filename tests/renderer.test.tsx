@@ -45,8 +45,8 @@ describe('Renderer Tests', () => {
       const element = <input type="text" placeholder="Enter text" />;
       const result = await renderer.renderToString(element);
       expect(result).toContain('<input');
+      expect(result).toContain('type="text"');
       expect(result).toContain('placeholder="Enter text"');
-      // type attribute might be filtered out for text inputs
     });
 
     test('should render elements with attributes', async () => {
