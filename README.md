@@ -24,18 +24,24 @@ Here's a simple example to get you started:
 
 ```tsx
 import { useState } from 'frosty';
+import { DOMRenderer } from 'frosty/dom';
 
 function App() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <span>Hello, Frosty!</span>
-      <button onClick={() => setCount(count + 1)}>Count: {count}</button>
+      <h1>Hello, Frosty!</h1>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Count: {count}
+      </button>
     </div>
   );
 }
 
-export default App;
+// Mount the application
+const root = DOMRenderer.createRoot(document.getElementById('app'));
+await root.mount(<App />);
 ```
 
 See the [comprehensive documentation](./docs) for detailed guides, API reference, and advanced usage patterns.

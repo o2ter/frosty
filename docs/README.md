@@ -5,6 +5,7 @@ Welcome to the comprehensive documentation for Frosty - a fast, flexible, and mo
 ## Quick Navigation
 
 ### 📚 Essential Guides
+- **[Getting Started](./GETTING_STARTED.md)** - Step-by-step guide to building your first Frosty app
 - **[Quick Start](../README.md)** - Get up and running with Frosty
 - **[Architecture Overview](./contribution/ARCHITECTURE.md)** - Understand Frosty's design and principles
 - **[Core Concepts](./CORE_CONCEPTS.md)** - Learn fundamental concepts and patterns
@@ -12,6 +13,7 @@ Welcome to the comprehensive documentation for Frosty - a fast, flexible, and mo
 - **[Project Structure](./contribution/PROJECT_STRUCTURE.md)** - Explore the codebase organization
 - **[Development Guide](./contribution/DEVELOPMENT.md)** - Contributing and development workflow
 - **[API Reference](./API_REFERENCE.md)** - Complete API documentation
+- **[Troubleshooting](./TROUBLESHOOTING.md)** - Common issues and solutions
 
 ### 🛠️ Development Tools
 - **[CLI Documentation](./cli/CLI.md)** - Command-line interface and build tools

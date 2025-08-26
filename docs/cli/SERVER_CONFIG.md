@@ -373,6 +373,7 @@ module.exports = {
 
     module: {
       rules: [
+        // Only add custom loaders here - CSS/SCSS, images, fonts are handled by Frosty CLI
         // Handle SVG files as React components
         {
           test: /\.svg$/,
@@ -397,7 +398,7 @@ module.exports = {
       
       module: {
         rules: [
-          // Server-specific rules for handling assets
+          // Server-specific overrides (Frosty CLI handles most assets automatically)
           {
             test: /\.(png|jpg|gif|svg)$/,
             use: {

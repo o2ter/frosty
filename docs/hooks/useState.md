@@ -61,11 +61,104 @@ function NameForm() {
 }
 ```
 
+### Functional Updates
+
+```tsx
+import { useState } from 'frosty';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    // Use functional update when new state depends on previous state
+    setCount(prevCount => prevCount + 1);
+  };
+
+  const reset = () => {
+    setCount(0);
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  );
+}
+```
+
+### Object State
+
+```tsx
+import { useState } from 'frosty';
+
+interface User {
+  name: string;
+  email: string;
+  age: number;
+}
+
+function UserForm() {
+  const [user, setUser] = useState<User>({
+    name: '',
+    email: '',
+    age: 0
+  });
+
+  const updateUser = (field: keyof User, value: string | number) => {
+    setUser(prevUser => ({
+      ...prevUser,
+      [field]: value
+    }));
+  };
+
+  return (
+    <form>
+      <input 
+        value={user.name}
+        onChange={(e) => updateUser('name', e.target.value)}
+        placeholder="Name"
+      />
+      <input 
+        value={user.email}
+        onChange={(e) => updateUser('email', e.target.value)}
+        placeholder="Email"
+      />
+      <input 
+        type="number"
+        value={user.age}
+        onChange={(e) => updateUser('age', parseInt(e.target.value))}
+        placeholder="Age"
+      />
+    </form>
+  );
+}
+```
+
+### Lazy Initial State
+
+```tsx
+import { useState } from 'frosty';
+
+function ExpensiveComponent() {
+  // Use function for expensive initial state calculation
+  const [data, setData] = useState(() => {
+    // This function only runs once on initial render
+    return expensiveCalculation();
+  });
+
+  return <div>{data}</div>;
+}
+```
+
 ## Notes
 
 - **Re-renders**: Calling the setter function will trigger a re-render of the component
-- **Types**: You can use any type as the initial state (number, string, object, etc.)
-- **Functional Updates**: The setter function can accept a function for complex state updates
+- **Object Updates**: Always create new objects/arrays rather than mutating existing state
+- **Functional Updates**: Use functional updates when new state depends on previous state
+- **Lazy Initialization**: Use a function for expensive initial state calculations
+- **Type Safety**: Provide explicit types for complex state structures
 
 ## See Also
 

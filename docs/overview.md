@@ -1,6 +1,6 @@
 # Frosty Overview
 
-Welcome to Frosty's documentation! This page provides a high-level summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
+Welcome to Frosty's documentation! This page provides a high-le vel summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
 
 ## Styling
 
@@ -29,7 +29,7 @@ Frosty offers a comprehensive set of hooks for managing state, side effects, and
 - [useRefHandle](./hooks/useRefHandle.md) – Expose imperative methods to parent components.
 - [useRendererStorage](./hooks/useRendererStorage.md) – Store values tied to the renderer lifecycle.
 - [useResource](./hooks/useResource.md) – Fetch and cache async resources.
-- [useResourceErrors](./hooks/useResource.md) – Track errors from resource hooks.
+- [useResourceErrors](./hooks/useResourceErrors.md) – Track errors from resource hooks.
 - [useStack](./hooks/useStack.md) – Retrieves the stack of parent components from the current hook state.
 - [useState](./hooks/useState.md) – Manage local component state.
 - [useStore](./hooks/useStore.md) – Bind to external store/state.
@@ -63,8 +63,8 @@ Frosty includes several components to simplify error handling and prop managemen
 
 - [ErrorBoundary](./components/ErrorBoundary.md) – Catch and handle errors in the component tree.
 - [PropsProvider](./components/PropsProvider.md) – Inject or override props for child components.
-- [ResourceErrors](./hooks/useResource.md) – Provides a boundary for managing errors from the `useResourceErrors` hook.
+- [ResourceErrors](./hooks/useResourceErrors.md) – Hook for managing errors from async resources and providing error boundaries.
 
 ---
 
-For detailed usage and API documentation, see the individual pages linked above or visit the [API documentation](./README.md)
+For detailed usage and API documentation, see the individual pages linked above or visit the [API Reference](./API_REFERENCE.md).
