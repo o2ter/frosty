@@ -13,15 +13,28 @@ The `useServerResource` hook provides a way to share server-side rendered data w
 
 ## Usage
 
+**components/UserProfile.server.tsx**
 ```tsx
 import { useServerResource } from 'frosty/web';
 
 // Server-side: Serialize data for client access
 const encoded = useServerResource('user-data', () => JSON.stringify(userData), [userData]);
+const userData = JSON.parse(encoded); // Parse for rendering
+
+// Render the same output as client
+return <div>{userData.name}</div>;
+```
+
+**components/UserProfile.tsx**
+```tsx
+import { useServerResource } from 'frosty/web';
 
 // Client-side: Access the same data instantly
 const encoded = useServerResource('user-data');
 const userData = JSON.parse(encoded);
+
+// Render the same output as server
+return <div>{userData.name}</div>;
 ```
 
 ## Parameters
@@ -72,9 +85,10 @@ export const DataProvider = ({ children }: { children: ElementNode }) => {
   }, []);
 
   const encoded = useServerResource('my-data-key', () => JSON.stringify(data), [data]);
+  const parsedData = JSON.parse(encoded); // Parse for rendering
 
   return (
-    <DataContext value={data}>
+    <DataContext value={parsedData}>
       {children}
     </DataContext>
   );
@@ -159,9 +173,10 @@ export const UserProvider = ({ children, userId }: {
     () => JSON.stringify(userState), 
     [userState]
   );
+  const parsedUserState = JSON.parse(encoded); // Parse for rendering
 
   return (
-    <UserContext value={userState}>
+    <UserContext value={parsedUserState}>
       {children}
     </UserContext>
   );
@@ -218,6 +233,7 @@ export const UserProvider = ({ children, userId }: {
 
 ### Data Compression
 
+**DataComponent.server.tsx**
 ```tsx
 function CompressedDataComponent() {
   // Server-side: Optimize data structure instead of compressing
@@ -232,17 +248,27 @@ function CompressedDataComponent() {
     
     return JSON.stringify(optimizedData);
   }, [largeDataArray]);
+  
+  const data = JSON.parse(encoded); // Parse for rendering
 
+  return <div>{/* Render data - same as client */}</div>;
+}
+```
+
+**DataComponent.tsx**
+```tsx
+function CompressedDataComponent() {
   // Client-side: Parse optimized data
   const encoded = useServerResource('large-dataset');
   const data = JSON.parse(encoded);
 
-  return <div>{/* Render data */}</div>;
+  return <div>{/* Render data - same as server */}</div>;
 }
 ```
 
 ### Safe Serialization
 
+**SafeDataComponent.server.tsx**
 ```tsx
 function SafeDataComponent() {
   const encoded = useServerResource('mixed-data', () => {
@@ -268,6 +294,21 @@ function SafeDataComponent() {
     });
   }, [data]);
 
+  // Parse with type restoration for rendering
+  const parsedData = JSON.parse(encoded, (key, value) => {
+    if (key.endsWith('At') && typeof value === 'string') {
+      return new Date(value);
+    }
+    return value;
+  });
+
+  return <div>{/* Render data - same as client */}</div>;
+}
+```
+
+**SafeDataComponent.tsx**
+```tsx
+function SafeDataComponent() {
   // Client-side: Parse with type restoration
   const encoded = useServerResource('mixed-data');
   const data = JSON.parse(encoded, (key, value) => {
@@ -277,17 +318,157 @@ function SafeDataComponent() {
     return value;
   });
 
-  return <div>{/* Render data */}</div>;
+  return <div>{/* Render data - same as server */}</div>;
 }
 ```
 
 ## Best Practices
 
+### Separate Client and Server Code
+
+**CRITICAL**: Always separate server-side and client-side code using different files or module resolution strategies. Never mix server-side data fetching with client-side parsing in the same component.
+
+#### ✅ Correct: Separate Files with Same Output
+
+**components/UserProfile.server.tsx** (Server-side)
+```tsx
+import { useServerResource, useAwaited } from 'frosty/web';
+
+export const UserProfile = ({ userId }: { userId: string }) => {
+  // Server-side: Fetch and serialize data
+  const userData = useAwaited(async () => {
+    const response = await fetch(`/api/users/${userId}`);
+    return response.json();
+  }, [userId]);
+
+  const encoded = useServerResource(`user-${userId}`, () => 
+    JSON.stringify(userData), [userData]
+  );
+  
+  // Parse data for rendering (same as client)
+  const user = JSON.parse(encoded);
+
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+};
+```
+
+**components/UserProfile.tsx** (Client-side)
+```tsx
+import { useServerResource } from 'frosty/web';
+
+export const UserProfile = ({ userId }: { userId: string }) => {
+  // Client-side: Only retrieve and parse data
+  const encoded = useServerResource(`user-${userId}`);
+  const user = JSON.parse(encoded);
+
+  // Render exactly the same output as server
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+    </div>
+  );
+};
+```
+
+#### ❌ Incorrect: Mixed Concerns
+
+```tsx
+// DON'T DO THIS - Mixing server and client logic
+function UserProfile({ userId }: { userId: string }) {
+  // This tries to handle both server and client in one component
+  const userData = useAwaited(async () => {
+    const response = await fetch(`/api/users/${userId}`);
+    return response.json();
+  }, [userId]);
+
+  const encoded = useServerResource(`user-${userId}`, () => 
+    JSON.stringify(userData), [userData]
+  );
+
+  // This parsing logic will run on server too
+  const parsedData = JSON.parse(encoded);
+  
+  return <div>{parsedData.name}</div>;
+}
+```
+
+### Module Resolution Strategy
+
+Use Frosty CLI's module suffix configuration to automatically resolve the correct implementation:
+
+**frosty.config.js**
+```js
+module.exports = {
+  moduleSuffixes: {
+    client: ['.browser', '.client', ''],
+    server: ['.node', '.server', '.ssr', '']
+  }
+};
+```
+
+Then create:
+- `UserProfile.server.tsx` - Server implementation
+- `UserProfile.tsx` - Client implementation
+
+### Environment Detection Patterns
+
+#### ✅ Correct: Use Module Resolution
+
+```tsx
+// UserProvider.server.tsx - Server-side only
+export const UserProvider = ({ children, userId }) => {
+  const userData = useAwaited(() => fetchUser(userId), [userId]);
+  const encoded = useServerResource('user', () => JSON.stringify(userData), [userData]);
+  
+  // Parse for rendering (same as client)
+  const user = JSON.parse(encoded);
+  
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+};
+
+// UserProvider.tsx - Client-side only  
+export const UserProvider = ({ children, userId }) => {
+  const encoded = useServerResource('user');
+  const user = JSON.parse(encoded);
+  
+  // Render exactly the same as server
+  return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
+};
+```
+
+#### ❌ Incorrect: Runtime Environment Detection
+
+```tsx
+// DON'T DO THIS - Runtime checks are unreliable
+function UserProvider({ children, userId }) {
+  if (typeof window === 'undefined') {
+    // Server logic - unreliable pattern
+    const userData = useAwaited(() => fetchUser(userId), [userId]);
+    const encoded = useServerResource('user', () => JSON.stringify(userData), [userData]);
+  } else {
+    // Client logic - also unreliable
+    const encoded = useServerResource('user');
+    const userData = JSON.parse(encoded);
+  }
+}
+```
+
 ### Use Descriptive Keys
 ```tsx
 // Good: Specific and descriptive
+// Server-side
 const encoded = useServerResource(`user-profile-${userId}`, dataFactory, deps);
 const encoded = useServerResource(`shopping-cart-${sessionId}`, dataFactory, deps);
+
+// Client-side  
+const encoded = useServerResource(`user-profile-${userId}`);
+const encoded = useServerResource(`shopping-cart-${sessionId}`);
 
 // Avoid: Too generic
 const encoded = useServerResource('data', dataFactory, deps);
@@ -295,6 +476,7 @@ const encoded = useServerResource('data', dataFactory, deps);
 
 ### Handle Serialization Safety
 ```tsx
+// Server-side component
 const encoded = useServerResource('safe-data', () => {
   return JSON.stringify(data, (key, value) => {
     // Remove functions and undefined values
@@ -307,6 +489,7 @@ const encoded = useServerResource('safe-data', () => {
 ### Optimize Dependencies
 ```tsx
 // Good: Only include properties that affect serialization
+// Server-side
 const encoded = useServerResource('user-summary', 
   () => JSON.stringify({ id: user.id, name: user.name }), 
   [user.id, user.name]
@@ -318,6 +501,7 @@ const encoded = useServerResource('data', dataFactory, [complexObject]);
 
 ### Add Error Handling
 ```tsx
+// Server-side component
 const encoded = useServerResource('api-data', () => {
   try {
     return JSON.stringify(data);
@@ -330,7 +514,7 @@ const encoded = useServerResource('api-data', () => {
 
 ### Filter Sensitive Data
 ```tsx
-// Good: Filter sensitive fields
+// Good: Filter sensitive fields (Server-side)
 const encoded = useServerResource('user', () => 
   JSON.stringify({ 
     id: user.id, 
@@ -347,6 +531,7 @@ const encoded = useServerResource('user', () =>
 
 ## TypeScript Support
 
+**UserComponent.server.tsx**
 ```tsx
 interface ApiResponse<T> {
   data: T;
@@ -369,6 +554,21 @@ const encoded = useServerResource(
   } as ApiResponse<User>),
   [userData]
 );
+```
+
+**UserComponent.tsx**
+```tsx
+interface ApiResponse<T> {
+  data: T;
+  error?: string;
+  timestamp: number;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
 
 // Client-side with type assertion
 const encoded = useServerResource('user-data');
@@ -378,12 +578,16 @@ const response: ApiResponse<User> = JSON.parse(encoded);
 ## Advanced Usage
 
 ### Conditional Resources
+**ConditionalComponent.server.tsx**
 ```tsx
 // Server-side: Only serialize when data is available
 const encoded = useServerResource('user-preferences', () => {
   return hasPreferences ? JSON.stringify(preferences) : JSON.stringify({});
 }, [hasPreferences, preferences]);
+```
 
+**ConditionalComponent.tsx**
+```tsx
 // Client-side: Handle empty state
 const encoded = useServerResource('user-preferences');
 const preferences = JSON.parse(encoded);
@@ -391,25 +595,33 @@ const hasData = Object.keys(preferences).length > 0;
 ```
 
 ### Resource Composition
+**ComposedComponent.server.tsx**
 ```tsx
-// Combine multiple resources efficiently
+// Server-side: Define multiple resources
 const userEncoded = useServerResource('user', () => JSON.stringify(user), [user]);
 const settingsEncoded = useServerResource('settings', () => JSON.stringify(settings), [settings]);
 const themeEncoded = useServerResource('theme', () => JSON.stringify(theme), [theme]);
+```
 
-// Client-side access
+**ComposedComponent.tsx**
+```tsx
+// Client-side: Access multiple resources
 const user = JSON.parse(useServerResource('user'));
 const settings = JSON.parse(useServerResource('settings'));
 const theme = JSON.parse(useServerResource('theme'));
 ```
 
 ### Versioned Resources
+**VersionedComponent.server.tsx**
 ```tsx
 // Server-side: Include version for cache busting
 const encoded = useServerResource(`api-data-v${API_VERSION}`, () => {
   return JSON.stringify({ version: API_VERSION, data });
 }, [data, API_VERSION]);
+```
 
+**VersionedComponent.tsx**
+```tsx
 // Client-side: Validate version compatibility
 const encoded = useServerResource(`api-data-v${API_VERSION}`);
 const response = JSON.parse(encoded);
@@ -419,6 +631,7 @@ if (response.version !== API_VERSION) {
 ```
 
 ### Progressive Enhancement
+**ProgressiveComponent.server.tsx**
 ```tsx
 // Server-side: Provide base data
 const encoded = useServerResource('page-data', () => {
@@ -428,7 +641,10 @@ const encoded = useServerResource('page-data', () => {
     version: '1.0'
   });
 }, [essentialData]);
+```
 
+**ProgressiveComponent.tsx**
+```tsx
 // Client-side: Use base data, then enhance
 const encoded = useServerResource('page-data');
 const { essential, timestamp } = JSON.parse(encoded);
@@ -443,6 +659,7 @@ useEffect(() => {
 ```
 
 ### Resource Batching
+**BatchedComponent.server.tsx**
 ```tsx
 // Server-side: Batch multiple resources
 const encoded = useServerResource('page-bundle', () => {
@@ -453,7 +670,10 @@ const encoded = useServerResource('page-bundle', () => {
     navigation: navigationData
   });
 }, [userData, userSettings, userPreferences, navigationData]);
+```
 
+**BatchedComponent.tsx**
+```tsx
 // Client-side: Extract what you need
 const encoded = useServerResource('page-bundle');
 const { user, settings, preferences, navigation } = JSON.parse(encoded);
@@ -462,6 +682,7 @@ const { user, settings, preferences, navigation } = JSON.parse(encoded);
 ## Performance Tips
 
 ### Minimize Data Size
+**OptimizedComponent.server.tsx**
 ```tsx
 // Extract only necessary fields
 const encoded = useServerResource('product-list', () => {
@@ -473,6 +694,7 @@ const encoded = useServerResource('product-list', () => {
 ```
 
 ### Implement Smart Caching
+**CachedComponent.server.tsx**
 ```tsx
 import { createHash } from 'node:crypto';
 
@@ -484,13 +706,17 @@ const encoded = useServerResource(`cached-data-${dataHash}`, () =>
 ```
 
 ### Lazy Resource Loading
+**LazyComponent.server.tsx**
 ```tsx
 // Server-side: Only serialize when needed
 const encoded = useServerResource('heavy-data', () => {
   if (!shouldSerialize) return JSON.stringify(null);
   return JSON.stringify(heavyData);
 }, [shouldSerialize, heavyData]);
+```
 
+**LazyComponent.tsx**
+```tsx
 // Client-side: Handle lazy loading
 const encoded = useServerResource('heavy-data');
 const data = JSON.parse(encoded);
@@ -512,6 +738,7 @@ if (data === null) {
 
 ### Debug Utilities
 
+**DebugComponent.server.tsx**
 ```tsx
 // Add comprehensive logging
 const encoded = useServerResource('debug-resource', () => {
@@ -534,6 +761,7 @@ const encoded = useServerResource('validated-data', () => {
 
 ### Performance Monitoring
 
+**PerfComponent.server.tsx**
 ```tsx
 // Add performance tracking
 const encoded = useServerResource('perf-data', () => {
@@ -550,7 +778,7 @@ const encoded = useServerResource('perf-data', () => {
 
 ### From useState/useEffect Pattern
 
-**Before:**
+**Before (Client-only):**
 ```tsx
 const [data, setData] = useState(null);
 
@@ -559,13 +787,16 @@ useEffect(() => {
 }, []);
 ```
 
-**After:**
+**After (Server-side component):**
 ```tsx
-// Server-side
+// MyComponent.server.tsx
 const data = useAwaited(() => fetch('/api/data').then(res => res.json()), []);
 const encoded = useServerResource('api-data', () => JSON.stringify(data), [data]);
+```
 
-// Client-side  
+**After (Client-side component):**
+```tsx
+// MyComponent.tsx  
 const encoded = useServerResource('api-data');
 const data = JSON.parse(encoded);
 ```

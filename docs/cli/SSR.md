@@ -315,8 +315,9 @@ function SearchAndFilter() {
 
 ### Using useServerResource
 
-The `useServerResource` hook is the primary way to share data between server and client. Combined with request context, you can create personalized SSR:
+The `useServerResource` hook is the primary way to share data between server and client. It's critical to separate server-side and client-side code properly using different files or module resolution.
 
+**UserProfile.server.tsx** (Server-side)
 ```tsx
 import { useServerResource, useAwaited, useWindow, useDocument, useLocation } from 'frosty';
 
@@ -353,9 +354,29 @@ function UserProfile({ userId }: { userId: string }) {
     }), [userData, userAgent, currentUrl]
   );
 
-  // Client-side: Parse the same data
+  // Parse for rendering (same as client)
   const { user, requestContext } = JSON.parse(encoded);
 
+  return (
+    <div>
+      <h1>{user.name}</h1>
+      <p>{user.email}</p>
+      <small>Rendered at {new Date(requestContext.timestamp).toISOString()}</small>
+    </div>
+  );
+}
+```
+
+**UserProfile.tsx** (Client-side)
+```tsx
+import { useServerResource } from 'frosty/web';
+
+function UserProfile({ userId }: { userId: string }) {
+  // Client-side: Parse the serialized data
+  const encoded = useServerResource('user-data');
+  const { user, requestContext } = JSON.parse(encoded);
+
+  // Render exactly the same output as server
   return (
     <div>
       <h1>{user.name}</h1>
@@ -370,11 +391,13 @@ function UserProfile({ userId }: { userId: string }) {
 
 Use module suffixes to provide different implementations for server and client:
 
+**utils.js** - Common implementation
 ```js
-// utils.js - Common implementation
 export const formatDate = (date) => date.toISOString();
+```
 
-// utils.server.js - Server-specific implementation
+**utils.server.js** - Server-specific implementation
+```js
 export const formatDate = (date) => {
   // Server has access to Intl with all locales
   return date.toLocaleDateString('en-US', {
@@ -383,11 +406,84 @@ export const formatDate = (date) => {
     day: 'numeric'
   });
 };
+```
 
-// utils.browser.js - Browser-specific implementation  
+**utils.browser.js** - Browser-specific implementation  
+```js
 export const formatDate = (date) => {
   // Lighter implementation for browser
   return date.toLocaleDateString();
+};
+```
+
+### Proper Code Separation
+
+#### ✅ Correct: Separate Server and Client Components
+
+**components/DataProvider.server.tsx**
+```tsx
+import { useServerResource, useAwaited } from 'frosty/web';
+
+export const DataProvider = ({ children }: { children: ElementNode }) => {
+  // Server-side: Fetch and serialize data
+  const data = useAwaited(async () => {
+    const response = await fetch('/api/my-data');
+    if (!response.ok) throw new Error('Failed to fetch data');
+    return response.json();
+  }, []);
+
+  const encoded = useServerResource('my-data-key', () => JSON.stringify(data), [data]);
+  
+  // Parse for rendering (same as client)
+  const parsedData = JSON.parse(encoded);
+
+  return (
+    <DataContext.Provider value={parsedData}>
+      {children}
+    </DataContext.Provider>
+  );
+};
+```
+
+**components/DataProvider.tsx**
+```tsx
+import { useServerResource } from 'frosty/web';
+
+export const DataProvider = ({ children }: { children: ElementNode }) => {
+  // Client-side: Only retrieve and parse data
+  const encoded = useServerResource('my-data-key');
+  const data = JSON.parse(encoded);
+
+  // Render exactly the same as server
+  return (
+    <DataContext.Provider value={data}>
+      {children}
+    </DataContext.Provider>
+  );
+};
+```
+
+#### ❌ Incorrect: Mixed Server/Client Logic
+
+```tsx
+// DON'T DO THIS - Mixing concerns in one component
+export const DataProvider = ({ children }: { children: ElementNode }) => {
+  // This tries to handle both server and client logic
+  const data = useAwaited(async () => {
+    const response = await fetch('/api/my-data');
+    return response.json();
+  }, []);
+
+  const encoded = useServerResource('my-data-key', () => JSON.stringify(data), [data]);
+  
+  // This parsing will run on server too - inefficient and error-prone
+  const parsedData = JSON.parse(encoded);
+
+  return (
+    <DataContext.Provider value={parsedData}>
+      {children}
+    </DataContext.Provider>
+  );
 };
 ```
 
@@ -514,9 +610,10 @@ export default async (app, serverEnv) => {
 
 ### Data Minimization
 
+**OptimizedComponent.server.tsx**
 ```tsx
 function OptimizedComponent({ products }: { products: Product[] }) {
-  // Only serialize essential data for initial render
+  // Server-side: Only serialize essential data for initial render
   const essentialData = useServerResource('products', () => {
     const essential = products.map(({ id, name, price, image }) => 
       ({ id, name, price, image })
@@ -524,6 +621,24 @@ function OptimizedComponent({ products }: { products: Product[] }) {
     return JSON.stringify(essential);
   }, [products]);
 
+  // Parse for rendering (same as client)
+  const productData = JSON.parse(essentialData);
+
+  return (
+    <div>
+      {productData.map(product => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  );
+}
+```
+
+**OptimizedComponent.tsx**
+```tsx
+function OptimizedComponent() {
+  // Client-side: Parse essential data and enhance if needed
+  const essentialData = JSON.parse(useServerResource('products'));
   const [fullData, setFullData] = useState(null);
 
   useEffect(() => {
@@ -533,9 +648,10 @@ function OptimizedComponent({ products }: { products: Product[] }) {
     }
   }, [shouldLoadFullData]);
 
+  // Render the same initial output as server
   return (
     <div>
-      {JSON.parse(essentialData).map(product => (
+      {essentialData.map(product => (
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
@@ -545,17 +661,35 @@ function OptimizedComponent({ products }: { products: Product[] }) {
 
 ### Selective SSR
 
+**SelectiveSSRComponent.server.tsx**
 ```tsx
 import { useSyncExternalStore } from 'frosty';
 
 function SelectiveSSRComponent() {
-  // Use getServerSnapshot for SSR, getSnapshot for client
+  // Server-side: Use getServerSnapshot for SSR
   const data = useSyncExternalStore(
     subscribeToStore,
-    () => store.getState(), // Client snapshot
+    () => null, // Client snapshot (not used on server)
     () => getServerState()  // Server snapshot (SSR)
   );
 
+  return <div>{data.content}</div>;
+}
+```
+
+**SelectiveSSRComponent.tsx**
+```tsx
+import { useSyncExternalStore } from 'frosty';
+
+function SelectiveSSRComponent() {
+  // Client-side: Use getSnapshot for client
+  const data = useSyncExternalStore(
+    subscribeToStore,
+    () => store.getState(), // Client snapshot
+    () => getServerState()  // Server snapshot (must match for hydration)
+  );
+
+  // Render the same output as server
   return <div>{data.content}</div>;
 }
 ```
@@ -574,6 +708,7 @@ NODE_ENV=development npx frosty run app.js
 
 ### Debugging Server Resources
 
+**DebugServerResources.server.tsx**
 ```tsx
 function DebugServerResources() {
   const debugData = useServerResource('debug', () => {
@@ -584,8 +719,25 @@ function DebugServerResources() {
     });
   });
 
+  // Parse for rendering (same as client)
   const parsed = JSON.parse(debugData);
   
+  return (
+    <div>
+      <h3>SSR Debug Info</h3>
+      <pre>{JSON.stringify(parsed, null, 2)}</pre>
+    </div>
+  );
+}
+```
+
+**DebugServerResources.tsx**
+```tsx
+function DebugServerResources() {
+  const debugData = useServerResource('debug');
+  const parsed = JSON.parse(debugData);
+  
+  // Render exactly the same as server
   return (
     <div>
       <h3>SSR Debug Info</h3>
@@ -599,6 +751,7 @@ function DebugServerResources() {
 
 ### 1. Minimize Server Resource Size
 
+**Server-side component:**
 ```tsx
 // ❌ Don't serialize large objects
 const badData = useServerResource('data', () => 
@@ -614,6 +767,7 @@ const goodData = useServerResource('data', () => {
 
 ### 2. Handle Async Operations Properly
 
+**AsyncSSRComponent.server.tsx**
 ```tsx
 function AsyncSSRComponent() {
   // ✅ Use useAwaited for server-side async operations
@@ -621,9 +775,32 @@ function AsyncSSRComponent() {
     return await fetchCriticalData();
   }, []);
 
-  // Handle loading state properly
-  if (!data) {
-    return <div>Loading...</div>; // SSR will wait for data
+  const encoded = useServerResource('async-data', () => 
+    JSON.stringify(data || { loading: true }), [data]
+  );
+
+  // Parse for rendering (same as client)
+  const parsedData = JSON.parse(encoded);
+
+  // Handle loading state properly - same as client
+  if (parsedData.loading) {
+    return <div>Loading...</div>;
+  }
+
+  return <div>{parsedData.content}</div>;
+}
+```
+
+**AsyncSSRComponent.tsx**
+```tsx
+function AsyncSSRComponent() {
+  // Client-side: Parse server data
+  const encoded = useServerResource('async-data');
+  const data = JSON.parse(encoded);
+
+  // Handle loading state properly - same as server
+  if (data.loading) {
+    return <div>Loading...</div>;
   }
 
   return <div>{data.content}</div>;
@@ -632,13 +809,30 @@ function AsyncSSRComponent() {
 
 ### 3. Progressive Enhancement
 
+**ProgressiveComponent.server.tsx**
 ```tsx
 function ProgressiveComponent() {
-  // Start with server-rendered content
+  // Server-side: Provide base data
   const baseData = useServerResource('base', () => 
     JSON.stringify(getEssentialData())
   );
   
+  // Parse for rendering (same as client)
+  const essentialData = JSON.parse(baseData);
+  
+  return (
+    <div>
+      <BaseContent data={essentialData} />
+    </div>
+  );
+}
+```
+
+**ProgressiveComponent.tsx**
+```tsx
+function ProgressiveComponent() {
+  // Client-side: Start with server data, then enhance
+  const baseData = JSON.parse(useServerResource('base'));
   const [enhanced, setEnhanced] = useState(false);
   
   useEffect(() => {
@@ -646,9 +840,10 @@ function ProgressiveComponent() {
     loadEnhancedFeatures().then(() => setEnhanced(true));
   }, []);
 
+  // Initial render same as server, then enhance
   return (
     <div>
-      <BaseContent data={JSON.parse(baseData)} />
+      <BaseContent data={baseData} />
       {enhanced && <EnhancedFeatures />}
     </div>
   );
@@ -685,33 +880,70 @@ function ErrorPage() {
 
 ### Hydration Mismatches
 
+**Problematic Pattern:**
 ```tsx
 // ❌ This can cause hydration mismatches
 function ProblematicComponent() {
   const [randomId] = useState(() => Math.random());
   return <div id={randomId}>Content</div>;
 }
+```
 
-// ✅ Use stable IDs or generate on server
-function FixedComponent() {
+**Fixed with Server Resource:**
+```tsx
+// ✅ Server-side: Generate stable ID
+// StableComponent.server.tsx
+function StableComponent() {
   const stableId = useServerResource('component-id', () => 
     'component-' + Date.now()
   );
+  
+  // Parse for rendering (same as client)
+  const id = stableId;
+  
+  return <div id={id}>Content</div>;
+}
+
+// ✅ Client-side: Use same stable ID
+// StableComponent.tsx
+function StableComponent() {
+  const stableId = useServerResource('component-id');
+  
+  // Render exactly the same as server
   return <div id={stableId}>Content</div>;
 }
 ```
 
 ### Memory Leaks in SSR
 
+**ResourceComponent.server.tsx**
 ```tsx
-// ✅ Clean up resources properly
+// Server-side: No cleanup needed (short-lived)
 function ResourceComponent() {
+  const data = useAwaited(() => fetchData(), []);
+  const encoded = useServerResource('data', () => JSON.stringify(data), [data]);
+  
+  // Parse for rendering (same as client)
+  const parsedData = JSON.parse(encoded);
+  
+  return <div>Data: {parsedData.content}</div>;
+}
+```
+
+**ResourceComponent.tsx**
+```tsx
+// ✅ Client-side: Clean up resources properly
+function ResourceComponent() {
+  const encoded = useServerResource('data');
+  const data = JSON.parse(encoded);
+  
   useEffect(() => {
     const subscription = subscribe();
     return () => subscription.unsubscribe(); // Always clean up
   }, []);
 
-  return <div>Component with resources</div>;
+  // Render exactly the same as server
+  return <div>Data: {data.content}</div>;
 }
 ```
 
@@ -742,8 +974,8 @@ export default function App() {
 
 ### Step 2: Update Data Fetching
 
+**Before: client-only data fetching**
 ```tsx
-// Before: client-only data fetching
 function Component() {
   const [data, setData] = useState(null);
   
@@ -754,15 +986,32 @@ function Component() {
   if (!data) return <div>Loading...</div>;
   return <div>{data.content}</div>;
 }
+```
 
-// After: SSR-compatible
+**After: SSR-compatible (Server-side)**
+```tsx
+// Component.server.tsx
 function Component() {
   const data = useAwaited(() => fetchData(), []);
   const serverData = useServerResource('data', () => 
     JSON.stringify(data), [data]
   );
   
+  // Parse for rendering (same as client)
   const parsedData = JSON.parse(serverData);
+  
+  return <div>{parsedData.content}</div>;
+}
+```
+
+**After: SSR-compatible (Client-side)**
+```tsx
+// Component.tsx
+function Component() {
+  const serverData = useServerResource('data');
+  const parsedData = JSON.parse(serverData);
+  
+  // Render exactly the same as server
   return <div>{parsedData.content}</div>;
 }
 ```
