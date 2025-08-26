@@ -69,7 +69,7 @@ A tuple containing:
 
 - **params**: `string | URLSearchParams | Array<[string, string]> | Record<string, string> | ((current: URLSearchParams) => URLSearchParams | string | Array | Record)` - New search parameters
 - **config**: `{ replace?: boolean }` - Optional configuration
-  - **replace**: `boolean` - If `true`, replaces current history entry instead of pushing new one
+  - **replace**: `boolean` - If `false`, pushes new history entry instead of replacing current one (default: `true` - replaces current entry)
 
 ## Examples
 
@@ -173,7 +173,7 @@ function Pagination({ totalPages }) {
       const newParams = new URLSearchParams(prev);
       newParams.set('page', page.toString());
       return newParams;
-    }, { replace: true }); // Replace to avoid cluttering history
+    }); // Default behavior - replaces current history entry
   };
 
   const nextPage = () => {
@@ -416,7 +416,7 @@ function TabNavigation() {
       const newParams = new URLSearchParams(prev);
       newParams.set('tab', tab);
       return newParams;
-    }, { replace: true });
+    }); // Default behavior - replaces current history entry
   };
 
   const tabs = [
@@ -575,7 +575,7 @@ setSearchParams(prev => {
 ## Notes
 
 - **Automatic Encoding**: Parameter names and values are automatically URL-encoded
-- **History Management**: By default, updates push new history entries. Use `{ replace: true }` to replace.
+- **History Management**: By default, updates replace the current history entry. Use `{ replace: false }` to push new entries.
 - **Reactive Updates**: Components automatically re-render when search parameters change
 - **Browser Navigation**: Works seamlessly with browser back/forward buttons
 

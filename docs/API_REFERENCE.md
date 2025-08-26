@@ -558,22 +558,20 @@ function App() {
 
 #### useAwaited
 
-Handles promises and async operations.
+Handles promises and async operations during rendering.
 
 ```tsx
 import { useAwaited } from 'frosty';
 
 function UserProfile({ userId }: { userId: string }) {
-  const [user, loading, error] = useAwaited(async () => {
+  const user = useAwaited(async () => {
     const response = await fetch(`/api/users/${userId}`);
     if (!response.ok) throw new Error('Failed to fetch user');
     return response.json();
   }, [userId]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!user) return <div>No user found</div>;
-
+  // Component will not render until user data is available
+  // No loading states needed - user is guaranteed to be defined
   return (
     <div>
       <h1>{user.name}</h1>
@@ -591,7 +589,7 @@ Fetches and caches resources.
 import { useResource } from 'frosty';
 
 function PostList() {
-  const { data: posts, loading, error, refetch } = useResource(
+  const { resource: posts, loading, error, refresh } = useResource(
     async () => {
       const response = await fetch('/api/posts');
       return response.json();
@@ -604,7 +602,7 @@ function PostList() {
 
   return (
     <div>
-      <button onClick={refetch}>Refresh</button>
+      <button onClick={refresh}>Refresh</button>
       {posts?.map(post => (
         <article key={post.id}>
           <h2>{post.title}</h2>
@@ -654,6 +652,58 @@ function SearchInput() {
           <li key={result.id}>{result.title}</li>
         ))}
       </ul>
+    </div>
+  );
+}
+```
+
+#### useIterableResource
+
+Manages async iterable data sources like streams.
+
+```tsx
+import { useIterableResource } from 'frosty';
+
+function StreamingData() {
+  const { resource: items, loading, error, refresh } = useIterableResource(
+    async function* ({ abortSignal }) {
+      const response = await fetch('/api/stream', { signal: abortSignal });
+      const reader = response.body?.getReader();
+      
+      if (!reader) return;
+      
+      try {
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          
+          // Parse streaming data and yield items
+          const lines = new TextDecoder().decode(value).split('\n');
+          for (const line of lines) {
+            if (line.trim()) {
+              yield JSON.parse(line);
+            }
+          }
+        }
+      } finally {
+        reader.releaseLock();
+      }
+    },
+    [] // Dependencies
+  );
+
+  if (loading && !items?.length) return <div>Loading stream...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  return (
+    <div>
+      <button onClick={refresh}>Refresh Stream</button>
+      <ul>
+        {items?.map((item, index) => (
+          <li key={index}>{JSON.stringify(item)}</li>
+        ))}
+      </ul>
+      {loading && <div>Loading more...</div>}
     </div>
   );
 }
@@ -714,6 +764,198 @@ function GlobalStateComponent() {
 }
 ```
 
+#### useAsyncDebounce
+
+Debounces async function calls.
+
+```tsx
+import { useAsyncDebounce } from 'frosty';
+
+function AsyncSearchInput() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  const debouncedSearch = useAsyncDebounce(async (searchQuery: string) => {
+    if (!searchQuery.trim()) {
+      setResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const response = await fetch(`/api/search?q=${searchQuery}`);
+      const data = await response.json();
+      setResults(data.results);
+    } catch (error) {
+      console.error('Search failed:', error);
+    } finally {
+      setIsSearching(false);
+    }
+  }, { wait: 300 });
+
+  useEffect(() => {
+    debouncedSearch(query);
+  }, [query, debouncedSearch]);
+
+  return (
+    <div>
+      <input 
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search..."
+      />
+      {isSearching && <p>Searching...</p>}
+      <ul>
+        {results.map(result => (
+          <li key={result.id}>{result.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+#### useInterval
+
+Sets up intervals that automatically clean up.
+
+```tsx
+import { useInterval } from 'frosty';
+
+function Timer() {
+  const [seconds, setSeconds] = useState(0);
+  const [isRunning, setIsRunning] = useState(true);
+
+  useInterval(() => {
+    setSeconds(seconds => seconds + 1);
+  }, isRunning ? 1000 : undefined);
+
+  return (
+    <div>
+      <h1>Timer: {seconds}s</h1>
+      <button onClick={() => setIsRunning(!isRunning)}>
+        {isRunning ? 'Pause' : 'Start'}
+      </button>
+      <button onClick={() => setSeconds(0)}>Reset</button>
+    </div>
+  );
+}
+```
+
+#### useAnimate
+
+Manages animations with smooth transitions.
+
+```tsx
+import { useAnimate } from 'frosty';
+
+function AnimatedBox() {
+  const animation = useAnimate(0);
+
+  const startAnimation = () => {
+    animation.start({
+      to: 200,
+      duration: 1000,
+      easing: 'easeInOut',
+      onCompleted: ({ finished }) => {
+        console.log('Animation finished:', finished);
+      },
+    });
+  };
+
+  return (
+    <div>
+      <div
+        style={{
+          width: '50px',
+          height: '50px',
+          backgroundColor: 'blue',
+          transform: `translateX(${animation.value}px)`,
+        }}
+      />
+      <button onClick={startAnimation}>Animate</button>
+      <button onClick={() => animation.stop()}>Stop</button>
+    </div>
+  );
+}
+```
+
+### External Store Hooks
+
+#### useSyncExternalStore
+
+Synchronizes with external data sources.
+
+```tsx
+import { useSyncExternalStore } from 'frosty';
+
+function OnlineStatus() {
+  const isOnline = useSyncExternalStore(
+    (onStoreChange) => {
+      window.addEventListener('online', onStoreChange);
+      window.addEventListener('offline', onStoreChange);
+      return () => {
+        window.removeEventListener('online', onStoreChange);
+        window.removeEventListener('offline', onStoreChange);
+      };
+    },
+    () => navigator.onLine
+  );
+
+  return (
+    <div style={{ color: isOnline ? 'green' : 'red' }}>
+      {isOnline ? 'Online' : 'Offline'}
+    </div>
+  );
+}
+```
+
+#### useStore
+
+Subscribes to external store state.
+
+```tsx
+import { createStore, useStore } from 'frosty';
+
+const counterStore = createStore(0);
+
+function Counter() {
+  const count = useStore(counterStore);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => counterStore.setValue(count + 1)}>
+        Increment
+      </button>
+      <button onClick={() => counterStore.setValue(0)}>
+        Reset
+      </button>
+    </div>
+  );
+}
+
+// Using selector for partial state
+interface UserState {
+  name: string;
+  email: string;
+  preferences: { theme: string };
+}
+
+const userStore = createStore<UserState>({
+  name: 'John',
+  email: 'john@example.com',
+  preferences: { theme: 'dark' }
+});
+
+function UserName() {
+  const name = useStore(userStore, user => user.name);
+  
+  return <h1>Hello, {name}!</h1>;
+}
+```
+
 ## Web Hooks
 
 ### DOM Hooks
@@ -770,6 +1012,128 @@ function WindowInfo() {
   return (
     <div>
       Window size: {dimensions.width} x {dimensions.height}
+    </div>
+  );
+}
+```
+
+#### useWindowMetrics
+
+Gets window dimensions and device metrics.
+
+```tsx
+import { useWindowMetrics } from 'frosty/web';
+
+function WindowMetrics() {
+  const metrics = useWindowMetrics();
+  
+  return (
+    <div>
+      <p>Window: {metrics.width} x {metrics.height}</p>
+      <p>Device Pixel Ratio: {metrics.devicePixelRatio}</p>
+      <p>Safe Area Insets: top={metrics.safeAreaInsets.top}</p>
+    </div>
+  );
+}
+```
+
+#### useWindowScroll
+
+Tracks window scroll position.
+
+```tsx
+import { useWindowScroll } from 'frosty/web';
+
+function ScrollIndicator() {
+  const scroll = useWindowScroll();
+  
+  return (
+    <div>
+      <p>Scroll X: {scroll.x}px</p>
+      <p>Scroll Y: {scroll.y}px</p>
+    </div>
+  );
+}
+```
+
+#### useVisualViewportMetrics
+
+Gets visual viewport metrics for mobile browsers.
+
+```tsx
+import { useVisualViewportMetrics } from 'frosty/web';
+
+function ViewportInfo() {
+  const viewport = useVisualViewportMetrics();
+  
+  if (!viewport) return <div>Visual Viewport API not supported</div>;
+  
+  return (
+    <div>
+      <p>Viewport: {viewport.width} x {viewport.height}</p>
+      <p>Scale: {viewport.scale}</p>
+    </div>
+  );
+}
+```
+
+#### useColorScheme
+
+Detects system color scheme preference.
+
+```tsx
+import { useColorScheme } from 'frosty/web';
+
+function ThemedComponent() {
+  const colorScheme = useColorScheme();
+  
+  return (
+    <div style={{ 
+      background: colorScheme === 'dark' ? '#333' : '#fff',
+      color: colorScheme === 'dark' ? '#fff' : '#333'
+    }}>
+      Current theme: {colorScheme}
+    </div>
+  );
+}
+```
+
+### Browser API Hooks
+
+#### useOnline
+
+Detects online/offline status.
+
+```tsx
+import { useOnline } from 'frosty/web';
+
+function OnlineStatus() {
+  const isOnline = useOnline();
+  
+  return (
+    <div style={{ 
+      color: isOnline ? 'green' : 'red' 
+    }}>
+      Status: {isOnline ? 'Online' : 'Offline'}
+    </div>
+  );
+}
+```
+
+#### useVisibility
+
+Tracks document visibility state.
+
+```tsx
+import { useVisibility } from 'frosty/web';
+
+function VisibilityTracker() {
+  const visibility = useVisibility();
+  
+  return (
+    <div>
+      Document is: {visibility.isVisible ? 'visible' : 'hidden'}
+      {visibility.hasFocus && <span> and focused</span>}
     </div>
   );
 }
@@ -853,6 +1217,68 @@ function FormData() {
 }
 ```
 
+### Navigation Hooks
+
+#### useLocation
+
+Provides access to browser location and navigation methods.
+
+```tsx
+import { useLocation } from 'frosty/web';
+
+function NavigationExample() {
+  const location = useLocation();
+  
+  return (
+    <div>
+      <p>Current path: {location.pathname}</p>
+      <p>Query string: {location.search}</p>
+      <button onClick={() => location.pushState(null, '/about')}>
+        Go to About
+      </button>
+      <button onClick={() => location.back()}>
+        Go Back
+      </button>
+    </div>
+  );
+}
+```
+
+**Returns**: Object with URL properties (`pathname`, `search`, `hash`, `href`, etc.) and navigation methods (`pushState`, `replaceState`, `back`, `forward`).
+
+#### useSearchParams
+
+Manages URL search parameters with automatic history updates.
+
+```tsx
+import { useSearchParams } from 'frosty/web';
+
+function SearchParamsExample() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  const page = searchParams.get('page') || '1';
+  const filter = searchParams.get('filter') || 'all';
+  
+  const updatePage = (newPage: string) => {
+    setSearchParams({ page: newPage, filter });
+  };
+  
+  return (
+    <div>
+      <p>Page: {page}, Filter: {filter}</p>
+      <button onClick={() => updatePage('2')}>
+        Go to Page 2
+      </button>
+      <button onClick={() => setSearchParams({ filter: 'active' })}>
+        Show Active Only
+      </button>
+    </div>
+  );
+}
+```
+
+**Returns**: `[URLSearchParams, setFunction]` tuple. By default, updates replace the current history entry (use `{ replace: false }` to push new entries).
+
 ### Observer Hooks
 
 #### useIntersectionObserver
@@ -898,6 +1324,50 @@ function ResponsiveComponent() {
       ) : (
         <MobileLayout />
       )}
+    </div>
+  );
+}
+```
+
+#### useMutationObserver
+
+Observes DOM mutations.
+
+```tsx
+import { useMutationObserver } from 'frosty/web';
+
+function MutationWatcher() {
+  const [ref, mutations] = useMutationObserver({
+    childList: true,
+    subtree: true,
+  });
+  
+  return (
+    <div ref={ref}>
+      <p>Mutations detected: {mutations.length}</p>
+      <div id="content">
+        {/* Content that will be watched for changes */}
+      </div>
+    </div>
+  );
+}
+```
+
+#### usePerformanceObserver
+
+Observes performance metrics.
+
+```tsx
+import { usePerformanceObserver } from 'frosty/web';
+
+function PerformanceMonitor() {
+  const [ref, entries] = usePerformanceObserver({
+    entryTypes: ['navigation', 'resource'],
+  });
+  
+  return (
+    <div ref={ref}>
+      <p>Performance entries: {entries.length}</p>
     </div>
   );
 }
