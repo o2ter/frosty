@@ -42,7 +42,8 @@ export const renderToHTML = async (App, {
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   const cookieJar = new CookieJar();
   for (const cookie of _.split(req.get('cookie'), ';')) {
-    cookieJar.setCookieSync(cookie, url);
+    const trimmedCookie = cookie.trim();
+    if (trimmedCookie) cookieJar.setCookieSync(trimmedCookie, url);
   }
   const loader = new NoOpResourceLoader({ userAgent });
   const dom = new JSDOM(undefined, { url, referrer, userAgent, resources: loader, cookieJar });
