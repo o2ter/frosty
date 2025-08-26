@@ -516,7 +516,7 @@ function Timer() {
 Exposes imperative methods to parent components.
 
 ```tsx
-import { useRefHandle, forwardRef } from 'frosty';
+import { useRefHandle, useRef } from 'frosty';
 
 interface VideoPlayerRef {
   play: () => void;
@@ -524,7 +524,12 @@ interface VideoPlayerRef {
   seekTo: (time: number) => void;
 }
 
-const VideoPlayer = forwardRef<VideoPlayerRef, { src: string }>((props, ref) => {
+interface VideoPlayerProps {
+  src: string;
+  ref: Ref<VideoPlayerRef>;
+}
+
+function VideoPlayer({ src, ref }: VideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useRefHandle(ref, () => ({
@@ -537,8 +542,8 @@ const VideoPlayer = forwardRef<VideoPlayerRef, { src: string }>((props, ref) => 
     },
   }), []);
 
-  return <video ref={videoRef} src={props.src} />;
-});
+  return <video ref={videoRef} src={src} />;
+}
 
 // Usage
 function App() {

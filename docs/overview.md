@@ -1,6 +1,8 @@
-# Frosty Overview
+# Frosty Overv
 
-Welcome to Frosty's documentation! This page provides a high-level summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
+## Core Hooks
+
+Frosty offers a comprehensive set of hooks for managing state, side effects, and more:lcome to Frosty's documentation! This page provides a high-level summary of the available hooks, web hooks, and built-in components to help you build modern, flexible UIs with ease.
 
 ## Styling
 
@@ -21,14 +23,12 @@ Welcome to Frosty’s documentation! This page provides a high-level summary of 
 Frosty offers a comprehensive set of hooks for managing state, side effects, and more:
 
 - [useAnimate](./hooks/useAnimate.md) – Animate values or components over time.
-- [useAsyncDebounce](./hooks/useDebounce.md) – Debounce async functions to limit execution rate.
 - [useAwaited](./hooks/useAwaited.md) – Handle promises and async effects in components.
 - [useCallback](./hooks/useCallback.md) – Memoize callback functions between renders.
 - [useContext](./hooks/useContext.md) – Access values from a context.
 - [useDebounce](./hooks/useDebounce.md) – Debounce functions to limit their execution rate.
 - [useEffect](./hooks/useEffect.md) – Run side effects after render.
 - [useInterval](./hooks/useInterval.md) – Set up intervals in components.
-- [useIterableResource](./hooks/useResource.md) – Manage async iterable data sources.
 - [useMemo](./hooks/useMemo.md) – Memoize expensive calculations.
 - [useReducer](./hooks/useReducer.md) – Manage complex state logic with reducers.
 - [useRef](./hooks/useRef.md) – Access mutable values that persist across renders.

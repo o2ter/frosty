@@ -14,7 +14,7 @@ Welcome to the comprehensive documentation for Frosty - a fast, flexible, and mo
 - **[API Reference](./API_REFERENCE.md)** - Complete API documentation
 
 ### 🛠️ Development Tools
-- **[CLI Documentation](./CLI.md)** - Command-line interface and build tools
+- **[CLI Documentation](./cli/CLI.md)** - Command-line interface and build tools
 - **[Style Guide](./contribution/STYLE_GUIDE.md)** - Coding standards and conventions
 - **[Comparison Guide](./COMPARISON.md)** - Compare Frosty with other libraries
 
