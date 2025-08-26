@@ -139,7 +139,7 @@ module.exports = {
 const path = require('path');
 
 module.exports = (env, argv) => {
-  const isDevelopment = argv.debug;
+  const isDevelopment = argv.mode === 'development'; // Use --debug flag to set development mode
   
   return {
     src: 'src',
@@ -231,7 +231,7 @@ module.exports = (env, argv) => {
   };
   
   // Development-specific settings
-  if (argv.debug) {
+  if (argv.mode === 'development') {
     config.options = {
       ...config.options,
       resolve: {
@@ -247,7 +247,7 @@ module.exports = (env, argv) => {
   }
   
   // Production-specific settings
-  if (!argv.debug) {
+  if (argv.mode === 'production') {
     config.options = {
       ...config.options,
       optimization: {

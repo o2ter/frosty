@@ -23,6 +23,7 @@ Frosty offers a comprehensive set of hooks for managing state, side effects, and
 - [useDebounce](./hooks/useDebounce.md) – Debounce functions to limit their execution rate.
 - [useEffect](./hooks/useEffect.md) – Run side effects after render.
 - [useInterval](./hooks/useInterval.md) – Set up intervals in components.
+- [useIterableResource](./hooks/useResource.md#useiterableresource) – Fetch and cache async iterable resources.
 - [useMemo](./hooks/useMemo.md) – Memoize expensive calculations.
 - [useReducer](./hooks/useReducer.md) – Manage complex state logic with reducers.
 - [useRef](./hooks/useRef.md) – Access mutable values that persist across renders.

@@ -43,7 +43,7 @@ module.exports = {
 
 #### `output`
 **Type:** `string`  
-**Default:** `'dist'`  
+**Default:** `'dist'` (relative to current working directory)  
 **Description:** Specifies the output directory for build artifacts.
 
 ```js
