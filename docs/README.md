@@ -47,7 +47,6 @@ Frosty provides a comprehensive set of hooks for state management, side effects,
 - **[useResource](./hooks/useResource.md)** – Fetch and cache async resources
 - **[useIterableResource](./hooks/useResource.md#useiterableresource)** – Fetch and cache async iterable resources
 - **[useDebounce](./hooks/useDebounce.md)** – Debounce functions to limit execution rate
-- **[useAnimate](./hooks/useAnimate.md)** – Animate values or components over time
 
 ### Utility Hooks
 - **[useRendererStorage](./hooks/useRendererStorage.md)** – Store values tied to the renderer lifecycle

@@ -848,44 +848,6 @@ function Timer() {
 }
 ```
 
-#### useAnimate
-
-Manages animations with smooth transitions.
-
-```tsx
-import { useAnimate } from 'frosty';
-
-function AnimatedBox() {
-  const animation = useAnimate(0);
-
-  const startAnimation = () => {
-    animation.start({
-      to: 200,
-      duration: 1000,
-      easing: 'easeInOut',
-      onCompleted: ({ finished }) => {
-        console.log('Animation finished:', finished);
-      },
-    });
-  };
-
-  return (
-    <div>
-      <div
-        style={{
-          width: '50px',
-          height: '50px',
-          backgroundColor: 'blue',
-          transform: `translateX(${animation.value}px)`,
-        }}
-      />
-      <button onClick={startAnimation}>Animate</button>
-      <button onClick={() => animation.stop()}>Stop</button>
-    </div>
-  );
-}
-```
-
 ### External Store Hooks
 
 #### useSyncExternalStore

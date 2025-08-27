@@ -16,7 +16,6 @@ See the [Styling Guide](./STYLING.md) for comprehensive documentation and exampl
 
 Frosty offers a comprehensive set of hooks for managing state, side effects, and more:
 
-- [useAnimate](./hooks/useAnimate.md) – Animate values or components over time.
 - [useAwaited](./hooks/useAwaited.md) – Handle promises and async effects in components.
 - [useCallback](./hooks/useCallback.md) – Memoize callback functions between renders.
 - [useContext](./hooks/useContext.md) – Access values from a context.

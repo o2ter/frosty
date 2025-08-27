@@ -464,30 +464,6 @@ function ThemedComponent() {
 }
 ```
 
-### Animation and Transitions
-
-```tsx
-function AnimatedButton({ isLoading }: { isLoading: boolean }) {
-  const animation = useAnimate(isLoading ? 360 : 0, {
-    duration: 1000,
-    repeat: isLoading ? Infinity : 0
-  });
-  
-  return (
-    <button
-      className={['btn', isLoading && 'btn--loading']}
-      style={{
-        transform: `rotate(${animation.value}deg)`,
-        transition: isLoading ? 'none' : 'transform 0.3s ease'
-      }}
-      disabled={isLoading}
-    >
-      {isLoading ? 'Loading...' : 'Submit'}
-    </button>
-  );
-}
-```
-
 ### Conditional Styling
 
 ```tsx

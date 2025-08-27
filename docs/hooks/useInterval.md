@@ -305,6 +305,5 @@ useInterval(() => {
 
 ## See Also
 
-- [useAnimate](./useAnimate.md) – Animate values or components over time.
 - [useEffect](./useEffect.md) – Perform side effects in functional components.
 - [useState](./useState.md) – Manage local component state.

@@ -371,7 +371,6 @@ Frosty's design focuses on memory efficiency:
 | **Routing** | React Router | Vue Router | Built-in hooks |
 | **State** | Redux/Zustand | Vuex/Pinia | Built-in hooks |
 | **Forms** | Formik/RHF | VeeValidate | Built-in hooks |
-| **Animation** | Framer Motion | Vue Transition | Built-in useAnimate |
 | **HTTP** | Axios/SWR | Axios | Built-in useResource |
 
 ### When to Choose Frosty

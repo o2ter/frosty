@@ -159,7 +159,6 @@ docs/
 │   ├── ErrorBoundary.md   # Error boundary usage
 │   └── PropsProvider.md   # Props provider usage
 └── hooks/                 # Hook documentation
-    ├── useAnimate.md      # Animation hook
     ├── useAwaited.md      # Async hook
     ├── useCallback.md     # Callback memoization
     ├── useColorScheme.md  # Color scheme detection
