@@ -23,7 +23,6 @@
 //  THE SOFTWARE.
 //
 
-export * from './animate';
 export * from './resource';
 export * from './interval';
 export * from './store';

@@ -56,7 +56,6 @@ core/
 │   ├── sync.ts            # External store synchronization
 │   └── misc/              # Additional hooks
 │       ├── index.ts       # Misc hook exports
-│       ├── animate.ts     # Animation utilities
 │       ├── interval.ts    # Interval management
 │       ├── resource.ts    # Resource fetching
 │       └── store.ts       # External store binding
