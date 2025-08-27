@@ -57,9 +57,7 @@ function App() {
   );
 }
 
-// Mount the application
-const root = DOMRenderer.createRoot(document.getElementById('app')!);
-await root.mount(<App />);
+export default App;
 ```
 
 ## Setting Up Your Development Environment
