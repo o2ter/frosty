@@ -24,7 +24,6 @@ Here's a simple example to get you started:
 
 ```tsx
 import { useState } from 'frosty';
-import { DOMRenderer } from 'frosty/dom';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -39,9 +38,7 @@ function App() {
   );
 }
 
-// Mount the application
-const root = DOMRenderer.createRoot(document.getElementById('app'));
-await root.mount(<App />);
+export default App;
 ```
 
 See the [comprehensive documentation](./docs) for detailed guides, API reference, and advanced usage patterns.
