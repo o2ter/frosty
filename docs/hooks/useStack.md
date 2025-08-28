@@ -7,7 +7,7 @@ The `useStack` hook provides access to the stack of parent components leading up
 - **Component Hierarchy Access**: Retrieve the hierarchy of parent components during rendering
 - **Debugging Tool**: Introspect the component tree to identify rendering issues
 - **Context-Aware Logic**: Enable components to adapt their behavior based on their position in the component tree
-- **Supports All Components**: Works with both functional and class components
+- **Functional Components**: Works with function components
 
 ## Parameters
 

@@ -302,7 +302,7 @@ $border-radius: 0.375rem;
 // ✅ Import CSS files before component code
 import './global.css';        // Global styles first
 import './component.scss';    // Component-specific styles
-import React from 'react';    // Then JavaScript imports
+import { useState } from 'frosty';    // Then JavaScript imports
 
 function Component() {
   return <div className="styled">Content</div>;
@@ -771,12 +771,6 @@ function MyComponent() {
 ```bash
 # Run in debug mode for more verbose output
 frosty run --debug --watch
-
-# Check browser console for errors
-# Open DevTools → Console
-
-# Use React DevTools equivalent for Frosty
-# (Check if available for your version)
 ```
 
 ### Add Logging

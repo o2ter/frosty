@@ -4,7 +4,7 @@ Frosty is a modern, fast, and flexible JSX-based UI library designed for buildin
 
 ## Overview
 
-Frosty follows a component-based architecture similar to React but with its own reconciliation engine, renderer system, and hooks implementation. The library is built with TypeScript and supports both client-side and server-side rendering.
+Frosty follows a component-based architecture with its own reconciliation engine, renderer system, and hooks implementation. The library is built with TypeScript and supports both client-side and server-side rendering.
 
 ## Core Principles
 
@@ -62,7 +62,7 @@ Development tools and build system for Frosty applications.
 
 ### Virtual Nodes (VNodes)
 
-Frosty uses a virtual node system similar to React's Virtual DOM but with its own implementation:
+Frosty uses a virtual node system with its own implementation:
 
 ```typescript
 // VNode represents a component in the virtual tree

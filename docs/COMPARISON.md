@@ -16,11 +16,11 @@ This document compares Frosty with other popular UI libraries and provides migra
 
 ### Similarities
 
-Frosty is heavily inspired by React and shares many concepts:
+Frosty shares many concepts with modern UI libraries:
 
 - **JSX Syntax**: Uses the same JSX syntax for component definition
 - **Hooks API**: Similar hooks pattern with useState, useEffect, etc.
-- **Component Model**: Function and class components
+- **Component Model**: Function components
 - **Virtual DOM**: Virtual node system for efficient updates
 - **Context API**: Similar context system for data sharing
 

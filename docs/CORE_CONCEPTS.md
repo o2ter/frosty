@@ -17,7 +17,7 @@ This document explains the fundamental concepts that power Frosty's architecture
 
 ### Component Definition
 
-Frosty components are defined using function components or class components, similar to React but with its own runtime:
+Frosty components are defined using function components with its own runtime:
 
 ```tsx
 // Function Component
@@ -55,10 +55,9 @@ const Card: ComponentType<Props> = ({ title, children }) => {
 Frosty supports several component types:
 
 1. **Function Components**: Pure functions that return JSX
-2. **Class Components**: ES6 classes extending ComponentNode
-3. **Fragment Components**: For grouping elements without wrapper
-4. **Context Providers**: For sharing data across component trees
-5. **Error Boundaries**: For catching and handling errors
+2. **Fragment Components**: For grouping elements without wrapper
+3. **Context Providers**: For sharing data across component trees
+4. **Error Boundaries**: For catching and handling errors
 
 ### JSX Runtime
 
