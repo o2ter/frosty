@@ -74,7 +74,7 @@ The `useRefHandle` hook does not return any value.
 ### Exposing Custom Methods
 
 ```tsx
-import { useRef } from 'frosty';
+import { useRef, useState } from 'frosty';
 import { useRefHandle } from 'frosty';
 
 function Modal({ ref, ...props }) {

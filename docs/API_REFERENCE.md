@@ -405,7 +405,7 @@ function ExpensiveComponent({ data }: { data: any[] }) {
 Creates a context object.
 
 ```tsx
-import { createContext, useContext } from 'frosty';
+import { createContext, useContext, useState, useCallback, useMemo } from 'frosty';
 
 interface ThemeContextType {
   theme: 'light' | 'dark';

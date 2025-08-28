@@ -11,7 +11,7 @@ The `useCallback` hook is used to memoize a callback function, ensuring that it 
 ## Usage
 
 ```tsx
-import { useCallback } from 'frosty';
+import { useCallback, useState } from 'frosty';
 
 function ParentComponent() {
   const [count, setCount] = useState(0);

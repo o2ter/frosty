@@ -524,17 +524,19 @@ function Button({ children, onClick, disabled, variant = 'primary' }: ButtonProp
 
 **Solutions**:
 ```tsx
-// Use lazy loading for large components
-import { lazy, Suspense } from 'frosty';
+// Use resource hooks for efficient data loading
+import { useResource } from 'frosty';
 
-const HeavyComponent = lazy(() => import('./HeavyComponent'));
-
-function App() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <HeavyComponent />
-    </Suspense>
+function HeavyComponent() {
+  const { data, loading, error } = useResource(
+    async () => import('./heavy-data.json'),
+    []
   );
+  
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading data</div>;
+  
+  return <div>{/* Heavy component content */}</div>;
 }
 
 // Optimize bundle size

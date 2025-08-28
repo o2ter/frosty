@@ -292,6 +292,8 @@ function App() {
 Component-level state management:
 
 ```typescript
+import { useState, useReducer } from 'frosty';
+
 function Counter() {
   const [count, setCount] = useState(0);
   const [history, dispatch] = useReducer(historyReducer, []);
@@ -315,6 +317,8 @@ function Counter() {
 Connect to external state management libraries:
 
 ```typescript
+import { useStore, useCallback } from 'frosty';
+
 function TodoList() {
   const todos = useStore(todoStore);
   const dispatch = useCallback((action) => {
@@ -356,8 +360,10 @@ function UserProfile({ userId }: { userId: string }) {
 Multiple levels of memoization for performance:
 
 ```typescript
-// Component memoization
-const ExpensiveComponent = memo(({ data }) => {
+import { useMemo, useCallback } from 'frosty';
+
+// Component-level memoization with hooks
+function ExpensiveComponent({ data }: { data: any }) {
   const processedData = useMemo(() => {
     return expensiveDataProcessing(data);
   }, [data]);
@@ -367,22 +373,6 @@ const ExpensiveComponent = memo(({ data }) => {
   }, [onItemClick]);
   
   return <div>{processedData}</div>;
-});
-```
-
-### Lazy Loading
-
-Lazy component loading and code splitting:
-
-```typescript
-const LazyComponent = lazy(() => import('./LazyComponent'));
-
-function App() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <LazyComponent />
-    </Suspense>
-  );
 }
 ```
 
@@ -391,6 +381,8 @@ function App() {
 Efficient resource loading and caching:
 
 ```typescript
+import { useResource } from 'frosty';
+
 function DataComponent() {
   const { data, loading, error } = useResource(
     async () => fetchData(),

@@ -352,6 +352,8 @@ function ContactForm() {
 ### Custom Hook
 
 ```tsx
+import { useState, useCallback } from 'frosty';
+
 function useCounter(initialValue = 0) {
   const [count, setCount] = useState(initialValue);
   
