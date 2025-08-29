@@ -43,6 +43,29 @@ export default App;
 
 See the [comprehensive documentation](./docs) for detailed guides, API reference, and advanced usage patterns.
 
+## Application Entry Point
+
+Your application entry point (the main file you pass to Frosty CLI) must export your root component as the **default export**. This is required for Frosty to properly identify and render your application.
+
+```tsx
+// app.tsx or app.js
+import { useState } from 'frosty';
+
+function MyApp() {
+  // Your application logic here
+  return <div>Hello World!</div>;
+}
+
+// Required: Export your root component as default
+export default MyApp;
+```
+
+This default export pattern ensures that:
+- Frosty CLI can automatically detect your application component
+- Server-side rendering (SSR) works correctly
+- Client-side hydration functions properly
+- Your app integrates seamlessly with the Frosty build system
+
 ## Usage
 
 To run your app with Frosty CLI using `npx`:
