@@ -1372,7 +1372,7 @@ function PerformanceMonitor() {
 Browser DOM renderer for client-side applications.
 
 ```tsx
-import { DOMRenderer } from 'frosty/renderer/dom';
+import { DOMRenderer } from 'frosty/dom';
 
 // Create a root and mount component
 const root = DOMRenderer.createRoot(document.getElementById('app'));
@@ -1387,7 +1387,7 @@ root.unmount();
 Server-side rendering with JSDOM.
 
 ```tsx
-import { ServerDOMRenderer } from 'frosty/renderer/server-dom';
+import { ServerDOMRenderer } from 'frosty/server-dom';
 
 // Render to string
 const renderer = new ServerDOMRenderer();
