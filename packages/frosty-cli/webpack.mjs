@@ -187,16 +187,16 @@ export default async (env, argv) => {
     externals: config.options?.externals,
   };
 
-  const webpackPlugins = [
+  const webpackPlugins = _.compact([
     new MiniCssExtractPlugin({ filename: 'css/[name].css' }),
     new webpack.DefinePlugin({ __DEV__: JSON.stringify(!IS_PRODUCTION) }),
-    new Dotenv({ path: path.join(process.cwd(), '.env') }),
-    new Dotenv({ path: path.join(process.cwd(), '.env.local') }),
+    fs.existsSync(path.join(process.cwd(), '.env')) && new Dotenv({ path: path.join(process.cwd(), '.env') }),
+    fs.existsSync(path.join(process.cwd(), '.env.local')) && new Dotenv({ path: path.join(process.cwd(), '.env.local') }),
     new webpack.ProvidePlugin({
       _: 'lodash',
     }),
     ...config.options?.plugins ?? [],
-  ];
+  ]);
 
   const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.ts');
 
