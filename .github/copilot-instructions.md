@@ -97,5 +97,21 @@ Hooks follow familiar patterns but with Frosty-specific reconciler integration:
 - Tests mirror source structure in `tests/`
 - CLI tools isolated in `packages/frosty-cli/`
 
-## Temporary Files for Testing
-When creating temporary files to test code, place all test scripts under `<project_root>/.temp/` to keep the workspace organized and avoid conflicts with the main codebase.
+## Frosty Framework Specifics
+- Import hooks from `'frosty'`, not `'react'`
+- Use `ElementNode` type instead of `ReactNode`
+- Component props use `PropsWithChildren<T>` pattern
+- Always verify Frosty-specific APIs. Do not assume React patterns apply directly.
+
+## Code Conventions
+- **Lodash Heavy**: Extensive use of `_.assign`, `_.toPath`, `_.get`, `_.compact` throughout
+- **MIT License Headers**: All source files include full MIT license header (see existing files)
+- **State Management**: Prefer context + hooks over external state libraries
+
+## Dependencies
+- **Build**: Rollup with TypeScript, Babel, SCSS support
+- **Platform Detection**: Module suffix resolution for cross-platform components
+
+## Testing & Development
+- Test server at `tests/server/app.tsx` - minimal Frosty app for component testing
+- **Temporary Files for Testing**: When creating temporary files to test code, place all test scripts under `<project_root>/.temp/` to keep the workspace organized and avoid conflicts with the main codebase.
