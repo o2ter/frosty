@@ -57,9 +57,6 @@ module.exports = (env, argv) => ({
   output: 'dist',
   client: {
     main: { entry: 'src/app.tsx', uri: '/' }
-  },
-  options: {
-    resolve: { alias: { '~': path.resolve(__dirname, 'src') } }
   }
 });
 ```
