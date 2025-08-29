@@ -492,6 +492,119 @@ module.exports = (env, argv) => {
 };
 ```
 
+### .env Files Support
+
+Frosty CLI automatically loads environment variables from `.env` files in your project root. The following files are supported (in order of precedence):
+
+1. **`.env.local`** - Local overrides, loaded first (should be in `.gitignore`)
+2. **`.env`** - Default environment variables
+
+Both files are optional and will only be loaded if they exist. Environment variables defined in these files will be available in your application code through `process.env`.
+
+#### File Format
+
+```bash
+# .env
+API_URL=https://api.example.com
+DEBUG=false
+FEATURE_FLAGS=feature1,feature2,feature3
+
+# .env.local (overrides .env values)
+API_URL=http://localhost:3001
+DEBUG=true
+```
+
+#### Usage in Code
+
+```js
+// Client or server code
+const apiUrl = process.env.API_URL || 'http://localhost:3000';
+const isDebug = process.env.DEBUG === 'true';
+const features = process.env.FEATURE_FLAGS?.split(',') || [];
+```
+
+#### Best Practices for .env Files
+
+1. **Never commit `.env.local`** - Add it to your `.gitignore`
+2. **Commit `.env` with safe defaults** - Use non-sensitive default values
+3. **Use `.env.example`** - Document required variables
+4. **Prefix client variables** - Consider prefixing client-side variables for clarity
+
+```bash
+# .env.example (committed to repo)
+API_URL=https://api.example.com
+DATABASE_URL=postgresql://user:pass@localhost:5432/dbname
+JWT_SECRET=your-secret-here
+CLIENT_ANALYTICS_KEY=
+```
+
+```bash
+# .gitignore
+.env.local
+```
+
+#### Security Considerations
+
+- **Server-only variables**: Sensitive variables (API keys, database URLs) are only available on the server side
+- **Client-side exposure**: For exposing data to the client, the `useServerResource` hook provides excellent security and SSR support
+- **Validation**: Consider validating required environment variables at startup
+
+```js
+// Validate required environment variables
+const requiredEnvVars = ['API_URL', 'DATABASE_URL'];
+for (const envVar of requiredEnvVars) {
+  if (!process.env[envVar]) {
+    throw new Error(`Missing required environment variable: ${envVar}`);
+  }
+}
+```
+
+### Exposing Client Variables with useServerResource
+
+The `useServerResource` hook provides an excellent way to expose environment variables and configuration to the client with full SSR support:
+
+**config/AppConfig.server.tsx**
+```tsx
+import { useServerResource } from 'frosty/web';
+
+export const AppConfigProvider = ({ children }: { children: ElementNode }) => {
+  const encoded = useServerResource('app-config', () => JSON.stringify({
+    apiUrl: process.env.API_URL || 'http://localhost:3001',
+    version: require('../package.json').version,
+    environment: process.env.NODE_ENV || 'development'
+  }), []);
+
+  const config = JSON.parse(encoded);
+  
+  return (
+    <AppConfigContext.Provider value={config}>
+      {children}
+    </AppConfigContext.Provider>
+  );
+};
+```
+
+**config/AppConfig.tsx**
+```tsx
+import { useServerResource } from 'frosty/web';
+
+export const AppConfigProvider = ({ children }: { children: ElementNode }) => {
+  const encoded = useServerResource('app-config');
+  const config = JSON.parse(encoded);
+  
+  return (
+    <AppConfigContext.Provider value={config}>
+      {children}
+    </AppConfigContext.Provider>
+  );
+};
+```
+
+**Benefits:**
+- **Server-side rendering**: Works seamlessly with SSR
+- **Security**: Only exposes what you explicitly serialize
+- **Flexibility**: Can include complex objects, not just strings
+
 ## Integration with CLI Commands
 
 The configuration is used by various CLI commands:
