@@ -769,9 +769,52 @@ function GlobalStateComponent() {
 }
 ```
 
+#### useDebounce
+
+Debounces function calls.
+
+```tsx
+import { useDebounce } from 'frosty';
+
+function SearchInput() {
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+
+  const debouncedSearch = useDebounce(async (searchQuery: string) => {
+    if (!searchQuery.trim()) {
+      setResults([]);
+      return;
+    }
+
+    const response = await fetch(`/api/search?q=${searchQuery}`);
+    const data = await response.json();
+    setResults(data.results);
+  }, 300);
+
+  useEffect(() => {
+    debouncedSearch(query);
+  }, [query, debouncedSearch]);
+
+  return (
+    <div>
+      <input 
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search..."
+      />
+      <ul>
+        {results.map(result => (
+          <li key={result.id}>{result.title}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
 #### useAsyncDebounce
 
-Debounces async function calls.
+Debounces async function calls with enhanced async handling.
 
 ```tsx
 import { useAsyncDebounce } from 'frosty';
@@ -797,7 +840,7 @@ function AsyncSearchInput() {
     } finally {
       setIsSearching(false);
     }
-  }, { wait: 300 });
+  }, 300);
 
   useEffect(() => {
     debouncedSearch(query);
@@ -885,41 +928,23 @@ Subscribes to external store state.
 ```tsx
 import { createStore, useStore } from 'frosty';
 
+// Create a store with an initial value
 const counterStore = createStore(0);
 
+// In a component
 function Counter() {
   const count = useStore(counterStore);
-
+  
+  const increment = () => counterStore.setValue(prev => prev + 1);
+  const decrement = () => counterStore.setValue(prev => prev - 1);
+  
   return (
     <div>
       <p>Count: {count}</p>
-      <button onClick={() => counterStore.setValue(count + 1)}>
-        Increment
-      </button>
-      <button onClick={() => counterStore.setValue(0)}>
-        Reset
-      </button>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
     </div>
   );
-}
-
-// Using selector for partial state
-interface UserState {
-  name: string;
-  email: string;
-  preferences: { theme: string };
-}
-
-const userStore = createStore<UserState>({
-  name: 'John',
-  email: 'john@example.com',
-  preferences: { theme: 'dark' }
-});
-
-function UserName() {
-  const name = useStore(userStore, user => user.name);
-  
-  return <h1>Hello, {name}!</h1>;
 }
 ```
 
@@ -1347,7 +1372,7 @@ function PerformanceMonitor() {
 Browser DOM renderer for client-side applications.
 
 ```tsx
-import { DOMRenderer } from 'frosty/dom';
+import { DOMRenderer } from 'frosty/renderer/dom';
 
 // Create a root and mount component
 const root = DOMRenderer.createRoot(document.getElementById('app'));
@@ -1362,7 +1387,7 @@ root.unmount();
 Server-side rendering with JSDOM.
 
 ```tsx
-import { ServerDOMRenderer } from 'frosty/server-dom';
+import { ServerDOMRenderer } from 'frosty/renderer/server-dom';
 
 // Render to string
 const renderer = new ServerDOMRenderer();
