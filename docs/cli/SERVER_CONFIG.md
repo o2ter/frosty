@@ -78,11 +78,11 @@ See [Server Entry Configuration](SERVER_ENTRY.md) for detailed documentation.
 module.exports = {
   client: {
     main: {
-      entry: 'src/app.js',    // Path to client entry file
+      entry: 'src/app.tsx',    // Path to client entry file
       uri: '/',               // (Optional) URI path for routing
     },
     admin: {
-      entry: 'src/admin.js',  // Additional client app
+      entry: 'src/admin.tsx',  // Additional client app
       uri: '/admin',          // Mounted at /admin path
     }
   }
@@ -150,10 +150,6 @@ module.exports = {
         '@components': path.resolve(__dirname, 'src/components')
       }
     },
-    externals: {
-      'react': 'React',
-      'react-dom': 'ReactDOM'
-    },
     plugins: [
       // Additional webpack plugins
     ],
@@ -198,7 +194,7 @@ module.exports = (env, argv) => {
     
     client: {
       main: {
-        entry: 'src/app.js',
+        entry: 'src/app.tsx',
         uri: '/'
       }
     },
@@ -246,19 +242,19 @@ module.exports = {
   client: {
     // Main customer-facing app
     app: {
-      entry: 'src/app/index.js',
+      entry: 'src/app/index.tsx',
       uri: '/'
     },
     
     // Admin dashboard
     admin: {
-      entry: 'src/admin/index.js', 
+      entry: 'src/admin/index.tsx', 
       uri: '/admin'
     },
     
     // API documentation
     docs: {
-      entry: 'src/docs/index.js',
+      entry: 'src/docs/index.tsx',
       uri: '/docs'
     }
   },
@@ -292,7 +288,7 @@ module.exports = (env, argv) => {
     
     client: {
       main: {
-        entry: isTest ? 'src/test-app.js' : 'src/app.js',
+        entry: isTest ? 'src/test-app.tsx' : 'src/app.tsx',
         uri: '/'
       }
     },
@@ -335,7 +331,7 @@ const path = require('path');
 module.exports = {
   client: {
     main: {
-      entry: 'src/app.js',
+      entry: 'src/app.tsx',
       uri: '/'
     }
   },
@@ -374,12 +370,6 @@ module.exports = {
     module: {
       rules: [
         // Only add custom loaders here - CSS/SCSS, images, fonts are handled by Frosty CLI
-        // Handle SVG files as React components
-        {
-          test: /\.svg$/,
-          use: ['@svgr/webpack']
-        },
-        
         // Handle GraphQL files
         {
           test: /\.(graphql|gql)$/,
@@ -547,17 +537,6 @@ CLIENT_ANALYTICS_KEY=
 
 - **Server-only variables**: Sensitive variables (API keys, database URLs) are only available on the server side
 - **Client-side exposure**: For exposing data to the client, the `useServerResource` hook provides excellent security and SSR support
-- **Validation**: Consider validating required environment variables at startup
-
-```js
-// Validate required environment variables
-const requiredEnvVars = ['API_URL', 'DATABASE_URL'];
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    throw new Error(`Missing required environment variable: ${envVar}`);
-  }
-}
-```
 
 ### Exposing Client Variables with useServerResource
 
@@ -658,7 +637,7 @@ module.exports = {
   
   client: {
     main: {
-      entry: 'src/index.js',  // CRA entry point
+      entry: 'src/index.tsx',  // CRA entry point
       uri: '/'
     }
   },
@@ -684,7 +663,7 @@ module.exports = {
   
   client: {
     main: {
-      entry: 'pages/_app.js',  // Next.js app entry
+      entry: 'pages/_app.tsx',  // Next.js app entry
       uri: '/'
     }
   },

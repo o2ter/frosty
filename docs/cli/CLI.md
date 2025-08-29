@@ -51,7 +51,7 @@ npx frosty run [options] [input-file]
 npx frosty run
 
 # Run a specific entry file
-npx frosty run app.js
+npx frosty run app.tsx
 
 # Development mode with watch
 npx frosty run --watch --debug
@@ -63,7 +63,7 @@ npx frosty run --build-only
 npx frosty run --port 3000 --configuration my-config.js
 
 # Production build
-npx frosty run --build-only app.js
+npx frosty run --build-only app.tsx
 ```
 
 ### Configuration File (Optional)
@@ -80,7 +80,7 @@ module.exports = {
   serverEntry: 'server.js',  // Server entry file
   client: {                  // (Optional) Client entry points
     main: {
-      entry: 'src/app.js',   // Path to client entry file
+      entry: 'src/app.tsx',   // Path to client entry file
       uri: '/',              // (Optional) URI path
     }
   },
@@ -180,11 +180,6 @@ module.exports = (env, argv) => {
           '@utils': path.resolve(__dirname, 'src/utils')
         },
         extensions: ['.tsx', '.ts', '.jsx', '.js']
-      },
-      
-      externals: isDevelopment ? {} : {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
       },
       
       plugins: [],

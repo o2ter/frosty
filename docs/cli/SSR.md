@@ -16,10 +16,10 @@ The Frosty CLI creates two separate bundles:
 
 ```bash
 # Build and run with SSR
-npx frosty run app.js
+npx frosty run app.tsx
 
 # Development mode with hot reloading
-npx frosty run --watch --debug app.js
+npx frosty run --watch --debug app.tsx
 ```
 
 ### 2. Rendering Pipeline
@@ -703,7 +703,7 @@ function SelectiveSSRComponent() {
 npx frosty run --debug --watch
 
 # Check server vs client rendering differences
-NODE_ENV=development npx frosty run app.js
+NODE_ENV=development npx frosty run app.tsx
 ```
 
 ### Debugging Server Resources
