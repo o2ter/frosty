@@ -78,7 +78,7 @@ module.exports = (env, argv) => ({
 ## Project-Specific Conventions
 
 ### Import Aliases
-- Use `~/` for internal imports (configured in Jest and tsconfig)
+- Use `~/` for tests (configured in Jest) but not src/
 - External imports use standard module resolution
 
 ### Framework Independence
