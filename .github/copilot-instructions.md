@@ -1,7 +1,7 @@
 # AI Coding Agent Instructions
 
 ## Project Overview
-Frosty is a JSX UI library with server-side rendering, modern hooks API, and built-in CLI tools. The architecture consists of:
+Frosty is a JSX UI library with server-side rendering, a modern hooks API, and built-in CLI tools. The architecture consists of:
 
 - **Core reconciler**: Virtual DOM and rendering engine (`src/core/reconciler/`)
 - **Renderer implementations**: DOM, server-DOM, and native renderers (`src/renderer/`)
@@ -21,9 +21,9 @@ export default function App() {
 ```
 
 ### Renderer Architecture
-- `_Renderer` base class provides async reconciliation framework
+- The `_Renderer` base class provides an async reconciliation framework
 - Multiple specialized renderers: `DOMRenderer`, `ServerDOMRenderer`, `NativeRenderer`
-- All use the same reconciler but different element creation/update strategies
+- All use the same reconciler but with different element creation/update strategies
 
 ### Module Resolution with Suffixes
 Frosty uses environment-specific file resolution:
@@ -63,7 +63,6 @@ module.exports = (env, argv) => ({
 
 ### Testing Patterns
 - Use `ServerDOMRenderer` for SSR testing: `const renderer = new ServerDOMRenderer()`
-- Test async hooks with `useAwaited` for promises that must resolve before render
 - Component tests should verify both props and rendering output
 - Hook tests validate state management and side effects
 
@@ -75,7 +74,7 @@ module.exports = (env, argv) => ({
 ## Project-Specific Conventions
 
 ### Import Aliases
-- Use `~/` for tests (configured in Jest) but not src/
+- Use `~/` for tests (configured in Jest) but not code under `src/`
 - External imports use standard module resolution
 
 ### Framework Independence
@@ -86,9 +85,9 @@ module.exports = (env, argv) => ({
 
 ### Hook Implementation
 Hooks follow familiar patterns but with Frosty-specific reconciler integration:
-- Effects receive `AbortSignal` parameter for cleanup
+- Effects receive an `AbortSignal` parameter for cleanup
 - `useAwaited` blocks rendering until promise resolves (SSR-safe)
-- Web APIs gracefully degrade in server environment
+- Web APIs gracefully degrade in the server environment
 
 ### File Organization
 - Core framework: `src/core/`
@@ -109,9 +108,9 @@ Hooks follow familiar patterns but with Frosty-specific reconciler integration:
 - **State Management**: Prefer context + hooks over external state libraries
 
 ## Dependencies
-- **Build**: Rollup with TypeScript, Babel, SCSS support
+- **Build**: Rollup with TypeScript, Babel, and SCSS support
 - **Platform Detection**: Module suffix resolution for cross-platform components
 
 ## Testing & Development
-- Test server at `tests/server/app.tsx` - minimal Frosty app for component testing
+- Test server at `tests/server/app.tsx` - a minimal Frosty app for component testing
 - **Temporary Files for Testing**: When creating temporary files to test code, place all test scripts under `<project_root>/.temp/` to keep the workspace organized and avoid conflicts with the main codebase.
