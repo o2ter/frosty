@@ -65,6 +65,9 @@ module.exports = (env, argv) => ({
 - Use `ServerDOMRenderer` for SSR testing: `const renderer = new ServerDOMRenderer()`
 - Component tests should verify both props and rendering output
 - Hook tests validate state management and side effects
+- **Always review test case content**: Verify that tests are actually testing the intended behavior, not just passing superficially
+- **Check test assertions**: Ensure assertions validate the correct outputs, state changes, and side effects
+- **Validate test coverage**: Make sure edge cases and error conditions are properly tested
 
 ## Code Generation
 - `scripts/gen-data.mjs` generates type-safe HTML/SVG element definitions in `generated/elements.ts`
@@ -114,6 +117,13 @@ Hooks follow familiar patterns but with Frosty-specific reconciler integration:
 ## Testing & Development
 - Test server at `tests/server/app.tsx` - a minimal Frosty app for component testing
 - **Temporary Files for Testing**: When creating temporary files to test code, place all test scripts under `<project_root>/.temp/` to keep the workspace organized and avoid conflicts with the main codebase.
+- **Test Case Verification**: Always examine the actual content of test cases to ensure they're testing what they're supposed to test:
+  - Read test files completely to understand test logic and assertions
+  - Verify that test descriptions match what the test actually does
+  - Check that assertions are testing the correct behavior and edge cases
+  - Ensure mocks and test data are appropriate for the scenario being tested
+  - Look for missing test cases or gaps in coverage for critical functionality
+  - Validate that tests would actually fail if the implementation was broken
 
 ## **Important:** Task Execution Guidelines
 When running any command or task as an AI agent:
@@ -145,6 +155,8 @@ When running any command or task as an AI agent:
   - Running all tests when no parameters are provided
 - **Prefer tool-based test execution** over manual `yarn test` or `npm test` commands
 - Only use terminal commands for test execution when the `runTests` tool is not available or insufficient
+- **Verify test quality**: Always examine the actual test code to ensure tests are meaningful and validate the correct behavior
+- **Check test logic**: Don't assume tests are correct just because they pass - review the test implementation to confirm it's testing what it claims to test
 
 ### Error Handling
 - If a command fails, read the error output completely before suggesting fixes
