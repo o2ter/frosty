@@ -74,6 +74,30 @@ module.exports = (env, argv) => ({
 - Auto-generates from WebRef specs to ensure complete DOM API coverage
 - Run `yarn gen-data` when updating element type definitions
 
+## AI Agent Guidelines
+### Deep Thinking and Hypothesis Before Coding
+**CRITICAL:** Before writing any code, agents must:
+1. **Think deeply about the problem:** Analyze requirements, constraints, and possible edge cases.
+2. **Formulate hypotheses:** Predict how the code should behave, including possible failure modes and success criteria.
+3. **List out proof steps:** Plan how to simulate or reason about the result in mind before implementation. This includes outlining the logic, expected outcomes, and how each part will be validated.
+4. **Write code only after planning:** Only begin coding once the above steps are clear and the approach is well-structured.
+5. **Verify by running tests or scripts:** After implementation, always validate the code using relevant tests or scripts to ensure correctness and expected behavior.
+
+**Why this matters:**
+- Prevents shallow or rushed solutions that miss critical details
+- Reduces bugs and rework by catching issues in the planning phase
+- Ensures code is written with clear intent and validation strategy
+- Improves reliability and maintainability of the codebase
+
+**Example workflow:**
+1. Read and analyze the requirements
+2. Brainstorm possible approaches and edge cases
+3. Write out hypotheses and expected results
+4. Plan proof steps (how to test, what to check)
+5. Implement the code
+6. Run tests/scripts to confirm behavior
+7. Refine as needed based on results
+
 ## Project-Specific Conventions
 
 ### Import Aliases
