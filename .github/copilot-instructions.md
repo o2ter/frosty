@@ -98,6 +98,23 @@ module.exports = (env, argv) => ({
 6. Run tests/scripts to confirm behavior
 7. Refine as needed based on results
 
+### Code Reuse and Dead Code
+- **Refactor repeating code**: When you find the same or similar code in multiple places, extract it into a small, well-named, reusable function or utility module. Reuse reduces bugs, improves readability, and makes testing easier. Prefer composition over duplication.
+- **Keep abstractions pragmatic**: Don't over-abstract. If code repeats but has meaningful differences, prefer a focused helper with clear parameters rather than a complex, one-size-fits-all abstraction.
+- **Remove unused code**: Always delete dead code, unused functions, and commented-out blocks before committing. Unused code increases maintenance burden, hides real behavior, and can mask broken assumptions. If you must keep something experimental, move it to a clearly labeled experimental file or the `.temp/` area and document why it remains.
+- **Verify after removal**: After deleting code, run the build and tests to ensure nothing relied on the removed code. Update documentation and examples that referenced the previous implementation.
+
+### Temporary debug code — remove before committing
+
+**CRITICAL:** Always remove all temporary debug code and artifacts before committing or opening a pull request. This includes but is not limited to:
+- ad-hoc print/log statements (e.g., `print`, `console.log`),
+- temporary debug flags or switches left enabled,
+- throwaway test harness scripts placed outside the proper `tests/` directory,
+- helper files placed in `.temp/` that were only intended for local debugging, and
+- large commented-out blocks or shortcuts that were added solely to debug an issue.
+
+If durable debugging helpers are necessary, extract them into clearly documented utility modules, gate them behind explicit feature flags, and add a note in the changelist documenting why they remain. Never leave transient debug code in main branches or release builds.
+
 ## Project-Specific Conventions
 
 ### Import Aliases
