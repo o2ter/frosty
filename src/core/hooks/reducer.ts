@@ -61,7 +61,10 @@ export function useReducer(
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       dispatch: (action?: any) => {
-        state.value = reducer(state.value, action);
+        const oldValue = state.value;
+        const newValue = reducer(state.value, action);
+        if (oldValue === newValue) return;
+        state.value = newValue;
         node?._setDirty();
       },
     };

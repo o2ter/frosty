@@ -53,7 +53,10 @@ export function useState(initialState?: any) {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       setValue: (dispatch: SetStateAction<any>) => {
-        state.value = _.isFunction(dispatch) ? dispatch(state.value) : dispatch;
+        const oldValue = state.value;
+        const newValue = _.isFunction(dispatch) ? dispatch(oldValue) : dispatch;
+        if (oldValue === newValue) return;
+        state.value = newValue;
         node?._setDirty();
       },
     };
