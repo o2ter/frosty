@@ -112,9 +112,9 @@ if [ "$NO_BUILD" != "true" ]; then
   [ -n "$SRCROOT" ] && BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
   [ -n "$PORT" ] && BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   if [ "$WATCH_MODE" = "true" ]; then
-    npx webpack-cli $BUILD_OPTS --watch &
+    node "$FROSTY_CLI_ROOT/node_modules/webpack-cli/bin/cli.js" $BUILD_OPTS --watch &
   else
-    npx webpack-cli $BUILD_OPTS
+    node "$FROSTY_CLI_ROOT/node_modules/webpack-cli/bin/cli.js" $BUILD_OPTS
   fi
 fi
 
