@@ -31,6 +31,7 @@ import crypto from 'crypto';
 import webpack from 'webpack';
 import Dotenv from 'dotenv-webpack';
 import TerserPlugin from 'terser-webpack-plugin';
+import nodeExternals from 'webpack-node-externals';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const { dirname: __dirname } = import.meta;
@@ -287,6 +288,10 @@ export default async (env, argv) => {
           '...'
         ],
       },
+      externals: [
+        ...webpackConfiguration.externals || [],
+        nodeExternals(),
+      ],
       module: {
         rules: [
           babelLoaderConfiguration({ server: true }),
