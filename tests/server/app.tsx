@@ -35,10 +35,10 @@ export const App = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const window = useWindow();
   const ssr = useServerResource('test', () => "hello, world");
-  // useEffect(() => {
-  //   const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
-  //   return () => clearTimeout(handle);
-  // }, []);
+  useEffect(() => {
+    const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
+    return () => clearTimeout(handle);
+  }, []);
   useAwaited(async () => {
     console.log(ssr);
     console.log(location);

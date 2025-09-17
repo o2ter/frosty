@@ -177,7 +177,7 @@ function Component() {
 }
 ```
 
-**Note**: Frosty CLI includes CSS, SCSS, and PostCSS loaders by default with Autoprefixer. No additional webpack configuration is needed for standard CSS processing.
+**Note**: Frosty CLI includes CSS, SCSS, and PostCSS loaders. No additional webpack configuration is needed for standard CSS processing.
 
 3. **Style vs inlineStyle Usage**:
 ```tsx
@@ -251,27 +251,7 @@ $border-radius: 0.375rem;
 }
 ```
 
-6. **PostCSS and Autoprefixer** (automatically applied):
-```css
-/* Your CSS */
-.flex-container {
-  display: flex;
-  user-select: none;
-}
-
-/* Automatically becomes (with vendor prefixes) */
-.flex-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-```
-
-7. **className Array Syntax Issues**:
+6. **className Array Syntax Issues**:
 ```tsx
 // ✅ Correct array syntax for conditional classes
 <div className={[
@@ -297,7 +277,7 @@ $border-radius: 0.375rem;
 </div>
 ```
 
-8. **CSS Import Order Issues**:
+7. **CSS Import Order Issues**:
 ```tsx
 // ✅ Import CSS files before component code
 import './global.css';        // Global styles first
@@ -309,7 +289,7 @@ function Component() {
 }
 ```
 
-9. **Asset URL Issues in CSS**:
+8. **Asset URL Issues in CSS**:
 ```css
 /* ✅ Relative paths work with Frosty CLI's file loader */
 .background {
@@ -323,7 +303,7 @@ function Component() {
 /* File loader automatically handles hashing and optimization */
 ```
 
-10. **SSR Style Hydration Issues**:
+9. **SSR Style Hydration Issues**:
 ```tsx
 // ✅ Ensure styles are consistent between server and client
 function Component() {
@@ -344,7 +324,7 @@ function Component() {
 }
 ```
 
-11. **Dynamic Styles Not Updating**:
+10. **Dynamic Styles Not Updating**:
 ```tsx
 // ✅ Ensure dependencies trigger re-renders
 function DynamicComponent({ theme }: { theme: string }) {
