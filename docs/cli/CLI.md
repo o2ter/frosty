@@ -89,6 +89,7 @@ module.exports = {
     server: ['.node', '.server', '.web', '']
   },
   polyfills: {},             // (Optional) Polyfill options for Babel
+  postcss: {},               // (Optional) PostCSS configuration
   options: {                 // (Optional) Webpack and build options
     resolve: {},             // Custom resolve options (e.g., alias)
     externals: {},           // Webpack externals

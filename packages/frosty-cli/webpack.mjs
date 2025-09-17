@@ -113,6 +113,9 @@ export default async (env, argv) => {
       path.resolve(__dirname, 'node_modules/css-loader'),
       {
         loader: path.resolve(__dirname, 'node_modules/postcss-loader'),
+        options: {
+          postcssOptions: config.postcss ?? {},
+        }
       },
       path.resolve(__dirname, 'node_modules/sass-loader'),
     ].filter(Boolean),
