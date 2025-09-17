@@ -199,7 +199,7 @@ export default async (env, argv) => {
     ...config.options?.plugins ?? [],
   ]);
 
-  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, './src/server/default.ts');
+  const server = config.serverEntry ? path.resolve(process.cwd(), config.serverEntry) : path.resolve(__dirname, 'src/server/default.ts');
 
   const random = crypto.randomUUID();
   const tempDir = fs.mkdtempSync(`${os.tmpdir()}${path.sep}`);
@@ -224,7 +224,7 @@ export default async (env, argv) => {
       entry: {
         [`${name}_bundle`]: [
           path.resolve(__dirname, 'node_modules/core-js/stable'),
-          path.resolve(__dirname, './src/client/index.js'),
+          path.resolve(__dirname, 'src/client/index.js'),
         ],
       },
       output: {
@@ -269,7 +269,7 @@ export default async (env, argv) => {
       entry: {
         server: [
           path.resolve(__dirname, 'node_modules/core-js/stable'),
-          path.resolve(__dirname, './src/server/index.js'),
+          path.resolve(__dirname, 'src/server/index.js'),
         ],
       },
       output: {
