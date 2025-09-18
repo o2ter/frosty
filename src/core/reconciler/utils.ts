@@ -25,4 +25,35 @@
 
 import _ from 'lodash';
 
-export const equalDeps = (lhs: any, rhs: any, customizer?: _.IsEqualCustomizer) => customizer ? _.isEqualWith(lhs ?? null, rhs, customizer) : _.isEqual(lhs ?? null, rhs);
+export const equalDeps = (lhs: any, rhs: any) => {
+  if (lhs === rhs) return true;
+  if (_.isArray(lhs) && _.isArray(rhs)) {
+    if (lhs.length !== rhs.length) return false;
+    for (let i = 0; i < lhs.length; i++) {
+      if (!equalDeps(lhs[i], rhs[i])) return false;
+    }
+    return true;
+  }
+  if (_.isPlainObject(lhs) && _.isPlainObject(rhs)) {
+    const lkeys = _.keys(lhs);
+    const rkeys = _.keys(rhs);
+    if (lkeys.length !== rkeys.length) return false;
+    for (const key of lkeys) {
+      if (!equalDeps(lhs[key], rhs[key])) return false;
+    }
+    return true;
+  }
+  return false;
+}
+
+export const equalProps = (lhs: Record<string, any>, rhs: Record<string, any>) => {
+  if (lhs === rhs) return true;
+  const lkeys = _.keys(lhs);
+  const rkeys = _.keys(rhs);
+  if (lkeys.length !== rkeys.length) return false;
+  for (const key of lkeys) {
+    if (_.isFunction(lhs[key]) && _.isFunction(rhs[key])) continue;
+    if (!equalDeps(lhs[key], rhs[key])) return false;
+  }
+  return true;
+};

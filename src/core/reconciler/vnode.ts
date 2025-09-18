@@ -29,7 +29,7 @@ import { Context, isContext } from '../hooks/context';
 import { reconciler } from './state';
 import { myersSync } from 'myers.js';
 import { EventEmitter } from './events';
-import { equalDeps } from './utils';
+import { equalDeps, equalProps } from './utils';
 import { _Renderer } from '../renderer';
 import { PropsType } from '../types/runtime';
 import { uniqueId } from '../utils';
@@ -192,7 +192,7 @@ export class VNode {
       for (const [i, item] of this._children.entries()) {
         if (!(item instanceof VNode)) continue;
         if (!(children[i] instanceof VNode)) continue;
-        if (!equalDeps(item._component.props, children[i]._component.props, (l, r) => _.isFunction(l) && _.isFunction(r) ? true : undefined)) item._dirty = true;
+        if (!equalProps(item._component.props, children[i]._component.props)) item._dirty = true;
         item._component = children[i]._component;
       }
     } catch (error) {
