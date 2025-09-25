@@ -154,15 +154,15 @@ export abstract class _Renderer<T> {
         if (node.error || !_.isFunction(node.type)) continue;
         if (!(node.type.prototype instanceof NativeElementType)) {
           map.set(node, {});
-        // } else if (
-        //   node.type.prototype instanceof _ParentComponent || node.type.prototype instanceof _ChildComponent
-        // ) {
-        //   let elem = elements?.get(node)?.native;
-        //   if (!elem) {
-        //     const Coponent = node.type as any;
-        //     elem = new Coponent();
-        //   }
-        //   map.set(node, { native: elem });
+        } else if (
+          node.type.prototype instanceof _ParentComponent || node.type.prototype instanceof _ChildComponent
+        ) {
+          let elem = elements?.get(node)?.native;
+          if (!elem) {
+            const Coponent = node.type as any;
+            elem = new Coponent();
+          }
+          map.set(node, { native: elem });
         } else {
           try {
             if (updated) {
