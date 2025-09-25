@@ -24,10 +24,10 @@
 //
 
 export * from './core/types/common';
+export * from './core/components';
 export * from './core/hooks';
 export { ComponentNode } from './core/types/component';
 export { ErrorBoundary } from './core/types/error';
-export { Fragment } from './core/types/fragment';
 export { PropsProvider } from './core/types/props';
 export type { _ElementType as ElementType } from './core/types/runtime';
 export { createElement } from './core/types/runtime';

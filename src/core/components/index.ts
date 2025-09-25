@@ -23,8 +23,4 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentType, PropsWithChildren } from './common';
-
-export const Fragment: ComponentType<PropsWithChildren<{}>> = ({ children }) => {
-  return children;
-}
+export { Fragment } from './fragment';

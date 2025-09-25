@@ -1,5 +1,5 @@
 //
-//  jsx-runtime.ts
+//  fragment.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -23,29 +23,8 @@
 //  THE SOFTWARE.
 //
 
-import { ComponentNode } from './core/types/component';
-import { _createElement, _ElementType, _IntrinsicAttributes, _IntrinsicElements, PropsType } from './core/types/runtime';
+import { ComponentType, PropsWithChildren } from '../types/common';
 
-export { Fragment } from './core/components';
-
-export declare namespace JSX {
-  type IntrinsicElements = _IntrinsicElements;
-  type IntrinsicAttributes = _IntrinsicAttributes;
-  type ElementType = _ElementType;
-  type Element = ComponentNode;
-  type ElementChildrenAttribute = { children: {}; };
-};
-
-export const JSX = Object.freeze({
-  Element: ComponentNode,
-});
-
-export function jsx(
-  type: _ElementType,
-  props: PropsType,
-  key?: string | number
-): ComponentNode {
-  return _createElement(type, { ...props, key });
+export const Fragment: ComponentType<PropsWithChildren<{}>> = ({ children }) => {
+  return children;
 }
-
-export const jsxs = jsx;
