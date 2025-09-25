@@ -29,7 +29,6 @@ import { ComponentNode, NativeElementType } from './types/component';
 import { reconciler } from './reconciler/state';
 import nextick from 'nextick';
 import { equalDeps } from './reconciler/utils';
-import { _ChildComponent, _ParentComponent } from './components/pairs';
 
 export abstract class _Renderer<T> {
 
@@ -66,15 +65,7 @@ export abstract class _Renderer<T> {
     const mountState = new Map<VNode, _State[]>();
 
     const children = (node: VNode, elements: Map<VNode, { native?: T }>): (string | T)[] => {
-      return _.flatMap(node.children, x => {
-        if (_.isString(x)) return x;
-        if (_.isFunction(node.type) && (
-          node.type.prototype instanceof _ParentComponent || node.type.prototype instanceof _ChildComponent
-        )) {
-          return x.children as (string | T)[];
-        }
-        return elements.get(x)?.native ?? children(x, elements);
-      });
+      return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x)?.native ?? children(x, elements));
     };
 
     const commit = (elements: Map<VNode, { native?: T }>, force?: boolean) => {
@@ -84,43 +75,39 @@ export abstract class _Renderer<T> {
           if (item instanceof VNode) _mount(item, [...stack, node]);
         }
         const element = elements.get(node)?.native;
-        if (element instanceof _ParentComponent || element instanceof _ChildComponent) {
-          element._replaceChildren(children(node, elements));
-        } else {
-          if (element) {
+        if (element) {
+          try {
+            this._replaceChildren(node, element, children(node, elements), stack, force);
+          } catch (e) {
+            console.error(e);
+          }
+        }
+        const state: _State[] = [];
+        const prevState = mountState.get(node) ?? [];
+        const curState = node.state;
+        for (const i of _.range(Math.max(prevState.length, curState.length))) {
+          const unmount = prevState[i]?.unmount;
+          const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
+          if (unmount && changed) {
             try {
-              this._replaceChildren(node, element, children(node, elements), stack, force);
+              unmount();
             } catch (e) {
               console.error(e);
             }
           }
-          const state: _State[] = [];
-          const prevState = mountState.get(node) ?? [];
-          const curState = node.state;
-          for (const i of _.range(Math.max(prevState.length, curState.length))) {
-            const unmount = prevState[i]?.unmount;
-            const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
-            if (unmount && changed) {
+          state.push({
+            hook: curState[i].hook,
+            deps: curState[i].deps,
+            unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
               try {
-                unmount();
+                return curState[i].mount?.();
               } catch (e) {
                 console.error(e);
               }
-            }
-            state.push({
-              hook: curState[i].hook,
-              deps: curState[i].deps,
-              unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
-                try {
-                  return curState[i].mount?.();
-                } catch (e) {
-                  console.error(e);
-                }
-              })(),
-            });
-          }
-          mountState.set(node, state);
+            })(),
+          });
         }
+        mountState.set(node, state);
       };
 
       for (const [node, state] of mountState) {
@@ -154,31 +141,22 @@ export abstract class _Renderer<T> {
         if (node.error) continue;
         if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
           map.set(node, {});
-        } else if (_.isFunction(node.type) && (
-          node.type.prototype instanceof _ParentComponent || node.type.prototype instanceof _ChildComponent
-        )) {
-          let elem = elements?.get(node)?.native;
-          if (!elem) {
-            const Coponent = node.type as any;
-            elem = new Coponent();
-          }
-          map.set(node, { native: elem });
-        } else {
-          try {
-            if (updated) {
-              let elem = elements?.get(node)?.native;
-              if (elem) {
-                this._updateElement(node, elem, stack);
-              } else {
-                elem = this._createElement(node, stack);
-              }
-              map.set(node, { native: elem });
+          continue;
+        }
+        try {
+          if (updated) {
+            let elem = elements?.get(node)?.native;
+            if (elem) {
+              this._updateElement(node, elem, stack);
             } else {
-              map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
+              elem = this._createElement(node, stack);
             }
-          } catch (e) {
-            console.error(e);
+            map.set(node, { native: elem });
+          } else {
+            map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
           }
+        } catch (e) {
+          console.error(e);
         }
       }
       commit(map, force);
