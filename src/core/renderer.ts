@@ -151,12 +151,12 @@ export abstract class _Renderer<T> {
       }
       const map = new Map<VNode, { native?: T }>();
       for await (const { node, stack, updated } of runtime.excute()) {
-        if (node.error || !_.isFunction(node.type)) continue;
-        if (!(node.type.prototype instanceof NativeElementType)) {
+        if (node.error) continue;
+        if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
           map.set(node, {});
-        } else if (
+        } else if (_.isFunction(node.type) && (
           node.type.prototype instanceof _ParentComponent || node.type.prototype instanceof _ChildComponent
-        ) {
+        )) {
           let elem = elements?.get(node)?.native;
           if (!elem) {
             const Coponent = node.type as any;
