@@ -23,4 +23,5 @@
 //  THE SOFTWARE.
 //
 
-export { Fragment } from './fragment';
+export * from './fragment';
+export { createPairs } from './pairs';
