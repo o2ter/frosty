@@ -27,26 +27,27 @@ import _ from "lodash";
 import { PropsWithChildren } from "../types/common";
 import { NativeElementType } from "../types/component";
 import { _createElement } from "../types/runtime";
-import { VNode } from "../reconciler/vnode";
 
 export abstract class _ParentComponent extends NativeElementType {
   abstract isChildNode(child: any): boolean;
 }
 
+export abstract class _ChildComponent extends NativeElementType {
+}
+
 export const createPairs = ({ allowTextChildren }: {
   allowTextChildren?: boolean;
 }) => {
-  const ChildComponent = ({ children }: PropsWithChildren<{}>) => {
-    return children;
-  };
+  class ChildComponent extends _ChildComponent {
+  }
   class ParentComponent extends _ParentComponent {
-    isChildNode(child: VNode) {
+    isChildNode(child: any) {
       if (allowTextChildren && _.isString(child)) return true;
-      return child.type === ChildComponent;
+      return child instanceof ChildComponent;
     }
   }
   return {
     Parent: ({ children }: PropsWithChildren<{}>) => _createElement(ParentComponent, { children }),
-    Child: ChildComponent
+    Child: ({ children }: PropsWithChildren<{}>) => _createElement(ChildComponent, { children }),
   }
 }
