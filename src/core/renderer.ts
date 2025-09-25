@@ -29,6 +29,7 @@ import { ComponentNode, NativeElementType } from './types/component';
 import { reconciler } from './reconciler/state';
 import nextick from 'nextick';
 import { equalDeps } from './reconciler/utils';
+import { _ParentComponent } from './components/pairs';
 
 export abstract class _Renderer<T> {
 
@@ -65,7 +66,12 @@ export abstract class _Renderer<T> {
     const mountState = new Map<VNode, _State[]>();
 
     const children = (node: VNode, elements: Map<VNode, { native?: T }>): (string | T)[] => {
-      return _.flatMap(node.children, x => _.isString(x) ? x : elements.get(x)?.native ?? children(x, elements));
+      return _.flatMap(node.children, x => {
+        if (_.isString(x)) return x;
+        const _node = elements.get(x)?.native;
+        if (_node instanceof _ParentComponent) return _.filter(children(x, elements), y => _node.isChildNode(y));
+        return _node ?? children(x, elements);
+      });
     };
 
     const commit = (elements: Map<VNode, { native?: T }>, force?: boolean) => {
@@ -75,6 +81,7 @@ export abstract class _Renderer<T> {
           if (item instanceof VNode) _mount(item, [...stack, node]);
         }
         const element = elements.get(node)?.native;
+        if (element instanceof _ParentComponent) return;
         if (element) {
           try {
             this._replaceChildren(node, element, children(node, elements), stack, force);
@@ -141,22 +148,29 @@ export abstract class _Renderer<T> {
         if (node.error) continue;
         if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
           map.set(node, {});
-          continue;
-        }
-        try {
-          if (updated) {
-            let elem = elements?.get(node)?.native;
-            if (elem) {
-              this._updateElement(node, elem, stack);
-            } else {
-              elem = this._createElement(node, stack);
-            }
-            map.set(node, { native: elem });
-          } else {
-            map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
+        } else if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
+          let elem = elements?.get(node)?.native;
+          if (!elem) {
+            const Component = node.type as any;
+            elem = new Component();
           }
-        } catch (e) {
-          console.error(e);
+          map.set(node, { native: elem });
+        } else {
+          try {
+            if (updated) {
+              let elem = elements?.get(node)?.native;
+              if (elem) {
+                this._updateElement(node, elem, stack);
+              } else {
+                elem = this._createElement(node, stack);
+              }
+              map.set(node, { native: elem });
+            } else {
+              map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
+            }
+          } catch (e) {
+            console.error(e);
+          }
         }
       }
       commit(map, force);

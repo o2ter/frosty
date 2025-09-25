@@ -27,39 +27,26 @@ import _ from "lodash";
 import { PropsWithChildren } from "../types/common";
 import { NativeElementType } from "../types/component";
 import { _createElement } from "../types/runtime";
+import { VNode } from "../reconciler/vnode";
 
 export abstract class _ParentComponent extends NativeElementType {
-
-  children: any[] = [];
-
-  abstract _replaceChildren(children: any[]): void;
-}
-
-export abstract class _ChildComponent extends NativeElementType {
-
-  children: any[] = [];
-
-  abstract _replaceChildren(children: any[]): void;
+  abstract isChildNode(child: any): boolean;
 }
 
 export const createPairs = ({ allowTextChildren }: {
   allowTextChildren?: boolean;
 }) => {
+  const ChildComponent = ({ children }: PropsWithChildren<{}>) => {
+    return children;
+  };
   class ParentComponent extends _ParentComponent {
-    _replaceChildren(children: any[]) {
-      const filtered = allowTextChildren
-        ? _.filter(children, x => _.isString(x) || x instanceof _ParentComponent)
-        : _.filter(children, x => x instanceof _ParentComponent);
-      this.children = _.flatMap(filtered, x => _.isString(x) ? x : x.children);
-    }
-  }
-  class ChildComponent extends _ChildComponent {
-    _replaceChildren(children: any[]) {
-      this.children = children;
+    isChildNode(child: VNode) {
+      if (allowTextChildren && _.isString(child)) return true;
+      return child.type === ChildComponent;
     }
   }
   return {
     Parent: ({ children }: PropsWithChildren<{}>) => _createElement(ParentComponent, { children }),
-    Child: ({ children }: PropsWithChildren<{}>) => _createElement(ChildComponent, { children }),
+    Child: ChildComponent
   }
 }
