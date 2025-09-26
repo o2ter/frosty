@@ -37,7 +37,7 @@ export abstract class _ChildComponent extends NativeElementType {
 
 export const createPairs = ({ allowTextChildren }: {
   allowTextChildren?: boolean;
-}) => {
+} = {}) => {
   class ChildComponent extends _ChildComponent {
   }
   class ParentComponent extends _ParentComponent {

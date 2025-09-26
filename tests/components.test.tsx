@@ -24,7 +24,7 @@
 //
 
 import { expect, test, describe, beforeEach } from '@jest/globals';
-import { ComponentType, ComponentNode, ErrorBoundary, createContext, PropsProvider } from '~/index';
+import { ComponentType, ComponentNode, ErrorBoundary, createContext, PropsProvider, createPairs, PropsWithChildren } from '~/index';
 import { ServerDOMRenderer } from '~/renderer/server-dom';
 
 // Test Components
@@ -37,6 +37,16 @@ const TestErrorComponent: ComponentType = () => {
 };
 
 const TestContext = createContext(0);
+
+const Pairs = createPairs({ allowTextChildren: true });
+
+const TestPairs: ComponentType<PropsWithChildren<{}>> = ({ children }) => (
+  <Pairs.Child>
+    <div>
+      <Pairs.Parent>{children}</Pairs.Parent>
+    </div>
+  </Pairs.Child>
+);
 
 describe('Component Tests', () => {
   let renderer: ServerDOMRenderer;
@@ -66,6 +76,22 @@ describe('Component Tests', () => {
       expect(element).toBeInstanceOf(ComponentNode);
       expect(element.type).toBe(TestComponent);
       expect(element.key).toBe('test');
+    });
+
+    test('should create component elements with paired children', async () => {
+      const element = (
+        <TestPairs>
+          This should be shown
+          <span>This should not shown</span>
+          <TestPairs>
+            This should also be shown
+          </TestPairs>
+        </TestPairs>
+      );
+
+      const result = await renderer.renderToString(element);
+
+      expect(result).toBe('<div>This should be shown<div>This should also be shown</div></div>');
     });
   });
 
