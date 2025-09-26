@@ -71,7 +71,7 @@ export abstract class _Renderer<T> {
         const _node = elements.get(x)?.native;
         if (_node instanceof _ParentComponent) {
           const c = _children(x, c => _node.isChildNode(c));
-          return _.flatMap(c, x => x instanceof VNode ? _children(x as any) : _node.isChildNode(x) ? x : []);
+          return _.flatMap(c, x => x instanceof VNode ? _children(x) : _node.isChildNode(x) ? x : []);
         }
         if (_node instanceof _ChildComponent) return allowedChild?.(_node) ? x as any : _children(x, allowedChild);
         return _node ?? _children(x, allowedChild);
