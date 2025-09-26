@@ -67,7 +67,6 @@ export abstract class _Renderer<T> {
 
     const resolveChildren = (node: VNode, elements: Map<VNode, { native?: T }>) => {
       const childrenOfParent = (node: VNode, allowedChild: (node: string | T) => boolean): (string | T)[] => _.flatMap(node.children, x => {
-        console.log({x})
         if (_.isString(x)) return allowedChild(x) ? x : [];
         const _node = elements.get(x)?.native;
         if (!_node) return childrenOfParent(x, allowedChild);
