@@ -65,18 +65,23 @@ export abstract class _Renderer<T> {
 
     const mountState = new Map<VNode, _State[]>();
 
-    const children = (node: VNode, elements: Map<VNode, { native?: T }>) => {
-      const _children = (node: VNode, allowedChild?: (node: T) => boolean): (string | T)[] => _.flatMap(node.children, x => {
+    const resolveChildren = (node: VNode, elements: Map<VNode, { native?: T }>) => {
+      const childrenOfParent = (node: VNode, allowedChild: (node: string | T) => boolean): (string | T)[] => _.flatMap(node.children, x => {
+        console.log({x})
+        if (_.isString(x)) return allowedChild(x) ? x : [];
+        const _node = elements.get(x)?.native;
+        if (!_node) return childrenOfParent(x, allowedChild);
+        if (!allowedChild(_node)) return [];
+        return _node instanceof _ChildComponent ? children(x) : _node;
+      });
+      const children = (node: VNode): (string | T)[] => _.flatMap(node.children, x => {
         if (_.isString(x)) return x;
         const _node = elements.get(x)?.native;
-        if (_node instanceof _ParentComponent) {
-          const c = _children(x, c => _node.isChildNode(c));
-          return _.flatMap(c, x => x instanceof VNode ? _children(x) : _node.isChildNode(x) ? x : []);
-        }
-        if (_node instanceof _ChildComponent) return allowedChild?.(_node) ? x as any : _children(x, allowedChild);
-        return _node ?? _children(x, allowedChild);
+        if (_node instanceof _ParentComponent) return childrenOfParent(x, c => _node.isChildNode(c));
+        if (_node instanceof _ChildComponent) return children(x);
+        return _node ?? children(x);
       });
-      return _children(node);
+      return children(node);
     };
 
     const commit = (elements: Map<VNode, { native?: T }>, force?: boolean) => {
@@ -89,7 +94,7 @@ export abstract class _Renderer<T> {
         if (element instanceof _ParentComponent || element instanceof _ChildComponent) return;
         if (element) {
           try {
-            this._replaceChildren(node, element, children(node, elements), stack, force);
+            this._replaceChildren(node, element, resolveChildren(node, elements), stack, force);
           } catch (e) {
             console.error(e);
           }
@@ -135,7 +140,7 @@ export abstract class _Renderer<T> {
       }
       if (root) this._replaceChildren(
         runtime.node, root,
-        _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements)),
+        _.castArray(elements.get(runtime.node)?.native ?? resolveChildren(runtime.node, elements)),
         [],
         force,
       );
@@ -220,7 +225,7 @@ export abstract class _Renderer<T> {
     return {
       get root() {
         if (root) return root;
-        const elems = _.castArray(elements.get(runtime.node)?.native ?? children(runtime.node, elements));
+        const elems = _.castArray(elements.get(runtime.node)?.native ?? resolveChildren(runtime.node, elements));
         const nodes = _.filter(elems, x => !_.isString(x)) as T[];
         return nodes.length === 1 ? nodes[0] : nodes;
       },
