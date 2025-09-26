@@ -69,7 +69,10 @@ export abstract class _Renderer<T> {
       const _children = (node: VNode, allowedChild?: (node: T) => boolean): (string | T)[] => _.flatMap(node.children, x => {
         if (_.isString(x)) return x;
         const _node = elements.get(x)?.native;
-        if (_node instanceof _ParentComponent) return _.flatMap(_children(x, c => _node.isChildNode(c)), x => x instanceof VNode ? _children(x) : x);
+        if (_node instanceof _ParentComponent) {
+          const c = _children(x, c => _node.isChildNode(c));
+          return _.flatMap(c, x => x instanceof VNode ? _children(x as any) : _node.isChildNode(x) ? x : []);
+        }
         if (_node instanceof _ChildComponent) return allowedChild?.(_node) ? x as any : _children(x, allowedChild);
         return _node ?? _children(x, allowedChild);
       });
