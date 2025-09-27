@@ -29,7 +29,7 @@ import { ComponentNode, NativeElementType } from './types/component';
 import { reconciler } from './reconciler/state';
 import nextick from 'nextick';
 import { equalDeps } from './reconciler/utils';
-import { _ChildComponent, _ParentComponent } from './components/pairs';
+import { _ParentComponent } from './components/pairs';
 
 export abstract class _Renderer<T> {
 
@@ -66,17 +66,16 @@ export abstract class _Renderer<T> {
     const mountState = new Map<VNode, _State[]>();
 
     const resolveChildren = (node: VNode, elements: Map<VNode, { native?: T }>) => {
-      const childrenOfParent = (node: VNode, allowedChild: (node: string | T) => boolean): (string | T)[] => _.flatMap(node.children, x => {
+      const childrenOfParent = (node: VNode, allowedChild: (node: string | VNode) => boolean): (string | T)[] => _.flatMap(node.children, x => {
         if (_.isString(x)) return allowedChild(x) ? x : [];
         const _node = elements.get(x)?.native;
-        if (!_node) return childrenOfParent(x, allowedChild);
-        return allowedChild(_node) ? children(x) : [];
+        if (allowedChild(x)) return _node ?? children(x);
+        return _node ? [] : childrenOfParent(x, allowedChild);
       });
       const children = (node: VNode): (string | T)[] => _.flatMap(node.children, x => {
         if (_.isString(x)) return x;
         const _node = elements.get(x)?.native;
         if (_node instanceof _ParentComponent) return childrenOfParent(x, c => _node.isChildNode(c));
-        if (_node instanceof _ChildComponent) return children(x);
         return _node ?? children(x);
       });
       return children(node);
@@ -89,7 +88,7 @@ export abstract class _Renderer<T> {
           if (item instanceof VNode) _mount(item, [...stack, node]);
         }
         const element = elements.get(node)?.native;
-        if (element instanceof _ParentComponent || element instanceof _ChildComponent) return;
+        if (element instanceof _ParentComponent) return;
         if (element) {
           try {
             this._replaceChildren(node, element, resolveChildren(node, elements), stack, force);
@@ -156,10 +155,7 @@ export abstract class _Renderer<T> {
         if (node.error) continue;
         if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
           map.set(node, {});
-        } else if (_.isFunction(node.type) && (
-          node.type.prototype instanceof _ParentComponent ||
-          node.type.prototype instanceof _ChildComponent
-        )) {
+        } else if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
           let elem = elements?.get(node)?.native;
           if (!elem) {
             const Component = node.type as any;
