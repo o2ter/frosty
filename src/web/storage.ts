@@ -71,11 +71,27 @@ const _useStorage = (
   return [state ?? initialValue ?? null, setState] as const;
 }
 
+/**
+ * A hook to manage a value in localStorage.
+ * It provides a stateful value and a function to update it.
+ * 
+ * @param key - The key in localStorage to manage.
+ * @param initialValue - An optional initial value if the key does not exist in localStorage.
+ * @returns A tuple containing the current value and a function to update it.
+ */
 export const useLocalStorage = (
   key: string,
   initialValue?: string | null
 ) => _useStorage(() => window.localStorage, key, initialValue);
 
+/** 
+ * A hook to manage a value in sessionStorage.
+ * It provides a stateful value and a function to update it.
+ * 
+ * @param key - The key in sessionStorage to manage.
+ * @param initialValue - An optional initial value if the key does not exist in sessionStorage.
+ * @returns A tuple containing the current value and a function to update it.
+ */
 export const useSessionStorage = (
   key: string,
   initialValue?: string | null

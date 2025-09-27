@@ -27,6 +27,12 @@ import _ from 'lodash';
 import { useSyncExternalStore } from '../core/hooks/sync';
 import { useDocument } from './document';
 
+/**
+ * A hook to get the current visibility state of the document.
+ * It listens to the 'visibilitychange' event to update the state.
+ * 
+ * @returns A string indicating the current visibility state: 'active', 'inactive', 'background', or 'unknown'.
+ */
 export const useVisibility = () => {
   const document = useDocument();
   return useSyncExternalStore((onStoreChange) => {

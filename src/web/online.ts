@@ -26,6 +26,12 @@
 import _ from 'lodash';
 import { useSyncExternalStore } from '../core/hooks/sync';
 
+/**
+ * A hook that returns the current online status of the browser.
+ * It listens to the 'online' and 'offline' events to update the status.
+ * 
+ * @returns A boolean indicating whether the browser is online.
+ */
 export const useOnline = () => useSyncExternalStore((onStoreChange) => {
   window.addEventListener('offline', onStoreChange);
   window.addEventListener('online', onStoreChange);

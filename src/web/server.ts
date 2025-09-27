@@ -30,6 +30,15 @@ import { decompress } from '../renderer/minify/decompress';
 
 const decodedSsrData = new WeakMap<Document, any>();
 
+/**
+ * A hook to manage server-side resources in a web renderer.
+ * It allows tracking and retrieving resources identified by a key.
+ * 
+ * @param key - The unique key for the resource.
+ * @param resource - An optional function that returns the resource string when called on the server side.
+ * @returns The resource string if available, otherwise undefined.
+ * @throws Error if used outside of a render function or with an unsupported renderer.
+ */
 export const useServerResource = (key: string, resource?: () => string): string | undefined => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useServerResource must be used within a render function.');

@@ -34,6 +34,13 @@ export abstract class _ParentComponent extends NativeElementType {
   abstract isChildNode(child: string | VNode): boolean;
 }
 
+/**
+ * Create a pair of Parent and Child components.
+ * 
+ * @param allowTextChildren - Whether to allow text children in the Parent component.
+ * @param allowedChildTypes - An array of additional allowed child component types.
+ * @returns An object containing the Parent and Child components.
+ */
 export const createPairs = ({ allowTextChildren, allowedChildTypes = [] }: {
   allowTextChildren?: boolean;
   allowedChildTypes?: (_ElementType | typeof NativeElementType)[];

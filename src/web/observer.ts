@@ -68,6 +68,13 @@ const observer = typeof window === 'undefined' ? undefined : {
   intersection: createObserver(IntersectionObserver),
 };
 
+/**
+ * A hook that sets up a ResizeObserver on the given target element.
+ * 
+ * @param target - The target element or a ref object containing the target element.
+ * @param callback - The callback function to be called when the target element is resized.
+ * @param options - Optional ResizeObserverOptions to configure the observer.
+ */
 export const useResizeObserver = (
   target: RefObject<Element | null | undefined> | Element | null | undefined,
   callback: (entry: ResizeObserverEntry) => void,
@@ -82,6 +89,12 @@ export const useResizeObserver = (
   }, [target]);
 }
 
+/**
+ * A hook that sets up an IntersectionObserver on the given target element.
+ * 
+ * @param target - The target element or a ref object containing the target element.
+ * @param callback - The callback function to be called when the target element's intersection changes.
+ */
 export const useIntersectionObserver = (
   target: RefObject<Element | null | undefined> | Element | null | undefined,
   callback: (entry: IntersectionObserverEntry) => void,
@@ -95,6 +108,13 @@ export const useIntersectionObserver = (
   }, [target]);
 }
 
+/**
+ * A hook that sets up a MutationObserver on the given target node.
+ * 
+ * @param target - The target node or a ref object containing the target node.
+ * @param callback - The callback function to be called when mutations are observed.
+ * @param options - Optional MutationObserverInit to configure the observer.
+ */
 export const useMutationObserver = (
   target: RefObject<Node | null | undefined> | Node | null | undefined,
   callback: MutationCallback,
@@ -110,6 +130,12 @@ export const useMutationObserver = (
   }, [target]);
 }
 
+/**
+ * A hook that sets up a PerformanceObserver with the given callback and options.
+ * 
+ * @param callback - The callback function to be called when performance entries are observed.
+ * @param options - Optional PerformanceObserverInit to configure the observer.
+ */
 export const usePerformanceObserver = (
   callback: PerformanceObserverCallback,
   options?: PerformanceObserverInit,

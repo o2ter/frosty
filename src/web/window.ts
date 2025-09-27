@@ -29,6 +29,12 @@ import { uniqueId } from '../core/utils';
 import { reconciler } from '../core/reconciler/state';
 import { _DOMRenderer } from '../renderer/common';
 
+/**
+ * Hook to access the current window object in a web renderer.
+ * 
+ * @returns The current window object.
+ * @throws Error if used outside of a render function or with an unsupported renderer.
+ */
 export const useWindow = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useWindow must be used within a render function.');
@@ -72,6 +78,12 @@ const safeAreaInsets = (window: ReturnType<typeof useWindow>) => {
   return _.mapValues(insets, v => parseFloat(v));
 }
 
+/**
+ * A hook that provides various metrics of the window object.
+ * It listens to the 'resize' event to update the metrics.
+ * 
+ * @returns An object containing safe area insets, device pixel ratio, outer and inner dimensions of the window.
+ */
 export const useWindowMetrics = () => {
   const window = useWindow();
   return useSyncExternalStore((onStoreChange) => {
@@ -89,6 +101,12 @@ export const useWindowMetrics = () => {
   }));
 }
 
+/** 
+ * A hook that provides metrics of the visual viewport.
+ * It listens to the 'resize' event of the visual viewport to update the metrics.
+ * 
+ * @returns An object containing width, height, and scale of the visual viewport.
+ */
 export const useVisualViewportMetrics = () => {
   const { visualViewport } = useWindow();
   return useSyncExternalStore((onStoreChange) => {
@@ -103,6 +121,12 @@ export const useVisualViewportMetrics = () => {
   }));
 }
 
+/**
+ * A hook that provides the current scroll position of the window.
+ * It listens to the 'scroll' event to update the position.
+ * 
+ * @returns An object containing scrollX and scrollY values.
+ */
 export const useWindowScroll = () => {
   const window = useWindow();
   return useSyncExternalStore((onStoreChange) => {
@@ -118,6 +142,12 @@ export const useWindowScroll = () => {
 
 const colorSchemeDarkCache = new WeakMap<ReturnType<typeof useWindow>, MediaQueryList | undefined>();
 
+/**
+ * A hook that detects the user's preferred color scheme (light or dark).
+ * It listens to changes in the '(prefers-color-scheme: dark)' media query.
+ * 
+ * @returns A string indicating the current color scheme: 'light' or 'dark'.
+ */
 export const useColorScheme = () => {
   const window = useWindow();
   if (!colorSchemeDarkCache.has(window)) colorSchemeDarkCache.set(window, window.matchMedia?.('(prefers-color-scheme: dark)'));

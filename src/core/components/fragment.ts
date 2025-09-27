@@ -25,6 +25,9 @@
 
 import { ComponentType, PropsWithChildren } from '../types/common';
 
+/**
+ * A component that renders its children without adding extra nodes to the DOM.
+ */
 export const Fragment: ComponentType<PropsWithChildren<{}>> = ({ children }) => {
   return children;
 }

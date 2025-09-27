@@ -27,6 +27,12 @@ import _ from 'lodash';
 import { reconciler } from '../core/reconciler/state';
 import { _DOMRenderer } from '../renderer/common';
 
+/**
+ * Hook to access the current document object in a web renderer.
+ * 
+ * @returns The current document object.
+ * @throws Error if used outside of a render function or with an unsupported renderer.
+ */
 export const useDocument = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useDocument must be used within a render function.');
