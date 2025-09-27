@@ -26,7 +26,7 @@
 import _ from "lodash";
 import { PropsWithChildren } from "../types/common";
 import { NativeElementType } from "../types/component";
-import { _createElement } from "../types/runtime";
+import { _createElement, _ElementType } from "../types/runtime";
 import { VNode } from "../reconciler/vnode";
 import { Fragment } from "./fragment";
 
@@ -34,14 +34,15 @@ export abstract class _ParentComponent extends NativeElementType {
   abstract isChildNode(child: string | VNode): boolean;
 }
 
-export const createPairs = ({ allowTextChildren }: {
+export const createPairs = ({ allowTextChildren, allowedChildTypes = [] }: {
   allowTextChildren?: boolean;
+  allowedChildTypes?: (_ElementType | typeof NativeElementType)[];
 } = {}) => {
   const ChildComponent = ({ children }: PropsWithChildren<{}>) => _createElement(Fragment, { children });
   class ParentComponent extends _ParentComponent {
     isChildNode(child: string | VNode) {
       if (_.isString(child)) return !!allowTextChildren;
-      return child.type === ChildComponent;
+      return child.type === ChildComponent || _.some(allowedChildTypes, x => child.type === x);
     }
   }
   return {
