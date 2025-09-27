@@ -70,8 +70,7 @@ export abstract class _Renderer<T> {
         if (_.isString(x)) return allowedChild(x) ? x : [];
         const _node = elements.get(x)?.native;
         if (!_node) return childrenOfParent(x, allowedChild);
-        if (!allowedChild(_node)) return [];
-        return _node instanceof _ChildComponent ? children(x) : _node;
+        return allowedChild(_node) ? children(x) : [];
       });
       const children = (node: VNode): (string | T)[] => _.flatMap(node.children, x => {
         if (_.isString(x)) return x;
