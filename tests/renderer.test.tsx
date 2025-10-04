@@ -454,7 +454,7 @@ describe('Renderer Tests', () => {
       const result = await renderer.renderToString(app);
       
       expect(result).toContain('<!DOCTYPE html>');
-      expect(result).toContain('<html>');
+      expect(result).toContain('<html lang=\"en\">');
       expect(result).toContain('<meta name="charset" content="utf-8">');
       expect(result).toContain('<meta name="viewport" content="width=device-width, initial-scale=1">');
       expect(result).toContain('<title>Test App</title>');

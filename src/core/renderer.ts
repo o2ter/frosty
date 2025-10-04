@@ -39,11 +39,9 @@ export abstract class _Renderer<T> {
 
   protected abstract _createElement(node: VNode, stack: VNode[]): T;
 
-  protected abstract _updateElement(node: VNode, element: T, stack: VNode[]): void;
+  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], stack: VNode[], force?: boolean): void;
 
   protected abstract _destroyElement(node: VNode, element: T): void;
-
-  protected abstract _replaceChildren(node: VNode, element: T, children: (T | string)[], stack: VNode[], force?: boolean): void;
 
   abstract get _server(): boolean;
 
@@ -81,7 +79,7 @@ export abstract class _Renderer<T> {
       return children(node);
     };
 
-    const commit = (elements: Map<VNode, { native?: T }>, force?: boolean) => {
+    const commit = (elements: Map<VNode, { native?: T }>, updated: Set<VNode>, force?: boolean) => {
 
       const _mount = (node: VNode, stack: VNode[]) => {
         for (const item of node.children) {
@@ -89,9 +87,9 @@ export abstract class _Renderer<T> {
         }
         const element = elements.get(node)?.native;
         if (element instanceof _ParentComponent) return;
-        if (element) {
+        if (element && updated.has(node)) {
           try {
-            this._replaceChildren(node, element, resolveChildren(node, elements), stack, force);
+            this._updateElement(node, element, resolveChildren(node, elements), stack, force);
           } catch (e) {
             console.error(e);
           }
@@ -135,13 +133,13 @@ export abstract class _Renderer<T> {
         }
         mountState.delete(node);
       }
-      if (root) this._replaceChildren(
+      if (root) this._updateElement(
         runtime.node, root,
         _.castArray(elements.get(runtime.node)?.native ?? resolveChildren(runtime.node, elements)),
         [],
         force,
       );
-      _mount(runtime.node, []);
+      _mount(runtime.node, [runtime.node]);
     };
 
     const update = async (elements?: Map<VNode, { native?: T }>, force?: boolean) => {
@@ -151,6 +149,7 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
       const map = new Map<VNode, { native?: T }>();
+      const updatedNodes = new Set<VNode>();
       for await (const { node, stack, updated } of runtime.excute()) {
         if (node.error) continue;
         if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
@@ -163,24 +162,16 @@ export abstract class _Renderer<T> {
           }
           map.set(node, { native: elem });
         } else {
+          const elem = elements?.get(node)?.native;
+          if (!elem || updated) updatedNodes.add(node);
           try {
-            if (updated) {
-              let elem = elements?.get(node)?.native;
-              if (elem) {
-                this._updateElement(node, elem, stack);
-              } else {
-                elem = this._createElement(node, stack);
-              }
-              map.set(node, { native: elem });
-            } else {
-              map.set(node, { native: elements?.get(node)?.native ?? this._createElement(node, stack) });
-            }
+            map.set(node, { native: elem ?? this._createElement(node, stack) });
           } catch (e) {
             console.error(e);
           }
         }
       }
-      commit(map, force);
+      commit(map, updatedNodes, force);
       if (elements) {
         for (const [node, element] of elements) {
           if (map.has(node) || !element.native) continue;
@@ -224,7 +215,7 @@ export abstract class _Renderer<T> {
         return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
-        if (root) this._replaceChildren(runtime.node, root, [], [], true);
+        if (root) this._updateElement(runtime.node, root, [], [], true);
         destroyed = true;
         listener.remove();
         for (const state of mountState.values()) {

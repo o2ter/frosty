@@ -192,12 +192,13 @@ export abstract class DOMNativeNode extends NativeElementType {
 
   abstract get target(): Element | Element[];
 
-  abstract update(props: Record<string, any> & {
-    className?: string;
-    style?: string;
-  }): void;
-
-  abstract replaceChildren(children: (string | Element | DOMNativeNode)[]): void;
+  abstract update(
+    props: Record<string, any> & {
+      className?: string;
+      style?: string;
+    },
+    children: (string | Element | DOMNativeNode)[]
+  ): void;
 
   abstract destroy(): void;
 }

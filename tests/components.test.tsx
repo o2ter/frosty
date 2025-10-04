@@ -182,7 +182,7 @@ describe('Component Tests', () => {
 
       const result = await renderer.renderToString(app);
 
-      expect(result).toBe('<!DOCTYPE html><html><head><script src="/main_bundle.js" defer="" data-test="0"></script></head><body><div id="root" data-test="0"></div></body></html>');
+      expect(result).toBe('<!DOCTYPE html><html data-test=\"0\"><head><script src=\"/main_bundle.js\" defer=\"\" data-test=\"0\"></script></head><body data-test=\"0\"><div id=\"root\" data-test=\"0\"></div></body></html>');
     });
   });
 });

@@ -112,10 +112,9 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         props: [],
         className: [],
       });
-      this._updateElement(node, elem, stack);
       return elem;
     }
-    if (!_.isString(type)) throw Error('Invalid type');
+    if (!_.isString(type)) throw Error(`Invalid type ${type}`);
     switch (type) {
       case 'html': return this.document.documentElement;
       case 'head': return this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
@@ -135,7 +134,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       props: [],
       className: [],
     });
-    this._updateElement(node, elem, stack);
     return elem;
   }
 
@@ -152,8 +150,13 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   /** @internal */
-  _updateElement(node: VNode, element: Element | DOMNativeNode, stack: VNode[]) {
-
+  _updateElement(
+    node: VNode,
+    element: Element | DOMNativeNode,
+    children: (string | Element | DOMNativeNode)[],
+    stack: VNode[],
+    force?: boolean
+  ) {
     if (element instanceof DOMNativeNode) {
       const {
         props: { ref, className, style, inlineStyle, ..._props }
@@ -165,7 +168,12 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         className: builtClassName ? builtClassName : undefined,
         style: css ? css : undefined,
         ..._props
-      });
+      }, children);
+      return;
+    }
+
+    if (_.isEmpty(stack)) {
+      DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
       return;
     }
 
@@ -174,23 +182,27 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       props: { ref, className, style, inlineStyle, innerHTML, ..._props }
     } = node;
 
-    if (!_.isString(type)) throw Error('Invalid type');
+    if (!_.isString(type)) throw Error(`Invalid type ${type}`);
     switch (type) {
-      case 'html': return;
-      case 'head': return;
-      case 'body': return;
+      case 'head': {
+        this._tracked_head_children.push(...children);
+        return;
+      }
       default: break;
     }
 
     if (ref) mergeRefs(ref)(element);
 
     const tracked = this._tracked_elements.get(element);
-    if (!tracked) return;
-    const removed = _.difference(tracked.props, _.keys(_props));
-    tracked.props = _.keys(_props);
+    const removed = tracked ? _.difference(tracked.props, _.keys(_props)) : [];
+    if (tracked) tracked.props = _.keys(_props);
 
     const builtClassName = this.__createBuiltClassName(element, className, style);
-    if (!_.isEmpty(innerHTML) && element.innerHTML !== innerHTML) element.innerHTML = innerHTML;
+    if (_.isNil(innerHTML)) {
+      DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
+    } else if (element.innerHTML !== innerHTML) {
+      element.innerHTML = innerHTML;
+    }
 
     DOMNativeNode.Utils.update(element, {
       className: builtClassName,
@@ -198,23 +210,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       ..._props,
       ..._.fromPairs(_.map(removed, x => [x, undefined])),
     });
-  }
-
-  /** @internal */
-  _replaceChildren(node: VNode, element: Element | DOMNativeNode, children: (string | Element | DOMNativeNode)[], stack: VNode[], force?: boolean) {
-    if (element instanceof DOMNativeNode) {
-      element.replaceChildren(children);
-    } else {
-      const {
-        type,
-        props: { innerHTML }
-      } = node;
-      if (type === 'head') {
-        this._tracked_head_children.push(...children);
-      } else if (_.isEmpty(innerHTML)) {
-        DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
-      }
-    }
   }
 
   /** @internal */
@@ -232,7 +227,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       await root.mount(component, { skipMount: true });
       const elements = _.flatMap(_.castArray(root.root ?? []), x => x instanceof DOMNativeNode ? x.target : x);
       const str = _.map(elements, x => x.outerHTML).join('');
-      return str.startsWith('<html>') ? `<!DOCTYPE html>${str}` : str;
+      if (elements.length !== 1) return str;
+      return elements[0].tagName.toLowerCase() === 'html' ? `<!DOCTYPE html>${str}` : str;
     } finally {
       root.unmount();
     }
