@@ -8,11 +8,13 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '22'
           registry-url: 'https://registry.npmjs.org'
+      - name: Update npm & yarn
+        run: npm install -g npm@latest yarn@latest
       - run: yarn install && yarn rollup
       - run: npm version ${{ github.event.release.tag_name }}
       - run: npm publish --access public
