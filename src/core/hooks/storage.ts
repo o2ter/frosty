@@ -36,9 +36,12 @@ const storage = new WeakMap<any, Map<any, any>>();
  * @throws Error if called outside of a render function.
  * @returns {Map<any, any>} The storage map for the current renderer.
  */
-export const useRendererStorage = () => {
+export const useRendererStorage = (
+  persist = true
+) => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useRendererStorage must be used within a render function.');
+  if (!persist) return state.renderer.renderStorage;
   const found = storage.get(state.renderer);
   const store = found ?? new Map<any, any>();
   if (!found) storage.set(state.renderer, store);

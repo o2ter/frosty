@@ -45,6 +45,12 @@ export abstract class _Renderer<T> {
 
   abstract get _server(): boolean;
 
+  private _renderStorage = new Map<any, any>();
+
+  get renderStorage() {
+    return this._renderStorage;
+  }
+
   private async _createRoot(
     root: T | null,
     component: ComponentNode,
@@ -143,6 +149,7 @@ export abstract class _Renderer<T> {
     };
 
     const update = async (elements?: Map<VNode, { native?: T }>, force?: boolean) => {
+      this._renderStorage = new Map<any, any>();
       try {
         this._beforeUpdate();
       } catch (e) {
