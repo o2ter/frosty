@@ -24,8 +24,8 @@
 //
 
 import _ from 'lodash';
-import { useSyncExternalStore } from '../core/hooks/sync';
 import { useDocument } from './document';
+import { _useSharedSyncExternalStore } from './utils';
 
 /**
  * A hook to get the current visibility state of the document.
@@ -35,18 +35,22 @@ import { useDocument } from './document';
  */
 export const useVisibility = () => {
   const document = useDocument();
-  return useSyncExternalStore((onStoreChange) => {
-    document.addEventListener('visibilitychange', onStoreChange);
-    return () => {
-      document.removeEventListener('visibilitychange', onStoreChange);
-    }
-  }, () => {
-    if (document.hasFocus()) {
-      return 'active' as const;
-    } else if (document.visibilityState === 'visible') {
-      return 'inactive' as const;
-    } else {
-      return 'background' as const;
-    }
-  }, () => 'unknown' as const);
+  return _useSharedSyncExternalStore(
+    'useVisibility',
+    (onStoreChange) => {
+      document.addEventListener('visibilitychange', onStoreChange);
+      return () => {
+        document.removeEventListener('visibilitychange', onStoreChange);
+      }
+    },
+    () => {
+      if (document.hasFocus()) {
+        return 'active' as const;
+      } else if (document.visibilityState === 'visible') {
+        return 'inactive' as const;
+      } else {
+        return 'background' as const;
+      }
+    }, () => 'unknown' as const
+  );
 }

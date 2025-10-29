@@ -1,5 +1,5 @@
 //
-//  online.ts
+//  utils.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2025 O2ter Limited. All rights reserved.
@@ -24,22 +24,40 @@
 //
 
 import _ from 'lodash';
-import { _useSharedSyncExternalStore } from './utils';
+import { Awaitable } from '@o2ter/utils-js';
+import { useRendererStorage, useSyncExternalStore } from '../core/hooks';
 
-/**
- * A hook that returns the current online status of the browser.
- * It listens to the 'online' and 'offline' events to update the status.
- * 
- * @returns A boolean indicating whether the browser is online.
- */
-export const useOnline = () => _useSharedSyncExternalStore(
-  'useOnline',
-  (onStoreChange) => {
-    window.addEventListener('offline', onStoreChange);
-    window.addEventListener('online', onStoreChange);
-    return () => {
-      window.removeEventListener('offline', onStoreChange);
-      window.removeEventListener('online', onStoreChange);
-    };
-  }, () => navigator.onLine, () => false
-);
+const sharedStorageKey = Symbol('sharedStorageKey');
+
+export const _useSharedSyncExternalStore = <Snapshot>(
+  sharedKey: string,
+  subscribe: (
+    onStoreChange: () => void,
+    signal: AbortSignal,
+  ) => Awaitable<void | (() => Awaitable<void>)>,
+  getSnapshot: () => Snapshot,
+  getServerSnapshot?: () => Snapshot,
+) => {
+  const store = useRendererStorage(false);
+  const sharedStorage = store.get(sharedStorageKey) ?? new Map<string, Snapshot>();
+  if (!store.has(sharedStorageKey)) {
+    store.set(sharedStorageKey, sharedStorage);
+  }
+  return useSyncExternalStore(
+    subscribe,
+    (): Snapshot => {
+      if (store.has(sharedKey))
+        return store.get(sharedKey);
+      const result = getSnapshot();
+      store.set(sharedKey, result);
+      return result;
+    },
+    getServerSnapshot && ((): Snapshot => {
+      if (store.has(sharedKey))
+        return store.get(sharedKey);
+      const result = getServerSnapshot();
+      store.set(sharedKey, result);
+      return result;
+    }),
+  );
+};

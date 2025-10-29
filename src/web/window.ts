@@ -24,10 +24,10 @@
 //
 
 import _ from 'lodash';
-import { useSyncExternalStore } from '../core/hooks/sync';
 import { uniqueId } from '../core/utils';
 import { reconciler } from '../core/reconciler/state';
 import { _DOMRenderer } from '../renderer/common';
+import { _useSharedSyncExternalStore } from './utils';
 
 /**
  * Hook to access the current window object in a web renderer.
@@ -86,20 +86,24 @@ const safeAreaInsets = (window: ReturnType<typeof useWindow>) => {
  */
 export const useWindowMetrics = () => {
   const window = useWindow();
-  return useSyncExternalStore((onStoreChange) => {
-    window.addEventListener('resize', onStoreChange);
-    return () => {
-      window.removeEventListener('resize', onStoreChange);
-    };
-  }, () => ({
-    safeAreaInsets: safeAreaInsets(window),
-    devicePixelRatio: window.devicePixelRatio,
-    outerWidth: window.outerWidth,
-    outerHeight: window.outerHeight,
-    innerWidth: window.innerWidth,
-    innerHeight: window.innerHeight,
-  }));
-}
+  return _useSharedSyncExternalStore(
+    'useWindowMetrics',
+    (onStoreChange) => {
+      window.addEventListener('resize', onStoreChange);
+      return () => {
+        window.removeEventListener('resize', onStoreChange);
+      };
+    },
+    () => ({
+      safeAreaInsets: safeAreaInsets(window),
+      devicePixelRatio: window.devicePixelRatio,
+      outerWidth: window.outerWidth,
+      outerHeight: window.outerHeight,
+      innerWidth: window.innerWidth,
+      innerHeight: window.innerHeight,
+    })
+  );
+};
 
 /** 
  * A hook that provides metrics of the visual viewport.
@@ -109,17 +113,20 @@ export const useWindowMetrics = () => {
  */
 export const useVisualViewportMetrics = () => {
   const { visualViewport } = useWindow();
-  return useSyncExternalStore((onStoreChange) => {
-    visualViewport?.addEventListener('resize', onStoreChange);
-    return () => {
-      visualViewport?.removeEventListener('resize', onStoreChange);
-    };
-  }, () => visualViewport && ({
-    width: visualViewport.width,
-    height: visualViewport.height,
-    scale: visualViewport.scale,
-  }));
-}
+  return _useSharedSyncExternalStore(
+    'useVisualViewportMetrics',
+    (onStoreChange) => {
+      visualViewport?.addEventListener('resize', onStoreChange);
+      return () => {
+        visualViewport?.removeEventListener('resize', onStoreChange);
+      };
+    }, () => visualViewport && ({
+      width: visualViewport.width,
+      height: visualViewport.height,
+      scale: visualViewport.scale,
+    })
+  );
+};
 
 /**
  * A hook that provides the current scroll position of the window.
@@ -129,16 +136,19 @@ export const useVisualViewportMetrics = () => {
  */
 export const useWindowScroll = () => {
   const window = useWindow();
-  return useSyncExternalStore((onStoreChange) => {
-    window.addEventListener('scroll', onStoreChange);
-    return () => {
-      window.removeEventListener('scroll', onStoreChange);
-    };
-  }, () => ({
-    scrollX: window.scrollX,
-    scrollY: window.scrollY,
-  }));
-}
+  return _useSharedSyncExternalStore(
+    'useWindowScroll',
+    (onStoreChange) => {
+      window.addEventListener('scroll', onStoreChange);
+      return () => {
+        window.removeEventListener('scroll', onStoreChange);
+      };
+    }, () => ({
+      scrollX: window.scrollX,
+      scrollY: window.scrollY,
+    })
+  );
+};
 
 const colorSchemeDarkCache = new WeakMap<ReturnType<typeof useWindow>, MediaQueryList | undefined>();
 
@@ -152,10 +162,13 @@ export const useColorScheme = () => {
   const window = useWindow();
   if (!colorSchemeDarkCache.has(window)) colorSchemeDarkCache.set(window, window.matchMedia?.('(prefers-color-scheme: dark)'));
   const colorSchemeDark = colorSchemeDarkCache.get(window);
-  return useSyncExternalStore((onStoreChange) => {
-    colorSchemeDark?.addEventListener('change', onStoreChange);
-    return () => {
-      colorSchemeDark?.removeEventListener('change', onStoreChange);
-    };
-  }, () => colorSchemeDark?.matches ? 'dark' : 'light');
-}
+  return _useSharedSyncExternalStore(
+    'useColorScheme',
+    (onStoreChange) => {
+      colorSchemeDark?.addEventListener('change', onStoreChange);
+      return () => {
+        colorSchemeDark?.removeEventListener('change', onStoreChange);
+      };
+    }, () => colorSchemeDark?.matches ? 'dark' : 'light'
+  );
+};
