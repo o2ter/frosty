@@ -32,7 +32,7 @@ type PropsWithExtends<Props> = Props & {
   [rule in `${AtRules} ${string}`]?: Omit<PropsWithExtends<Props>, `${AtRules} ${string}`>;
 } & {
   '@keyframes'?: Record<string, Props>;
-  [selector: `$${string}`]: PropsWithExtends<Props>;
+  [selector: `&${string}`]: PropsWithExtends<Props>;
   [variable: `--${string}`]: string | 0;
 };
 
