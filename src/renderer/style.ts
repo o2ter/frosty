@@ -65,7 +65,7 @@ export class StyleBuilder {
       const animationName = keyframes ? `__a_${uniqueId()}` : undefined;
       const _style: any = {
         [`.${name}`]: {
-          ..._.omit(style, '@keyframes'),
+          ...style,
           ...animationName ? { animationName } : {},
         },
         ...animationName ? {
