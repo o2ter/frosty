@@ -25,12 +25,15 @@
 
 import _ from 'lodash';
 
-export const equalDeps = (lhs: any, rhs: any) => {
+const _equalDeps = (lhs: any, rhs: any, stack: [any, any][]) => {
   if (lhs === rhs) return true;
   if (_.isArray(lhs) && _.isArray(rhs)) {
     if (lhs.length !== rhs.length) return false;
     for (let i = 0; i < lhs.length; i++) {
-      if (!equalDeps(lhs[i], rhs[i])) return false;
+      const _lhs = lhs[i];
+      const _rhs = rhs[i];
+      if (_.findIndex(stack, s => s[0] === _lhs) === _.findIndex(stack, s => s[1] === _rhs)) continue;
+      if (!_equalDeps(_lhs, _rhs, [...stack, [_lhs, _rhs]])) return false;
     }
     return true;
   }
@@ -39,11 +42,18 @@ export const equalDeps = (lhs: any, rhs: any) => {
     const rkeys = _.keys(rhs);
     if (lkeys.length !== rkeys.length) return false;
     for (const key of lkeys) {
-      if (!equalDeps(lhs[key], rhs[key])) return false;
+      const _lhs = lhs[key];
+      const _rhs = rhs[key];
+      if (_.findIndex(stack, s => s[0] === _lhs) === _.findIndex(stack, s => s[1] === _rhs)) continue;
+      if (!_equalDeps(_lhs, _rhs, [...stack, [_lhs, _rhs]])) return false;
     }
     return true;
   }
   return false;
+}
+
+export const equalDeps = (lhs: any, rhs: any) => {
+  return _equalDeps(lhs, rhs, []);
 }
 
 export const equalProps = (lhs: Record<string, any>, rhs: Record<string, any>) => {
