@@ -27,13 +27,22 @@ import _ from 'lodash';
 
 const _equalDeps = (lhs: any, rhs: any, stack: [any, any][]) => {
   if (lhs === rhs) return true;
+
+  // Check if we've already compared these objects (circular reference detection)
+  const lhsIndex = _.findIndex(stack, s => s[0] === lhs);
+  const rhsIndex = _.findIndex(stack, s => s[1] === rhs);
+
+  // If both are in the stack at the same position, they're part of the same circular structure
+  if (lhsIndex !== -1 && rhsIndex !== -1 && lhsIndex === rhsIndex) return true;
+
+  // If only one is in the stack, they're not equal
+  if (lhsIndex !== -1 || rhsIndex !== -1) return false;
+
   if (_.isArray(lhs) && _.isArray(rhs)) {
     if (lhs.length !== rhs.length) return false;
+    const newStack: [any, any][] = [...stack, [lhs, rhs]];
     for (let i = 0; i < lhs.length; i++) {
-      const _lhs = lhs[i];
-      const _rhs = rhs[i];
-      if (_.findIndex(stack, s => s[0] === _lhs) === _.findIndex(stack, s => s[1] === _rhs)) continue;
-      if (!_equalDeps(_lhs, _rhs, [...stack, [_lhs, _rhs]])) return false;
+      if (!_equalDeps(lhs[i], rhs[i], newStack)) return false;
     }
     return true;
   }
@@ -41,11 +50,9 @@ const _equalDeps = (lhs: any, rhs: any, stack: [any, any][]) => {
     const lkeys = _.keys(lhs);
     const rkeys = _.keys(rhs);
     if (lkeys.length !== rkeys.length) return false;
+    const newStack: [any, any][] = [...stack, [lhs, rhs]];
     for (const key of lkeys) {
-      const _lhs = lhs[key];
-      const _rhs = rhs[key];
-      if (_.findIndex(stack, s => s[0] === _lhs) === _.findIndex(stack, s => s[1] === _rhs)) continue;
-      if (!_equalDeps(_lhs, _rhs, [...stack, [_lhs, _rhs]])) return false;
+      if (!_equalDeps(lhs[key], rhs[key], newStack)) return false;
     }
     return true;
   }
