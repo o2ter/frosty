@@ -27,6 +27,7 @@ import _ from 'lodash';
 
 const _equalDeps = (lhs: any, rhs: any, stack: [any, any][]) => {
   if (lhs === rhs) return true;
+  if (_.isFunction(lhs) || _.isFunction(rhs)) return false;
 
   // Check if we've already compared these objects (circular reference detection)
   const lhsIndex = _.findIndex(stack, s => s[0] === lhs);
