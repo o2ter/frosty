@@ -61,7 +61,7 @@ export class StyleBuilder {
     if (this._cached_css) return this._cached_css;
     for (const rule of this.registry) {
       if (rule._css) continue;
-      const { name, style: { '@keyframes': keyframes, ...style } } = rule;
+      const { name, style: { keyframes, ...style } } = rule;
       const animationName = keyframes ? `__a_${uniqueId()}` : undefined;
       const _style: any = {
         [`.${name}`]: {
