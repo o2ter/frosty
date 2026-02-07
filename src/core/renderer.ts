@@ -143,40 +143,40 @@ export abstract class _Renderer<T> {
             elem = new Component();
           }
           elements.set(node, elem);
-          continue;
-        }
-        const element = elements.get(node) ?? this._createElement(node, [...node.stack]);
-        try {
-          this._updateElement(node, element, [...nativeChildren(node)], [...node.stack], false);
-        } catch (e) {
-          console.error(e);
-        }
-        const state: MountState[] = [];
-        const prevState = mountState.get(node) ?? [];
-        const curState = node.state;
-        for (const i of _.range(Math.max(prevState.length, curState.length))) {
-          const unmount = prevState[i]?.unmount;
-          const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
-          if (unmount && changed) {
-            try {
-              unmount();
-            } catch (e) {
-              console.error(e);
-            }
+        } else {
+          const element = elements.get(node) ?? this._createElement(node, [...node.stack]);
+          try {
+            this._updateElement(node, element, [...nativeChildren(node)], [...node.stack], false);
+          } catch (e) {
+            console.error(e);
           }
-          state.push({
-            hook: curState[i].hook,
-            deps: curState[i].deps,
-            unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+          const state: MountState[] = [];
+          const prevState = mountState.get(node) ?? [];
+          const curState = node.state;
+          for (const i of _.range(Math.max(prevState.length, curState.length))) {
+            const unmount = prevState[i]?.unmount;
+            const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
+            if (unmount && changed) {
               try {
-                return curState[i].mount?.();
+                unmount();
               } catch (e) {
                 console.error(e);
               }
-            })(),
-          });
+            }
+            state.push({
+              hook: curState[i].hook,
+              deps: curState[i].deps,
+              unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+                try {
+                  return curState[i].mount?.();
+                } catch (e) {
+                  console.error(e);
+                }
+              })(),
+            });
+          }
+          mountState.set(node, state);
         }
-        mountState.set(node, state);
       }
       event.remount.clear();
 
