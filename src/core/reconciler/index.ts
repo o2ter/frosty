@@ -32,6 +32,7 @@ import { ErrorBoundary } from '../types/error';
 import { _Renderer } from '../renderer';
 import { myersSync } from 'myers.js';
 import { equalDeps, equalProps } from './utils';
+import { PropsType } from '../types/runtime';
 
 type VNodeState = {
   hook: string;
@@ -93,6 +94,7 @@ export class VNode {
 
   private _id = uniqueId();
 
+  private _props: PropsType = {};
   private _error?: any;
   private _children: (VNode | string)[] = [];
 
@@ -129,7 +131,7 @@ export class VNode {
   }
 
   get props() {
-    return this._component.props;
+    return this._props;
   }
 
   get key() {
@@ -204,6 +206,7 @@ export class VNode {
           return false;
         },
       });
+      this._props = props;
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
       this._error = undefined;
       for (const [lhs, rhs] of _.zip(this._children, children)) {
