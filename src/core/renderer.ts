@@ -127,7 +127,7 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      while (event.dirty.size > 0) {
+      while (event.dirty.size) {
         for (const node of event.dirty) {
           await node._render(event, this);
         }
@@ -202,7 +202,7 @@ export abstract class _Renderer<T> {
     const event = new UpdateManager(async (event, force) => {
       if (updating) return;
       updating = true;
-      while (event.dirty.size > 0 || event.remount.size > 0) {
+      while (event.dirty.size || event.remount.size) {
         if (destroyed) return;
         await refresh(event, force);
         await new Promise<void>(resolve => nextick(resolve));
