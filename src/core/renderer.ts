@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { UpdateManager, VNode } from './reconciler';
-import { ComponentNode } from './types/component';
+import { ComponentNode, NativeElementType } from './types/component';
 import { equalDeps } from './reconciler/utils';
 import { _ParentComponent } from './components/pairs';
 import nextick from 'nextick';
@@ -144,12 +144,14 @@ export abstract class _Renderer<T> {
           }
           elements.set(node, elem);
         } else {
-          const element = elements.get(node) ?? this._createElement(node);
-          elements.set(node, element);
-          try {
-            this._updateElement(node, element, nativeChildren(node).toArray(), false);
-          } catch (e) {
-            console.error(e);
+          if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
+            const element = elements.get(node) ?? this._createElement(node);
+            elements.set(node, element);
+            try {
+              this._updateElement(node, element, nativeChildren(node).toArray(), false);
+            } catch (e) {
+              console.error(e);
+            }
           }
           const state: MountState[] = [];
           const prevState = mountState.get(node) ?? [];

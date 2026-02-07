@@ -145,6 +145,7 @@ export class VNode {
           }
           await Promise.all(state.tasks);
         }
+        event.remount.add(this);
       } else {
         throw Error(`Invalid node type ${type}`);
       }
