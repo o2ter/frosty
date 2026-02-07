@@ -214,7 +214,7 @@ export class VNode {
         if (lhs === rhs) {
           event.setDirty(lhs);
         } else {
-          if (!equalProps(lhs.props, rhs.props)) event.setDirty(lhs);
+          if (!equalProps(lhs._component.props, rhs._component.props)) event.setDirty(lhs);
           lhs._component = rhs._component;
         }
         lhs._parent = this;
