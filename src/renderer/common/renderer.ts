@@ -181,7 +181,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       props: { ref, className, style, inlineStyle, innerHTML, ..._props }
     } = node;
 
-    if (!_.isString(type)) return;
+    if (!_.isString(type)) throw Error(`Invalid type ${type}`);
     switch (type) {
       case 'head': {
         this._tracked_head_children.push(...children);
