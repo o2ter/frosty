@@ -95,27 +95,26 @@ export abstract class _Renderer<T> {
 
     const unmount = (nodes: Iterable<VNode>) => {
       for (const node of nodes) {
-        for (const item of [node, ...childrenDeep(node)]) {
-          const element = elements.get(item);
-          if (element) {
-            const state = mountState.get(item) ?? [];
-            for (const { unmount } of state) {
-              if (unmount) {
-                try {
-                  unmount();
-                } catch (e) {
-                  console.error(e);
-                }
+        const element = elements.get(node);
+        if (element) {
+          const state = mountState.get(node) ?? [];
+          for (const { unmount } of state) {
+            if (unmount) {
+              try {
+                unmount();
+              } catch (e) {
+                console.error(e);
               }
             }
-            try {
-              this._destroyElement(item, element);
-            } catch (e) {
-              console.error(e);
-            }
-            elements.delete(item);
           }
+          try {
+            this._destroyElement(node, element);
+          } catch (e) {
+            console.error(e);
+          }
+          elements.delete(node);
         }
+        unmount(childrenDeep(node));
       }
     };
 
