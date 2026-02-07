@@ -31,7 +31,7 @@ import { PropsProvider } from '../types/props';
 import { ErrorBoundary } from '../types/error';
 import { _Renderer } from '../renderer';
 import { myersSync } from 'myers.js';
-import { equalProps } from './utils';
+import { equalDeps, equalProps } from './utils';
 
 type VNodeState = {
   hook: string;
@@ -100,6 +100,10 @@ export class VNode {
   _state?: VNodeState[];
 
   /** @internal */
+  _content_state = uniqueId();
+  private _content_value?: any;
+
+  /** @internal */
   _parent?: VNode;
 
   /** @internal */
@@ -159,6 +163,9 @@ export class VNode {
         event.remount(this);
         native = this;
       } else if (isContext(type)) {
+        const { value } = props;
+        if (!equalDeps(this._content_value, value)) this._content_state = uniqueId();
+        this._content_value = value;
         children = this._resolve_children(type(props as any), event);
       } else if (_.isFunction(type)) {
         while (true) {
