@@ -42,8 +42,8 @@ type VNodeState = {
 
 export class UpdateManager {
 
-  dirty: Set<VNode> = new Set();
-  remount: Set<VNode> = new Set();
+  dirty: Set<VNode>[] = [];
+  remount: Set<VNode>[] = [];
   removed: Set<VNode> = new Set();
 
   /** @internal */
@@ -55,6 +55,21 @@ export class UpdateManager {
 
   async refresh(force: boolean = false) {
     await this._refresh(this, force);
+  }
+
+  _setDirty(node: VNode) {
+    if (!this.dirty[node._level]) this.dirty[node._level] = new Set();
+    this.dirty[node._level].add(node);
+  }
+
+  setDirty(node: VNode) {
+    this._setDirty(node);
+    this.refresh();
+  }
+
+  setRemount(node: VNode) {
+    if (!this.remount[node._level]) this.remount[node._level] = new Set();
+    this.remount[node._level].add(node);
   }
 }
 
@@ -117,12 +132,6 @@ export class VNode {
   }
 
   /** @internal */
-  _setDirty(event: UpdateManager) {
-    event.dirty.add(this);
-    event.refresh();
-  }
-
-  /** @internal */
   async _render(event: UpdateManager, renderer: _Renderer<any>) {
     try {
       const { type } = this._component;
@@ -130,7 +139,7 @@ export class VNode {
       let children: (VNode | string)[];
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children, event);
-        event.remount.add(this);
+        event.setRemount(this);
       } else if (isContext(type)) {
         children = this._resolve_children(type(props as any), event);
       } else if (_.isFunction(type)) {
@@ -145,7 +154,7 @@ export class VNode {
           }
           await Promise.all(state.tasks);
         }
-        event.remount.add(this);
+        event.setRemount(this);
       } else {
         throw Error(`Invalid node type ${type}`);
       }
@@ -161,9 +170,9 @@ export class VNode {
       for (const [i, child] of this._children.entries()) {
         if (!(child instanceof VNode)) continue;
         if (child === children[i]) {
-          child._setDirty(event);
+          event.setDirty(child);
         } else if (children[i] instanceof VNode) {
-          if (!equalProps(child.props, children[i].props)) child._setDirty(event);
+          if (!equalProps(child.props, children[i].props)) event.setDirty(child);
           child._component = children[i]._component;
         }
         child._parent = this;
@@ -192,13 +201,12 @@ export class VNode {
       this._children_updated(event);
     } finally {
       reconciler._currentHookState = undefined;
-      event.dirty.delete(this);
     }
   }
 
   private _children_updated(event: UpdateManager) {
     const node = this.stack.drop(1).find(node => _.isString(node.type) || node.type?.prototype instanceof NativeElementType);
-    if (node) event.remount.add(node);
+    if (node) event.setRemount(node);
   }
 
   private _resolve_props() {
@@ -261,7 +269,7 @@ class HookState {
   }
 
   setDirty() {
-    this.node._setDirty(this.event);
+    this.event.setDirty(this.node);
   }
 
   resolveContextNode(context: Context<any>) {

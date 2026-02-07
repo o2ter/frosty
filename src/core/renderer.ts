@@ -127,59 +127,62 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      while (event.dirty.size) {
-        for (const node of event.dirty) {
+      for (const nodes of event.dirty) {
+        for (const node of nodes || []) {
           await node._render(event, this);
+          nodes.delete(node);
         }
       }
 
-      for (const node of _.sortBy([...event.remount], x => -x._level)) {
-        if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
-          let elem: any = elements?.get(node);
-          if (!elem) {
-            const Component = node.type as any;
-            elem = new Component();
-          }
-          elements.set(node, elem);
-        } else {
-          if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
-            const element = elements.get(node) ?? this._createElement(node);
-            elements.set(node, element);
-            try {
-              this._updateElement(node, element, nativeChildren(node).toArray(), force);
-            } catch (e) {
-              console.error(e);
+      for (const nodes of event.remount.toReversed()) {
+        for (const node of nodes || []) {
+          if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
+            let elem: any = elements?.get(node);
+            if (!elem) {
+              const Component = node.type as any;
+              elem = new Component();
             }
-          }
-          const state: MountState[] = [];
-          const prevState = mountState.get(node) ?? [];
-          const curState = node._state ?? [];
-          for (const i of _.range(Math.max(prevState.length, curState.length))) {
-            const unmount = prevState[i]?.unmount;
-            const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
-            if (unmount && changed) {
+            elements.set(node, elem);
+          } else {
+            if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
+              const element = elements.get(node) ?? this._createElement(node);
+              elements.set(node, element);
               try {
-                unmount();
+                this._updateElement(node, element, nativeChildren(node).toArray(), force);
               } catch (e) {
                 console.error(e);
               }
             }
-            state.push({
-              hook: curState[i].hook,
-              deps: curState[i].deps,
-              unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+            const state: MountState[] = [];
+            const prevState = mountState.get(node) ?? [];
+            const curState = node._state ?? [];
+            for (const i of _.range(Math.max(prevState.length, curState.length))) {
+              const unmount = prevState[i]?.unmount;
+              const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
+              if (unmount && changed) {
                 try {
-                  return curState[i].mount?.();
+                  unmount();
                 } catch (e) {
                   console.error(e);
                 }
-              })(),
-            });
+              }
+              state.push({
+                hook: curState[i].hook,
+                deps: curState[i].deps,
+                unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+                  try {
+                    return curState[i].mount?.();
+                  } catch (e) {
+                    console.error(e);
+                  }
+                })(),
+              });
+            }
+            mountState.set(node, state);
           }
-          mountState.set(node, state);
         }
       }
-      event.remount.clear();
+      event.remount = [];
 
       unmount(event.removed);
       event.removed.clear();
@@ -202,7 +205,7 @@ export abstract class _Renderer<T> {
     const event = new UpdateManager(async (event, force) => {
       if (updating) return;
       updating = true;
-      while (event.dirty.size || event.remount.size) {
+      while (event.dirty.some(x => !!x.size) || event.remount.some(x => !!x.size)) {
         if (destroyed) return;
         await refresh(event, force);
         await new Promise<void>(resolve => nextick(resolve));
@@ -211,7 +214,7 @@ export abstract class _Renderer<T> {
     });
 
     const rootNode = new VNode(component);
-    event.dirty.add(rootNode);
+    event._setDirty(rootNode);
     await event.refresh(true);
 
     return {
