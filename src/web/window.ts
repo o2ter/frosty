@@ -25,7 +25,7 @@
 
 import _ from 'lodash';
 import { uniqueId } from '../core/utils';
-import { reconciler } from '../core/reconciler/state';
+import { reconciler } from '../core/reconciler';
 import { _DOMRenderer } from '../renderer/common';
 import { _useSharedSyncExternalStore } from './utils';
 

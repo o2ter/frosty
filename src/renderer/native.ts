@@ -29,7 +29,7 @@ import { ComponentNode, NativeElementType } from '../core/types/component';
 export { _Renderer } from '../core/renderer';
 export { uniqueId } from '../core/utils';
 export { EventEmitter } from '../core/reconciler/events';
-export { VNode } from '../core/reconciler/vnode';
+export type { VNode } from '../core/reconciler';
 export { NativeElementType } from '../core/types/component';
 
 export function _createNativeElement(

@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../reconciler/state';
+import { reconciler } from '../reconciler';
 import { _useMemo } from '../reconciler/hooks';
 
 const resolved = new WeakMap<PromiseLike<any>, { result?: any; error?: any; }>();

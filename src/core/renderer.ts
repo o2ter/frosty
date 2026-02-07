@@ -24,10 +24,8 @@
 //
 
 import _ from 'lodash';
-import { VNode } from './reconciler/vnode';
-import { ComponentNode, NativeElementType } from './types/component';
-import { reconciler } from './reconciler/state';
-import nextick from 'nextick';
+import { UpdateManager, VNode } from './reconciler';
+import { ComponentNode } from './types/component';
 import { equalDeps } from './reconciler/utils';
 import { _ParentComponent } from './components/pairs';
 
@@ -59,48 +57,103 @@ export abstract class _Renderer<T> {
     },
   ) {
 
-    const runtime = reconciler.buildVNodes(component, this);
-
-    type _State = {
+    type MountState = {
       hook: string;
       deps: any;
       unmount?: () => void;
     };
 
-    const mountState = new Map<VNode, _State[]>();
+    const elements = new Map<VNode, T>();
+    const mountState = new Map<VNode, MountState[]>();
 
-    const resolveChildren = (node: VNode, elements: Map<VNode, { native?: T }>) => {
-      const childrenOfParent = (node: VNode, allowedChild: (node: string | VNode) => boolean): (string | T)[] => _.flatMap(node.children, x => {
-        if (_.isString(x)) return allowedChild(x) ? x : [];
-        const _node = elements.get(x)?.native;
-        if (allowedChild(x)) return _node ?? children(x);
-        return _node ? [] : childrenOfParent(x, allowedChild);
-      });
-      const children = (node: VNode): (string | T)[] => _.flatMap(node.children, x => {
-        if (_.isString(x)) return x;
-        const _node = elements.get(x)?.native;
-        if (_node instanceof _ParentComponent) return childrenOfParent(x, c => _node.isChildNode(c));
-        return _node ?? children(x);
-      });
-      return children(node);
+    const childrenDeep = function* (node: VNode): Iterable<VNode> {
+      for (const child of node.children) {
+        if (child instanceof VNode) {
+          yield child;
+          yield* childrenDeep(child);
+        }
+      }
     };
 
-    const commit = (elements: Map<VNode, { native?: T }>, updated: Set<VNode>, force?: boolean) => {
-
-      const _mount = (node: VNode, stack: VNode[]) => {
-        for (const item of node.children) {
-          if (item instanceof VNode) _mount(item, [...stack, node]);
-        }
-        const element = elements.get(node)?.native;
-        if (element instanceof _ParentComponent) return;
-        if (element && updated.has(node)) {
-          try {
-            this._updateElement(node, element, resolveChildren(node, elements), stack, force);
-          } catch (e) {
-            console.error(e);
+    const nativeChildren = function* (node: VNode, filter?: (x: string | VNode) => boolean): Iterable<T | string> {
+      for (const child of node.children) {
+        if (filter && !filter(child)) continue;
+        if (_.isString(child)) {
+          yield child;
+        } else {
+          const element = elements.get(child);
+          if (element instanceof _ParentComponent) {
+            yield* nativeChildren(child, x => element.isChildNode(x));
+          } else if (element) {
+            yield element;
+          } else {
+            yield* nativeChildren(child);
           }
         }
-        const state: _State[] = [];
+      }
+    }
+
+    const unmount = (nodes: Iterable<VNode>) => {
+      for (const node of nodes) {
+        for (const item of [node, ...childrenDeep(node)]) {
+          const element = elements.get(item);
+          if (element) {
+            const state = mountState.get(item) ?? [];
+            for (const { unmount } of state) {
+              if (unmount) {
+                try {
+                  unmount();
+                } catch (e) {
+                  console.error(e);
+                }
+              }
+            }
+            try {
+              this._destroyElement(item, element);
+            } catch (e) {
+              console.error(e);
+            }
+            elements.delete(item);
+          }
+        }
+      }
+    };
+
+    const event = new UpdateManager(async () => {
+
+      try {
+        this._beforeUpdate();
+      } catch (e) {
+        console.error(e);
+      }
+
+      let updated = new Set<VNode>();
+      while (true) {
+        const dirty = event.dirty.difference(updated);
+        if (dirty.size === 0) break;
+        for (const node of _.sortBy([...dirty], x => x._level)) {
+          await node._render(event, this);
+          updated.add(node);
+        }
+      }
+
+      for (const node of _.sortBy([...event.remount], x => -x._level)) {
+        if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
+          let elem: any = elements?.get(node);
+          if (!elem) {
+            const Component = node.type as any;
+            elem = new Component();
+          }
+          elements.set(node, elem);
+          continue;
+        }
+        const element = elements.get(node) ?? this._createElement(node, [...node.stack]);
+        try {
+          this._updateElement(node, element, [...nativeChildren(node)], [...node.stack], false);
+        } catch (e) {
+          console.error(e);
+        }
+        const state: MountState[] = [];
         const prevState = mountState.get(node) ?? [];
         const curState = node.state;
         for (const i of _.range(Math.max(prevState.length, curState.length))) {
@@ -126,108 +179,33 @@ export abstract class _Renderer<T> {
           });
         }
         mountState.set(node, state);
-      };
+      }
+      event.remount.clear();
 
-      for (const [node, state] of mountState) {
-        if (elements.has(node)) continue;
-        for (const { unmount } of state) {
-          try {
-            unmount?.();
-          } catch (e) {
-            console.error(e);
-          }
-        }
-        mountState.delete(node);
-      }
-      if (root) this._updateElement(
-        runtime.node, root,
-        _.castArray(elements.get(runtime.node)?.native ?? resolveChildren(runtime.node, elements)),
-        [],
-        force,
-      );
-      _mount(runtime.node, [runtime.node]);
-    };
+      unmount(event.removed);
+      event.removed.clear();
 
-    const update = async (elements?: Map<VNode, { native?: T }>, force?: boolean) => {
-      this._renderStorage = new Map<any, any>();
-      try {
-        this._beforeUpdate();
-      } catch (e) {
-        console.error(e);
-      }
-      const map = new Map<VNode, { native?: T }>();
-      const updatedNodes = new Set<VNode>();
-      for await (const { node, stack, updated } of runtime.excute()) {
-        if (node.error) continue;
-        if (_.isFunction(node.type) && !(node.type.prototype instanceof NativeElementType)) {
-          map.set(node, {});
-        } else if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
-          let elem = elements?.get(node)?.native;
-          if (!elem) {
-            const Component = node.type as any;
-            elem = new Component();
-          }
-          map.set(node, { native: elem });
-        } else {
-          const elem = elements?.get(node)?.native;
-          if (!elem || updated) updatedNodes.add(node);
-          try {
-            map.set(node, { native: elem ?? this._createElement(node, stack) });
-          } catch (e) {
-            console.error(e);
-          }
-        }
-      }
-      commit(map, updatedNodes, force);
-      if (elements) {
-        for (const [node, element] of elements) {
-          if (map.has(node) || !element.native) continue;
-          try {
-            this._destroyElement(node, element.native);
-          } catch (e) {
-            console.error(e);
-          }
-        }
-      }
       try {
         this._afterUpdate();
       } catch (e) {
         console.error(e);
       }
-      return map;
-    };
 
-    let update_count = 0;
-    let render_count = 0;
-    let destroyed = false;
-    let elements = await update(undefined, true);
-
-    const listener = runtime.event.register('onchange', () => {
-      if (render_count !== update_count++) return;
-      nextick(async () => {
-        while (render_count !== update_count) {
-          if (destroyed) return;
-          const current = update_count;
-          elements = await update(elements, false);
-          render_count = current;
-        }
-      });
     });
+
+    const rootNode = new VNode(component);
+    await rootNode._render(event, this);
 
     return {
       get root() {
         if (root) return root;
-        const elems = _.castArray(elements.get(runtime.node)?.native ?? resolveChildren(runtime.node, elements));
+        const elems = _.castArray(elements.get(rootNode) ?? [...nativeChildren(rootNode)]);
         const nodes = _.filter(elems, x => !_.isString(x)) as T[];
         return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
-        if (root) this._updateElement(runtime.node, root, [], [], true);
-        destroyed = true;
-        listener.remove();
-        for (const state of mountState.values()) {
-          for (const { unmount } of state) unmount?.();
-        }
+        if (root) this._updateElement(rootNode, root, [], [], true);
+        unmount(elements.keys());
       },
     };
   }

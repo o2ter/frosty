@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from './state';
+import { reconciler } from '.';
 import { equalDeps } from './utils';
 
 const _useHookState = (hook: string) => {

@@ -27,7 +27,7 @@ import _ from "lodash";
 import { PropsWithChildren } from "../types/common";
 import { NativeElementType } from "../types/component";
 import { _createElement, _ElementType } from "../types/runtime";
-import { VNode } from "../reconciler/vnode";
+import { VNode } from "../reconciler";
 import { Fragment } from "./fragment";
 
 export abstract class _ParentComponent extends NativeElementType {

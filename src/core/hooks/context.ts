@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { reconciler } from '../reconciler/state';
+import { reconciler } from '../reconciler';
 import { ComponentType, ElementNode } from '../types/common';
 
 const _contextDefaultValue = new WeakMap<Context<any>, any>();
@@ -101,8 +101,9 @@ export const useContext = <T, R = T>(
   if (!isContext(context)) throw Error(`Invalid type of ${context}`);
   const state = reconciler.currentHookState;
   if (!state) throw Error('useContext must be used within a render function.');
-  const { contextValue, listens } = state;
-  listens.add(context);
-  const { value = _contextDefaultValue.get(context) } = contextValue.get(context) ?? {};
-  return selector(value);
+  const node = state.resolveContextNode(context);
+  if (node) {
+    return selector(node.props.value);
+  }
+  return selector(_contextDefaultValue.get(context));
 };

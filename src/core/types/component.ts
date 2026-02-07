@@ -64,8 +64,7 @@ export class ComponentNode {
     return this._key;
   }
 
-  /** @internal */
-  _equal(other: ComponentNode) {
+  equalType(other: ComponentNode) {
     return this.type === other.type && this.key === other.key;
   }
 }

@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import { Awaitable } from '@o2ter/utils-js';
 import { _useEffect } from '../reconciler/hooks';
-import { reconciler } from '../reconciler/state';
+import { reconciler } from '../reconciler';
 
 /**
  * A hook utility for synchronizing with an external store.
@@ -53,10 +53,10 @@ export const useSyncExternalStore = <Snapshot>(
 ) => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useSyncExternalStore must be used within a render function.');
-  _useEffect('useSyncExternalStore', ({ node }) => {
+  _useEffect('useSyncExternalStore', (_state) => {
     const abort = new AbortController();
     try {
-      const destructor = subscribe(() => { node?._setDirty(); }, abort.signal);
+      const destructor = subscribe(() => { _state.setDirty(); }, abort.signal);
       return () => {
         abort.abort();
         (async () => {

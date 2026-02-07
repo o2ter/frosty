@@ -49,7 +49,7 @@ export function useState<T>(initialState: T | (() => T)): [T, (dispatch: SetStat
 export function useState<T = undefined>(): [T | undefined, (dispatch: SetStateAction<T | undefined>) => void];
 
 export function useState(initialState?: any) {
-  const { value, setValue } = _useMemo('useState', ({ node }) => {
+  const { value, setValue } = _useMemo('useState', (_state) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       setValue: (dispatch: SetStateAction<any>) => {
@@ -57,7 +57,7 @@ export function useState(initialState?: any) {
         const newValue = _.isFunction(dispatch) ? dispatch(oldValue) : dispatch;
         if (oldValue === newValue) return;
         state.value = newValue;
-        node?._setDirty();
+        _state.setDirty();
       },
     };
     return state;

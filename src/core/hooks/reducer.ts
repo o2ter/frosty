@@ -57,7 +57,7 @@ export function useReducer(
   reducer: (prevState: any, action?: any) => any,
   initialState?: any,
 ) {
-  const { value, dispatch } = _useMemo('useReducer', ({ node }) => {
+  const { value, dispatch } = _useMemo('useReducer', (_state) => {
     const state = {
       value: _.isFunction(initialState) ? initialState() : initialState,
       dispatch: (action?: any) => {
@@ -65,7 +65,7 @@ export function useReducer(
         const newValue = reducer(state.value, action);
         if (oldValue === newValue) return;
         state.value = newValue;
-        node?._setDirty();
+        _state.setDirty();
       },
     };
     return state;

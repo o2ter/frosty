@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { VNode } from '../../core/reconciler/vnode';
+import { VNode } from '../../core/reconciler';
 import { ComponentNode } from '../../core/types/component';
 import { tags } from '../../../generated/elements';
 import { _propValue } from '../../core/web/props';
