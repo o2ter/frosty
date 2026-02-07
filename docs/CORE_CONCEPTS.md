@@ -179,8 +179,8 @@ The renderer system is built on an abstract base class:
 abstract class _Renderer<T> {
   protected abstract _beforeUpdate(): void;
   protected abstract _afterUpdate(): void;
-  protected abstract _createElement(node: VNode, stack: VNode[]): T;
-  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], stack: VNode[], force?: boolean): void;
+  protected abstract _createElement(node: VNode): T;
+  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], force?: boolean): void;
   protected abstract _destroyElement(node: VNode, element: T): void;
 }
 ```

@@ -103,7 +103,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   /** @internal */
-  _createElement(node: VNode, stack: VNode[]) {
+  _createElement(node: VNode) {
     const { type } = node;
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
@@ -126,7 +126,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       _.includes(tags.html, type) && HTML_NS,
       _.includes(tags.mathml, type) && MATHML_NS,
     ]);
-    const parent = _.last(stack);
+    const parent = _.last(node.stack.toArray());
     const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this._namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
     const elem = ns ? this.document.createElementNS(ns, type) : this.document.createElement(type);
     this._namespace_map.set(node, ns);
@@ -154,7 +154,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     node: VNode,
     element: Element | DOMNativeNode,
     children: (string | Element | DOMNativeNode)[],
-    stack: VNode[],
     force?: boolean
   ) {
     if (element instanceof DOMNativeNode) {
@@ -172,7 +171,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       return;
     }
 
-    if (_.isEmpty(stack)) {
+    if (_.isEmpty(node.stack.toArray())) {
       DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
       return;
     }

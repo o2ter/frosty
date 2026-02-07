@@ -100,8 +100,8 @@ The renderer system is designed to be platform-agnostic:
 
 ```typescript
 abstract class _Renderer<T> {
-  protected abstract _createElement(node: VNode, stack: VNode[]): T;
-  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], stack: VNode[], force?: boolean): void;
+  protected abstract _createElement(node: VNode): T;
+  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], force?: boolean): void;
   protected abstract _destroyElement(node: VNode, element: T): void;
 }
 ```

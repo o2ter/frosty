@@ -67,7 +67,7 @@ export abstract class _Renderer<T> {
     const elements = new Map<VNode, T>();
     const mountState = new Map<VNode, MountState[]>();
 
-    const childrenDeep = function* (node: VNode): Iterable<VNode> {
+    const childrenDeep = function* (node: VNode): Generator<VNode> {
       for (const child of node.children) {
         if (child instanceof VNode) {
           yield child;
@@ -76,7 +76,7 @@ export abstract class _Renderer<T> {
       }
     };
 
-    const nativeChildren = function* (node: VNode, filter?: (x: string | VNode) => boolean): Iterable<T | string> {
+    const nativeChildren = function* (node: VNode, filter?: (x: string | VNode) => boolean): Generator<T | string> {
       for (const child of node.children) {
         if (filter && !filter(child)) continue;
         if (_.isString(child)) {
@@ -146,7 +146,7 @@ export abstract class _Renderer<T> {
         } else {
           const element = elements.get(node) ?? this._createElement(node);
           try {
-            this._updateElement(node, element, [...nativeChildren(node)], false);
+            this._updateElement(node, element, nativeChildren(node).toArray(), false);
           } catch (e) {
             console.error(e);
           }
@@ -185,7 +185,7 @@ export abstract class _Renderer<T> {
 
       if (root) this._updateElement(
         rootNode, root,
-        _.castArray(elements.get(rootNode) ?? [...nativeChildren(rootNode)]),
+        _.castArray(elements.get(rootNode) ?? nativeChildren(rootNode).toArray()),
         false,
       );
 
@@ -216,7 +216,7 @@ export abstract class _Renderer<T> {
     return {
       get root() {
         if (root) return root;
-        const elems = _.castArray(elements.get(rootNode) ?? [...nativeChildren(rootNode)]);
+        const elems = _.castArray(elements.get(rootNode) ?? nativeChildren(rootNode).toArray());
         const nodes = _.filter(elems, x => !_.isString(x)) as T[];
         return nodes.length === 1 ? nodes[0] : nodes;
       },
