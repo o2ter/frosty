@@ -129,13 +129,10 @@ export abstract class _Renderer<T> {
 
       let updated = new Set<VNode>();
       while (true) {
-        const dirty = event.dirty.difference(updated);
-        if (dirty.size === 0) break;
-        const node = _.minBy([...dirty], x => x._level);
-        if (node) {
-          await node._render(event, this);
-          updated.add(node);
-        }
+        const node = _.minBy([...event.dirty.difference(updated)], x => x._level);
+        if (!node) break;
+        await node._render(event, this);
+        updated.add(node);
       }
 
       for (const node of _.sortBy([...event.remount], x => -x._level)) {
