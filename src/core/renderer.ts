@@ -93,10 +93,10 @@ export abstract class _Renderer<T> {
               } else if (element) {
                 yield element;
               } else {
-                yield* children(child, filter);
+                yield* children(child);
               }
             } else if (!element) {
-              yield* children(child);
+              yield* children(child, filter);
             }
           }
         }
