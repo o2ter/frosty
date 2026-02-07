@@ -28,7 +28,6 @@ import { UpdateManager, VNode } from './reconciler';
 import { ComponentNode, NativeElementType } from './types/component';
 import { equalDeps } from './reconciler/utils';
 import { _ParentComponent } from './components/pairs';
-import nextick from 'nextick';
 
 export abstract class _Renderer<T> {
 
