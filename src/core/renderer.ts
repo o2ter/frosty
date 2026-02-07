@@ -210,7 +210,7 @@ export abstract class _Renderer<T> {
     });
 
     const rootNode = new VNode(component);
-    await rootNode._render(event, this);
+    event.dirty.add(rootNode);
     await event.refresh();
 
     return {
