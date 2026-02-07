@@ -121,6 +121,7 @@ export class VNode {
   /** @internal */
   _setDirty(event: UpdateManager) {
     event.dirty.add(this);
+    event.refresh();
   }
 
   /** @internal */
@@ -253,7 +254,7 @@ class HookState {
   }
 
   setDirty() {
-    this.event.dirty.add(this.node);
+    this.node._setDirty(this.event);
   }
 
   resolveContextNode(context: Context<any>) {
