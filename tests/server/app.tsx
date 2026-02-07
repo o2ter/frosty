@@ -24,10 +24,24 @@
 //
 
 import _ from 'lodash';
-import { useState, useEffect, useAwaited } from '~/index';
+import { useState, useEffect, useAwaited, createContext, useContext } from '~/index';
 import { useLocation, useSearchParams, useServerResource, useWindow } from '~/web';
 
 let t = Date.now();
+
+const Counter = createContext(0);
+
+const Table = () => {
+  const value = useContext(Counter);
+  return (
+    <table bgColor='aliceblue'>
+      {_.map(_.range(100), i => <tr>
+        {_.map(_.range(20), j => <td>{i * value + j}</td>)}
+      </tr>
+      )}
+    </table>
+  );
+}
 
 export const App = () => {
   const [counter, setCounter] = useState(0);
@@ -64,12 +78,9 @@ export const App = () => {
       }}
     >
       <div style={{ background: 'aliceblue' }}>{1000 / d}</div>
-      <table bgColor='aliceblue'>
-        {_.map(_.range(100), i => <tr>
-          {_.map(_.range(20), j => <td>{i * counter + j}</td>)}
-        </tr>
-        )}
-      </table>
+      <Counter value={counter}>
+        <Table />
+      </Counter>
       <div innerHTML={`<span>${counter}</span>`} />
       <button onClick={() => setCounter2(v => v + 1)}>Click</button>
       <button onClick={() => setSearchParams(v => {
