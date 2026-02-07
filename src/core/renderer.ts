@@ -76,21 +76,31 @@ export abstract class _Renderer<T> {
       }
     };
 
-    const nativeChildren = function* (node: VNode, filter?: (x: string | VNode) => boolean): Generator<T | string> {
-      for (const child of node.children) {
-        if (filter && !filter(child)) continue;
-        if (_.isString(child)) {
-          yield child;
-        } else {
-          const element = elements.get(child);
-          if (element instanceof _ParentComponent) {
-            yield* nativeChildren(child, x => element.isChildNode(x));
-          } else if (element) {
-            yield element;
+    const nativeChildren = (node: VNode) => {
+      const children = function* (
+        node: VNode,
+        filter?: (x: string | VNode) => boolean
+      ): Generator<T | string> {
+        for (const child of node.children) {
+          if (_.isString(child)) {
+            if (filter && !filter(child)) continue;
+            yield child;
           } else {
-            yield* nativeChildren(child, filter);
+            const element = elements.get(child);
+            if (element) {
+              if (filter && !filter(child)) continue;
+              yield element;
+            } else {
+              yield* children(child, filter);
+            }
           }
         }
+      }
+      const element = elements.get(node);
+      if (element instanceof _ParentComponent) {
+        return children(node, x => element.isChildNode(x));
+      } else {
+        return children(node);
       }
     }
 
