@@ -127,11 +127,10 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      for (const node of event.dirty) {
-        await node._render(event, this);
-      }
-      for (const node of event.dirty) {
-        await node._render(event, this);
+      while (event.dirty.size > 0) {
+        for (const node of event.dirty) {
+          await node._render(event, this);
+        }
       }
 
       for (const node of _.sortBy([...event.remount], x => -x._level)) {
