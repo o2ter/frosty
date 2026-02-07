@@ -118,7 +118,7 @@ export abstract class _Renderer<T> {
       }
     };
 
-    const event = new UpdateManager(async () => {
+    const event = new UpdateManager(async (event) => {
 
       try {
         this._beforeUpdate();
