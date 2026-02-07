@@ -90,10 +90,8 @@ export abstract class _Renderer<T> {
             if (element) {
               if (filter && !filter(child)) continue;
               yield element;
-            } else if (filter && !filter(child)) {
-              yield* children(child, filter);
             } else {
-              yield* children(child);
+              yield* children(child, filter);
             }
           }
         }
