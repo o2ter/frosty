@@ -194,12 +194,16 @@ export abstract class _Renderer<T> {
     };
 
     let destroyed = false;
+    let updating = false;
     const event = new UpdateManager(async (event) => {
+      if (updating) return;
+      updating = true;
       while (event.dirty.size > 0) {
         if (destroyed) return;
         await refresh(event);
         await new Promise<void>(resolve => nextick(resolve));
       }
+      updating = false;
     });
 
     const rootNode = new VNode(component);
