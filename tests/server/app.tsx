@@ -27,6 +27,8 @@ import _ from 'lodash';
 import { useState, useEffect, useAwaited } from '~/index';
 import { useLocation, useSearchParams, useServerResource, useWindow } from '~/web';
 
+let t = Date.now();
+
 export const App = () => {
   const [counter, setCounter] = useState(0);
   const [counter2, setCounter2] = useState(0);
@@ -46,6 +48,9 @@ export const App = () => {
     console.log(window.navigator.userAgent);
     await new Promise(res => setTimeout(res, 1000));
   }, []);
+  let k = Date.now();
+  let d = k - t;
+  t = k;
   return (
     <div
       style={{
@@ -58,9 +63,10 @@ export const App = () => {
         margin: 16,
       }}
     >
+      <div style={{ background: 'aliceblue' }}>{d}</div>
       <table bgColor='aliceblue'>
-        {_.map(_.range(2), i => <tr>
-          {_.map(_.range(2), j => <td>{i * counter + j}</td>)}
+        {_.map(_.range(100), i => <tr>
+          {_.map(_.range(20), j => <td>{i * counter + j}</td>)}
         </tr>
         )}
       </table>
