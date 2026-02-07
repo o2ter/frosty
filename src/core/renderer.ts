@@ -185,6 +185,13 @@ export abstract class _Renderer<T> {
       unmount(event.removed);
       event.removed.clear();
 
+      if (root) this._updateElement(
+        rootNode, root,
+        _.castArray(elements.get(rootNode) ?? [...nativeChildren(rootNode)]),
+        [],
+        false,
+      );
+
       try {
         this._afterUpdate();
       } catch (e) {
