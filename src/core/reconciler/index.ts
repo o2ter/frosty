@@ -54,7 +54,7 @@ export class UpdateManager {
   }
 
   async refresh() {
-    this._refresh(this);
+    await this._refresh(this);
   }
 }
 

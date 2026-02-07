@@ -145,6 +145,7 @@ export abstract class _Renderer<T> {
           elements.set(node, elem);
         } else {
           const element = elements.get(node) ?? this._createElement(node);
+          elements.set(node, element);
           try {
             this._updateElement(node, element, nativeChildren(node).toArray(), false);
           } catch (e) {
@@ -210,7 +211,7 @@ export abstract class _Renderer<T> {
     });
 
     const rootNode = new VNode(component);
-    await rootNode._render(event, this);
+    event.dirty.add(rootNode);
     await event.refresh();
 
     return {
