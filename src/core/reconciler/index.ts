@@ -206,17 +206,17 @@ export class VNode {
       });
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
       this._error = undefined;
-      for (const [i, child] of this._children.entries()) {
-        if (!(child instanceof VNode) || !(children[i] instanceof VNode)) continue;
-        if (child === children[i]) {
-          event.setDirty(child);
+      for (const [lhs, rhs] of _.zip(this._children, children)) {
+        if (!(lhs instanceof VNode) || !(rhs instanceof VNode)) continue;
+        if (lhs === rhs) {
+          event.setDirty(lhs);
         } else {
-          if (!equalProps(child.props, children[i].props)) event.setDirty(child);
-          child._component = children[i]._component;
+          if (!equalProps(lhs.props, rhs.props)) event.setDirty(lhs);
+          lhs._component = rhs._component;
         }
-        child._parent = this;
-        child._nativeParent = native;
-        child._level = this._level + 1;
+        lhs._parent = this;
+        lhs._nativeParent = native;
+        lhs._level = this._level + 1;
       }
       for (const removed of _.flatMap(diff, x => x.remove ?? [])) {
         if (removed instanceof VNode) {
