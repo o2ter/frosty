@@ -171,7 +171,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       return;
     }
 
-    if (_.isEmpty(node.stack.toArray())) {
+    if (_.isEmpty(node.stack.drop(1))) {
       DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
       return;
     }
