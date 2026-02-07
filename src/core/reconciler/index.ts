@@ -197,7 +197,7 @@ export class VNode {
   }
 
   private _children_updated(event: UpdateManager) {
-    const node = this.stack.find(node => _.isString(node.type) || node.type?.prototype instanceof NativeElementType);
+    const node = this.stack.drop(1).find(node => _.isString(node.type) || node.type?.prototype instanceof NativeElementType);
     if (node) event.remount.add(node);
   }
 
@@ -206,7 +206,7 @@ export class VNode {
     const { type, props: _props } = this._component;
     if (type === PropsProvider) return _props;
     let props = { ..._props };
-    for (const node of this.stack) {
+    for (const node of this.stack.drop(1)) {
       if (node.type === PropsProvider) {
         props = node.props.callback({ type, props });
       }
@@ -228,7 +228,7 @@ export class VNode {
   }
 
   private _resolve_error_boundary() {
-    return this.stack.find(node => node.type === ErrorBoundary)?.props;
+    return this.stack.drop(1).find(node => node.type === ErrorBoundary)?.props;
   }
 }
 
