@@ -190,7 +190,6 @@ export abstract class _Renderer<T> {
       } catch (e) {
         console.error(e);
       }
-
     };
 
     let destroyed = false;
