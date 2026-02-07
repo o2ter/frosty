@@ -41,13 +41,13 @@ export const App = () => {
     const handle = setInterval(() => { setCounter(v => v + 1); }, 1);
     return () => clearTimeout(handle);
   }, []);
-  useAwaited(async () => {
-    console.log(ssr);
-    console.log(location);
-    console.log(window.document.cookie);
-    console.log(window.navigator.userAgent);
-    await new Promise(res => setTimeout(res, 1000));
-  }, []);
+  // useAwaited(async () => {
+  //   console.log(ssr);
+  //   console.log(location);
+  //   console.log(window.document.cookie);
+  //   console.log(window.navigator.userAgent);
+  //   await new Promise(res => setTimeout(res, 1000));
+  // }, []);
   let k = Date.now();
   let d = k - t;
   t = k;
