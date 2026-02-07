@@ -87,12 +87,15 @@ export abstract class _Renderer<T> {
             yield child;
           } else {
             const element = elements.get(child);
-            if (element) {
-              if (filter && !filter(child)) continue;
-              yield element;
-            } else if (filter && !filter(child)) {
-              yield* children(child, filter);
-            } else {
+            if (!filter || filter(child)) {
+              if (element instanceof _ParentComponent) {
+                yield* children(child, x => element.isChildNode(x));
+              } else if (element) {
+                yield element;
+              } else {
+                yield* children(child, filter);
+              }
+            } else if (!element) {
               yield* children(child);
             }
           }
