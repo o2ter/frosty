@@ -208,7 +208,6 @@ export abstract class _Renderer<T> {
       while (event.dirty.some(x => !!x.size) || event.remount.some(x => !!x.size)) {
         if (destroyed) return;
         await refresh(event, force);
-        await new Promise<void>(resolve => nextick(resolve));
       }
       updating = false;
     });
