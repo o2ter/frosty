@@ -42,9 +42,14 @@ type VNodeState = {
 
 export class UpdateManager {
 
-  dirty: Set<VNode>[] = [];
-  remount: Set<VNode>[] = [];
-  removed: Set<VNode> = new Set();
+  /** @internal */
+  _dirty: Set<VNode>[] = [];
+
+  /** @internal */
+  _remount: Set<VNode>[] = [];
+
+  /** @internal */
+  _removed: Set<VNode> = new Set();
 
   /** @internal */
   private _refresh: (x: UpdateManager, force: boolean) => Promise<void>;
@@ -58,8 +63,8 @@ export class UpdateManager {
   }
 
   _setDirty(node: VNode) {
-    if (!this.dirty[node._level]) this.dirty[node._level] = new Set();
-    this.dirty[node._level].add(node);
+    if (!this._dirty[node._level]) this._dirty[node._level] = new Set();
+    this._dirty[node._level].add(node);
   }
 
   setDirty(node: VNode) {
@@ -67,9 +72,17 @@ export class UpdateManager {
     this.refresh();
   }
 
-  setRemount(node: VNode) {
-    if (!this.remount[node._level]) this.remount[node._level] = new Set();
-    this.remount[node._level].add(node);
+  remount(node: VNode) {
+    if (!this._remount[node._level]) this._remount[node._level] = new Set();
+    this._remount[node._level].add(node);
+  }
+
+  removed(node: VNode) {
+    this._removed.add(node);
+  }
+
+  get isDirty() {
+    return this._dirty.some(x => !!x.size) || this._remount.some(x => !!x.size);
   }
 }
 
@@ -143,7 +156,7 @@ export class VNode {
       let native = this._parentNative;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children, event);
-        event.setRemount(this);
+        event.remount(this);
         native = this;
       } else if (isContext(type)) {
         children = this._resolve_children(type(props as any), event);
@@ -159,7 +172,7 @@ export class VNode {
           }
           await Promise.all(state.tasks);
         }
-        event.setRemount(this);
+        event.remount(this);
       } else {
         throw Error(`Invalid node type ${type}`);
       }
@@ -186,7 +199,7 @@ export class VNode {
       }
       for (const removed of _.flatMap(diff, x => x.remove ?? [])) {
         if (removed instanceof VNode) {
-          event.removed.add(removed);
+          event.removed(removed);
         }
       }
       if (_.some(diff, x => !x.equivalent)) {
@@ -212,7 +225,7 @@ export class VNode {
 
   private _children_updated(event: UpdateManager) {
     const node = this._parentNative;
-    if (node && node !== this) event.setRemount(node);
+    if (node && node !== this) event.remount(node);
   }
 
   private _resolve_props() {

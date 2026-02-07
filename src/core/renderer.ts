@@ -28,6 +28,7 @@ import { UpdateManager, VNode } from './reconciler';
 import { ComponentNode, NativeElementType } from './types/component';
 import { equalDeps } from './reconciler/utils';
 import { _ParentComponent } from './components/pairs';
+import nextick from 'nextick';
 
 export abstract class _Renderer<T> {
 
@@ -126,14 +127,14 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      for (const nodes of event.dirty) {
+      for (const nodes of event._dirty) {
         for (const node of nodes || []) {
           await node._render(event, this);
           nodes.delete(node);
         }
       }
 
-      for (const nodes of event.remount.toReversed()) {
+      for (const nodes of event._remount.toReversed()) {
         for (const node of nodes || []) {
           if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
             let elem: any = elements?.get(node);
@@ -181,10 +182,10 @@ export abstract class _Renderer<T> {
           }
         }
       }
-      event.remount = [];
+      event._remount = [];
 
-      unmount(event.removed);
-      event.removed.clear();
+      unmount(event._removed);
+      event._removed.clear();
 
       if (root) this._updateElement(
         rootNode, root,
@@ -204,8 +205,12 @@ export abstract class _Renderer<T> {
     const event = new UpdateManager(async (event, force) => {
       if (updating) return;
       updating = true;
-      while (event.dirty.some(x => !!x.size) || event.remount.some(x => !!x.size)) {
+      if (event.isDirty) {
+        await refresh(event, force);
+      }
+      while (event.isDirty) {
         if (destroyed) return;
+        await new Promise<void>(resolve => nextick(resolve));
         await refresh(event, force);
       }
       updating = false;
