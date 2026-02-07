@@ -127,7 +127,6 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      console.log({ check: [...event.dirty], check2: [...event.remount] });
       let updated = new Set<VNode>();
       while (true) {
         const node = _.minBy([...event.dirty.difference(updated)], x => x._level);
@@ -137,7 +136,6 @@ export abstract class _Renderer<T> {
       }
 
       for (const node of _.sortBy([...event.remount], x => -x._level)) {
-        console.log({node});
         if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
           let elem: any = elements?.get(node);
           if (!elem) {
@@ -147,7 +145,6 @@ export abstract class _Renderer<T> {
           elements.set(node, elem);
         } else {
           const element = elements.get(node) ?? this._createElement(node);
-          console.log({ element });
           try {
             this._updateElement(node, element, nativeChildren(node).toArray(), false);
           } catch (e) {
