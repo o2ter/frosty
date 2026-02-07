@@ -63,7 +63,7 @@ export const App = () => {
         margin: 16,
       }}
     >
-      <div style={{ background: 'aliceblue' }}>{d}</div>
+      <div style={{ background: 'aliceblue' }}>{1000 / d}</div>
       <table bgColor='aliceblue'>
         {_.map(_.range(100), i => <tr>
           {_.map(_.range(20), j => <td>{i * counter + j}</td>)}
