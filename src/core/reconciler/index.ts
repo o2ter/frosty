@@ -100,8 +100,11 @@ export class VNode {
   _state?: VNodeState[];
 
   /** @internal */
-  _content_state = uniqueId();
+  _content_listeners: Set<VNode> = new Set();
   private _content_value?: any;
+
+  /** @internal */
+  _context: Set<VNode> = new Set();
 
   /** @internal */
   _parent?: VNode;
@@ -164,7 +167,11 @@ export class VNode {
         native = this;
       } else if (isContext(type)) {
         const { value } = props;
-        if (!equalDeps(this._content_value, value)) this._content_state = uniqueId();
+        if (!equalDeps(this._content_value, value)) {
+          for (const node of this._content_listeners) {
+            event.setDirty(node);
+          }
+        }
         this._content_value = value;
         children = this._resolve_children(type(props as any), event);
       } else if (_.isFunction(type)) {
@@ -172,7 +179,14 @@ export class VNode {
           const state = new HookState(this, event, renderer);
           reconciler._currentHookState = state;
           const rendered = type(props);
+          for (const node of this._context.difference(state.context)) {
+            node._content_listeners.delete(this);
+          }
+          for (const node of state.context.difference(this._context)) {
+            node._content_listeners.add(this);
+          }
           this._state = state.state;
+          this._context = state.context;
           if (_.isEmpty(state.tasks)) {
             children = this._resolve_children(rendered, event);
             break;
@@ -274,6 +288,7 @@ class HookState {
 
   state: VNodeState[] = [];
   tasks: PromiseLike<void>[] = [];
+  context: Set<VNode> = new Set();
 
   constructor(
     node: VNode,

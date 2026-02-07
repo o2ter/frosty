@@ -103,6 +103,7 @@ export const useContext = <T, R = T>(
   if (!state) throw Error('useContext must be used within a render function.');
   const node = state.resolveContextNode(context);
   if (node) {
+    state.context.add(node);
     return selector(node.props.value);
   }
   return selector(_contextDefaultValue.get(context));
