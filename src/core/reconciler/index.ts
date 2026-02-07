@@ -90,6 +90,9 @@ export class VNode {
   _parent?: VNode;
 
   /** @internal */
+  _parentNative?: VNode;
+
+  /** @internal */
   _level = 0;
 
   /** @internal */
@@ -137,9 +140,11 @@ export class VNode {
       const { type } = this._component;
       const props = this._resolve_props();
       let children: (VNode | string)[];
+      let native = this._parentNative;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children, event);
         event.setRemount(this);
+        native = this;
       } else if (isContext(type)) {
         children = this._resolve_children(type(props as any), event);
       } else if (_.isFunction(type)) {
@@ -176,6 +181,7 @@ export class VNode {
           child._component = children[i]._component;
         }
         child._parent = this;
+        child._parentNative = native;
         child._level = this._level + 1;
       }
       for (const removed of _.flatMap(diff, x => x.remove ?? [])) {
@@ -205,8 +211,8 @@ export class VNode {
   }
 
   private _children_updated(event: UpdateManager) {
-    const node = this.stack.drop(1).find(node => _.isString(node.type) || node.type?.prototype instanceof NativeElementType);
-    if (node) event.setRemount(node);
+    const node = this._parentNative;
+    if (node && node !== this) event.setRemount(node);
   }
 
   private _resolve_props() {
