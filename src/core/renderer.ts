@@ -28,6 +28,7 @@ import { UpdateManager, VNode } from './reconciler';
 import { ComponentNode } from './types/component';
 import { equalDeps } from './reconciler/utils';
 import { _ParentComponent } from './components/pairs';
+import nextick from 'nextick';
 
 export abstract class _Renderer<T> {
 
@@ -193,9 +194,10 @@ export abstract class _Renderer<T> {
     };
 
     const event = new UpdateManager(async (event) => {
-
-      await refresh(event);
-
+      while (event.dirty.size > 0) {
+        await refresh(event);
+        await new Promise<void>(resolve => nextick(resolve));
+      }
     });
 
     const rootNode = new VNode(component);
