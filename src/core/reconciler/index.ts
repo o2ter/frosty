@@ -67,7 +67,9 @@ export class VNode {
 
   private _error?: any;
   private _children: (VNode | string)[] = [];
-  private _state?: VNodeState[];
+
+  /** @internal */
+  _state?: VNodeState[];
 
   /** @internal */
   _parent?: VNode;
@@ -94,10 +96,6 @@ export class VNode {
 
   get key() {
     return this._component.key;
-  }
-
-  get state() {
-    return this._state ?? [];
   }
 
   get children() {
@@ -249,7 +247,7 @@ class HookState {
   }
 
   get prevState() {
-    return this.node.state;
+    return this.node._state;
   }
 
   get stack() {
