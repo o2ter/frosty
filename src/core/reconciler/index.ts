@@ -47,14 +47,14 @@ export class UpdateManager {
   removed: Set<VNode> = new Set();
 
   /** @internal */
-  private _refresh: (x: UpdateManager) => Promise<void>;
+  private _refresh: (x: UpdateManager, force: boolean) => Promise<void>;
 
-  constructor(refresh: (x: UpdateManager) => Promise<void>) {
+  constructor(refresh: (x: UpdateManager, force: boolean) => Promise<void>) {
     this._refresh = refresh;
   }
 
-  async refresh() {
-    await this._refresh(this);
+  async refresh(force: boolean = false) {
+    await this._refresh(this, force);
   }
 }
 

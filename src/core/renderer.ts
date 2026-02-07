@@ -119,7 +119,7 @@ export abstract class _Renderer<T> {
       }
     };
 
-    const refresh = async (event: UpdateManager) => {
+    const refresh = async (event: UpdateManager, force: boolean) => {
 
       try {
         this._beforeUpdate();
@@ -148,7 +148,7 @@ export abstract class _Renderer<T> {
             const element = elements.get(node) ?? this._createElement(node);
             elements.set(node, element);
             try {
-              this._updateElement(node, element, nativeChildren(node).toArray(), false);
+              this._updateElement(node, element, nativeChildren(node).toArray(), force);
             } catch (e) {
               console.error(e);
             }
@@ -189,7 +189,7 @@ export abstract class _Renderer<T> {
       if (root) this._updateElement(
         rootNode, root,
         _.castArray(elements.get(rootNode) ?? nativeChildren(rootNode).toArray()),
-        false,
+        force,
       );
 
       try {
@@ -201,12 +201,12 @@ export abstract class _Renderer<T> {
 
     let destroyed = false;
     let updating = false;
-    const event = new UpdateManager(async (event) => {
+    const event = new UpdateManager(async (event, force) => {
       if (updating) return;
       updating = true;
       while (event.dirty.size > 0 || event.remount.size > 0) {
         if (destroyed) return;
-        await refresh(event);
+        await refresh(event, force);
         await new Promise<void>(resolve => nextick(resolve));
       }
       updating = false;
@@ -214,7 +214,7 @@ export abstract class _Renderer<T> {
 
     const rootNode = new VNode(component);
     event.dirty.add(rootNode);
-    await event.refresh();
+    await event.refresh(true);
 
     return {
       get root() {
