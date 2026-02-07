@@ -127,12 +127,11 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      let skip = new Set<VNode>();
-      while (true) {
-        const node = _.minBy([...event.dirty.difference(skip)], x => x._level);
-        if (!node) break;
+      for (const node of event.dirty) {
         await node._render(event, this);
-        skip.add(node);
+      }
+      for (const node of event.dirty) {
+        await node._render(event, this);
       }
 
       for (const node of _.sortBy([...event.remount], x => -x._level)) {
