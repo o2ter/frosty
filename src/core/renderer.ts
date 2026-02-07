@@ -36,9 +36,9 @@ export abstract class _Renderer<T> {
 
   protected abstract _afterUpdate(): void;
 
-  protected abstract _createElement(node: VNode, stack: VNode[]): T;
+  protected abstract _createElement(node: VNode): T;
 
-  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], stack: VNode[], force?: boolean): void;
+  protected abstract _updateElement(node: VNode, element: T, children: (T | string)[], force?: boolean): void;
 
   protected abstract _destroyElement(node: VNode, element: T): void;
 
@@ -144,9 +144,9 @@ export abstract class _Renderer<T> {
           }
           elements.set(node, elem);
         } else {
-          const element = elements.get(node) ?? this._createElement(node, [...node.stack]);
+          const element = elements.get(node) ?? this._createElement(node);
           try {
-            this._updateElement(node, element, [...nativeChildren(node)], [...node.stack], false);
+            this._updateElement(node, element, [...nativeChildren(node)], false);
           } catch (e) {
             console.error(e);
           }
@@ -186,7 +186,6 @@ export abstract class _Renderer<T> {
       if (root) this._updateElement(
         rootNode, root,
         _.castArray(elements.get(rootNode) ?? [...nativeChildren(rootNode)]),
-        [],
         false,
       );
 
@@ -223,7 +222,7 @@ export abstract class _Renderer<T> {
       },
       destroy: () => {
         destroyed = true;
-        if (root) this._updateElement(rootNode, root, [], [], true);
+        if (root) this._updateElement(rootNode, root, [], true);
         unmount(elements.keys());
       },
     };
