@@ -131,7 +131,8 @@ export abstract class _Renderer<T> {
       while (true) {
         const dirty = event.dirty.difference(updated);
         if (dirty.size === 0) break;
-        for (const node of _.sortBy([...dirty], x => x._level)) {
+        const node = _.minBy([...dirty], x => x._level);
+        if (node) {
           await node._render(event, this);
           updated.add(node);
         }
