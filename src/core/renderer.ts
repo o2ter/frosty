@@ -88,7 +88,7 @@ export abstract class _Renderer<T> {
           } else if (element) {
             yield element;
           } else {
-            yield* nativeChildren(child);
+            yield* nativeChildren(child, filter);
           }
         }
       }
