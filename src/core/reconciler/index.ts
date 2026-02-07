@@ -140,9 +140,9 @@ export class VNode {
           const state = new HookState(this, event, renderer);
           reconciler._currentHookState = state;
           const rendered = type(props);
+          this._state = state.state;
           if (_.isEmpty(state.tasks)) {
             children = this._resolve_children(rendered, event);
-            this._state = state.state;
             break;
           }
           await Promise.all(state.tasks);
