@@ -202,6 +202,7 @@ export class VNode {
   }
 
   private _resolve_props() {
+    const self = this;
     const { type, props: _props } = this._component;
     if (type === PropsProvider) return _props;
     let props = { ..._props };
@@ -210,7 +211,10 @@ export class VNode {
         props = node.props.callback({ type, props });
       }
     }
-    return props;
+    return _.mapValues(props, (v, k) => _.isFunction(v) ? function (this: any, ...args: any[]) {
+      const current = self._component.props[k];
+      return _.isFunction(current) ? current.call(this, ...args) : v.call(this, ...args);
+    } : v);
   }
 
   private _resolve_children(child: any, event: UpdateManager): (VNode | string)[] {
