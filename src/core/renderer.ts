@@ -193,8 +193,10 @@ export abstract class _Renderer<T> {
 
     };
 
+    let destroyed = false;
     const event = new UpdateManager(async (event) => {
       while (event.dirty.size > 0) {
+        if (destroyed) return;
         await refresh(event);
         await new Promise<void>(resolve => nextick(resolve));
       }
@@ -211,6 +213,7 @@ export abstract class _Renderer<T> {
         return nodes.length === 1 ? nodes[0] : nodes;
       },
       destroy: () => {
+        destroyed = true;
         if (root) this._updateElement(rootNode, root, [], [], true);
         unmount(elements.keys());
       },
