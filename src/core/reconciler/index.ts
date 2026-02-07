@@ -207,10 +207,10 @@ export class VNode {
       this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
       this._error = undefined;
       for (const [i, child] of this._children.entries()) {
-        if (!(child instanceof VNode)) continue;
+        if (!(child instanceof VNode) || !(children[i] instanceof VNode)) continue;
         if (child === children[i]) {
           event.setDirty(child);
-        } else if (children[i] instanceof VNode) {
+        } else {
           if (!equalProps(child.props, children[i].props)) event.setDirty(child);
           child._component = children[i]._component;
         }
