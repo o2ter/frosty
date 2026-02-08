@@ -241,6 +241,7 @@ export class VNode {
           console.error(e);
         }
       })();
+      event.remount(this);
       this._children_updated(event);
     } finally {
       reconciler._currentHookState = undefined;
