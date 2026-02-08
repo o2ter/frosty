@@ -74,7 +74,6 @@ export class UpdateManager {
 
 export class VNode {
 
-  /** @internal */
   #component: ComponentNode;
   
   #id = uniqueId();
@@ -82,8 +81,7 @@ export class VNode {
   #error?: any;
   #children: (VNode | string)[] = [];
 
-  /** @internal */
-  _state?: VNodeState[];
+  #state?: VNodeState[];
 
   #context: Set<VNode> = new Set();
   #content_listeners: Set<VNode> = new Set();
@@ -102,6 +100,7 @@ export class VNode {
     return this.#id;
   }
 
+  /** @internal */
   get component() {
     return this.#component;
   }
@@ -116,6 +115,11 @@ export class VNode {
 
   get key() {
     return this.#component.key;
+  }
+
+  /** @internal */
+  get state() {
+    return this.#state;
   }
 
   get children() {
@@ -198,7 +202,7 @@ export class VNode {
           for (const node of state.context.difference(this.#context)) {
             node.#content_listeners.add(this);
           }
-          this._state = state.state;
+          this.#state = state.state;
           this.#context = state.context;
           if (_.isEmpty(state.tasks)) {
             children = _resolve_children(rendered);
@@ -290,7 +294,7 @@ class HookState {
   }
 
   get prevState() {
-    return this.node._state;
+    return this.node.state;
   }
 
   get stack() {

@@ -188,7 +188,7 @@ export abstract class _Renderer<T> {
             }
             const state: MountState[] = [];
             const prevState = mountState.get(node) ?? [];
-            const curState = node._state ?? [];
+            const curState = node.state ?? [];
             for (const i of _.range(Math.max(prevState.length, curState.length))) {
               const unmount = prevState[i]?.unmount;
               const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
