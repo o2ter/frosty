@@ -23,6 +23,8 @@
 //  THE SOFTWARE.
 //
 
+export * from './activity';
 export * from './resource';
 export * from './interval';
 export * from './store';
+export * from './form';
