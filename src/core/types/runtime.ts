@@ -67,6 +67,7 @@ type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; }
     Partial<
       RefAttribute<ElementMap[x]['type'] | null | undefined>
       & {
+        key?: string | number;
         className?: ClassName;
         style?: StyleProp<ExtendedCSSProperties>;
         inlineStyle?: CSSProperties;
