@@ -90,14 +90,7 @@ export const useFormState = <V extends Record<string, any>>(
     perform: (action: string) => startActivity(async () => {
       const taskId = uniqueId();
       const _callback = async (state: FormState<V>) => {
-        switch (action) {
-          case 'submit':
-            break;
-          case 'reset':
-            setState(s => _.omit(s, 'values'));
-            break;
-          default: break;
-        }
+        if (action === 'reset') setState(s => _.omit(s, 'values'));
         await callback(action, state);
         setState(s => ({
           ...s,
