@@ -135,26 +135,31 @@ export const createActivity = ({
  * }
  * ```
  */
+const dispatchCache = new WeakMap();
 export const useActivity = (component: ReturnType<typeof createActivity>) => {
   const context = contextMap.get(component);
   if (!context) throw new Error('Invalid activity component');
-  const { setTasks, defaultDelay } = useContext(context);
-  return async <T extends any>(callback: () => Awaitable<T>, delay?: number) => {
+  const store = useContext(context);
+  const cached = dispatchCache.get(store);
+  if (cached) return cached as (<T extends unknown>(callback: () => Awaitable<T>, delay?: number) => Promise<T>);
+  const dispatch = async <T extends any>(callback: () => Awaitable<T>, delay?: number) => {
     const id = uniqueId();
     let timeout;
-    const _delay = delay ?? defaultDelay;
+    const _delay = delay ?? store.defaultDelay;
     if (_.isNumber(_delay) && _delay > 0) {
       timeout = setTimeout(() => {
-        setTasks(tasks => [...tasks, id]);
+        store.setTasks(tasks => [...tasks, id]);
       }, _delay);
     } else {
-      setTasks(tasks => [...tasks, id]);
+      store.setTasks(tasks => [...tasks, id]);
     }
     try {
       return await callback();
     } finally {
       if (timeout) clearTimeout(timeout);
-      setTasks(tasks => _.filter(tasks, x => x !== id));
+      store.setTasks(tasks => _.filter(tasks, x => x !== id));
     }
   };
+  cached.set(dispatch);
+  return dispatch;
 };
