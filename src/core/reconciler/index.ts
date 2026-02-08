@@ -85,11 +85,8 @@ export class VNode {
   /** @internal */
   _state?: VNodeState[];
 
-  /** @internal */
-  _context: Set<VNode> = new Set();
-
-  /** @internal */
-  _content_listeners: Set<VNode> = new Set();
+  #context: Set<VNode> = new Set();
+  #content_listeners: Set<VNode> = new Set();
   #content_value?: any;
 
   #parent?: VNode;
@@ -184,7 +181,7 @@ export class VNode {
       } else if (isContext(type)) {
         const { value } = props;
         if (!equalDeps(this.#content_value, value)) {
-          for (const node of this._content_listeners) {
+          for (const node of this.#content_listeners) {
             yield { dirty: node };
           }
         }
@@ -195,14 +192,14 @@ export class VNode {
           const state = new HookState(this, event, renderer);
           reconciler._currentHookState = state;
           const rendered = type(props);
-          for (const node of this._context.difference(state.context)) {
-            node._content_listeners.delete(this);
+          for (const node of this.#context.difference(state.context)) {
+            node.#content_listeners.delete(this);
           }
-          for (const node of state.context.difference(this._context)) {
-            node._content_listeners.add(this);
+          for (const node of state.context.difference(this.#context)) {
+            node.#content_listeners.add(this);
           }
           this._state = state.state;
-          this._context = state.context;
+          this.#context = state.context;
           if (_.isEmpty(state.tasks)) {
             children = _resolve_children(rendered);
             break;
@@ -261,6 +258,13 @@ export class VNode {
       }
     } finally {
       reconciler._currentHookState = undefined;
+    }
+  }
+
+  /** @internal */
+  _release() {
+    for (const context of this.#context) {
+      context.#content_listeners.delete(this);
     }
   }
 }

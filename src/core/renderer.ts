@@ -111,9 +111,7 @@ export abstract class _Renderer<T> {
 
     const unmount = (nodes: Iterable<VNode>) => {
       for (const node of nodes) {
-        for (const context of node._context) {
-          context._content_listeners.delete(node);
-        }
+        node._release();
         const element = elements.get(node);
         if (element) {
           const state = mountState.get(node) ?? [];
