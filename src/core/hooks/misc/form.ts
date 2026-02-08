@@ -105,6 +105,10 @@ export const useFormState = <V extends Record<string, any>>(
           default: break;
         }
         await callback(action, state);
+        setState(s => ({
+          ...s,
+          count: { ...s.count, [action]: (s.count?.[action] ?? 0) + 1 },
+        }))
       };
       try {
         setState(s => ({
