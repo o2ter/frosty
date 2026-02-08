@@ -24,7 +24,7 @@
 //
 
 import _ from 'lodash';
-import { useState, useEffect, useAwaited, createContext, useContext } from '~/index';
+import { useState, useEffect, useAwaited, createContext, useContext, useFormState } from '~/index';
 import { useLocation, useSearchParams, useServerResource, useWindow } from '~/web';
 
 let t = Date.now();
@@ -40,6 +40,24 @@ const Table = () => {
       </tr>
       )}
     </table>
+  );
+}
+
+const Form = () => {
+
+  const { perform, values, setValue } = useFormState({
+    name: '',
+  }, async (action, state) => {
+    console.log(action, state, state.values);
+  });
+
+  return (
+    <div>
+      <span>{JSON.stringify(values)}</span>
+      <input value={values.name} onInput={(e) => setValue('name', e.currentTarget.value)} />
+      <button onClick={() => perform('reset')}>reset</button>
+      <button onClick={() => perform('submit')}>submit</button>
+    </div>
   );
 }
 
@@ -77,6 +95,7 @@ export const App = () => {
         margin: 16,
       }}
     >
+      <Form />
       <div style={{ background: 'aliceblue' }}>{1000 / d}</div>
       <Counter value={counter}>
         <Table />
