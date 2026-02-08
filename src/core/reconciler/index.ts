@@ -142,10 +142,7 @@ export class VNode {
   }
 
   /** @internal */
-  async _render(event: UpdateManager, renderer: _Renderer<any>) {
-    const dirty = new Set<VNode>();
-    const mount = new Set<VNode>();
-    const removed = new Set<VNode>();
+  async* _render(event: UpdateManager, renderer: _Renderer<any>) {
     try {
       const { type } = this._component;
       const props = this._resolve_props();
@@ -154,12 +151,12 @@ export class VNode {
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children, event);
         native = this;
-        mount.add(this);
+        yield { mount: this };
       } else if (isContext(type)) {
         const { value } = props;
         if (!equalDeps(this._content_value, value)) {
           for (const node of this._content_listeners) {
-            dirty.add(node);
+            yield { dirty: node };
           }
         }
         this._content_value = value;
@@ -183,7 +180,7 @@ export class VNode {
           }
           await Promise.all(state.tasks);
         }
-        mount.add(this);
+        yield { mount: this };
       } else {
         throw Error(`Invalid node type ${type}`);
       }
@@ -200,9 +197,9 @@ export class VNode {
       for (const [lhs, rhs] of _.zip(this._children, children)) {
         if (!(lhs instanceof VNode) || !(rhs instanceof VNode)) continue;
         if (lhs === rhs) {
-          dirty.add(lhs);
+          yield { dirty: lhs };
         } else {
-          if (!equalProps(lhs._component.props, rhs._component.props)) dirty.add(lhs);
+          if (!equalProps(lhs._component.props, rhs._component.props)) yield { dirty: lhs };
           lhs._component = rhs._component;
         }
         lhs._parent = this;
@@ -211,11 +208,11 @@ export class VNode {
       }
       for (const item of _.flatMap(diff, x => x.remove ?? [])) {
         if (item instanceof VNode) {
-          removed.add(item);
+          yield { removed: item };
         }
       }
       if (_.some(diff, x => !x.equivalent) && this._nativeParent && this._nativeParent !== this) {
-        mount.add(this._nativeParent);
+        yield { mount: this._nativeParent };
       }
     } catch (error) {
       this._children = [];
@@ -229,14 +226,13 @@ export class VNode {
           console.error(e);
         }
       })();
-      mount.add(this);
+        yield { mount: this };
       if (this._nativeParent && this._nativeParent !== this) {
-        mount.add(this._nativeParent);
+        yield { mount: this._nativeParent };
       }
     } finally {
       reconciler._currentHookState = undefined;
     }
-    return { dirty, mount, removed };
   }
 
   private _resolve_props() {

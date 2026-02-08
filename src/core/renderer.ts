@@ -137,7 +137,7 @@ export abstract class _Renderer<T> {
       }
     };
 
-    const refresh = async (dirty: Set<VNode>[], force: boolean) => {
+    const refresh = async (event: UpdateManager, dirty: Set<VNode>[], force: boolean) => {
 
       try {
         this._beforeUpdate();
@@ -154,14 +154,15 @@ export abstract class _Renderer<T> {
         let node;
         while (node = nodes.shift()) {
           if (updated.has(node)) continue;
-          const {
+          for await (const {
             dirty,
             mount: _mount,
             removed: _removed,
-          } = await node._render(event, this);
-          _mount.forEach(x => mount.add(x));
-          _removed.forEach(x => removed.add(x));
-          nodes.push(...dirty);
+          } of await node._render(event, this)) {
+            if (dirty) nodes.push(dirty);
+            else if (_mount) mount.add(_mount);
+            else if (_removed) removed.add(_removed);
+          }
           updated.add(node);
         }
       }
@@ -236,14 +237,14 @@ export abstract class _Renderer<T> {
       if (event.isDirty) {
         const dirty = event._dirty;
         event._dirty = [];
-        await refresh(dirty, force);
+        await refresh(event, dirty, force);
       }
       while (event.isDirty) {
         if (destroyed) return;
         await new Promise<void>(resolve => nextick(resolve));
         const dirty = event._dirty;
         event._dirty = [];
-        await refresh(dirty, force);
+        await refresh(event, dirty, force);
       }
       updating = false;
     });
