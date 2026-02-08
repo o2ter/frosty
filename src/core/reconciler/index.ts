@@ -145,13 +145,40 @@ export class VNode {
 
   /** @internal */
   async* _render(event: UpdateManager, renderer: _Renderer<any>) {
+
+    const _resolve_props = () => {
+      const self = this;
+      const { type, props: _props } = this.#component;
+      if (type === PropsProvider) return _props;
+      let props = { ..._props };
+      for (const node of this.stack.drop(1)) {
+        if (node.type === PropsProvider) {
+          props = node.props.callback({ type, props });
+        }
+      }
+      return _.mapValues(props, (v, k) => _.isFunction(v) ? function (this: any, ...args: any[]) {
+        const current = self.#component.props[k];
+        return _.isFunction(current) ? current.call(this, ...args) : v.call(this, ...args);
+      } : v);
+    };
+
+    const _resolve_children = (child: any): (VNode | string)[] => {
+      if (_.isBoolean(child) || _.isNil(child)) return [];
+      if (_.isString(child)) return [child];
+      if (_.isNumber(child)) return [`${child}`];
+      if (child instanceof ComponentNode) return [new VNode(child)];
+      if (_.isArrayLikeObject(child)) return _.flatMap(child, x => _resolve_children(x));
+      if (typeof child[Symbol.iterator] === 'function') return _.flatMap([...child], x => _resolve_children(x));
+      throw Error(`${child} are not valid as a child.`);
+    };
+
     try {
       const { type } = this.#component;
-      const props = this._resolve_props();
+      const props = _resolve_props();
       let children: (VNode | string)[];
       let native = this.#nativeParent;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
-        children = this._resolve_children(props.children, event);
+        children = _resolve_children(props.children);
         native = this;
         yield { mount: this };
       } else if (isContext(type)) {
@@ -162,7 +189,7 @@ export class VNode {
           }
         }
         this.#content_value = value;
-        children = this._resolve_children(type(props as any), event);
+        children = _resolve_children(type(props as any));
       } else if (_.isFunction(type)) {
         while (true) {
           const state = new HookState(this, event, renderer);
@@ -177,7 +204,7 @@ export class VNode {
           this._state = state.state;
           this._context = state.context;
           if (_.isEmpty(state.tasks)) {
-            children = this._resolve_children(rendered, event);
+            children = _resolve_children(rendered);
             break;
           }
           await Promise.all(state.tasks);
@@ -221,7 +248,7 @@ export class VNode {
       this.#error = error;
       (async () => {
         try {
-          const { onError, silent } = this._resolve_error_boundary() ?? {};
+          const { onError, silent } = this.stack.drop(1).find(node => node.type === ErrorBoundary)?.props ?? {};
           if (!silent) console.error(error);
           if (_.isFunction(onError)) await onError(error, this.#component, this.stack.map(x => x.#component));
         } catch (e) {
@@ -235,36 +262,6 @@ export class VNode {
     } finally {
       reconciler._currentHookState = undefined;
     }
-  }
-
-  private _resolve_props() {
-    const self = this;
-    const { type, props: _props } = this.#component;
-    if (type === PropsProvider) return _props;
-    let props = { ..._props };
-    for (const node of this.stack.drop(1)) {
-      if (node.type === PropsProvider) {
-        props = node.props.callback({ type, props });
-      }
-    }
-    return _.mapValues(props, (v, k) => _.isFunction(v) ? function (this: any, ...args: any[]) {
-      const current = self.#component.props[k];
-      return _.isFunction(current) ? current.call(this, ...args) : v.call(this, ...args);
-    } : v);
-  }
-
-  private _resolve_children(child: any, event: UpdateManager): (VNode | string)[] {
-    if (_.isBoolean(child) || _.isNil(child)) return [];
-    if (_.isString(child)) return [child];
-    if (_.isNumber(child)) return [`${child}`];
-    if (child instanceof ComponentNode) return [new VNode(child)];
-    if (_.isArrayLikeObject(child)) return _.flatMap(child, x => this._resolve_children(x, event));
-    if (typeof child[Symbol.iterator] === 'function') return _.flatMap([...child], x => this._resolve_children(x, event));
-    throw Error(`${child} are not valid as a child.`);
-  }
-
-  private _resolve_error_boundary() {
-    return this.stack.drop(1).find(node => node.type === ErrorBoundary)?.props;
   }
 }
 
