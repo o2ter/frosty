@@ -145,7 +145,8 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      for (const nodes of event._dirty) {
+      for (const idx in event._dirty) {
+        const nodes = event._dirty[idx];
         for (const node of nodes || []) {
           await node._render(event, this);
           nodes.delete(node);
