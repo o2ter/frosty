@@ -46,9 +46,12 @@ const Table = () => {
 const Form = () => {
 
   const { perform, values, setValue } = useFormState({
-    name: '',
-  }, async (action, state) => {
-    console.log(action, state, state.values);
+    initialValues:{
+      name: '',
+    },
+    callback: async(action, state) => {
+      console.log(action, state, state.values);
+    },
   });
 
   return (
