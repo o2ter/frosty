@@ -55,10 +55,15 @@ const cloneValue = (x: any): any => {
   return x;
 };
 
-export const useFormState = <V extends Record<string, any>>(
+export const useFormState = <V extends Record<string, any>>({
+  initialValues,
+  activity,
+  callback,
+}: {
   initialValues: V,
+  activity?: boolean | { actions?: string[]; delay?: number; };
   callback: (action: FormAction | 'error', state: FormState<V>, error?: any) => Awaitable<void>,
-): FormState<V> => {
+}): FormState<V> => {
   const [state, setState] = useState<{
     values?: V;
     loading?: Record<string, string[]>;
@@ -74,38 +79,45 @@ export const useFormState = <V extends Record<string, any>>(
   } = _useCallbacks({
     setValues: (update: SetStateAction<V>) => setState(s => ({ ...s, values: _.isFunction(update) ? update(s.values ?? initialValues) : update })),
     setListeners: (update: SetStateAction<((action: string, state: FormState<V>) => void)[]>) => setState(s => ({ ...s, listeners: _.isFunction(update) ? update(s.listeners ?? []) : update })),
-    perform: (action: string) => startActivity(async () => {
-      const taskId = uniqueId();
-      const _callback = async (state: FormState<V>) => {
-        if (action === 'reset') setState(s => _.omit(s, 'values'));
-        await callback(action, state);
-        setState(s => ({
-          ...s,
-          count: { ...s.count, [action]: (s.count?.[action] ?? 0) + 1 },
-        }))
-      };
-      try {
-        setState(s => ({
-          ...s,
-          loading: { ...s.loading, [action]: [...(s.loading?.[action] ?? []), taskId] },
-        }));
-        const resolved = await Promise.all(_.map(state.listeners, l => l(action, formState)));
-        if (_.isEmpty(resolved)) {
-          await _callback(formState);
-        } else {
-          await new Promise((resolve, reject) => {
-            setNextTick(v => [...v, (formState) => { _callback(formState).then(resolve, reject); }]);
-          });
+    perform: (action: string) => {
+      const perform = async () => {
+        const taskId = uniqueId();
+        const _callback = async (state: FormState<V>) => {
+          if (action === 'reset') setState(s => _.omit(s, 'values'));
+          await callback(action, state);
+          setState(s => ({
+            ...s,
+            count: { ...s.count, [action]: (s.count?.[action] ?? 0) + 1 },
+          }))
+        };
+        try {
+          setState(s => ({
+            ...s,
+            loading: { ...s.loading, [action]: [...(s.loading?.[action] ?? []), taskId] },
+          }));
+          const resolved = await Promise.all(_.map(state.listeners, l => l(action, formState)));
+          if (_.isEmpty(resolved)) {
+            await _callback(formState);
+          } else {
+            await new Promise((resolve, reject) => {
+              setNextTick(v => [...v, (formState) => { _callback(formState).then(resolve, reject); }]);
+            });
+          }
+        } catch (error) {
+          callback('error', formState, error);
+        } finally {
+          setState(s => ({
+            ...s,
+            loading: { ...s.loading, [action]: _.without(s.loading?.[action] ?? [], taskId) },
+          }));
         }
-      } catch (error) {
-        callback('error', formState, error);
-      } finally {
-        setState(s => ({
-          ...s,
-          loading: { ...s.loading, [action]: _.without(s.loading?.[action] ?? [], taskId) },
-        }));
+      };
+      if (_.isBoolean(activity) ? activity : activity?.actions?.includes(action)) {
+        return startActivity(perform, _.isBoolean(activity) ? undefined : activity?.delay);
+      } else {
+        return perform();
       }
-    }),
+    },
   });
   const formState = useMemo(() => ({
     get dirty() { return !_.isNil(state.values) },
