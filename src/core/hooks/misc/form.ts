@@ -31,6 +31,7 @@ import { SetStateAction } from '../../../core/types/common';
 import { createActivity, useActivity } from './activity';
 import { useEffect } from '../effect';
 import { uniqueId } from '../../../core/utils';
+import { _useCallbacks } from '../callback';
 
 export const FormActivity = createActivity();
 
@@ -52,20 +53,6 @@ const cloneValue = (x: any): any => {
   if (_.isArray(x)) return x.map(v => cloneValue(v));
   if (_.isPlainObject(x)) return _.mapValues(x, v => cloneValue(v));
   return x;
-};
-
-export const _useCallbacks = <T extends { [x: string]: (...args: any) => any }>(callbacks: T) => {
-  const store = useMemo(() => ({
-    current: callbacks,
-    stable: _.mapValues(callbacks, (v, k) => function (this: any, ...args: any) {
-      return store.current[k].call(this, ...args);
-    }),
-  }), []);
-  store.current = callbacks;
-  store.stable = _.mapValues(callbacks, (v, k) => store.stable[k] ?? (function (this: any, ...args: any) {
-    return store.current[k].call(this, ...args);
-  }));
-  return store.stable as T;
 };
 
 export const useFormState = <V extends Record<string, any>>(

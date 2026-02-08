@@ -44,17 +44,6 @@ import { _useMemo } from '../reconciler/hooks';
  *   console.log('This function is memoized!');
  * }, [dependency]);
  */
-
-export function useCallback<T extends (...args: any) => any>(
-  callback: T,
-  deps?: any
-): T;
-
-export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
-  callback: T,
-  deps?: any
-): T;
-
 export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
   callback: T,
   deps?: any
@@ -73,3 +62,28 @@ export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
   if (_.isFunction(callback)) store.current = callback;
   return callback && (store.stable as T);
 }
+
+export const _useCallbacks = <T extends { [x: string]: ((...args: any) => any) | _.Falsey }>(
+  callbacks: T,
+  deps?: any
+) => {
+  if (!_.isUndefined(deps)) return _useMemo('_useCallbacks', () => callbacks, deps);
+  const store = _useMemo('_useCallbacks', () => {
+    const store = {
+      current: callbacks,
+      stable: _.mapValues(callbacks, (v, k) => function (this: any, ...args: any) {
+        const callback = store.current[k];
+        if (_.isFunction(callback))
+          return callback.call(this, ...args);
+      }),
+    };
+    return store;
+  }, null);
+  store.current = callbacks;
+  store.stable = _.mapValues(callbacks, (v, k) => store.stable[k] ?? (function (this: any, ...args: any) {
+    const callback = store.current[k];
+    if (_.isFunction(callback))
+      return callback.call(this, ...args);
+  }));
+  return store.stable as T;
+};
