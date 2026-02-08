@@ -69,10 +69,10 @@ export const _useCallbacks = <T extends { [x: string]: ((...args: any) => any) |
  *   console.log('This function is memoized!');
  * }, [dependency]);
  */
-export function useCallback<T extends ((...args: any) => any) | _.Falsey>(
+export const useCallback = <T extends ((...args: any) => any) | _.Falsey>(
   callback: T,
   deps?: any
-): T {
+) => {
   const { callback: stable } = _useCallbacks({ callback }, deps);
   return stable;
 }
