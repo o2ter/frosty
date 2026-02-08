@@ -31,7 +31,7 @@ export type { Context, ContextType } from './context';
 export { createContext, useContext } from './context';
 export { useMemo } from './memo';
 export { useRef, useRefHandle } from './ref';
-export { useCallback } from './callback';
+export { useCallback, _useCallbacks } from './callback';
 export { useState } from './state';
 export { useStack } from './stack';
 export { useReducer } from './reducer';
