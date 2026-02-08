@@ -66,7 +66,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     return this.#window;
   }
 
-  /** @internal */
   _beforeUpdate() {
     if (this._server) {
       this.#tracked_head_children = [];
@@ -74,7 +73,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
   }
 
-  /** @internal */
   _afterUpdate() {
     this.#tracked_style.select([...this.#tracked_elements.values().flatMap(({ className }) => className)]);
     const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
@@ -102,7 +100,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
   }
 
-  /** @internal */
   _createElement(node: VNode) {
     const { type } = node;
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
@@ -149,7 +146,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     return [..._className, ...built].join(' ');
   }
 
-  /** @internal */
   _updateElement(
     node: VNode,
     element: Element | DOMNativeNode,
@@ -209,7 +205,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     });
   }
 
-  /** @internal */
   _destroyElement(node: VNode, element: Element | DOMNativeNode) {
     if (element instanceof DOMNativeNode) {
       element.destroy();
