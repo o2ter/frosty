@@ -35,7 +35,6 @@ export class ServerDOMRenderer extends _DOMRenderer {
     super(dom.window);
   }
 
-  /** @internal */
   get _server(): boolean {
     return true;
   }
