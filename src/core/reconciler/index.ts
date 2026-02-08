@@ -226,7 +226,7 @@ export class VNode {
           console.error(e);
         }
       })();
-        yield { mount: this };
+      yield { mount: this };
       if (this._nativeParent && this._nativeParent !== this) {
         yield { mount: this._nativeParent };
       }
