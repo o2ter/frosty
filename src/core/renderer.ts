@@ -161,8 +161,8 @@ export abstract class _Renderer<T> {
           } of await node._render(event, this)) {
             if (dirty) nodes.push(dirty);
             else if (_mount) {
-              if (!mount[_mount._level]) mount[_mount._level] = new Set();
-              mount[_mount._level].add(_mount);
+              if (!mount[_mount.level]) mount[_mount.level] = new Set();
+              mount[_mount.level].add(_mount);
             } else if (_removed) removed.add(_removed);
           }
           updated.add(node);

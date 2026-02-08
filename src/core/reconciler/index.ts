@@ -58,8 +58,8 @@ export class UpdateManager {
   }
 
   _setDirty(node: VNode) {
-    if (!this._dirty[node._level]) this._dirty[node._level] = new Set();
-    this._dirty[node._level].add(node);
+    if (!this._dirty[node.level]) this._dirty[node.level] = new Set();
+    this._dirty[node.level].add(node);
   }
 
   setDirty(node: VNode) {
@@ -87,20 +87,15 @@ export class VNode {
   _state?: VNodeState[];
 
   /** @internal */
-  _content_listeners: Set<VNode> = new Set();
-  private _content_value?: any;
-
-  /** @internal */
   _context: Set<VNode> = new Set();
 
   /** @internal */
-  _parent?: VNode;
+  _content_listeners: Set<VNode> = new Set();
+  private _content_value?: any;
 
-  /** @internal */
-  _nativeParent?: VNode;
-
-  /** @internal */
-  _level = 0;
+  private _parent?: VNode;
+  private _nativeParent?: VNode;
+  private _level = 0;
 
   /** @internal */
   constructor(component: ComponentNode) {
@@ -139,6 +134,10 @@ export class VNode {
         node = node._parent;
       }
     })();
+  }
+
+  get level() {
+    return this._level;
   }
 
   /** @internal */
