@@ -146,7 +146,7 @@ export abstract class _Renderer<T> {
       }
 
       const updated = new Set<VNode>();
-      const mount = new Set<VNode>();
+      const mount: Set<VNode>[] = [];
       const removed = new Set<VNode>();
 
       for (const _nodes of dirty) {
@@ -160,57 +160,61 @@ export abstract class _Renderer<T> {
             removed: _removed,
           } of await node._render(event, this)) {
             if (dirty) nodes.push(dirty);
-            else if (_mount) mount.add(_mount);
-            else if (_removed) removed.add(_removed);
+            else if (_mount) {
+              if (!mount[_mount._level]) mount[_mount._level] = new Set();
+              mount[_mount._level].add(_mount);
+            } else if (_removed) removed.add(_removed);
           }
           updated.add(node);
         }
       }
 
-      for (const node of _.sortBy([...mount], x => -x._level)) {
-        if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
-          let elem: any = elements?.get(node);
-          if (!elem) {
-            const Component = node.type as any;
-            elem = new Component();
-          }
-          elements.set(node, elem);
-        } else {
-          if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
-            const element = elements.get(node) ?? this._createElement(node);
-            elements.set(node, element);
-            try {
-              this._updateElement(node, element, nativeChildren(node).toArray(), force);
-            } catch (e) {
-              console.error(e);
+      for (const nodes of mount.toReversed()) {
+        for (const node of nodes || []) {
+          if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
+            let elem: any = elements?.get(node);
+            if (!elem) {
+              const Component = node.type as any;
+              elem = new Component();
             }
-          }
-          const state: MountState[] = [];
-          const prevState = mountState.get(node) ?? [];
-          const curState = node._state ?? [];
-          for (const i of _.range(Math.max(prevState.length, curState.length))) {
-            const unmount = prevState[i]?.unmount;
-            const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
-            if (unmount && changed) {
+            elements.set(node, elem);
+          } else {
+            if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
+              const element = elements.get(node) ?? this._createElement(node);
+              elements.set(node, element);
               try {
-                unmount();
+                this._updateElement(node, element, nativeChildren(node).toArray(), force);
               } catch (e) {
                 console.error(e);
               }
             }
-            state.push({
-              hook: curState[i].hook,
-              deps: curState[i].deps,
-              unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+            const state: MountState[] = [];
+            const prevState = mountState.get(node) ?? [];
+            const curState = node._state ?? [];
+            for (const i of _.range(Math.max(prevState.length, curState.length))) {
+              const unmount = prevState[i]?.unmount;
+              const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
+              if (unmount && changed) {
                 try {
-                  return curState[i].mount?.();
+                  unmount();
                 } catch (e) {
                   console.error(e);
                 }
-              })(),
-            });
+              }
+              state.push({
+                hook: curState[i].hook,
+                deps: curState[i].deps,
+                unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
+                  try {
+                    return curState[i].mount?.();
+                  } catch (e) {
+                    console.error(e);
+                  }
+                })(),
+              });
+            }
+            mountState.set(node, state);
           }
-          mountState.set(node, state);
         }
       }
 
