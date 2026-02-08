@@ -27,21 +27,21 @@ import _ from 'lodash';
 
 export class EventEmitter {
 
-  private _listeners: Record<string, ((...args: any[]) => void)[]> = {};
+  #listeners: Record<string, ((...args: any[]) => void)[]> = {};
 
   register(event: string, callback: (event: string, ...args: any[]) => void) {
-    if (_.isNil(this._listeners[event])) this._listeners[event] = [];
+    if (_.isNil(this.#listeners[event])) this.#listeners[event] = [];
     const _callback = (...args: any[]) => callback(event, ...args);
-    this._listeners[event].push(_callback);
+    this.#listeners[event].push(_callback);
     return {
       remove: () => {
-        this._listeners[event] = _.filter(this._listeners[event], x => x !== _callback);
+        this.#listeners[event] = _.filter(this.#listeners[event], x => x !== _callback);
       },
     };
   }
 
   emit(event: string, ...args: any[]) {
-    this._listeners[event]?.forEach(async callback => {
+    this.#listeners[event]?.forEach(async callback => {
       try {
         await callback(...args)
       } catch (e) {

@@ -36,29 +36,29 @@ type Rule = {
 
 export class StyleBuilder {
 
-  private _registry: Rule[] = [];
+  #registry: Rule[] = [];
 
-  private _cache?: Rule[];
-  private _cached_css?: string;
+  #cache?: Rule[];
+  #cached_css?: string;
 
   get registry() {
-    return this._registry;
+    return this.#registry;
   }
 
   set registry(value: Rule[]) {
-    this._registry = value;
-    if (!_.isEqual(this._registry, this._cache)) {
+    this.#registry = value;
+    if (!_.isEqual(this.#registry, this.#cache)) {
       this.clearCache();
     }
   }
 
   clearCache() {
-    this._cache = undefined;
-    this._cached_css = undefined;
+    this.#cache = undefined;
+    this.#cached_css = undefined;
   }
 
   get css() {
-    if (this._cached_css) return this._cached_css;
+    if (this.#cached_css) return this.#cached_css;
     for (const rule of this.registry) {
       if (rule._css) continue;
       const { name, style: { keyframes, ...style } } = rule;
@@ -76,7 +76,7 @@ export class StyleBuilder {
       rule._css = css;
     }
     const css = _.compact(_.map(this.registry, x => x._css)).join('\n');
-    this._cached_css = css;
+    this.#cached_css = css;
     return css;
   }
 

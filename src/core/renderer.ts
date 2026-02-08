@@ -44,10 +44,10 @@ export abstract class _Renderer<T> {
 
   abstract get _server(): boolean;
 
-  private _renderStorage = new Map<any, any>();
+  #renderStorage = new Map<any, any>();
 
   get renderStorage() {
-    return this._renderStorage;
+    return this.#renderStorage;
   }
 
   private async _createRoot(

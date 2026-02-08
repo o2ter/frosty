@@ -44,18 +44,18 @@ const MATHML_NS = 'http://www.w3.org/1998/Math/MathML';
 
 export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
-  private _window: Window | DOMWindow;
-  private _namespace_map = new WeakMap<VNode, string | undefined>();
+  #window: Window | DOMWindow;
+  #namespace_map = new WeakMap<VNode, string | undefined>();
 
-  private _tracked_head_children: (string | Element | DOMNativeNode)[] = [];
-  private _tracked_style = new StyleBuilder();
+  #tracked_head_children: (string | Element | DOMNativeNode)[] = [];
+  #tracked_style = new StyleBuilder();
   /** @internal */
   _tracked_server_resource = new Map<string, string>();
-  private _tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; }>();
+  #tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; }>();
 
   constructor(window: Window | DOMWindow) {
     super();
-    this._window = window;
+    this.#window = window;
   }
 
   get document() {
@@ -63,25 +63,25 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   get window() {
-    return this._window;
+    return this.#window;
   }
 
   /** @internal */
   _beforeUpdate() {
     if (this._server) {
-      this._tracked_head_children = [];
+      this.#tracked_head_children = [];
       this._tracked_server_resource = new Map<string, string>();
     }
   }
 
   /** @internal */
   _afterUpdate() {
-    this._tracked_style.select([...this._tracked_elements.values().flatMap(({ className }) => className)]);
+    this.#tracked_style.select([...this.#tracked_elements.values().flatMap(({ className }) => className)]);
     const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
     const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
     styleElem.setAttribute('data-frosty-style', '');
-    if (styleElem.textContent !== this._tracked_style.css)
-      styleElem.textContent = this._tracked_style.css;
+    if (styleElem.textContent !== this.#tracked_style.css)
+      styleElem.textContent = this.#tracked_style.css;
     if (this._server) {
       const ssrData = this._tracked_server_resource.size ? this.document.createElementNS(HTML_NS, 'script') : undefined;
       if (ssrData) {
@@ -90,10 +90,10 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         ssrData.innerHTML = compress(JSON.stringify(Object.fromEntries(this._tracked_server_resource)));
       }
       DOMNativeNode.Utils.replaceChildren(head, _.compact([
-        ...this._tracked_head_children,
+        ...this.#tracked_head_children,
         styleElem.textContent && styleElem,
         ssrData,
-      ]), (x) => this._tracked_elements.has(x as any));
+      ]), (x) => this.#tracked_elements.has(x as any));
     } else if (styleElem.parentNode !== head && styleElem.textContent) {
       head.appendChild(styleElem);
     }
@@ -108,7 +108,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
       const elem = ElementType.createElement(this.document, this);
-      this._tracked_elements.set(elem, {
+      this.#tracked_elements.set(elem, {
         props: [],
         className: [],
       });
@@ -127,24 +127,24 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       _.includes(tags.mathml, type) && MATHML_NS,
     ]);
     const parent = _.last(node.stack.toArray());
-    const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this._namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
+    const ns = _ns_list.length > 1 ? parent && _.first(_.intersection([this.#namespace_map.get(parent)], _ns_list)) : _.first(_ns_list);
     const elem = ns ? this.document.createElementNS(ns, type) : this.document.createElement(type);
-    this._namespace_map.set(node, ns);
-    this._tracked_elements.set(elem, {
+    this.#namespace_map.set(node, ns);
+    this.#tracked_elements.set(elem, {
       props: [],
       className: [],
     });
     return elem;
   }
 
-  private __createBuiltClassName(
+  #createBuiltClassName(
     element: Element | DOMNativeNode,
     className: ClassName,
     style: StyleProp<ExtendedCSSProperties>,
   ) {
     const _className = _.compact(_.flattenDeep([className]));
-    const built = this._tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
-    const tracked = this._tracked_elements.get(element);
+    const built = this.#tracked_style.buildStyle(_.compact(_.flattenDeep([style])));
+    const tracked = this.#tracked_elements.get(element);
     if (tracked) tracked.className = built;
     return [..._className, ...built].join(' ');
   }
@@ -161,7 +161,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         props: { ref, className, style, inlineStyle, ..._props }
       } = node;
       if (ref) mergeRefs(ref)(element.target);
-      const builtClassName = this.__createBuiltClassName(element, className, style);
+      const builtClassName = this.#createBuiltClassName(element, className, style);
       const { css } = processCss(inlineStyle);
       element.update({
         className: builtClassName ? builtClassName : undefined,
@@ -177,12 +177,12 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     } = node;
 
     if (!_.isString(type)) {
-      DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
+      DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this.#tracked_elements.has(x as any));
       return;
     }
     switch (type) {
       case 'head': {
-        this._tracked_head_children.push(...children);
+        this.#tracked_head_children.push(...children);
         return;
       }
       default: break;
@@ -190,13 +190,13 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
     if (ref) mergeRefs(ref)(element);
 
-    const tracked = this._tracked_elements.get(element);
+    const tracked = this.#tracked_elements.get(element);
     const removed = tracked ? _.difference(tracked.props, _.keys(_props)) : [];
     if (tracked) tracked.props = _.keys(_props);
 
-    const builtClassName = this.__createBuiltClassName(element, className, style);
+    const builtClassName = this.#createBuiltClassName(element, className, style);
     if (_.isNil(innerHTML)) {
-      DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this._tracked_elements.has(x as any));
+      DOMNativeNode.Utils.replaceChildren(element, children, (x) => !!force || this.#tracked_elements.has(x as any));
     } else if (element.innerHTML !== innerHTML) {
       element.innerHTML = innerHTML;
     }

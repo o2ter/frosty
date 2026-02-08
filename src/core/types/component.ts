@@ -32,14 +32,9 @@ export abstract class NativeElementType {
 
 export class ComponentNode {
 
-  /** @internal */
-  private _type: _ElementType | typeof NativeElementType;
-
-  /** @internal */
-  private _props: PropsType;
-
-  /** @internal */
-  private _key?: string | number;
+  #type: _ElementType | typeof NativeElementType;
+  #props: PropsType;
+  #key?: string | number;
 
   /** @internal */
   constructor(
@@ -47,21 +42,21 @@ export class ComponentNode {
     props: PropsType,
     key?: string | number
   ) {
-    this._type = type;
-    this._props = props;
-    this._key = key;
+    this.#type = type;
+    this.#props = props;
+    this.#key = key;
   }
 
   get type() {
-    return this._type;
+    return this.#type;
   }
 
   get props() {
-    return this._props;
+    return this.#props;
   }
 
   get key() {
-    return this._key;
+    return this.#key;
   }
 
   equalType(other: ComponentNode) {
