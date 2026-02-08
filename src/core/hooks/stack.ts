@@ -39,5 +39,5 @@ import { reconciler } from '../reconciler';
 export const useStack = () => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useStack must be used within a render function.');
-  return _.map(state.stack, x => x._component);
+  return _.map(state.stack, x => x.component);
 }

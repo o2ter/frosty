@@ -75,13 +75,12 @@ export class UpdateManager {
 export class VNode {
 
   /** @internal */
-  _component: ComponentNode;
-
-  private _id = uniqueId();
-
-  private _props: PropsType = {};
-  private _error?: any;
-  private _children: (VNode | string)[] = [];
+  #component: ComponentNode;
+  
+  #id = uniqueId();
+  #props: PropsType = {};
+  #error?: any;
+  #children: (VNode | string)[] = [];
 
   /** @internal */
   _state?: VNodeState[];
@@ -91,39 +90,43 @@ export class VNode {
 
   /** @internal */
   _content_listeners: Set<VNode> = new Set();
-  private _content_value?: any;
+  #content_value?: any;
 
-  private _parent?: VNode;
-  private _nativeParent?: VNode;
-  private _level = 0;
+  #parent?: VNode;
+  #nativeParent?: VNode;
+  #level = 0;
 
   /** @internal */
   constructor(component: ComponentNode) {
-    this._component = component;
+    this.#component = component;
   }
 
   get id() {
-    return this._id;
+    return this.#id;
+  }
+
+  get component() {
+    return this.#component;
   }
 
   get type() {
-    return this._component.type;
+    return this.#component.type;
   }
 
   get props() {
-    return this._props;
+    return this.#props;
   }
 
   get key() {
-    return this._component.key;
+    return this.#component.key;
   }
 
   get children() {
-    return this._children;
+    return this.#children;
   }
 
   get error() {
-    return this._error;
+    return this.#error;
   }
 
   get stack() {
@@ -131,34 +134,34 @@ export class VNode {
     return (function* () {
       while (node) {
         yield node;
-        node = node._parent;
+        node = node.#parent;
       }
     })();
   }
 
   get level() {
-    return this._level;
+    return this.#level;
   }
 
   /** @internal */
   async* _render(event: UpdateManager, renderer: _Renderer<any>) {
     try {
-      const { type } = this._component;
+      const { type } = this.#component;
       const props = this._resolve_props();
       let children: (VNode | string)[];
-      let native = this._nativeParent;
+      let native = this.#nativeParent;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children, event);
         native = this;
         yield { mount: this };
       } else if (isContext(type)) {
         const { value } = props;
-        if (!equalDeps(this._content_value, value)) {
+        if (!equalDeps(this.#content_value, value)) {
           for (const node of this._content_listeners) {
             yield { dirty: node };
           }
         }
-        this._content_value = value;
+        this.#content_value = value;
         children = this._resolve_children(type(props as any), event);
       } else if (_.isFunction(type)) {
         while (true) {
@@ -183,51 +186,51 @@ export class VNode {
       } else {
         throw Error(`Invalid node type ${type}`);
       }
-      const diff = myersSync(this._children, children, {
+      const diff = myersSync(this.#children, children, {
         compare: (lhs, rhs) => {
           if (_.isString(lhs) && _.isString(rhs)) return lhs === rhs;
-          if (lhs instanceof VNode && rhs instanceof VNode) return lhs._component.equalType(rhs._component);
+          if (lhs instanceof VNode && rhs instanceof VNode) return lhs.#component.equalType(rhs.#component);
           return false;
         },
       });
-      this._props = props;
-      this._children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
-      this._error = undefined;
-      for (const [lhs, rhs] of _.zip(this._children, children)) {
+      this.#props = props;
+      this.#children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
+      this.#error = undefined;
+      for (const [lhs, rhs] of _.zip(this.#children, children)) {
         if (!(lhs instanceof VNode) || !(rhs instanceof VNode)) continue;
         if (lhs === rhs) {
           yield { dirty: lhs };
         } else {
-          if (!equalProps(lhs._component.props, rhs._component.props)) yield { dirty: lhs };
-          lhs._component = rhs._component;
+          if (!equalProps(lhs.#component.props, rhs.#component.props)) yield { dirty: lhs };
+          lhs.#component = rhs.#component;
         }
-        lhs._parent = this;
-        lhs._nativeParent = native;
-        lhs._level = this._level + 1;
+        lhs.#parent = this;
+        lhs.#nativeParent = native;
+        lhs.#level = this.#level + 1;
       }
       for (const item of _.flatMap(diff, x => x.remove ?? [])) {
         if (item instanceof VNode) {
           yield { removed: item };
         }
       }
-      if (_.some(diff, x => !x.equivalent) && this._nativeParent && this._nativeParent !== this) {
-        yield { mount: this._nativeParent };
+      if (_.some(diff, x => !x.equivalent) && this.#nativeParent && this.#nativeParent !== this) {
+        yield { mount: this.#nativeParent };
       }
     } catch (error) {
-      this._children = [];
-      this._error = error;
+      this.#children = [];
+      this.#error = error;
       (async () => {
         try {
           const { onError, silent } = this._resolve_error_boundary() ?? {};
           if (!silent) console.error(error);
-          if (_.isFunction(onError)) await onError(error, this._component, this.stack.map(x => x._component));
+          if (_.isFunction(onError)) await onError(error, this.#component, this.stack.map(x => x.#component));
         } catch (e) {
           console.error(e);
         }
       })();
       yield { mount: this };
-      if (this._nativeParent && this._nativeParent !== this) {
-        yield { mount: this._nativeParent };
+      if (this.#nativeParent && this.#nativeParent !== this) {
+        yield { mount: this.#nativeParent };
       }
     } finally {
       reconciler._currentHookState = undefined;
@@ -236,7 +239,7 @@ export class VNode {
 
   private _resolve_props() {
     const self = this;
-    const { type, props: _props } = this._component;
+    const { type, props: _props } = this.#component;
     if (type === PropsProvider) return _props;
     let props = { ..._props };
     for (const node of this.stack.drop(1)) {
@@ -245,7 +248,7 @@ export class VNode {
       }
     }
     return _.mapValues(props, (v, k) => _.isFunction(v) ? function (this: any, ...args: any[]) {
-      const current = self._component.props[k];
+      const current = self.#component.props[k];
       return _.isFunction(current) ? current.call(this, ...args) : v.call(this, ...args);
     } : v);
   }
