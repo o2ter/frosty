@@ -65,9 +65,9 @@ type Combine<T, R> = Omit<T, keyof R> & R;
 type _ElementProps<ElementMap extends { [x: string]: { type: any; props?: any; } }> = {
   [x in keyof ElementMap]: PropsWithChildren<
     Partial<
-      RefAttribute<ElementMap[x]['type'] | null | undefined>
+      _IntrinsicAttributes
+      & RefAttribute<ElementMap[x]['type'] | null | undefined>
       & {
-        key?: string | number;
         className?: ClassName;
         style?: StyleProp<ExtendedCSSProperties>;
         inlineStyle?: CSSProperties;
