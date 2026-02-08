@@ -47,12 +47,6 @@ export class UpdateManager {
   _dirty: Set<VNode>[] = [];
 
   /** @internal */
-  _remount: Set<VNode>[] = [];
-
-  /** @internal */
-  _removed: Set<VNode> = new Set();
-
-  /** @internal */
   private _refresh: (x: UpdateManager, force: boolean) => Promise<void>;
 
   constructor(refresh: (x: UpdateManager, force: boolean) => Promise<void>) {
@@ -73,17 +67,8 @@ export class UpdateManager {
     this.refresh();
   }
 
-  remount(node: VNode) {
-    if (!this._remount[node._level]) this._remount[node._level] = new Set();
-    this._remount[node._level].add(node);
-  }
-
-  removed(node: VNode) {
-    this._removed.add(node);
-  }
-
   get isDirty() {
-    return this._dirty.some(x => !!x.size) || this._remount.some(x => !!x.size);
+    return this._dirty.some(x => !!x.size);
   }
 }
 
@@ -158,6 +143,9 @@ export class VNode {
 
   /** @internal */
   async _render(event: UpdateManager, renderer: _Renderer<any>) {
+    const dirty = new Set<VNode>();
+    const mount = new Set<VNode>();
+    const removed = new Set<VNode>();
     try {
       const { type } = this._component;
       const props = this._resolve_props();
@@ -165,13 +153,13 @@ export class VNode {
       let native = this._nativeParent;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = this._resolve_children(props.children, event);
-        event.remount(this);
         native = this;
+        mount.add(this);
       } else if (isContext(type)) {
         const { value } = props;
         if (!equalDeps(this._content_value, value)) {
           for (const node of this._content_listeners) {
-            event.setDirty(node);
+            dirty.add(node);
           }
         }
         this._content_value = value;
@@ -195,7 +183,7 @@ export class VNode {
           }
           await Promise.all(state.tasks);
         }
-        event.remount(this);
+        mount.add(this);
       } else {
         throw Error(`Invalid node type ${type}`);
       }
@@ -212,22 +200,22 @@ export class VNode {
       for (const [lhs, rhs] of _.zip(this._children, children)) {
         if (!(lhs instanceof VNode) || !(rhs instanceof VNode)) continue;
         if (lhs === rhs) {
-          event.setDirty(lhs);
+          dirty.add(lhs);
         } else {
-          if (!equalProps(lhs._component.props, rhs._component.props)) event.setDirty(lhs);
+          if (!equalProps(lhs._component.props, rhs._component.props)) dirty.add(lhs);
           lhs._component = rhs._component;
         }
         lhs._parent = this;
         lhs._nativeParent = native;
         lhs._level = this._level + 1;
       }
-      for (const removed of _.flatMap(diff, x => x.remove ?? [])) {
-        if (removed instanceof VNode) {
-          event.removed(removed);
+      for (const item of _.flatMap(diff, x => x.remove ?? [])) {
+        if (item instanceof VNode) {
+          removed.add(item);
         }
       }
-      if (_.some(diff, x => !x.equivalent)) {
-        this._remount_parent(event);
+      if (_.some(diff, x => !x.equivalent) && this._nativeParent && this._nativeParent !== this) {
+        mount.add(this._nativeParent);
       }
     } catch (error) {
       this._children = [];
@@ -241,16 +229,14 @@ export class VNode {
           console.error(e);
         }
       })();
-      event.remount(this);
-      this._remount_parent(event);
+      mount.add(this);
+      if (this._nativeParent && this._nativeParent !== this) {
+        mount.add(this._nativeParent);
+      }
     } finally {
       reconciler._currentHookState = undefined;
     }
-  }
-
-  private _remount_parent(event: UpdateManager) {
-    const node = this._nativeParent;
-    if (node && node !== this) event.remount(node);
+    return { dirty, mount, removed };
   }
 
   private _resolve_props() {

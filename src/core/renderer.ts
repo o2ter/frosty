@@ -137,7 +137,7 @@ export abstract class _Renderer<T> {
       }
     };
 
-    const refresh = async (event: UpdateManager, force: boolean) => {
+    const refresh = async (dirty: Set<VNode>[], force: boolean) => {
 
       try {
         this._beforeUpdate();
@@ -145,66 +145,75 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      for (const idx in event._dirty) {
-        const nodes = event._dirty[idx];
-        for (const node of nodes || []) {
-          await node._render(event, this);
-          nodes.delete(node);
+      const updated = new Set<VNode>();
+      const mount = new Set<VNode>();
+      const removed = new Set<VNode>();
+
+      for (const _nodes of dirty) {
+        const nodes = [..._nodes || []];
+        let node;
+        while (node = nodes.shift()) {
+          if (updated.has(node)) continue;
+          const {
+            dirty,
+            mount: _mount,
+            removed: _removed,
+          } = await node._render(event, this);
+          _mount.forEach(x => mount.add(x));
+          _removed.forEach(x => removed.add(x));
+          nodes.push(...dirty);
+          updated.add(node);
         }
       }
 
-      for (const nodes of event._remount.toReversed()) {
-        for (const node of nodes || []) {
-          if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
-            let elem: any = elements?.get(node);
-            if (!elem) {
-              const Component = node.type as any;
-              elem = new Component();
+      for (const node of _.sortBy([...mount], x => -x._level)) {
+        if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
+          let elem: any = elements?.get(node);
+          if (!elem) {
+            const Component = node.type as any;
+            elem = new Component();
+          }
+          elements.set(node, elem);
+        } else {
+          if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
+            const element = elements.get(node) ?? this._createElement(node);
+            elements.set(node, element);
+            try {
+              this._updateElement(node, element, nativeChildren(node).toArray(), force);
+            } catch (e) {
+              console.error(e);
             }
-            elements.set(node, elem);
-          } else {
-            if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
-              const element = elements.get(node) ?? this._createElement(node);
-              elements.set(node, element);
+          }
+          const state: MountState[] = [];
+          const prevState = mountState.get(node) ?? [];
+          const curState = node._state ?? [];
+          for (const i of _.range(Math.max(prevState.length, curState.length))) {
+            const unmount = prevState[i]?.unmount;
+            const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
+            if (unmount && changed) {
               try {
-                this._updateElement(node, element, nativeChildren(node).toArray(), force);
+                unmount();
               } catch (e) {
                 console.error(e);
               }
             }
-            const state: MountState[] = [];
-            const prevState = mountState.get(node) ?? [];
-            const curState = node._state ?? [];
-            for (const i of _.range(Math.max(prevState.length, curState.length))) {
-              const unmount = prevState[i]?.unmount;
-              const changed = prevState[i]?.hook !== curState[i]?.hook || !equalDeps(prevState[i].deps, curState[i]?.deps);
-              if (unmount && changed) {
+            state.push({
+              hook: curState[i].hook,
+              deps: curState[i].deps,
+              unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
                 try {
-                  unmount();
+                  return curState[i].mount?.();
                 } catch (e) {
                   console.error(e);
                 }
-              }
-              state.push({
-                hook: curState[i].hook,
-                deps: curState[i].deps,
-                unmount: options?.skipMount || !changed ? prevState[i]?.unmount : (() => {
-                  try {
-                    return curState[i].mount?.();
-                  } catch (e) {
-                    console.error(e);
-                  }
-                })(),
-              });
-            }
-            mountState.set(node, state);
+              })(),
+            });
           }
+          mountState.set(node, state);
         }
       }
-      event._remount = [];
 
-      unmount(event._removed);
-      event._removed.clear();
+      unmount(removed);
 
       if (root) this._updateElement(
         rootNode, root,
@@ -225,12 +234,16 @@ export abstract class _Renderer<T> {
       if (updating) return;
       updating = true;
       if (event.isDirty) {
-        await refresh(event, force);
+        const dirty = event._dirty;
+        event._dirty = [];
+        await refresh(dirty, force);
       }
       while (event.isDirty) {
         if (destroyed) return;
         await new Promise<void>(resolve => nextick(resolve));
-        await refresh(event, force);
+        const dirty = event._dirty;
+        event._dirty = [];
+        await refresh(dirty, force);
       }
       updating = false;
     });
