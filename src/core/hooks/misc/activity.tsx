@@ -38,6 +38,35 @@ type ActivityContextValue = {
 
 const contextMap: WeakMap<any, Context<ActivityContextValue>> = new WeakMap();
 
+/**
+ * Creates an activity tracking component that monitors and counts active asynchronous tasks.
+ * Returns a component that provides an activity context and renders children with the current task count.
+ * 
+ * @param options - Configuration options for the activity tracker.
+ * @param options.defaultDelay - Default delay in milliseconds before a task is considered active.
+ *                                Defaults to 250ms. Set to 0 for immediate tracking.
+ * 
+ * @returns A component that accepts `defaultDelay` (optional override) and `children` 
+ *          (a render function that receives the number of active tasks).
+ * 
+ * @example
+ * ```tsx
+ * const ActivityIndicator = createActivity({ defaultDelay: 300 });
+ * 
+ * function App() {
+ *   return (
+ *     <ActivityIndicator>
+ *       {(taskCount) => (
+ *         <div>
+ *           {taskCount > 0 && <Spinner />}
+ *           <MyContent />
+ *         </div>
+ *       )}
+ *     </ActivityIndicator>
+ *   );
+ * }
+ * ```
+ */
 export const createActivity = ({
   defaultDelay: _defaultDelay = 250,
 }: {
@@ -66,6 +95,46 @@ export const createActivity = ({
   return component;
 };
 
+/**
+ * A hook that returns a wrapper function for tracking asynchronous operations as active tasks.
+ * Tasks are registered in the activity context created by `createActivity`, allowing parent
+ * components to show loading indicators based on the number of active tasks.
+ * 
+ * @template T - The return type of the callback function.
+ * @param component - The activity component created by `createActivity`.
+ * 
+ * @returns An async wrapper function that accepts a callback and optional delay override.
+ *          The wrapper executes the callback while tracking it as an active task.
+ * 
+ * @throws {Error} If the provided component was not created by `createActivity`.
+ * 
+ * @example
+ * ```tsx
+ * const ActivityIndicator = createActivity({ defaultDelay: 250 });
+ * 
+ * function MyComponent() {
+ *   const trackActivity = useActivity(ActivityIndicator);
+ *   
+ *   const handleClick = async () => {
+ *     // Task is tracked after 250ms delay (default)
+ *     const result = await trackActivity(async () => {
+ *       const response = await fetch('/api/data');
+ *       return response.json();
+ *     });
+ *     console.log(result);
+ *   };
+ *   
+ *   const handleUrgent = async () => {
+ *     // Task is tracked immediately (0ms delay)
+ *     await trackActivity(async () => {
+ *       await criticalOperation();
+ *     }, 0);
+ *   };
+ *   
+ *   return <button onClick={handleClick}>Load Data</button>;
+ * }
+ * ```
+ */
 export const useActivity = (component: ReturnType<typeof createActivity>) => {
   const context = contextMap.get(component);
   if (!context) throw new Error('Invalid activity component');
