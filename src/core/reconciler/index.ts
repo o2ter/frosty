@@ -227,7 +227,7 @@ export class VNode {
         }
       }
       if (_.some(diff, x => !x.equivalent)) {
-        this._children_updated(event);
+        this._remount_parent(event);
       }
     } catch (error) {
       this._children = [];
@@ -242,13 +242,13 @@ export class VNode {
         }
       })();
       event.remount(this);
-      this._children_updated(event);
+      this._remount_parent(event);
     } finally {
       reconciler._currentHookState = undefined;
     }
   }
 
-  private _children_updated(event: UpdateManager) {
+  private _remount_parent(event: UpdateManager) {
     const node = this._nativeParent;
     if (node && node !== this) event.remount(node);
   }
