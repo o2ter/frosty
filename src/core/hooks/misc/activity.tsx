@@ -28,7 +28,7 @@ import { Awaitable } from '@o2ter/utils-js';
 import { useState } from '../state';
 import { ElementNode, SetStateAction } from '../../types/common';
 import { Context, createContext, useContext } from '../context';
-import { uniqueId } from '../../utils';
+import { createCache, uniqueId } from '../../utils';
 import { useMemo } from '../memo';
 
 type ActivityContextValue = {
@@ -37,6 +37,7 @@ type ActivityContextValue = {
 };
 
 const contextMap: WeakMap<any, Context<ActivityContextValue>> = new WeakMap();
+const dispatchCache = createCache();
 
 /**
  * Creates an activity tracking component that monitors and counts active asynchronous tasks.
@@ -135,14 +136,11 @@ export const createActivity = ({
  * }
  * ```
  */
-const dispatchCache = new WeakMap();
 export const useActivity = (component: ReturnType<typeof createActivity>) => {
   const context = contextMap.get(component);
   if (!context) throw new Error('Invalid activity component');
   const store = useContext(context);
-  const cached = dispatchCache.get(store);
-  if (cached) return cached as (<T extends unknown>(callback: () => Awaitable<T>, delay?: number) => Promise<T>);
-  const dispatch = async <T extends any>(callback: () => Awaitable<T>, delay?: number) => {
+  return dispatchCache(store, () => async <T extends any>(callback: () => Awaitable<T>, delay?: number) => {
     const id = uniqueId();
     let timeout;
     const _delay = delay ?? store.defaultDelay;
@@ -159,7 +157,5 @@ export const useActivity = (component: ReturnType<typeof createActivity>) => {
       if (timeout) clearTimeout(timeout);
       store.setTasks(tasks => _.filter(tasks, x => x !== id));
     }
-  };
-  cached.set(dispatch);
-  return dispatch;
+  });
 };

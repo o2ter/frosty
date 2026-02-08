@@ -40,3 +40,13 @@ export const mergeRefs = <T>(...refs: (Ref<T> | null | undefined)[]) => (x: T) =
 let counter = 0;
 
 export const uniqueId = () => `${Date.now().toString(36)}${(counter++).toString(36)}${Math.random().toString(36).slice(2)}`;
+
+export const createCache = () => {
+  const map = new WeakMap();
+  return <V extends any>(key: any, factory: () => V) => {
+    if (map.has(key)) return map.get(key) as V;
+    const value = factory();
+    map.set(key, value);
+    return value;
+  };
+};
