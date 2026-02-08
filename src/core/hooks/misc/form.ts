@@ -43,8 +43,6 @@ type FormState<V extends Record<string, any>> = {
   readonly count: Record<string, number>;
   readonly setValues: (update: SetStateAction<V>) => void;
   setValue: (path: string, value: any) => void;
-  touched: (path: string) => boolean;
-  setTouched: (path?: string) => void;
   perform: (action: FormAction) => Promise<void>;
   addEventListener: (callback: (action: string, state: FormState<V>) => Awaitable<void>) => void;
   removeEventListener: (callback: (action: string, state: FormState<V>) => Awaitable<void>) => void;
@@ -78,26 +76,22 @@ export const useFormState = <V extends Record<string, any>>(
     values?: V;
     loading?: Record<string, string[]>;
     count?: Record<string, number>;
-    touched?: true | Record<string, boolean>;
     listeners?: ((action: string, state: FormState<V>) => void)[];
   }>({});
   const startActivity = useActivity(FormActivity);
   const [nextTick, setNextTick] = useState<((state: FormState<V>) => void)[]>([]);
   const {
     setValues,
-    setTouched,
     setListeners,
     perform,
   } = _useCallbacks({
     setValues: (update: SetStateAction<V>) => setState(s => ({ ...s, values: _.isFunction(update) ? update(s.values ?? initialValues) : update })),
-    setTouched: (update: SetStateAction<true | Record<string, boolean>>) => setState(s => ({ ...s, touched: _.isFunction(update) ? update(s.touched ?? {}) : update })),
     setListeners: (update: SetStateAction<((action: string, state: FormState<V>) => void)[]>) => setState(s => ({ ...s, listeners: _.isFunction(update) ? update(s.listeners ?? []) : update })),
     perform: (action: string) => startActivity(async () => {
       const taskId = uniqueId();
       const _callback = async (state: FormState<V>) => {
         switch (action) {
           case 'submit':
-            setState(s => ({ ...s, touched: true }));
             break;
           case 'reset':
             setState(s => _.omit(s, 'values'));
@@ -142,8 +136,6 @@ export const useFormState = <V extends Record<string, any>>(
     setValue: (path: string, value: any) => setValues(
       values => _.set(cloneValue(values), path, _.isFunction(value) ? value(_.get(values, path)) : value)
     ),
-    touched: (path: string) => _.isBoolean(state.touched) ? state.touched : state.touched?.[path] ?? false,
-    setTouched: (path?: string) => setTouched(touched => _.isNil(path) || _.isBoolean(touched) ? true : { ...touched, [path]: true }),
     perform: (action: FormAction) => perform(action),
     addEventListener: (callback: (action: string, state: FormState<V>) => Awaitable<void>) => setListeners(v => [...v, callback]),
     removeEventListener: (callback: (action: string, state: FormState<V>) => Awaitable<void>) => setListeners(v => _.filter(v, x => x !== callback)),
