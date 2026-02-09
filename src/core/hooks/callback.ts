@@ -34,20 +34,20 @@ export const _useCallbacks = <T extends { [x: string]: ((...args: any) => any) |
   const store = _useMemo('_useCallbacks', () => {
     const store = {
       current: callbacks,
-      stable: _.mapValues(callbacks, (v, k) => function (this: any, ...args: any) {
+      stable: _.mapValues(callbacks, (v, k) => v && (function (this: any, ...args: any) {
         const callback = store.current[k];
         if (_.isFunction(callback))
           return callback.call(this, ...args);
-      }),
+      })),
     };
     return store;
   }, null);
   store.current = callbacks;
-  store.stable = _.mapValues(callbacks, (v, k) => store.stable[k] ?? (function (this: any, ...args: any) {
+  store.stable = _.mapValues(callbacks, (v, k) => v && (store.stable[k] || (function (this: any, ...args: any) {
     const callback = store.current[k];
     if (_.isFunction(callback))
       return callback.call(this, ...args);
-  }));
+  })));
   return store.stable as T;
 };
 
