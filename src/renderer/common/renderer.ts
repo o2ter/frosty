@@ -86,11 +86,6 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   _afterUpdate() {
-    console.log({
-      server_head_elements: this.#server_head_elements,
-      tracked_head_children: [...this.#tracked_head_children.values()],
-      tracked_body_head_children: [...this.#tracked_body_head_children.values()],
-    })
     this.#tracked_style.select([...this.#tracked_elements.values().flatMap(({ className }) => className)]);
     const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
     const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
