@@ -141,7 +141,7 @@ const DOMUtils = new class {
 
   replaceChildren(
     element: Element,
-    children: (string | Element | DOMNativeNode)[],
+    children: (string | ChildNode | DOMNativeNode)[],
     shouldRemove: (child: ChildNode) => boolean = () => true,
   ) {
     const document = element.ownerDocument;

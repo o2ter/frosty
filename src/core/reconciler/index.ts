@@ -130,6 +130,10 @@ export class VNode {
     return this.#error;
   }
 
+  get parent() {
+    return this.#parent;
+  }
+
   get stack() {
     let node: VNode | undefined = this;
     return (function* () {

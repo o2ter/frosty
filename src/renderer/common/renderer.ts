@@ -47,11 +47,14 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   #window: Window | DOMWindow;
   #namespace_map = new WeakMap<VNode, string | undefined>();
 
-  #tracked_head_children: (string | Element | DOMNativeNode)[] = [];
+  #tracked_head_children = new Map<VNode, (string | Element | DOMNativeNode)[]>();
+  #tracked_body_head_children = new Map<VNode, (string | Element | DOMNativeNode)[]>();
   #tracked_style = new StyleBuilder();
   /** @internal */
   _tracked_server_resource = new Map<string, string>();
   #tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; }>();
+
+  #server_head_elements: ChildNode[] = [];
 
   constructor(window: Window | DOMWindow) {
     super();
@@ -67,13 +70,27 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   _beforeUpdate() {
+    const head = this.document.head
     if (this._server) {
-      this.#tracked_head_children = [];
-      this._tracked_server_resource = new Map<string, string>();
+      this._tracked_server_resource = new Map();
+    } else if (head) {
+      const found_marker = _.findIndex(head.childNodes, x => x.nodeType === head.COMMENT_NODE && x.textContent === 'frosty-server-head-marker');
+      if (found_marker > -1) {
+        this.#server_head_elements = _.slice(head.childNodes, 0, found_marker);
+      } else {
+        const styleElem = this.document.querySelector('style[data-frosty-style]');
+        const ssrDataElem = this.document.querySelector('script[data-frosty-ssr-data]');
+        this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem, ssrDataElem], x));
+      }
     }
   }
 
   _afterUpdate() {
+    console.log({
+      server_head_elements: this.#server_head_elements,
+      tracked_head_children: [...this.#tracked_head_children.values()],
+      tracked_body_head_children: [...this.#tracked_body_head_children.values()],
+    })
     this.#tracked_style.select([...this.#tracked_elements.values().flatMap(({ className }) => className)]);
     const head = this.document.head ?? this.document.createElementNS(HTML_NS, 'head');
     const styleElem = this.document.querySelector('style[data-frosty-style]') ?? this.document.createElementNS(HTML_NS, 'style');
@@ -87,13 +104,21 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         ssrData.setAttribute('type', 'text/plain');
         ssrData.innerHTML = compress(JSON.stringify(Object.fromEntries(this._tracked_server_resource)));
       }
+      const tracked_head_children = _.flattenDeep([...this.#tracked_body_head_children.values()]);
+      const maker = this.document.createComment('frosty-server-head-marker');
       DOMNativeNode.Utils.replaceChildren(head, _.compact([
-        ...this.#tracked_head_children,
+        ..._.flattenDeep([...this.#tracked_head_children.values()]),
+        !_.isEmpty(tracked_head_children) && maker,
+        ...tracked_head_children,
         styleElem.textContent && styleElem,
         ssrData,
       ]), (x) => this.#tracked_elements.has(x as any));
-    } else if (styleElem.parentNode !== head && styleElem.textContent) {
-      head.appendChild(styleElem);
+    } else {
+      DOMNativeNode.Utils.replaceChildren(head, _.compact([
+        ...this.#server_head_elements.filter(x => x !== styleElem),
+        ..._.flattenDeep([...this.#tracked_body_head_children.values()]),
+        styleElem.textContent && styleElem,
+      ]), (x) => this.#tracked_elements.has(x as any));
     }
     if (!this.document.head) {
       this.document.documentElement.insertBefore(head, this.document.body);
@@ -152,6 +177,11 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     children: (string | Element | DOMNativeNode)[],
     force?: boolean
   ) {
+
+    if (node.type !== 'html') {
+      children = _.filter(children, x => x !== this.document.head && x !== this.document.body);
+    }
+
     if (element instanceof DOMNativeNode) {
       const {
         props: { ref, className, style, inlineStyle, ..._props }
@@ -178,7 +208,10 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     }
     switch (type) {
       case 'head': {
-        this.#tracked_head_children.push(...children);
+        const tracked = node.parent?.type === 'html'
+          ? this.#tracked_head_children
+          : this.#tracked_body_head_children;
+        tracked.set(node, children);
         return;
       }
       default: break;
@@ -206,6 +239,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   _destroyElement(node: VNode, element: Element | DOMNativeNode) {
+    this.#tracked_head_children.delete(node);
+    this.#tracked_body_head_children.delete(node);
     if (element instanceof DOMNativeNode) {
       element.destroy();
     } else {
