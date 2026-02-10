@@ -98,6 +98,9 @@ export const App = () => {
         margin: 16,
       }}
     >
+      <head>
+        <title>Test</title>
+      </head>
       <Form />
       <div style={{ background: 'aliceblue' }}>{1000 / d}</div>
       <Counter value={counter}>
