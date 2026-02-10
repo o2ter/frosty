@@ -113,7 +113,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         ...this.#server_head_elements.filter(x => x !== styleElem),
         ..._.flattenDeep([...this.#tracked_body_head_children.values()]),
         styleElem.textContent && styleElem,
-      ]), (x) => this.#tracked_elements.has(x as any));
+      ]));
     }
     if (!this.document.head) {
       this.document.documentElement.insertBefore(head, this.document.body);
