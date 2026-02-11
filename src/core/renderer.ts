@@ -176,16 +176,15 @@ export abstract class _Renderer<T> {
               elem = new Component();
             }
             elements.set(node, elem);
-          } else {
-            if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
-              const element = elements.get(node) ?? this._createElement(node);
-              elements.set(node, element);
-              try {
-                this._updateElement(node, element, nativeChildren(node).toArray(), force);
-              } catch (e) {
-                console.error(e);
-              }
+          } else if (_.isString(node.type) || node.type?.prototype instanceof NativeElementType) {
+            const element = elements.get(node) ?? this._createElement(node);
+            elements.set(node, element);
+            try {
+              this._updateElement(node, element, nativeChildren(node).toArray(), force);
+            } catch (e) {
+              console.error(e);
             }
+          } else {
             const state: MountState[] = [];
             const prevState = mountState.get(node) ?? [];
             const curState = node.state ?? [];
