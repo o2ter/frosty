@@ -233,7 +233,7 @@ export class VNode {
         if (lhs === rhs) {
           yield { dirty: lhs };
         } else {
-          if (!equalProps(lhs.#component.props, rhs.#component.props)) yield { dirty: lhs };
+          if (_.isNil(lhs.#state) && !equalProps(lhs.#component.props, rhs.#component.props)) yield { dirty: lhs };
           lhs.#component = rhs.#component;
         }
         lhs.#parent = this;
