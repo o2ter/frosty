@@ -230,12 +230,12 @@ export class VNode {
       this.#error = undefined;
       for (const [lhs, rhs] of _.zip(this.#children, children)) {
         if (!(lhs instanceof VNode) || !(rhs instanceof VNode)) continue;
-        if (lhs === rhs) {
+        if (_.isNil(lhs.#state)) {
           yield { dirty: lhs };
-        } else {
-          if (_.isNil(lhs.#state) || !equalProps(lhs.#component.props, rhs.#component.props)) yield { dirty: lhs };
-          lhs.#component = rhs.#component;
+        } else if(!equalProps(lhs.#component.props, rhs.#component.props)) {
+          yield { dirty: lhs };
         }
+        lhs.#component = rhs.#component;
         lhs.#parent = this;
         lhs.#nativeParent = native;
         lhs.#level = this.#level + 1;
