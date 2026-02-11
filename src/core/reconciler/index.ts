@@ -33,6 +33,7 @@ import { _Renderer } from '../renderer';
 import { myersSync } from 'myers.js';
 import { equalDeps, equalProps } from './utils';
 import { PropsType } from '../types/runtime';
+import { _ParentComponent } from '../components/pairs';
 
 type VNodeState = {
   hook: string;
@@ -184,7 +185,9 @@ export class VNode {
       let native = this.#nativeParent;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
         children = _resolve_children(props.children);
-        native = this;
+        if (_.isString(type) || !(type?.prototype instanceof _ParentComponent)) {
+          native = this;
+        }
       } else if (isContext(type)) {
         const { value } = props;
         if (!equalDeps(this.#content_value, value)) {
