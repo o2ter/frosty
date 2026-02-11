@@ -188,6 +188,7 @@ export class VNode {
         if (_.isString(type) || !(type?.prototype instanceof _ParentComponent)) {
           native = this;
         }
+        yield { mount: this };
       } else if (isContext(type)) {
         const { value } = props;
         if (!equalDeps(this.#content_value, value)) {
@@ -216,6 +217,7 @@ export class VNode {
           }
           await Promise.all(state.tasks);
         }
+        yield { mount: this };
       } else {
         throw Error(`Invalid node type ${type}`);
       }
@@ -261,12 +263,12 @@ export class VNode {
           console.error(e);
         }
       })();
+      yield { mount: this };
       if (this.#nativeParent && this.#nativeParent !== this) {
         yield { mount: this.#nativeParent };
       }
     } finally {
       reconciler._currentHookState = undefined;
-      yield { mount: this };
     }
   }
 
