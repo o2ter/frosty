@@ -34,7 +34,7 @@ import { _HTMLElementTagNameMap, _MathMLElementTagNameMap, _SVGElementTagNameMap
 export type _ElementType = string | ComponentType<any>;
 
 export type _IntrinsicAttributes = {
-  key?: string | number;
+  key?: string | number | bigint | null;
 };
 
 export type PropsType = Record<string, any>;

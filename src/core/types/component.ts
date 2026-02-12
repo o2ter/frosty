@@ -34,7 +34,7 @@ export class ComponentNode {
 
   #type: _ElementType | typeof NativeElementType;
   #props: PropsType;
-  #key?: string | number;
+  #key?: string | number | bigint | null;
 
   /** @internal */
   constructor(

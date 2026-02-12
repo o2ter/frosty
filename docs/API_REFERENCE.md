@@ -1439,7 +1439,7 @@ Base type for all Frosty components.
 interface ComponentNode {
   type: any;
   props: any;
-  key?: string | number;
+  key?: string | number | bigint | null;
 }
 ```
 
