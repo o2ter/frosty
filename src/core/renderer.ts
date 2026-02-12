@@ -86,6 +86,7 @@ export abstract class _Renderer<T> {
             if (filter && !filter(child)) continue;
             yield child;
           } else {
+            if (child.error) continue;
             const element = elements.get(child);
             if (!filter || filter(child)) {
               if (element instanceof _ParentComponent) {
