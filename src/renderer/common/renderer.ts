@@ -54,7 +54,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   _tracked_server_resource = new Map<string, string>();
   #tracked_elements = new Map<Element | DOMNativeNode, { props: string[]; className: string[]; }>();
 
-  #server_head_elements: ChildNode[] = [];
+  #server_head_elements?: ChildNode[];
 
   constructor(window: Window | DOMWindow) {
     super();
@@ -74,13 +74,16 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     if (this._server) {
       this._tracked_server_resource = new Map();
     } else if (head) {
-      const found_marker = _.findIndex(head.childNodes, x => x.nodeType === head.COMMENT_NODE && x.textContent === 'frosty-server-head-marker');
-      if (found_marker > -1) {
-        this.#server_head_elements = _.slice(head.childNodes, 0, found_marker);
-      } else {
-        const styleElem = this.document.querySelector('style[data-frosty-style]');
-        const ssrDataElem = this.document.querySelector('script[data-frosty-ssr-data]');
-        this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem, ssrDataElem], x));
+      if (!this.#server_head_elements) {
+        const found_marker = _.findIndex(head.childNodes, x => x.nodeType === head.COMMENT_NODE && x.textContent === 'frosty-server-head-marker');
+        if (found_marker > -1) {
+          this.#server_head_elements = _.slice(head.childNodes, 0, found_marker);
+        } else {
+          const styleElem = this.document.querySelector('style[data-frosty-style]');
+          const ssrDataElem = this.document.querySelector('script[data-frosty-ssr-data]');
+          this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem, ssrDataElem], x));
+        }
+        DOMNativeNode.Utils.replaceChildren(head, this.#server_head_elements);
       }
     }
   }
@@ -110,10 +113,10 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       ]), (x) => this.#tracked_elements.has(x as any));
     } else {
       DOMNativeNode.Utils.replaceChildren(head, _.compact([
-        ...this.#server_head_elements.filter(x => x !== styleElem),
+        ...this.#server_head_elements ?? [],
         ..._.flattenDeep([...this.#tracked_body_head_children.values()]),
         styleElem.textContent && styleElem,
-      ]));
+      ]), (x) => this.#tracked_elements.has(x as any));
     }
     if (!this.document.head) {
       this.document.documentElement.insertBefore(head, this.document.body);
