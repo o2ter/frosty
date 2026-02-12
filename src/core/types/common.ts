@@ -39,6 +39,7 @@ export type ElementNode =
   | ComponentNode
   | string
   | number
+  | bigint
   | boolean
   | null
   | undefined

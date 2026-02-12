@@ -171,7 +171,7 @@ export class VNode {
     const _resolve_children = (child: any): (VNode | string)[] => {
       if (_.isBoolean(child) || _.isNil(child)) return [];
       if (_.isString(child)) return [child];
-      if (_.isNumber(child)) return [`${child}`];
+      if (_.isNumber(child) || typeof child === 'bigint') return [`${child}`];
       if (child instanceof ComponentNode) return [new VNode(child)];
       if (_.isArrayLikeObject(child)) return _.flatMap(child, x => _resolve_children(x));
       if (typeof child[Symbol.iterator] === 'function') return _.flatMap([...child], x => _resolve_children(x));
