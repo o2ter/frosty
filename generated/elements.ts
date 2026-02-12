@@ -7,7 +7,7 @@ export const svgProps = {
       "attr": "id"
     },
     "style": {
-      "type": "CSSStyleDeclaration",
+      "type": "CSSStyleProperties",
       "attr": "style"
     },
     "tabIndex": {
@@ -1554,7 +1554,8 @@ export const svgProps = {
       "type": "SVGAnimatedLength",
       "attr": "y"
     }
-  }
+  },
+  "discard": {}
 } as const;
 
 export const htmlProps = {
@@ -1566,6 +1567,10 @@ export const htmlProps = {
     "autocapitalize": {
       "type": "DOMString",
       "attr": "autocapitalize"
+    },
+    "autocorrect": {
+      "type": "boolean",
+      "attr": "autocorrect"
     },
     "autofocus": {
       "type": "boolean",
@@ -1615,6 +1620,10 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "nonce"
     },
+    "part": {
+      "type": "DOMTokenList",
+      "attr": "part"
+    },
     "popover": {
       "type": "DOMString",
       "attr": "popover"
@@ -1628,7 +1637,7 @@ export const htmlProps = {
       "attr": "spellcheck"
     },
     "style": {
-      "type": "CSSStyleDeclaration",
+      "type": "CSSStyleProperties",
       "attr": "style"
     },
     "tabIndex": {
@@ -2747,6 +2756,10 @@ export const htmlProps = {
       "type": "DOMString",
       "attr": "align"
     },
+    "alpha": {
+      "type": "boolean",
+      "attr": "alpha"
+    },
     "alt": {
       "type": "DOMString",
       "attr": "alt"
@@ -2758,6 +2771,10 @@ export const htmlProps = {
     "checked": {
       "type": "boolean",
       "attr": "checked"
+    },
+    "colorSpace": {
+      "type": "DOMString",
+      "attr": "colorspace"
     },
     "dirName": {
       "type": "DOMString",
@@ -2873,6 +2890,10 @@ export const htmlProps = {
     }
   },
   "button": {
+    "command": {
+      "type": "DOMString",
+      "attr": "command"
+    },
     "disabled": {
       "type": "boolean",
       "attr": "disabled"
@@ -3097,6 +3118,7 @@ export const htmlProps = {
       "attr": "align"
     }
   },
+  "selectedcontent": {},
   "details": {
     "name": {
       "type": "DOMString",
@@ -3109,6 +3131,10 @@ export const htmlProps = {
   },
   "summary": {},
   "dialog": {
+    "closedBy": {
+      "type": "DOMString",
+      "attr": "closedby"
+    },
     "open": {
       "type": "boolean",
       "attr": "open"
@@ -3166,6 +3192,10 @@ export const htmlProps = {
       "type": "boolean",
       "attr": "shadowrootclonable"
     },
+    "shadowRootCustomElementRegistry": {
+      "type": "DOMString",
+      "attr": "shadowrootcustomelementregistry"
+    },
     "shadowRootDelegatesFocus": {
       "type": "boolean",
       "attr": "shadowrootdelegatesfocus"
@@ -3173,6 +3203,10 @@ export const htmlProps = {
     "shadowRootMode": {
       "type": "DOMString",
       "attr": "shadowrootmode"
+    },
+    "shadowRootSerializable": {
+      "type": "boolean",
+      "attr": "shadowrootserializable"
     }
   },
   "slot": {
@@ -3309,6 +3343,7 @@ export const tags = {
     "clipPath",
     "defs",
     "desc",
+    "discard",
     "ellipse",
     "feBlend",
     "feColorMatrix",
@@ -3476,6 +3511,7 @@ export const tags = {
     "search",
     "section",
     "select",
+    "selectedcontent",
     "slot",
     "small",
     "source",

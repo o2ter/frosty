@@ -52,7 +52,7 @@ const impls = _.mapValues(_.groupBy(_.flatten(_.values(webref.idl)), 'type'), u 
 const ElementTagNameMap = _.mapValues({
   svg: {
     defaultInterface: 'SVGElement',
-    groups: ['SVG11'],
+    groups: ['SVG11', 'SVG2', 'svg-animations', 'svg-paths'],
   },
   html: {
     defaultInterface: 'HTMLElement',
