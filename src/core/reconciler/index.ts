@@ -180,29 +180,29 @@ export class VNode {
 
     try {
       const { type } = this.#component;
-      const props = _resolve_props();
+      this.#props = _resolve_props();
       let children: (VNode | string)[];
       let native = this.#nativeParent;
       if (_.isString(type) || type?.prototype instanceof NativeElementType) {
-        children = _resolve_children(props.children);
+        children = _resolve_children(this.#props.children);
         if (_.isString(type) || !(type?.prototype instanceof _ParentComponent)) {
           native = this;
         }
         yield { mount: this };
       } else if (isContext(type)) {
-        const { value } = props;
+        const { value } = this.#props;
         if (!equalDeps(this.#content_value, value)) {
           for (const node of this.#content_listeners) {
             yield { dirty: node };
           }
         }
         this.#content_value = value;
-        children = _resolve_children(type(props as any));
+        children = _resolve_children(type(this.#props as any));
       } else if (_.isFunction(type)) {
         while (true) {
           const state = new HookState(this, event, renderer);
           reconciler._currentHookState = state;
-          const rendered = type(props);
+          const rendered = type(this.#props);
           for (const node of this.#context.difference(state.context)) {
             node.#content_listeners.delete(this);
           }
@@ -228,7 +228,6 @@ export class VNode {
           return false;
         },
       });
-      this.#props = props;
       this.#children = _.flatMap(diff, x => x.equivalent ?? x.insert ?? []);
       this.#error = undefined;
       for (const [lhs, rhs] of _.zip(this.#children, children)) {
@@ -244,14 +243,15 @@ export class VNode {
         lhs.#level = this.#level + 1;
       }
       for (const item of _.flatMap(diff, x => x.remove ?? [])) {
-        if (item instanceof VNode) {
-          yield { removed: item };
-        }
+        if (item instanceof VNode) yield { removed: item };
       }
       if (_.some(diff, x => !x.equivalent) && this.#nativeParent && this.#nativeParent !== this) {
         yield { mount: this.#nativeParent };
       }
     } catch (error) {
+      for (const item of this.#children) {
+        if (item instanceof VNode) yield { removed: item };
+      }
       this.#children = [];
       this.#error = error;
       (async () => {
@@ -263,7 +263,7 @@ export class VNode {
           console.error(e);
         }
       })();
-      yield { mount: this };
+      yield { removed: this };
       if (this.#nativeParent && this.#nativeParent !== this) {
         yield { mount: this.#nativeParent };
       }

@@ -169,6 +169,7 @@ export abstract class _Renderer<T> {
 
       for (const nodes of mount.toReversed()) {
         for (const node of nodes || []) {
+          if (removed.has(node)) continue;
           if (_.isFunction(node.type) && node.type.prototype instanceof _ParentComponent) {
             let elem: any = elements?.get(node);
             if (!elem) {
