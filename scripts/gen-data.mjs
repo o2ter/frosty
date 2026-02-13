@@ -149,7 +149,7 @@ const _elements = [
   ..._.flatMap(ElementTagNameMap.svg.groups, g => g.elements),
   ..._.flatMap(ElementTagNameMap.html.groups, g => g.elements),
 ];
-const mapped = _.mapValues(interfaces, (v, name) => {
+let mapped = _.mapValues(interfaces, (v, name) => {
   let attrs = (() => {
     if (name === 'SVGElement') {
       return svgElementAttributes['*'];
@@ -183,6 +183,11 @@ const mapped = _.mapValues(interfaces, (v, name) => {
     properties,
   };
 });
+
+mapped = _.pickBy(mapped, x => !_.isEmpty(x.implements) || !_.isEmpty(x.attributes) || !_.isEmpty(x.properties));
+for (const [, item] of Object.entries(mapped)) {
+  item.implements = _.filter(item.implements, x => _.has(mapped, x));
+}
 
 const resolve_impls = (name) => _.orderBy([
   mapped[name],
