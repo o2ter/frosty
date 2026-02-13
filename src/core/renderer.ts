@@ -112,6 +112,7 @@ export abstract class _Renderer<T> {
 
     const unmount = (nodes: Iterable<VNode>) => {
       for (const node of nodes) {
+        unmount(_.filter(node.children, x => x instanceof VNode));
         node._release();
         const element = elements.get(node);
         const state = mountState.get(node);
@@ -135,7 +136,6 @@ export abstract class _Renderer<T> {
         }
         elements.delete(node);
         mountState.delete(node);
-        unmount(_.filter(node.children, x => x instanceof VNode));
       }
     };
 
