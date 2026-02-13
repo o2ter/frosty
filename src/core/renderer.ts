@@ -144,7 +144,6 @@ export abstract class _Renderer<T> {
         console.error(e);
       }
 
-      const updated = new Set<VNode>();
       const mount: Set<VNode>[] = [];
       const removed = new Set<VNode>();
 
@@ -152,7 +151,6 @@ export abstract class _Renderer<T> {
         const nodes = [..._nodes || []];
         let node;
         while (node = nodes.shift()) {
-          if (updated.has(node)) continue;
           for await (const {
             dirty,
             mount: _mount,
@@ -164,7 +162,6 @@ export abstract class _Renderer<T> {
               mount[_mount.level].add(_mount);
             } else if (_removed) removed.add(_removed);
           }
-          updated.add(node);
         }
       }
 
