@@ -121,7 +121,7 @@ const value_mapping = {
   'HTMLFormElement': 'string',
   'HTMLDataListElement': 'string',
 
-  'SVGAnimatedLength': 'length',
+  'SVGAnimatedLength': ['number', 'string'],
 
   'SVGAnimatedNumber': 'number',
   'SVGAnimatedInteger': 'number',
