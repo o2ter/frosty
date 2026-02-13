@@ -234,7 +234,7 @@ export class VNode {
         if (!(lhs instanceof VNode) || !(rhs instanceof VNode)) continue;
         if (_.isNil(lhs.#state)) {
           yield { dirty: lhs };
-        } else if(!equalProps(lhs.#component.props, rhs.#component.props)) {
+        } else if (!equalProps(lhs.#component.props, rhs.#component.props)) {
           yield { dirty: lhs };
         }
         lhs.#component = rhs.#component;
