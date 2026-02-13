@@ -115,6 +115,13 @@ export abstract class _Renderer<T> {
         node._release();
         const element = elements.get(node);
         if (element) {
+          try {
+            this._destroyElement(node, element);
+          } catch (e) {
+            console.error(e);
+          }
+          elements.delete(node);
+        } else {
           const state = mountState.get(node) ?? [];
           for (const { unmount } of state) {
             if (unmount) {
@@ -125,12 +132,6 @@ export abstract class _Renderer<T> {
               }
             }
           }
-          try {
-            this._destroyElement(node, element);
-          } catch (e) {
-            console.error(e);
-          }
-          elements.delete(node);
         }
         unmount(_.filter(node.children, x => x instanceof VNode));
       }
