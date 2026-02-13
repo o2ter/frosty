@@ -264,6 +264,7 @@ for (const [name, item] of Object.entries(mapped)) {
     }
   }
   for (const { key, type } of attributes.sort((a, b) => a.key.localeCompare(b.key))) {
+    if (key === 'class' || key === 'style') continue;
     content += `    ${key}?: ${type};\n`;
   }
 
