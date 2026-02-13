@@ -28,8 +28,10 @@ import type { _DOMRenderer } from './renderer';
 import { myersSync } from 'myers.js';
 import { globalEvents } from '../../core/web/event';
 import { NativeElementType } from '../../core/types/component';
-import { svgProps, htmlProps } from '../../../generated/elements';
-import { _propValue } from '../../core/web/props';
+import {
+  HTMLElementAttributeMaps as htmlProps,
+  SVGElementAttributeMaps as svgProps,
+} from '../../../generated/elements';
 import { _Renderer } from '../../core/renderer';
 
 const findPrototypeProperty = (object: any, propertyName: string) => {
@@ -109,11 +111,10 @@ const DOMUtils = new class {
         }
       } else {
         const tagName = _.toLower(element.tagName);
-        const { type: _type, attr } = (htmlProps as any)['*'][key]
-          ?? (htmlProps as any)[tagName]?.[key]
-          ?? (svgProps as any)['*'][key]
-          ?? (svgProps as any)[tagName]?.[key]
-          ?? {};
+        const attr = _.find(htmlProps['*'], a => _.camelCase(a).toLowerCase() === _.camelCase(key).toLowerCase())
+          ?? _.find((htmlProps as any)[tagName] as string[], a => _.camelCase(a).toLowerCase() === _.camelCase(key).toLowerCase())
+          ?? _.find(svgProps['*'], a => _.camelCase(a).toLowerCase() === _.camelCase(key).toLowerCase())
+          ?? _.find((svgProps as any)[tagName] as string[], a => _.camelCase(a).toLowerCase() === _.camelCase(key).toLowerCase());
         const tracked = tracked_props.get(element) ?? [];
         const writeable = isWriteable(element, key);
         if (!tracked_props.has(element)) tracked_props.set(element, tracked);
@@ -121,7 +122,7 @@ const DOMUtils = new class {
         if (writeable && !_.isNil(value)) {
           if (!assigned || (element as any)[key] !== value) (element as any)[key] = value;
           if (!assigned) tracked.push(key);
-        } else if (_type && attr && (_propValue as any)[_type]) {
+        } else if (attr) {
           const oldValue = element.getAttribute(attr);
           if (value === false || _.isNil(value)) {
             if (!_.isNil(oldValue))

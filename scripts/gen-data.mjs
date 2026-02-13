@@ -285,20 +285,7 @@ content += '  }\n';
 
 content += '}\n';
 
-content += 'export const HTMLElementAttributeMaps = {\n';
-for (const [name, item] of Object.entries(mapped)) {
-  if (!name.startsWith('HTML')) continue;
-  if (!item.tag) continue;
-  content += `  '${item.tag}': ${JSON.stringify(item.attributes)},\n`;
-}
-content += '};\n';
-
-content += 'export const SVGElementAttributeMaps = {\n';
-for (const [name, item] of Object.entries(mapped)) {
-  if (!name.startsWith('SVG')) continue;
-  if (!item.tag) continue;
-  content += `  '${item.tag}': ${JSON.stringify(item.attributes)},\n`;
-}
-content += '};\n';
+content += `export const HTMLElementAttributeMaps = ${JSON.stringify(htmlElementAttributes, null, 2)};\n`;
+content += `export const SVGElementAttributeMaps = ${JSON.stringify(svgElementAttributes, null, 2)};\n`;
 
 await fs.writeFile('./generated/elements.ts', content);
