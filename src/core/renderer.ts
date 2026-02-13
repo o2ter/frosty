@@ -133,9 +133,9 @@ export abstract class _Renderer<T> {
             }
           }
         }
-        unmount(_.filter(node.children, x => x instanceof VNode));
         elements.delete(node);
         mountState.delete(node);
+        unmount(_.filter(node.children, x => x instanceof VNode));
       }
     };
 
