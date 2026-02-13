@@ -197,7 +197,7 @@ while (true) {
     if (common_attrs.length === 0) continue;
     item.attributes = _.uniq([...item.attributes || [], ...common_attrs]);
     for (const type of ['HTML', 'SVG']) {
-      if (_.startsWith(name, type) || _.startsWith(name, 'Element')) {
+      if (_.startsWith(name, type) || _.every(['HTML', 'SVG'], k => !_.startsWith(name, k))) {
         for (const attrs of common_attrs) {
           for (const found of _.filter(_.values(mapped), x => _.startsWith(x.name, type))) {
             const picked = _.pickBy(found.properties, (v, k) => _.camelCase(k).toLowerCase() === _.camelCase(attrs).toLowerCase());
