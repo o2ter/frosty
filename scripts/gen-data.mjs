@@ -196,13 +196,17 @@ while (true) {
     const common_attrs = _.intersection(..._.map(founds, x => x.attributes));
     if (common_attrs.length === 0) continue;
     item.attributes = _.uniq([...item.attributes || [], ...common_attrs]);
-    for (const attrs of common_attrs) {
-      for (const found of founds) {
-        const picked = _.pickBy(found.properties, (v, k) => _.camelCase(k).toLowerCase() === _.camelCase(attrs).toLowerCase());
-        item.properties = {
-          ...picked,
-          ...item.properties,
-        };
+    for (const type of ['HTML', 'SVG']) {
+      if (_.startsWith(name, type)) {
+        for (const attrs of common_attrs) {
+          for (const found of _.filter(_.values(mapped), x => _.startsWith(x.name, type))) {
+            const picked = _.pickBy(found.properties, (v, k) => _.camelCase(k).toLowerCase() === _.camelCase(attrs).toLowerCase());
+            item.properties = {
+              ...picked,
+              ...item.properties,
+            };
+          }
+        }
       }
     }
     changed = true;
