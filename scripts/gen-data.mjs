@@ -263,7 +263,7 @@ for (const [name, item] of Object.entries(mapped)) {
     }
   }
   for (const { key, type } of attributes.sort((a, b) => a.key.localeCompare(b.key))) {
-    content += `    ${key}: ${type};\n`;
+    content += `    ${key}?: ${type};\n`;
   }
 
   content += '  }\n';
