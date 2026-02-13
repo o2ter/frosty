@@ -114,6 +114,7 @@ export abstract class _Renderer<T> {
       for (const node of nodes) {
         node._release();
         const element = elements.get(node);
+        const state = mountState.get(node);
         if (element) {
           try {
             this._destroyElement(node, element);
@@ -121,8 +122,7 @@ export abstract class _Renderer<T> {
             console.error(e);
           }
           elements.delete(node);
-        } else {
-          const state = mountState.get(node) ?? [];
+        } else if (state) {
           for (const { unmount } of state) {
             if (unmount) {
               try {
