@@ -150,6 +150,7 @@ const _elements = [
   ..._.flatMap(ElementTagNameMap.html.groups, g => g.elements),
 ];
 let mapped = _.mapValues(interfaces, (v, name) => {
+  const found = _.find(_elements, e => e.interface === name);
   let attrs = (() => {
     if (name === 'SVGElement') {
       return svgElementAttributes['*'];
@@ -157,7 +158,6 @@ let mapped = _.mapValues(interfaces, (v, name) => {
     if (name === 'HTMLElement') {
       return htmlElementAttributes['*'];
     }
-    const found = _.find(_elements, e => e.interface === name);
     if (!found) return [];
     if (name.startsWith('SVG'))
       return svgElementAttributes[found.name] ?? [];
@@ -178,6 +178,7 @@ let mapped = _.mapValues(interfaces, (v, name) => {
   }
   return {
     name,
+    tag: found?.name,
     implements: v.implements,
     attributes: attrs,
     properties,
