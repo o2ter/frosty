@@ -193,17 +193,26 @@ while (true) {
   let changed = false;
   for (const [name, item] of Object.entries(mapped)) {
     const founds = _.filter(_.values(mapped), x => x.implements.includes(name));
-    const common_attrs = _.intersection(..._.map(founds, x => 
-      _.filter(x.attributes, a => !_.some(_.keys(x.properties), b => _.camelCase(a).toLowerCase() === _.camelCase(b).toLowerCase()))
-    ));
+    const common_attrs = _.intersection(..._.map(founds, x => x.attributes));
     if (common_attrs.length === 0) continue;
     item.attributes = _.uniq([...item.attributes || [], ...common_attrs]);
+    for (const attrs of common_attrs) {
+      for (const found of founds) {
+        const picked = _.pickBy(found.properties, (v, k) => _.camelCase(k).toLowerCase() === _.camelCase(attrs).toLowerCase());
+        item.properties = {
+          ...picked,
+          ...item.properties,
+        };
+      }
+    }
     changed = true;
   }
   for (const [, item] of Object.entries(mapped)) {
     const impls = _.flatMap(item.implements, resolve_impls);
     const attrs = _.uniq(_.flatMap(impls, x => x.attributes));
     item.attributes = _.difference(item.attributes || [], attrs);
+    const props = _.fromPairs(_.flatMap(impls, x => _.toPairs(x.properties)));
+    item.properties = _.omit(item.properties, _.keys(props));
   }
   if (!changed) break;
 }
