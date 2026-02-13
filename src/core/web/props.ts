@@ -24,79 +24,21 @@
 //
 
 import _ from 'lodash';
-import { svgProps, htmlProps } from '../../../generated/elements';
-import { OmitType } from '@o2ter/utils-js';
-
-export const _propValue = {
-
-  'DOMString': 'string',
-  'SVGAnimatedTransformList': 'string',
-  'SVGStringList': 'string',
-  'SVGAnimatedRect': 'string',
-  'SVGAnimatedPreserveAspectRatio': 'string',
-  'SVGAnimatedString': 'string',
-  'SVGPointList': 'string',
-  'SVGAnimatedLengthList': 'string',
-  'SVGAnimatedNumberList': 'string',
-  'SVGAnimatedEnumeration': 'string',
-  'USVString': 'string',
-  'DOMTokenList': 'string',
-  'TrustedHTML': 'string',
-  'HTMLFormElement': 'string',
-  'HTMLDataListElement': 'string',
-
-  'SVGAnimatedLength': 'length',
-
-  'SVGAnimatedNumber': 'number',
-  'SVGAnimatedInteger': 'number',
-  'unrestricted double': 'number',
-  'double': 'number',
-  'unsigned long': 'number',
-  'long': 'number',
-
-  'SVGAnimatedBoolean': 'boolean',
-  'boolean': 'boolean',
-
-} as const;
-
-type _PropValue = {
-  'string': string,
-  'number': number,
-  'length': number | string,
-  'boolean': boolean,
-};
-
-type MapPropValue<T> = T extends keyof typeof _propValue
-  ? _PropValue[typeof _propValue[T]]
-  : T extends readonly [infer S]
-  ? MapPropValue<S>
-  : T extends readonly [infer S, ...infer R]
-  ? MapPropValue<S> | MapPropValue<R>
-  : never;
+import { Frosty } from '../../../generated/elements';
 
 type AllHTMLElementTagNameMap = HTMLElementTagNameMap & HTMLElementDeprecatedTagNameMap;
 
 export type _HTMLElementTagNameMap = {
   [x in keyof AllHTMLElementTagNameMap]: {
     type: AllHTMLElementTagNameMap[x];
-    props: OmitType<{
-      -readonly [p in keyof typeof htmlProps['*']]: MapPropValue<typeof htmlProps['*'][p]['type']>;
-    } & {
-      -readonly [p in keyof typeof htmlProps[x]]: typeof htmlProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
-    }, never>;
+    props: Frosty.HTMLElementAttributeTagNameMap[x];
   };
 };
 
 export type _SVGElementTagNameMap = {
   [x in keyof SVGElementTagNameMap]: {
     type: SVGElementTagNameMap[x];
-    props: OmitType<{
-      -readonly [p in keyof typeof svgProps['*']]: MapPropValue<typeof svgProps['*'][p]['type']>;
-    } & (x extends keyof typeof htmlProps ? {
-      -readonly [p in keyof typeof htmlProps[x]]: typeof htmlProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
-    } : {}) & (x extends keyof typeof svgProps ? {
-      -readonly [p in keyof typeof svgProps[x]]: typeof svgProps[x][p] extends { type: infer T } ? MapPropValue<T> : never;
-    } : {}), never>;
+    props: Frosty.SVGElementAttributeTagNameMap[x];
   };
 };
 

@@ -229,7 +229,7 @@ while (true) {
 
 let content = '';
 
-content += 'namespace Frosty {\n';
+content += 'export namespace Frosty {\n';
 
 const map_name = (name) => {
   if (name === 'Element') return 'ElementAttributes';
@@ -284,5 +284,13 @@ for (const [name, item] of Object.entries(mapped)) {
 content += '  }\n';
 
 content += '}\n';
+
+content += 'export const HTMLElementAttributeMaps = {\n';
+for (const [name, item] of Object.entries(mapped)) {
+  if (!item.tag) continue;
+  content += `  '${item.tag}': {\n`;
+  content += `  },\n`;
+}
+content += '};\n';
 
 await fs.writeFile('./generated/elements.ts', content);
