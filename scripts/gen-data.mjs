@@ -193,7 +193,9 @@ while (true) {
   let changed = false;
   for (const [name, item] of Object.entries(mapped)) {
     const founds = _.filter(_.values(mapped), x => x.implements.includes(name));
-    const common_attrs = _.intersection(..._.map(founds, x => x.attributes));
+    const common_attrs = _.intersection(..._.map(founds, x => 
+      _.filter(x.attributes, a => !_.some(_.keys(x.properties), b => _.camelCase(a).toLowerCase() === _.camelCase(b).toLowerCase()))
+    ));
     if (common_attrs.length === 0) continue;
     item.attributes = _.uniq([...item.attributes || [], ...common_attrs]);
     changed = true;
@@ -217,4 +219,34 @@ while (true) {
 
 let content = '';
 
-await fs.writeFile('./generated/elements.ts', JSON.stringify(mapped, null, 2));
+content += 'namespace Frosty {\n';
+
+for (const [name, item] of Object.entries(mapped)) {
+
+  content += `export interface ${name} `;
+  if (!_.isEmpty(item.implements)) {
+    content += `extends ${item.implements.join(', ')} `;
+  }
+  content += '{\n';
+
+  for (const attribute of item.attributes) {
+    const attr = _.camelCase(attribute);
+    const prop = _.findKey(item.properties, (v, k) => _.camelCase(k).toLowerCase() === attr.toLowerCase());
+    if (prop) continue;
+    content += `  ${attr}: string;\n`;
+  }
+
+  for (const [prop, type] of Object.entries(item.properties)) {
+    if (_.isArray(type)) {
+      content += `  ${prop}: ${type.join(' | ')};\n`;
+    } else {
+      content += `  ${prop}: ${type};\n`;
+    }
+  }
+
+  content += '}\n';
+}
+
+content += '}\n';
+
+await fs.writeFile('./generated/elements.ts', content);
