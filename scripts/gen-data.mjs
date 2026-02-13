@@ -103,49 +103,108 @@ const collect = (name) => {
 };
 _.forEach(elements, x => collect(x));
 
+const value_mapping = {
+
+  'DOMString': 'string',
+  'SVGAnimatedTransformList': 'string',
+  'SVGStringList': 'string',
+  'SVGAnimatedRect': 'string',
+  'SVGAnimatedPreserveAspectRatio': 'string',
+  'SVGAnimatedString': 'string',
+  'SVGPointList': 'string',
+  'SVGAnimatedLengthList': 'string',
+  'SVGAnimatedNumberList': 'string',
+  'SVGAnimatedEnumeration': 'string',
+  'USVString': 'string',
+  'DOMTokenList': 'string',
+  'TrustedHTML': 'string',
+  'HTMLFormElement': 'string',
+  'HTMLDataListElement': 'string',
+
+  'SVGAnimatedLength': 'length',
+
+  'SVGAnimatedNumber': 'number',
+  'SVGAnimatedInteger': 'number',
+  'unrestricted double': 'number',
+  'double': 'number',
+  'unsigned long': 'number',
+  'long': 'number',
+
+  'SVGAnimatedBoolean': 'boolean',
+  'boolean': 'boolean',
+
+};
+
 const decodeAttrType = (x) => {
   if (x.type !== 'attribute') throw Error('not attribute type');
-  if (_.isString(x.idlType.idlType)) return x.idlType.idlType;
+  if (_.isString(x.idlType.idlType)) return value_mapping[x.idlType.idlType];
   if (x.idlType.union && _.isArray(x.idlType.idlType) && _.every(x.idlType.idlType, x => _.isString(x.idlType))) {
-    return _.map(x.idlType.idlType, x => x.idlType);
+    return _.compact(_.uniq(_.map(x.idlType.idlType, x => value_mapping[x.idlType])));
   }
   if (x.idlType.generic === 'FrozenArray') return null;
   throw Error('unknown attribute type');
 };
 
-const resolve = (name) => _.orderBy([
-  ...interfaces[name].attribute,
-  ..._.flatMap(interfaces[name].implements, resolve),
-], 'name');
-const select_svg_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
-  const attr = _.find(svgElementAttributes[tag], a => _.camelCase(a).toLowerCase() === _.camelCase(x.name).toLowerCase());
-  return attr && { type: decodeAttrType(x), name: x.name, attr };
-}));
-const select_html_attrs = (name, tag) => _.compact(_.map(resolve(name), x => {
-  const attr = _.find(htmlElementAttributes[tag], a => _.camelCase(a).toLowerCase() === _.camelCase(x.name).toLowerCase());
-  return attr && { type: decodeAttrType(x), name: x.name, attr };
-}));
+const _elements = [
+  ..._.flatMap(ElementTagNameMap.svg.groups, g => g.elements),
+  ..._.flatMap(ElementTagNameMap.html.groups, g => g.elements),
+];
+const mapped = _.mapValues(interfaces, (v, name) => {
+  let attrs = (() => {
+    if (name === 'SVGElement') {
+      return svgElementAttributes['*'];
+    }
+    if (name === 'HTMLElement') {
+      return htmlElementAttributes['*'];
+    }
+    const found = _.find(_elements, e => e.interface === name);
+    if (!found) return [];
+    if (name.startsWith('SVG'))
+      return svgElementAttributes[found.name] ?? [];
+    if (name.startsWith('HTML'))
+      return htmlElementAttributes[found.name] ?? [];
+    return [];
+  })();
+  let properties = _.fromPairs(_.map(v.attribute, x => [x.name, decodeAttrType(x)]));
+  if (name === 'ARIAMixin') {
+    for (const [k, v] of Object.entries(properties)) {
+      if (!v && k.endsWith('Elements')) {
+        attrs.push(_.kebabCase(k.slice(0, -8)));
+      }
+    }
+    properties = _.pickBy(properties, (v) => !!v);
+  } else {
+    properties = _.pickBy(properties, (v, k) => !!v && _.some(attrs, a => _.camelCase(a).toLowerCase() === _.camelCase(k).toLowerCase()));
+  }
+  return {
+    name,
+    implements: v.implements,
+    attributes: attrs,
+    properties,
+  };
+});
 
-const svgElements = _.flatMap(ElementTagNameMap.svg.groups, g => g.elements);
-const svgProps = {
-  '*': _.fromPairs(_.map(select_svg_attrs('SVGElement', '*'), ({ name, ...x }) => [name, x])),
-  ..._.fromPairs(_.map(svgElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_svg_attrs(_interface, name), ({ name, ...x }) => [name, x]))])),
-};
+while (true) {
+  let changed = false;
+  for (const [name, item] of Object.entries(mapped)) {
+    const founds = _.filter(_.values(mapped), x => x.implements.includes(name));
+    const common_attrs = _.intersection(..._.map(founds, x => x.attributes));
+    if (common_attrs.length === 0) continue;
+    item.attributes = _.uniq([...item.attributes || [], ...common_attrs]);
+    changed = true;
+  }
+  const resolve_impls = (name) => _.orderBy([
+    mapped[name],
+    ..._.flatMap(mapped[name].implements, resolve_impls),
+  ], 'name');
+  for (const [, item] of Object.entries(mapped)) {
+    const impls = _.flatMap(item.implements, resolve_impls);
+    const attrs = _.uniq(_.flatMap(impls, x => x.attributes));
+    item.attributes = _.difference(item.attributes || [], attrs);
+  }
+  if (!changed) break;
+}
 
-const htmlElements = _.flatMap(ElementTagNameMap.html.groups, g => g.elements);
-const htmlProps = {
-  '*': _.fromPairs(_.map(select_html_attrs('HTMLElement', '*'), ({ name, ...x }) => [name, x])),
-  ..._.fromPairs(_.map(htmlElements, ({ name, interface: _interface }) => [name, _.fromPairs(_.map(select_html_attrs(_interface, name), ({ name, ...x }) => [name, x]))])),
-};
+let content = '';
 
-await fs.writeFile('./generated/elements.ts', `
-
-export const svgProps = ${JSON.stringify(svgProps, null, 2)} as const;
-
-export const htmlProps = ${JSON.stringify(htmlProps, null, 2)} as const;
-
-export const tags = ${JSON.stringify(_.mapValues(
-  ElementTagNameMap,
-  v => _.uniq(_.flatMap(_.values(v.groups), ({ elements }) => _.map(elements, 'name'))).sort()
-), null, 2)} as const;
-`);
+await fs.writeFile('./generated/elements.ts', JSON.stringify(mapped, null, 2));
