@@ -270,6 +270,22 @@ for (const [name, item] of Object.entries(mapped)) {
   content += '  }\n';
 }
 
+content += '  export interface HTMLElementAttributeTagNameMap {\n';
+for (const [name, item] of Object.entries(mapped)) {
+  if (!item.tag) continue;
+  if (!name.startsWith('HTML')) continue;
+  content += `    '${item.tag}': ${map_name(name)};\n`;
+}
+content += '  }\n';
+
+content += '  export interface SVGElementAttributeTagNameMap {\n';
+for (const [name, item] of Object.entries(mapped)) {
+  if (!item.tag) continue;
+  if (!name.startsWith('SVG')) continue;
+  content += `    '${item.tag}': ${map_name(name)};\n`;
+}
+content += '  }\n';
+
 content += '}\n';
 
 await fs.writeFile('./generated/elements.ts', content);
