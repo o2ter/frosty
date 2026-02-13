@@ -184,11 +184,6 @@ let mapped = _.mapValues(interfaces, (v, name) => {
   };
 });
 
-mapped = _.pickBy(mapped, x => !_.isEmpty(x.implements) || !_.isEmpty(x.attributes) || !_.isEmpty(x.properties));
-for (const [, item] of Object.entries(mapped)) {
-  item.implements = _.filter(item.implements, x => _.has(mapped, x));
-}
-
 const resolve_impls = (name) => _.orderBy([
   mapped[name],
   ..._.flatMap(mapped[name].implements, resolve_impls),
@@ -209,6 +204,11 @@ while (true) {
     item.attributes = _.difference(item.attributes || [], attrs);
   }
   if (!changed) break;
+}
+
+mapped = _.pickBy(mapped, x => !_.isEmpty(x.implements) || !_.isEmpty(x.attributes) || !_.isEmpty(x.properties));
+for (const [, item] of Object.entries(mapped)) {
+  item.implements = _.filter(item.implements, x => _.has(mapped, x));
 }
 
 let content = '';
