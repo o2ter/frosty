@@ -1768,7 +1768,7 @@ export namespace Frosty {
     for?: string;
     form?: string;
   }
-  export interface PopoverInvokerAttributes {
+  export interface PopoverTargetAttributes {
     disabled?: boolean;
     form?: string;
     formAction?: string;
@@ -1782,7 +1782,7 @@ export namespace Frosty {
     type?: string;
     value?: number;
   }
-  export interface HTMLInputAttributes extends HTMLAttributes, PopoverInvokerAttributes {
+  export interface HTMLInputAttributes extends HTMLAttributes, PopoverTargetAttributes {
     accept?: string;
     align?: string;
     alpha?: boolean;
@@ -1809,7 +1809,7 @@ export namespace Frosty {
     useMap?: string;
     width?: number;
   }
-  export interface HTMLButtonAttributes extends HTMLAttributes, PopoverInvokerAttributes {
+  export interface HTMLButtonAttributes extends HTMLAttributes, PopoverTargetAttributes {
     command?: string;
     commandfor?: string;
   }
@@ -7082,7 +7082,6 @@ export const tags = {
     "view",
     "animate",
     "set",
-    "discard",
     "animateMotion",
     "mpath",
     "animateTransform",
@@ -7259,6 +7258,7 @@ export const tags = {
     "mtable",
     "mtr",
     "mtd",
+    "a",
     "maction",
     "semantics",
     "annotation",
