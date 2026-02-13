@@ -31,14 +31,18 @@ type AllHTMLElementTagNameMap = HTMLElementTagNameMap & HTMLElementDeprecatedTag
 export type _HTMLElementTagNameMap = {
   [x in keyof AllHTMLElementTagNameMap]: {
     type: AllHTMLElementTagNameMap[x];
-    props: Frosty.HTMLElementAttributeTagNameMap[x];
+    props: x extends keyof Frosty.HTMLElementAttributeTagNameMap
+    ? Frosty.HTMLElementAttributeTagNameMap[x]
+    : {};
   };
 };
 
 export type _SVGElementTagNameMap = {
   [x in keyof SVGElementTagNameMap]: {
     type: SVGElementTagNameMap[x];
-    props: Frosty.SVGElementAttributeTagNameMap[x];
+    props: x extends keyof Frosty.SVGElementAttributeTagNameMap
+    ? Frosty.SVGElementAttributeTagNameMap[x]
+    : {};
   };
 };
 
