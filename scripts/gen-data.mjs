@@ -58,6 +58,10 @@ const ElementTagNameMap = _.mapValues({
     defaultInterface: 'HTMLElement',
     groups: ['html'],
   },
+  mathml: {
+    defaultInterface: 'MathMLElement',
+    groups: ['mathml-core'],
+  },
 }, v => ({
   ...v,
   groups: _.pick(webref.elements, v.groups),
@@ -287,5 +291,10 @@ content += '}\n';
 
 content += `export const HTMLElementAttributeMaps = ${JSON.stringify(htmlElementAttributes, null, 2)};\n`;
 content += `export const SVGElementAttributeMaps = ${JSON.stringify(svgElementAttributes, null, 2)};\n`;
+content += `export const tags = ${JSON.stringify({
+  svg: _.flatMap(ElementTagNameMap.svg.groups, g => g.elements).map(e => e.name),
+  html: _.flatMap(ElementTagNameMap.html.groups, g => g.elements).map(e => e.name),
+  mathml: _.flatMap(ElementTagNameMap.mathml.groups, g => g.elements).map(e => e.name),
+}, null, 2)};\n`;
 
 await fs.writeFile('./generated/elements.ts', content);
