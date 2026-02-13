@@ -58,10 +58,6 @@ const ElementTagNameMap = _.mapValues({
     defaultInterface: 'HTMLElement',
     groups: ['html'],
   },
-  mathml: {
-    defaultInterface: 'MathMLElement',
-    groups: ['mathml-core'],
-  },
 }, v => ({
   ...v,
   groups: _.pick(webref.elements, v.groups),
