@@ -206,9 +206,13 @@ while (true) {
   if (!changed) break;
 }
 
-mapped = _.pickBy(mapped, x => !_.isEmpty(x.implements) || !_.isEmpty(x.attributes) || !_.isEmpty(x.properties));
-for (const [, item] of Object.entries(mapped)) {
-  item.implements = _.filter(item.implements, x => _.has(mapped, x));
+while (true) {
+  const check = _.size(mapped);
+  mapped = _.pickBy(mapped, x => !_.isEmpty(x.implements) || !_.isEmpty(x.attributes) || !_.isEmpty(x.properties));
+  for (const [, item] of Object.entries(mapped)) {
+    item.implements = _.filter(item.implements, x => _.has(mapped, x));
+  }
+  if (check === _.size(mapped)) break;
 }
 
 let content = '';
