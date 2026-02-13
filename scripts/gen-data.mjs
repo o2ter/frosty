@@ -230,30 +230,39 @@ let content = '';
 
 content += 'namespace Frosty {\n';
 
+const map_name = (name) => {
+  if (name === 'Element') return 'ElementAttributes';
+  if (_.endsWith(name, 'Element')) return `${name.slice(0, -7)}Attributes`;
+  return name;
+}
+
 for (const [name, item] of Object.entries(mapped)) {
 
-  content += `export interface ${name} `;
+  content += `  export interface ${map_name(name)} `;
   if (!_.isEmpty(item.implements)) {
-    content += `extends ${item.implements.join(', ')} `;
+    content += `extends ${_.map(item.implements, map_name).join(', ')} `;
   }
   content += '{\n';
 
+  let attributes = [];
   for (const attribute of item.attributes) {
     const attr = _.camelCase(attribute);
     const prop = _.findKey(item.properties, (v, k) => _.camelCase(k).toLowerCase() === attr.toLowerCase());
     if (prop) continue;
-    content += `  ${attr}: string;\n`;
+    attributes.push({ key: attr, type: 'string' });
   }
-
   for (const [prop, type] of Object.entries(item.properties)) {
     if (_.isArray(type)) {
-      content += `  ${prop}: ${type.join(' | ')};\n`;
+      attributes.push({ key: prop, type: type.join(' | ') });
     } else {
-      content += `  ${prop}: ${type};\n`;
+      attributes.push({ key: prop, type: type });
     }
   }
+  for (const { key, type } of attributes.sort((a, b) => a.key.localeCompare(b.key))) {
+    content += `    ${key}: ${type};\n`;
+  }
 
-  content += '}\n';
+  content += '  }\n';
 }
 
 content += '}\n';
