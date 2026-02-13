@@ -23,6 +23,7 @@
 //  THE SOFTWARE.
 //
 
+import { expect, test, describe } from '@jest/globals';
 import { equalDeps } from '../src/core/reconciler/utils';
 
 describe('equalDeps - Circular Reference Handling', () => {
