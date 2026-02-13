@@ -184,6 +184,11 @@ const mapped = _.mapValues(interfaces, (v, name) => {
   };
 });
 
+const resolve_impls = (name) => _.orderBy([
+  mapped[name],
+  ..._.flatMap(mapped[name].implements, resolve_impls),
+], 'name');
+
 while (true) {
   let changed = false;
   for (const [name, item] of Object.entries(mapped)) {
@@ -193,10 +198,6 @@ while (true) {
     item.attributes = _.uniq([...item.attributes || [], ...common_attrs]);
     changed = true;
   }
-  const resolve_impls = (name) => _.orderBy([
-    mapped[name],
-    ..._.flatMap(mapped[name].implements, resolve_impls),
-  ], 'name');
   for (const [, item] of Object.entries(mapped)) {
     const impls = _.flatMap(item.implements, resolve_impls);
     const attrs = _.uniq(_.flatMap(impls, x => x.attributes));
