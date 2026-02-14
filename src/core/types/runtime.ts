@@ -44,7 +44,7 @@ type EventHandler<E extends Event, C, T = EventTarget> = (this: C, event: E & {
   target: T;
  }) => void;
 type EventMap = {
-  [ev in typeof globalEvents[number]]: ev extends `on${infer x}`
+  [ev in keyof typeof globalEvents]: ev extends `on${infer x}`
   ? Lowercase<x> extends keyof GlobalEventHandlersEventMap ? GlobalEventHandlersEventMap[Lowercase<x>] : Event
   : never;
 };

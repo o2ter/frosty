@@ -25,119 +25,121 @@
 
 import _ from 'lodash';
 
-export const globalEvents = [
+export const globalEvents = {
 
   // Clipboard Events
-  "onCopy",
-  "onCut",
-  "onPaste",
+  "onCopy": "copy",
+  "onCut": "cut",
+  "onPaste": "paste",
 
   // Composition Events
-  "onCompositionEnd",
-  "onCompositionStart",
-  "onCompositionUpdate",
+  "onCompositionEnd": "compositionend",
+  "onCompositionStart": "compositionstart",
+  "onCompositionUpdate": "compositionupdate",
 
   // Focus Events
-  "onFocus",
-  "onBlur",
+  "onFocus": "focus",
+  "onBlur": "blur",
 
   // Form Events
-  "onFormData",
-  "onChange",
-  "onBeforeInput",
-  "onInput",
-  "onReset",
-  "onSubmit",
-  "onInvalid",
+  "onFormData": "formdata",
+  "onChange": "change",
+  "onBeforeInput": "beforeinput",
+  "onInput": "input",
+  "onReset": "reset",
+  "onSubmit": "submit",
+  "onInvalid": "invalid",
 
   // Image Events
-  "onLoad",
-  "onError",
+  "onLoad": "load",
+  "onError": "error",
 
   // Keyboard Events
-  "onKeyDown",
+  "onKeyDown": "keydown",
   /** @deprecated */
-  "onKeyPress",
+  "onKeyPress": "keypress",
   /** @deprecated */
-  "onKeyUp",
+  "onKeyUp": "keyup",
 
   // Media Events
-  "onAbort",
-  "onCanPlay",
-  "onCanPlayThrough",
-  "onDurationChange",
-  "onEmptied",
-  "onEncrypted",
-  "onEnded",
-  "onLoadedData",
-  "onLoadedMetadata",
-  "onLoadStart",
-  "onPause",
-  "onPlay",
-  "onPlaying",
-  "onProgress",
-  "onRateChange",
-  "onResize",
-  "onSeeked",
-  "onSeeking",
-  "onStalled",
-  "onSuspend",
-  "onTimeUpdate",
-  "onVolumeChange",
-  "onWaiting",
+  "onAbort": "abort",
+  "onCanPlay": "canplay",
+  "onCanPlayThrough": "canplaythrough",
+  "onDurationChange": "durationchange",
+  "onEmptied": "emptied",
+  "onEncrypted": "encrypted",
+  "onEnded": "ended",
+  "onLoadedData": "loadeddata",
+  "onLoadedMetadata": "loadedmetadata",
+  "onLoadStart": "loadstart",
+  "onPause": "pause",
+  "onPlay": "play",
+  "onPlaying": "playing",
+  "onProgress": "progress",
+  "onRateChange": "ratechange",
+  "onResize": "resize",
+  "onSeeked": "seeked",
+  "onSeeking": "seeking",
+  "onStalled": "stalled",
+  "onSuspend": "suspend",
+  "onTimeUpdate": "timeupdate",
+  "onVolumeChange": "volumechange",
+  "onWaiting": "waiting",
 
   // MouseEvents
-  "onAuxClick",
-  "onClick",
-  "onContextMenu",
-  "onDoubleClick",
-  "onDrag",
-  "onDragEnd",
-  "onDragEnter",
-  "onDragExit",
-  "onDragLeave",
-  "onDragOver",
-  "onDragStart",
-  "onDrop",
-  "onMouseDown",
-  "onMouseEnter",
-  "onMouseLeave",
-  "onMouseMove",
-  "onMouseOut",
-  "onMouseOver",
-  "onMouseUp",
+  "onAuxClick": "auxclick",
+  "onClick": "click",
+  "onContextMenu": "contextmenu",
+  "onDoubleClick": "dblclick",
+  "onDrag": "drag",
+  "onDragEnd": "dragend",
+  "onDragEnter": "dragenter",
+  "onDragExit": "dragexit",
+  "onDragLeave": "dragleave",
+  "onDragOver": "dragover",
+  "onDragStart": "dragstart",
+  "onDrop": "drop",
+  "onMouseDown": "mousedown",
+  "onMouseEnter": "mouseenter",
+  "onMouseLeave": "mouseleave",
+  "onMouseMove": "mousemove",
+  "onMouseOut": "mouseout",
+  "onMouseOver": "mouseover",
+  "onMouseUp": "mouseup",
 
   // Selection Events
-  "onSelect",
+  "onSelect": "select",
 
   // Touch Events
-  "onTouchCancel",
-  "onTouchEnd",
-  "onTouchMove",
-  "onTouchStart",
+  "onTouchCancel": "touchcancel",
+  "onTouchEnd": "touchend",
+  "onTouchMove": "touchmove",
+  "onTouchStart": "touchstart",
 
   // Pointer Events
-  "onPointerDown",
-  "onPointerMove",
-  "onPointerUp",
-  "onPointerCancel",
-  "onPointerEnter",
-  "onPointerLeave",
-  "onPointerOver",
-  "onPointerOut",
+  "onPointerDown": "pointerdown",
+  "onPointerMove": "pointermove",
+  "onPointerUp": "pointerup",
+  "onPointerCancel": "pointercancel",
+  "onPointerEnter": "pointerenter",
+  "onPointerLeave": "pointerleave",
+  "onPointerOver": "pointerover",
+  "onPointerOut": "pointerout",
 
   // UI Events
-  "onScroll",
+  "onScroll": "scroll",
 
   // Wheel Events
-  "onWheel",
+  "onWheel": "wheel",
 
   // Animation Events
-  "onAnimationStart",
-  "onAnimationEnd",
-  "onAnimationIteration",
+  "onAnimationStart": "animationstart",
+  "onAnimationEnd": "animationend",
+  "onAnimationIteration": "animationiteration",
 
   // Transition Events
-  "onTransitionEnd",
+  "onTransitionEnd": "transitionend",
 
-] as const;
+} as const;
+
+export const globalEventKeys = _.keys(globalEvents);

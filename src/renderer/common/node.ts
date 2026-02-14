@@ -26,7 +26,7 @@
 import _ from 'lodash';
 import type { _DOMRenderer } from './renderer';
 import { myersSync } from 'myers.js';
-import { globalEvents } from '../../core/web/event';
+import { globalEventKeys, globalEvents } from '../../core/web/event';
 import { NativeElementType } from '../../core/types/component';
 import {
   HTMLElementAttributeMaps as htmlProps,
@@ -61,7 +61,8 @@ const _updateEventListener = (
   key: string,
   listener: EventListener | undefined,
 ) => {
-  const event = key.endsWith('Capture') ? key.slice(2, -7).toLowerCase() : key.slice(2).toLowerCase();
+  const ev = key.endsWith('Capture') ? key.slice(0, -7) : key;
+  const event = globalEvents[ev as keyof typeof globalEvents];
   const listeners = tracked_listeners.get(element) ?? {};
   if (!tracked_listeners.has(element)) tracked_listeners.set(element, listeners);
   if (listeners[key] !== listener) {
@@ -95,9 +96,9 @@ const DOMUtils = new class {
       element.removeAttribute('style');
     }
     for (const [key, value] of _.entries(props)) {
-      if (_.includes(globalEvents, key)) {
+      if (_.includes(globalEventKeys, key)) {
         _updateEventListener(element, key, value);
-      } else if (key.endsWith('Capture') && _.includes(globalEvents, key.slice(0, -7))) {
+      } else if (key.endsWith('Capture') && _.includes(globalEventKeys, key.slice(0, -7))) {
         _updateEventListener(element, key, value);
       } else if (key.startsWith('data-')) {
         const oldValue = element.getAttribute(key);
