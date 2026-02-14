@@ -58,7 +58,6 @@ export const globalEvents = {
   "onKeyDown": "keydown",
   /** @deprecated */
   "onKeyPress": "keypress",
-  /** @deprecated */
   "onKeyUp": "keyup",
 
   // Media Events
