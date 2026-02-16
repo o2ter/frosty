@@ -83,8 +83,9 @@ const DOMUtils = new class {
     },
   ) {
     if (className) {
-      if (element.className !== className)
-        element.className = className;
+      const oldValue = element.getAttribute('class');
+      if (oldValue !== className)
+        element.setAttribute('class', className);
     } else if (!_.isNil(element.getAttribute('class'))) {
       element.removeAttribute('class');
     }

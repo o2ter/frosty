@@ -101,6 +101,9 @@ export const App = () => {
       <head>
         <title>Test</title>
       </head>
+      <svg width={100} height={100} style={{ border: '1px solid black' }}>
+        <circle cx={50} cy={50} r={40} stroke="green" strokeWidth='4' fill="yellow" />
+      </svg>
       <Form />
       <div style={{ background: 'aliceblue' }}>{1000 / d}</div>
       <Counter value={counter}>
