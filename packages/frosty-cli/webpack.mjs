@@ -250,7 +250,7 @@ export default async (env, argv) => {
     })),
     {
       ...webpackConfiguration,
-      optimization: webpackOptimization({ server: false }),
+      optimization: webpackOptimization({ server: true }),
       plugins: _.compact([
         ...webpackPlugins,
         new webpack.EnvironmentPlugin({ PORT }),
