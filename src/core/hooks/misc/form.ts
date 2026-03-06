@@ -112,7 +112,7 @@ export const useFormState = <V extends Record<string, any>>({
           }));
         }
       };
-      if (_.isBoolean(activity) ? activity : activity?.actions?.includes(action)) {
+      if (_.isBoolean(activity) ? activity : (activity?.actions?.includes(action) ?? _.isNumber(activity?.delay))) {
         return startActivity(perform, _.isBoolean(activity) ? undefined : activity?.delay);
       } else {
         return perform();
