@@ -131,7 +131,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         props: [],
         className: [],
       });
-      if (ref) mergeRefs(ref)(elem.target);
+      if (ref) mergeRefs(ref)(elem);
       return elem;
     }
     if (!_.isString(type)) throw Error(`Invalid type ${type}`);
@@ -185,7 +185,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       const {
         props: { ref, className, style, inlineStyle, ..._props }
       } = node;
-      if (ref) mergeRefs(ref)(element.target);
+      if (ref) mergeRefs(ref)(element);
       const builtClassName = this.#createBuiltClassName(element, className, style);
       const { css } = processCss(inlineStyle);
       element.update({
