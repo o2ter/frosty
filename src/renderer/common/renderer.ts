@@ -123,7 +123,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   }
 
   _createElement(node: VNode) {
-    const { type } = node;
+    const { type, props: { ref } } = node;
     if (!_.isString(type) && type.prototype instanceof DOMNativeNode) {
       const ElementType = type as typeof DOMNativeNode;
       const elem = ElementType.createElement(this.document, this);
@@ -131,6 +131,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         props: [],
         className: [],
       });
+      if (ref) mergeRefs(ref)(elem.target);
       return elem;
     }
     if (!_.isString(type)) throw Error(`Invalid type ${type}`);
@@ -153,6 +154,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       props: [],
       className: [],
     });
+    if (ref) mergeRefs(ref)(elem);
     return elem;
   }
 
