@@ -33,9 +33,9 @@ import { _useEffect } from '../reconciler/hooks';
  *
  * **Use `useEffect` for:**
  * - Registering and cleaning up event listeners
+ * - Synchronizing with external APIs/events (browser APIs, third-party libraries)
  * - Performing actions on component mount/unmount
- * - Side effects that don't directly compute UI state
- * - Imperative operations (e.g., focus management, animations)
+ * - Imperative operations (e.g., focus management, animations, logging)
  *
  * **Do NOT use `useEffect` for:**
  * - Computing UI state → Use `useMemo` instead
