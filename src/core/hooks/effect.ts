@@ -31,28 +31,51 @@ import { _useEffect } from '../reconciler/hooks';
  * A hook that manages side effects with support for an `AbortSignal`.
  * It ensures proper cleanup logic and handles asynchronous operations effectively.
  *
+ * **Use `useEffect` for:**
+ * - Registering and cleaning up event listeners
+ * - Performing actions on component mount/unmount
+ * - Side effects that don't directly compute UI state
+ * - Imperative operations (e.g., focus management, animations)
+ *
+ * **Do NOT use `useEffect` for:**
+ * - Computing UI state → Use `useMemo` instead
+ * - Fetching data → Use `useResource` or `useServerResource` instead
+ * - Subscribing to external stores → Use `useSyncExternalStore` instead
+ * - Deriving state from props → Use `useMemo` or compute during render
+ *
  * @param effect - 
  *   A function that receives an `AbortSignal` and performs side effects. 
  *   It can optionally return a cleanup function or a promise that resolves to a cleanup function.
  *
  * @param deps - 
- *   An optional dependencies that determines when the effect should be re-executed.
+ *   An optional dependencies array that determines when the effect should be re-executed.
  *
  * @example
+ * // Register a window event listener
  * useEffect((signal) => {
-  *   fetch('/api/data', { signal })
- *     .then(response => response.json())
- *     .then(data => console.log(data))
- *     .catch(err => {
- *       if (err.name === 'AbortError') {
- *         console.log('Fetch aborted');
- *       } else {
- *         console.error(err);
- *       }
- *     });
+ *   const handleResize = () => {
+ *     console.log('Window resized:', window.innerWidth);
+ *   };
+ *   
+ *   window.addEventListener('resize', handleResize, { signal });
+ *   
+ *   // Cleanup happens automatically via AbortSignal
+ *   // Optional: return additional cleanup logic if needed
+ *   return () => {
+ *     console.log('Component unmounting');
+ *   };
+ * }, []);
+ *
+ * @example
+ * // Perform side effects on mount/unmount
+ * useEffect((signal) => {
+ *   console.log('Component mounted');
+ *   
+ *   // Perform initialization work
+ *   document.title = 'My App';
  *   
  *   return () => {
- *     console.log('Cleanup logic here');
+ *     console.log('Component unmounting, cleanup here');
  *   };
  * }, []);
  */
