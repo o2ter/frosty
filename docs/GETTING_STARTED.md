@@ -363,7 +363,7 @@ module.exports = {
   client: {
     main: {
       entry: 'src/app.tsx',
-      uri: '/',
+      basepath: '/',
     }
   },
   options: {

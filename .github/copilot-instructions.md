@@ -56,7 +56,7 @@ module.exports = (env, argv) => ({
   src: 'src',
   output: 'dist',
   client: {
-    main: { entry: 'src/app.tsx', uri: '/' }
+    main: { entry: 'src/app.tsx', basepath: '/' }
   }
 });
 ```

@@ -79,11 +79,11 @@ module.exports = {
   client: {
     main: {
       entry: 'src/app.tsx',    // Path to client entry file
-      uri: '/',               // (Optional) URI path for routing
+      basepath: '/',           // (Optional) URL base path for routing
     },
     admin: {
       entry: 'src/admin.tsx',  // Additional client app
-      uri: '/admin',          // Mounted at /admin path
+      basepath: '/admin',      // Mounted at /admin path
     }
   }
 };
@@ -195,7 +195,7 @@ module.exports = (env, argv) => {
     client: {
       main: {
         entry: 'src/app.tsx',
-        uri: '/'
+        basepath: '/'
       }
     },
 
@@ -243,19 +243,19 @@ module.exports = {
     // Main customer-facing app
     app: {
       entry: 'src/app/index.tsx',
-      uri: '/'
+      basepath: '/'
     },
     
     // Admin dashboard
     admin: {
       entry: 'src/admin/index.tsx', 
-      uri: '/admin'
+      basepath: '/admin'
     },
     
     // API documentation
     docs: {
       entry: 'src/docs/index.tsx',
-      uri: '/docs'
+      basepath: '/docs'
     }
   },
   
@@ -289,7 +289,7 @@ module.exports = (env, argv) => {
     client: {
       main: {
         entry: isTest ? 'src/test-app.tsx' : 'src/app.tsx',
-        uri: '/'
+        basepath: '/'
       }
     },
 
@@ -332,7 +332,7 @@ module.exports = {
   client: {
     main: {
       entry: 'src/app.tsx',
-      uri: '/'
+      basepath: '/'
     }
   },
 
@@ -443,7 +443,7 @@ const config: FrostyConfig = {
   client: {
     main: {
       entry: 'src/app.tsx',
-      uri: '/'
+      basepath: '/'
     }
   },
 
@@ -638,7 +638,7 @@ module.exports = {
   client: {
     main: {
       entry: 'src/index.tsx',  // CRA entry point
-      uri: '/'
+      basepath: '/'
     }
   },
 
@@ -664,7 +664,7 @@ module.exports = {
   client: {
     main: {
       entry: 'pages/_app.tsx',  // Next.js app entry
-      uri: '/'
+      basepath: '/'
     }
   },
 

@@ -81,7 +81,7 @@ module.exports = {
   client: {                  // (Optional) Client entry points
     main: {
       entry: 'src/app.tsx',   // Path to client entry file
-      uri: '/',              // (Optional) URI path
+      basepath: '/',         // (Optional) URL base path for this entry
     }
   },
   moduleSuffixes: {          // (Optional) Custom module resolution suffixes
@@ -128,7 +128,7 @@ module.exports = {
   client: {
     main: {
       entry: 'src/app.tsx',
-      uri: '/'
+      basepath: '/'
     }
   }
 };
@@ -151,11 +151,11 @@ module.exports = (env, argv) => {
     client: {
       main: {
         entry: 'src/app.tsx',
-        uri: '/'
+        basepath: '/'
       },
       admin: {
         entry: 'src/admin.tsx',
-        uri: '/admin'
+        basepath: '/admin'
       }
     },
     

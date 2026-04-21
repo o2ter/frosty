@@ -114,7 +114,7 @@ module.exports = {
   client: {                  // (Optional) Client entry points
     main: {
       entry: 'src/app.js',   // Path to client entry file
-      uri: '/',              // (Optional) URI path
+      basepath: '/',         // (Optional) URL base path for this entry
     }
   },
   moduleSuffixes: {          // (Optional) Custom module resolution suffixes
