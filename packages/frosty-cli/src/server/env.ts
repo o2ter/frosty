@@ -24,5 +24,7 @@
 //
 
 import _ from 'lodash';
+import { availableParallelism } from 'os';
 
 export const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8080;
+export const NUM_WORKERS = process.env.NUM_WORKERS ? parseInt(process.env.NUM_WORKERS) : availableParallelism();

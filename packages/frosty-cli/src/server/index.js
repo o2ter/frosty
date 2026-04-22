@@ -26,41 +26,57 @@
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
+import cluster from 'cluster';
 import { Server } from '@o2ter/server-js';
 import { FrostyRoute } from './route';
 import * as __SERVER__ from '__SERVER__';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
-import { PORT } from './env';
+import { PORT, NUM_WORKERS } from './env';
 
-const app = 'serverOptions' in __SERVER__ ? new Server(__SERVER__.serverOptions) : new Server;
+if (cluster.isPrimary && NUM_WORKERS > 1) {
+  console.log(`Primary ${process.pid} is running`);
 
-app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
-
-const server_env = {};
-if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
-
-for (const [name, { path: pathname }] of _.toPairs(__applications__)) {
-  const { default: App } = __APPLICATIONS__[name];
-  if (!_.isFunction(App)) {
-    throw new Error(
-      `Failed to load client app "${name}": default export is not a function.\n` +
-      `Please ensure "${name}" exports a valid Frosty component as its default export.`
-    );
+  // Fork workers.
+  for (let i = 0; i < NUM_WORKERS; i++) {
+    cluster.fork();
   }
-  const cssExists = fs.existsSync(path.join(__dirname, `public/css/${name}_bundle.css`));
-  const route = FrostyRoute(App, {
-    jsSrc: `/${name}_bundle.js`,
-    cssSrc: cssExists ? `/css/${name}_bundle.css` : undefined,
+
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`Worker ${worker.process.pid} died`);
   });
-  if (_.isEmpty(pathname) || pathname === '/') {
-    app.use(route);
-  } else {
-    app.use(pathname, route);
+
+} else {
+
+  const app = 'serverOptions' in __SERVER__ ? new Server(__SERVER__.serverOptions) : new Server;
+
+  app.use(Server.static(path.join(__dirname, 'public'), { cacheControl: true }));
+
+  const server_env = {};
+  if ('default' in __SERVER__) await __SERVER__.default(app, server_env);
+
+  for (const [name, { path: pathname }] of _.toPairs(__applications__)) {
+    const { default: App } = __APPLICATIONS__[name];
+    if (!_.isFunction(App)) {
+      throw new Error(
+        `Failed to load client app "${name}": default export is not a function.\n` +
+        `Please ensure "${name}" exports a valid Frosty component as its default export.`
+      );
+    }
+    const cssExists = fs.existsSync(path.join(__dirname, `public/css/${name}_bundle.css`));
+    const route = FrostyRoute(App, {
+      jsSrc: `/${name}_bundle.js`,
+      cssSrc: cssExists ? `/css/${name}_bundle.css` : undefined,
+    });
+    if (_.isEmpty(pathname) || pathname === '/') {
+      app.use(route);
+    } else {
+      app.use(pathname, route);
+    }
   }
+
+  app.use((err, req, res, next) => {
+    res.status(500).json(err instanceof Error ? { message: err.message } : err);
+  });
+
+  app.listen(PORT, () => console.info(`Process ${process.pid} listening on port ${PORT}`));
 }
-
-app.use((err, req, res, next) => {
-  res.status(500).json(err instanceof Error ? { message: err.message } : err);
-});
-
-app.listen(PORT, () => console.info(`listening on port ${PORT}`));

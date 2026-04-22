@@ -43,6 +43,7 @@ print_usage() {
   echo "  -b, --build-only           Only build, do not run the server"
   echo "  -B, --no-build             Skip build step"
   echo "  -p, --port <port>          Specify port for the server (default: 8080)"
+  echo "  -n, --num-workers <count>  Specify number of worker processes"
   echo "  -c, --configuration <file> Specify configuration file to use (default: server.config.js)"
   echo "  -s, --src <dir>            Specify source root directory"
   echo "  -o, --output <dir>         Specify output directory for build artifacts"
@@ -53,6 +54,7 @@ print_usage() {
   echo ""
   echo "Examples:"
   echo "  frosty run app.js"
+  echo "  frosty run -n 4 app.js"
 }
 
 POSITIONAL_ARGS=()
@@ -63,6 +65,7 @@ while [ $# -gt 0 ]; do
     -b|--build-only) BUILD_ONLY=true; shift ;;
     -B|--no-build) NO_BUILD=true; shift ;;
     -p|--port) PORT="$2"; shift 2 ;;
+    -n|--num-workers) NUM_WORKERS="$2"; shift 2 ;;
     -c|--configuration) CONFIG_FILE="$2"; shift 2 ;;
     -s|--src) SRCROOT="$2"; shift 2 ;;
     -o|--output) OUTPUT_DIR="$2"; shift 2 ;;
@@ -110,6 +113,7 @@ if [ "$NO_BUILD" != "true" ]; then
   fi
   [ -n "$INPUT_FILE" ] && BUILD_OPTS="$BUILD_OPTS --env INPUT_FILE="$INPUT_FILE""
   [ -n "$SRCROOT" ] && BUILD_OPTS="$BUILD_OPTS --env SRCROOT="$SRCROOT""
+  [ -n "$NUM_WORKERS" ] && BUILD_OPTS="$BUILD_OPTS --env NUM_WORKERS="$NUM_WORKERS""
   [ -n "$PORT" ] && BUILD_OPTS="$BUILD_OPTS --env PORT="$PORT""
   if [ "$WATCH_MODE" = "true" ]; then
     node "$FROSTY_CLI_ROOT/node_modules/webpack-cli/bin/cli.js" $BUILD_OPTS --watch &
