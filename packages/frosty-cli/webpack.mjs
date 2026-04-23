@@ -43,6 +43,7 @@ export default async (env, argv) => {
     INPUT_FILE,
     PORT = 8080,
     NUM_WORKERS,
+    INSTANCE_VAR,
   } = env;
 
   const serverConfig = await (async () => {
@@ -254,7 +255,7 @@ export default async (env, argv) => {
       optimization: webpackOptimization({ server: true }),
       plugins: _.compact([
         ...webpackPlugins,
-        new webpack.EnvironmentPlugin({ PORT, NUM_WORKERS }),
+        new webpack.EnvironmentPlugin({ PORT, NUM_WORKERS, INSTANCE_VAR }),
         new webpack.DefinePlugin({
           __applications__: JSON.stringify(_.mapValues(inputs, x => ({
             path: x.basepath,

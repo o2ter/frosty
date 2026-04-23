@@ -31,15 +31,25 @@ import { Server } from '@o2ter/server-js';
 import { FrostyRoute } from './route';
 import * as __SERVER__ from '__SERVER__';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
-import { PORT, NUM_WORKERS } from './env';
+import { PORT, NUM_WORKERS, INSTANCE_VAR } from './env';
 
 if (cluster.isPrimary && NUM_WORKERS > 1) {
   console.log(`Primary ${process.pid} is running`);
 
-  // Fork workers.
-  for (let i = 0; i < NUM_WORKERS; i++) {
-    cluster.fork();
-  }
+  // Fork workers one by one, waiting for each to come online before starting the next.
+  let forked = 0;
+  const forkNext = () => {
+    if (forked >= NUM_WORKERS) return;
+    const worker = cluster.fork({
+      [INSTANCE_VAR]: forked, // Pass the instance index to the worker
+    });
+    forked++;
+    worker.once('listening', () => {
+      console.log(`Worker ${worker.process.pid} is listening`);
+      forkNext();
+    });
+  };
+  forkNext();
 
   cluster.on('exit', (worker, code, signal) => {
     console.log(`Worker ${worker.process.pid} died`);

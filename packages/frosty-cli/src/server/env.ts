@@ -28,3 +28,4 @@ import { availableParallelism } from 'os';
 
 export const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8080;
 export const NUM_WORKERS = process.env.NUM_WORKERS ? parseInt(process.env.NUM_WORKERS) : availableParallelism();
+export const INSTANCE_VAR = process.env.INSTANCE_VAR || 'NODE_APP_INSTANCE';
