@@ -34,25 +34,41 @@ import * as __APPLICATIONS__ from '__APPLICATIONS__';
 import { PORT, NUM_WORKERS, INSTANCE_VAR } from './env';
 
 if (cluster.isPrimary && NUM_WORKERS > 1) {
-  console.log(`Primary ${process.pid} is running`);
+  console.info(`Primary ${process.pid} is running`);
 
   // Fork workers one by one, waiting for each to come online before starting the next.
   let forked = 0;
+  const workerInstances = new Map(); // worker.id -> instance index
+  const startedWorkers = new Set(); // worker IDs that have successfully started
+
+  const spawnWorker = (instance) => {
+    const worker = cluster.fork({ [INSTANCE_VAR]: instance });
+    workerInstances.set(worker.id, instance);
+    return worker;
+  };
+
   const forkNext = () => {
     if (forked >= NUM_WORKERS) return;
-    const worker = cluster.fork({
-      [INSTANCE_VAR]: forked, // Pass the instance index to the worker
-    });
-    forked++;
+    const instance = forked++;
+    const worker = spawnWorker(instance);
     worker.once('listening', () => {
-      console.log(`Worker ${worker.process.pid} is listening`);
+      startedWorkers.add(worker.id);
       forkNext();
     });
   };
   forkNext();
 
   cluster.on('exit', (worker, code, signal) => {
-    console.log(`Worker ${worker.process.pid} died`);
+    console.info(`Process ${worker.process.pid} exited with code ${code} (${signal})`);
+    const instance = workerInstances.get(worker.id);
+    workerInstances.delete(worker.id);
+    if (startedWorkers.delete(worker.id)) {
+      // Worker had started successfully; restart it
+      const newWorker = spawnWorker(instance);
+      newWorker.once('listening', () => {
+        startedWorkers.add(newWorker.id);
+      });
+    }
   });
 
 } else {
