@@ -94,6 +94,40 @@ module.exports = {
 - **`entry`:** Path to the client entry file relative to project root
 - **`uri`** _(optional)_: URI path where the application should be mounted (defaults to `/`)
 
+### Worker Entry Points
+
+#### `workers`
+**Type:** `object`  
+**Default:** `undefined`  
+**Description:** Defines additional worker entry points to be compiled alongside your application. Each worker is bundled independently and output to a `workers/` subdirectory.
+
+Workers are split into two categories based on the `client` flag:
+
+- **Client workers** (`client: true`): Bundled for the browser using client-side module resolution. Output to `public/workers/{name}`. Suitable for browser [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API).
+- **Server workers** (`client: false`): Bundled for Node.js using server-side module resolution. Output to `workers/{name}`. Suitable for background tasks or worker threads on the server.
+
+```js
+module.exports = {
+  workers: {
+    // Browser Web Worker — available at /workers/imageProcessor
+    imageProcessor: {
+      entry: 'src/workers/imageProcessor.ts',
+      client: true,
+    },
+    // Server-side worker — run via Node.js worker_threads
+    emailSender: {
+      entry: 'src/workers/emailSender.ts',
+      client: false,
+    },
+  }
+};
+```
+
+**Worker entry structure:**
+- **Key:** Worker name (used for output path and bundle naming)
+- **`entry`:** Path to the worker entry file relative to the project root
+- **`client`:** `true` for a browser worker; `false` for a server-side worker
+
 ### Module Resolution
 
 #### `moduleSuffixes`
@@ -418,6 +452,10 @@ interface FrostyConfig {
   client?: Record<string, {
     entry: string;
     uri?: string;
+  }>;
+  workers?: Record<string, {
+    entry: string;
+    client: boolean;
   }>;
   moduleSuffixes?: {
     client?: string[];

@@ -214,6 +214,16 @@ export default async (env, argv) => {
     server: config.moduleSuffixes?.server ?? ['.node', '.server', '.web', ''],
   };
 
+  const clientWorkers = [];
+  const serverWorkers = [];
+  for (const [name, { entry, client }] of _.entries(config.workers || {})) {
+    if (client) {
+      clientWorkers.push({ name, entry });
+    } else {
+      serverWorkers.push({ name, entry });
+    }
+  }
+
   return [
     ..._.map(inputs, ({ entry }, name) => ({
       ...webpackConfiguration,
@@ -252,6 +262,34 @@ export default async (env, argv) => {
     })),
     {
       ...webpackConfiguration,
+      optimization: webpackOptimization({ server: false }),
+      plugins: webpackPlugins,
+      entry: {
+        ..._.fromPairs(clientWorkers.map(({ name, entry }) => ([`workers/${name}`, [
+          path.resolve(__dirname, 'node_modules/core-js/stable'),
+          path.resolve(process.cwd(), entry),
+        ]]))),
+      },
+      output: {
+        path: path.join(OUTPUT_DIR, 'public'),
+      },
+      resolve: {
+        ...webpackConfiguration.resolve,
+        extensions: [
+          ...moduleSuffixes.client.flatMap(x => [`${x}.tsx`, `${x}.jsx`]),
+          ...moduleSuffixes.client.flatMap(x => [`${x}.ts`, `${x}.mjs`, `${x}.js`]),
+          '...'
+        ],
+      },
+      module: {
+        rules: [
+          babelLoaderConfiguration({ server: false }),
+          ...config.options?.module?.rules ?? [],
+        ]
+      }
+    },
+    {
+      ...webpackConfiguration,
       optimization: webpackOptimization({ server: true }),
       plugins: _.compact([
         ...webpackPlugins,
@@ -269,6 +307,10 @@ export default async (env, argv) => {
           path.resolve(__dirname, 'node_modules/core-js/stable'),
           path.resolve(__dirname, 'src/server/index.js'),
         ],
+        ..._.fromPairs(serverWorkers.map(({ name, entry }) => ([`workers/${name}`, [
+          path.resolve(__dirname, 'node_modules/core-js/stable'),
+          path.resolve(process.cwd(), entry),
+        ]]))),
       },
       output: {
         path: OUTPUT_DIR,

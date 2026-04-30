@@ -117,6 +117,16 @@ module.exports = {
       basepath: '/',         // (Optional) URL base path for this entry
     }
   },
+  workers: {                 // (Optional) Worker entry points
+    myClientWorker: {
+      entry: 'src/workers/myClientWorker.js', // Path to worker entry file
+      client: true,                           // true = browser worker (bundled into public/workers/)
+    },
+    myServerWorker: {
+      entry: 'src/workers/myServerWorker.js', // Path to worker entry file
+      client: false,                          // false = server worker (bundled into workers/)
+    }
+  },
   moduleSuffixes: {          // (Optional) Custom module resolution suffixes
     client: ['.browser', '.web', ''],
     server: ['.node', '.server', '.web', '']
