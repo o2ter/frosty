@@ -329,7 +329,7 @@ export default async (env, argv) => {
         ],
       },
       externals: [
-        nodeExternals({ allowlist: (module) => module !== 'jsdom' }),
+        nodeExternals(),
         ...webpackConfiguration.externals || [],
       ],
       module: {
