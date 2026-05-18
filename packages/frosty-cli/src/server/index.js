@@ -35,7 +35,7 @@ import * as __APPLICATIONS__ from '__APPLICATIONS__';
 import { PORT, NUM_WORKERS, INSTANCE_VAR } from './env';
 
 process.on('unhandledRejection', (err) => {
-  console.error(`Error: ${err}`);
+  console.error(err);
 });
 
 if (cluster.isPrimary && NUM_WORKERS > 1) {
