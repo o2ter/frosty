@@ -26,12 +26,17 @@
 import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
+import process from 'process';
 import cluster from 'cluster';
 import { Server } from '@o2ter/server-js';
 import { FrostyRoute } from './route';
 import * as __SERVER__ from '__SERVER__';
 import * as __APPLICATIONS__ from '__APPLICATIONS__';
 import { PORT, NUM_WORKERS, INSTANCE_VAR } from './env';
+
+process.on('unhandledRejection', (err) => {
+  console.error(`Error: ${err}`);
+});
 
 if (cluster.isPrimary && NUM_WORKERS > 1) {
   console.info(`Primary ${process.pid} is running`);
