@@ -55,8 +55,10 @@ export abstract class _Renderer<T> {
     component: ComponentNode,
     options?: {
       skipMount?: boolean;
+      nextick?: typeof nextick;
     },
   ) {
+    const _nextick = options?.nextick ?? nextick;
 
     type MountState = {
       hook: string;
@@ -244,7 +246,7 @@ export abstract class _Renderer<T> {
       }
       while (event.isDirty) {
         if (destroyed) return;
-        await new Promise<void>(resolve => nextick(resolve));
+        await new Promise<void>(resolve => _nextick(resolve));
         const dirty = event._dirty;
         event._dirty = [];
         await refresh(event, dirty, force);
@@ -281,6 +283,7 @@ export abstract class _Renderer<T> {
         component: ComponentNode,
         options?: {
           skipMount?: boolean;
+          nextick?: typeof nextick;
         },
       ) => {
         state = await this._createRoot(root ?? null, component, options);
