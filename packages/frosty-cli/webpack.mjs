@@ -124,7 +124,7 @@ export default async (env, argv) => {
   });
 
   const imageLoaderConfiguration = ({ server }) => ({
-    test: /\.(gif|jpe?g|a?png|svg)$/i,
+    test: /\.(gif|jpe?g|a?png|svg|webp)$/i,
     use: {
       loader: path.resolve(__dirname, 'node_modules/file-loader'),
       options: {
@@ -137,7 +137,7 @@ export default async (env, argv) => {
   });
 
   const fontLoaderConfiguration = ({ server }) => ({
-    test: /\.ttf$/i,
+    test: /\.(ttf|woff2?)$/i,
     use: {
       loader: path.resolve(__dirname, 'node_modules/file-loader'),
       options: {
