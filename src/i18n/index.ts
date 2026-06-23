@@ -35,6 +35,18 @@ type I18nStateOPts = Partial<Opts> & {
   fallback: string;
 };
 
+/**
+ * A hook that provides the current i18n state based on the provided options.
+ *
+ * @param opts - An object containing the following properties:
+ *   - `locales`: An array of preferred locales.
+ *   - `availableLocales`: An array of available locales.
+ *   - `preferredLocale`: An optional preferred locale to use if available.
+ *   - `fallback`: A fallback locale to use if no match is found.
+ *   - Additional options for locale matching can be provided as well.
+ *
+ * @returns The matched locale string based on the provided options.
+ */
 export const useI18nState = (opts: I18nStateOPts) => useMemo(() => {
   const { locales, availableLocales, preferredLocale, fallback: defaultLocale, ...options } = opts;
   if (preferredLocale && _.includes(availableLocales, preferredLocale)) {
@@ -46,6 +58,18 @@ export const useI18nState = (opts: I18nStateOPts) => useMemo(() => {
   });
 }, [opts]);
 
+/**
+ * A hook that provides a localization function based on the current i18n state.
+ *
+ * @param opts - An object containing the following properties:
+ *   - `locales`: An array of preferred locales.
+ *   - `availableLocales`: An array of available locales.
+ *   - `preferredLocale`: An optional preferred locale to use if available.
+ *   - `fallback`: A fallback locale to use if no match is found.
+ *   - Additional options for locale matching can be provided as well.
+ * 
+ * @returns A function that takes a record of localized strings and an optional selector, returning the localized string based on the current i18n state.
+ */
 export const useLocalize = (opts: I18nStateOPts) => {
   const i18nState = useI18nState(opts);
   return useCallback(<TObject extends unknown>(
