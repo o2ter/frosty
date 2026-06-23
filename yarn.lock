@@ -1246,6 +1246,18 @@
   dependencies:
     tslib "^2.4.0"
 
+"@formatjs/fast-memoize@3.1.6":
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/@formatjs/fast-memoize/-/fast-memoize-3.1.6.tgz#fca16a7d60f89df48f506f130f58223d7d81c2a2"
+  integrity sha512-H5aexk1Le7T9TPmscacZ+1pR6CTa2n1wq+HDVGXhH8TzUlQQpeXzZs91dRtmFHrbeNbjPFPfQujUqm7MHgVoXQ==
+
+"@formatjs/intl-localematcher@^0.8.10":
+  version "0.8.10"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-localematcher/-/intl-localematcher-0.8.10.tgz#e9bd512178122dd7c7a92d2f145daed7ce598147"
+  integrity sha512-P/IC3qws3jH+1fEs+o0RIFgXKRaQlFehjS5W0FPAqdo6hgzawLl+eD0q0JjheQ3XtoOe5n8WSYfX06KQZI/QJA==
+  dependencies:
+    "@formatjs/fast-memoize" "3.1.6"
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.yarnpkg.com/@isaacs/cliui/-/cliui-8.0.2.tgz#b37667b7bc181c168782259bab42474fbf52b550"

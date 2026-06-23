@@ -11,6 +11,7 @@ export const rollupConfig = {
     'jsx-runtime': 'src/jsx-runtime',
     'jsx-dev-runtime': 'src/jsx-dev-runtime',
     web: 'src/web/index',
+    i18n: 'src/i18n/index',
     dom: 'src/renderer/dom',
     'server-dom': 'src/renderer/server-dom',
     '_native': 'src/renderer/native',

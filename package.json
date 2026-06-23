@@ -32,6 +32,7 @@
     "frosty": "./packages/frosty-cli/bin/frosty.sh"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.8.10",
     "@o2ter/utils-js": "^0.0.19",
     "@types/jsdom": "^21.1.7",
     "@types/lodash": "^4.17.16",
