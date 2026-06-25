@@ -119,11 +119,6 @@ const value_mapping = {
   'DOMTokenList': 'string',
   'TrustedHTML': 'string',
   'Element': 'Element',
-  'HTMLElement': 'string',
-  'HTMLFormElement': 'string',
-  'HTMLDataListElement': 'string',
-  'HTMLTableCaptionElement': 'string',
-  'HTMLTableSectionElement': 'string',
 
   'SVGAnimatedLength': ['number', 'string'],
 
@@ -157,6 +152,7 @@ const decodeAttrType = (x) => {
   if (x.type !== 'attribute') throw Error('not attribute type');
   if (_.isString(x.idlType.idlType)) {
     if (_.endsWith(x.idlType.idlType, 'EventHandler')) return null;
+    if (_.startsWith(x.idlType.idlType, 'HTML') && _.endsWith(x.idlType.idlType, 'Element')) return 'string';
     return value_mapping[x.idlType.idlType];
   }
   if (x.idlType.union && _.isArray(x.idlType.idlType) && _.every(x.idlType.idlType, x => _.isString(x.idlType))) {
