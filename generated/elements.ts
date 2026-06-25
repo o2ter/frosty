@@ -1,5 +1,6 @@
 export namespace Frosty {
   export interface ARIAMixin {
+    ariaActiveDescendantElement?: Element;
     ariaAtomic?: string;
     ariaAutoComplete?: string;
     ariaBrailleLabel?: string;
@@ -54,7 +55,7 @@ export namespace Frosty {
   }
   export interface ElementAttributes extends ARIAMixin {
   }
-  export interface SVGElementInstance {
+  export interface SVGAttributes extends ElementAttributes {
     about?: string;
     content?: string;
     datatype?: string;
@@ -66,8 +67,6 @@ export namespace Frosty {
     rev?: string;
     tabindex?: string;
     typeof?: string;
-  }
-  export interface SVGAttributes extends ElementAttributes, SVGElementInstance {
   }
   export interface SVGTests {
     fill?: string;
@@ -1471,6 +1470,8 @@ export namespace Frosty {
     writingSuggestions?: string;
   }
   export interface HTMLAttributes extends ElementAttributes, ElementContentEditable {
+    commandForElement?: HTMLElement;
+    htmlFor?: HTMLElement;
   }
   export interface HTMLHtmlAttributes extends HTMLAttributes {
     manifest?: string;
@@ -1564,8 +1565,17 @@ export namespace Frosty {
   export interface HTMLDivAttributes extends HTMLAttributes {
     align?: string;
   }
-  export interface HTMLAttributionSrcElementUtils {
+  export interface HyperlinkElementUtils {
+    coords?: string;
+    download?: string;
+    href?: string;
+    hreflang?: string;
+    ping?: string;
     referrerPolicy?: string;
+    rel?: string;
+    shape?: string;
+    target?: string;
+    type?: string;
   }
   export interface HTMLHyperlinkElementUtils {
     coords?: string;
@@ -1579,7 +1589,7 @@ export namespace Frosty {
     target?: string;
     type?: string;
   }
-  export interface HTMLAnchorAttributes extends HTMLAttributes, HTMLAttributionSrcElementUtils, HTMLHyperlinkElementUtils {
+  export interface HTMLAnchorAttributes extends HTMLAttributes, HyperlinkElementUtils, HTMLHyperlinkElementUtils {
     charset?: string;
     name?: string;
     rev?: string;
@@ -1610,40 +1620,46 @@ export namespace Frosty {
     type?: string;
     width?: number;
   }
-  export interface HTMLSharedStorageWritableElementUtils {
+  export interface HTMLImageAttributes extends HTMLAttributes {
     align?: string;
-    height?: number;
-    loading?: string;
-    longDesc?: string;
-    name?: string;
-    referrerPolicy?: string;
-    src?: string;
-    width?: string;
-  }
-  export interface HTMLImageAttributes extends HTMLAttributes, HTMLAttributionSrcElementUtils, HTMLSharedStorageWritableElementUtils {
     alt?: string;
     border?: string;
     crossOrigin?: string;
     decoding?: string;
     fetchPriority?: string;
+    height?: number;
     hspace?: number;
     isMap?: boolean;
+    loading?: string;
+    longDesc?: string;
+    name?: string;
+    referrerPolicy?: string;
     sizes?: string;
+    src?: string;
     srcset?: string;
     useMap?: string;
     vspace?: number;
+    width?: number;
   }
-  export interface HTMLIFrameAttributes extends HTMLAttributes, HTMLSharedStorageWritableElementUtils {
+  export interface HTMLIFrameAttributes extends HTMLAttributes {
+    align?: string;
     allow?: string;
     allowFullscreen?: boolean;
     allowpaymentrequest?: string;
     allowusermedia?: string;
     frameBorder?: string;
+    height?: string;
+    loading?: string;
+    longDesc?: string;
     marginHeight?: string;
     marginWidth?: string;
+    name?: string;
+    referrerPolicy?: string;
     sandbox?: string;
     scrolling?: string;
+    src?: string;
     srcdoc?: string;
+    width?: string;
   }
   export interface HTMLEmbedAttributes extends HTMLAttributes {
     height?: string;
@@ -1698,7 +1714,7 @@ export namespace Frosty {
   export interface HTMLMapAttributes extends HTMLAttributes {
     name?: string;
   }
-  export interface HTMLAreaAttributes extends HTMLAttributes, HTMLAttributionSrcElementUtils, HTMLHyperlinkElementUtils {
+  export interface HTMLAreaAttributes extends HTMLAttributes, HyperlinkElementUtils, HTMLHyperlinkElementUtils {
     alt?: string;
     noHref?: boolean;
   }
@@ -1765,7 +1781,6 @@ export namespace Frosty {
     target?: string;
   }
   export interface HTMLLabelAttributes extends HTMLAttributes {
-    for?: string;
     form?: string;
   }
   export interface PopoverTargetAttributes {
@@ -1811,7 +1826,6 @@ export namespace Frosty {
   }
   export interface HTMLButtonAttributes extends HTMLAttributes, PopoverTargetAttributes {
     command?: string;
-    commandfor?: string;
   }
   export interface HTMLSelectAttributes extends HTMLAttributes {
     autocomplete?: string;
@@ -1850,7 +1864,6 @@ export namespace Frosty {
     wrap?: string;
   }
   export interface HTMLOutputAttributes extends HTMLAttributes {
-    for?: string;
     form?: string;
     name?: string;
   }
@@ -1884,7 +1897,7 @@ export namespace Frosty {
     closedBy?: string;
     open?: boolean;
   }
-  export interface HTMLScriptAttributes extends HTMLAttributes, HTMLAttributionSrcElementUtils {
+  export interface HTMLScriptAttributes extends HTMLAttributes {
     async?: boolean;
     blocking?: string;
     charset?: string;
@@ -1894,6 +1907,7 @@ export namespace Frosty {
     integrity?: string;
     language?: string;
     noModule?: boolean;
+    referrerPolicy?: string;
     src?: string;
     type?: string;
   }

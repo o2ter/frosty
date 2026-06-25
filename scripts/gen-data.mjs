@@ -118,8 +118,12 @@ const value_mapping = {
   'USVString': 'string',
   'DOMTokenList': 'string',
   'TrustedHTML': 'string',
+  'Element': 'Element',
+  'HTMLElement': 'string',
   'HTMLFormElement': 'string',
   'HTMLDataListElement': 'string',
+  'HTMLTableCaptionElement': 'string',
+  'HTMLTableSectionElement': 'string',
 
   'SVGAnimatedLength': ['number', 'string'],
 
@@ -135,11 +139,28 @@ const value_mapping = {
 
 };
 
+const ignore_attrs = [
+  'innerHTML',
+  'outerHTML',
+  'currentScale',
+  'editContext',
+  'valueAsDate',
+];
+
+const force_mapped_attrs = [
+  { name: 'for', mapped: 'htmlFor', type: 'HTMLElement' },
+  { name: 'commandfor', mapped: 'commandForElement', type: 'HTMLElement' },
+];
+
 const decodeAttrType = (x) => {
+  if (_.includes(ignore_attrs, x.name)) return null;
   if (x.type !== 'attribute') throw Error('not attribute type');
-  if (_.isString(x.idlType.idlType)) return value_mapping[x.idlType.idlType];
+  if (_.isString(x.idlType.idlType)) {
+    if (_.endsWith(x.idlType.idlType, 'EventHandler')) return null;
+    return value_mapping[x.idlType.idlType];
+  }
   if (x.idlType.union && _.isArray(x.idlType.idlType) && _.every(x.idlType.idlType, x => _.isString(x.idlType))) {
-    return _.compact(_.uniq(_.map(x.idlType.idlType, x => value_mapping[x.idlType])));
+    return _.compact(_.uniq(_.map(x.idlType.idlType, y => value_mapping[y.idlType])));
   }
   if (x.idlType.generic === 'FrozenArray') return null;
   throw Error('unknown attribute type');
@@ -180,8 +201,11 @@ let mapped = _.mapValues(interfaces, (v, name) => {
     name,
     tag: found?.name,
     implements: v.implements,
-    attributes: attrs,
-    properties,
+    attributes: _.filter(attrs, x => !_.some(force_mapped_attrs, y => _.camelCase(y.name).toLowerCase() === _.camelCase(x).toLowerCase())),
+    properties: {
+      ...properties,
+      ..._.fromPairs(_.map(_.filter(force_mapped_attrs, x => x.type === name), x => [x.mapped, x.type])),
+    },
   };
 });
 
