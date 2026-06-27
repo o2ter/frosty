@@ -293,7 +293,11 @@ export default async (env, argv) => {
       optimization: webpackOptimization({ server: true }),
       plugins: _.compact([
         ...webpackPlugins,
-        new webpack.EnvironmentPlugin({ PORT, NUM_WORKERS, INSTANCE_VAR }),
+        new webpack.EnvironmentPlugin({
+          PORT,
+          ...NUM_WORKERS ? { NUM_WORKERS } : {},
+          ...INSTANCE_VAR ? { INSTANCE_VAR } : {},
+        }),
         new webpack.DefinePlugin({
           __applications__: JSON.stringify(_.mapValues(inputs, x => ({
             path: x.basepath,
