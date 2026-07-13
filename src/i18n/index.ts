@@ -28,7 +28,7 @@ import { match, Opts } from '@formatjs/intl-localematcher';
 import { useMemo } from '../core/hooks/memo';
 import { useCallback } from '../core/hooks/callback';
 
-type I18nStateOPts = Partial<Opts> & {
+type I18nStateOpts = Partial<Opts> & {
   locales: string[];
   availableLocales: string[];
   preferredLocale?: string;
@@ -47,7 +47,7 @@ type I18nStateOPts = Partial<Opts> & {
  *
  * @returns The matched locale string based on the provided options.
  */
-export const useI18nState = (opts: I18nStateOPts) => useMemo(() => {
+export const useI18nState = (opts: I18nStateOpts) => useMemo(() => {
   const { locales, availableLocales, preferredLocale, fallback: defaultLocale, ...options } = opts;
   if (preferredLocale && _.includes(availableLocales, preferredLocale)) {
     return preferredLocale;
@@ -70,7 +70,7 @@ export const useI18nState = (opts: I18nStateOPts) => useMemo(() => {
  * 
  * @returns A function that takes a record of localized strings and an optional selector, returning the localized string based on the current i18n state.
  */
-export const useLocalize = (opts: I18nStateOPts) => {
+export const useLocalize = (opts: I18nStateOpts) => {
   const i18nState = useI18nState(opts);
   return useCallback(<TObject extends unknown>(
     strings: Record<string, TObject>,
