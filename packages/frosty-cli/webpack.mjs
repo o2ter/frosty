@@ -28,11 +28,11 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import webpack from 'webpack';
-import Dotenv from 'dotenv-webpack';
-import TerserPlugin from 'terser-webpack-plugin';
-import nodeExternals from 'webpack-node-externals';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from './node_modules/webpack/lib/index.js';
+import Dotenv from './node_modules/dotenv-webpack/src/index.js';
+import TerserPlugin from './node_modules/terser-webpack-plugin/dist/index.js';
+import nodeExternals from './node_modules/webpack-node-externals/index.js';
+import MiniCssExtractPlugin from './node_modules/mini-css-extract-plugin/dist/index.js';
 
 const { dirname: __dirname } = import.meta;
 
