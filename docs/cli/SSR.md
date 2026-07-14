@@ -25,7 +25,7 @@ npx frosty run --watch --debug app.tsx
 ### 2. Rendering Pipeline
 
 1. **Server Request**: When a user requests a page, the server receives the request
-2. **Context Extraction**: The CLI extracts request context (userAgent, cookies, URL, referrer) from the Express request
+2. **Context Extraction**: The CLI extracts request context (cookies, URL, referrer) from the Express request
 3. **JSDOM Creation**: A new JSDOM instance is created with the extracted context passed directly to the JSDOM constructor
 4. **Component Rendering**: Frosty renders your components on the server using `ServerDOMRenderer` with the JSDOM instance
 5. **HTML Generation**: The server generates complete HTML with your rendered components
@@ -116,9 +116,6 @@ function RequestAwareComponent() {
   const userId = searchParams?.get('id');
   const page = searchParams?.get('page') || '1';
 
-  // Access user agent from the request
-  const userAgent = window?.navigator?.userAgent;
-
   // Access cookies from the request
   const cookies = document?.cookie;
 
@@ -128,43 +125,11 @@ function RequestAwareComponent() {
       <p>Current URL: {currentUrl}</p>
       <p>Path: {pathname}</p>
       <p>Search: {search}</p>
-      <p>User Agent: {userAgent}</p>
       <p>Cookies: {cookies}</p>
       <p>User ID param: {userId}</p>
       <p>Page param: {page}</p>
     </div>
   );
-}
-```
-
-### User Agent Detection
-
-```tsx
-function UserAgentComponent() {
-  const window = useWindow();
-  const userAgent = window?.navigator?.userAgent || '';
-
-  const isMobile = /Mobile|Android|iPhone|iPad/.test(userAgent);
-  const isBot = /bot|crawl|spider/i.test(userAgent);
-  const browser = getBrowserFromUserAgent(userAgent);
-
-  return (
-    <div>
-      <p>Device: {isMobile ? 'Mobile' : 'Desktop'}</p>
-      <p>Is Bot: {isBot ? 'Yes' : 'No'}</p>
-      <p>Browser: {browser}</p>
-      {isMobile && <MobileOptimizedContent />}
-      {isBot && <SEOOptimizedContent />}
-    </div>
-  );
-}
-
-function getBrowserFromUserAgent(ua: string): string {
-  if (ua.includes('Chrome')) return 'Chrome';
-  if (ua.includes('Firefox')) return 'Firefox';
-  if (ua.includes('Safari')) return 'Safari';
-  if (ua.includes('Edge')) return 'Edge';
-  return 'Unknown';
 }
 ```
 
@@ -327,7 +292,6 @@ function UserProfile({ userId }: { userId: string }) {
   const location = useLocation();
   
   // Access request context for personalized data fetching
-  const userAgent = window?.navigator?.userAgent || '';
   const cookies = document?.cookie || '';
   const currentUrl = location?.href || '';
 
@@ -335,23 +299,21 @@ function UserProfile({ userId }: { userId: string }) {
   const userData = useAwaited(async () => {
     const response = await fetch(`/api/users/${userId}`, {
       headers: {
-        'User-Agent': userAgent,
         'Cookie': cookies,
         'X-Request-URL': currentUrl,
       }
     });
     return response.json();
-  }, [userId, userAgent, cookies]);
+  }, [userId, cookies]);
 
   const encoded = useServerResource('user-data', () => 
     JSON.stringify({
       user: userData,
       requestContext: {
-        userAgent,
         timestamp: Date.now(),
         url: currentUrl
       }
-    }), [userData, userAgent, currentUrl]
+    }), [userData, currentUrl]
   );
 
   // Parse for rendering (same as client)
@@ -500,7 +462,6 @@ function EnvironmentAwareComponent() {
   const location = useLocation();
   
   // Access injected request context on server
-  const userAgent = window?.navigator?.userAgent;
   const cookies = document?.cookie;
   
   // These will be available on both server and client
@@ -510,7 +471,6 @@ function EnvironmentAwareComponent() {
     <div>
       <p>Environment: {typeof window !== 'undefined' ? 'client' : 'server'}</p>
       <p>Current URL: {location?.href || 'unknown'}</p>
-      <p>User Agent: {userAgent || 'unknown'}</p>
       <p>Has Cookies: {cookies ? 'yes' : 'no'}</p>
       <p>Pathname: {location?.pathname || '/'}</p>
     </div>
@@ -545,7 +505,6 @@ function WebAPIComponent() {
   const isVisible = useVisibility();
 
   // Access injected request context directly
-  const userAgent = window?.navigator?.userAgent;
   const cookies = document?.cookie;
 
   return (
@@ -557,7 +516,6 @@ function WebAPIComponent() {
       <p>Online: {String(isOnline)}</p>
       <p>Visible: {String(isVisible)}</p>
       <p>Request URL: {location?.href}</p>
-      <p>User Agent: {userAgent?.substring(0, 50)}...</p>
       <p>Cookies Available: {cookies ? 'yes' : 'no'}</p>
     </div>
   );
@@ -594,7 +552,6 @@ export default async (app, serverEnv) => {
   // Custom middleware
   app.use((req, res, next) => {
     // The CLI automatically injects request data into JSDOM:
-    // - req.get('User-Agent') -> window.navigator.userAgent
     // - req.get('Cookie') -> document.cookie  
     // - req.url -> window.location.href
     // - req.get('Referrer') -> document.referrer

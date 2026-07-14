@@ -80,7 +80,6 @@ export const App = () => {
   //   console.log(ssr);
   //   console.log(location);
   //   console.log(window.document.cookie);
-  //   console.log(window.navigator.userAgent);
   //   await new Promise(res => setTimeout(res, 1000));
   // }, []);
   let k = Date.now();

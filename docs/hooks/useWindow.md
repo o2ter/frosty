@@ -20,7 +20,6 @@ function WindowInfo() {
   return (
     <div>
       <h2>Window Information</h2>
-      <p>User Agent: {window.navigator.userAgent}</p>
       <p>Location: {window.location.href}</p>
       <p>Inner Width: {window.innerWidth}px</p>
       <p>Inner Height: {window.innerHeight}px</p>
@@ -39,35 +38,6 @@ None - this hook takes no parameters.
 `Window` - The current window object.
 
 ## Examples
-
-### Browser Detection
-
-```tsx
-import { useWindow } from 'frosty/web';
-
-function BrowserDetection() {
-  const window = useWindow();
-  const userAgent = window.navigator.userAgent;
-
-  const getBrowserInfo = () => {
-    if (userAgent.includes('Chrome')) return { name: 'Chrome', icon: '🟡' };
-    if (userAgent.includes('Firefox')) return { name: 'Firefox', icon: '🦊' };
-    if (userAgent.includes('Safari')) return { name: 'Safari', icon: '🧭' };
-    if (userAgent.includes('Edge')) return { name: 'Edge', icon: '🔷' };
-    return { name: 'Unknown', icon: '❓' };
-  };
-
-  const browser = getBrowserInfo();
-
-  return (
-    <div>
-      <h2>Browser Information</h2>
-      <p>{browser.icon} You are using {browser.name}</p>
-      <p>Full User Agent: {userAgent}</p>
-    </div>
-  );
-}
-```
 
 ### Geolocation Access
 
