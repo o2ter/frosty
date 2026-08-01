@@ -52,7 +52,10 @@ export const useI18nState = (opts: I18nStateOpts) => useMemo(() => {
   if (preferredLocale && _.includes(availableLocales, preferredLocale)) {
     return preferredLocale;
   }
-  return match(locales, availableLocales, defaultLocale, {
+  const _locales = _.map(locales, v => v.replaceAll('_', '-'));
+  const _availableLocales = _.map(availableLocales, v => v.replaceAll('_', '-'));
+  const _defaultLocale = defaultLocale.replaceAll('_', '-');
+  return match(_locales, _availableLocales, _defaultLocale, {
     algorithm: 'best fit',
     ...options,
   });
@@ -75,5 +78,16 @@ export const useLocalize = (opts: I18nStateOpts) => {
   return useCallback(<TObject extends unknown>(
     strings: Record<string, TObject>,
     selector?: _.PropertyPath,
-  ) => selector ? _.get(strings[i18nState], selector) : strings[i18nState]);
+  ) => selector ? _.get(pickLng(strings, i18nState), selector) : pickLng(strings, i18nState));
+};
+
+const pickLng = <TObject extends unknown>(
+  strings: Record<string, TObject>,
+  lng: string
+) => {
+  if (strings[lng]) return strings[lng];
+  const _strings = _.mapKeys(strings, (_v, k) => k.replaceAll('_', '-').toLowerCase());
+  const _lng = lng.replaceAll('_', '-').toLowerCase();
+  if (_strings[_lng]) return _strings[_lng];
+  return undefined;
 };
