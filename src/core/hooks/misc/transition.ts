@@ -1,5 +1,5 @@
 //
-//  index.ts
+//  transition.ts
 //
 //  The MIT License
 //  Copyright (c) 2021 - 2026 O2ter Limited. All rights reserved.
@@ -23,9 +23,28 @@
 //  THE SOFTWARE.
 //
 
-export * from './activity';
-export * from './resource';
-export * from './interval';
-export * from './store';
-export * from './form';
-export * from './transition';
+import _ from 'lodash';
+import { Awaitable } from '@o2ter/utils-js';
+import { useState } from '../state';
+import { useCallback } from '../callback';
+import { uniqueId } from '~/core/utils';
+
+/**
+ * A hook that provides a way to manage transitions in a React component.
+ * It returns a boolean indicating whether a transition is currently in progress and a callback function to initiate a transition.
+ * 
+ * @returns A tuple containing a boolean indicating if a transition is in progress and a callback function to initiate a transition.
+ */
+export const useTransition = (): [boolean, (cb: () => Awaitable<void>) => void] => {
+  const [tasks, setTasks] = useState<string[]>([]);
+  const callback = useCallback(async (cb: () => Awaitable<void>) => {
+    const taskId = uniqueId();
+    setTasks(prev => [...prev, taskId]);
+    try {
+      await cb();
+    } finally {
+      setTasks(prev => prev.filter(id => id !== taskId))
+    }
+  });
+  return [!_.isEmpty(tasks), callback];
+};
