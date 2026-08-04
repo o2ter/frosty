@@ -39,6 +39,7 @@ print_usage() {
   echo ""
   echo "Options:"
   echo "  -w, --watch                Enable watch mode (rebuild on file changes)"
+  echo "  --watch-preserve-output    Disable the clearing of the console when watch mode restarts the process."
   echo "  -d, --debug                Enable debug mode (development build)"
   echo "  -b, --build-only           Only build, do not run the server"
   echo "  -B, --no-build             Skip build step"
@@ -62,6 +63,7 @@ POSITIONAL_ARGS=()
 while [ $# -gt 0 ]; do
   case "$1" in
     -w|--watch) WATCH_MODE=true; shift ;;
+    --watch-preserve-output) WATCH_PRESERVE_OUTPUT=true; shift ;;
     -d|--debug) DEBUG_MODE=true; shift ;;
     -b|--build-only) BUILD_ONLY=true; shift ;;
     -B|--no-build) NO_BUILD=true; shift ;;
@@ -128,7 +130,14 @@ fi
 if [ "$BUILD_ONLY" != "true" ]; then
   if [ "$WATCH_MODE" = "true" ]; then
     until [ -f "$OUTPUT_DIR/server.js" ]; do sleep 1; done
-    node --watch-path="$OUTPUT_DIR" "$OUTPUT_DIR/server.js" "$@"
+    WATCH_OPTS="--watch-path="$OUTPUT_DIR""
+    if [ "$WATCH_PRESERVE_OUTPUT" = "true" ]; then
+      WATCH_OPTS="$WATCH_OPTS --watch-preserve-output"
+    fi
+    echo "Starting server in watch mode..."
+    echo "Press Ctrl+C to stop."
+    echo ""
+    node $WATCH_OPTS "$OUTPUT_DIR/server.js" "$@"
   else
     node "$OUTPUT_DIR/server.js" "$@"
   fi
