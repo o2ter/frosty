@@ -41,7 +41,7 @@
     "lodash": ">=4.18.1",
     "myers.js": "^0.0.22",
     "nextick": "^0.0.2",
-    "postcss": "^8.5.19",
+    "postcss": "^8.5.23",
     "postcss-js": "^5.1.0",
     "postcss-nested": "^7.0.2"
   },
