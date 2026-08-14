@@ -1566,6 +1566,13 @@
   dependencies:
     lodash ">=4.17.21"
 
+"@o2ter/utils-js@^0.0.20":
+  version "0.0.20"
+  resolved "https://registry.yarnpkg.com/@o2ter/utils-js/-/utils-js-0.0.20.tgz#b071165eb159179613a4b214ee64227d07913f8e"
+  integrity sha512-b77xkdc45fsUQ8atC8lASWR85uS8maMJwtN3ZZSbYzZlL8ejrCS9MKJm4zGr2UCECl9sd+jnGX18mT1b7MrwDw==
+  dependencies:
+    lodash ">=4.18.1"
+
 "@parcel/watcher-android-arm64@2.5.6":
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/@parcel/watcher-android-arm64/-/watcher-android-arm64-2.5.6.tgz#5f32e0dba356f4ac9a11068d2a5c134ca3ba6564"

@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.12",
-    "@o2ter/utils-js": "^0.0.19",
+    "@o2ter/utils-js": "^0.0.20",
     "@types/jsdom": "^28.0.3",
     "@types/lodash": "^4.17.24",
     "csstype": "^3.2.3",
