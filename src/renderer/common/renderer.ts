@@ -46,6 +46,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   #window: Window | DOMWindow;
   #namespace_map = new WeakMap<VNode, string | undefined>();
 
+  #server_env?: Record<string, any>;
+
   #tracked_head_children = new Map<VNode, (string | Element | DOMNativeNode)[]>();
   #tracked_body_head_children = new Map<VNode, (string | Element | DOMNativeNode)[]>();
   #tracked_style = new StyleBuilder();
@@ -55,9 +57,10 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
 
   #server_head_elements?: ChildNode[];
 
-  constructor(window: Window | DOMWindow) {
+  constructor(window: Window | DOMWindow, env?: Record<string, any>) {
     super();
     this.#window = window;
+    this.#server_env = env;
   }
 
   get document() {
@@ -80,7 +83,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         } else {
           const styleElem = this.document.querySelector('style[data-frosty-style]');
           const ssrDataElem = this.document.querySelector('script[data-frosty-ssr-data]');
-          this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem, ssrDataElem], x));
+          const envElem = this.document.querySelector('script[data-frosty-env]');
+          this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem, ssrDataElem, envElem], x));
         }
         DOMNativeNode.Utils.replaceChildren(head, this.#server_head_elements);
       }
@@ -96,10 +100,16 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       styleElem.textContent = this.#tracked_style.css;
     if (this._server) {
       const ssrData = this._tracked_server_resource.size ? this.document.createElementNS(HTML_NS, 'script') : undefined;
+      const envData = this.#server_env ? this.document.createElementNS(HTML_NS, 'script') : undefined;
       if (ssrData) {
         ssrData.setAttribute('data-frosty-ssr-data', '');
         ssrData.setAttribute('type', 'text/plain');
         ssrData.innerHTML = compress(JSON.stringify(Object.fromEntries(this._tracked_server_resource)));
+      }
+      if (envData) {
+        envData.setAttribute('data-frosty-env', '');
+        envData.setAttribute('type', 'text/plain');
+        envData.innerHTML = compress(JSON.stringify(this.#server_env));
       }
       const tracked_head_children = _.flattenDeep([...this.#tracked_body_head_children.values()]);
       const maker = this.document.createComment('frosty-server-head-marker');
@@ -109,6 +119,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
         ...tracked_head_children,
         styleElem.textContent && styleElem,
         ssrData,
+        envData,
       ]), (x) => this.#tracked_elements.has(x as any));
     } else {
       DOMNativeNode.Utils.replaceChildren(head, _.compact([

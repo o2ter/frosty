@@ -31,8 +31,8 @@ export * from 'jsdom';
 
 export class ServerDOMRenderer extends _DOMRenderer {
 
-  constructor(dom = new JSDOM()) {
-    super(dom.window);
+  constructor(dom = new JSDOM(), env?: Record<string, any>) {
+    super(dom.window, env);
   }
 
   get _server(): boolean {

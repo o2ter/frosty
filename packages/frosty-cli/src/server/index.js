@@ -97,6 +97,7 @@ if (cluster.isPrimary && NUM_WORKERS > 1) {
     const route = FrostyRoute(App, {
       jsSrc: `/${name}_bundle.js`,
       cssSrc: cssExists ? `/css/${name}_bundle.css` : undefined,
+      env: server_env,
     });
     if (_.isEmpty(pathname) || pathname === '/') {
       app.use(route);

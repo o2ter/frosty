@@ -32,6 +32,7 @@ export const renderToHTML = async (App, {
   response: res,
   jsSrc,
   cssSrc,
+  env,
 }) => {
   const referrer = req.get('Referrer');
   const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
@@ -41,7 +42,7 @@ export const renderToHTML = async (App, {
     if (trimmedCookie) cookieJar.setCookieSync(trimmedCookie, url);
   }
   const dom = new JSDOM(undefined, { url, referrer, cookieJar });
-  const renderer = new ServerDOMRenderer(dom);
+  const renderer = new ServerDOMRenderer(dom, env);
   res.setHeader('Content-Type', 'text/html');
   res.send(await renderer.renderToString(
     <html>

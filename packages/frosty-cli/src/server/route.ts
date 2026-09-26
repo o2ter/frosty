@@ -30,11 +30,13 @@ import { renderToHTML } from './render';
 type FrostyRouteOptions = {
   jsSrc: string;
   cssSrc: string | undefined;
+  env?: Record<string, any>;
 }
 
 export const FrostyRoute = (App: any, {
   jsSrc,
   cssSrc,
+  env,
 }: FrostyRouteOptions) => {
   const router = Server.Router();
   router.get('*path', async (req, res) => {
@@ -43,6 +45,7 @@ export const FrostyRoute = (App: any, {
       response: res,
       jsSrc,
       cssSrc,
+      env,
     });
   });
   return router;
