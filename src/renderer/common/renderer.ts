@@ -36,6 +36,7 @@ import { mergeRefs } from '../../core/utils';
 import type { DOMWindow } from 'jsdom';
 import { compress } from '../minify/compress';
 import { DOMNativeNode } from './node';
+import { decompress } from '../minify/decompress';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const HTML_NS = 'http://www.w3.org/1999/xhtml';
@@ -46,7 +47,8 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   #window: Window | DOMWindow;
   #namespace_map = new WeakMap<VNode, string | undefined>();
 
-  #server_env?: Record<string, any>;
+  _server_env?: Record<string, any>;
+  _decoded_server_data?: Record<string, any>;
 
   #tracked_head_children = new Map<VNode, (string | Element | DOMNativeNode)[]>();
   #tracked_body_head_children = new Map<VNode, (string | Element | DOMNativeNode)[]>();
@@ -60,7 +62,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
   constructor(window: Window | DOMWindow, env?: Record<string, any>) {
     super();
     this.#window = window;
-    this.#server_env = env;
+    this._server_env = env;
   }
 
   get document() {
@@ -71,20 +73,41 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
     return this.#window;
   }
 
+  _decodeServerData() {
+    if (this._server) return;
+    const ssrDataElem = this.document.querySelector('script[data-frosty-ssr-data]');
+    const envElem = this.document.querySelector('script[data-frosty-env]');
+    if (ssrDataElem) {
+      try {
+        this._decoded_server_data = JSON.parse(decompress(ssrDataElem.textContent.trim()));
+      } catch {
+        this._decoded_server_data = {};
+      }
+      ssrDataElem.remove();
+    }
+    if (envElem) {
+      try {
+        this._server_env = JSON.parse(decompress(envElem.textContent.trim()));
+      } catch {
+        this._server_env = {};
+      }
+      envElem.remove();
+    }
+  }
+
   _beforeUpdate() {
     const head = this.document.head
     if (this._server) {
       this._tracked_server_resource = new Map();
     } else if (head) {
+      this._decodeServerData();
       if (!this.#server_head_elements) {
         const found_marker = _.findIndex(head.childNodes, x => x.nodeType === head.COMMENT_NODE && x.textContent === 'frosty-server-head-marker');
         if (found_marker > -1) {
           this.#server_head_elements = _.slice(head.childNodes, 0, found_marker);
         } else {
           const styleElem = this.document.querySelector('style[data-frosty-style]');
-          const ssrDataElem = this.document.querySelector('script[data-frosty-ssr-data]');
-          const envElem = this.document.querySelector('script[data-frosty-env]');
-          this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem, ssrDataElem, envElem], x));
+          this.#server_head_elements = _.filter([...head.childNodes], x => !_.includes([styleElem], x));
         }
         DOMNativeNode.Utils.replaceChildren(head, this.#server_head_elements);
       }
@@ -100,7 +123,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       styleElem.textContent = this.#tracked_style.css;
     if (this._server) {
       const ssrData = this._tracked_server_resource.size ? this.document.createElementNS(HTML_NS, 'script') : undefined;
-      const envData = this.#server_env ? this.document.createElementNS(HTML_NS, 'script') : undefined;
+      const envData = this._server_env ? this.document.createElementNS(HTML_NS, 'script') : undefined;
       if (ssrData) {
         ssrData.setAttribute('data-frosty-ssr-data', '');
         ssrData.setAttribute('type', 'text/plain');
@@ -109,7 +132,7 @@ export abstract class _DOMRenderer extends _Renderer<Element | DOMNativeNode> {
       if (envData) {
         envData.setAttribute('data-frosty-env', '');
         envData.setAttribute('type', 'text/plain');
-        envData.innerHTML = compress(JSON.stringify(this.#server_env));
+        envData.innerHTML = compress(JSON.stringify(this._server_env));
       }
       const tracked_head_children = _.flattenDeep([...this.#tracked_body_head_children.values()]);
       const maker = this.document.createComment('frosty-server-head-marker');

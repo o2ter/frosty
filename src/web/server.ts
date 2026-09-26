@@ -26,10 +26,6 @@
 import _ from 'lodash';
 import { reconciler } from '../core/reconciler';
 import { _DOMRenderer } from '../renderer/common';
-import { decompress } from '../renderer/minify/decompress';
-
-const decodedSsrData = new WeakMap<Document, any>();
-const decodedEnv = new WeakMap<Document, any>();
 
 /**
  * A hook to manage server-side resources in a web renderer.
@@ -50,22 +46,7 @@ export const useServerResource = (key: string, resource?: () => string): string 
       state.renderer._tracked_server_resource.set(key, data);
       return data;
     } else {
-      const cached = decodedSsrData.get(state.renderer.document);
-      if (!_.isNil(cached)) return cached[key];
-      const ssrData = state.renderer.document.querySelector('script[data-frosty-ssr-data]');
-      if (ssrData instanceof HTMLElement) {
-        try {
-          const decoded = JSON.parse(decompress(ssrData.innerText.trim()));
-          decodedSsrData.set(state.renderer.document, decoded);
-          return decoded[key];
-        } catch (e) {
-          console.error(e);
-          decodedSsrData.set(state.renderer.document, {});
-        }
-        ssrData.remove();
-      } else {
-        decodedSsrData.set(state.renderer.document, {});
-      }
+      return state.renderer._decoded_server_data?.[key];
     }
   } else {
     throw Error('Unsupported renderer.');
@@ -83,22 +64,7 @@ export const useServerEnv = (): Record<string, any> | undefined => {
   const state = reconciler.currentHookState;
   if (!state) throw Error('useServerEnv must be used within a render function.');
   if (state.renderer instanceof _DOMRenderer) {
-    const cached = decodedEnv.get(state.renderer.document);
-    if (!_.isNil(cached)) return cached;
-    const envData = state.renderer.document.querySelector('script[data-frosty-env]');
-    if (envData instanceof HTMLElement) {
-      try {
-        const decoded = JSON.parse(decompress(envData.innerText.trim()));
-        decodedEnv.set(state.renderer.document, decoded);
-        return decoded;
-      } catch (e) {
-        console.error(e);
-        decodedEnv.set(state.renderer.document, {});
-      }
-      envData.remove();
-    } else {
-      decodedEnv.set(state.renderer.document, {});
-    }
+    return state.renderer._server_env;
   } else {
     throw Error('Unsupported renderer.');
   }
