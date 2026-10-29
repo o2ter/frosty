@@ -28,6 +28,7 @@ import fs from 'fs';
 import path from 'path';
 import process from 'process';
 import cluster from 'cluster';
+import crypto from 'crypto';
 import { Server } from '@o2ter/server-js';
 import { FrostyRoute } from './route';
 import * as __SERVER__ from '__SERVER__';
@@ -44,10 +45,16 @@ if (cluster.isPrimary && NUM_WORKERS > 1) {
   // Fork workers one by one, waiting for each to come online before starting the next.
   let forked = 0;
   const workerInstances = new Map(); // worker.id -> instance index
+  const clusterUuid = crypto.randomUUID();
+  const instanceUuids = Array.from({ length: NUM_WORKERS }, () => crypto.randomUUID());
   const startedWorkers = new Set(); // worker IDs that have successfully started
 
   const spawnWorker = (instance) => {
-    const worker = cluster.fork({ [INSTANCE_VAR]: instance });
+    const worker = cluster.fork({
+      [INSTANCE_VAR]: instance,
+      CLUSTER_UUID: clusterUuid,
+      INSTANCE_UUID: instanceUuids[instance],
+    });
     workerInstances.set(worker.id, instance);
     return worker;
   };
@@ -77,6 +84,9 @@ if (cluster.isPrimary && NUM_WORKERS > 1) {
   });
 
 } else {
+
+  process.env.CLUSTER_UUID ||= crypto.randomUUID();
+  process.env.INSTANCE_UUID ||= crypto.randomUUID();
 
   const app = 'serverOptions' in __SERVER__ ? new Server(__SERVER__.serverOptions) : new Server;
 
